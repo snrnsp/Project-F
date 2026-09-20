@@ -42,6 +42,14 @@ namespace HalloweenVN.UI.Theme
             tmp.color = color;
             tmp.fontSize = fontSize;
             tmp.alignment = alignment;
+
+            // Load Korean Font (MalgunGothic SDF) if it exists
+            TMP_FontAsset koreanFont = Resources.Load<TMP_FontAsset>("Fonts/MalgunGothic SDF");
+            if (koreanFont != null)
+            {
+                tmp.font = koreanFont;
+            }
+
             return tmp;
         }
 

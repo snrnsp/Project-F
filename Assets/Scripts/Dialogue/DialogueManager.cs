@@ -20,6 +20,7 @@ namespace HalloweenVN.Dialogue
 
         private DialogueContainer currentDialogue;
         private DialogueNode currentNode;
+        private string pendingCommand;
         private bool isTyping;
         private Coroutine typingCoroutine;
 
@@ -108,37 +109,21 @@ namespace HalloweenVN.Dialogue
                 return;
             }
 
+            pendingCommand = null;
+
             if (!string.IsNullOrEmpty(currentNode.command))
             {
-                if (currentNode.command.StartsWith("CHANGE_PHASE:"))
+                // If the node has displayable text, show it first and defer the command
+                bool hasText = !string.IsNullOrEmpty(currentNode.text);
+                if (hasText)
                 {
-                    string phaseString = currentNode.command.Substring("CHANGE_PHASE:".Length);
-                    if (Enum.TryParse(phaseString, out GamePhase phase))
-                    {
-                        GameManager.Instance.ChangePhase(phase);
-                    }
-                    
-                    if (currentNode.nextNodeId != -1)
-                    {
-                        DisplayNode(currentNode.nextNodeId);
-                        return;
-                    }
-                    else
-                    {
-                        EndDialogue();
-                        return;
-                    }
+                    pendingCommand = currentNode.command;
+                    // Fall through to display the text below
                 }
-                else if (currentNode.command.StartsWith("START_DIALOGUE:"))
+                else
                 {
-                    string nextDialogueId = currentNode.command.Substring("START_DIALOGUE:".Length);
-                    EndDialogue();
-                    StartDialogue(nextDialogueId);
-                    return;
-                }
-                else if (currentNode.command == "END")
-                {
-                    EndDialogue();
+                    // No text — execute command immediately
+                    ExecuteCommand(currentNode.command);
                     return;
                 }
             }
@@ -158,18 +143,49 @@ namespace HalloweenVN.Dialogue
         }
 
         /// <summary>
+        /// Executes a dialogue command (CHANGE_PHASE, START_DIALOGUE, END).
+        /// </summary>
+        private void ExecuteCommand(string command)
+        {
+            if (command.StartsWith("CHANGE_PHASE:"))
+            {
+                string phaseString = command.Substring("CHANGE_PHASE:".Length);
+                if (Enum.TryParse(phaseString, out GamePhase phase))
+                {
+                    EndDialogue();
+                    GameManager.Instance.ChangePhase(phase);
+                }
+            }
+            else if (command.StartsWith("START_DIALOGUE:"))
+            {
+                string nextDialogueId = command.Substring("START_DIALOGUE:".Length);
+                EndDialogue();
+                StartDialogue(nextDialogueId);
+            }
+            else if (command == "END")
+            {
+                EndDialogue();
+            }
+        }
+
+        /// <summary>
         /// Advances the dialogue to the next node, or ends it if there are no more nodes.
         /// </summary>
         public void AdvanceDialogue()
         {
             if (currentNode == null || !IsPlaying) return;
 
-            // Note: If UI is typing, skip to end is handled by DialogueUI. 
-            // Here, we handle the case where we're not typing and there are no choices.
-
             if (currentNode.choices != null && currentNode.choices.Count > 0)
             {
-                // Cannot advance by click if choices are present.
+                return;
+            }
+
+            // If there's a pending command (text was shown, now execute)
+            if (!string.IsNullOrEmpty(pendingCommand))
+            {
+                string cmd = pendingCommand;
+                pendingCommand = null;
+                ExecuteCommand(cmd);
                 return;
             }
 

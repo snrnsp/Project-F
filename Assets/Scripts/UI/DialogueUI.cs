@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using HalloweenVN.Core;
 using HalloweenVN.Dialogue;
 using HalloweenVN.Data;
 
@@ -19,9 +20,15 @@ namespace HalloweenVN.UI
         [SerializeField] private GameObject choiceButtonPrefab;
         [SerializeField] private Transform choiceButtonContainer;
         [SerializeField] private float typingSpeed = 0.03f;
+        [SerializeField] private Button autoButton;
+        [SerializeField] private Button skipButton;
+        [SerializeField] private Button backlogButton;
+        [SerializeField] private TextMeshProUGUI autoButtonText;
 
         private Coroutine typingCoroutine;
+        private Coroutine autoPlayCoroutine;
         private bool isTyping;
+        private bool isAutoPlay;
         private string fullText;
 
         private void OnEnable()
@@ -33,6 +40,8 @@ namespace HalloweenVN.UI
                 DialogueManager.Instance.OnNodeDisplayed += DisplayNode;
                 DialogueManager.Instance.OnChoicesDisplayed += ShowChoices;
             }
+            if (autoButton != null) autoButton.onClick.AddListener(ToggleAutoPlay);
+            if (skipButton != null) skipButton.onClick.AddListener(SkipAll);
         }
 
         private void OnDisable()
@@ -44,6 +53,9 @@ namespace HalloweenVN.UI
                 DialogueManager.Instance.OnNodeDisplayed -= DisplayNode;
                 DialogueManager.Instance.OnChoicesDisplayed -= ShowChoices;
             }
+            if (autoButton != null) autoButton.onClick.RemoveListener(ToggleAutoPlay);
+            if (skipButton != null) skipButton.onClick.RemoveListener(SkipAll);
+            StopAutoPlay();
         }
 
         public void ShowDialoguePanel()
@@ -58,6 +70,7 @@ namespace HalloweenVN.UI
             if (dialoguePanel != null)
                 dialoguePanel.SetActive(false);
             ClearChoices();
+            StopAutoPlay();
         }
 
         public void DisplayNode(DialogueNode node)
@@ -95,10 +108,25 @@ namespace HalloweenVN.UI
             foreach (char c in text.ToCharArray())
             {
                 if (dialogueText != null) dialogueText.text += c;
-                yield return new WaitForSeconds(typingSpeed);
+                yield return new WaitForSeconds(SettingsData.TextSpeed);
             }
             
             isTyping = false;
+
+            // Auto-advance after typing completes
+            if (isAutoPlay)
+            {
+                autoPlayCoroutine = StartCoroutine(AutoAdvanceAfterDelay());
+            }
+        }
+
+        private IEnumerator AutoAdvanceAfterDelay()
+        {
+            yield return new WaitForSeconds(SettingsData.AutoPlayDelay);
+            if (isAutoPlay && DialogueManager.Instance != null)
+            {
+                DialogueManager.Instance.AdvanceDialogue();
+            }
         }
 
         public void SkipTyping()
@@ -203,6 +231,55 @@ namespace HalloweenVN.UI
                     backgroundImage.sprite = sprite;
                     backgroundImage.enabled = true;
                 }
+            }
+        }
+
+        /// <summary>
+        /// Toggles auto-play mode on/off.
+        /// </summary>
+        public void ToggleAutoPlay()
+        {
+            isAutoPlay = !isAutoPlay;
+            if (autoButtonText != null)
+            {
+                autoButtonText.text = isAutoPlay ? "AUTO ON" : "AUTO";
+            }
+
+            // If turning on and not currently typing, start auto-advance
+            if (isAutoPlay && !isTyping && DialogueManager.Instance != null && DialogueManager.Instance.IsPlaying)
+            {
+                autoPlayCoroutine = StartCoroutine(AutoAdvanceAfterDelay());
+            }
+        }
+
+        /// <summary>
+        /// Skips through dialogue quickly until choices appear or dialogue ends.
+        /// </summary>
+        public void SkipAll()
+        {
+            StopAutoPlay();
+            StartCoroutine(SkipCoroutine());
+        }
+
+        private IEnumerator SkipCoroutine()
+        {
+            while (DialogueManager.Instance != null && DialogueManager.Instance.IsPlaying)
+            {
+                SkipTyping();
+                yield return null; // Wait one frame
+                DialogueManager.Instance.AdvanceDialogue();
+                yield return null; // Wait one frame to check if choices appeared or dialogue ended
+            }
+        }
+
+        private void StopAutoPlay()
+        {
+            isAutoPlay = false;
+            if (autoButtonText != null) autoButtonText.text = "AUTO";
+            if (autoPlayCoroutine != null)
+            {
+                StopCoroutine(autoPlayCoroutine);
+                autoPlayCoroutine = null;
             }
         }
     }

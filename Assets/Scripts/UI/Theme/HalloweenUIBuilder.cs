@@ -26,6 +26,8 @@ namespace HalloweenVN.UI.Theme
         private GameObject screenTransitionOverlay;
         private Transform templatesRoot;
         private GameObject lobbyPanelRoot;
+        private Button settingsButtonRef;
+        private BacklogUI backlogUiRef;
         
         void Awake()
         {
@@ -45,11 +47,13 @@ namespace HalloweenVN.UI.Theme
             templatesObj.SetActive(false);
             templatesRoot = templatesObj.transform;
 
-            CreateLobbyUI();
             CreateBackground();
             CreateDialogueUI();
             CreateInvestigationUI();
             CreateDeductionUI();
+            CreateLobbyUI();
+            CreateSettingsUI();
+            CreateBacklogUI();
             CreateScreenTransition();
         }
         
@@ -92,48 +96,96 @@ namespace HalloweenVN.UI.Theme
             lobbyPanelRoot = UIHelper.CreateUIObject("LobbyRoot", mainCanvas.transform);
             UIHelper.StretchFull(lobbyPanelRoot.GetComponent<RectTransform>());
 
-            // Dark background
-            UIHelper.AddImage(lobbyPanelRoot, HalloweenTheme.BackgroundDark);
+            // Background - AI Generated Halloween Mansion
+            GameObject bgObj = UIHelper.CreateUIObject("Background", lobbyPanelRoot.transform);
+            UIHelper.StretchFull(bgObj.GetComponent<RectTransform>());
+            Sprite bgSprite = Resources.Load<Sprite>("Images/lobby_bg");
+            Image bgImg = UIHelper.AddImage(bgObj, Color.white, bgSprite);
+            if (bgSprite == null)
+            {
+                // Fallback if image not found
+                bgImg.color = new Color32(15, 8, 25, 255);
+            }
 
-            // Title
+            // Decorative top vignette
+            GameObject topVig = UIHelper.CreateUIObject("TopVignette", lobbyPanelRoot.transform);
+            RectTransform topVigRt = topVig.GetComponent<RectTransform>();
+            UIHelper.SetAnchors(topVigRt, new Vector2(0, 0.7f), new Vector2(1, 1), new Vector2(0.5f, 1));
+            topVigRt.offsetMin = Vector2.zero;
+            topVigRt.offsetMax = Vector2.zero;
+            UIHelper.AddImage(topVig, new Color32(40, 15, 60, 120));
+
+            // ════════ Title Area ════════
+            
+            // Main Title (large, bright orange)
             GameObject titleObj = UIHelper.CreateUIObject("Title", lobbyPanelRoot.transform);
             RectTransform titleRt = titleObj.GetComponent<RectTransform>();
             UIHelper.SetAnchors(titleRt, new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f));
-            titleRt.anchoredPosition = new Vector2(0, 120);
-            titleRt.sizeDelta = new Vector2(800, 100);
-            TextMeshProUGUI titleText = UIHelper.AddText(titleObj, "🎃 할로윈 저택의 비밀", 
-                HalloweenTheme.AccentOrange, 48, TextAlignmentOptions.Center);
+            titleRt.anchoredPosition = new Vector2(0, 160);
+            titleRt.sizeDelta = new Vector2(900, 80);
+            TextMeshProUGUI titleText = UIHelper.AddText(titleObj, "할로윈 저택의 비밀",
+                new Color32(255, 160, 30, 255), 56, TextAlignmentOptions.Center);
             titleText.fontStyle = FontStyles.Bold;
+            titleText.enableWordWrapping = false;
+
+            // Pumpkin emoji decoration above title
+            GameObject decoObj = UIHelper.CreateUIObject("Decoration", lobbyPanelRoot.transform);
+            RectTransform decoRt = decoObj.GetComponent<RectTransform>();
+            UIHelper.SetAnchors(decoRt, new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f));
+            decoRt.anchoredPosition = new Vector2(0, 230);
+            decoRt.sizeDelta = new Vector2(300, 50);
+            UIHelper.AddText(decoObj, "~ Halloween Mystery ~",
+                new Color32(200, 120, 50, 180), 20, TextAlignmentOptions.Center);
 
             // Subtitle
             GameObject subObj = UIHelper.CreateUIObject("Subtitle", lobbyPanelRoot.transform);
             RectTransform subRt = subObj.GetComponent<RectTransform>();
             UIHelper.SetAnchors(subRt, new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f));
-            subRt.anchoredPosition = new Vector2(0, 50);
-            subRt.sizeDelta = new Vector2(600, 40);
-            TextMeshProUGUI subtitleText = UIHelper.AddText(subObj, "Halloween Mansion Mystery", 
-                HalloweenTheme.TextPrimary, 22, TextAlignmentOptions.Center);
+            subRt.anchoredPosition = new Vector2(0, 95);
+            subRt.sizeDelta = new Vector2(700, 35);
+            TextMeshProUGUI subtitleText = UIHelper.AddText(subObj, "The Secret of Halloween Mansion",
+                new Color32(220, 200, 170, 200), 22, TextAlignmentOptions.Center);
+
+            // Decorative divider line
+            GameObject divider = UIHelper.CreateUIObject("Divider", lobbyPanelRoot.transform);
+            RectTransform divRt = divider.GetComponent<RectTransform>();
+            UIHelper.SetAnchors(divRt, new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f));
+            divRt.anchoredPosition = new Vector2(0, 60);
+            divRt.sizeDelta = new Vector2(400, 2);
+            UIHelper.AddImage(divider, new Color32(255, 140, 0, 100));
+
+            // ════════ Buttons ════════
+            Color32 btnBg = new Color32(60, 30, 80, 240);
+            Color32 btnBorder = new Color32(200, 110, 20, 255);
 
             // New Game Button
-            var newGameTuple = UIHelper.CreateButton(lobbyPanelRoot.transform, "새 게임", 300, 60);
-            RectTransform newGameRt = newGameTuple.btn.GetComponent<RectTransform>();
-            UIHelper.SetAnchors(newGameRt, new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f));
-            newGameRt.anchoredPosition = new Vector2(0, -40);
+            var newGameTuple = CreateLobbyButton(lobbyPanelRoot.transform, "▶  새 게임", new Vector2(0, -10), btnBg, btnBorder);
 
             // Continue Button
-            var continueTuple = UIHelper.CreateButton(lobbyPanelRoot.transform, "이어하기", 300, 60);
-            RectTransform continueRt = continueTuple.btn.GetComponent<RectTransform>();
-            UIHelper.SetAnchors(continueRt, new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f));
-            continueRt.anchoredPosition = new Vector2(0, -120);
+            var continueTuple = CreateLobbyButton(lobbyPanelRoot.transform, "↻  이어하기", new Vector2(0, -85), btnBg, btnBorder);
+
+            // Settings Button
+            var settingsTuple = CreateLobbyButton(lobbyPanelRoot.transform, "⚙  설정", new Vector2(0, -160), btnBg, btnBorder);
+
+            // ════════ Bottom ════════
+
+            // Atmosphere text
+            GameObject atmosObj = UIHelper.CreateUIObject("Atmosphere", lobbyPanelRoot.transform);
+            RectTransform atmosRt = atmosObj.GetComponent<RectTransform>();
+            UIHelper.SetAnchors(atmosRt, new Vector2(0.5f, 0), new Vector2(0.5f, 0), new Vector2(0.5f, 0));
+            atmosRt.anchoredPosition = new Vector2(0, 80);
+            atmosRt.sizeDelta = new Vector2(600, 30);
+            UIHelper.AddText(atmosObj, "\"그 저택에는 숨겨진 비밀이 있다...\"",
+                new Color32(180, 150, 120, 120), 16, TextAlignmentOptions.Center);
 
             // Credits / version
             GameObject creditObj = UIHelper.CreateUIObject("Credits", lobbyPanelRoot.transform);
             RectTransform creditRt = creditObj.GetComponent<RectTransform>();
             UIHelper.SetAnchors(creditRt, new Vector2(0.5f, 0), new Vector2(0.5f, 0), new Vector2(0.5f, 0));
             creditRt.anchoredPosition = new Vector2(0, 30);
-            creditRt.sizeDelta = new Vector2(400, 30);
-            UIHelper.AddText(creditObj, "v0.1 — Project F", 
-                new Color(1f, 1f, 1f, 0.3f), 14, TextAlignmentOptions.Center);
+            creditRt.sizeDelta = new Vector2(400, 25);
+            UIHelper.AddText(creditObj, "v0.2 — Project F",
+                new Color32(150, 150, 150, 80), 13, TextAlignmentOptions.Center);
 
             // Attach LobbyUI and wire fields
             LobbyUI lobbyUi = lobbyPanelRoot.AddComponent<LobbyUI>();
@@ -142,6 +194,48 @@ namespace HalloweenVN.UI.Theme
             UIHelper.SetField(lobbyUi, "subtitleText", subtitleText);
             UIHelper.SetField(lobbyUi, "newGameButton", newGameTuple.btn);
             UIHelper.SetField(lobbyUi, "continueButton", continueTuple.btn);
+
+            // Store settings button reference for later binding
+            settingsButtonRef = settingsTuple.btn;
+        }
+
+        /// <summary>
+        /// Creates a styled lobby button with bright border and clear text.
+        /// </summary>
+        private (Button btn, TextMeshProUGUI btnText) CreateLobbyButton(Transform parent, string label, Vector2 pos, Color32 bgColor, Color32 borderColor)
+        {
+            GameObject btnObj = UIHelper.CreateUIObject("LobbyBtn_" + label, parent);
+            RectTransform rt = btnObj.GetComponent<RectTransform>();
+            UIHelper.SetAnchors(rt, new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f));
+            rt.anchoredPosition = pos;
+            rt.sizeDelta = new Vector2(320, 60);
+
+            Image img = UIHelper.AddImage(btnObj, bgColor);
+
+            // Bright border
+            Outline outline = btnObj.AddComponent<Outline>();
+            outline.effectColor = borderColor;
+            outline.effectDistance = new Vector2(2, 2);
+
+            Button btn = btnObj.AddComponent<Button>();
+            btn.transition = Selectable.Transition.ColorTint;
+            ColorBlock cb = ColorBlock.defaultColorBlock;
+            cb.normalColor = bgColor;
+            cb.highlightedColor = new Color32(90, 50, 120, 255);
+            cb.pressedColor = new Color32(150, 80, 30, 255);
+            cb.colorMultiplier = 1f;
+            cb.fadeDuration = 0.15f;
+            btn.colors = cb;
+            btn.targetGraphic = img;
+
+            // Text (bright and readable)
+            GameObject textObj = UIHelper.CreateUIObject("Text", btnObj.transform);
+            UIHelper.StretchFull(textObj.GetComponent<RectTransform>());
+            TextMeshProUGUI tmp = UIHelper.AddText(textObj, label,
+                new Color32(255, 200, 100, 255), 26, TextAlignmentOptions.Center);
+            tmp.fontStyle = FontStyles.Bold;
+
+            return (btn, tmp);
         }
 
         private void CreateManagers()
@@ -257,6 +351,25 @@ namespace HalloweenVN.UI.Theme
             var choiceBtnTuple = UIHelper.CreateButton(templatesRoot, "Choice", 500, HalloweenTheme.ChoiceButtonHeight);
             GameObject choiceButtonPrefab = choiceBtnTuple.btn.gameObject;
 
+            // Auto / Skip / Log Buttons (top-right of dialogue panel)
+            float btnW = 90, btnH = 35, btnSpacing = 8;
+            
+            var autoTuple = UIHelper.CreateButton(dialoguePanel.transform, "AUTO", btnW, btnH);
+            RectTransform autoRt = autoTuple.btn.GetComponent<RectTransform>();
+            UIHelper.SetAnchors(autoRt, new Vector2(1, 1), new Vector2(1, 1), new Vector2(1, 1));
+            autoRt.anchoredPosition = new Vector2(-(btnW * 3 + btnSpacing * 2 + 10), -8);
+            TextMeshProUGUI autoText = autoTuple.btn.GetComponentInChildren<TextMeshProUGUI>();
+
+            var skipTuple = UIHelper.CreateButton(dialoguePanel.transform, "SKIP", btnW, btnH);
+            RectTransform skipRt = skipTuple.btn.GetComponent<RectTransform>();
+            UIHelper.SetAnchors(skipRt, new Vector2(1, 1), new Vector2(1, 1), new Vector2(1, 1));
+            skipRt.anchoredPosition = new Vector2(-(btnW * 2 + btnSpacing + 10), -8);
+
+            var logTuple = UIHelper.CreateButton(dialoguePanel.transform, "LOG", btnW, btnH);
+            RectTransform logRt = logTuple.btn.GetComponent<RectTransform>();
+            UIHelper.SetAnchors(logRt, new Vector2(1, 1), new Vector2(1, 1), new Vector2(1, 1));
+            logRt.anchoredPosition = new Vector2(-(btnW + 10), -8);
+
             // Attach DialogueUI and wire fields
             DialogueUI ui = dialoguePanelRoot.AddComponent<DialogueUI>();
             UIHelper.SetField(ui, "dialoguePanel", dialoguePanel);
@@ -267,10 +380,19 @@ namespace HalloweenVN.UI.Theme
             UIHelper.SetField(ui, "choicePanel", choicePanel);
             UIHelper.SetField(ui, "choiceButtonPrefab", choiceButtonPrefab);
             UIHelper.SetField(ui, "choiceButtonContainer", choiceContainer.transform);
+            UIHelper.SetField(ui, "autoButton", autoTuple.btn);
+            UIHelper.SetField(ui, "skipButton", skipTuple.btn);
+            UIHelper.SetField(ui, "backlogButton", logTuple.btn);
+            UIHelper.SetField(ui, "autoButtonText", autoText);
 
             clickButton.onClick.AddListener(() => {
                 var method = ui.GetType().GetMethod("OnClick", System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
                 if (method != null) method.Invoke(ui, null);
+            });
+
+            // Wire LOG button to backlog toggle
+            logTuple.btn.onClick.AddListener(() => {
+                if (backlogUiRef != null) backlogUiRef.ToggleBacklog();
             });
         }
 
@@ -507,6 +629,185 @@ namespace HalloweenVN.UI.Theme
             UIHelper.SetField(dedUi, "resultText", resultText);
             UIHelper.SetField(dedUi, "questionSlotPrefab", qSlotPrefab);
             UIHelper.SetField(dedUi, "evidenceDragItemPrefab", dragPrefab);
+        }
+
+        private void CreateSettingsUI()
+        {
+            GameObject settingsRoot = UIHelper.CreateUIObject("SettingsRoot", mainCanvas.transform);
+            UIHelper.StretchFull(settingsRoot.GetComponent<RectTransform>());
+
+            // Semi-transparent dark overlay
+            UIHelper.AddImage(settingsRoot, new Color(0, 0, 0, 0.7f));
+
+            // Settings panel
+            GameObject panel = UIHelper.CreatePanel("SettingsPanel", settingsRoot.transform, HalloweenTheme.PanelBackground);
+            RectTransform panelRt = panel.GetComponent<RectTransform>();
+            UIHelper.SetAnchors(panelRt, new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f));
+            panelRt.sizeDelta = new Vector2(500, 450);
+
+            // Title
+            GameObject titleObj = UIHelper.CreateUIObject("Title", panel.transform);
+            RectTransform titleRt = titleObj.GetComponent<RectTransform>();
+            UIHelper.SetAnchors(titleRt, new Vector2(0.5f, 1), new Vector2(0.5f, 1), new Vector2(0.5f, 1));
+            titleRt.anchoredPosition = new Vector2(0, -30);
+            titleRt.sizeDelta = new Vector2(400, 40);
+            UIHelper.AddText(titleObj, "⚙ 설정", HalloweenTheme.AccentOrange, 32, TextAlignmentOptions.Center);
+
+            // Text Speed Slider
+            float yPos = -80;
+            var textSpeedLabel = CreateSettingsLabel(panel.transform, "텍스트 속도", yPos);
+            Slider textSpeedSlider = CreateSettingsSlider(panel.transform, yPos - 30);
+
+            // BGM Volume
+            yPos -= 80;
+            var bgmLabel = CreateSettingsLabel(panel.transform, "BGM", yPos);
+            Slider bgmSlider = CreateSettingsSlider(panel.transform, yPos - 30);
+
+            // SFX Volume
+            yPos -= 80;
+            var sfxLabel = CreateSettingsLabel(panel.transform, "SFX", yPos);
+            Slider sfxSlider = CreateSettingsSlider(panel.transform, yPos - 30);
+
+            // Fullscreen Toggle
+            yPos -= 80;
+            GameObject toggleObj = UIHelper.CreateUIObject("FullscreenToggle", panel.transform);
+            RectTransform toggleRt = toggleObj.GetComponent<RectTransform>();
+            UIHelper.SetAnchors(toggleRt, new Vector2(0.5f, 1), new Vector2(0.5f, 1), new Vector2(0.5f, 1));
+            toggleRt.anchoredPosition = new Vector2(0, yPos);
+            toggleRt.sizeDelta = new Vector2(400, 30);
+            Toggle fullscreenToggle = toggleObj.AddComponent<Toggle>();
+            UIHelper.AddText(toggleObj, "전체 화면", HalloweenTheme.TextPrimary, 20);
+
+            // Close Button
+            var closeTuple = UIHelper.CreateButton(panel.transform, "닫기", 200, 50);
+            RectTransform closeRt = closeTuple.btn.GetComponent<RectTransform>();
+            UIHelper.SetAnchors(closeRt, new Vector2(0.5f, 0), new Vector2(0.5f, 0), new Vector2(0.5f, 0));
+            closeRt.anchoredPosition = new Vector2(0, 40);
+
+            // Attach SettingsUI
+            SettingsUI settingsUi = settingsRoot.AddComponent<SettingsUI>();
+            UIHelper.SetField(settingsUi, "settingsPanel", settingsRoot);
+            UIHelper.SetField(settingsUi, "textSpeedSlider", textSpeedSlider);
+            UIHelper.SetField(settingsUi, "textSpeedLabel", textSpeedLabel);
+            UIHelper.SetField(settingsUi, "bgmVolumeSlider", bgmSlider);
+            UIHelper.SetField(settingsUi, "bgmVolumeLabel", bgmLabel);
+            UIHelper.SetField(settingsUi, "sfxVolumeSlider", sfxSlider);
+            UIHelper.SetField(settingsUi, "sfxVolumeLabel", sfxLabel);
+            UIHelper.SetField(settingsUi, "fullscreenToggle", fullscreenToggle);
+            UIHelper.SetField(settingsUi, "closeButton", closeTuple.btn);
+
+            settingsRoot.SetActive(false);
+
+            // Wire lobby settings button
+            if (settingsButtonRef != null)
+            {
+                settingsButtonRef.onClick.AddListener(() => settingsUi.Show());
+            }
+        }
+
+        private TextMeshProUGUI CreateSettingsLabel(Transform parent, string text, float yPos)
+        {
+            GameObject obj = UIHelper.CreateUIObject(text + "Label", parent);
+            RectTransform rt = obj.GetComponent<RectTransform>();
+            UIHelper.SetAnchors(rt, new Vector2(0.5f, 1), new Vector2(0.5f, 1), new Vector2(0.5f, 1));
+            rt.anchoredPosition = new Vector2(0, yPos);
+            rt.sizeDelta = new Vector2(400, 25);
+            return UIHelper.AddText(obj, text, HalloweenTheme.TextPrimary, 18);
+        }
+
+        private Slider CreateSettingsSlider(Transform parent, float yPos)
+        {
+            GameObject sliderObj = UIHelper.CreateUIObject("Slider", parent);
+            RectTransform rt = sliderObj.GetComponent<RectTransform>();
+            UIHelper.SetAnchors(rt, new Vector2(0.5f, 1), new Vector2(0.5f, 1), new Vector2(0.5f, 1));
+            rt.anchoredPosition = new Vector2(0, yPos);
+            rt.sizeDelta = new Vector2(350, 20);
+
+            // Background
+            GameObject bgObj = UIHelper.CreateUIObject("Background", sliderObj.transform);
+            UIHelper.StretchFull(bgObj.GetComponent<RectTransform>());
+            Image bgImg = UIHelper.AddImage(bgObj, HalloweenTheme.SlotEmpty);
+
+            // Fill Area
+            GameObject fillArea = UIHelper.CreateUIObject("Fill Area", sliderObj.transform);
+            UIHelper.StretchFull(fillArea.GetComponent<RectTransform>());
+            GameObject fill = UIHelper.CreateUIObject("Fill", fillArea.transform);
+            UIHelper.StretchFull(fill.GetComponent<RectTransform>());
+            Image fillImg = UIHelper.AddImage(fill, HalloweenTheme.AccentOrange);
+
+            Slider slider = sliderObj.AddComponent<Slider>();
+            slider.fillRect = fill.GetComponent<RectTransform>();
+            slider.targetGraphic = bgImg;
+
+            return slider;
+        }
+
+        private void CreateBacklogUI()
+        {
+            GameObject backlogRoot = UIHelper.CreateUIObject("BacklogRoot", mainCanvas.transform);
+            UIHelper.StretchFull(backlogRoot.GetComponent<RectTransform>());
+
+            // Semi-transparent overlay
+            UIHelper.AddImage(backlogRoot, new Color(0, 0, 0, 0.8f));
+
+            // Scroll area
+            GameObject scrollObj = UIHelper.CreateUIObject("ScrollView", backlogRoot.transform);
+            RectTransform scrollRt = scrollObj.GetComponent<RectTransform>();
+            UIHelper.StretchFull(scrollRt);
+            scrollRt.offsetMin = new Vector2(100, 80);
+            scrollRt.offsetMax = new Vector2(-100, -60);
+
+            ScrollRect scrollRect = scrollObj.AddComponent<ScrollRect>();
+            scrollRect.horizontal = false;
+            scrollRect.vertical = true;
+
+            // Content container
+            GameObject content = UIHelper.CreateUIObject("Content", scrollObj.transform);
+            RectTransform contentRt = content.GetComponent<RectTransform>();
+            UIHelper.SetAnchors(contentRt, new Vector2(0, 1), new Vector2(1, 1), new Vector2(0.5f, 1));
+            contentRt.sizeDelta = new Vector2(0, 0);
+            ContentSizeFitter fitter = content.AddComponent<ContentSizeFitter>();
+            fitter.verticalFit = ContentSizeFitter.FitMode.PreferredSize;
+            VerticalLayoutGroup vlg = content.AddComponent<VerticalLayoutGroup>();
+            vlg.spacing = 8;
+            vlg.padding = new RectOffset(10, 10, 10, 10);
+            vlg.childControlWidth = true;
+            vlg.childControlHeight = true;
+            vlg.childForceExpandWidth = true;
+            vlg.childForceExpandHeight = false;
+
+            scrollRect.content = contentRt;
+
+            // Entry prefab template
+            GameObject entryPrefab = UIHelper.CreateUIObject("BacklogEntry", templatesRoot);
+            RectTransform entryRt = entryPrefab.GetComponent<RectTransform>();
+            entryRt.sizeDelta = new Vector2(0, 30);
+            TextMeshProUGUI entryText = UIHelper.AddText(entryPrefab, "", HalloweenTheme.TextPrimary, 18);
+            entryText.richText = true;
+
+            // Title
+            GameObject titleObj = UIHelper.CreateUIObject("BacklogTitle", backlogRoot.transform);
+            RectTransform titleRt = titleObj.GetComponent<RectTransform>();
+            UIHelper.SetAnchors(titleRt, new Vector2(0.5f, 1), new Vector2(0.5f, 1), new Vector2(0.5f, 1));
+            titleRt.anchoredPosition = new Vector2(0, -25);
+            titleRt.sizeDelta = new Vector2(400, 40);
+            UIHelper.AddText(titleObj, "📜 백로그", HalloweenTheme.AccentOrange, 28, TextAlignmentOptions.Center);
+
+            // Close button
+            var closeTuple = UIHelper.CreateButton(backlogRoot.transform, "닫기", 200, 50);
+            RectTransform closeRt = closeTuple.btn.GetComponent<RectTransform>();
+            UIHelper.SetAnchors(closeRt, new Vector2(0.5f, 0), new Vector2(0.5f, 0), new Vector2(0.5f, 0));
+            closeRt.anchoredPosition = new Vector2(0, 30);
+
+            // Attach BacklogUI
+            backlogUiRef = backlogRoot.AddComponent<BacklogUI>();
+            UIHelper.SetField(backlogUiRef, "backlogPanel", backlogRoot);
+            UIHelper.SetField(backlogUiRef, "contentContainer", content.transform);
+            UIHelper.SetField(backlogUiRef, "backlogEntryPrefab", entryPrefab);
+            UIHelper.SetField(backlogUiRef, "closeButton", closeTuple.btn);
+            UIHelper.SetField(backlogUiRef, "scrollRect", scrollRect);
+
+            backlogRoot.SetActive(false);
         }
 
         private void CreateScreenTransition()

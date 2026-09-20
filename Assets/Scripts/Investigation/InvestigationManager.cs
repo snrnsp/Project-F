@@ -98,9 +98,19 @@ namespace HalloweenVN.Investigation
         /// </summary>
         public void ProceedToDeduction()
         {
-            if (GameManager.Instance != null && CanProceedToDeduction())
+            if (CanProceedToDeduction())
             {
-                GameManager.Instance.ChangePhase(GamePhase.Deduction);
+                // Start the investigation summary dialogue
+                // The dialogue's last node has CHANGE_PHASE:Deduction command
+                if (Dialogue.DialogueManager.Instance != null)
+                {
+                    Dialogue.DialogueManager.Instance.StartDialogue("ch1_investigation_talk");
+                }
+                else if (GameManager.Instance != null)
+                {
+                    // Fallback: directly change phase
+                    GameManager.Instance.ChangePhase(GamePhase.Deduction);
+                }
             }
         }
 

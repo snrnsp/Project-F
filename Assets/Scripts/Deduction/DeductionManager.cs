@@ -176,19 +176,25 @@ namespace HalloweenVN.Deduction
 
             if (DialogueManager.Instance != null)
             {
+                string dialogueId;
                 if (result.isPerfect)
                 {
-                    DialogueManager.Instance.StartDialogue(currentCase.perfectDialogueId);
+                    dialogueId = currentCase.perfectDialogueId;
+                    // Listen for the result dialogue to end, then return to lobby
+                    DialogueManager.Instance.OnDialogueEnded += OnResultDialogueEnded;
                 }
                 else
                 {
-                    DialogueManager.Instance.StartDialogue(currentCase.failDialogueId);
+                    dialogueId = currentCase.failDialogueId;
+                    // Fail dialogue ends with CHANGE_PHASE:Deduction (retry)
                 }
-            }
 
-            if (GameManager.Instance != null)
-            {
-                GameManager.Instance.ChangePhase(GamePhase.Result);
+                // Switch to Dialogue phase so DialogueUI shows
+                if (GameManager.Instance != null)
+                {
+                    GameManager.Instance.ChangePhase(GamePhase.Dialogue);
+                }
+                DialogueManager.Instance.StartDialogue(dialogueId);
             }
 
             return result;
@@ -201,6 +207,21 @@ namespace HalloweenVN.Deduction
         public CaseContainer GetCurrentCase()
         {
             return currentCase;
+        }
+
+        /// <summary>
+        /// Called when the result dialogue ends (perfect ending). Returns to lobby.
+        /// </summary>
+        private void OnResultDialogueEnded()
+        {
+            if (DialogueManager.Instance != null)
+            {
+                DialogueManager.Instance.OnDialogueEnded -= OnResultDialogueEnded;
+            }
+            if (GameManager.Instance != null)
+            {
+                GameManager.Instance.ChangePhase(GamePhase.Lobby);
+            }
         }
     }
 }
