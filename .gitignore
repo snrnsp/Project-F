@@ -5,8 +5,8 @@
 /[Ll]ibrary/
 /[Tt]emp/
 /[Oo]bj/
-/[Bb]uild/
-/[Bb]uilds/
+# /[Bb]uild/    # 주석 처리: WebGL 빌드 파일 등을 깃허브에 올리기 위해 예외 처리
+# /[Bb]uilds/   # 주석 처리
 /[Ll]ogs/
 /[Uu]ser[Ss]ettings/
 
