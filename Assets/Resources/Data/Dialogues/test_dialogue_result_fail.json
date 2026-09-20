@@ -1,0 +1,25 @@
+{
+  "dialogueId": "test_dialogue_result_fail",
+  "nodes": [
+    {
+      "id": 0,
+      "speaker": "주인공",
+      "text": "뭔가 맞지 않는 것 같다...",
+      "characterSprite": "",
+      "backgroundSprite": "",
+      "choices": [],
+      "nextNodeId": 1,
+      "command": ""
+    },
+    {
+      "id": 1,
+      "speaker": "Narrator",
+      "text": "진실은 아직 미궁 속에 있다.",
+      "characterSprite": "",
+      "backgroundSprite": "",
+      "choices": [],
+      "nextNodeId": -1,
+      "command": "END"
+    }
+  ]
+}

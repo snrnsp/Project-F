@@ -1,0 +1,65 @@
+{
+  "dialogueId": "ch1_investigation_talk",
+  "nodes": [
+    {
+      "id": 0,
+      "speaker": "",
+      "text": "조사를 마쳤다. 몇 가지 결정적인 단서들이 발견되었다.",
+      "characterSprite": "",
+      "backgroundSprite": "study",
+      "choices": [],
+      "nextNodeId": 1,
+      "command": ""
+    },
+    {
+      "id": 1,
+      "speaker": "",
+      "text": "우선 피해자의 곁에 떨어져 있던 '부러진 촛대'. 끝에 핏자국이 묻어있는 것으로 보아 흉기임이 틀림없다.",
+      "characterSprite": "",
+      "backgroundSprite": "study",
+      "choices": [],
+      "nextNodeId": 2,
+      "command": ""
+    },
+    {
+      "id": 2,
+      "speaker": "",
+      "text": "그리고 책상 위에서 발견된 '수상한 편지'. 오늘 밤 12시에 서재에서 만나자는 내용. 필체로 보아 여성이 쓴 것 같다.",
+      "characterSprite": "",
+      "backgroundSprite": "study",
+      "choices": [],
+      "nextNodeId": 3,
+      "command": ""
+    },
+    {
+      "id": 3,
+      "speaker": "",
+      "text": "마지막으로, 복도에 깨져 있던 잭오랜턴 장식 속에서 나온 '호박 속 열쇠'. 누군가 서재 열쇠를 급히 숨긴 것이다.",
+      "characterSprite": "",
+      "backgroundSprite": "study",
+      "choices": [],
+      "nextNodeId": 4,
+      "command": ""
+    },
+    {
+      "id": 4,
+      "speaker": "",
+      "text": "이 세 가지 단서를 조합하면, 범인이 어떻게 현우 씨를 유인하고 공격했는지 알 수 있다.",
+      "characterSprite": "",
+      "backgroundSprite": "study",
+      "choices": [],
+      "nextNodeId": 5,
+      "command": ""
+    },
+    {
+      "id": 5,
+      "speaker": "",
+      "text": "모든 퍼즐 조각이 맞춰졌다. 이제 진실을 밝힐 시간이다.",
+      "characterSprite": "",
+      "backgroundSprite": "study",
+      "choices": [],
+      "nextNodeId": -1,
+      "command": "CHANGE_PHASE:Deduction"
+    }
+  ]
+}

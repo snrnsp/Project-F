@@ -1,0 +1,22 @@
+{
+  "evidences": [
+    {
+      "id": "broken_candlestick",
+      "evidenceName": "부러진 촛대",
+      "description": "날카롭게 부러진 은제 촛대. 끝에 핏자국이 묻어 있다.",
+      "iconPath": "Icons/broken_candlestick"
+    },
+    {
+      "id": "bloody_letter",
+      "evidenceName": "핏자국 편지",
+      "description": "피로 얼룩진 편지. '오늘 밤 12시, 정원에서 만나자'라고 적혀 있다.",
+      "iconPath": "Icons/bloody_letter"
+    },
+    {
+      "id": "broken_pumpkin",
+      "evidenceName": "깨진 호박",
+      "description": "현관 앞에서 발견된 깨진 잭오랜턴. 안에 열쇠가 숨겨져 있었다.",
+      "iconPath": "Icons/broken_pumpkin"
+    }
+  ]
+}

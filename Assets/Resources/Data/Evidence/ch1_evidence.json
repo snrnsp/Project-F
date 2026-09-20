@@ -1,0 +1,7 @@
+{
+  "evidences": [
+    {"id": "broken_candlestick", "evidenceName": "부러진 촛대", "description": "날카롭게 부러진 은제 촛대. 끝에 핏자국이 묻어 있다. 서재 바닥에서 발견되었다.", "iconPath": ""},
+    {"id": "suspicious_letter", "evidenceName": "수상한 편지", "description": "'오늘 밤 12시, 서재에서 만나자'라고 적힌 편지. 필체가 여성스럽다.", "iconPath": ""},
+    {"id": "pumpkin_key", "evidenceName": "호박 속 열쇠", "description": "깨진 잭오랜턴 안에서 발견된 서재 열쇠. 누군가 일부러 숨긴 것 같다.", "iconPath": ""}
+  ]
+}

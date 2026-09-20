@@ -1,0 +1,55 @@
+{
+  "dialogueId": "ch1_result_fail",
+  "nodes": [
+    {
+      "id": 0,
+      "speaker": "",
+      "text": "따라서... 범인은 이 방식으로 공격을 가했을 것입니다!",
+      "characterSprite": "",
+      "backgroundSprite": "living_room",
+      "choices": [],
+      "nextNodeId": 1,
+      "command": ""
+    },
+    {
+      "id": 1,
+      "speaker": "박 노인",
+      "text": "글쎄요... 젊은이의 추리에는 구멍이 너무 많소. 증거와 전혀 맞지 않는 이야기 아니오?",
+      "characterSprite": "oldpark_serious",
+      "backgroundSprite": "living_room",
+      "choices": [],
+      "nextNodeId": 2,
+      "command": ""
+    },
+    {
+      "id": 2,
+      "speaker": "소연",
+      "text": "맞아요. 그건 앞뒤가 안 맞는 말씀이잖아요...",
+      "characterSprite": "soyeon_formal",
+      "backgroundSprite": "living_room",
+      "choices": [],
+      "nextNodeId": 3,
+      "command": ""
+    },
+    {
+      "id": 3,
+      "speaker": "민서",
+      "text": "증거들을 다시 한번 꼼꼼히 살펴보고 처음부터 생각해 보는 건 어때?",
+      "characterSprite": "minseo_nervous",
+      "backgroundSprite": "living_room",
+      "choices": [],
+      "nextNodeId": 4,
+      "command": ""
+    },
+    {
+      "id": 4,
+      "speaker": "",
+      "text": "아무래도 내가 뭔가를 놓친 모양이다. 단서들을 다시 주의 깊게 검토해 봐야겠다.",
+      "characterSprite": "",
+      "backgroundSprite": "living_room",
+      "choices": [],
+      "nextNodeId": -1,
+      "command": "CHANGE_PHASE:Deduction"
+    }
+  ]
+}

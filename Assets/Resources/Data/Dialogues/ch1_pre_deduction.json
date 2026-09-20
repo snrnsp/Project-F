@@ -1,0 +1,55 @@
+{
+  "dialogueId": "ch1_pre_deduction",
+  "nodes": [
+    {
+      "id": 0,
+      "speaker": "",
+      "text": "나는 흩어져 있던 사람들을 거실로 불러 모았다.",
+      "characterSprite": "",
+      "backgroundSprite": "living_room",
+      "choices": [],
+      "nextNodeId": 1,
+      "command": ""
+    },
+    {
+      "id": 1,
+      "speaker": "민서",
+      "text": "무슨 일이야? 경찰이 오려면 아직 멀었는데...",
+      "characterSprite": "minseo_nervous",
+      "backgroundSprite": "living_room",
+      "choices": [],
+      "nextNodeId": 2,
+      "command": ""
+    },
+    {
+      "id": 2,
+      "speaker": "",
+      "text": "경찰을 기다릴 필요는 없어. 이 안에 강현우 씨를 공격한 범인이 있으니까.",
+      "characterSprite": "",
+      "backgroundSprite": "living_room",
+      "choices": [],
+      "nextNodeId": 3,
+      "command": ""
+    },
+    {
+      "id": 3,
+      "speaker": "소연",
+      "text": "네...? 그게 무슨 말씀이신지...",
+      "characterSprite": "soyeon_shocked",
+      "backgroundSprite": "living_room",
+      "choices": [],
+      "nextNodeId": 4,
+      "command": ""
+    },
+    {
+      "id": 4,
+      "speaker": "",
+      "text": "거실에 무거운 정적이 내려앉았다. 사람들의 시선이 나에게 집중되었다.",
+      "characterSprite": "",
+      "backgroundSprite": "living_room",
+      "choices": [],
+      "nextNodeId": -1,
+      "command": ""
+    }
+  ]
+}

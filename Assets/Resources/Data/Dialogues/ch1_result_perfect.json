@@ -1,0 +1,85 @@
+{
+  "dialogueId": "ch1_result_perfect",
+  "nodes": [
+    {
+      "id": 0,
+      "speaker": "",
+      "text": "범인은 바로 소연 씨, 당신입니다.",
+      "characterSprite": "soyeon_shocked",
+      "backgroundSprite": "living_room",
+      "choices": [],
+      "nextNodeId": 1,
+      "command": ""
+    },
+    {
+      "id": 1,
+      "speaker": "소연",
+      "text": "무, 무슨 억지를 부리시는 거예요! 증거라도 있나요?",
+      "characterSprite": "soyeon_angry",
+      "backgroundSprite": "living_room",
+      "choices": [],
+      "nextNodeId": 2,
+      "command": ""
+    },
+    {
+      "id": 2,
+      "speaker": "",
+      "text": "당신은 저택이 매각되고 고용인들이 모두 해고될 거라는 사실을 알게 되었죠. 그래서 여성스러운 글씨체로 가짜 편지를 써서 강현우 씨를 자정의 서재로 유인했습니다.",
+      "characterSprite": "soyeon_nervous",
+      "backgroundSprite": "living_room",
+      "choices": [],
+      "nextNodeId": 3,
+      "command": ""
+    },
+    {
+      "id": 3,
+      "speaker": "",
+      "text": "그리고 그가 서재에 나타나자, 이 은제 촛대로 그를 내리쳤습니다. 이후 서재 열쇠를 급히 할로윈 호박 장식 속에 숨겼던 거고요.",
+      "characterSprite": "soyeon_crying",
+      "backgroundSprite": "living_room",
+      "choices": [],
+      "nextNodeId": 4,
+      "command": ""
+    },
+    {
+      "id": 4,
+      "speaker": "소연",
+      "text": "아아... 그래요... 제가 그랬어요. 평생을 바친 이곳을 하루아침에 빼앗긴다고 생각하니 눈이 뒤집혀서 그만...",
+      "characterSprite": "soyeon_crying",
+      "backgroundSprite": "living_room",
+      "choices": [],
+      "nextNodeId": 5,
+      "command": ""
+    },
+    {
+      "id": 5,
+      "speaker": "강현우",
+      "text": "...소연 씨. 내가 경솔했소. 저택을 파는 일은 취소하겠소.",
+      "characterSprite": "hyunwoo_injured",
+      "backgroundSprite": "living_room",
+      "choices": [],
+      "nextNodeId": 6,
+      "command": ""
+    },
+    {
+      "id": 6,
+      "speaker": "",
+      "text": "머리에 붕대를 감은 강현우 씨가 박 노인의 부축을 받으며 나타났다. 그의 말에 소연은 바닥에 주저앉아 오열했다.",
+      "characterSprite": "",
+      "backgroundSprite": "living_room",
+      "choices": [],
+      "nextNodeId": 7,
+      "command": ""
+    },
+    {
+      "id": 7,
+      "speaker": "",
+      "text": "창밖으로 할로윈 밤의 어둠이 걷히고, 밝은 아침 햇살이 비치기 시작했다. 할로윈 저택의 끔찍한 비밀은 이렇게 풀렸다.",
+      "characterSprite": "",
+      "backgroundSprite": "morning_window",
+      "choices": [],
+      "nextNodeId": -1,
+      "command": "END"
+    }
+  ]
+}

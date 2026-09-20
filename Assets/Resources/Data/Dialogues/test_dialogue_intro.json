@@ -1,0 +1,58 @@
+{
+  "dialogueId": "test_dialogue_intro",
+  "nodes": [
+    {
+      "id": 0,
+      "speaker": "Narrator",
+      "text": "할로윈 밤, 오래된 저택에 초대를 받았다.",
+      "characterSprite": "",
+      "backgroundSprite": "",
+      "choices": [],
+      "nextNodeId": 1,
+      "command": ""
+    },
+    {
+      "id": 1,
+      "speaker": "Narrator",
+      "text": "문을 열자 차가운 공기와 함께 비명 소리가 들려왔다.",
+      "characterSprite": "",
+      "backgroundSprite": "",
+      "choices": [],
+      "nextNodeId": 2,
+      "command": ""
+    },
+    {
+      "id": 2,
+      "speaker": "???",
+      "text": "으악! 누가 좀 도와줘!",
+      "characterSprite": "",
+      "backgroundSprite": "",
+      "choices": [],
+      "nextNodeId": 3,
+      "command": ""
+    },
+    {
+      "id": 3,
+      "speaker": "",
+      "text": "",
+      "characterSprite": "",
+      "backgroundSprite": "",
+      "choices": [
+        { "text": "서둘러 안으로 들어간다", "nextNodeId": 4 },
+        { "text": "주변을 먼저 살핀다", "nextNodeId": 4 }
+      ],
+      "nextNodeId": -1,
+      "command": ""
+    },
+    {
+      "id": 4,
+      "speaker": "Narrator",
+      "text": "당신은 저택 안으로 발을 들였다. 그리고 그곳에서 쓰러진 사람을 발견했다...",
+      "characterSprite": "",
+      "backgroundSprite": "",
+      "choices": [],
+      "nextNodeId": -1,
+      "command": "CHANGE_PHASE:Investigation"
+    }
+  ]
+}

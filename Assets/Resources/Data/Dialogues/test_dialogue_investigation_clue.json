@@ -1,0 +1,25 @@
+{
+  "dialogueId": "test_dialogue_investigation_clue",
+  "nodes": [
+    {
+      "id": 0,
+      "speaker": "주인공",
+      "text": "이건... 뭔가 단서가 될 것 같다.",
+      "characterSprite": "",
+      "backgroundSprite": "",
+      "choices": [],
+      "nextNodeId": 1,
+      "command": ""
+    },
+    {
+      "id": 1,
+      "speaker": "주인공",
+      "text": "기억해 두자.",
+      "characterSprite": "",
+      "backgroundSprite": "",
+      "choices": [],
+      "nextNodeId": -1,
+      "command": ""
+    }
+  ]
+}

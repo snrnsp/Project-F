@@ -1,0 +1,148 @@
+{
+  "dialogueId": "ch1_prologue",
+  "nodes": [
+    {
+      "id": 0,
+      "speaker": "",
+      "text": "할로윈의 밤. 짙은 안개가 깔린 산길을 따라 걷고 있다.",
+      "characterSprite": "",
+      "backgroundSprite": "exterior",
+      "choices": [],
+      "nextNodeId": 1,
+      "command": ""
+    },
+    {
+      "id": 1,
+      "speaker": "",
+      "text": "나무들 사이로 희미하게 보이는 저택은 잭오랜턴의 불빛들로 기괴하게 빛나고 있었다.",
+      "characterSprite": "",
+      "backgroundSprite": "exterior",
+      "choices": [],
+      "nextNodeId": 2,
+      "command": ""
+    },
+    {
+      "id": 2,
+      "speaker": "민서",
+      "text": "왔구나! 늦는 줄 알고 조마조마했어. 어때? 할로윈 분위기 좀 나지?",
+      "characterSprite": "minseo_happy",
+      "backgroundSprite": "exterior",
+      "choices": [],
+      "nextNodeId": 3,
+      "command": ""
+    },
+    {
+      "id": 3,
+      "speaker": "",
+      "text": "민서가 밝은 표정으로 손을 흔들며 다가왔지만, 어딘가 긴장한 기색이 엿보였다.",
+      "characterSprite": "minseo_happy",
+      "backgroundSprite": "exterior",
+      "choices": [],
+      "nextNodeId": 4,
+      "command": ""
+    },
+    {
+      "id": 4,
+      "speaker": "소연",
+      "text": "어서 오십시오. 주인이신 강현우 님의 초대로 오신 손님이시군요.",
+      "characterSprite": "soyeon_formal",
+      "backgroundSprite": "hallway",
+      "choices": [],
+      "nextNodeId": 5,
+      "command": ""
+    },
+    {
+      "id": 5,
+      "speaker": "",
+      "text": "저택 안으로 들어서자 메이드 복장의 여성이 깍듯하게 인사했다. 그녀의 눈빛은 무척 차가웠다.",
+      "characterSprite": "soyeon_formal",
+      "backgroundSprite": "hallway",
+      "choices": [],
+      "nextNodeId": 6,
+      "command": ""
+    },
+    {
+      "id": 6,
+      "speaker": "박 노인",
+      "text": "쯧... 이런 불길한 밤에 소란을 피우다니. 이 저택의 과거를 안다면 그럴 수 없을 텐데...",
+      "characterSprite": "oldpark_grumpy",
+      "backgroundSprite": "hallway",
+      "choices": [],
+      "nextNodeId": 7,
+      "command": ""
+    },
+    {
+      "id": 7,
+      "speaker": "",
+      "text": "복도를 지나가던 늙은 정원사가 알아들을 수 없는 말을 중얼거리며 지나갔다.",
+      "characterSprite": "",
+      "backgroundSprite": "hallway",
+      "choices": [],
+      "nextNodeId": 8,
+      "command": ""
+    },
+    {
+      "id": 8,
+      "speaker": "강현우",
+      "text": "모두들 환영합니다! 오늘 밤은 모든 근심을 잊고 할로윈을 즐겨 주시길 바랍니다.",
+      "characterSprite": "hyunwoo_smile",
+      "backgroundSprite": "hallway",
+      "choices": [],
+      "nextNodeId": 9,
+      "command": ""
+    },
+    {
+      "id": 9,
+      "speaker": "",
+      "text": "저택의 주인, 강현우가 호탕하게 웃으며 나타났다.",
+      "characterSprite": "hyunwoo_smile",
+      "backgroundSprite": "hallway",
+      "choices": [],
+      "nextNodeId": 10,
+      "command": ""
+    },
+    {
+      "id": 10,
+      "speaker": "",
+      "text": "",
+      "characterSprite": "",
+      "backgroundSprite": "hallway",
+      "choices": [
+        {"text": "파티를 즐긴다", "nextNodeId": 11},
+        {"text": "저택을 둘러본다", "nextNodeId": 11}
+      ],
+      "nextNodeId": -1,
+      "command": ""
+    },
+    {
+      "id": 11,
+      "speaker": "",
+      "text": "음악이 흐르고 사람들이 춤을 추며 파티가 절정에 달했을 무렵...",
+      "characterSprite": "",
+      "backgroundSprite": "party_hall",
+      "choices": [],
+      "nextNodeId": 12,
+      "command": ""
+    },
+    {
+      "id": 12,
+      "speaker": "",
+      "text": "갑자기 샹들리에의 불빛이 위태롭게 흔들리더니, 저택 전체가 암흑에 휩싸였다.",
+      "characterSprite": "",
+      "backgroundSprite": "party_hall_dark",
+      "choices": [],
+      "nextNodeId": 13,
+      "command": ""
+    },
+    {
+      "id": 13,
+      "speaker": "",
+      "text": "무슨 일이지...?",
+      "characterSprite": "",
+      "backgroundSprite": "party_hall_dark",
+      "choices": [],
+      "nextNodeId": -1,
+      "command": "START_DIALOGUE:ch1_incident"
+    }
+  ]
+}

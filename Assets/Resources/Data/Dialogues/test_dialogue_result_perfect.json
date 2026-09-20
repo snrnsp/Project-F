@@ -1,0 +1,25 @@
+{
+  "dialogueId": "test_dialogue_result_perfect",
+  "nodes": [
+    {
+      "id": 0,
+      "speaker": "주인공",
+      "text": "모든 퍼즐이 맞아떨어진다... 범인은 당신이야!",
+      "characterSprite": "",
+      "backgroundSprite": "",
+      "choices": [],
+      "nextNodeId": 1,
+      "command": ""
+    },
+    {
+      "id": 1,
+      "speaker": "Narrator",
+      "text": "사건은 완벽하게 해결되었다.",
+      "characterSprite": "",
+      "backgroundSprite": "",
+      "choices": [],
+      "nextNodeId": -1,
+      "command": "END"
+    }
+  ]
+}
