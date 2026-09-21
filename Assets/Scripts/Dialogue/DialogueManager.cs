@@ -181,12 +181,38 @@ namespace HalloweenVN.Dialogue
             else if (command.StartsWith("START_DIALOGUE:"))
             {
                 string nextDialogueId = command.Substring("START_DIALOGUE:".Length);
-                EndDialogue();
-                StartDialogue(nextDialogueId);
+                StartCoroutine(TransitionToNextDialogue(nextDialogueId));
             }
             else if (command == "END")
             {
                 EndDialogue();
+            }
+        }
+
+        private IEnumerator TransitionToNextDialogue(string nextDialogueId)
+        {
+            var fx = HalloweenVN.Effects.ScreenEffects.Instance;
+            if (fx != null)
+            {
+                IsPlaying = false; // Prevent clicks during fade out
+                
+                // Fade to black
+                yield return fx.FadeToBlack(1f);
+                
+                // Wait 1 second in darkness
+                yield return new WaitForSeconds(1f);
+                
+                // Change the scene behind the black screen
+                EndDialogue();
+                StartDialogue(nextDialogueId);
+                
+                // Fade from black
+                yield return fx.FadeFromBlack(1f);
+            }
+            else
+            {
+                EndDialogue();
+                StartDialogue(nextDialogueId);
             }
         }
 

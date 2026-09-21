@@ -47,6 +47,64 @@ namespace HalloweenVN.UI
         private List<string> _speakerOrder = new List<string>();
         private List<CharacterPosition> _tempPositionList = new List<CharacterPosition>();
 
+        // ═══════════ Narrator ═══════════
+        private TextMeshProUGUI narratorText;
+
+        /// <summary>
+        /// Lazily creates the fullscreen narrator text object.
+        /// Cannot be done in Awake() because dialogueText is set via SetField() AFTER AddComponent.
+        /// </summary>
+        private void EnsureNarratorText()
+        {
+            if (narratorText != null) return;
+
+            // Parent: fullscreen click area (Image + Button)
+            GameObject narratorObj = new GameObject("NarratorText_Fullscreen");
+            narratorObj.transform.SetParent(transform, false);
+            
+            RectTransform rt = narratorObj.AddComponent<RectTransform>();
+            rt.anchorMin = Vector2.zero;
+            rt.anchorMax = Vector2.one;
+            rt.offsetMin = Vector2.zero;
+            rt.offsetMax = Vector2.zero;
+
+            Image img = narratorObj.AddComponent<Image>();
+            img.color = Color.black; // Solid black background for centered monologues
+
+            Button btn = narratorObj.AddComponent<Button>();
+            btn.transition = Selectable.Transition.None;
+            btn.onClick.AddListener(OnClick);
+
+            // Child: text label (separate GameObject to avoid Graphic conflict)
+            GameObject textObj = new GameObject("NarratorLabel");
+            textObj.transform.SetParent(narratorObj.transform, false);
+
+            RectTransform textRt = textObj.AddComponent<RectTransform>();
+            textRt.anchorMin = Vector2.zero;
+            textRt.anchorMax = Vector2.one;
+            textRt.offsetMin = new Vector2(100, 100);
+            textRt.offsetMax = new Vector2(-100, -100);
+
+            narratorText = textObj.AddComponent<TextMeshProUGUI>();
+            
+            TMP_FontAsset font = null;
+            if (dialogueText != null && dialogueText.font != null)
+                font = dialogueText.font;
+            if (font == null)
+                font = Resources.Load<TMP_FontAsset>("Fonts/MalgunGothic SDF");
+            if (font == null)
+                font = TMP_Settings.defaultFontAsset;
+            
+            if (font != null) narratorText.font = font;
+            narratorText.fontSize = (dialogueText != null && dialogueText.fontSize > 0) ? dialogueText.fontSize : 36f;
+            narratorText.color = Color.white;
+            narratorText.alignment = TextAlignmentOptions.Center;
+            narratorText.enableWordWrapping = true;
+            narratorText.raycastTarget = false; // let clicks pass through to parent Button
+            
+            narratorObj.SetActive(false);
+        }
+
         // ═══════════ Events ═══════════
         private void OnEnable()
         {
@@ -187,17 +245,48 @@ namespace HalloweenVN.UI
             // Background
             UpdateBackground(node.backgroundSprite);
 
-            // Typing
+            // Typing & Formatting
             fullText = node.text ?? "";
+            bool isNarrator = string.IsNullOrEmpty(node.speaker);
+            
+            // Rule: Monologues with a background image use the dialogue panel.
+            bool hasBackground = (backgroundImage != null && backgroundImage.sprite != null && backgroundImage.color.a > 0.01f);
+            bool usePanel = !isNarrator || hasBackground;
+
+            TextMeshProUGUI activeText = usePanel ? dialogueText : narratorText;
+
+            if (usePanel)
+            {
+                // Show dialogue panel, hide narrator
+                if (dialoguePanel != null) dialoguePanel.SetActive(true);
+                if (narratorText != null && narratorText.transform.parent != null)
+                {
+                    narratorText.transform.parent.gameObject.SetActive(false);
+                }
+                if (dialogueText != null) dialogueText.alignment = TextAlignmentOptions.TopLeft;
+            }
+            else
+            {
+                EnsureNarratorText();
+                // Hide dialogue panel, show fullscreen narrator
+                if (dialoguePanel != null) dialoguePanel.SetActive(false);
+                if (narratorText != null && narratorText.transform.parent != null)
+                {
+                    narratorText.transform.parent.gameObject.SetActive(true);
+                }
+                fullText = "<b>" + fullText + "</b>";
+            }
+
             if (typingCoroutine != null) StopCoroutine(typingCoroutine);
 
             if (gameObject.activeInHierarchy)
             {
-                typingCoroutine = StartCoroutine(TypeText(fullText));
+                typingCoroutine = StartCoroutine(TypeText(activeText, fullText));
             }
             else
             {
-                dialogueText.text = fullText;
+                activeText.text = fullText;
+                activeText.maxVisibleCharacters = 99999;
                 isTyping = false;
             }
 
@@ -247,8 +336,8 @@ namespace HalloweenVN.UI
             for (int i = 0; i < n; i++)
             {
                 float targetX = 0.5f; // Default: center
-                if (n == 2) targetX = (i == 0) ? 0.28f : 0.72f;
-                else if (n == 3) targetX = (i == 0) ? 0.18f : (i == 1 ? 0.5f : 0.82f);
+                if (n == 2) targetX = (i == 0) ? 0.34f : 0.78f;
+                else if (n == 3) targetX = (i == 0) ? 0.24f : (i == 1 ? 0.56f : 0.88f);
 
                 CharacterPosition pos = _tempPositionList[i];
                 MoveCharacterTo(pos, targetX);
@@ -379,7 +468,7 @@ namespace HalloweenVN.UI
         // ═══════════ Speaker Highlight / Dim ═══════════
         private void UpdateSpeakerHighlight(string speaker)
         {
-            if (string.IsNullOrEmpty(speaker))
+            if (string.IsNullOrWhiteSpace(speaker))
             {
                 // Narrator — all active characters stay bright
                 foreach (var kvp in _activeSpeakerPositions)
@@ -481,20 +570,32 @@ namespace HalloweenVN.UI
                 if (sprite != null)
                 {
                     backgroundImage.sprite = sprite;
+                    backgroundImage.color = Color.white; // Ensure alpha is 1
                     backgroundImage.enabled = true;
                 }
             }
         }
 
         // ═══════════ Typing ═══════════
-        private IEnumerator TypeText(string text)
+        private IEnumerator TypeText(TextMeshProUGUI target, string text)
         {
             isTyping = true;
-            if (dialogueText != null) dialogueText.text = "";
-
-            foreach (char c in text.ToCharArray())
+            if (target != null)
             {
-                if (dialogueText != null) dialogueText.text += c;
+                target.text = text;
+                target.maxVisibleCharacters = 0;
+            }
+
+            // Yield once so TMPro can calculate the mesh and character counts
+            yield return null;
+
+            int totalVisibleChars = target != null ? target.textInfo.characterCount : 0;
+            int visibleCount = 0;
+
+            while (visibleCount <= totalVisibleChars && target != null)
+            {
+                target.maxVisibleCharacters = visibleCount;
+                visibleCount++;
                 yield return new WaitForSeconds(SettingsData.TextSpeed);
             }
 
@@ -519,7 +620,8 @@ namespace HalloweenVN.UI
         public void SkipTyping()
         {
             if (typingCoroutine != null) StopCoroutine(typingCoroutine);
-            if (dialogueText != null) dialogueText.text = fullText;
+            if (dialogueText != null) dialogueText.maxVisibleCharacters = 99999;
+            if (narratorText != null) narratorText.maxVisibleCharacters = 99999;
             isTyping = false;
         }
 

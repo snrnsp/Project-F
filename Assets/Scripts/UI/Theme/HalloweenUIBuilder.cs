@@ -1,4 +1,4 @@
-using HalloweenVN.Core;
+﻿using HalloweenVN.Core;
 using HalloweenVN.Dialogue;
 using HalloweenVN.Investigation;
 using HalloweenVN.Deduction;
@@ -106,13 +106,7 @@ namespace HalloweenVN.UI.Theme
                 bgImg.color = new Color32(15, 8, 25, 255);
             }
 
-            // Decorative top vignette
-            GameObject topVig = UIHelper.CreateUIObject("TopVignette", lobbyPanelRoot.transform);
-            RectTransform topVigRt = topVig.GetComponent<RectTransform>();
-            UIHelper.SetAnchors(topVigRt, new Vector2(0, 0.7f), new Vector2(1, 1), new Vector2(0.5f, 1));
-            topVigRt.offsetMin = Vector2.zero;
-            topVigRt.offsetMax = Vector2.zero;
-            UIHelper.AddImage(topVig, new Color32(40, 15, 60, 120));
+            // Removed TopVignette because it creates a hard-edged box artifact
 
             // ════════ Title Area ════════
             
@@ -122,8 +116,8 @@ namespace HalloweenVN.UI.Theme
             UIHelper.SetAnchors(titleRt, new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f));
             titleRt.anchoredPosition = new Vector2(0, 160);
             titleRt.sizeDelta = new Vector2(900, 80);
-            TextMeshProUGUI titleText = UIHelper.AddText(titleObj, "할로윈 저택의 비밀",
-                new Color32(255, 160, 30, 255), 56, TextAlignmentOptions.Center);
+            TextMeshProUGUI titleText = UIHelper.AddText(titleObj, "오블리비언",
+                new Color32(255, 160, 30, 255), 72, TextAlignmentOptions.Center);
             titleText.fontStyle = FontStyles.Bold;
             titleText.textWrappingMode = TextWrappingModes.NoWrap;
 
@@ -132,9 +126,9 @@ namespace HalloweenVN.UI.Theme
             RectTransform decoRt = decoObj.GetComponent<RectTransform>();
             UIHelper.SetAnchors(decoRt, new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f));
             decoRt.anchoredPosition = new Vector2(0, 230);
-            decoRt.sizeDelta = new Vector2(300, 50);
-            UIHelper.AddText(decoObj, "~ Halloween Mystery ~",
-                new Color32(200, 120, 50, 180), 20, TextAlignmentOptions.Center);
+            decoRt.sizeDelta = new Vector2(500, 50);
+            UIHelper.AddText(decoObj, "~ 잊혀진 이들을 찾아서 ~",
+                new Color32(200, 120, 50, 180), 22, TextAlignmentOptions.Center);
 
             // Subtitle
             GameObject subObj = UIHelper.CreateUIObject("Subtitle", lobbyPanelRoot.transform);
@@ -142,7 +136,7 @@ namespace HalloweenVN.UI.Theme
             UIHelper.SetAnchors(subRt, new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f));
             subRt.anchoredPosition = new Vector2(0, 95);
             subRt.sizeDelta = new Vector2(700, 35);
-            TextMeshProUGUI subtitleText = UIHelper.AddText(subObj, "The Secret of Halloween Mansion",
+            TextMeshProUGUI subtitleText = UIHelper.AddText(subObj, "Nevermore Occult Detective Agency",
                 new Color32(220, 200, 170, 200), 22, TextAlignmentOptions.Center);
 
             // Decorative divider line
@@ -161,10 +155,10 @@ namespace HalloweenVN.UI.Theme
             var newGameTuple = CreateLobbyButton(lobbyPanelRoot.transform, "▶  새 게임", new Vector2(0, -10), btnBg, btnBorder);
 
             // Continue Button
-            var continueTuple = CreateLobbyButton(lobbyPanelRoot.transform, "↻  이어하기", new Vector2(0, -85), btnBg, btnBorder);
+            var continueTuple = CreateLobbyButton(lobbyPanelRoot.transform, "이어하기", new Vector2(0, -85), btnBg, btnBorder);
 
             // Settings Button
-            var settingsTuple = CreateLobbyButton(lobbyPanelRoot.transform, "⚙  설정", new Vector2(0, -160), btnBg, btnBorder);
+            var settingsTuple = CreateLobbyButton(lobbyPanelRoot.transform, "설정", new Vector2(0, -160), btnBg, btnBorder);
 
             // ════════ Bottom ════════
 
@@ -421,9 +415,11 @@ namespace HalloweenVN.UI.Theme
             // Wire up fullscreen click (Background + DialoguePanel itself)
             Button bgClick = bgImgObj.AddComponent<Button>();
             bgClick.targetGraphic = backgroundImage;
+            bgClick.transition = Selectable.Transition.None;
             Button panelClick = dialoguePanel.AddComponent<Button>();
             Image panelImg = dialoguePanel.GetComponent<Image>();
             if (panelImg != null) panelClick.targetGraphic = panelImg;
+            panelClick.transition = Selectable.Transition.None;
 
             UnityEngine.Events.UnityAction onScreenClick = () => {
                 var method = ui.GetType().GetMethod("OnClick", System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
@@ -685,7 +681,7 @@ namespace HalloweenVN.UI.Theme
             GameObject panel = UIHelper.CreatePanel("SettingsPanel", settingsRoot.transform, HalloweenTheme.PanelBackground);
             RectTransform panelRt = panel.GetComponent<RectTransform>();
             UIHelper.SetAnchors(panelRt, new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f));
-            panelRt.sizeDelta = new Vector2(500, 450);
+            panelRt.sizeDelta = new Vector2(700, 600);
 
             // Title
             GameObject titleObj = UIHelper.CreateUIObject("Title", panel.transform);
@@ -693,25 +689,35 @@ namespace HalloweenVN.UI.Theme
             UIHelper.SetAnchors(titleRt, new Vector2(0.5f, 1), new Vector2(0.5f, 1), new Vector2(0.5f, 1));
             titleRt.anchoredPosition = new Vector2(0, -30);
             titleRt.sizeDelta = new Vector2(400, 40);
-            UIHelper.AddText(titleObj, "⚙ 설정", HalloweenTheme.AccentOrange, 32, TextAlignmentOptions.Center);
+            UIHelper.AddText(titleObj, "설정", HalloweenTheme.AccentOrange, 32, TextAlignmentOptions.Center);
 
             // Text Speed Slider
-            float yPos = -80;
+            float yPos = -70;
             var textSpeedLabel = CreateSettingsLabel(panel.transform, "텍스트 속도", yPos);
             Slider textSpeedSlider = CreateSettingsSlider(panel.transform, yPos - 30);
+            
+            // Preview Text
+            yPos -= 70;
+            GameObject previewObj = UIHelper.CreateUIObject("PreviewText", panel.transform);
+            RectTransform previewRt = previewObj.GetComponent<RectTransform>();
+            UIHelper.SetAnchors(previewRt, new Vector2(0.5f, 1), new Vector2(0.5f, 1), new Vector2(0.5f, 1));
+            previewRt.anchoredPosition = new Vector2(0, yPos);
+            previewRt.sizeDelta = new Vector2(600, 40);
+            TextMeshProUGUI previewText = UIHelper.AddText(previewObj, "", HalloweenTheme.TextPrimary, 18, TextAlignmentOptions.Center);
+            
 
             // BGM Volume
-            yPos -= 80;
+            yPos -= 90;
             var bgmLabel = CreateSettingsLabel(panel.transform, "BGM", yPos);
             Slider bgmSlider = CreateSettingsSlider(panel.transform, yPos - 30);
 
             // SFX Volume
-            yPos -= 80;
+            yPos -= 90;
             var sfxLabel = CreateSettingsLabel(panel.transform, "SFX", yPos);
             Slider sfxSlider = CreateSettingsSlider(panel.transform, yPos - 30);
 
             // Fullscreen Toggle
-            yPos -= 80;
+            yPos -= 90;
             GameObject toggleObj = UIHelper.CreateUIObject("FullscreenToggle", panel.transform);
             RectTransform toggleRt = toggleObj.GetComponent<RectTransform>();
             UIHelper.SetAnchors(toggleRt, new Vector2(0.5f, 1), new Vector2(0.5f, 1), new Vector2(0.5f, 1));
@@ -731,6 +737,7 @@ namespace HalloweenVN.UI.Theme
             UIHelper.SetField(settingsUi, "settingsPanel", settingsRoot);
             UIHelper.SetField(settingsUi, "textSpeedSlider", textSpeedSlider);
             UIHelper.SetField(settingsUi, "textSpeedLabel", textSpeedLabel);
+            UIHelper.SetField(settingsUi, "previewTextLabel", previewText);
             UIHelper.SetField(settingsUi, "bgmVolumeSlider", bgmSlider);
             UIHelper.SetField(settingsUi, "bgmVolumeLabel", bgmLabel);
             UIHelper.SetField(settingsUi, "sfxVolumeSlider", sfxSlider);

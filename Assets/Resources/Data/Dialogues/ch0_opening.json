@@ -5,13 +5,13 @@
       "id": 0,
       "speaker": "",
       "text": "노을시(市).",
-      "backgroundSprite": "Images/city_night",
+      "backgroundSprite": "",
       "nextNodeId": 1
     },
     {
       "id": 1,
       "speaker": "",
-      "text": "인구 80만의 항구도시. 낮에는 평범한 사람들이 평범한 하루를 보내고, 밤에는 바다에서 밀려온 안개가 구시가지의 좁은 골목을 채운다.",
+      "text": "인구 80만의 항구도시.\n낮에는 평범한 사람들이 평범한 하루를 보내고,\n밤에는 바다에서 밀려온 안개가 구시가지의 좁은 골목을 채운다.",
       "nextNodeId": 2
     },
     {
@@ -54,7 +54,7 @@
       "id": 8,
       "speaker": "",
       "text": "구시가지의 가파른 언덕 꼭대기. 안개 너머로 오래된 저택의 실루엣이 떠오른다.",
-      "backgroundSprite": "Images/lobby_bg",
+      "backgroundSprite": "",
       "nextNodeId": 9
     },
     {

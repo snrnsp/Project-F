@@ -9,7 +9,7 @@ namespace HalloweenVN.UI.Theme
     public class ScreenTransition : MonoBehaviour
     {
         [SerializeField] private float transitionDuration = 0.5f;
-        [SerializeField] private bool autoTransitionOnPhaseChange = true;
+        public bool autoTransitionOnPhaseChange = true;
         
         private Image overlayImage;
         private bool isTransitioning;
@@ -126,10 +126,11 @@ namespace HalloweenVN.UI.Theme
         private IEnumerator FadeCoroutine(float startAlpha, float endAlpha, float duration, Color color, Action onComplete)
         {
             isTransitioning = true;
-            overlayImage.raycastTarget = true;
+            // Block input during the entire fade transition
+            if (overlayImage != null) overlayImage.raycastTarget = true;
             
             color.a = startAlpha;
-            overlayImage.color = color;
+            if (overlayImage != null) overlayImage.color = color;
             
             float time = 0f;
             while (time < duration)
@@ -139,15 +140,15 @@ namespace HalloweenVN.UI.Theme
                 float smoothT = Mathf.SmoothStep(0f, 1f, t);
                 
                 color.a = Mathf.Lerp(startAlpha, endAlpha, smoothT);
-                overlayImage.color = color;
+                if (overlayImage != null) overlayImage.color = color;
                 
                 yield return null;
             }
             
             color.a = endAlpha;
-            overlayImage.color = color;
+            if (overlayImage != null) overlayImage.color = color;
             
-            if (endAlpha == 0f)
+            if (endAlpha == 0f && overlayImage != null)
             {
                 overlayImage.raycastTarget = false;
             }

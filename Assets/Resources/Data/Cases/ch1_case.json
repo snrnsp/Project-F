@@ -1,10 +1,10 @@
 {
   "caseId": "ch1_case",
-  "caseName": "할로윈 저택의 비밀",
+  "caseName": "잊혀진 피아니스트",
   "questions": [
-    {"questionText": "범인이 사용한 흉기는?", "correctEvidenceId": "broken_candlestick"},
-    {"questionText": "범인이 피해자를 유인한 방법은?", "correctEvidenceId": "suspicious_letter"},
-    {"questionText": "범인이 숨긴 결정적 단서는?", "correctEvidenceId": "pumpkin_key"}
+    {"questionText": "피아노가 실제로 연주되고 있다는 물리적 증거는?", "correctEvidenceId": "dustless_keys"},
+    {"questionText": "피아니스트가 이 음악실에 존재했다는 유일한 흔적은?", "correctEvidenceId": "faded_program"},
+    {"questionText": "소리의 정체에 대한 결정적 단서는?", "correctEvidenceId": "sound_analysis"}
   ],
   "perfectDialogueId": "ch1_result_perfect",
   "failDialogueId": "ch1_result_fail"

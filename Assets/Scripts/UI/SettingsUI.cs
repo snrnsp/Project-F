@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using HalloweenVN.Core;
@@ -19,14 +19,18 @@ namespace HalloweenVN.UI
         [SerializeField] private TextMeshProUGUI sfxVolumeLabel;
         [SerializeField] private Toggle fullscreenToggle;
         [SerializeField] private Button closeButton;
+        
+        [SerializeField] private TextMeshProUGUI previewTextLabel;
+        private Coroutine typingCoroutine;
+        private string previewMessage = "텍스트 속도가 이 정도로 출력됩니다. 눈으로 확인해 보세요!";
 
         private void OnEnable()
         {
             if (textSpeedSlider != null)
             {
-                textSpeedSlider.minValue = 0.01f;
-                textSpeedSlider.maxValue = 0.1f;
-                textSpeedSlider.value = SettingsData.TextSpeed;
+                textSpeedSlider.minValue = 0f;
+                textSpeedSlider.maxValue = 100f;
+                textSpeedSlider.value = SpeedToSlider(SettingsData.TextSpeed);
                 textSpeedSlider.onValueChanged.AddListener(OnTextSpeedChanged);
             }
             if (bgmVolumeSlider != null)
@@ -66,10 +70,11 @@ namespace HalloweenVN.UI
             {
                 settingsPanel.SetActive(true);
                 // Refresh slider positions from current settings
-                if (textSpeedSlider != null) textSpeedSlider.value = SettingsData.TextSpeed;
+                if (textSpeedSlider != null) textSpeedSlider.value = SpeedToSlider(SettingsData.TextSpeed);
                 if (bgmVolumeSlider != null) bgmVolumeSlider.value = SettingsData.BGMVolume;
                 if (sfxVolumeSlider != null) sfxVolumeSlider.value = SettingsData.SFXVolume;
                 if (fullscreenToggle != null) fullscreenToggle.isOn = SettingsData.IsFullScreen;
+                PlayPreviewText();
             }
         }
 
@@ -81,9 +86,39 @@ namespace HalloweenVN.UI
 
         private void OnTextSpeedChanged(float value)
         {
-            SettingsData.TextSpeed = value;
+            SettingsData.TextSpeed = SliderToSpeed(value);
             UpdateLabels();
             SettingsData.Save();
+            PlayPreviewText();
+        }
+        
+        private void PlayPreviewText()
+        {
+            if (previewTextLabel == null) return;
+            if (typingCoroutine != null) StopCoroutine(typingCoroutine);
+            typingCoroutine = StartCoroutine(TypePreviewCoroutine());
+        }
+        
+        private System.Collections.IEnumerator TypePreviewCoroutine()
+        {
+            previewTextLabel.text = previewMessage;
+            
+            // Wait one frame so TMPro calculates textInfo.characterCount
+            yield return null;
+            
+            while (true)
+            {
+                int totalChars = previewTextLabel.textInfo.characterCount;
+                previewTextLabel.maxVisibleCharacters = 0;
+                
+                for (int i = 0; i <= totalChars; i++)
+                {
+                    previewTextLabel.maxVisibleCharacters = i;
+                    yield return new WaitForSeconds(SettingsData.TextSpeed);
+                }
+                
+                yield return new WaitForSeconds(0.5f);
+            }
         }
 
         private void OnBGMVolumeChanged(float value)
@@ -109,10 +144,20 @@ namespace HalloweenVN.UI
 
         private void UpdateLabels()
         {
-            // Lower value = faster typing, so invert for display
-            if (textSpeedLabel != null) textSpeedLabel.text = $"텍스트 속도: {Mathf.RoundToInt((0.11f - SettingsData.TextSpeed) * 1000)}";
-            if (bgmVolumeLabel != null) bgmVolumeLabel.text = $"BGM: {Mathf.RoundToInt(SettingsData.BGMVolume * 100)}%";
+            if (textSpeedLabel != null) textSpeedLabel.text = $"텍스트 속도: {Mathf.RoundToInt(SpeedToSlider(SettingsData.TextSpeed))}";
+            if (bgmVolumeLabel != null) bgmVolumeLabel.text = $"BGM: {Mathf.RoundToInt(SettingsData.BGMVolume * 100)}%" ;
             if (sfxVolumeLabel != null) sfxVolumeLabel.text = $"SFX: {Mathf.RoundToInt(SettingsData.SFXVolume * 100)}%";
+        }
+
+        private float SliderToSpeed(float sliderVal)
+        {
+            return Mathf.Lerp(0.1f, 0.01f, sliderVal / 100f);
+        }
+
+        private float SpeedToSlider(float delay)
+        {
+            float t = Mathf.InverseLerp(0.1f, 0.01f, delay);
+            return Mathf.Lerp(0f, 100f, t);
         }
     }
 }

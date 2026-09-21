@@ -33,6 +33,16 @@ namespace HalloweenVN.Editor
                 fontAsset.atlasPopulationMode = AtlasPopulationMode.Dynamic;
                 
                 AssetDatabase.CreateAsset(fontAsset, assetPath);
+                
+                if (fontAsset.material != null)
+                {
+                    AssetDatabase.AddObjectToAsset(fontAsset.material, fontAsset);
+                }
+                if (fontAsset.atlasTexture != null)
+                {
+                    AssetDatabase.AddObjectToAsset(fontAsset.atlasTexture, fontAsset);
+                }
+                
                 AssetDatabase.SaveAssets();
                 Debug.Log("✅ [AutoFontSetup] 맑은 고딕(MalgunGothic) TMP 폰트 에셋이 성공적으로 생성되었습니다!");
             }
