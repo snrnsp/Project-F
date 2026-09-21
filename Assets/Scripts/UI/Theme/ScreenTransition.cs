@@ -148,9 +148,10 @@ namespace HalloweenVN.UI.Theme
             color.a = endAlpha;
             if (overlayImage != null) overlayImage.color = color;
             
-            if (endAlpha == 0f && overlayImage != null)
+            if (endAlpha <= 0.01f && overlayImage != null)
             {
                 overlayImage.raycastTarget = false;
+                overlayImage.color = new Color(color.r, color.g, color.b, 0f);
             }
             
             isTransitioning = false;

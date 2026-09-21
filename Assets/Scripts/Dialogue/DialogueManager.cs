@@ -65,9 +65,11 @@ namespace HalloweenVN.Dialogue
         /// <param name="dialogueId">The ID of the dialogue to load.</param>
         public void StartDialogue(string dialogueId)
         {
+            Debug.Log($"[DialogueManager] StartDialogue called with id: {dialogueId}");
             DialogueContainer container = DataLoader.LoadDialogue(dialogueId);
             if (container != null)
             {
+                Debug.Log($"[DialogueManager] Loaded dialogue '{dialogueId}' with {container.nodes?.Count ?? 0} nodes");
                 StartDialogue(container);
             }
             else
