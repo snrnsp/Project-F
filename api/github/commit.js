@@ -1,6 +1,6 @@
 const { App } = require("octokit");
 
-export default async function handler(req, res) {
+module.exports = async function handler(req, res) {
   // CORS 설정 (게임 클라이언트에서 접근할 수 있도록 허용)
   res.setHeader('Access-Control-Allow-Credentials', true);
   res.setHeader('Access-Control-Allow-Origin', '*');
