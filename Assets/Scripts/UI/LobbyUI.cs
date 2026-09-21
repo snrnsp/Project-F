@@ -23,7 +23,11 @@ namespace HalloweenVN.UI
             {
                 GameManager.Instance.OnPhaseChanged += HandlePhaseChanged;
             }
+            UpdateContinueButton();
+        }
 
+        private void Start()
+        {
             if (newGameButton != null)
             {
                 newGameButton.onClick.AddListener(OnNewGameClicked);
@@ -32,7 +36,6 @@ namespace HalloweenVN.UI
             {
                 continueButton.onClick.AddListener(OnContinueClicked);
             }
-
             UpdateContinueButton();
         }
 
@@ -42,6 +45,10 @@ namespace HalloweenVN.UI
             {
                 GameManager.Instance.OnPhaseChanged -= HandlePhaseChanged;
             }
+        }
+
+        private void OnDestroy()
+        {
             if (newGameButton != null)
             {
                 newGameButton.onClick.RemoveListener(OnNewGameClicked);
@@ -60,8 +67,36 @@ namespace HalloweenVN.UI
             {
                 lobbyPanel.SetActive(true);
                 UpdateContinueButton();
+                StopAllCoroutines();
+                StartCoroutine(SlideLobby(true));
             }
             else
+            {
+                StopAllCoroutines();
+                StartCoroutine(SlideLobby(false));
+            }
+        }
+
+        private System.Collections.IEnumerator SlideLobby(bool show)
+        {
+            RectTransform rt = lobbyPanel.GetComponent<RectTransform>();
+            float duration = 0.5f;
+            float time = 0f;
+            
+            // X offset: 0 for show, -1920 for hide (sliding left)
+            Vector2 startPos = rt.anchoredPosition;
+            Vector2 targetPos = show ? Vector2.zero : new Vector2(-1920, 0);
+
+            while (time < duration)
+            {
+                time += Time.deltaTime;
+                float t = Mathf.SmoothStep(0, 1, time / duration);
+                rt.anchoredPosition = Vector2.Lerp(startPos, targetPos, t);
+                yield return null;
+            }
+            rt.anchoredPosition = targetPos;
+
+            if (!show)
             {
                 lobbyPanel.SetActive(false);
             }
@@ -86,7 +121,7 @@ namespace HalloweenVN.UI
             }
             if (DialogueManager.Instance != null)
             {
-                DialogueManager.Instance.StartDialogue("ch1_prologue");
+                DialogueManager.Instance.StartDialogue("ch0_opening");
             }
         }
 

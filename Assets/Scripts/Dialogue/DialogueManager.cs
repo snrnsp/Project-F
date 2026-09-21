@@ -113,18 +113,24 @@ namespace HalloweenVN.Dialogue
 
             if (!string.IsNullOrEmpty(currentNode.command))
             {
-                // If the node has displayable text, show it first and defer the command
-                bool hasText = !string.IsNullOrEmpty(currentNode.text);
-                if (hasText)
+                if (currentNode.command.StartsWith("EFFECT:"))
                 {
-                    pendingCommand = currentNode.command;
-                    // Fall through to display the text below
+                    // Effects trigger immediately with the text
+                    ExecuteCommand(currentNode.command);
                 }
                 else
                 {
-                    // No text — execute command immediately
-                    ExecuteCommand(currentNode.command);
-                    return;
+                    // Flow commands (CHANGE_PHASE, etc.) are deferred if there's text
+                    bool hasText = !string.IsNullOrEmpty(currentNode.text);
+                    if (hasText)
+                    {
+                        pendingCommand = currentNode.command;
+                    }
+                    else
+                    {
+                        ExecuteCommand(currentNode.command);
+                        return;
+                    }
                 }
             }
             
@@ -147,7 +153,23 @@ namespace HalloweenVN.Dialogue
         /// </summary>
         private void ExecuteCommand(string command)
         {
-            if (command.StartsWith("CHANGE_PHASE:"))
+            if (command.StartsWith("EFFECT:"))
+            {
+                string effectType = command.Substring("EFFECT:".Length);
+                var fx = HalloweenVN.Effects.ScreenEffects.Instance;
+                if (fx != null)
+                {
+                    switch (effectType)
+                    {
+                        case "SHAKE": fx.ShakeCamera(); break;
+                        case "FLASH": fx.FlashScreen(Color.white); break;
+                        case "FLASH_RED": fx.FlashScreen(Color.red); break;
+                        case "FADE_TO_BLACK": fx.FadeToBlack(); break;
+                        case "FADE_FROM_BLACK": fx.FadeFromBlack(); break;
+                    }
+                }
+            }
+            else if (command.StartsWith("CHANGE_PHASE:"))
             {
                 string phaseString = command.Substring("CHANGE_PHASE:".Length);
                 if (Enum.TryParse(phaseString, out GamePhase phase))

@@ -16,15 +16,18 @@ namespace HalloweenVN.Core
         
         private void Awake()
         {
-            if (Instance == null)
-            {
-                Instance = this;
-                DontDestroyOnLoad(gameObject);
-            }
-            else
+            if (Instance != null && Instance != this)
             {
                 Destroy(gameObject);
+                return;
             }
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+
+            // Create ScreenEffects Manager
+            GameObject fx = new GameObject("ScreenEffects");
+            fx.AddComponent<HalloweenVN.Effects.ScreenEffects>();
+            DontDestroyOnLoad(fx);
         }
         
         /// <summary>

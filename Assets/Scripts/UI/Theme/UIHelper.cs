@@ -32,6 +32,8 @@ namespace HalloweenVN.UI.Theme
             return img;
         }
 
+        private static TMP_FontAsset cachedKoreanFont;
+
         /// <summary>
         /// Creates a TextMeshProUGUI with given text, color, fontSize, alignment
         /// </summary>
@@ -43,11 +45,27 @@ namespace HalloweenVN.UI.Theme
             tmp.fontSize = fontSize;
             tmp.alignment = alignment;
 
-            // Load Korean Font (MalgunGothic SDF) if it exists
-            TMP_FontAsset koreanFont = Resources.Load<TMP_FontAsset>("Fonts/MalgunGothic SDF");
-            if (koreanFont != null)
+            // Load or create Korean Font at runtime
+            if (cachedKoreanFont == null)
             {
-                tmp.font = koreanFont;
+                // Try to load pre-made asset first
+                cachedKoreanFont = Resources.Load<TMP_FontAsset>("Fonts/MalgunGothic SDF");
+                
+                // If not found, create dynamic font asset from TTF at runtime
+                if (cachedKoreanFont == null)
+                {
+                    Font rawFont = Resources.Load<Font>("Fonts/MalgunGothic");
+                    if (rawFont != null)
+                    {
+                        cachedKoreanFont = TMP_FontAsset.CreateFontAsset(rawFont);
+                        cachedKoreanFont.name = "MalgunGothic Runtime SDF";
+                    }
+                }
+            }
+
+            if (cachedKoreanFont != null)
+            {
+                tmp.font = cachedKoreanFont;
             }
 
             return tmp;

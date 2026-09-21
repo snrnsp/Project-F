@@ -15,7 +15,10 @@ namespace HalloweenVN.Data
         public int id;
         public string speaker;
         public string text;
-        public string characterSprite;
+        public string characterSprite; // Legacy / Default (maps to Center)
+        public string characterSpriteLeft;
+        public string characterSpriteCenter;
+        public string characterSpriteRight;
         public string backgroundSprite;
         public List<DialogueChoice> choices;
         public int nextNodeId;

@@ -9,7 +9,6 @@ namespace HalloweenVN.Investigation
     public class InvestigationManager : MonoBehaviour
     {
         [SerializeField] private string evidenceDatabaseName = "ch1_evidence";
-        [SerializeField] private string caseId = "ch1_case";
         [SerializeField] private List<string> requiredEvidenceIds = new List<string>();
         [SerializeField] private GameObject investigationUI;
         [SerializeField] private InvestigationObject[] investigationObjects;
@@ -58,11 +57,14 @@ namespace HalloweenVN.Investigation
                 investigationUI.SetActive(isInvestigation);
             }
 
-            foreach (var obj in investigationObjects)
+            if (investigationObjects != null)
             {
-                if (obj != null)
+                foreach (var obj in investigationObjects)
                 {
-                    obj.gameObject.SetActive(isInvestigation);
+                    if (obj != null)
+                    {
+                        obj.gameObject.SetActive(isInvestigation);
+                    }
                 }
             }
         }

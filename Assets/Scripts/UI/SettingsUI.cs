@@ -83,24 +83,28 @@ namespace HalloweenVN.UI
         {
             SettingsData.TextSpeed = value;
             UpdateLabels();
+            SettingsData.Save();
         }
 
         private void OnBGMVolumeChanged(float value)
         {
             SettingsData.BGMVolume = value;
             UpdateLabels();
+            SettingsData.Save();
         }
 
         private void OnSFXVolumeChanged(float value)
         {
             SettingsData.SFXVolume = value;
             UpdateLabels();
+            SettingsData.Save();
         }
 
         private void OnFullscreenChanged(bool value)
         {
             SettingsData.IsFullScreen = value;
             Screen.fullScreen = value;
+            SettingsData.Save();
         }
 
         private void UpdateLabels()

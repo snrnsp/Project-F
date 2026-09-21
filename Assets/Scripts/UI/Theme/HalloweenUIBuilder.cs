@@ -17,7 +17,6 @@ namespace HalloweenVN.UI.Theme
 
         [Header("Settings")]
         [SerializeField] private bool autoCreateManagers = true;
-        [SerializeField] private string initialDialogueId = "test_dialogue_intro";
         
         private Canvas mainCanvas;
         private GameObject dialoguePanelRoot;
@@ -126,7 +125,7 @@ namespace HalloweenVN.UI.Theme
             TextMeshProUGUI titleText = UIHelper.AddText(titleObj, "할로윈 저택의 비밀",
                 new Color32(255, 160, 30, 255), 56, TextAlignmentOptions.Center);
             titleText.fontStyle = FontStyles.Bold;
-            titleText.enableWordWrapping = false;
+            titleText.textWrappingMode = TextWrappingModes.NoWrap;
 
             // Pumpkin emoji decoration above title
             GameObject decoObj = UIHelper.CreateUIObject("Decoration", lobbyPanelRoot.transform);
@@ -187,6 +186,15 @@ namespace HalloweenVN.UI.Theme
             UIHelper.AddText(creditObj, "v0.2 — Project F",
                 new Color32(150, 150, 150, 80), 13, TextAlignmentOptions.Center);
 
+            Button newGameBtn = newGameTuple.btn;
+            Button continueBtn = continueTuple.btn;
+            Button settingsBtn = settingsTuple.btn;
+
+            // Add Hover effect
+            newGameBtn.gameObject.AddComponent<LobbyButtonHover>();
+            continueBtn.gameObject.AddComponent<LobbyButtonHover>();
+            settingsBtn.gameObject.AddComponent<LobbyButtonHover>();
+
             // Attach LobbyUI and wire fields
             LobbyUI lobbyUi = lobbyPanelRoot.AddComponent<LobbyUI>();
             UIHelper.SetField(lobbyUi, "lobbyPanel", lobbyPanelRoot);
@@ -238,6 +246,27 @@ namespace HalloweenVN.UI.Theme
             return (btn, tmp);
         }
 
+        /// <summary>
+        /// Creates a character image slot using anchor-based positioning (ported from old project).
+        /// anchorX: 0.2 for left, 0.5 for center, 0.8 for right
+        /// </summary>
+        private Image CreateCharacterSlot(string name, Transform parent, float anchorX)
+        {
+            GameObject obj = UIHelper.CreateUIObject(name, parent);
+            RectTransform rt = obj.GetComponent<RectTransform>();
+            // Span 90% of screen width centered on anchorX, from below screen to near top
+            rt.anchorMin = new Vector2(anchorX - 0.45f, -0.6f);
+            rt.anchorMax = new Vector2(anchorX + 0.45f, 0.95f);
+            rt.offsetMin = Vector2.zero;
+            rt.offsetMax = Vector2.zero;
+            
+            Image image = UIHelper.AddImage(obj, new Color(1f, 1f, 1f, 0f));
+            image.preserveAspect = true;
+            image.raycastTarget = false;
+            obj.SetActive(false); // Start hidden, DialogueUI will activate via FadeIn
+            return image;
+        }
+
         private void CreateManagers()
         {
             CreateManagerIfNotExists<GameManager>("GameManager");
@@ -260,9 +289,21 @@ namespace HalloweenVN.UI.Theme
         {
             GameObject canvasObj = new GameObject("MainCanvas");
             mainCanvas = canvasObj.AddComponent<Canvas>();
-            mainCanvas.renderMode = RenderMode.ScreenSpaceOverlay;
-            mainCanvas.sortingOrder = 0;
             
+            Camera cam = Camera.main;
+            if (cam == null)
+            {
+                GameObject camObj = new GameObject("Main Camera");
+                camObj.tag = "MainCamera";
+                cam = camObj.AddComponent<Camera>();
+                cam.clearFlags = CameraClearFlags.SolidColor;
+                cam.backgroundColor = Color.black;
+            }
+            
+            mainCanvas.renderMode = RenderMode.ScreenSpaceCamera;
+            mainCanvas.worldCamera = cam;
+            mainCanvas.planeDistance = 100f; // Put UI in front of camera
+
             CanvasScaler scaler = canvasObj.AddComponent<CanvasScaler>();
             scaler.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
             scaler.referenceResolution = new Vector2(1920, 1080);
@@ -295,12 +336,10 @@ namespace HalloweenVN.UI.Theme
             UIHelper.StretchFull(bgImgObj.GetComponent<RectTransform>());
             Image backgroundImage = UIHelper.AddImage(bgImgObj, new Color(1,1,1,0));
 
-            // Character Image
-            GameObject charImgObj = UIHelper.CreateUIObject("CharacterImage", dialoguePanelRoot.transform);
-            RectTransform charRt = charImgObj.GetComponent<RectTransform>();
-            UIHelper.SetAnchors(charRt, new Vector2(0.2f, 0.5f), new Vector2(0.2f, 0.5f), new Vector2(0.5f, 0.5f));
-            charRt.sizeDelta = new Vector2(600, 800);
-            Image characterImage = UIHelper.AddImage(charImgObj, new Color(1,1,1,0));
+            // Character Images (Left, Center, Right) — Anchor-based like old project
+            Image characterImageLeft = CreateCharacterSlot("CharacterImageLeft", dialoguePanelRoot.transform, 0.2f);
+            Image characterImageCenter = CreateCharacterSlot("CharacterImageCenter", dialoguePanelRoot.transform, 0.5f);
+            Image characterImageRight = CreateCharacterSlot("CharacterImageRight", dialoguePanelRoot.transform, 0.8f);
 
             // Dialogue Panel
             GameObject dialoguePanel = UIHelper.CreatePanel("DialoguePanel", dialoguePanelRoot.transform, HalloweenTheme.PanelBackground);
@@ -325,14 +364,6 @@ namespace HalloweenVN.UI.Theme
             textRt.offsetMin = new Vector2(30, 20);
             textRt.offsetMax = new Vector2(-30, -70);
             TextMeshProUGUI dialogueText = UIHelper.AddText(textObj, "Dialogue text...", HalloweenTheme.TextPrimary, HalloweenTheme.DialogueFontSize);
-
-            // Click Area
-            GameObject clickObj = UIHelper.CreateUIObject("ClickArea", dialoguePanel.transform);
-            UIHelper.StretchFull(clickObj.GetComponent<RectTransform>());
-            Image clickImg = UIHelper.AddImage(clickObj, new Color(0,0,0,0));
-            Button clickButton = clickObj.AddComponent<Button>();
-            clickButton.targetGraphic = clickImg;
-
             // Choice Panel
             GameObject choicePanel = UIHelper.CreateUIObject("ChoicePanel", dialoguePanelRoot.transform);
             RectTransform choiceRt = choicePanel.GetComponent<RectTransform>();
@@ -375,7 +406,9 @@ namespace HalloweenVN.UI.Theme
             UIHelper.SetField(ui, "dialoguePanel", dialoguePanel);
             UIHelper.SetField(ui, "speakerNameText", speakerName);
             UIHelper.SetField(ui, "dialogueText", dialogueText);
-            UIHelper.SetField(ui, "characterImage", characterImage);
+            UIHelper.SetField(ui, "characterImageLeft", characterImageLeft);
+            UIHelper.SetField(ui, "characterImageCenter", characterImageCenter);
+            UIHelper.SetField(ui, "characterImageRight", characterImageRight);
             UIHelper.SetField(ui, "backgroundImage", backgroundImage);
             UIHelper.SetField(ui, "choicePanel", choicePanel);
             UIHelper.SetField(ui, "choiceButtonPrefab", choiceButtonPrefab);
@@ -385,10 +418,19 @@ namespace HalloweenVN.UI.Theme
             UIHelper.SetField(ui, "backlogButton", logTuple.btn);
             UIHelper.SetField(ui, "autoButtonText", autoText);
 
-            clickButton.onClick.AddListener(() => {
+            // Wire up fullscreen click (Background + DialoguePanel itself)
+            Button bgClick = bgImgObj.AddComponent<Button>();
+            bgClick.targetGraphic = backgroundImage;
+            Button panelClick = dialoguePanel.AddComponent<Button>();
+            Image panelImg = dialoguePanel.GetComponent<Image>();
+            if (panelImg != null) panelClick.targetGraphic = panelImg;
+
+            UnityEngine.Events.UnityAction onScreenClick = () => {
                 var method = ui.GetType().GetMethod("OnClick", System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
                 if (method != null) method.Invoke(ui, null);
-            });
+            };
+            bgClick.onClick.AddListener(onScreenClick);
+            panelClick.onClick.AddListener(onScreenClick);
 
             // Wire LOG button to backlog toggle
             logTuple.btn.onClick.AddListener(() => {

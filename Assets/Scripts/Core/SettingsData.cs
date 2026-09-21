@@ -9,12 +9,14 @@ namespace HalloweenVN.Core
         public static float SFXVolume { get; set; } = 1.0f;
         public static bool IsFullScreen { get; set; } = true;
         public static float AutoPlayDelay { get; set; } = 2.0f;
+        public static int PerformanceMode { get; set; } = 1; // 0: Power Saving, 1: High Quality
 
         private const string Prefix = "HalloweenVN_";
 
         static SettingsData()
         {
             Load();
+            ApplyPerformanceMode();
         }
 
         public static void Load()
@@ -24,6 +26,7 @@ namespace HalloweenVN.Core
             SFXVolume = PlayerPrefs.GetFloat(Prefix + "SFXVolume", 1.0f);
             IsFullScreen = PlayerPrefs.GetInt(Prefix + "IsFullScreen", 1) == 1;
             AutoPlayDelay = PlayerPrefs.GetFloat(Prefix + "AutoPlayDelay", 2.0f);
+            PerformanceMode = PlayerPrefs.GetInt(Prefix + "PerformanceMode", 1);
         }
 
         public static void Save()
@@ -33,7 +36,23 @@ namespace HalloweenVN.Core
             PlayerPrefs.SetFloat(Prefix + "SFXVolume", Mathf.Clamp01(SFXVolume));
             PlayerPrefs.SetInt(Prefix + "IsFullScreen", IsFullScreen ? 1 : 0);
             PlayerPrefs.SetFloat(Prefix + "AutoPlayDelay", Mathf.Clamp(AutoPlayDelay, 1.0f, 5.0f));
+            PlayerPrefs.SetInt(Prefix + "PerformanceMode", PerformanceMode);
             PlayerPrefs.Save();
+            ApplyPerformanceMode();
+        }
+
+        public static void ApplyPerformanceMode()
+        {
+            if (PerformanceMode == 0) // Power Saving
+            {
+                Application.targetFrameRate = 30;
+                QualitySettings.vSyncCount = 0;
+            }
+            else // High Quality
+            {
+                Application.targetFrameRate = 60;
+                QualitySettings.vSyncCount = 1;
+            }
         }
 
         public static void ResetToDefaults()
@@ -43,6 +62,7 @@ namespace HalloweenVN.Core
             SFXVolume = 1.0f;
             IsFullScreen = true;
             AutoPlayDelay = 2.0f;
+            PerformanceMode = 1;
             Save();
         }
     }

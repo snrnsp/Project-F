@@ -3,91 +3,52 @@
   "nodes": [
     {
       "id": 0,
-      "speaker": "소연",
-      "text": "꺄아아아악!!",
-      "characterSprite": "soyeon_panic",
-      "backgroundSprite": "corridor",
-      "choices": [],
-      "nextNodeId": 1,
-      "command": ""
+      "speaker": "리리스",
+      "text": "음악실 도착. 음... 열화상 카메라에는 아무것도 안 잡히는데?",
+      "characterSprite": "Characters/리리스/기본",
+      "backgroundSprite": "Images/lobby_bg",
+      "nextNodeId": 1
     },
     {
       "id": 1,
-      "speaker": "",
-      "text": "어둠 속에서 찢어지는 듯한 비명 소리가 들려왔다. 서재 쪽이다!",
-      "characterSprite": "",
-      "backgroundSprite": "corridor",
-      "choices": [],
-      "nextNodeId": 2,
-      "command": ""
+      "speaker": "리나",
+      "text": "에이, 재미없게. 확 문 열어버린다?",
+      "characterSprite": "Characters/리나/기본",
+      "nextNodeId": 2
     },
     {
       "id": 2,
-      "speaker": "",
-      "text": "사람들이 다급하게 서재 문을 열고 들어갔다.",
-      "characterSprite": "",
-      "backgroundSprite": "study",
-      "choices": [],
-      "nextNodeId": 3,
-      "command": ""
+      "speaker": "미나",
+      "text": "(통신기) 크큭... 함부로 열지 마라. 그 안에는 강대한 원념이 도사리고 있으니...",
+      "characterSprite": "Characters/미나/기본",
+      "nextNodeId": 3
     },
     {
       "id": 3,
-      "speaker": "민서",
-      "text": "이, 이게 무슨... 강현우 씨!!",
-      "characterSprite": "minseo_shocked",
-      "backgroundSprite": "study",
-      "choices": [],
-      "nextNodeId": 4,
-      "command": ""
+      "speaker": "카스미",
+      "text": "미나, 쓸데없는 소리 말고 해킹한 CCTV 자료나 넘겨.",
+      "characterSprite": "Characters/카스미/기본",
+      "nextNodeId": 4
     },
     {
       "id": 4,
-      "speaker": "",
-      "text": "강현우는 머리에서 피를 흘린 채 바닥에 쓰러져 있었다. 다행히 숨은 붙어있는 것 같다.",
-      "characterSprite": "",
-      "backgroundSprite": "study",
-      "choices": [],
-      "nextNodeId": 5,
-      "command": ""
+      "speaker": "미나",
+      "text": "...쳇. 전송 완료.",
+      "characterSprite": "Characters/미나/기본",
+      "nextNodeId": 5
     },
     {
       "id": 5,
-      "speaker": "박 노인",
-      "text": "이런... 모두 뒤로 물러서시오. 어서 구급차를 불러야겠소.",
-      "characterSprite": "oldpark_serious",
-      "backgroundSprite": "study",
-      "choices": [],
-      "nextNodeId": 6,
-      "command": ""
+      "speaker": "리리스",
+      "text": "자료 들어왔어. 앗, 잠깐만... 이 흔적들은 뭐야?",
+      "characterSprite": "Characters/리리스/기본",
+      "nextNodeId": 6
     },
     {
       "id": 6,
-      "speaker": "소연",
-      "text": "제, 제가 발견했을 때는 이미... 쓰러져 계셨어요...",
-      "characterSprite": "soyeon_crying",
-      "backgroundSprite": "study",
-      "choices": [],
-      "nextNodeId": 7,
-      "command": ""
-    },
-    {
-      "id": 7,
-      "speaker": "",
-      "text": "소연이 덜덜 떨며 말했다. 하지만 뭔가 이상하다. 서재 주변에 흩어진 흔적들...",
-      "characterSprite": "",
-      "backgroundSprite": "study",
-      "choices": [],
-      "nextNodeId": 8,
-      "command": ""
-    },
-    {
-      "id": 8,
-      "speaker": "",
-      "text": "경찰이 오기 전에 서재를 조사해 봐야겠다. 분명히 이곳에 단서가 있을 것이다.",
-      "characterSprite": "",
-      "backgroundSprite": "study",
-      "choices": [],
+      "speaker": "카스미",
+      "text": "단서가 꽤 있군요. 본격적으로 현장을 조사해 봅시다.",
+      "characterSprite": "Characters/카스미/기본",
       "nextNodeId": -1,
       "command": "CHANGE_PHASE:Investigation"
     }

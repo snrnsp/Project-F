@@ -1,0 +1,105 @@
+{
+  "dialogueId": "ch0_opening",
+  "nodes": [
+    {
+      "id": 0,
+      "speaker": "",
+      "text": "노을시(市).",
+      "backgroundSprite": "Images/city_night",
+      "nextNodeId": 1
+    },
+    {
+      "id": 1,
+      "speaker": "",
+      "text": "인구 80만의 항구도시. 낮에는 평범한 사람들이 평범한 하루를 보내고, 밤에는 바다에서 밀려온 안개가 구시가지의 좁은 골목을 채운다.",
+      "nextNodeId": 2
+    },
+    {
+      "id": 2,
+      "speaker": "",
+      "text": "이 도시에는 가끔, 설명하기 어려운 일들이 일어난다.",
+      "nextNodeId": 3
+    },
+    {
+      "id": 3,
+      "speaker": "",
+      "text": "아무도 살지 않는 폐교에서 밤마다 울리는 피아노 소리.",
+      "nextNodeId": 4
+    },
+    {
+      "id": 4,
+      "speaker": "",
+      "text": "특정 골목을 지나면 반드시 길을 잃는 사람들.",
+      "nextNodeId": 5
+    },
+    {
+      "id": 5,
+      "speaker": "",
+      "text": "철거된 건물의 창문에서 보이는 사람 그림자.",
+      "nextNodeId": 6
+    },
+    {
+      "id": 6,
+      "speaker": "",
+      "text": "경찰은 그것을 '소음 민원', '방향감각 상실', '빛의 착시'라고 처리한다. 대부분의 시민들도 도시전설 정도로 여기고 넘긴다.",
+      "nextNodeId": 7
+    },
+    {
+      "id": 7,
+      "speaker": "",
+      "text": "하지만 — 경찰이 닫아버린 파일을 다시 여는 사람들이 있다.",
+      "nextNodeId": 8
+    },
+    {
+      "id": 8,
+      "speaker": "",
+      "text": "구시가지의 가파른 언덕 꼭대기. 안개 너머로 오래된 저택의 실루엣이 떠오른다.",
+      "backgroundSprite": "Images/lobby_bg",
+      "nextNodeId": 9
+    },
+    {
+      "id": 9,
+      "speaker": "",
+      "text": "현관 계단을 따라 늘어선 잭오랜턴들. 처마에 걸린 거미줄 장식. 벽을 타고 오른 덩굴 사이로 깜빡이는 주황빛.",
+      "nextNodeId": 10
+    },
+    {
+      "id": 10,
+      "speaker": "",
+      "text": "낡은 간판에는 이렇게 적혀 있다:",
+      "nextNodeId": 11
+    },
+    {
+      "id": 11,
+      "speaker": "",
+      "text": "「네버모어 오컬트 탐정 사무소」",
+      "nextNodeId": 12,
+      "command": "EFFECT:FLASH"
+    },
+    {
+      "id": 12,
+      "speaker": "",
+      "text": "'해결할 수 없는 사건은 네버모어에 맡겨라.'",
+      "nextNodeId": 13
+    },
+    {
+      "id": 13,
+      "speaker": "",
+      "text": "물론, 이 도시의 대부분의 사람들은 이곳을 그저 '유령의 집에서 장사하는 이상한 애들'이라고 부르지만.",
+      "nextNodeId": 14
+    },
+    {
+      "id": 14,
+      "speaker": "",
+      "text": "......오늘도 여느 때처럼, 저택의 문이 삐걱거리며 열린다.",
+      "nextNodeId": 15
+    },
+    {
+      "id": 15,
+      "speaker": "",
+      "text": "",
+      "nextNodeId": -1,
+      "command": "START_DIALOGUE:ch1_morning"
+    }
+  ]
+}
