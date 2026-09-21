@@ -35,7 +35,7 @@ export default async function handler(req, res) {
     const octokit = await app.getInstallationOctokit(process.env.GITHUB_INSTALLATION_ID);
 
     // ★ 본인의 깃허브 아이디로 반드시 변경해 주세요!
-    const repoOwner = owner || "여기에_본인의_깃허브_아이디를_입력하세요"; 
+    const repoOwner = "snrnsp";
     const repoName = "Project-F";
 
     // 3. 기존 파일 존재 여부 확인 (업데이트 시 SHA 값이 필요함)
