@@ -1,5 +1,6 @@
 {
-  dependencies {
-    octokit ^4.0.0
+  "type": "commonjs",
+  "dependencies": {
+    "octokit": "^4.0.0"
   }
 }
