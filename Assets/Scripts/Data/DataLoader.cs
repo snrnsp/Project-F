@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using System.IO;
 
 namespace HalloweenVN.Data
@@ -16,7 +16,9 @@ namespace HalloweenVN.Data
             TextAsset textAsset = Resources.Load<TextAsset>(path);
             if (textAsset != null)
             {
-                return JsonUtility.FromJson<T>(textAsset.text);
+                string json = textAsset.text;
+                if (json.Length > 0 && json[0] == '\uFEFF') json = json.Substring(1);
+                return JsonUtility.FromJson<T>(json);
             }
             Debug.LogError($"DataLoader: Failed to load file from Resources at path: {path}");
             return default;
