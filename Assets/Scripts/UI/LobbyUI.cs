@@ -216,10 +216,103 @@ namespace HalloweenVN.UI
         private void OnNewGameClicked()
         {
             if (UnityEngine.EventSystems.EventSystem.current != null) UnityEngine.EventSystems.EventSystem.current.SetSelectedGameObject(null);
-            ShowPhotosensitivityWarning();
+            ShowPreAlphaWarning();
         }
 
-        private void ShowPhotosensitivityWarning()
+        private void ShowPreAlphaWarning()
+        {
+            GameObject overlay = new GameObject("PreAlphaOverlay");
+            overlay.transform.SetParent(lobbyPanel.transform.parent, false);
+            RectTransform overlayRt = overlay.AddComponent<RectTransform>();
+            overlayRt.anchorMin = Vector2.zero;
+            overlayRt.anchorMax = Vector2.one;
+            overlayRt.offsetMin = Vector2.zero;
+            overlayRt.offsetMax = Vector2.zero;
+            Image overlayImg = overlay.AddComponent<Image>();
+            overlayImg.color = new Color(0, 0, 0, 0.85f);
+            
+            Button overlayBtn = overlay.AddComponent<Button>();
+            overlayBtn.transition = Selectable.Transition.None;
+            overlayBtn.onClick.AddListener(() => {
+                Destroy(overlay);
+            });
+
+            GameObject panel = new GameObject("WarningPanel");
+            panel.transform.SetParent(overlay.transform, false);
+            RectTransform panelRt = panel.AddComponent<RectTransform>();
+            panelRt.anchorMin = new Vector2(0.5f, 0.5f);
+            panelRt.anchorMax = new Vector2(0.5f, 0.5f);
+            panelRt.sizeDelta = new Vector2(820, 450);
+            Image panelImg = panel.AddComponent<Image>();
+            panelImg.type = Image.Type.Sliced;
+            panelImg.sprite = CreateRoundedRectSprite(16, 2, new Color32(25, 20, 35, 255), new Color32(100, 180, 255, 255));
+            
+            Button panelDummyBtn = panel.AddComponent<Button>();
+            panelDummyBtn.transition = Selectable.Transition.None;
+
+            float titleY = -60f;
+
+            GameObject iconObj = new GameObject("PreAlphaTitle");
+            iconObj.transform.SetParent(panel.transform, false);
+            RectTransform iconRt = iconObj.AddComponent<RectTransform>();
+            iconRt.anchorMin = new Vector2(0.5f, 1f);
+            iconRt.anchorMax = new Vector2(0.5f, 1f);
+            iconRt.anchoredPosition = new Vector2(0, titleY);
+            iconRt.sizeDelta = new Vector2(500, 45);
+            TextMeshProUGUI iconText = Theme.UIHelper.AddText(iconObj, "Pre-Alpha 안내", new Color32(150, 200, 255, 255), 30, TextAlignmentOptions.Center);
+            iconText.fontStyle = FontStyles.Bold;
+
+            GameObject msgObj = new GameObject("WarningMessage");
+            msgObj.transform.SetParent(panel.transform, false);
+            RectTransform msgRt = msgObj.AddComponent<RectTransform>();
+            msgRt.anchorMin = new Vector2(0.5f, 1f);
+            msgRt.anchorMax = new Vector2(0.5f, 1f);
+            msgRt.anchoredPosition = new Vector2(0, -180);
+            msgRt.sizeDelta = new Vector2(720, 200);
+            
+            string preAlphaMsg = "현재 오블리비언은 '<color=#80C0FF>프리 알파</color>(소프트웨어나 게임 개발 과정에서 정식 알파 테스트 이전의 초기 제작 및 설계 단계)'에 있습니다!\n\n게임의 품질이 낮을 수 있는 점 양해 바랍니다!";
+            
+            TextMeshProUGUI msgText = Theme.UIHelper.AddText(msgObj, preAlphaMsg, new Color32(230, 230, 230, 255), 24, TextAlignmentOptions.Center);
+            msgText.lineSpacing = 15f;
+
+            GameObject btnObj = new GameObject("OkButton");
+            btnObj.transform.SetParent(panel.transform, false);
+            RectTransform btnRt = btnObj.AddComponent<RectTransform>();
+            btnRt.anchorMin = new Vector2(0.5f, 0f);
+            btnRt.anchorMax = new Vector2(0.5f, 0f);
+            btnRt.anchoredPosition = new Vector2(0, 70);
+            btnRt.sizeDelta = new Vector2(240, 60);
+            Image btnImg = btnObj.AddComponent<Image>();
+            btnImg.type = Image.Type.Sliced;
+            btnImg.sprite = CreateRoundedRectSprite(8, 0, new Color32(50, 100, 160, 255), new Color32(0, 0, 0, 0));
+            
+            Button btn = btnObj.AddComponent<Button>();
+            btn.transition = Selectable.Transition.ColorTint;
+            var cb = btn.colors;
+            cb.normalColor = Color.white;
+            cb.highlightedColor = new Color(0.8f, 0.9f, 1f);
+            cb.pressedColor = new Color(0.6f, 0.8f, 1f);
+            cb.selectedColor = Color.white;
+            btn.colors = cb;
+
+            GameObject btnTextObj = new GameObject("Text");
+            btnTextObj.transform.SetParent(btnObj.transform, false);
+            RectTransform btnTextRt = btnTextObj.AddComponent<RectTransform>();
+            btnTextRt.anchorMin = Vector2.zero;
+            btnTextRt.anchorMax = Vector2.one;
+            btnTextRt.offsetMin = Vector2.zero;
+            btnTextRt.offsetMax = Vector2.zero;
+            TextMeshProUGUI btnText = Theme.UIHelper.AddText(btnTextObj, "확인", new Color32(255, 255, 255, 255), 28, TextAlignmentOptions.Center);
+            btnText.fontStyle = FontStyles.Bold;
+
+            btn.onClick.AddListener(() =>
+            {
+                if (UnityEngine.EventSystems.EventSystem.current != null) UnityEngine.EventSystems.EventSystem.current.SetSelectedGameObject(null);
+                Destroy(overlay);
+                ShowPhotosensitivityWarning();
+            });
+        }
+void ShowPhotosensitivityWarning()
         {
             // Create overlay
             GameObject overlay = new GameObject("WarningOverlay");
@@ -433,7 +526,7 @@ namespace HalloweenVN.UI
 
         private IEnumerator DelayedNewGameRoutine(Theme.ScreenTransition transition, GameObject popupOverlay)
         {
-            float fadeTime = 2.2f; // 0.3s faster than previous 2.5f
+            float fadeTime = 1.7f; // 0.5s faster than previous 2.2f
             float waitTime = 2.0f; // 2 seconds wait on black screen
 
             transition.autoTransitionOnPhaseChange = false;

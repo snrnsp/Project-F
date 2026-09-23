@@ -33,6 +33,9 @@ namespace HalloweenVN.UI
         private List<Image> folderTabImages = new List<Image>();
         private List<TextMeshProUGUI> folderTabTexts = new List<TextMeshProUGUI>();
         private int currentIndex = 0;
+        
+        public List<Vector2> defaultOffsetMins = new List<Vector2>();
+        public List<Vector2> defaultOffsetMaxs = new List<Vector2>();
 
         // Folder colors (real manila folder look)
         private static readonly Color32 selectedFolderColor = new Color32(210, 185, 140, 255);
@@ -146,6 +149,10 @@ namespace HalloweenVN.UI
             folderBodyImages.Add(bodyImg);
             folderTabImages.Add(tabImg);
             folderTabTexts.Add(tabText);
+            
+            RectTransform rt = folder.GetComponent<RectTransform>();
+            defaultOffsetMins.Add(rt.offsetMin);
+            defaultOffsetMaxs.Add(rt.offsetMax);
         }
 
         public void Show()
@@ -173,16 +180,33 @@ namespace HalloweenVN.UI
             if (index < 0 || index >= profiles.Count) return;
             currentIndex = index;
 
-            // Update folder visuals and Z-order
+            // First, correct the Z-order for unselected folders to maintain the stack
+            for (int i = 0; i < folderObjects.Count; i++)
+            {
+                if (i != index)
+                {
+                    // Insert at index 2 (right after background/shadow).
+                    // As we iterate 0->5, later folders push earlier ones forward.
+                    // This perfectly restores the 5->0 depth order for the unselected stack!
+                    folderObjects[i].transform.SetSiblingIndex(2);
+                }
+            }
+            // Bring selected folder to the front of the folder stack (but behind Header/CloseBtn)
+            if (folderObjects.Count > 0)
+                folderObjects[index].transform.SetSiblingIndex(2 + folderObjects.Count - 1);
+
+            // Update folder visuals
             for (int i = 0; i < folderObjects.Count; i++)
             {
                 bool isSelected = (i == index);
                 GameObject folder = folderObjects[i];
+                RectTransform rt = folder.GetComponent<RectTransform>();
 
                 if (isSelected)
                 {
-                    // Bring selected folder to front
-                    folder.transform.SetAsLastSibling();
+                    // Move to center/active position
+                    rt.offsetMin = new Vector2(150, 10);
+                    rt.offsetMax = new Vector2(-150, -220);
 
                     // Selected folder: bright manila color
                     if (i < folderBodyImages.Count && folderBodyImages[i] != null)
@@ -201,6 +225,12 @@ namespace HalloweenVN.UI
                 }
                 else
                 {
+                    // Unselected: push back to the background staircase stack
+                    if (defaultOffsetMins.Count > i) {
+                        rt.offsetMin = defaultOffsetMins[i];
+                        rt.offsetMax = defaultOffsetMaxs[i];
+                    }
+
                     // Unselected: darker tab color, body hidden behind selected
                     if (i < folderTabImages.Count && folderTabImages[i] != null)
                         folderTabImages[i].color = unselectedTabColor;
@@ -230,6 +260,19 @@ namespace HalloweenVN.UI
                 Sprite sprite = Resources.Load<Sprite>(profile.spritePath);
                 if (sprite != null) { portrait.sprite = sprite; portrait.color = Color.white; }
                 else { portrait.color = new Color(0, 0, 0, 0); }
+                
+                RectTransform portRt = portrait.GetComponent<RectTransform>();
+                if (profile.name.Contains("카스미") || profile.name.Contains("Kasumi") ||
+                    profile.name.Contains("미나") || profile.name.Contains("Mina") ||
+                    profile.name.Contains("하루카") || profile.name.Contains("Haruka")) {
+                    // Shift Kasumi slightly to the right (move by +30px X)
+                    portRt.offsetMin = new Vector2(60, 60);
+                    portRt.offsetMax = new Vector2(10, -50);
+                } else {
+                    // Default portrait placement
+                    portRt.offsetMin = new Vector2(30, 60);
+                    portRt.offsetMax = new Vector2(-20, -50);
+                }
             }
             if (nameTxt != null) nameTxt.text = profile.name;
             if (profileTxt != null)

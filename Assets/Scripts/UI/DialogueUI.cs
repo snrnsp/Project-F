@@ -294,21 +294,20 @@ namespace HalloweenVN.UI
             }
             else if (totalChars == 2)
             {
-                // Sort by position enum to get consistent left-right order
                 var sorted = new List<CharacterPosition?>();
                 foreach (var rc in requestedChars) sorted.Add(rc.explicitPos);
                 sorted.Sort((a, b) => (a ?? CharacterPosition.Center).CompareTo(b ?? CharacterPosition.Center));
-                layoutTargets[sorted[0] ?? CharacterPosition.Left] = 0.34f;
-                layoutTargets[sorted[1] ?? CharacterPosition.Right] = 0.78f;
+                layoutTargets[sorted[0] ?? CharacterPosition.Left] = 0.25f;
+                layoutTargets[sorted[1] ?? CharacterPosition.Right] = 0.75f;
             }
             else if (totalChars >= 3)
             {
                 var sorted = new List<CharacterPosition?>();
                 foreach (var rc in requestedChars) sorted.Add(rc.explicitPos);
                 sorted.Sort((a, b) => (a ?? CharacterPosition.Center).CompareTo(b ?? CharacterPosition.Center));
-                layoutTargets[sorted[0] ?? CharacterPosition.Left] = 0.24f;
-                layoutTargets[sorted[1] ?? CharacterPosition.Center] = 0.56f;
-                layoutTargets[sorted[2] ?? CharacterPosition.Right] = 0.88f;
+                layoutTargets[sorted[0] ?? CharacterPosition.Left] = 0.20f;
+                layoutTargets[sorted[1] ?? CharacterPosition.Center] = 0.50f;
+                layoutTargets[sorted[2] ?? CharacterPosition.Right] = 0.80f;
             }
 
             // Now assign positions and place characters
@@ -355,8 +354,9 @@ namespace HalloweenVN.UI
                         bool isFirst = _activeSpeakerPositions.Count == 1;
                         if (node.slideIn || !isFirst)
                         {
-                            // Start from center, then slide to target outwards with existing characters
-                            SetCharacterAnchorX(rt, 0.5f);
+                            // Start from off-screen (left or right depending on target position)
+                            float offScreenX = (targetX < 0.5f) ? -0.5f : (targetX > 0.5f ? 1.5f : -0.5f);
+                            SetCharacterAnchorX(rt, offScreenX);
                             MoveCharacterTo(assignedPos, targetX);
                         }
                         else

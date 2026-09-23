@@ -1,4 +1,4 @@
-﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿using HalloweenVN.Core;
+﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿using HalloweenVN.Core;
 using HalloweenVN.Dialogue;
 using HalloweenVN.Investigation;
 using HalloweenVN.Deduction;
@@ -824,6 +824,8 @@ namespace HalloweenVN.UI.Theme
             UIHelper.SetField(langUi, "panelRoot", langRoot);
             UIHelper.SetField(langUi, "languageButtons", langBtns);
             UIHelper.SetField(langUi, "closeButton", closeTuple.btn);
+            UIHelper.SetField(langUi, "titleText", titleObj.GetComponent<TextMeshProUGUI>());
+            UIHelper.SetField(langUi, "closeText", closeTuple.text);
 
             langRoot.SetActive(false);
 
@@ -1036,46 +1038,13 @@ namespace HalloweenVN.UI.Theme
             UnityEngine.UI.Button extraBgBtn = extraBgBtnObj.AddComponent<UnityEngine.UI.Button>();
             extraBgBtn.transition = UnityEngine.UI.Selectable.Transition.None;
 
-            // ===== Header =====
-            GameObject headerObj = UIHelper.CreateUIObject("Header", extraRoot.transform);
-            RectTransform headerRt = headerObj.GetComponent<RectTransform>();
-            UIHelper.SetAnchors(headerRt, new Vector2(0, 1), new Vector2(1, 1), new Vector2(0.5f, 1));
-            headerRt.anchoredPosition = new Vector2(0, -20);
-            headerRt.sizeDelta = new Vector2(0, 60);
-            // Raycast blocker for header area
-            UIHelper.AddImage(headerObj, new Color(0, 0, 0, 0));
-
-            GameObject titleObj = UIHelper.CreateUIObject("Title", headerObj.transform);
-            RectTransform titleRt = titleObj.GetComponent<RectTransform>();
-            UIHelper.SetAnchors(titleRt, new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f));
-            titleRt.sizeDelta = new Vector2(400, 50);
-            UIHelper.AddText(titleObj, "\uce90\ub9ad\ud130 \uc124\uc815\uc9d1", new Color32(210, 185, 140, 255), 30, TextAlignmentOptions.Center);
-
-            // ===== Close Button =====
-            GameObject closeBtnObj = UIHelper.CreateUIObject("CloseBtn", headerObj.transform);
-            RectTransform closeRt = closeBtnObj.GetComponent<RectTransform>();
-            UIHelper.SetAnchors(closeRt, new Vector2(1, 0.5f), new Vector2(1, 0.5f), new Vector2(1, 0.5f));
-            closeRt.anchoredPosition = new Vector2(-40, 0);
-            closeRt.sizeDelta = new Vector2(40, 40);
-            Image closeBtnImg = UIHelper.AddImage(closeBtnObj, Color.white);
-            closeBtnImg.sprite = UIHelper.CreateRoundedRectSprite(8, 2, new Color32(180, 50, 50, 255), new Color32(255, 120, 120, 255));
-            closeBtnImg.type = Image.Type.Sliced;
-            Button closeBtn = closeBtnObj.AddComponent<Button>();
-
-            GameObject closeTextObj = UIHelper.CreateUIObject("Text", closeBtnObj.transform);
-            RectTransform textRt = closeTextObj.GetComponent<RectTransform>();
-            UIHelper.StretchFull(textRt);
-            textRt.offsetMin = new Vector2(0, 2);
-            textRt.offsetMax = new Vector2(0, 2);
-            UIHelper.AddText(closeTextObj, "X", Color.white, 24, TextAlignmentOptions.Center);
-
             // ===== Back shadow box (simulates folder stack depth) =====
             GameObject shadowBox = UIHelper.CreateUIObject("ShadowBox", extraRoot.transform);
             RectTransform shadowRt = shadowBox.GetComponent<RectTransform>();
             UIHelper.SetAnchors(shadowRt, new Vector2(0, 0), new Vector2(1, 1), new Vector2(0.5f, 0.5f));
-            // Made the shadow box much smaller, shifted right/down for stack depth
-            shadowRt.offsetMin = new Vector2(160, 70);
-            shadowRt.offsetMax = new Vector2(-140, -160);
+            // Shadow box encompassing the entire diagonal stack (lowered and tightened)
+            shadowRt.offsetMin = new Vector2(160, 0);
+            shadowRt.offsetMax = new Vector2(-100, -170);
             Image shadowImg = UIHelper.AddImage(shadowBox, new Color32(80, 60, 40, 255));
             shadowImg.sprite = UIHelper.CreateRoundedRectSprite(10, 4, new Color32(80, 60, 40, 255), new Color32(60, 45, 25, 255));
             shadowImg.type = Image.Type.Sliced;
@@ -1093,17 +1062,23 @@ namespace HalloweenVN.UI.Theme
             UIHelper.SetField(extraUi, "extraPanel", extraRoot);
             UIHelper.SetField(extraUi, "globalSettingsButton", globalSettingsBtnObj);
             UIHelper.SetField(extraUi, "lobbySettingsButton", lobbySettingsBtnObj);
-            UIHelper.SetField(extraUi, "closeButton", closeBtn);
 
             for (int ci = 0; ci < folderCount; ci++)
             {
                 // ===== Folder Root =====
                 GameObject folder = UIHelper.CreateUIObject("Folder_" + charNames[ci], extraRoot.transform);
+                // Insert right after the background and shadow box!
+                folder.transform.SetSiblingIndex(2);
+                
                 RectTransform folderRt = folder.GetComponent<RectTransform>();
                 UIHelper.SetAnchors(folderRt, new Vector2(0, 0), new Vector2(1, 1), new Vector2(0.5f, 0.5f));
-                // Made the overall folder noticeably smaller
-                folderRt.offsetMin = new Vector2(150, 80);
-                folderRt.offsetMax = new Vector2(-150, -150);
+                
+                // Diagonal staircase: Shift UP by 8px and RIGHT by 8px (very tight overlap)
+                // Base Y is lowered further to 10 and -220
+                float xShift = ci * 8f;
+                float yShift = ci * 8f;
+                folderRt.offsetMin = new Vector2(150 + xShift, 10 + yShift);
+                folderRt.offsetMax = new Vector2(-150 + xShift, -220 + yShift);
 
                 // ===== Body (main content area) =====
                 // Create body FIRST so it renders behind the tab
@@ -1119,7 +1094,8 @@ namespace HalloweenVN.UI.Theme
                 // ===== Tab (upper protruding part of the folder) =====
                 float tabFraction = 1f / folderCount;
                 float tabLeft = tabFraction * ci;
-                float tabRight = tabFraction * (ci + 1);
+                // Add extra width to tabs so they physically overlap each other!
+                float tabRight = UnityEngine.Mathf.Min(1f, tabFraction * (ci + 1) + 0.03f);
 
                 // TabContainer
                 GameObject tabContainerObj = UIHelper.CreateUIObject("TabContainer", folder.transform);
@@ -1250,6 +1226,41 @@ namespace HalloweenVN.UI.Theme
                 extraUi.RegisterFolder(folder, bodyImg, tabImg, tabText);
             }
 
+            // ===== Header =====
+            GameObject headerObj = UIHelper.CreateUIObject("Header", extraRoot.transform);
+            RectTransform headerRt = headerObj.GetComponent<RectTransform>();
+            UIHelper.SetAnchors(headerRt, new Vector2(0, 1), new Vector2(1, 1), new Vector2(0.5f, 1));
+            headerRt.anchoredPosition = new Vector2(0, -20);
+            headerRt.sizeDelta = new Vector2(0, 60);
+            // Raycast blocker for header area
+            UIHelper.AddImage(headerObj, new Color(0, 0, 0, 0));
+
+            GameObject titleObj = UIHelper.CreateUIObject("Title", headerObj.transform);
+            RectTransform titleRt = titleObj.GetComponent<RectTransform>();
+            UIHelper.SetAnchors(titleRt, new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f));
+            titleRt.sizeDelta = new Vector2(400, 50);
+            UIHelper.AddText(titleObj, "\uce90\ub9ad\ud130 \uc124\uc815\uc9d1", new Color32(210, 185, 140, 255), 30, TextAlignmentOptions.Center);
+
+            // ===== Close Button =====
+            GameObject closeBtnObj = UIHelper.CreateUIObject("CloseBtn", headerObj.transform);
+            RectTransform closeRt = closeBtnObj.GetComponent<RectTransform>();
+            UIHelper.SetAnchors(closeRt, new Vector2(1, 0.5f), new Vector2(1, 0.5f), new Vector2(1, 0.5f));
+            closeRt.anchoredPosition = new Vector2(-40, 0);
+            closeRt.sizeDelta = new Vector2(40, 40);
+            Image closeBtnImg = UIHelper.AddImage(closeBtnObj, Color.white);
+            closeBtnImg.sprite = UIHelper.CreateRoundedRectSprite(8, 2, new Color32(180, 50, 50, 255), new Color32(255, 120, 120, 255));
+            closeBtnImg.type = Image.Type.Sliced;
+            Button closeBtn = closeBtnObj.AddComponent<Button>();
+
+            GameObject closeTextObj = UIHelper.CreateUIObject("Text", closeBtnObj.transform);
+            RectTransform textRt = closeTextObj.GetComponent<RectTransform>();
+            UIHelper.StretchFull(textRt);
+            textRt.offsetMin = new Vector2(0, 2);
+            textRt.offsetMax = new Vector2(0, 2);
+            UIHelper.AddText(closeTextObj, "X", Color.white, 24, TextAlignmentOptions.Center);
+
+
+            UIHelper.SetField(extraUi, "closeButton", closeBtn);
             extraUiRef = extraUi;
         }
 

@@ -172,50 +172,64 @@
       "id": 23,
       "speaker": "",
       "text": "생각보다 몸이 먼저 움직이는 행동대장. 사무소에서 가장 시끄러운 존재가 합류했다.",
-      "nextNodeId": 24
+      "nextNodeId": 24,
+      "characterSpriteLeft": "Characters/리리스/기본",
+      "characterSpriteRight": "Characters/세이카/기본"
     },
     {
       "id": 24,
       "speaker": "",
       "text": "— 리리스 합류. 리나 합류 1달 후.",
-      "nextNodeId": 25
+      "nextNodeId": 25,
+      "characterSpriteLeft": "Characters/리리스/기본",
+      "characterSpriteRight": "Characters/세이카/기본"
     },
     {
       "id": 25,
       "speaker": "",
       "text": "실종 사건을 추적하는 과정에서, 세이카는 결정적인 디지털 증거가 필요했다.",
-      "nextNodeId": 26
+      "nextNodeId": 26,
+      "characterSpriteLeft": "Characters/리리스/기본",
+      "characterSpriteRight": "Characters/세이카/기본"
     },
     {
       "id": 26,
       "speaker": "",
       "text": "온라인에서 「유령 드론(GhostDrone)」이라는 이름으로 활동하는 프리랜서 화이트해커가 있었다.",
-      "nextNodeId": 27
+      "nextNodeId": 27,
+      "characterSpriteLeft": "Characters/리리스/기본",
+      "characterSpriteRight": "Characters/세이카/기본"
     },
     {
       "id": 27,
       "speaker": "",
       "text": "어느 날 밤, 자작 드론으로 도시 야경을 촬영하던 중 있을 수 없는 열원(熱源)을 포착했다.",
-      "nextNodeId": 28
+      "nextNodeId": 28,
+      "characterSpriteLeft": "Characters/리리스/기본",
+      "characterSpriteRight": "Characters/세이카/기본"
     },
     {
       "id": 28,
       "speaker": "",
       "text": "30년간 아무도 살지 않는 폐건물 내부에서 사람 체온에 해당하는 열 반응이 매일 밤 같은 시간에 나타났다가 사라지는 것이었다.",
-      "nextNodeId": 29
+      "nextNodeId": 29,
+      "characterSpriteLeft": "Characters/리리스/기본",
+      "characterSpriteRight": "Characters/세이카/기본"
     },
     {
       "id": 29,
       "speaker": "",
       "text": "호기심에 혼자 조사하다가, 같은 현장을 조사 중이던 네버모어 팀과 조우했다.",
-      "nextNodeId": 30
+      "nextNodeId": 30,
+      "characterSpriteLeft": "Characters/리리스/기본",
+      "characterSpriteRight": "Characters/세이카/기본"
     },
     {
       "id": 30,
       "speaker": "세이카",
       "text": "그 드론 영상, 결정적인 증거였어. 우리랑 같이 일할 생각 없어?",
-      "characterSpriteLeft": "Characters/세이카/기본",
-      "characterSpriteRight": "Characters/리리스/기본",
+      "characterSpriteLeft": "Characters/리리스/기본",
+      "characterSpriteRight": "Characters/세이카/기본",
       "noFade": true,
       "nextNodeId": 31
     },
@@ -223,8 +237,8 @@
       "id": 31,
       "speaker": "리리스",
       "text": "...작업실이 필요했는데. 여기 3층 빈 방 쓸 수 있어?",
-      "characterSpriteLeft": "Characters/세이카/기본",
-      "characterSpriteRight": "Characters/리리스/기본",
+      "characterSpriteLeft": "Characters/리리스/기본",
+      "characterSpriteRight": "Characters/세이카/기본",
       "noFade": true,
       "nextNodeId": 32
     },
@@ -232,7 +246,9 @@
       "id": 32,
       "speaker": "",
       "text": "이후 3층 다락방을 자신의 작업실로 개조하여 입주. 사무소 전체의 네트워크, 보안 카메라, 통신 장비를 맡게 되었다.",
-      "nextNodeId": 33
+      "nextNodeId": 33,
+      "characterSpriteLeft": "Characters/리리스/기본",
+      "characterSpriteRight": "Characters/세이카/기본"
     },
     {
       "id": 33,
