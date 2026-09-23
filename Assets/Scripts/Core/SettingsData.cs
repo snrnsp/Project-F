@@ -2,6 +2,15 @@ using UnityEngine;
 
 namespace HalloweenVN.Core
 {
+    public enum GameLanguage
+    {
+        Korean,
+        English,
+        Japanese,
+        ChineseSimplified,
+        ChineseTraditional
+    }
+
     public static class SettingsData
     {
         public static float TextSpeed { get; set; } = 0.03f;
@@ -10,6 +19,7 @@ namespace HalloweenVN.Core
         public static bool IsFullScreen { get; set; } = true;
         public static float AutoPlayDelay { get; set; } = 2.0f;
         public static int PerformanceMode { get; set; } = 1; // 0: Power Saving, 1: High Quality
+        public static GameLanguage Language { get; set; } = GameLanguage.Korean;
 
         private const string Prefix = "HalloweenVN_";
 
@@ -27,6 +37,7 @@ namespace HalloweenVN.Core
             IsFullScreen = PlayerPrefs.GetInt(Prefix + "IsFullScreen", 1) == 1;
             AutoPlayDelay = PlayerPrefs.GetFloat(Prefix + "AutoPlayDelay", 2.0f);
             PerformanceMode = PlayerPrefs.GetInt(Prefix + "PerformanceMode", 1);
+            Language = (GameLanguage)PlayerPrefs.GetInt(Prefix + "Language", 0);
         }
 
         public static void Save()
@@ -37,6 +48,7 @@ namespace HalloweenVN.Core
             PlayerPrefs.SetInt(Prefix + "IsFullScreen", IsFullScreen ? 1 : 0);
             PlayerPrefs.SetFloat(Prefix + "AutoPlayDelay", Mathf.Clamp(AutoPlayDelay, 1.0f, 5.0f));
             PlayerPrefs.SetInt(Prefix + "PerformanceMode", PerformanceMode);
+            PlayerPrefs.SetInt(Prefix + "Language", (int)Language);
             PlayerPrefs.Save();
             ApplyPerformanceMode();
         }

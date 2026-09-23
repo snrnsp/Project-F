@@ -567,7 +567,7 @@ PlayerSettings:
   webGLDebugSymbols: 0
   webGLEmscriptenArgs: 
   webGLModulesDirectory: 
-  webGLTemplate: APPLICATION:Default
+  webGLTemplate: PROJECT:FullscreenNoLogo
   webGLAnalyzeBuildSize: 0
   webGLUseEmbeddedResources: 0
   webGLCompressionFormat: 2
@@ -684,7 +684,7 @@ PlayerSettings:
   qnxGraphicConfPath: 
   apiCompatibilityLevel: 6
   captureStartupLogs: {}
-  activeInputHandler: 2
+  activeInputHandler: 1
   windowsGamepadBackendHint: 0
   cloudProjectId: ad8c1b85-f9dc-4def-a2b5-699bc85e6659
   framebufferDepthMemorylessMode: 0

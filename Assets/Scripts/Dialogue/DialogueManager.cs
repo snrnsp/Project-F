@@ -1,4 +1,4 @@
-using System;
+﻿﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -19,6 +19,7 @@ namespace HalloweenVN.Dialogue
         public bool IsPlaying { get; private set; }
 
         private DialogueContainer currentDialogue;
+        public string CurrentDialogueId => currentDialogue?.dialogueId;
         private DialogueNode currentNode;
         private string pendingCommand;
         private bool isTyping;
@@ -87,6 +88,8 @@ namespace HalloweenVN.Dialogue
             currentDialogue = container;
             IsPlaying = true;
             OnDialogueStarted?.Invoke();
+            
+
             
             if (currentDialogue != null && currentDialogue.nodes != null && currentDialogue.nodes.Count > 0)
             {
@@ -188,6 +191,13 @@ namespace HalloweenVN.Dialogue
             else if (command == "END")
             {
                 EndDialogue();
+                var fx = HalloweenVN.Effects.ScreenEffects.Instance;
+                if (fx != null) fx.FadeFromBlack(1f); // 남아있는 검은 화면 페이드 제거
+                
+                if (GameManager.Instance != null)
+                {
+                    GameManager.Instance.ChangePhase(GamePhase.Lobby);
+                }
             }
         }
 

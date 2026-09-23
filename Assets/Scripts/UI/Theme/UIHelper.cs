@@ -1,4 +1,4 @@
-using TMPro;
+﻿﻿﻿﻿﻿using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Reflection;
@@ -21,6 +21,77 @@ namespace HalloweenVN.UI.Theme
         /// <summary>
         /// Creates an Image component with given color, optional sprite
         /// </summary>
+                public static Sprite CreateCustomRoundedRectSprite(int radius, int borderSize, Color32 bgColor, Color32 borderColor, bool tl, bool tr, bool bl, bool br)
+        {
+            int size = radius * 2 + borderSize * 2 + 4;
+            int centerStart = radius + borderSize;
+            int centerEnd = size - centerStart - 1;
+            
+            Texture2D tex = new Texture2D(size, size, TextureFormat.RGBA32, false);
+            tex.wrapMode = TextureWrapMode.Clamp;
+            Color32 clear = new Color32(0, 0, 0, 0);
+            
+            for (int y = 0; y < size; y++)
+            {
+                for (int x = 0; x < size; x++)
+                {
+                    float dx = Mathf.Max(0, Mathf.Max(centerStart - x, x - centerEnd));
+                    float dy = Mathf.Max(0, Mathf.Max(centerStart - y, y - centerEnd));
+                    
+                    bool isCorner = (dx > 0 && dy > 0);
+                    bool shouldRound = true;
+
+                    if (isCorner) {
+                        if (x < centerStart && y < centerStart) shouldRound = bl;
+                        else if (x > centerEnd && y < centerStart) shouldRound = br;
+                        else if (x < centerStart && y > centerEnd) shouldRound = tl;
+                        else if (x > centerEnd && y > centerEnd) shouldRound = tr;
+                    }
+
+                    float dist = 0;
+                    if (isCorner && shouldRound) {
+                        dist = Mathf.Sqrt(dx * dx + dy * dy);
+                    } else {
+                        // For straight edges OR square corners, use Chebyshev distance
+                        dist = Mathf.Max(dx, dy);
+                    }
+                    
+                    if (dist > radius + borderSize) tex.SetPixel(x, y, clear);
+                    else if (dist > radius) tex.SetPixel(x, y, borderColor);
+                    else tex.SetPixel(x, y, bgColor);
+                }
+            }
+            tex.Apply();
+            return Sprite.Create(tex, new Rect(0, 0, size, size), new Vector2(0.5f, 0.5f), 100, 0, SpriteMeshType.FullRect, new Vector4(centerStart, centerStart, centerStart, centerStart));
+        }
+
+        public static Sprite CreateRoundedRectSprite(int radius, int borderSize, Color32 bgColor, Color32 borderColor)
+        {
+            int size = radius * 2 + borderSize * 2 + 4; // Add a bit of padding for safe slicing
+            int centerStart = radius + borderSize;
+            int centerEnd = centerStart + 3;
+            
+            Texture2D tex = new Texture2D(size, size, TextureFormat.RGBA32, false);
+            tex.wrapMode = TextureWrapMode.Clamp;
+            Color32 clear = new Color32(0, 0, 0, 0);
+            
+            for (int y = 0; y < size; y++)
+            {
+                for (int x = 0; x < size; x++)
+                {
+                    float dx = Mathf.Max(0, Mathf.Max(centerStart - x, x - centerEnd));
+                    float dy = Mathf.Max(0, Mathf.Max(centerStart - y, y - centerEnd));
+                    float dist = Mathf.Sqrt(dx * dx + dy * dy);
+                    
+                    if (dist > radius + borderSize) tex.SetPixel(x, y, clear);
+                    else if (dist > radius) tex.SetPixel(x, y, borderColor);
+                    else tex.SetPixel(x, y, bgColor);
+                }
+            }
+            tex.Apply();
+            return Sprite.Create(tex, new Rect(0, 0, size, size), new Vector2(0.5f, 0.5f), 100, 0, SpriteMeshType.FullRect, new Vector4(centerStart, centerStart, centerStart, centerStart));
+        }
+
         public static Image AddImage(GameObject obj, Color color, Sprite sprite = null)
         {
             Image img = obj.AddComponent<Image>();
@@ -33,6 +104,7 @@ namespace HalloweenVN.UI.Theme
         }
 
         private static TMP_FontAsset cachedKoreanFont;
+        private static TMP_FontAsset dynamicFallbackFont;
 
         /// <summary>
         /// Creates a TextMeshProUGUI with given text, color, fontSize, alignment

@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿﻿using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System.Collections.Generic;
@@ -82,6 +82,8 @@ namespace HalloweenVN.UI
             }
         }
 
+        public bool IsOpen => backlogPanel != null && backlogPanel.activeSelf;
+
         public void ToggleBacklog()
         {
             if (backlogPanel != null)
@@ -97,7 +99,7 @@ namespace HalloweenVN.UI
             }
         }
 
-        private void ShowBacklog()
+        public void ShowBacklog()
         {
             if (backlogPanel == null) return;
             backlogPanel.SetActive(true);
@@ -112,7 +114,7 @@ namespace HalloweenVN.UI
             }
         }
 
-        private void HideBacklog()
+        public void HideBacklog()
         {
             if (backlogPanel != null)
             {

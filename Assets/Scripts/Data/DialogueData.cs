@@ -23,6 +23,8 @@ namespace HalloweenVN.Data
         public List<DialogueChoice> choices;
         public int nextNodeId;
         public string command;
+        public bool noFade; // If true, character appears instantly without fade animation
+        public bool slideIn; // If true, character slides into their position
     }
 
     [System.Serializable]

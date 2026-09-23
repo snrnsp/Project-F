@@ -1,0 +1,132 @@
+﻿import json
+
+data = {
+  "dialogueId": "ch1_prologue",
+  "nodes": [
+    {
+      "id": 0,
+      "speaker": "카스미",
+      "text": "(한숨) 도대체 언제까지 이럴 겁니까. 벌써 한여름이라고요.",
+      "characterSpriteLeft": "Characters/카스미/찡그림",
+      "characterSpriteCenter": "",
+      "characterSpriteRight": "Characters/세이카/기본",
+      "nextNodeId": 1
+    },
+    {
+      "id": 1,
+      "speaker": "세이카",
+      "text": "후훗, 보기 좋잖아? '네버모어 탐정 사무소'라는 이름에 딱 맞는 인테리어지. 내 돈 주고 꾸민 건데 불만 있어?",
+      "characterSpriteLeft": "Characters/카스미/찡그림",
+      "characterSpriteCenter": "",
+      "characterSpriteRight": "Characters/세이카/웃음",
+      "nextNodeId": 2
+    },
+    {
+      "id": 2,
+      "speaker": "카스미",
+      "text": "불만이 없는 게 이상한 거 아닙니까. 의뢰인들이 들어왔다가 진짜 유령의 집인 줄 알고 도망간다니까요.",
+      "characterSpriteLeft": "Characters/카스미/황당",
+      "characterSpriteCenter": "",
+      "characterSpriteRight": "Characters/세이카/웃음",
+      "nextNodeId": 3
+    },
+    {
+      "id": 3,
+      "speaker": "미나",
+      "text": "크큭... 어리석은 인간들... 천 년을 묵은 이 몸의 진짜 오라를 버티지 못하고 도망친 것뿐이다...",
+      "characterSpriteLeft": "Characters/카스미/황당",
+      "characterSpriteCenter": "Characters/미나/웃음",
+      "characterSpriteRight": "Characters/세이카/웃음",
+      "slideIn": True,
+      "nextNodeId": 4
+    },
+    {
+      "id": 4,
+      "speaker": "카스미",
+      "text": "미나, 제발 그 유령 코스프레 좀 벗으십시오. 먼지 날립니다.",
+      "characterSpriteLeft": "Characters/카스미/찡그림",
+      "characterSpriteCenter": "Characters/미나/웃음",
+      "characterSpriteRight": "Characters/세이카/웃음",
+      "nextNodeId": 5
+    },
+    {
+      "id": 5,
+      "speaker": "하루카",
+      "text": "그러지 마세요! 저도 시원한 호박 빙수 만들어뒀어요!",
+      "characterSpriteLeft": "Characters/카스미/찡그림",
+      "characterSpriteCenter": "Characters/미나/웃음",
+      "characterSpriteRight": "Characters/하루카/웃음",
+      "nextNodeId": 6
+    },
+    {
+      "id": 6,
+      "speaker": "카스미",
+      "text": "...이름도 호박입니까. 여기엔 진짜 정상인이 없군.",
+      "characterSpriteLeft": "Characters/카스미/황당",
+      "characterSpriteCenter": "Characters/미나/웃음",
+      "characterSpriteRight": "Characters/하루카/기본",
+      "nextNodeId": 7
+    },
+    {
+      "id": 7,
+      "speaker": "리나",
+      "text": "(쾅!) 다녀왔어!! 으아, 밖에 엄청 덥네!",
+      "characterSpriteLeft": "Characters/카스미/황당",
+      "characterSpriteCenter": "Characters/리나/기본",
+      "characterSpriteRight": "Characters/하루카/기본",
+      "slideIn": True,
+      "nextNodeId": 8
+    },
+    {
+      "id": 8,
+      "speaker": "리리스",
+      "text": "에어컨이나 빵빵하게 틀어봐. 드론 배터리 갈고 있게.",
+      "characterSpriteLeft": "Characters/카스미/황당",
+      "characterSpriteCenter": "Characters/리나/기본",
+      "characterSpriteRight": "Characters/리리스/기본",
+      "slideIn": True,
+      "nextNodeId": 9
+    },
+    {
+      "id": 9,
+      "speaker": "세이카",
+      "text": "오 마침 일꾼들이 돌아왔네. 하루카 아까 온 의뢰 이쪽으로 넘겨줄래?",
+      "characterSpriteLeft": "Characters/세이카/기본",
+      "characterSpriteCenter": "Characters/리나/기본",
+      "characterSpriteRight": "Characters/하루카/기본",
+      "nextNodeId": 10
+    },
+    {
+      "id": 10,
+      "speaker": "하루카",
+      "text": "네! 구시가지에 있는 '폐쇄된 음악실'에서 밤마다 피아노 소리가 들린다는 의뢰예요.",
+      "characterSpriteLeft": "Characters/세이카/기본",
+      "characterSpriteCenter": "Characters/리나/기본",
+      "characterSpriteRight": "Characters/하루카/기본",
+      "nextNodeId": 11
+    },
+    {
+      "id": 11,
+      "speaker": "리나",
+      "text": "피아노 소리?! 이번엔 그냥 때려부수고 들어가면 되는 거지?!",
+      "characterSpriteLeft": "Characters/세이카/기본",
+      "characterSpriteCenter": "Characters/리나/웃음",
+      "characterSpriteRight": "Characters/하루카/기본",
+      "nextNodeId": 12
+    },
+    {
+      "id": 12,
+      "speaker": "카스미",
+      "text": "...아닙니다. 유령 따위는 없으니 명백한 무단 침입 사건이거나 음향 장치 오작동일 겁니다. 조사하러 가죠.",
+      "characterSpriteLeft": "Characters/세이카/기본",
+      "characterSpriteCenter": "Characters/리나/웃음",
+      "characterSpriteRight": "Characters/카스미/기본",
+      "nextNodeId": -1,
+      "command": "CHANGE_PHASE:Investigation"
+    }
+  ]
+}
+
+with open('c:/Users/cccc0/Documents/Project-F/Assets/Resources/Data/Dialogues/ch1_prologue.json', 'w', encoding='utf-8-sig') as f:
+    json.dump(data, f, ensure_ascii=False, indent=2)
+print("Rewrote ch1_prologue.json")

@@ -12,10 +12,10 @@ namespace HalloweenVN.UI
     /// </summary>
     public class LobbyButtonHover : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
-        public Color normalBgColor = new Color(60f/255f, 30f/255f, 80f/255f, 240f/255f);
-        public Color hoverBgColor = new Color(200f/255f, 110f/255f, 20f/255f, 1f);
+        public Color normalBgColor = new Color32(230, 100, 20, 255);
+        public Color hoverBgColor = new Color32(255, 150, 40, 255);
 
-        public Color normalTextColor = new Color(255f/255f, 200f/255f, 100f/255f, 1f);
+        public Color normalTextColor = Color.white;
         public Color hoverTextColor = Color.white;
 
         private Image bgImage;

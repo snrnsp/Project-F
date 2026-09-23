@@ -1,11 +1,11 @@
-{
+﻿﻿{
   "dialogueId": "ch1_morning",
   "nodes": [
     {
       "id": 0,
       "speaker": "",
       "text": "— 다음 날 아침.",
-      "backgroundSprite": "Images/mansion_interior",
+      "backgroundSprite": "Images/mansion_interior_morning",
       "nextNodeId": 1
     },
     {
@@ -94,66 +94,83 @@
       "speaker": "",
       "text": "쾅! — 현관문이 거칠게 열리는 소리.",
       "nextNodeId": 13,
-      "command": "EFFECT:SHAKE"
+      "command": "EFFECT:SHAKE",
+      "characterSpriteLeft": "Characters/카스미/당황2",
+      "characterSpriteCenter": "",
+      "characterSpriteRight": "Characters/하루카/기본"
     },
     {
       "id": 13,
       "speaker": "리나",
       "text": "으아~~ 다녀왔어!! 밖에 미친 듯이 덥다!! 에어컨 왜 안 켜져 있어?!",
       "characterSpriteCenter": "Characters/리나/웃음",
-      "nextNodeId": 14
+      "nextNodeId": 14,
+      "characterSpriteLeft": "Characters/카스미/당황2",
+      "characterSpriteRight": "Characters/하루카/기본",
+      "slideIn": true
     },
     {
       "id": 14,
       "speaker": "카스미",
       "text": "문을 좀 조용히 여닫으십시오. 경첩이 또 빠집니다.",
       "characterSpriteLeft": "Characters/카스미/찡그림",
-      "characterSpriteRight": "Characters/리나/웃음",
-      "nextNodeId": 15
+      "characterSpriteRight": "Characters/하루카/기본",
+      "nextNodeId": 15,
+      "characterSpriteCenter": "Characters/리나/웃음"
     },
     {
       "id": 15,
       "speaker": "리나",
       "text": "새벽부터 구시가지 순찰 돌고 온 사람한테 그게 첫마디야? 뭐, 별일은 없었는데.",
       "characterSpriteLeft": "Characters/카스미/찡그림",
-      "characterSpriteRight": "Characters/리나/기본",
-      "nextNodeId": 16
+      "characterSpriteRight": "Characters/하루카/기본",
+      "nextNodeId": 16,
+      "characterSpriteCenter": "Characters/리나/기본"
     },
     {
       "id": 16,
       "speaker": "하루카",
       "text": "리나 언니! 호박 빙수 먹을래요? 방금 만들어뒀어요!",
-      "characterSpriteCenter": "Characters/하루카/웃음",
-      "nextNodeId": 17
+      "characterSpriteCenter": "Characters/리나/기본",
+      "nextNodeId": 17,
+      "characterSpriteLeft": "Characters/카스미/찡그림",
+      "characterSpriteRight": "Characters/하루카/웃음"
     },
     {
       "id": 17,
       "speaker": "리나",
       "text": "오 빙수!! 먹을 먹을!! ......잠깐, 왜 또 호박이야?",
-      "characterSpriteLeft": "Characters/리나/웃음",
+      "characterSpriteLeft": "Characters/카스미/찡그림",
       "characterSpriteRight": "Characters/하루카/삐짐",
-      "nextNodeId": 18
+      "nextNodeId": 18,
+      "characterSpriteCenter": "Characters/리나/웃음"
     },
     {
       "id": 18,
       "speaker": "리리스",
       "text": "......시끄러.",
-      "characterSpriteCenter": "Characters/리리스/찡그림",
-      "nextNodeId": 19
+      "characterSpriteCenter": "Characters/리나/웃음",
+      "nextNodeId": 19,
+      "characterSpriteLeft": "Characters/리리스/찡그림",
+      "characterSpriteRight": "Characters/하루카/삐짐"
     },
     {
       "id": 19,
       "speaker": "",
       "text": "3층 계단에서 리리스가 내려온다. 한 손에는 반쯤 분해된 드론, 다른 손에는 납땜 인두를 들고 있다.",
-      "characterSpriteCenter": "Characters/리리스/찡그림",
-      "nextNodeId": 20
+      "characterSpriteCenter": "Characters/리나/웃음",
+      "nextNodeId": 20,
+      "characterSpriteLeft": "Characters/리리스/찡그림",
+      "characterSpriteRight": "Characters/하루카/삐짐"
     },
     {
       "id": 20,
       "speaker": "리리스",
       "text": "잭오 야간 비행 데이터 분석 중이었는데. 진동 때문에 납땜 삐끗했잖아.",
-      "characterSpriteCenter": "Characters/리리스/찡그림",
-      "nextNodeId": 21
+      "characterSpriteCenter": "Characters/리나/웃음",
+      "nextNodeId": 21,
+      "characterSpriteLeft": "Characters/리리스/찡그림",
+      "characterSpriteRight": "Characters/하루카/삐짐"
     },
     {
       "id": 21,
@@ -191,31 +208,38 @@
       "id": 25,
       "speaker": "미나",
       "text": "크흐흐... 아침부터 시끄럽구나, 인간들이여...",
-      "characterSpriteCenter": "Characters/미나/음침",
-      "nextNodeId": 26
+      "characterSpriteCenter": "Characters/미나/기본",
+      "nextNodeId": 26,
+      "characterSpriteLeft": "Characters/리나/찡그림",
+      "characterSpriteRight": "Characters/리리스/기본",
+      "slideIn": true
     },
     {
       "id": 26,
       "speaker": "",
       "text": "어디선가 미나가 나타났다. 아무도 들어오는 걸 보지 못했는데, 어느새 소파 구석에 앉아 있다.",
-      "characterSpriteCenter": "Characters/미나/음침",
-      "nextNodeId": 27
+      "characterSpriteCenter": "Characters/미나/기본",
+      "nextNodeId": 27,
+      "characterSpriteLeft": "Characters/리나/찡그림",
+      "characterSpriteRight": "Characters/리리스/기본"
     },
     {
       "id": 27,
       "speaker": "리나",
       "text": "읏?! 야, 언제 온 거야! 깜짝이야!!",
-      "characterSpriteLeft": "Characters/리나/놀람",
-      "characterSpriteRight": "Characters/미나/미소",
-      "nextNodeId": 28
+      "characterSpriteLeft": "Characters/리나/찡그림",
+      "characterSpriteRight": "Characters/리리스/기본",
+      "nextNodeId": 28,
+      "characterSpriteCenter": "Characters/미나/기본"
     },
     {
       "id": 28,
       "speaker": "미나",
       "text": "후후... 천 년을 묵은 이 몸은 바람처럼 나타나고, 안개처럼 사라지느니라...",
-      "characterSpriteLeft": "Characters/리나/놀람",
-      "characterSpriteRight": "Characters/미나/미소",
-      "nextNodeId": 29
+      "characterSpriteLeft": "Characters/리나/찡그림",
+      "characterSpriteRight": "Characters/리리스/기본",
+      "nextNodeId": 29,
+      "characterSpriteCenter": "Characters/미나/미소"
     },
     {
       "id": 29,
@@ -289,7 +313,9 @@
       "speaker": "카스미",
       "text": "......폐쇄된 음악실에서 피아노 소리?",
       "characterSpriteCenter": "Characters/카스미/기본",
-      "nextNodeId": 39
+      "nextNodeId": 39,
+      "characterSpriteLeft": "Characters/세이카/기본",
+      "characterSpriteRight": "Characters/리리스/기본"
     },
     {
       "id": 39,
@@ -312,7 +338,9 @@
       "speaker": "하루카",
       "text": "저, 저기... 사실 그 음악실 건이요, 오늘 아침에 의뢰가 들어왔어요.",
       "characterSpriteCenter": "Characters/하루카/기본",
-      "nextNodeId": 42
+      "nextNodeId": 42,
+      "characterSpriteLeft": "Characters/카스미/찡그림",
+      "characterSpriteRight": "Characters/미나/삐짐"
     },
     {
       "id": 42,
@@ -326,22 +354,28 @@
       "id": 43,
       "speaker": "하루카",
       "text": "(종이를 펼치며) '매일 밤 3시경, 폐쇄된 음악실에서 피아노 소리가 들립니다. 경찰에 신고했지만, 건물 내부에 아무도 없었다고 합니다.'",
-      "characterSpriteCenter": "Characters/하루카/기본",
-      "nextNodeId": 44
+      "characterSpriteCenter": "",
+      "nextNodeId": 44,
+      "characterSpriteLeft": "Characters/세이카/기본",
+      "characterSpriteRight": "Characters/하루카/기본"
     },
     {
       "id": 44,
       "speaker": "하루카",
       "text": "'저는 그 건물 옆에 사는 주민입니다. 일주일째 잠을 이루지 못하고 있습니다. 제발 도와주세요.'",
-      "characterSpriteCenter": "Characters/하루카/측은",
-      "nextNodeId": 45
+      "characterSpriteCenter": "",
+      "nextNodeId": 45,
+      "characterSpriteLeft": "Characters/세이카/기본",
+      "characterSpriteRight": "Characters/하루카/측은"
     },
     {
       "id": 45,
       "speaker": "리나",
       "text": "밤마다 3시에 피아노? 무단 침입이면 그냥 현장에서 잡으면 되는 거 아냐?",
       "characterSpriteCenter": "Characters/리나/기본",
-      "nextNodeId": 46
+      "nextNodeId": 46,
+      "characterSpriteLeft": "Characters/세이카/기본",
+      "characterSpriteRight": "Characters/하루카/측은"
     },
     {
       "id": 46,
@@ -356,7 +390,9 @@
       "speaker": "미나",
       "text": "(조용히) ...그 음악실, 예전에 한 피아니스트가 콩쿠르 직전에 갑자기 사라진 곳이야.",
       "characterSpriteCenter": "Characters/미나/기본",
-      "nextNodeId": 48
+      "nextNodeId": 48,
+      "characterSpriteLeft": "Characters/카스미/기본",
+      "characterSpriteRight": "Characters/리나/기본"
     },
     {
       "id": 48,
@@ -422,42 +458,54 @@
       "speaker": "카스미",
       "text": "(세이카의 표정을 보며) ......알겠습니다. 오늘 밤, 현장 조사를 실시하겠습니다.",
       "characterSpriteCenter": "Characters/카스미/기본",
-      "nextNodeId": 57
+      "nextNodeId": 57,
+      "characterSpriteLeft": "Characters/리나/놀람",
+      "characterSpriteRight": "Characters/세이카/기본"
     },
     {
       "id": 57,
       "speaker": "카스미",
       "text": "리나, 현장 선행 정찰. 리리스, 잭오를 음악실 주변에 배치해 주십시오. 미나, 그 피아니스트에 대해 아는 것을 전부 정리해 주세요.",
       "characterSpriteCenter": "Characters/카스미/기본",
-      "nextNodeId": 58
+      "nextNodeId": 58,
+      "characterSpriteLeft": "Characters/리나/놀람",
+      "characterSpriteRight": "Characters/세이카/기본"
     },
     {
       "id": 58,
       "speaker": "리나",
       "text": "오케이~ 드디어 몸 좀 쓰겠다!",
-      "characterSpriteCenter": "Characters/리나/웃음",
-      "nextNodeId": 59
+      "characterSpriteCenter": "Characters/카스미/기본",
+      "nextNodeId": 59,
+      "characterSpriteLeft": "Characters/리나/웃음",
+      "characterSpriteRight": "Characters/세이카/기본"
     },
     {
       "id": 59,
       "speaker": "리리스",
       "text": "잭오, 야간 정찰 모드 대기. 일몰 후 자동 배치.",
-      "characterSpriteCenter": "Characters/리리스/기본",
-      "nextNodeId": 60
+      "characterSpriteCenter": "Characters/카스미/기본",
+      "nextNodeId": 60,
+      "characterSpriteLeft": "Characters/리나/웃음",
+      "characterSpriteRight": "Characters/리리스/기본"
     },
     {
       "id": 60,
       "speaker": "미나",
       "text": "후후... 잊혀진 자의 노래... 흥미로운 의뢰로구나...",
       "characterSpriteCenter": "Characters/미나/미소",
-      "nextNodeId": 61
+      "nextNodeId": 61,
+      "characterSpriteLeft": "Characters/리나/웃음",
+      "characterSpriteRight": "Characters/리리스/기본"
     },
     {
       "id": 61,
       "speaker": "하루카",
       "text": "저, 저도 뭔가 도울 수 있을까요...?",
-      "characterSpriteCenter": "Characters/하루카/기본",
-      "nextNodeId": 62
+      "characterSpriteCenter": "Characters/미나/미소",
+      "nextNodeId": 62,
+      "characterSpriteLeft": "Characters/하루카/기본",
+      "characterSpriteRight": "Characters/리리스/기본"
     },
     {
       "id": 62,
@@ -480,26 +528,35 @@
       "speaker": "세이카",
       "text": "......좋아. 그럼 오늘 밤, 전원 출동이야.",
       "characterSpriteCenter": "Characters/세이카/기본",
-      "nextNodeId": 65
+      "nextNodeId": 65,
+      "characterSpriteLeft": "Characters/카스미/미소",
+      "characterSpriteRight": "Characters/하루카/웃음"
     },
     {
       "id": 65,
       "speaker": "세이카",
       "text": "네버모어의 이름에 걸고 — 이 소리의 정체를 밝혀내자.",
       "characterSpriteCenter": "Characters/세이카/웃음",
-      "nextNodeId": 66
+      "nextNodeId": 66,
+      "characterSpriteLeft": "Characters/카스미/미소",
+      "characterSpriteRight": "Characters/하루카/웃음"
     },
     {
       "id": 66,
       "speaker": "",
       "text": "이렇게, 「네버모어 오컬트 탐정 사무소」의 새로운 의뢰가 시작되었다.",
-      "nextNodeId": 67,
-      "command": "EFFECT:FADE_TO_BLACK"
+      "nextNodeId": 68
+    },
+    {
+      "id": 68,
+      "speaker": "",
+      "text": "— 제1화: 잊혀진 피아니스트 —",
+      "nextNodeId": 67
     },
     {
       "id": 67,
       "speaker": "",
-      "text": "— 제1화: 잊혀진 피아니스트 —",
+      "text": "",
       "nextNodeId": -1,
       "command": "END"
     }

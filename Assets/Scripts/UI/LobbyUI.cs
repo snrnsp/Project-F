@@ -1,4 +1,4 @@
-using System.Collections;
+﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -18,6 +18,15 @@ namespace HalloweenVN.UI
         [SerializeField] private Button newGameButton;
         [SerializeField] private Button continueButton;
 
+        // Added for translation
+        [SerializeField] private Text newGameText;
+        [SerializeField] private Text continueText;
+        [SerializeField] private Text extraText;
+        [SerializeField] private Text settingsText;
+        [SerializeField] private Text versionText;
+        [SerializeField] private Text lobbyTitleText;
+        private bool isStartingGame = false;
+
         private void OnEnable()
         {
             if (GameManager.Instance != null)
@@ -25,6 +34,65 @@ namespace HalloweenVN.UI
                 GameManager.Instance.OnPhaseChanged += HandlePhaseChanged;
             }
             UpdateContinueButton();
+            UpdateLanguage();
+        }
+
+        public void UpdateLanguage()
+        {
+            if (newGameText == null) return;
+
+            GameLanguage lang = SettingsData.Language;
+
+            // Korean (Default)
+            if (lang == GameLanguage.Korean)
+            {
+                if (lobbyTitleText != null) lobbyTitleText.text = "오블리비언\n<size=22>OBLIVION</size>";
+                continueText.text = "이어하기";
+                newGameText.text = "새 게임";
+                extraText.text = "캐릭터";
+                settingsText.text = "환경 설정";
+                if (versionText != null) versionText.text = "버전 1.0.2";
+            }
+            // English
+            else if (lang == GameLanguage.English)
+            {
+                if (lobbyTitleText != null) lobbyTitleText.text = "OBLIVION";
+                continueText.text = "Continue";
+                newGameText.text = "New Game";
+                extraText.text = "Character";
+                settingsText.text = "Settings";
+                if (versionText != null) versionText.text = "Ver 1.0.2";
+            }
+            // Japanese
+            else if (lang == GameLanguage.Japanese)
+            {
+                if (lobbyTitleText != null) lobbyTitleText.text = "オブリビオン\n<size=22>OBLIVION</size>";
+                continueText.text = "続きから";
+                newGameText.text = "初めから";
+                extraText.text = "キャラクター";
+                settingsText.text = "設定";
+                if (versionText != null) versionText.text = "バージョン 1.0.2";
+            }
+            // Simplified Chinese
+            else if (lang == GameLanguage.ChineseSimplified)
+            {
+                if (lobbyTitleText != null) lobbyTitleText.text = "遗忘\n<size=22>OBLIVION</size>";
+                continueText.text = "继续游戏";
+                newGameText.text = "新游戏";
+                extraText.text = "角色";
+                settingsText.text = "设置";
+                if (versionText != null) versionText.text = "版本 1.0.2";
+            }
+            // Traditional Chinese
+            else if (lang == GameLanguage.ChineseTraditional)
+            {
+                if (lobbyTitleText != null) lobbyTitleText.text = "遺忘\n<size=22>OBLIVION</size>";
+                continueText.text = "繼續遊戲";
+                newGameText.text = "新遊戲";
+                extraText.text = "額外內容";
+                settingsText.text = "設定";
+                if (versionText != null) versionText.text = "版本 1.0.2";
+            }
         }
 
         private void Start()
@@ -58,6 +126,33 @@ namespace HalloweenVN.UI
             {
                 continueButton.onClick.RemoveListener(OnContinueClicked);
             }
+        }
+
+        private Sprite CreateRoundedRectSprite(int radius, int borderSize, Color32 bgColor, Color32 borderColor)
+        {
+            int size = radius * 2 + borderSize * 2 + 4; // Add a bit of padding for safe slicing
+            int centerStart = radius + borderSize;
+            int centerEnd = centerStart + 3;
+            
+            Texture2D tex = new Texture2D(size, size, TextureFormat.RGBA32, false);
+            tex.wrapMode = TextureWrapMode.Clamp;
+            Color32 clear = new Color32(0, 0, 0, 0);
+            
+            for (int y = 0; y < size; y++)
+            {
+                for (int x = 0; x < size; x++)
+                {
+                    float dx = Mathf.Max(0, Mathf.Max(centerStart - x, x - centerEnd));
+                    float dy = Mathf.Max(0, Mathf.Max(centerStart - y, y - centerEnd));
+                    float dist = Mathf.Sqrt(dx * dx + dy * dy);
+                    
+                    if (dist > radius + borderSize) tex.SetPixel(x, y, clear);
+                    else if (dist > radius) tex.SetPixel(x, y, borderColor);
+                    else tex.SetPixel(x, y, bgColor);
+                }
+            }
+            tex.Apply();
+            return Sprite.Create(tex, new Rect(0, 0, size, size), new Vector2(0.5f, 0.5f), 100, 0, SpriteMeshType.FullRect, new Vector4(centerStart, centerStart, centerStart, centerStart));
         }
 
         private void HandlePhaseChanged(GamePhase phase)
@@ -110,12 +205,17 @@ namespace HalloweenVN.UI
         {
             if (continueButton != null)
             {
-                continueButton.interactable = SaveManager.HasSave(0);
+                // 사용자가 로드 버튼이 유독 연하게 보이는 것을 원치 않으므로 시각적 통일성을 위해 항상 활성화 상태 유지
+                continueButton.interactable = true;
+                
+                CanvasGroup cg = continueButton.GetComponent<CanvasGroup>();
+                if (cg != null) cg.alpha = 1f;
             }
         }
 
         private void OnNewGameClicked()
         {
+            if (UnityEngine.EventSystems.EventSystem.current != null) UnityEngine.EventSystems.EventSystem.current.SetSelectedGameObject(null);
             ShowPhotosensitivityWarning();
         }
 
@@ -131,6 +231,13 @@ namespace HalloweenVN.UI
             overlayRt.offsetMax = Vector2.zero;
             Image overlayImg = overlay.AddComponent<Image>();
             overlayImg.color = new Color(0, 0, 0, 0.85f);
+            
+            // Add button to overlay to cancel/close the warning popup
+            Button overlayBtn = overlay.AddComponent<Button>();
+            overlayBtn.transition = Selectable.Transition.None;
+            overlayBtn.onClick.AddListener(() => {
+                Destroy(overlay);
+            });
 
             // Warning panel
             GameObject panel = new GameObject("WarningPanel");
@@ -140,16 +247,22 @@ namespace HalloweenVN.UI
             panelRt.anchorMax = new Vector2(0.5f, 0.5f);
             panelRt.sizeDelta = new Vector2(820, 500);
             Image panelImg = panel.AddComponent<Image>();
-            panelImg.color = new Color32(25, 20, 35, 255);
+            panelImg.type = Image.Type.Sliced;
+            panelImg.sprite = CreateRoundedRectSprite(16, 2, new Color32(25, 20, 35, 255), new Color32(255, 180, 50, 255));
+            
+            // Add a dummy button to the panel to absorb clicks so they don't bubble up to the overlay button
+            Button panelDummyBtn = panel.AddComponent<Button>();
+            panelDummyBtn.transition = Selectable.Transition.None;
 
             // --- Warning triangle icon (solid triangle with "!" cutout) ---
             float triW = 52f;
             float triH = 48f;
-            float titleY = -52f;
+            float titleY = -75f;
 
             // Generate triangle texture with "!" negative space
             int texSize = 64;
             Texture2D triTex = new Texture2D(texSize, texSize, TextureFormat.RGBA32, false);
+            triTex.wrapMode = TextureWrapMode.Clamp;
             Color clear = new Color(0, 0, 0, 0);
             Color fill = Color.white;
             float cx = texSize * 0.5f;
@@ -207,13 +320,8 @@ namespace HalloweenVN.UI
             iconRt.anchorMax = new Vector2(0.5f, 1f);
             iconRt.anchoredPosition = new Vector2(15, titleY);
             iconRt.sizeDelta = new Vector2(500, 45);
-            TextMeshProUGUI iconText = iconObj.AddComponent<TextMeshProUGUI>();
-            iconText.text = "광과민성 발작 경고";
-            iconText.fontSize = 30;
+            TextMeshProUGUI iconText = Theme.UIHelper.AddText(iconObj, "광과민성 발작 경고", new Color32(255, 180, 80, 255), 30, TextAlignmentOptions.Center);
             iconText.fontStyle = FontStyles.Bold;
-            iconText.color = new Color32(255, 180, 80, 255);
-            iconText.alignment = TextAlignmentOptions.Center;
-            if (titleText != null && titleText.font != null) iconText.font = titleText.font;
 
             // Warning message — use color tags for stronger emphasis
             string warn = "<color=#FFD080>";
@@ -225,25 +333,23 @@ namespace HalloweenVN.UI
             msgRt.anchorMax = new Vector2(1, 0.82f);
             msgRt.offsetMin = new Vector2(45, 0);
             msgRt.offsetMax = new Vector2(-45, 0);
-            TextMeshProUGUI msgText = msgObj.AddComponent<TextMeshProUGUI>();
-            msgText.text = "극소수의 사람들은 비디오 게임에 등장하는 " +
-                           $"<b>{warn}번쩍이는 빛{warnEnd}</b>이나 " +
-                           $"<b>{warn}특정 패턴{warnEnd}</b>과 같은 시각적 이미지에 노출될 때 " +
-                           $"<b>{warn}광과민성 발작{warnEnd}</b>을 일으킬 수 있습니다. " +
-                           "과거에 발작 병력이 없었더라도, 게임을 하는 동안 " +
-                           "이러한 증상을 유발할 수 있는 미확인 상태일 수 있습니다.\n\n" +
-                           $"게임 중 <b>{warn}현기증{warnEnd}</b>, <b>{warn}시력 이상{warnEnd}</b>, " +
-                           $"<b>{warn}눈이나 얼굴의 경련{warnEnd}</b>, " +
-                           $"<b>{warn}팔다리의 떨림{warnEnd}</b>, <b>{warn}방향 감각 상실{warnEnd}</b>, " +
-                           $"<b>{warn}혼란{warnEnd}</b>, " +
-                           $"또는 <b>{warn}일시적인 의식 상실{warnEnd}</b> 등의 증상을 겪는다면 " +
-                           $"<b>{warn}즉시 게임을 중단{warnEnd}</b>하고 의사와 상담하십시오.";
-            msgText.fontSize = 20;
-            msgText.color = new Color32(200, 195, 210, 255);
-            msgText.alignment = TextAlignmentOptions.Center;
-            msgText.enableWordWrapping = true;
+            TextMeshProUGUI msgText = Theme.UIHelper.AddText(msgObj,
+                "극소수의 사람들은 비디오 게임에 등장하는 " +
+                $"<b>{warn}번쩍이는 빛{warnEnd}</b>이나 " +
+                $"<b>{warn}특정 패턴{warnEnd}</b>과 같은 시각적 이미지에 노출될 때 " +
+                $"<b>{warn}광과민성 발작{warnEnd}</b>을 일으킬 수 있습니다. " +
+                "과거에 발작 병력이 없었더라도 게임을 하는 동안 " +
+                "이러한 증상을 유발할 수 있는 미확인 상태일 수 있습니다. " +
+                $"게임 중 <b>{warn}현기증{warnEnd}</b>, <b>{warn}시력 이상{warnEnd}</b>, " +
+                $"<b>{warn}눈이나 얼굴의 경련{warnEnd}</b>, " +
+                $"<b>{warn}팔다리의 떨림{warnEnd}</b>, <b>{warn}방향 감각 상실{warnEnd}</b>, " +
+                $"<b>{warn}혼란{warnEnd}</b>, " +
+                $"또는 <b>{warn}일시적인 의식 상실{warnEnd}</b> 등의 증상을 겪는다면 " +
+                $"<b>{warn}즉시 게임을 중단{warnEnd}</b>하고 의사와 상담하십시오.",
+                new Color32(200, 195, 210, 255), 20, TextAlignmentOptions.Center);
+            msgText.textWrappingMode = TextWrappingModes.Normal;
             msgText.lineSpacing = 8f;
-            if (titleText != null && titleText.font != null) msgText.font = titleText.font;
+            msgText.richText = true;
 
             // OK button
             GameObject btnObj = new GameObject("ConfirmButton");
@@ -251,17 +357,40 @@ namespace HalloweenVN.UI
             RectTransform btnRt = btnObj.AddComponent<RectTransform>();
             btnRt.anchorMin = new Vector2(0.5f, 0f);
             btnRt.anchorMax = new Vector2(0.5f, 0f);
-            btnRt.anchoredPosition = new Vector2(0, 45);
+            btnRt.anchoredPosition = new Vector2(0, 70);
             btnRt.sizeDelta = new Vector2(200, 50);
-            Image btnImg = btnObj.AddComponent<Image>();
-            btnImg.color = new Color32(80, 50, 120, 255);
+            // Invisible hitbox
+            Image hitImg = Theme.UIHelper.AddImage(btnObj, new Color(0, 0, 0, 0));
+
+            // Border
+            GameObject borderObj = new GameObject("Border");
+            borderObj.transform.SetParent(btnObj.transform, false);
+            RectTransform borderRt = borderObj.AddComponent<RectTransform>();
+            borderRt.anchorMin = Vector2.zero;
+            borderRt.anchorMax = Vector2.one;
+            borderRt.offsetMin = Vector2.zero;
+            borderRt.offsetMax = Vector2.zero;
+            Image borderImg = Theme.UIHelper.AddImage(borderObj, new Color32(255, 150, 40, 255)); // Orange border
+            borderImg.raycastTarget = false;
+
+            // Background
+            GameObject bgObj = new GameObject("Background");
+            bgObj.transform.SetParent(btnObj.transform, false);
+            RectTransform bgRt = bgObj.AddComponent<RectTransform>();
+            bgRt.anchorMin = Vector2.zero;
+            bgRt.anchorMax = Vector2.one;
+            bgRt.offsetMin = new Vector2(6, 6);
+            bgRt.offsetMax = new Vector2(-6, -6);
+            Image bgImg = Theme.UIHelper.AddImage(bgObj, new Color32(80, 50, 120, 255));
+            bgImg.raycastTarget = false;
+
             Button btn = btnObj.AddComponent<Button>();
             ColorBlock cb = ColorBlock.defaultColorBlock;
-            cb.normalColor = new Color32(80, 50, 120, 255);
-            cb.highlightedColor = new Color32(110, 70, 160, 255);
-            cb.pressedColor = new Color32(150, 100, 50, 255);
+            cb.normalColor = Color.white;
+            cb.highlightedColor = new Color32(200, 200, 200, 255);
+            cb.pressedColor = new Color32(150, 150, 150, 255);
             btn.colors = cb;
-            btn.targetGraphic = btnImg;
+            btn.targetGraphic = bgImg;
 
             GameObject btnTextObj = new GameObject("ButtonText");
             btnTextObj.transform.SetParent(btnObj.transform, false);
@@ -270,17 +399,17 @@ namespace HalloweenVN.UI
             btnTextRt.anchorMax = Vector2.one;
             btnTextRt.offsetMin = Vector2.zero;
             btnTextRt.offsetMax = Vector2.zero;
-            TextMeshProUGUI btnText = btnTextObj.AddComponent<TextMeshProUGUI>();
-            btnText.text = "확인";
-            btnText.fontSize = 24;
+            TextMeshProUGUI btnText = Theme.UIHelper.AddText(btnTextObj, "확인", new Color32(255, 255, 255, 255), 28, TextAlignmentOptions.Center);
             btnText.fontStyle = FontStyles.Bold;
-            btnText.color = new Color32(255, 255, 255, 255);
-            btnText.alignment = TextAlignmentOptions.Center;
-            if (titleText != null && titleText.font != null) btnText.font = titleText.font;
 
             btn.onClick.AddListener(() =>
             {
-                btn.interactable = false; // Prevent double-clicks during fade
+                if (isStartingGame) return;
+                isStartingGame = true;
+                if (UnityEngine.EventSystems.EventSystem.current != null) UnityEngine.EventSystems.EventSystem.current.SetSelectedGameObject(null);
+                
+                // We do NOT set interactable = false here because it causes the button to permanently stay gray (disabled color)
+                // during the long 2.2s fade out. The isStartingGame flag prevents double clicks instead.
                 StartNewGame(overlay);
             });
         }
@@ -298,7 +427,7 @@ namespace HalloweenVN.UI
                 if (popupOverlay != null) Destroy(popupOverlay);
                 
                 if (GameManager.Instance != null) GameManager.Instance.ChangePhase(GamePhase.Dialogue);
-                if (DialogueManager.Instance != null) DialogueManager.Instance.StartDialogue("ch0_opening");
+                if (DialogueManager.Instance != null) DialogueManager.Instance.StartDialogue("ch0_origin");
             }
         }
 
@@ -323,7 +452,7 @@ namespace HalloweenVN.UI
             yield return new WaitForSeconds(waitTime);
             
             // Start the story and fade back in using the same fadeTime
-            if (DialogueManager.Instance != null) DialogueManager.Instance.StartDialogue("ch0_opening");
+            if (DialogueManager.Instance != null) DialogueManager.Instance.StartDialogue("ch0_origin");
             
             transition.FadeIn(fadeTime, () => {
                 transition.autoTransitionOnPhaseChange = true;
@@ -332,6 +461,7 @@ namespace HalloweenVN.UI
 
         private void OnContinueClicked()
         {
+            if (UnityEngine.EventSystems.EventSystem.current != null) UnityEngine.EventSystems.EventSystem.current.SetSelectedGameObject(null);
             SaveData data = SaveManager.Load(0);
             if (data != null && GameManager.Instance != null)
             {

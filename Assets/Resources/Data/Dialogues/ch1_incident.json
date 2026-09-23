@@ -1,4 +1,4 @@
-{
+﻿{
   "dialogueId": "ch1_incident",
   "nodes": [
     {
@@ -6,7 +6,7 @@
       "speaker": "리리스",
       "text": "음악실 도착. 음... 열화상 카메라에는 아무것도 안 잡히는데?",
       "characterSprite": "Characters/리리스/기본",
-      "backgroundSprite": "Images/lobby_bg",
+      "backgroundSprite": "Images/mansion_interior",
       "nextNodeId": 1
     },
     {
@@ -26,15 +26,15 @@
     {
       "id": 3,
       "speaker": "카스미",
-      "text": "미나, 쓸데없는 소리 말고 해킹한 CCTV 자료나 넘겨.",
+      "text": "미나, 쓸데없는 소리 좀 그만하시죠. 리리스, 해킹한 CCTV 자료 좀 보내주세요.",
       "characterSprite": "Characters/카스미/기본",
       "nextNodeId": 4
     },
     {
       "id": 4,
-      "speaker": "미나",
+      "speaker": "리리스",
       "text": "...쳇. 전송 완료.",
-      "characterSprite": "Characters/미나/기본",
+      "characterSprite": "Characters/리리스/기본",
       "nextNodeId": 5
     },
     {

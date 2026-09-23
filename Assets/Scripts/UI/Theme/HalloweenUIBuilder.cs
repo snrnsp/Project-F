@@ -1,4 +1,4 @@
-﻿using HalloweenVN.Core;
+﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿using HalloweenVN.Core;
 using HalloweenVN.Dialogue;
 using HalloweenVN.Investigation;
 using HalloweenVN.Deduction;
@@ -26,8 +26,13 @@ namespace HalloweenVN.UI.Theme
         private Transform templatesRoot;
         private GameObject lobbyPanelRoot;
         private Button settingsButtonRef;
+        private Button langButtonRef;
         private BacklogUI backlogUiRef;
-        
+        private ExtraUI extraUiRef;
+        private SettingsUI settingsUiRef;
+        private GlobalUIManager globalMgrRef;
+        private GameObject globalSettingsBtnObj;
+        private GameObject lobbySettingsBtnObj;
         void Awake()
         {
             if (isInitialized)
@@ -51,8 +56,11 @@ namespace HalloweenVN.UI.Theme
             CreateInvestigationUI();
             CreateDeductionUI();
             CreateLobbyUI();
+            CreateGlobalUI();
             CreateSettingsUI();
+            CreateLanguageUI();
             CreateBacklogUI();
+            CreateExtraUI();
             CreateScreenTransition();
         }
         
@@ -95,149 +103,128 @@ namespace HalloweenVN.UI.Theme
             lobbyPanelRoot = UIHelper.CreateUIObject("LobbyRoot", mainCanvas.transform);
             UIHelper.StretchFull(lobbyPanelRoot.GetComponent<RectTransform>());
 
-            // Background - AI Generated Halloween Mansion
+            // Background
             GameObject bgObj = UIHelper.CreateUIObject("Background", lobbyPanelRoot.transform);
             UIHelper.StretchFull(bgObj.GetComponent<RectTransform>());
             Sprite bgSprite = Resources.Load<Sprite>("Images/lobby_bg");
-            Image bgImg = UIHelper.AddImage(bgObj, Color.white, bgSprite);
+            Image bgImg = UIHelper.AddImage(bgObj, new Color(1f, 1f, 1f, 1f), bgSprite); // 100% opacity
             if (bgSprite == null)
             {
-                // Fallback if image not found
                 bgImg.color = new Color32(15, 8, 25, 255);
             }
 
-            // Removed TopVignette because it creates a hard-edged box artifact
-
-            // ════════ Title Area ════════
-            
-            // Main Title (large, bright orange)
-            GameObject titleObj = UIHelper.CreateUIObject("Title", lobbyPanelRoot.transform);
+            // Title Text (Top Left)
+            GameObject titleObj = UIHelper.CreateUIObject("LobbyTitleText", lobbyPanelRoot.transform);
             RectTransform titleRt = titleObj.GetComponent<RectTransform>();
-            UIHelper.SetAnchors(titleRt, new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f));
-            titleRt.anchoredPosition = new Vector2(0, 160);
-            titleRt.sizeDelta = new Vector2(900, 80);
-            TextMeshProUGUI titleText = UIHelper.AddText(titleObj, "오블리비언",
-                new Color32(255, 160, 30, 255), 72, TextAlignmentOptions.Center);
-            titleText.fontStyle = FontStyles.Bold;
-            titleText.textWrappingMode = TextWrappingModes.NoWrap;
+            UIHelper.SetAnchors(titleRt, new Vector2(0, 0.5f), new Vector2(0, 0.5f), new Vector2(0, 0.5f));
+            titleRt.anchoredPosition = new Vector2(110, 310);
+            titleRt.sizeDelta = new Vector2(400, 120);
+            Text lobbyTitleText = CreateLegacyText(titleObj, "오블리비언\n<size=22>OBLIVION</size>", new Color32(255, 150, 40, 255), 56, TextAnchor.MiddleCenter);
+            lobbyTitleText.fontStyle = FontStyle.Bold;
+            lobbyTitleText.lineSpacing = 0.65f;
+            UnityEngine.UI.Outline titleOutline = titleObj.AddComponent<UnityEngine.UI.Outline>();
+            titleOutline.effectColor = new Color32(0, 0, 0, 255);
+            titleOutline.effectDistance = new Vector2(2, -2);
 
-            // Pumpkin emoji decoration above title
-            GameObject decoObj = UIHelper.CreateUIObject("Decoration", lobbyPanelRoot.transform);
-            RectTransform decoRt = decoObj.GetComponent<RectTransform>();
-            UIHelper.SetAnchors(decoRt, new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f));
-            decoRt.anchoredPosition = new Vector2(0, 230);
-            decoRt.sizeDelta = new Vector2(500, 50);
-            UIHelper.AddText(decoObj, "~ 잊혀진 이들을 찾아서 ~",
-                new Color32(200, 120, 50, 180), 22, TextAlignmentOptions.Center);
+            // Buttons (Left side, Halloween, 100% Opacity)
+            Color32 btnBg = new Color32(230, 100, 20, 255); // Pumpkin orange
+            
+            float startY = 160f; // Center adjusted (+160 to -160 for 5 buttons)
+            float spacing = 80f;
+            int i = 0;
 
-            // Subtitle
-            GameObject subObj = UIHelper.CreateUIObject("Subtitle", lobbyPanelRoot.transform);
-            RectTransform subRt = subObj.GetComponent<RectTransform>();
-            UIHelper.SetAnchors(subRt, new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f));
-            subRt.anchoredPosition = new Vector2(0, 95);
-            subRt.sizeDelta = new Vector2(700, 35);
-            TextMeshProUGUI subtitleText = UIHelper.AddText(subObj, "Nevermore Occult Detective Agency",
-                new Color32(220, 200, 170, 200), 22, TextAlignmentOptions.Center);
+            var loadTuple = CreateLegacyButton(lobbyPanelRoot.transform, "이어하기", 260, 55, btnBg);
+            UIHelper.SetAnchors(loadTuple.btn.GetComponent<RectTransform>(), new Vector2(0, 0.5f), new Vector2(0, 0.5f), new Vector2(0, 0.5f));
+            loadTuple.btn.GetComponent<RectTransform>().anchoredPosition = new Vector2(180, startY - (spacing * i++));
+            
+            var startTuple = CreateLegacyButton(lobbyPanelRoot.transform, "새 게임", 260, 55, btnBg);
+            UIHelper.SetAnchors(startTuple.btn.GetComponent<RectTransform>(), new Vector2(0, 0.5f), new Vector2(0, 0.5f), new Vector2(0, 0.5f));
+            startTuple.btn.GetComponent<RectTransform>().anchoredPosition = new Vector2(180, startY - (spacing * i++));
+            
+            var extraTuple = CreateLegacyButton(lobbyPanelRoot.transform, "캐릭터", 260, 55, btnBg);
+            UIHelper.SetAnchors(extraTuple.btn.GetComponent<RectTransform>(), new Vector2(0, 0.5f), new Vector2(0, 0.5f), new Vector2(0, 0.5f));
+            extraTuple.btn.GetComponent<RectTransform>().anchoredPosition = new Vector2(180, startY - (spacing * i++));
+            
+            var langTuple = CreateLegacyButton(lobbyPanelRoot.transform, "Language", 260, 55, btnBg);
+            UIHelper.SetAnchors(langTuple.btn.GetComponent<RectTransform>(), new Vector2(0, 0.5f), new Vector2(0, 0.5f), new Vector2(0, 0.5f));
+            langTuple.btn.GetComponent<RectTransform>().anchoredPosition = new Vector2(180, startY - (spacing * i++));
+            
+            var settingsTuple = CreateLegacyButton(lobbyPanelRoot.transform, "환경 설정", 260, 55, btnBg);
+            lobbySettingsBtnObj = settingsTuple.btn.gameObject;
+            UIHelper.SetAnchors(settingsTuple.btn.GetComponent<RectTransform>(), new Vector2(0, 0.5f), new Vector2(0, 0.5f), new Vector2(0, 0.5f));
+            settingsTuple.btn.GetComponent<RectTransform>().anchoredPosition = new Vector2(180, startY - (spacing * i++));
+            
+            langButtonRef = langTuple.btn;
+            
+            // Bottom text removed per user request
 
-            // Decorative divider line
-            GameObject divider = UIHelper.CreateUIObject("Divider", lobbyPanelRoot.transform);
-            RectTransform divRt = divider.GetComponent<RectTransform>();
-            UIHelper.SetAnchors(divRt, new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f));
-            divRt.anchoredPosition = new Vector2(0, 60);
-            divRt.sizeDelta = new Vector2(400, 2);
-            UIHelper.AddImage(divider, new Color32(255, 140, 0, 100));
+            // Version Text (Bottom Left)
+            GameObject verObj = UIHelper.CreateUIObject("VersionText", lobbyPanelRoot.transform);
+            RectTransform verRt = verObj.GetComponent<RectTransform>();
+            UIHelper.SetAnchors(verRt, new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0));
+            verRt.anchoredPosition = new Vector2(20, 20);
+            verRt.sizeDelta = new Vector2(300, 30);
+            Text versionText = CreateLegacyText(verObj, "버전 1.0.2", new Color32(80, 80, 80, 255), 14, TextAnchor.MiddleCenter);
 
-            // ════════ Buttons ════════
-            Color32 btnBg = new Color32(60, 30, 80, 240);
-            Color32 btnBorder = new Color32(200, 110, 20, 255);
-
-            // New Game Button
-            var newGameTuple = CreateLobbyButton(lobbyPanelRoot.transform, "▶  새 게임", new Vector2(0, -10), btnBg, btnBorder);
-
-            // Continue Button
-            var continueTuple = CreateLobbyButton(lobbyPanelRoot.transform, "이어하기", new Vector2(0, -85), btnBg, btnBorder);
-
-            // Settings Button
-            var settingsTuple = CreateLobbyButton(lobbyPanelRoot.transform, "설정", new Vector2(0, -160), btnBg, btnBorder);
-
-            // ════════ Bottom ════════
-
-            // Atmosphere text
-            GameObject atmosObj = UIHelper.CreateUIObject("Atmosphere", lobbyPanelRoot.transform);
-            RectTransform atmosRt = atmosObj.GetComponent<RectTransform>();
-            UIHelper.SetAnchors(atmosRt, new Vector2(0.5f, 0), new Vector2(0.5f, 0), new Vector2(0.5f, 0));
-            atmosRt.anchoredPosition = new Vector2(0, 80);
-            atmosRt.sizeDelta = new Vector2(600, 30);
-            UIHelper.AddText(atmosObj, "\"그 저택에는 숨겨진 비밀이 있다...\"",
-                new Color32(180, 150, 120, 120), 16, TextAlignmentOptions.Center);
-
-            // Credits / version
-            GameObject creditObj = UIHelper.CreateUIObject("Credits", lobbyPanelRoot.transform);
-            RectTransform creditRt = creditObj.GetComponent<RectTransform>();
-            UIHelper.SetAnchors(creditRt, new Vector2(0.5f, 0), new Vector2(0.5f, 0), new Vector2(0.5f, 0));
-            creditRt.anchoredPosition = new Vector2(0, 30);
-            creditRt.sizeDelta = new Vector2(400, 25);
-            UIHelper.AddText(creditObj, "v0.2 — Project F",
-                new Color32(150, 150, 150, 80), 13, TextAlignmentOptions.Center);
-
-            Button newGameBtn = newGameTuple.btn;
-            Button continueBtn = continueTuple.btn;
+            // Events
+            Button newGameBtn = startTuple.btn;
+            Button continueBtn = loadTuple.btn;
             Button settingsBtn = settingsTuple.btn;
 
-            // Add Hover effect
-            newGameBtn.gameObject.AddComponent<LobbyButtonHover>();
-            continueBtn.gameObject.AddComponent<LobbyButtonHover>();
-            settingsBtn.gameObject.AddComponent<LobbyButtonHover>();
-
-            // Attach LobbyUI and wire fields
+            // Attach LobbyUI
             LobbyUI lobbyUi = lobbyPanelRoot.AddComponent<LobbyUI>();
             UIHelper.SetField(lobbyUi, "lobbyPanel", lobbyPanelRoot);
-            UIHelper.SetField(lobbyUi, "titleText", titleText);
-            UIHelper.SetField(lobbyUi, "subtitleText", subtitleText);
-            UIHelper.SetField(lobbyUi, "newGameButton", newGameTuple.btn);
-            UIHelper.SetField(lobbyUi, "continueButton", continueTuple.btn);
+            UIHelper.SetField(lobbyUi, "titleText", null); // Title text removed
+            UIHelper.SetField(lobbyUi, "newGameButton", newGameBtn);
+            UIHelper.SetField(lobbyUi, "continueButton", continueBtn);
+            
+            // Text references for translation
+            UIHelper.SetField(lobbyUi, "newGameText", startTuple.text);
+            UIHelper.SetField(lobbyUi, "continueText", loadTuple.text);
+            UIHelper.SetField(lobbyUi, "extraText", extraTuple.text);
+            UIHelper.SetField(lobbyUi, "settingsText", settingsTuple.text);
+            UIHelper.SetField(lobbyUi, "lobbyTitleText", lobbyTitleText);
+            UIHelper.SetField(lobbyUi, "versionText", versionText);
 
-            // Store settings button reference for later binding
-            settingsButtonRef = settingsTuple.btn;
+            settingsButtonRef = settingsBtn; // for CreateSettingsUI to attach
+
+            // Extra button opens character profiles
+            extraTuple.btn.onClick.AddListener(() => {
+                if (extraUiRef != null) extraUiRef.Show();
+            });
         }
 
-        /// <summary>
-        /// Creates a styled lobby button with bright border and clear text.
-        /// </summary>
-        private (Button btn, TextMeshProUGUI btnText) CreateLobbyButton(Transform parent, string label, Vector2 pos, Color32 bgColor, Color32 borderColor)
+        private (Button btn, TextMeshProUGUI btnText) CreateLobbyButton(Transform parent, string label, Vector2 pos, Color32 bgColor)
         {
             GameObject btnObj = UIHelper.CreateUIObject("LobbyBtn_" + label, parent);
             RectTransform rt = btnObj.GetComponent<RectTransform>();
-            UIHelper.SetAnchors(rt, new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f));
+            UIHelper.SetAnchors(rt, new Vector2(0, 0.5f), new Vector2(0, 0.5f), new Vector2(0, 0.5f));
             rt.anchoredPosition = pos;
-            rt.sizeDelta = new Vector2(320, 60);
+            rt.sizeDelta = new Vector2(260, 55); // Increased size for visibility
 
             Image img = UIHelper.AddImage(btnObj, bgColor);
-
-            // Bright border
-            Outline outline = btnObj.AddComponent<Outline>();
-            outline.effectColor = borderColor;
-            outline.effectDistance = new Vector2(2, 2);
 
             Button btn = btnObj.AddComponent<Button>();
             btn.transition = Selectable.Transition.ColorTint;
             ColorBlock cb = ColorBlock.defaultColorBlock;
             cb.normalColor = bgColor;
-            cb.highlightedColor = new Color32(90, 50, 120, 255);
-            cb.pressedColor = new Color32(150, 80, 30, 255);
+            cb.highlightedColor = new Color32(255, 150, 40, 255); // Bright yellow-orange
+            cb.pressedColor = new Color32(180, 60, 10, 255);      // Deep orange
             cb.colorMultiplier = 1f;
             cb.fadeDuration = 0.15f;
             btn.colors = cb;
             btn.targetGraphic = img;
 
-            // Text (bright and readable)
+            // Hover animation if present
+            if (System.Type.GetType("HalloweenVN.UI.LobbyButtonHover") != null)
+                btnObj.AddComponent<LobbyButtonHover>();
+
             GameObject textObj = UIHelper.CreateUIObject("Text", btnObj.transform);
             UIHelper.StretchFull(textObj.GetComponent<RectTransform>());
-            TextMeshProUGUI tmp = UIHelper.AddText(textObj, label,
-                new Color32(255, 200, 100, 255), 26, TextAlignmentOptions.Center);
-            tmp.fontStyle = FontStyles.Bold;
+            TextMeshProUGUI text = UIHelper.AddText(textObj, label, Color.white, 24, TextAlignmentOptions.Center); // Increased font size
+            text.fontStyle = FontStyles.Bold;
 
-            return (btn, tmp);
+            return (btn, text);
         }
 
         /// <summary>
@@ -339,8 +326,8 @@ namespace HalloweenVN.UI.Theme
             GameObject dialoguePanel = UIHelper.CreatePanel("DialoguePanel", dialoguePanelRoot.transform, HalloweenTheme.PanelBackground);
             RectTransform panelRt = dialoguePanel.GetComponent<RectTransform>();
             UIHelper.SetBottom(panelRt, HalloweenTheme.DialoguePanelHeight);
-            panelRt.offsetMin = new Vector2(50, 20); // padding
-            panelRt.offsetMax = new Vector2(-50, HalloweenTheme.DialoguePanelHeight + 20);
+            panelRt.offsetMin = new Vector2(180, 50); // padding reduced horizontal size
+            panelRt.offsetMax = new Vector2(-180, HalloweenTheme.DialoguePanelHeight + 50);
 
             // Speaker Name
             GameObject speakerObj = UIHelper.CreateUIObject("SpeakerName", dialoguePanel.transform);
@@ -377,20 +364,20 @@ namespace HalloweenVN.UI.Theme
             GameObject choiceButtonPrefab = choiceBtnTuple.btn.gameObject;
 
             // Auto / Skip / Log Buttons (top-right of dialogue panel)
-            float btnW = 90, btnH = 35, btnSpacing = 8;
+            float btnW = 120, btnH = 40, btnSpacing = 10;
             
-            var autoTuple = UIHelper.CreateButton(dialoguePanel.transform, "AUTO", btnW, btnH);
+            var autoTuple = CreateLegacyButton(dialoguePanel.transform, "AUTO", btnW, btnH, new Color32(40, 25, 60, 255));
             RectTransform autoRt = autoTuple.btn.GetComponent<RectTransform>();
             UIHelper.SetAnchors(autoRt, new Vector2(1, 1), new Vector2(1, 1), new Vector2(1, 1));
             autoRt.anchoredPosition = new Vector2(-(btnW * 3 + btnSpacing * 2 + 10), -8);
-            TextMeshProUGUI autoText = autoTuple.btn.GetComponentInChildren<TextMeshProUGUI>();
+            Text autoText = autoTuple.text;
 
-            var skipTuple = UIHelper.CreateButton(dialoguePanel.transform, "SKIP", btnW, btnH);
+            var skipTuple = CreateLegacyButton(dialoguePanel.transform, "SKIP", btnW, btnH, new Color32(40, 25, 60, 255));
             RectTransform skipRt = skipTuple.btn.GetComponent<RectTransform>();
             UIHelper.SetAnchors(skipRt, new Vector2(1, 1), new Vector2(1, 1), new Vector2(1, 1));
             skipRt.anchoredPosition = new Vector2(-(btnW * 2 + btnSpacing + 10), -8);
 
-            var logTuple = UIHelper.CreateButton(dialoguePanel.transform, "LOG", btnW, btnH);
+            var logTuple = CreateLegacyButton(dialoguePanel.transform, "LOG", btnW, btnH, new Color32(40, 25, 60, 255));
             RectTransform logRt = logTuple.btn.GetComponent<RectTransform>();
             UIHelper.SetAnchors(logRt, new Vector2(1, 1), new Vector2(1, 1), new Vector2(1, 1));
             logRt.anchoredPosition = new Vector2(-(btnW + 10), -8);
@@ -404,6 +391,7 @@ namespace HalloweenVN.UI.Theme
             UIHelper.SetField(ui, "characterImageCenter", characterImageCenter);
             UIHelper.SetField(ui, "characterImageRight", characterImageRight);
             UIHelper.SetField(ui, "backgroundImage", backgroundImage);
+            
             UIHelper.SetField(ui, "choicePanel", choicePanel);
             UIHelper.SetField(ui, "choiceButtonPrefab", choiceButtonPrefab);
             UIHelper.SetField(ui, "choiceButtonContainer", choiceContainer.transform);
@@ -411,6 +399,8 @@ namespace HalloweenVN.UI.Theme
             UIHelper.SetField(ui, "skipButton", skipTuple.btn);
             UIHelper.SetField(ui, "backlogButton", logTuple.btn);
             UIHelper.SetField(ui, "autoButtonText", autoText);
+            UIHelper.SetField(ui, "skipButtonText", skipTuple.text);
+            UIHelper.SetField(ui, "backlogButtonText", logTuple.text);
 
             // Wire up fullscreen click (Background + DialoguePanel itself)
             Button bgClick = bgImgObj.AddComponent<Button>();
@@ -450,7 +440,7 @@ namespace HalloweenVN.UI.Theme
             UIHelper.SetAnchors(titleRt, new Vector2(0, 1), new Vector2(1, 1), new Vector2(0.5f, 1));
             titleRt.anchoredPosition = new Vector2(0, -30);
             titleRt.sizeDelta = new Vector2(0, 40);
-            UIHelper.AddText(titleObj, "수집한 증거", HalloweenTheme.AccentOrange, HalloweenTheme.HeaderFontSize, TextAlignmentOptions.Center);
+            UIHelper.AddText(titleObj, "\uc5b8\uc5b4 \uc124\uc815", HalloweenTheme.AccentOrange, 28, TextAlignmentOptions.Center);
 
             GameObject countObj = UIHelper.CreateUIObject("EvidenceCountText", listPanel.transform);
             RectTransform countRt = countObj.GetComponent<RectTransform>();
@@ -504,7 +494,7 @@ namespace HalloweenVN.UI.Theme
             descRt.sizeDelta = new Vector2(0, 150);
             TextMeshProUGUI detailDesc = UIHelper.AddText(descObj, "Description", HalloweenTheme.TextPrimary, HalloweenTheme.BodyFontSize, TextAlignmentOptions.Center);
 
-            var closeTuple = UIHelper.CreateButton(detailPanel.transform, "닫기", 200, 50);
+            var closeTuple = CreateLegacyButton(detailPanel.transform, "닫기", 200, 50, HalloweenTheme.ButtonNormal);
             Button closeBtn = closeTuple.btn;
             RectTransform closeRt = closeBtn.GetComponent<RectTransform>();
             UIHelper.SetAnchors(closeRt, new Vector2(0.5f, 0), new Vector2(0.5f, 0), new Vector2(0.5f, 0));
@@ -674,8 +664,12 @@ namespace HalloweenVN.UI.Theme
             GameObject settingsRoot = UIHelper.CreateUIObject("SettingsRoot", mainCanvas.transform);
             UIHelper.StretchFull(settingsRoot.GetComponent<RectTransform>());
 
-            // Semi-transparent dark overlay
-            UIHelper.AddImage(settingsRoot, new Color(0, 0, 0, 0.7f));
+            // Semi-transparent dark overlay (now a button to close)
+            GameObject bgBtnObj = UIHelper.CreateUIObject("BackgroundButton", settingsRoot.transform);
+            UIHelper.StretchFull(bgBtnObj.GetComponent<RectTransform>());
+            UIHelper.AddImage(bgBtnObj, new Color(0, 0, 0, 0.7f));
+            UnityEngine.UI.Button bgBtn = bgBtnObj.AddComponent<UnityEngine.UI.Button>();
+            bgBtn.transition = UnityEngine.UI.Selectable.Transition.None;
 
             // Settings panel
             GameObject panel = UIHelper.CreatePanel("SettingsPanel", settingsRoot.transform, HalloweenTheme.PanelBackground);
@@ -689,7 +683,7 @@ namespace HalloweenVN.UI.Theme
             UIHelper.SetAnchors(titleRt, new Vector2(0.5f, 1), new Vector2(0.5f, 1), new Vector2(0.5f, 1));
             titleRt.anchoredPosition = new Vector2(0, -30);
             titleRt.sizeDelta = new Vector2(400, 40);
-            UIHelper.AddText(titleObj, "설정", HalloweenTheme.AccentOrange, 32, TextAlignmentOptions.Center);
+            Text titleText = CreateLegacyText(titleObj, "설정", HalloweenTheme.AccentOrange, 32, TextAnchor.UpperCenter);
 
             // Text Speed Slider
             float yPos = -70;
@@ -703,7 +697,7 @@ namespace HalloweenVN.UI.Theme
             UIHelper.SetAnchors(previewRt, new Vector2(0.5f, 1), new Vector2(0.5f, 1), new Vector2(0.5f, 1));
             previewRt.anchoredPosition = new Vector2(0, yPos);
             previewRt.sizeDelta = new Vector2(600, 40);
-            TextMeshProUGUI previewText = UIHelper.AddText(previewObj, "", HalloweenTheme.TextPrimary, 18, TextAlignmentOptions.Center);
+            Text previewText = CreateLegacyText(previewObj, "", HalloweenTheme.TextPrimary, 18, TextAnchor.MiddleCenter);
             
 
             // BGM Volume
@@ -716,25 +710,38 @@ namespace HalloweenVN.UI.Theme
             var sfxLabel = CreateSettingsLabel(panel.transform, "SFX", yPos);
             Slider sfxSlider = CreateSettingsSlider(panel.transform, yPos - 30);
 
-            // Fullscreen Toggle
-            yPos -= 90;
-            GameObject toggleObj = UIHelper.CreateUIObject("FullscreenToggle", panel.transform);
-            RectTransform toggleRt = toggleObj.GetComponent<RectTransform>();
-            UIHelper.SetAnchors(toggleRt, new Vector2(0.5f, 1), new Vector2(0.5f, 1), new Vector2(0.5f, 1));
-            toggleRt.anchoredPosition = new Vector2(0, yPos);
-            toggleRt.sizeDelta = new Vector2(400, 30);
-            Toggle fullscreenToggle = toggleObj.AddComponent<Toggle>();
-            UIHelper.AddText(toggleObj, "전체 화면", HalloweenTheme.TextPrimary, 20);
+            // Delete Data Button
+            var deleteTuple = CreateLegacyButton(panel.transform, "데이터 삭제", 200, 50, new Color32(180, 40, 40, 255));
+            
+            // Custom button color behavior for Delete Button
+            UnityEngine.UI.ColorBlock delCb = deleteTuple.btn.colors;
+            delCb.normalColor = new Color32(180, 40, 40, 255);       // Red normal
+            delCb.highlightedColor = new Color32(180, 40, 40, 255);  // No hover reaction
+            delCb.selectedColor = new Color32(180, 40, 40, 255);     // No focus reaction
+            delCb.pressedColor = new Color32(120, 10, 10, 255);      // Deep red when pressed
+            deleteTuple.btn.colors = delCb;
+            
+            // Remove hover script to ensure absolutely zero hover reaction
+            Component hoverScript = deleteTuple.btn.GetComponent("LobbyButtonHover");
+            if (hoverScript != null) UnityEngine.Object.Destroy(hoverScript);
+
+            RectTransform deleteRt = deleteTuple.btn.GetComponent<RectTransform>();
+            UIHelper.SetAnchors(deleteRt, new Vector2(0.5f, 0), new Vector2(0.5f, 0), new Vector2(0.5f, 0));
+            deleteRt.anchoredPosition = new Vector2(-120, 40);
 
             // Close Button
-            var closeTuple = UIHelper.CreateButton(panel.transform, "닫기", 200, 50);
+            var closeTuple = CreateLegacyButton(panel.transform, "닫기", 200, 50, HalloweenTheme.ButtonNormal);
             RectTransform closeRt = closeTuple.btn.GetComponent<RectTransform>();
             UIHelper.SetAnchors(closeRt, new Vector2(0.5f, 0), new Vector2(0.5f, 0), new Vector2(0.5f, 0));
-            closeRt.anchoredPosition = new Vector2(0, 40);
+            closeRt.anchoredPosition = new Vector2(120, 40);
 
             // Attach SettingsUI
             SettingsUI settingsUi = settingsRoot.AddComponent<SettingsUI>();
+            settingsUiRef = settingsUi;
+            bgBtn.onClick.AddListener(() => settingsUi.Hide());
+            if (globalMgrRef != null) globalMgrRef.Initialize(settingsRoot);
             UIHelper.SetField(settingsUi, "settingsPanel", settingsRoot);
+            UIHelper.SetField(settingsUi, "titleTextLabel", titleText);
             UIHelper.SetField(settingsUi, "textSpeedSlider", textSpeedSlider);
             UIHelper.SetField(settingsUi, "textSpeedLabel", textSpeedLabel);
             UIHelper.SetField(settingsUi, "previewTextLabel", previewText);
@@ -742,7 +749,7 @@ namespace HalloweenVN.UI.Theme
             UIHelper.SetField(settingsUi, "bgmVolumeLabel", bgmLabel);
             UIHelper.SetField(settingsUi, "sfxVolumeSlider", sfxSlider);
             UIHelper.SetField(settingsUi, "sfxVolumeLabel", sfxLabel);
-            UIHelper.SetField(settingsUi, "fullscreenToggle", fullscreenToggle);
+            UIHelper.SetField(settingsUi, "closeButtonText", closeTuple.text);
             UIHelper.SetField(settingsUi, "closeButton", closeTuple.btn);
 
             settingsRoot.SetActive(false);
@@ -754,14 +761,166 @@ namespace HalloweenVN.UI.Theme
             }
         }
 
-        private TextMeshProUGUI CreateSettingsLabel(Transform parent, string text, float yPos)
+        private void CreateLanguageUI()
+        {
+            GameObject langRoot = UIHelper.CreateUIObject("LanguageRoot", mainCanvas.transform);
+            UIHelper.StretchFull(langRoot.GetComponent<RectTransform>());
+
+            // Semi-transparent dark overlay (now a button to close)
+            GameObject langBgBtnObj = UIHelper.CreateUIObject("BackgroundButton", langRoot.transform);
+            UIHelper.StretchFull(langBgBtnObj.GetComponent<RectTransform>());
+            UIHelper.AddImage(langBgBtnObj, new Color(0, 0, 0, 0.7f));
+            UnityEngine.UI.Button langBgBtn = langBgBtnObj.AddComponent<UnityEngine.UI.Button>();
+            langBgBtn.transition = UnityEngine.UI.Selectable.Transition.None;
+
+            // Language panel
+            GameObject panel = UIHelper.CreatePanel("LanguagePanel", langRoot.transform, HalloweenTheme.PanelBackground);
+            RectTransform panelRt = panel.GetComponent<RectTransform>();
+            UIHelper.SetAnchors(panelRt, new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f));
+            panelRt.sizeDelta = new Vector2(500, 500);
+
+            // Title
+            GameObject titleObj = UIHelper.CreateUIObject("Title", panel.transform);
+            RectTransform titleRt = titleObj.GetComponent<RectTransform>();
+            UIHelper.SetAnchors(titleRt, new Vector2(0.5f, 1), new Vector2(0.5f, 1), new Vector2(0.5f, 1));
+            titleRt.anchoredPosition = new Vector2(0, -30);
+            titleRt.sizeDelta = new Vector2(400, 40);
+            UIHelper.AddText(titleObj, "\uc5b8\uc5b4 \uc124\uc815", HalloweenTheme.AccentOrange, 28, TextAlignmentOptions.Center);
+
+            // Buttons Container
+            GameObject langContainer = UIHelper.CreateUIObject("LanguageContainer", panel.transform);
+            RectTransform langRt = langContainer.GetComponent<RectTransform>();
+            UIHelper.SetAnchors(langRt, new Vector2(0.5f, 1), new Vector2(0.5f, 1), new Vector2(0.5f, 1));
+            langRt.anchoredPosition = new Vector2(0, -90);
+            langRt.sizeDelta = new Vector2(300, 300);
+            VerticalLayoutGroup vlg = langContainer.AddComponent<VerticalLayoutGroup>();
+            vlg.childControlWidth = false;
+            vlg.childControlHeight = false;
+            vlg.childForceExpandWidth = false;
+            vlg.childForceExpandHeight = false;
+            vlg.childAlignment = TextAnchor.UpperCenter;
+            vlg.spacing = 15;
+            
+            string[] langNames = { "한국어", "English", "日本語", "简体中文", "繁體中文" };
+            Button[] langBtns = new Button[langNames.Length];
+            for (int i = 0; i < langNames.Length; i++)
+            {
+                var btnTuple = CreateLegacyButton(langContainer.transform, langNames[i], 300, 45, HalloweenTheme.ButtonNormal);
+                langBtns[i] = btnTuple.btn;
+                
+                // Disable color tint to preserve our manual coloring logic in LanguageUI
+                btnTuple.btn.transition = Selectable.Transition.None;
+            }
+
+            // Close Button
+            var closeTuple = CreateLegacyButton(panel.transform, "닫기", 200, 50, HalloweenTheme.ButtonNormal);
+            RectTransform closeRt = closeTuple.btn.GetComponent<RectTransform>();
+            UIHelper.SetAnchors(closeRt, new Vector2(0.5f, 0), new Vector2(0.5f, 0), new Vector2(0.5f, 0));
+            closeRt.anchoredPosition = new Vector2(0, 40);
+
+            // Attach LanguageUI
+            LanguageUI langUi = langRoot.AddComponent<LanguageUI>();
+            langBgBtn.onClick.AddListener(() => langUi.Hide());
+            UIHelper.SetField(langUi, "panelRoot", langRoot);
+            UIHelper.SetField(langUi, "languageButtons", langBtns);
+            UIHelper.SetField(langUi, "closeButton", closeTuple.btn);
+
+            langRoot.SetActive(false);
+
+            // Wire lobby language button
+            if (langButtonRef != null)
+            {
+                langButtonRef.onClick.AddListener(() => langUi.Show());
+            }
+        }
+        
+        private (Button btn, Text text) CreateLegacyButton(Transform parent, string label, float width, float height, Color32 btnBg)
+        {
+            GameObject btnObj = UIHelper.CreateUIObject("Button_" + label, parent);
+            RectTransform rt = btnObj.GetComponent<RectTransform>();
+            rt.sizeDelta = new Vector2(width, height);
+
+            // Invisible hit box
+            Image hitImg = UIHelper.AddImage(btnObj, new Color(0, 0, 0, 0));
+
+            // Border (drawn behind)
+            GameObject borderObj = UIHelper.CreateUIObject("Border", btnObj.transform);
+            UIHelper.StretchFull(borderObj.GetComponent<RectTransform>());
+            Image borderImg = UIHelper.AddImage(borderObj, HalloweenTheme.PanelBorder);
+            borderImg.raycastTarget = false;
+
+            // Background (drawn on top, shrunk to reveal border)
+            GameObject bgObj = UIHelper.CreateUIObject("Background", btnObj.transform);
+            RectTransform bgRt = bgObj.GetComponent<RectTransform>();
+            UIHelper.StretchFull(bgRt);
+            bgRt.offsetMin = new Vector2(HalloweenTheme.PanelBorderWidth, HalloweenTheme.PanelBorderWidth);
+            bgRt.offsetMax = new Vector2(-HalloweenTheme.PanelBorderWidth, -HalloweenTheme.PanelBorderWidth);
+            Image bgImg = UIHelper.AddImage(bgObj, btnBg);
+            bgImg.raycastTarget = false;
+
+            Button btn = btnObj.AddComponent<Button>();
+            btn.transition = Selectable.Transition.ColorTint;
+            btn.colors = HalloweenTheme.GetButtonColors();
+            btn.targetGraphic = bgImg; // Only tint the inner background!
+
+            GameObject textObj = UIHelper.CreateUIObject("Text", btnObj.transform);
+            UIHelper.StretchFull(textObj.GetComponent<RectTransform>());
+            
+            Text legacyText = textObj.AddComponent<Text>();
+            legacyText.text = label;
+            legacyText.alignment = TextAnchor.MiddleCenter;
+            legacyText.alignByGeometry = true;
+            legacyText.verticalOverflow = VerticalWrapMode.Overflow;
+            legacyText.fontSize = 20;
+            legacyText.color = HalloweenTheme.ButtonText;
+            
+            // Assign standard OS font to prevent Chinese characters from breaking
+            string[] fontNames = { 
+                "Malgun Gothic", "Apple SD Gothic Neo",
+                "Meiryo", "Yu Gothic", "MS Gothic", "Hiragino Sans",
+                "Microsoft YaHei", "SimHei", "PingFang SC", "Noto Sans CJK SC",
+                "Microsoft JhengHei", "PingFang TC", "Noto Sans CJK TC",
+                "Arial Unicode MS", "sans-serif"
+            };
+            Font rawFont = Font.CreateDynamicFontFromOSFont(fontNames, 20);
+            if (rawFont != null) legacyText.font = rawFont;
+            else legacyText.font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
+
+            return (btn, legacyText);
+        }
+
+        private Text CreateLegacyText(GameObject obj, string text, Color color, int fontSize, TextAnchor alignment)
+        {
+            Text legacyText = obj.AddComponent<Text>();
+            legacyText.text = text;
+            legacyText.alignment = alignment;
+            legacyText.fontSize = fontSize;
+            legacyText.alignByGeometry = true;
+            legacyText.verticalOverflow = VerticalWrapMode.Overflow;
+            legacyText.color = color;
+
+            string[] fontNames = { 
+                "Malgun Gothic", "Apple SD Gothic Neo", // Korean
+                "Meiryo", "Yu Gothic", "MS Gothic", "Hiragino Sans", // Japanese
+                "Microsoft YaHei", "SimHei", "PingFang SC", "Noto Sans CJK SC", // Simplified Chinese
+                "Microsoft JhengHei", "PingFang TC", "Noto Sans CJK TC", // Traditional Chinese
+                "Arial Unicode MS", "sans-serif" // Fallbacks
+            };
+            Font rawFont = Font.CreateDynamicFontFromOSFont(fontNames, fontSize);
+            if (rawFont != null) legacyText.font = rawFont;
+            else legacyText.font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
+
+            return legacyText;
+        }
+        
+        private Text CreateSettingsLabel(Transform parent, string text, float yPos)
         {
             GameObject obj = UIHelper.CreateUIObject(text + "Label", parent);
             RectTransform rt = obj.GetComponent<RectTransform>();
             UIHelper.SetAnchors(rt, new Vector2(0.5f, 1), new Vector2(0.5f, 1), new Vector2(0.5f, 1));
             rt.anchoredPosition = new Vector2(0, yPos);
             rt.sizeDelta = new Vector2(400, 25);
-            return UIHelper.AddText(obj, text, HalloweenTheme.TextPrimary, 18);
+            return CreateLegacyText(obj, text, HalloweenTheme.TextPrimary, 18, TextAnchor.UpperLeft);
         }
 
         private Slider CreateSettingsSlider(Transform parent, float yPos)
@@ -795,12 +954,16 @@ namespace HalloweenVN.UI.Theme
         {
             GameObject backlogRoot = UIHelper.CreateUIObject("BacklogRoot", mainCanvas.transform);
             UIHelper.StretchFull(backlogRoot.GetComponent<RectTransform>());
+            
+            // The actual panel that gets toggled
+            GameObject backlogPanel = UIHelper.CreateUIObject("BacklogPanel", backlogRoot.transform);
+            UIHelper.StretchFull(backlogPanel.GetComponent<RectTransform>());
 
             // Semi-transparent overlay
-            UIHelper.AddImage(backlogRoot, new Color(0, 0, 0, 0.8f));
+            UIHelper.AddImage(backlogPanel, new Color(0, 0, 0, 0.8f));
 
             // Scroll area
-            GameObject scrollObj = UIHelper.CreateUIObject("ScrollView", backlogRoot.transform);
+            GameObject scrollObj = UIHelper.CreateUIObject("ScrollView", backlogPanel.transform);
             RectTransform scrollRt = scrollObj.GetComponent<RectTransform>();
             UIHelper.StretchFull(scrollRt);
             scrollRt.offsetMin = new Vector2(100, 80);
@@ -835,28 +998,322 @@ namespace HalloweenVN.UI.Theme
             entryText.richText = true;
 
             // Title
-            GameObject titleObj = UIHelper.CreateUIObject("BacklogTitle", backlogRoot.transform);
+            GameObject titleObj = UIHelper.CreateUIObject("BacklogTitle", backlogPanel.transform);
             RectTransform titleRt = titleObj.GetComponent<RectTransform>();
             UIHelper.SetAnchors(titleRt, new Vector2(0.5f, 1), new Vector2(0.5f, 1), new Vector2(0.5f, 1));
             titleRt.anchoredPosition = new Vector2(0, -25);
             titleRt.sizeDelta = new Vector2(400, 40);
-            UIHelper.AddText(titleObj, "📜 백로그", HalloweenTheme.AccentOrange, 28, TextAlignmentOptions.Center);
+            UIHelper.AddText(titleObj, "\uc5b8\uc5b4 \uc124\uc815", HalloweenTheme.AccentOrange, 28, TextAlignmentOptions.Center);
 
             // Close button
-            var closeTuple = UIHelper.CreateButton(backlogRoot.transform, "닫기", 200, 50);
+            var closeTuple = CreateLegacyButton(backlogPanel.transform, "닫기", 200, 50, HalloweenTheme.ButtonNormal);
             RectTransform closeRt = closeTuple.btn.GetComponent<RectTransform>();
             UIHelper.SetAnchors(closeRt, new Vector2(0.5f, 0), new Vector2(0.5f, 0), new Vector2(0.5f, 0));
             closeRt.anchoredPosition = new Vector2(0, 30);
 
             // Attach BacklogUI
             backlogUiRef = backlogRoot.AddComponent<BacklogUI>();
-            UIHelper.SetField(backlogUiRef, "backlogPanel", backlogRoot);
+            UIHelper.SetField(backlogUiRef, "backlogPanel", backlogPanel);
             UIHelper.SetField(backlogUiRef, "contentContainer", content.transform);
             UIHelper.SetField(backlogUiRef, "backlogEntryPrefab", entryPrefab);
             UIHelper.SetField(backlogUiRef, "closeButton", closeTuple.btn);
             UIHelper.SetField(backlogUiRef, "scrollRect", scrollRect);
 
-            backlogRoot.SetActive(false);
+            backlogPanel.SetActive(false);
+        }
+
+        private void CreateExtraUI()
+        {
+            // Root panel (fullscreen overlay, starts hidden)
+            GameObject extraRoot = UIHelper.CreateUIObject("ExtraPanel", mainCanvas.transform);
+            UIHelper.StretchFull(extraRoot.GetComponent<RectTransform>());
+            extraRoot.SetActive(false);
+
+            // Dark background (click to close)
+            GameObject extraBgBtnObj = UIHelper.CreateUIObject("BackgroundButton", extraRoot.transform);
+            UIHelper.StretchFull(extraBgBtnObj.GetComponent<RectTransform>());
+            UIHelper.AddImage(extraBgBtnObj, new Color32(15, 8, 25, 200));
+            UnityEngine.UI.Button extraBgBtn = extraBgBtnObj.AddComponent<UnityEngine.UI.Button>();
+            extraBgBtn.transition = UnityEngine.UI.Selectable.Transition.None;
+
+            // ===== Header =====
+            GameObject headerObj = UIHelper.CreateUIObject("Header", extraRoot.transform);
+            RectTransform headerRt = headerObj.GetComponent<RectTransform>();
+            UIHelper.SetAnchors(headerRt, new Vector2(0, 1), new Vector2(1, 1), new Vector2(0.5f, 1));
+            headerRt.anchoredPosition = new Vector2(0, -20);
+            headerRt.sizeDelta = new Vector2(0, 60);
+            // Raycast blocker for header area
+            UIHelper.AddImage(headerObj, new Color(0, 0, 0, 0));
+
+            GameObject titleObj = UIHelper.CreateUIObject("Title", headerObj.transform);
+            RectTransform titleRt = titleObj.GetComponent<RectTransform>();
+            UIHelper.SetAnchors(titleRt, new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f));
+            titleRt.sizeDelta = new Vector2(400, 50);
+            UIHelper.AddText(titleObj, "\uce90\ub9ad\ud130 \uc124\uc815\uc9d1", new Color32(210, 185, 140, 255), 30, TextAlignmentOptions.Center);
+
+            // ===== Close Button =====
+            GameObject closeBtnObj = UIHelper.CreateUIObject("CloseBtn", headerObj.transform);
+            RectTransform closeRt = closeBtnObj.GetComponent<RectTransform>();
+            UIHelper.SetAnchors(closeRt, new Vector2(1, 0.5f), new Vector2(1, 0.5f), new Vector2(1, 0.5f));
+            closeRt.anchoredPosition = new Vector2(-40, 0);
+            closeRt.sizeDelta = new Vector2(40, 40);
+            Image closeBtnImg = UIHelper.AddImage(closeBtnObj, Color.white);
+            closeBtnImg.sprite = UIHelper.CreateRoundedRectSprite(8, 2, new Color32(180, 50, 50, 255), new Color32(255, 120, 120, 255));
+            closeBtnImg.type = Image.Type.Sliced;
+            Button closeBtn = closeBtnObj.AddComponent<Button>();
+
+            GameObject closeTextObj = UIHelper.CreateUIObject("Text", closeBtnObj.transform);
+            RectTransform textRt = closeTextObj.GetComponent<RectTransform>();
+            UIHelper.StretchFull(textRt);
+            textRt.offsetMin = new Vector2(0, 2);
+            textRt.offsetMax = new Vector2(0, 2);
+            UIHelper.AddText(closeTextObj, "X", Color.white, 24, TextAlignmentOptions.Center);
+
+            // ===== Back shadow box (simulates folder stack depth) =====
+            GameObject shadowBox = UIHelper.CreateUIObject("ShadowBox", extraRoot.transform);
+            RectTransform shadowRt = shadowBox.GetComponent<RectTransform>();
+            UIHelper.SetAnchors(shadowRt, new Vector2(0, 0), new Vector2(1, 1), new Vector2(0.5f, 0.5f));
+            // Made the shadow box much smaller, shifted right/down for stack depth
+            shadowRt.offsetMin = new Vector2(160, 70);
+            shadowRt.offsetMax = new Vector2(-140, -160);
+            Image shadowImg = UIHelper.AddImage(shadowBox, new Color32(80, 60, 40, 255));
+            shadowImg.sprite = UIHelper.CreateRoundedRectSprite(10, 4, new Color32(80, 60, 40, 255), new Color32(60, 45, 25, 255));
+            shadowImg.type = Image.Type.Sliced;
+
+            // ===== Create 6 Folder objects =====
+            string[] charNames = { "\uc138\uc774\uce74", "\uce74\uc2a4\ubbf8", "\ub9ac\ub098", "\ub9ac\ub9ac\uc2a4", "\ubbf8\ub098", "\ud558\ub8e8\uce74" };
+            int folderCount = charNames.Length;
+
+            // Folder colors
+            Color32 folderBorder = new Color32(90, 65, 35, 255);
+            Color32 folderBodyDefault = new Color32(210, 185, 140, 255);
+
+            ExtraUI extraUi = extraRoot.AddComponent<ExtraUI>();
+            extraBgBtn.onClick.AddListener(() => extraUi.Hide());
+            UIHelper.SetField(extraUi, "extraPanel", extraRoot);
+            UIHelper.SetField(extraUi, "globalSettingsButton", globalSettingsBtnObj);
+            UIHelper.SetField(extraUi, "lobbySettingsButton", lobbySettingsBtnObj);
+            UIHelper.SetField(extraUi, "closeButton", closeBtn);
+
+            for (int ci = 0; ci < folderCount; ci++)
+            {
+                // ===== Folder Root =====
+                GameObject folder = UIHelper.CreateUIObject("Folder_" + charNames[ci], extraRoot.transform);
+                RectTransform folderRt = folder.GetComponent<RectTransform>();
+                UIHelper.SetAnchors(folderRt, new Vector2(0, 0), new Vector2(1, 1), new Vector2(0.5f, 0.5f));
+                // Made the overall folder noticeably smaller
+                folderRt.offsetMin = new Vector2(150, 80);
+                folderRt.offsetMax = new Vector2(-150, -150);
+
+                // ===== Body (main content area) =====
+                // Create body FIRST so it renders behind the tab
+                GameObject bodyObj = UIHelper.CreateUIObject("Body", folder.transform);
+                RectTransform bodyRt = bodyObj.GetComponent<RectTransform>();
+                UIHelper.StretchFull(bodyRt);
+
+                Image bodyImg = UIHelper.AddImage(bodyObj, folderBodyDefault);
+                // Body has square top corners so it perfectly aligns with the tabs!
+                bodyImg.sprite = UIHelper.CreateCustomRoundedRectSprite(10, 4, Color.white, folderBorder, false, false, true, true);
+                bodyImg.type = Image.Type.Sliced;
+
+                // ===== Tab (upper protruding part of the folder) =====
+                float tabFraction = 1f / folderCount;
+                float tabLeft = tabFraction * ci;
+                float tabRight = tabFraction * (ci + 1);
+
+                // TabContainer
+                GameObject tabContainerObj = UIHelper.CreateUIObject("TabContainer", folder.transform);
+                RectTransform tabContainerRt = tabContainerObj.GetComponent<RectTransform>();
+                UIHelper.SetAnchors(tabContainerRt, new Vector2(tabLeft, 1), new Vector2(tabRight, 1), new Vector2(0.5f, 1));
+                
+                // Determine horizontal offsets for flush edges on first and last tabs
+                float leftOffset = (ci == 0) ? 0f : 3f;
+                float rightOffset = (ci == folderCount - 1) ? 0f : -3f;
+                
+                // Sit flush with the body vertically
+                tabContainerRt.anchoredPosition = new Vector2(0, 55);
+                tabContainerRt.offsetMin = new Vector2(leftOffset, 0);
+                tabContainerRt.offsetMax = new Vector2(rightOffset, 55);
+                
+                // Add invisible image to container to receive clicks
+                UIHelper.AddImage(tabContainerObj, new Color(0, 0, 0, 0));
+
+                // The actual Tab Image
+                GameObject tabObj = UIHelper.CreateUIObject("Tab", tabContainerObj.transform);
+                RectTransform tabRt = tabObj.GetComponent<RectTransform>();
+                UIHelper.StretchFull(tabRt);
+
+                Image tabImg = UIHelper.AddImage(tabObj, folderBodyDefault);
+                // Tab has square bottom corners to seamlessly connect to the Body!
+                tabImg.sprite = UIHelper.CreateCustomRoundedRectSprite(8, 4, Color.white, folderBorder, true, true, false, false);
+                tabImg.type = Image.Type.Sliced;
+
+                // ===== Seam Hider =====
+                // A solid block of color that covers the Tab's bottom horizontal border AND the Body's top horizontal border.
+                GameObject seamObj = UIHelper.CreateUIObject("Seam", tabContainerObj.transform);
+                RectTransform seamRt = seamObj.GetComponent<RectTransform>();
+                UIHelper.SetAnchors(seamRt, new Vector2(0, 0), new Vector2(1, 0), new Vector2(0.5f, 0.5f));
+                // Inset by 4px on both sides so we DO NOT cover the straight vertical borders!
+                seamRt.offsetMin = new Vector2(4, -6);
+                seamRt.offsetMax = new Vector2(-4, 6);
+                
+                Image seamImg = UIHelper.AddImage(seamObj, folderBodyDefault);
+
+                // Tab text - Make it a child of TabContainer so it perfectly centers in the visible area!
+                GameObject tabTextObj = UIHelper.CreateUIObject("Text", tabContainerObj.transform);
+                RectTransform tabTextRt = tabTextObj.GetComponent<RectTransform>();
+                UIHelper.StretchFull(tabTextRt);
+                // Shift text down slightly to the dead center (removed previous +5 upward bias)
+                tabTextRt.offsetMin = new Vector2(0, 0);
+                tabTextRt.offsetMax = new Vector2(0, 0);
+                TextMeshProUGUI tabText = UIHelper.AddText(tabTextObj, charNames[ci], new Color32(60, 40, 20, 255), 18, TextAlignmentOptions.Center);
+                tabText.fontStyle = FontStyles.Bold;
+
+                // Tab click handler goes on the Container
+                Button tabBtn = tabContainerObj.AddComponent<Button>();
+                tabBtn.transition = Selectable.Transition.None;
+                int capturedIndex = ci;
+                tabBtn.onClick.AddListener(() => { extraUi.SelectCharacter(capturedIndex); });
+
+                // ===== Portrait (left side) =====
+                GameObject portraitObj = UIHelper.CreateUIObject("Portrait", bodyObj.transform);
+                RectTransform portraitRt = portraitObj.GetComponent<RectTransform>();
+                UIHelper.SetAnchors(portraitRt, new Vector2(0, 0), new Vector2(0.32f, 1), new Vector2(0.5f, 0.5f));
+                portraitRt.offsetMin = new Vector2(30, 60);
+                portraitRt.offsetMax = new Vector2(-20, -100);
+                Image portraitImg = UIHelper.AddImage(portraitObj, new Color(1, 1, 1, 0));
+                portraitImg.preserveAspect = true;
+
+                // ===== Info panel (right side with scroll) =====
+                GameObject infoPanelObj = UIHelper.CreateUIObject("Scroll", bodyObj.transform);
+                RectTransform infoPanelRt = infoPanelObj.GetComponent<RectTransform>();
+                UIHelper.SetAnchors(infoPanelRt, new Vector2(0.32f, 0), new Vector2(1, 1), new Vector2(0.5f, 0.5f));
+                infoPanelRt.offsetMin = new Vector2(5, 10);
+                infoPanelRt.offsetMax = new Vector2(-15, -10);
+
+                ScrollRect scrollRect = infoPanelObj.AddComponent<ScrollRect>();
+                scrollRect.horizontal = false;
+                scrollRect.vertical = true;
+                scrollRect.movementType = ScrollRect.MovementType.Clamped;
+                UIHelper.AddImage(infoPanelObj, new Color(0, 0, 0, 0));
+
+                // Viewport
+                GameObject viewportObj = UIHelper.CreateUIObject("Viewport", infoPanelObj.transform);
+                UIHelper.StretchFull(viewportObj.GetComponent<RectTransform>());
+                viewportObj.AddComponent<RectMask2D>();
+
+                // Content
+                GameObject contentObj = UIHelper.CreateUIObject("Content", viewportObj.transform);
+                RectTransform contentRt = contentObj.GetComponent<RectTransform>();
+                UIHelper.SetAnchors(contentRt, new Vector2(0, 1), new Vector2(1, 1), new Vector2(0, 1));
+                contentRt.sizeDelta = new Vector2(0, 0);
+                ContentSizeFitter fitter = contentObj.AddComponent<ContentSizeFitter>();
+                fitter.verticalFit = ContentSizeFitter.FitMode.PreferredSize;
+
+                scrollRect.viewport = viewportObj.GetComponent<RectTransform>();
+                scrollRect.content = contentRt;
+
+                // Name text
+                GameObject nameObj = UIHelper.CreateUIObject("NameText", contentObj.transform);
+                RectTransform nameRt = nameObj.GetComponent<RectTransform>();
+                UIHelper.SetAnchors(nameRt, new Vector2(0, 1), new Vector2(1, 1), new Vector2(0, 1));
+                nameRt.sizeDelta = new Vector2(0, 50);
+                TextMeshProUGUI nameText = UIHelper.AddText(nameObj, "", new Color32(60, 40, 20, 255), 28, TextAlignmentOptions.Left);
+                nameText.fontStyle = FontStyles.Bold;
+                nameText.margin = new Vector4(20, 20, 20, 0);
+
+                // Profile text
+                GameObject profileObj = UIHelper.CreateUIObject("ProfileText", contentObj.transform);
+                RectTransform profileRt = profileObj.GetComponent<RectTransform>();
+                UIHelper.SetAnchors(profileRt, new Vector2(0, 1), new Vector2(1, 1), new Vector2(0, 1));
+                profileRt.sizeDelta = new Vector2(0, 0);
+                TextMeshProUGUI profileText = UIHelper.AddText(profileObj, "", new Color32(50, 40, 30, 255), 18, TextAlignmentOptions.TopLeft);
+                profileText.textWrappingMode = TextWrappingModes.Normal;
+                profileText.margin = new Vector4(20, 10, 20, 40);
+                profileText.lineSpacing = 8f;
+
+                // Layout
+                VerticalLayoutGroup vlg = contentObj.AddComponent<VerticalLayoutGroup>();
+                vlg.childForceExpandWidth = true;
+                vlg.childForceExpandHeight = false;
+                vlg.childControlWidth = true;
+                vlg.childControlHeight = true;
+                vlg.padding = new RectOffset(0, 0, 10, 20);
+
+                LayoutElement profileLE = profileObj.AddComponent<LayoutElement>();
+                profileLE.flexibleWidth = 1;
+                LayoutElement nameLE = nameObj.AddComponent<LayoutElement>();
+                nameLE.minHeight = 50;
+                nameLE.flexibleWidth = 1;
+
+                // Register folder with ExtraUI
+                extraUi.RegisterFolder(folder, bodyImg, tabImg, tabText);
+            }
+
+            extraUiRef = extraUi;
+        }
+
+                private void CreateGlobalUI()
+        {
+            GameObject globalRoot = UIHelper.CreateUIObject("GlobalUI", mainCanvas.transform);
+            UIHelper.StretchFull(globalRoot.GetComponent<RectTransform>());
+
+            var globalMgr = globalRoot.AddComponent<GlobalUIManager>();
+            globalMgrRef = globalMgr;
+
+            // Settings Button (Top Right)
+            GameObject btnObj = UIHelper.CreateUIObject("GlobalSettingsBtn", globalRoot.transform);
+            globalSettingsBtnObj = btnObj;
+            RectTransform btnRt = btnObj.GetComponent<RectTransform>();
+            UIHelper.SetAnchors(btnRt, new Vector2(1, 1), new Vector2(1, 1), new Vector2(1, 1));
+            btnRt.anchoredPosition = new Vector2(-20, -20);
+            btnRt.sizeDelta = new Vector2(60, 60);
+
+            // Button styling (Invisible hit box)
+            Image btnImg = UIHelper.AddImage(btnObj, new Color(0, 0, 0, 0));
+            Button btn = btnObj.AddComponent<Button>();
+            btn.transition = Selectable.Transition.ColorTint;
+            
+            ColorBlock cb = ColorBlock.defaultColorBlock;
+            cb.normalColor = Color.white;
+            cb.highlightedColor = new Color32(200, 200, 200, 255); // Slightly gray on hover
+            cb.pressedColor = new Color32(150, 150, 150, 255);     // Darker gray on click
+            cb.selectedColor = Color.white;
+            cb.colorMultiplier = 1f;
+            cb.fadeDuration = 0.15f;
+            btn.colors = cb;
+            
+            btn.onClick.AddListener(() => globalMgr.ToggleSettings());
+
+            // Gear Icon
+            GameObject iconObj = UIHelper.CreateUIObject("Icon", btnObj.transform);
+            UIHelper.StretchFull(iconObj.GetComponent<RectTransform>());
+            Text iconText = iconObj.AddComponent<Text>();
+            iconText.text = "⚙"; // Gear emoji
+            iconText.alignment = TextAnchor.MiddleCenter;
+            iconText.alignByGeometry = true;
+            iconText.fontSize = 40;
+            iconText.color = Color.white;
+            
+            // Add black outline to the gear text
+            UnityEngine.UI.Outline textOutline = iconObj.AddComponent<UnityEngine.UI.Outline>();
+            textOutline.effectColor = new Color(0, 0, 0, 1);
+            textOutline.effectDistance = new Vector2(2, -2);
+            
+            // Link text as target graphic so the gear itself reacts to hover/click!
+            btn.targetGraphic = iconText;
+            
+            // Assign font
+            string[] fontNames = { 
+                "Malgun Gothic", "Apple SD Gothic Neo",
+                "Meiryo", "Yu Gothic", "MS Gothic", "Hiragino Sans",
+                "Microsoft YaHei", "SimHei", "PingFang SC", "Noto Sans CJK SC",
+                "Microsoft JhengHei", "PingFang TC", "Noto Sans CJK TC",
+                "Arial Unicode MS", "sans-serif"
+            };
+            Font rawFont = Font.CreateDynamicFontFromOSFont(fontNames, 40);
+            if (rawFont != null) iconText.font = rawFont;
+            else iconText.font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
         }
 
         private void CreateScreenTransition()
