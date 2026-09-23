@@ -66,7 +66,7 @@ namespace HalloweenVN.UI
 
             profiles.Add(new CharacterProfile
             {
-                name = "세이카 (Seika)",
+                name = HalloweenVN.Core.SettingsData.Language == HalloweenVN.Core.GameLanguage.English ? "Seika" : "세이카",
                 spritePath = "Characters/세이카/기본",
                 age = "25세",
                 role = "사무소 소장 / 경영·법무 담당",
@@ -79,7 +79,7 @@ namespace HalloweenVN.UI
 
             profiles.Add(new CharacterProfile
             {
-                name = "카스미 (Kasumi)",
+                name = HalloweenVN.Core.SettingsData.Language == HalloweenVN.Core.GameLanguage.English ? "Kasumi" : "카스미",
                 spritePath = "Characters/카스미/기본",
                 age = "23세",
                 role = "수석 탐정 / 실질적 두뇌",
@@ -92,7 +92,7 @@ namespace HalloweenVN.UI
 
             profiles.Add(new CharacterProfile
             {
-                name = "리나 (Rina)",
+                name = HalloweenVN.Core.SettingsData.Language == HalloweenVN.Core.GameLanguage.English ? "Rina" : "리나",
                 spritePath = "Characters/리나/기본",
                 age = "21세",
                 role = "현장 돌격 담당 / 행동대장",
@@ -105,7 +105,7 @@ namespace HalloweenVN.UI
 
             profiles.Add(new CharacterProfile
             {
-                name = "리리스 (Lilith)",
+                name = HalloweenVN.Core.SettingsData.Language == HalloweenVN.Core.GameLanguage.English ? "Lilith" : "리리스",
                 spritePath = "Characters/리리스/기본",
                 age = "20세",
                 role = "기술·정보 담당 / 해커 & 드론 조종사",
@@ -118,7 +118,7 @@ namespace HalloweenVN.UI
 
             profiles.Add(new CharacterProfile
             {
-                name = "미나 (Mina)",
+                name = HalloweenVN.Core.SettingsData.Language == HalloweenVN.Core.GameLanguage.English ? "Mina" : "미나",
                 spritePath = "Characters/미나/기본",
                 age = "1,000살",
                 role = "오컬트 고문 / 정체불명의 조력자",
@@ -131,7 +131,7 @@ namespace HalloweenVN.UI
 
             profiles.Add(new CharacterProfile
             {
-                name = "하루카 (Haruka)",
+                name = HalloweenVN.Core.SettingsData.Language == HalloweenVN.Core.GameLanguage.English ? "Haruka" : "하루카",
                 spritePath = "Characters/하루카/기본",
                 age = "19세",
                 role = "사무소 접수 및 행정 / 마스코트",
@@ -158,10 +158,15 @@ namespace HalloweenVN.UI
         public void Show()
         {
             if (EventSystem.current != null) EventSystem.current.SetSelectedGameObject(null);
+            
+            // Re-initialize language dynamically every time we open the book!
+            InitializeProfiles();
+            UpdateTabNames();
+
             if (extraPanel != null)
             {
                 extraPanel.SetActive(true);
-                SelectCharacter(0);
+                SelectCharacter(currentIndex); // Refresh current selection
             }
             if (globalSettingsButton != null) globalSettingsButton.SetActive(false);
             if (lobbySettingsButton != null) lobbySettingsButton.SetActive(false);
@@ -173,6 +178,60 @@ namespace HalloweenVN.UI
                 extraPanel.SetActive(false);
             if (globalSettingsButton != null) globalSettingsButton.SetActive(true);
             if (lobbySettingsButton != null) lobbySettingsButton.SetActive(true);
+        }
+
+                private void UpdateTabNames()
+        {
+            for (int i = 0; i < folderTabTexts.Count; i++)
+            {
+                if (i < profiles.Count && folderTabTexts[i] != null)
+                {
+                    folderTabTexts[i].text = profiles[i].name;
+                }
+            }
+        }
+
+        private string GetLabel(string ko, string en, string jp, string zh)
+        {
+            switch (HalloweenVN.Core.SettingsData.Language)
+            {
+                case HalloweenVN.Core.GameLanguage.English: return en;
+                case HalloweenVN.Core.GameLanguage.Japanese: return jp;
+                case HalloweenVN.Core.GameLanguage.ChineseSimplified: 
+                case HalloweenVN.Core.GameLanguage.ChineseTraditional: return zh;
+                default: return ko;
+            }
+        }
+
+        private void UpdateProfileText(TextMeshProUGUI profileTxt, CharacterProfile profile)
+        {
+            if (profileTxt == null) return;
+            string l_age = GetLabel("나이", "Age", "年齢", "年龄");
+            string l_role = GetLabel("역할", "Role", "役割", "职责");
+            string l_mbti = "MBTI";
+            string l_app = GetLabel("외모", "Appearance", "外見", "外貌");
+            string l_pers = GetLabel("성격", "Personality", "性格", "性格");
+            string l_speech = GetLabel("말투", "Speech", "口調", "语气");
+            string l_secret = GetLabel("비밀", "Secret", "秘密", "秘密");
+
+            profileTxt.text =
+                $"<color=#B46420>{l_age}:</color> {profile.age}
+" +
+                $"<color=#B46420>{l_role}:</color> {profile.role}
+" +
+                $"<color=#B46420>{l_mbti}:</color> {profile.mbti}
+
+" +
+                $"<color=#B46420>{l_app}:</color> {profile.appearance}
+
+" +
+                $"<color=#B46420>{l_pers}:</color> {profile.personality}
+
+" +
+                $"<color=#B46420>{l_speech}:</color> {profile.speechStyle}
+
+" +
+                $"<color=#B46420>{l_secret}:</color> {profile.secret}";
         }
 
         public void SelectCharacter(int index)
@@ -275,17 +334,8 @@ namespace HalloweenVN.UI
                 }
             }
             if (nameTxt != null) nameTxt.text = profile.name;
-            if (profileTxt != null)
-            {
-                profileTxt.text =
-                    $"<color=#B46420>나이:</color> {profile.age}\n" +
-                    $"<color=#B46420>역할:</color> {profile.role}\n" +
-                    $"<color=#B46420>MBTI:</color> {profile.mbti}\n\n" +
-                    $"<color=#B46420>외모:</color> {profile.appearance}\n\n" +
-                    $"<color=#B46420>성격:</color> {profile.personality}\n\n" +
-                    $"<color=#B46420>말투:</color> {profile.speechStyle}\n\n" +
-                    $"<color=#B46420>비밀:</color> {profile.secret}";
-            }
+            UpdateProfileText(profileTxt, profile);
+
         }
     }
 }

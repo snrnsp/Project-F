@@ -1026,6 +1026,34 @@ namespace HalloweenVN.UI.Theme
 
         private void CreateExtraUI()
         {
+            TMP_FontAsset hwFontAsset = null;
+            string primaryFontName = "NanumPenScript";
+            switch(SettingsData.Language) {
+                case GameLanguage.English: primaryFontName = "Caveat-Regular"; break;
+                case GameLanguage.Japanese: primaryFontName = "ZenKurenaido-Regular"; break;
+                case GameLanguage.ChineseSimplified: primaryFontName = "MaShanZheng-Regular"; break;
+                case GameLanguage.ChineseTraditional: primaryFontName = "LongCang-Regular"; break;
+            }
+            
+            Font rawHwFont = Resources.Load<Font>("Fonts/" + primaryFontName);
+            if (rawHwFont == null) rawHwFont = Resources.Load<Font>("Fonts/NanumPenScript");
+
+            if (rawHwFont != null) {
+                hwFontAsset = TMP_FontAsset.CreateFontAsset(rawHwFont);
+                hwFontAsset.name = "Handwriting Font_" + primaryFontName;
+                if (hwFontAsset.fallbackFontAssetTable == null) hwFontAsset.fallbackFontAssetTable = new System.Collections.Generic.List<TMP_FontAsset>();
+                
+                string[] allHwFonts = { "NanumPenScript", "ZenKurenaido-Regular", "MaShanZheng-Regular", "LongCang-Regular", "Caveat-Regular" };
+                foreach (string fontName in allHwFonts) {
+                    if (fontName == primaryFontName) continue;
+                    Font f = Resources.Load<Font>("Fonts/" + fontName);
+                    if (f != null) hwFontAsset.fallbackFontAssetTable.Add(TMP_FontAsset.CreateFontAsset(f));
+                }
+                
+                TMP_FontAsset fallback = Resources.Load<TMP_FontAsset>("Fonts/MalgunGothic SDF");
+                if (fallback != null) hwFontAsset.fallbackFontAssetTable.Add(fallback);
+            }
+
             // Root panel (fullscreen overlay, starts hidden)
             GameObject extraRoot = UIHelper.CreateUIObject("ExtraPanel", mainCanvas.transform);
             UIHelper.StretchFull(extraRoot.GetComponent<RectTransform>());
@@ -1142,7 +1170,8 @@ namespace HalloweenVN.UI.Theme
                 // Shift text down slightly to the dead center (removed previous +5 upward bias)
                 tabTextRt.offsetMin = new Vector2(0, 0);
                 tabTextRt.offsetMax = new Vector2(0, 0);
-                TextMeshProUGUI tabText = UIHelper.AddText(tabTextObj, charNames[ci], new Color32(60, 40, 20, 255), 18, TextAlignmentOptions.Center);
+                TextMeshProUGUI tabText = UIHelper.AddText(tabTextObj, charNames[ci], Color.black, 45, TextAlignmentOptions.Center);
+                if (hwFontAsset != null) tabText.font = hwFontAsset;
                 tabText.fontStyle = FontStyles.Bold;
 
                 // Tab click handler goes on the Container
@@ -1194,7 +1223,8 @@ namespace HalloweenVN.UI.Theme
                 RectTransform nameRt = nameObj.GetComponent<RectTransform>();
                 UIHelper.SetAnchors(nameRt, new Vector2(0, 1), new Vector2(1, 1), new Vector2(0, 1));
                 nameRt.sizeDelta = new Vector2(0, 50);
-                TextMeshProUGUI nameText = UIHelper.AddText(nameObj, "", new Color32(60, 40, 20, 255), 28, TextAlignmentOptions.Left);
+                TextMeshProUGUI nameText = UIHelper.AddText(nameObj, "", Color.black, 60, TextAlignmentOptions.Left);
+                if (hwFontAsset != null) nameText.font = hwFontAsset;
                 nameText.fontStyle = FontStyles.Bold;
                 nameText.margin = new Vector4(20, 20, 20, 0);
 
@@ -1203,7 +1233,8 @@ namespace HalloweenVN.UI.Theme
                 RectTransform profileRt = profileObj.GetComponent<RectTransform>();
                 UIHelper.SetAnchors(profileRt, new Vector2(0, 1), new Vector2(1, 1), new Vector2(0, 1));
                 profileRt.sizeDelta = new Vector2(0, 0);
-                TextMeshProUGUI profileText = UIHelper.AddText(profileObj, "", new Color32(50, 40, 30, 255), 18, TextAlignmentOptions.TopLeft);
+                TextMeshProUGUI profileText = UIHelper.AddText(profileObj, "", Color.black, 36, TextAlignmentOptions.TopLeft);
+                if (hwFontAsset != null) profileText.font = hwFontAsset;
                 profileText.textWrappingMode = TextWrappingModes.Normal;
                 profileText.margin = new Vector4(20, 10, 20, 40);
                 profileText.lineSpacing = 8f;
@@ -1327,6 +1358,12 @@ namespace HalloweenVN.UI.Theme
             else iconText.font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
         }
 
+                private System.Collections.IEnumerator DelayedFadeIn(ScreenTransition st)
+        {
+            yield return null;
+            st.FadeIn(0.5f);
+        }
+        
         private void CreateScreenTransition()
         {
             GameObject transObj = new GameObject("ScreenTransition");
@@ -1343,10 +1380,20 @@ namespace HalloweenVN.UI.Theme
             Image img = UIHelper.AddImage(overlayObj, HalloweenTheme.TransitionColor);
             
             Color c = img.color;
-            c.a = 0;
+            if (PlayerPrefs.GetInt("StartFaded", 0) == 1) {
+                c.a = 1f;
+                PlayerPrefs.SetInt("StartFaded", 0);
+                PlayerPrefs.Save();
+            } else {
+                c.a = 0f;
+            }
             img.color = c;
 
-            transObj.AddComponent<ScreenTransition>();
+            var st = transObj.AddComponent<ScreenTransition>();
+            if (c.a > 0f) {
+                // Defer the fade in slightly so UI has time to build
+                st.StartCoroutine(DelayedFadeIn(st));
+            }
             screenTransitionOverlay = transObj;
         }
     }

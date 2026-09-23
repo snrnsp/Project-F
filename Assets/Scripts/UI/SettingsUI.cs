@@ -284,23 +284,39 @@ namespace HalloweenVN.UI
             // Wire up actions
             noBtn.onClick.AddListener(() => Destroy(overlay));
             yesBtn.onClick.AddListener(() => {
-                Destroy(overlay);
+                yesBtn.interactable = false;
+                noBtn.interactable = false;
+                // Do not destroy the overlay so it remains visible during the fade out!
                 ExecuteDeleteData();
             });
         }
 
         private void ExecuteDeleteData()
         {
-            // Delete all save slots (0 to 9 just in case)
+            var st = FindFirstObjectByType<HalloweenVN.UI.Theme.ScreenTransition>();
+            if (st != null)
+            {
+                st.FadeOut(0.5f, () => 
+                {
+                    PerformDeleteAndReload();
+                });
+            }
+            else
+            {
+                PerformDeleteAndReload();
+            }
+        }
+
+        private void PerformDeleteAndReload()
+        {
             for (int i = 0; i < 10; i++)
             {
                 HalloweenVN.Core.SaveManager.Delete(i);
             }
-            // Delete PlayerPrefs completely
             PlayerPrefs.DeleteAll();
+            PlayerPrefs.SetInt("StartFaded", 1);
             PlayerPrefs.Save();
             
-            // Reload the current scene to reset the game completely back to the title screen
             UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
         }
 
