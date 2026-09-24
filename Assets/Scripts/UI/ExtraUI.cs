@@ -215,22 +215,12 @@ namespace HalloweenVN.UI
             string l_secret = GetLabel("비밀", "Secret", "秘密", "秘密");
 
             profileTxt.text =
-                $"<color=#B46420>{l_age}:</color> {profile.age}
-" +
-                $"<color=#B46420>{l_role}:</color> {profile.role}
-" +
-                $"<color=#B46420>{l_mbti}:</color> {profile.mbti}
-
-" +
-                $"<color=#B46420>{l_app}:</color> {profile.appearance}
-
-" +
-                $"<color=#B46420>{l_pers}:</color> {profile.personality}
-
-" +
-                $"<color=#B46420>{l_speech}:</color> {profile.speechStyle}
-
-" +
+                $"<color=#B46420>{l_age}:</color> {profile.age}\n" +
+                $"<color=#B46420>{l_role}:</color> {profile.role}\n" +
+                $"<color=#B46420>{l_mbti}:</color> {profile.mbti}\n\n" +
+                $"<color=#B46420>{l_app}:</color> {profile.appearance}\n\n" +
+                $"<color=#B46420>{l_pers}:</color> {profile.personality}\n\n" +
+                $"<color=#B46420>{l_speech}:</color> {profile.speechStyle}\n\n" +
                 $"<color=#B46420>{l_secret}:</color> {profile.secret}";
         }
 
