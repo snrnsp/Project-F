@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace HalloweenVN.Data
 {
@@ -25,6 +25,7 @@ namespace HalloweenVN.Data
         public string command;
         public bool noFade; // If true, character appears instantly without fade animation
         public bool slideIn; // If true, character slides into their position
+        public bool slideFromRight; // If true, overrides default slide direction for Center
     }
 
     [System.Serializable]

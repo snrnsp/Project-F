@@ -43,10 +43,11 @@ namespace HalloweenVN.UI
         private static readonly Color DIM_COLOR = new Color(0.45f, 0.45f, 0.45f, 1f);
         private static readonly Color ACTIVE_COLOR = Color.white;
         private const float DEFAULT_FADE_SPEED = 0.35f;
-        private const float MOVE_DURATION = 0.5f;
+        private const float MOVE_DURATION = 0.25f;
 
         private Coroutine[] _moveCoroutines = new Coroutine[3];
         private Dictionary<Image, Coroutine> _highlightCoroutines = new Dictionary<Image, Coroutine>();
+        private Dictionary<Image, Coroutine> _fadeCoroutines = new Dictionary<Image, Coroutine>();
         private Dictionary<string, CharacterPosition> _activeSpeakerPositions = new Dictionary<string, CharacterPosition>();
         private List<string> _speakerOrder = new List<string>();
         private List<CharacterPosition> _tempPositionList = new List<CharacterPosition>();
@@ -274,7 +275,11 @@ namespace HalloweenVN.UI
                 {
                     // Instant hide
                     Image hideImg = GetCharacterImage(_activeSpeakerPositions[name]);
-                    if (hideImg != null) hideImg.gameObject.SetActive(false);
+                    if (hideImg != null) 
+                    {
+                        if (_fadeCoroutines.ContainsKey(hideImg) && _fadeCoroutines[hideImg] != null) StopCoroutine(_fadeCoroutines[hideImg]);
+                        hideImg.gameObject.SetActive(false);
+                    }
                 }
                 else
                 {
@@ -356,6 +361,10 @@ namespace HalloweenVN.UI
                         {
                             // Start from off-screen (left or right depending on target position)
                             float offScreenX = (targetX < 0.5f) ? -0.5f : (targetX > 0.5f ? 1.5f : -0.5f);
+                            
+                            // 명시적으로 slideFromRight가 true이면 중앙 캐릭터라도 오른쪽에서 등장
+                            if (node.slideFromRight) offScreenX = 1.5f;
+
                             SetCharacterAnchorX(rt, offScreenX);
                             MoveCharacterTo(assignedPos, targetX);
                         }
@@ -367,6 +376,7 @@ namespace HalloweenVN.UI
 
                     if (node.noFade)
                     {
+                        if (_fadeCoroutines.ContainsKey(img) && _fadeCoroutines[img] != null) StopCoroutine(_fadeCoroutines[img]);
                         img.gameObject.SetActive(true);
                         Color c = img.color;
                         c.a = 1f;
@@ -374,7 +384,7 @@ namespace HalloweenVN.UI
                     }
                     else
                     {
-                        StartCoroutine(FadeInCharacter(img));
+                        StartFadeIn(img);
                     }
                 }
                 else
@@ -416,7 +426,11 @@ namespace HalloweenVN.UI
             }
 
             // Dim/Highlight based on speaker
-            UpdateSpeakerHighlight(node.speaker);
+            bool wasNarrator = !_currentlyInDialoguePanel;
+            bool isNarratorNow = string.IsNullOrEmpty(node.speaker);
+            bool usePanelNow = !isNarratorNow;
+            bool instantHighlight = wasNarrator && usePanelNow; // 컷신(독백)에서 대화로 넘어올 때는 깜빡임 방지를 위해 즉시 색상 적용
+            UpdateSpeakerHighlight(node.speaker, instantHighlight);
 
             // Background
             UpdateBackground(node.backgroundSprite);
@@ -506,8 +520,8 @@ namespace HalloweenVN.UI
             for (int i = 0; i < n; i++)
             {
                 float targetX = 0.5f; // Default: center
-                if (n == 2) targetX = (i == 0) ? 0.34f : 0.78f;
-                else if (n == 3) targetX = (i == 0) ? 0.24f : (i == 1 ? 0.56f : 0.88f);
+                if (n == 2) targetX = (i == 0) ? 0.25f : 0.75f;
+                else if (n == 3) targetX = (i == 0) ? 0.20f : (i == 1 ? 0.50f : 0.80f);
 
                 CharacterPosition pos = _tempPositionList[i];
                 MoveCharacterTo(pos, targetX);
@@ -562,6 +576,13 @@ namespace HalloweenVN.UI
         }
 
         // ═══════════ Character FadeIn / FadeOut ═══════════
+        private void StartFadeIn(Image img)
+        {
+            if (img == null) return;
+            if (_fadeCoroutines.ContainsKey(img) && _fadeCoroutines[img] != null) StopCoroutine(_fadeCoroutines[img]);
+            _fadeCoroutines[img] = StartCoroutine(FadeInCharacter(img));
+        }
+
         private IEnumerator FadeInCharacter(Image img)
         {
             if (img == null) yield break;
@@ -590,7 +611,8 @@ namespace HalloweenVN.UI
             Image img = GetCharacterImage(pos);
             if (img != null && img.gameObject.activeSelf)
             {
-                StartCoroutine(FadeOutCharacterCoroutine(img));
+                if (_fadeCoroutines.ContainsKey(img) && _fadeCoroutines[img] != null) StopCoroutine(_fadeCoroutines[img]);
+                _fadeCoroutines[img] = StartCoroutine(FadeOutCharacterCoroutine(img));
             }
         }
 
@@ -636,14 +658,14 @@ namespace HalloweenVN.UI
         }
 
         // ═══════════ Speaker Highlight / Dim ═══════════
-        private void UpdateSpeakerHighlight(string speaker)
+        private void UpdateSpeakerHighlight(string speaker, bool instant = false)
         {
             if (string.IsNullOrWhiteSpace(speaker))
             {
                 // Narrator — all active characters stay bright
                 foreach (var kvp in _activeSpeakerPositions)
                 {
-                    DimCharacterImage(GetCharacterImage(kvp.Value), true);
+                    DimCharacterImage(GetCharacterImage(kvp.Value), true, instant);
                 }
                 return;
             }
@@ -651,22 +673,33 @@ namespace HalloweenVN.UI
             foreach (var kvp in _activeSpeakerPositions)
             {
                 bool isSpeaking = kvp.Key == speaker;
-                DimCharacterImage(GetCharacterImage(kvp.Value), isSpeaking);
+                DimCharacterImage(GetCharacterImage(kvp.Value), isSpeaking, instant);
             }
         }
 
-        private void DimCharacterImage(Image image, bool isActive, float duration = 0.2f)
+        private void DimCharacterImage(Image image, bool isActive, bool instant = false)
         {
             if (image == null) return;
             if (!image.gameObject.activeSelf) return;
 
             Color targetColor = isActive ? ACTIVE_COLOR : DIM_COLOR;
+            float duration = instant ? 0f : 0.2f;
 
             if (_highlightCoroutines.ContainsKey(image) && _highlightCoroutines[image] != null)
             {
                 StopCoroutine(_highlightCoroutines[image]);
             }
-            _highlightCoroutines[image] = StartCoroutine(FadeColorCoroutine(image, targetColor, duration));
+            
+            if (duration <= 0f)
+            {
+                Color finalC = targetColor;
+                finalC.a = image.color.a;
+                image.color = finalC;
+            }
+            else
+            {
+                _highlightCoroutines[image] = StartCoroutine(FadeColorCoroutine(image, targetColor, duration));
+            }
         }
 
         private IEnumerator FadeColorCoroutine(Image image, Color targetColor, float duration)
@@ -828,6 +861,17 @@ namespace HalloweenVN.UI
             while (visibleCount <= totalVisibleChars && target != null)
             {
                 target.maxVisibleCharacters = visibleCount;
+                
+                // 줄바꿈(\n) 문자가 출력되었을 때 0.7초 대기 (유저 요청)
+                if (visibleCount > 0 && visibleCount <= target.textInfo.characterCount)
+                {
+                    char c = target.textInfo.characterInfo[visibleCount - 1].character;
+                    if (c == '\n')
+                    {
+                        yield return new WaitForSeconds(0.7f);
+                    }
+                }
+                
                 visibleCount++;
                 yield return new WaitForSeconds(SettingsData.TextSpeed);
             }
@@ -913,8 +957,13 @@ namespace HalloweenVN.UI
         }
 
 
+        private float _lastClickTime = 0f;
+
         public void OnClick()
         {
+            if (Time.unscaledTime - _lastClickTime < 0.05f) return; // Prevent double-trigger from UI Event System + Input System
+            _lastClickTime = Time.unscaledTime;
+
             Debug.Log($"[DialogueUI] OnClick triggered. isTyping={isTyping}");
             if (isTyping)
             {

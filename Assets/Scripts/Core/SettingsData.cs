@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace HalloweenVN.Core
 {
@@ -42,7 +42,7 @@ namespace HalloweenVN.Core
 
         public static void Save()
         {
-            PlayerPrefs.SetFloat(Prefix + "TextSpeed", Mathf.Clamp(TextSpeed, 0.01f, 0.1f));
+            PlayerPrefs.SetFloat(Prefix + "TextSpeed", Mathf.Clamp(TextSpeed, 0.001f, 0.1f));
             PlayerPrefs.SetFloat(Prefix + "BGMVolume", Mathf.Clamp01(BGMVolume));
             PlayerPrefs.SetFloat(Prefix + "SFXVolume", Mathf.Clamp01(SFXVolume));
             PlayerPrefs.SetInt(Prefix + "IsFullScreen", IsFullScreen ? 1 : 0);

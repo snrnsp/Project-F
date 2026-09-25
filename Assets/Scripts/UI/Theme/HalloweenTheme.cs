@@ -1,4 +1,4 @@
-﻿﻿using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 namespace HalloweenVN.UI.Theme
@@ -22,10 +22,10 @@ namespace HalloweenVN.UI.Theme
         public static readonly Color ButtonDisabled = new Color32(40, 40, 40, 255);        // gray
         public static readonly Color ButtonText = new Color32(255, 180, 80, 255);          // warm gold
         
-        // Evidence / Deduction
-        public static readonly Color SlotEmpty = new Color32(35, 30, 50, 255);             // dark purple-gray
-        public static readonly Color SlotFilled = new Color32(50, 80, 50, 255);            // muted green
-        public static readonly Color SlotHighlight = new Color32(180, 100, 20, 255);       // amber highlight
+        // Evidence / Deduction (contrast-improved)
+        public static readonly Color SlotEmpty = new Color32(55, 45, 75, 255);             // medium purple-gray (improved contrast)
+        public static readonly Color SlotFilled = new Color32(50, 90, 50, 255);            // muted green (slightly brighter)
+        public static readonly Color SlotHighlight = new Color32(200, 120, 30, 255);       // amber highlight
         public static readonly Color InventoryBg = new Color32(20, 12, 30, 255);           // very dark
         
         // Transition

@@ -1,0 +1,89 @@
+{
+  "dialogueId": "ch1_result_fail",
+  "nodes": [
+    {
+      "id": 0,
+      "speaker": "카스미",
+      "text": "소장님, 추론의 일부가 맞지 않습니다. 증거와 결론 사이에 논리적 비약이 있어요.",
+      "characterSpriteLeft": "",
+      "characterSpriteCenter": "Characters/카스미/찡그림",
+      "characterSpriteRight": "",
+      "backgroundSprite": "Images/mansion_interior",
+      "choices": [],
+      "nextNodeId": 1,
+      "command": "",
+      "noFade": false,
+      "slideIn": false
+    },
+    {
+      "id": 1,
+      "speaker": "카스미",
+      "text": "각 증거가 정확히 무엇을 증명하는지, 하나씩 다시 짚어볼 필요가 있습니다.",
+      "characterSpriteLeft": "",
+      "characterSpriteCenter": "Characters/카스미/기본",
+      "characterSpriteRight": "",
+      "backgroundSprite": "",
+      "choices": [],
+      "nextNodeId": 2,
+      "command": "",
+      "noFade": false,
+      "slideIn": false
+    },
+    {
+      "id": 2,
+      "speaker": "세이카",
+      "text": "...맞아. 서두르면 안 돼. 증거의 설명을 꼼꼼하게 읽어보자.",
+      "characterSpriteLeft": "Characters/세이카/당황",
+      "characterSpriteCenter": "",
+      "characterSpriteRight": "Characters/카스미/기본",
+      "backgroundSprite": "",
+      "choices": [],
+      "nextNodeId": 3,
+      "command": "",
+      "noFade": false,
+      "slideIn": true
+    },
+    {
+      "id": 3,
+      "speaker": "리리스",
+      "text": "힌트를 줄게. 증거 중에 이 사건과 직접 관련 없는 것도 섞여 있을 수 있어. 설명을 잘 읽어봐.",
+      "characterSpriteLeft": "Characters/리리스/기본",
+      "characterSpriteCenter": "",
+      "characterSpriteRight": "Characters/세이카/기본",
+      "backgroundSprite": "",
+      "choices": [],
+      "nextNodeId": 4,
+      "command": "",
+      "noFade": false,
+      "slideIn": true
+    },
+    {
+      "id": 4,
+      "speaker": "미나",
+      "text": "서두르지 마라... 진실은 언제나 증거 속에 숨어 있느니라.",
+      "characterSpriteLeft": "Characters/미나/기본",
+      "characterSpriteCenter": "",
+      "characterSpriteRight": "Characters/세이카/기본",
+      "backgroundSprite": "",
+      "choices": [],
+      "nextNodeId": 5,
+      "command": "",
+      "noFade": false,
+      "slideIn": true
+    },
+    {
+      "id": 5,
+      "speaker": "",
+      "text": "",
+      "characterSpriteLeft": "",
+      "characterSpriteCenter": "",
+      "characterSpriteRight": "",
+      "backgroundSprite": "",
+      "choices": [],
+      "nextNodeId": -1,
+      "command": "CHANGE_PHASE:Deduction",
+      "noFade": false,
+      "slideIn": false
+    }
+  ]
+}

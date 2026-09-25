@@ -17,6 +17,7 @@ namespace HalloweenVN.UI
         [SerializeField] private Image slotBackground;
         [SerializeField] private Color emptyColor = new Color(0.3f, 0.3f, 0.3f, 0.5f);
         [SerializeField] private Color filledColor = new Color(0.5f, 0.8f, 0.5f, 0.5f);
+        [SerializeField] private TextMeshProUGUI assignedEvidenceText;
         
         private int questionIndex;
         private string assignedEvidenceId;
@@ -76,6 +77,11 @@ namespace HalloweenVN.UI
                         {
                             slotBackground.color = filledColor;
                         }
+                        
+                        if (assignedEvidenceText != null)
+                        {
+                            assignedEvidenceText.text = evidence.evidenceName;
+                        }
                     }
                 }
             }
@@ -102,6 +108,11 @@ namespace HalloweenVN.UI
             if (slotBackground != null)
             {
                 slotBackground.color = emptyColor;
+            }
+            
+            if (assignedEvidenceText != null)
+            {
+                assignedEvidenceText.text = "";
             }
         }
 

@@ -71,7 +71,7 @@ namespace HalloweenVN.UI
                 age = "25세",
                 role = "사무소 소장 / 경영·법무 담당",
                 mbti = "ENTJ",
-                appearance = "짙은 보라~남색 단발머리에 하트 모양 골드 귀걸이. 맑은 푸른 눈. 검은 트렌치코트 안쪽의 버건디 컬러가 세련되고 도시적인 분위기.",
+                appearance = "허리 아래까지 흘러내리는 짙은 남색 긴 머리카락에 금색 헤어핀. 맑고 차가운 파란 눈동자. 검은색 롱 스커트에 차콜 그레이 재킷, 검은 숄더백을 걸친 세련되고 도시적인 분위기.",
                 personality = "「네버모어 오컬트 탐정 사무소」의 설립자이자 소장. 카리스마가 있고 결단력이 빠르며, 할로윈과 오컬트에 진심으로 열광한다.",
                 speechStyle = "반말 위주. 호탕하게 웃는 편.\n\"후훋, 보기 좋잖아? '네버모어'라는 이름에 딱 맞는 인테리어지.\"",
                 secret = "사무소를 차린 진짜 이유: 과거 자신이 경험한 '설명할 수 없는 사건'의 진상을 밝히기 위해."
@@ -84,7 +84,7 @@ namespace HalloweenVN.UI
                 age = "23세",
                 role = "수석 탐정 / 실질적 두뇌",
                 mbti = "INTJ",
-                appearance = "허리까지 오는 짙은 남보라색 긴머리. 금안. 활동적인 밤색 셔츠와 검은 하네스. 블랙톤. 단정하면서도 날카로운 인상.",
+                appearance = "발끝까지 흘러내리는 짙은 남보라색 긴 머리카락. 날카로운 청록색 눈동자. 소매를 걷어 올린 하얀 셔츠에 하이웨스트 검은 슬랙스, 검은 부츠. 목에 걸린 검은 목걸이가 포인트인, 단정하면서도 차가운 인상.",
                 personality = "철저한 현실주의자. 유령, 혼, 초자연적 현상 따위는 믿지 않으며, 모든 사건에는 반드시 물리적 원인이 있다고 확신한다. 겉으로는 차갑지만 동료가 위험에 처하면 가장 먼저 앞장선다.",
                 speechStyle = "존댓말 위주. 격식 있고 건조하게.\n\"...몇 번을 말씀드렸습니까. 유령 따위는 존재하지 않는다고요.\"",
                 secret = "어린 시절 해결하지 못한 '사라진 언니'의 장기 미제 사건을 쫓고 있다. 탐정이 된 진짜 이유."
@@ -97,7 +97,7 @@ namespace HalloweenVN.UI
                 age = "21세",
                 role = "현장 돌격 담당 / 행동대장",
                 mbti = "ESTP",
-                appearance = "연한 갈색 숏컷 머리. 붉은색 X자 귀걸이. 푸른 눈. 검은 오버사이즈 봄버 재킷. 워커 부츠. 스포티하고 힙한 자세.",
+                appearance = "어깨 아래까지 내려오는 웨이브 진 갈색 머리에 X자 헤어핀. 파란 눈동자. 검은 홀터넥 이너 위에 소매를 걷어 입은 검은 오버사이즈 카고 재킷. 체크무늬 숏 팬츠에 회색 레이스업 워커. 힙하고 자유분방한 스트릿 스타일.",
                 personality = "생각보다 몸이 먼저 움직이는 타입. 겁이 없고 도발적이며 에너지가 넘친다. 사무소에서 가장 시끄러운 존재. 의외로 동물적인 직감은 날카롭다.",
                 speechStyle = "반말 위주. 활기차고 직설적.\n\"아 진짜?! 또 귀신 타령이야? 이번엔 그냥 때려부수고 들어가면 안 돼?\"",
                 secret = "사실 어둠을 무서워한다. 또, 폐건물이나 위험한 현장에 갈 때 가장 가까운 사람을 꼭 매달고 가는 버릇이 있다."
@@ -110,7 +110,7 @@ namespace HalloweenVN.UI
                 age = "20세",
                 role = "기술·정보 담당 / 해커 & 드론 조종사",
                 mbti = "ISTP",
-                appearance = "은발 트윈테일. 고양이 모양 헤드셋. 청록색 눈동자. 항상 태블릿과 해킹용 케이블을 들고 다니는 너드스타일.",
+                appearance = "안쪽이 청록색인 은백색 투톤 숏컷 보브. 파란 눈동자. 검은 크롭 탑 위에 하얀 집업 후드 재킷을 걸치고, 하얀 드로스트링 숏 팬츠 차림. 허벅지의 하얀 밴드와 접혀 내린 스트라이프 레그워머, 큼직한 하얀 레이스업 부츠가 테크웨어 스타일을 완성한다.",
                 personality = "말수가 적고 만사를 귀찮아하는 천재 해커. 온라인에서는 '유령 드론'이라는 닉네임으로 유명하다. 인간보다 기계(특히 자신이 개조한 정찰 드론 '잭오')를 더 신뢰한다.",
                 speechStyle = "단답형 위주. 무심하게.\n\"...백도어 열었어. 3초 뒤에 카메라 꺼질 거야. 귀찮게 하지 마.\"",
                 secret = "매일 밤 잭오(드론)를 이용해 도시 전체의 '이상 열원'을 스캔하고 있다. 무엇을 찾고 있는지는 아무도 모른다."
@@ -120,10 +120,10 @@ namespace HalloweenVN.UI
             {
                 name = HalloweenVN.Core.SettingsData.Language == HalloweenVN.Core.GameLanguage.English ? "Mina" : "미나",
                 spritePath = "Characters/미나/기본",
-                age = "1,000살",
+                age = "1,000살(?)",
                 role = "오컬트 고문 / 정체불명의 조력자",
                 mbti = "INFJ",
-                appearance = "하얀 은발. 붉은 눈. 고풍스러운 검은 드레스와 붉은 장미 코르사주. 뱀파이어를 연상시키는 고딕 룩. 나이를 가늠할 수 없는 묘한 분위기.",
+                appearance = "길게 늘어뜨린 하늘색 머리카락과 서늘한 푸른 눈동자. 끝단이 해진 유령 같은 순백의 드레스를 입고 있다. 한쪽 눈을 가린 앞머리와 머리 위로 솟은 장식이 특징적이며, 둥둥 떠다니는 듯한 신비롭고 기묘한 분위기를 풍긴다.",
                 personality = "자신이 1000년을 묵은 원혼이라고 주장하는 중2병 소녀. 평소에는 알 수 없는 시를 읊거나 저주를 내리겠다며 허세를 부리지만, 오컬트 지식만큼은 전문가 수준이다.",
                 speechStyle = "고어체(하오체/하게체) 위주. 과장되게.\n\"크킹... 어리석은 인간들이여. 이 저택의 심연을 엿볼 준비는 되었느냐?\"",
                 secret = "사실 무서운 것을 보면 가장 먼저 도망치거나 기절한다. 진짜 나이와 정체는 본인도 모른다(기억상실)."
@@ -133,10 +133,10 @@ namespace HalloweenVN.UI
             {
                 name = HalloweenVN.Core.SettingsData.Language == HalloweenVN.Core.GameLanguage.English ? "Haruka" : "하루카",
                 spritePath = "Characters/하루카/기본",
-                age = "19세",
+                age = "19세(최연소)",
                 role = "사무소 접수 및 행정 / 마스코트",
                 mbti = "ISFJ",
-                appearance = "부드러운 연갈색 긴 생머리. 눈물점이 있는 호박색 눈. 프릴이 달린 단정한 블라우스와 치마. 다정하고 차분한 인상.",
+                appearance = "허리까지 흘러내리는 짙은 회보라색 긴 머리에 하얀 꽃 머리핀. 부드러운 연보라빛 눈동자. 하얀 캐미솔 원피스 위에 연핑크 크롭 데님 재킷을 걸치고, 허리에 리본이 묶인 프릴 롱 스커트에 하얀 스트랩 샌들. 다정하고 청초한 인상.",
                 personality = "네버모어의 상식인이자 엄마 같은 존재. 괴짜들 사이에서 유일하게 정상적인 사고방식을 가졌다. 청소, 요리, 의뢰인 접대를 완벽하게 해낸다.",
                 speechStyle = "존댓말 위주. 다정하고 부드럽게.\n\"다들 싸우지 마세요~! 차 끓여왔으니까 진정하고 다시 얘기해 봐요.\"",
                 secret = "화가 나면 팀 내에서 가장 무섭다. 특히 예산을 함부로 쓸 때 (세이카의 할로윈 소품 구매 등) 나오는 미소는 모두를 떨게 한다."
@@ -214,13 +214,14 @@ namespace HalloweenVN.UI
             string l_speech = GetLabel("말투", "Speech", "口調", "语气");
             string l_secret = GetLabel("비밀", "Secret", "秘密", "秘密");
 
+            string gap = "\n<size=40%>\n</size>";
             profileTxt.text =
                 $"<color=#B46420>{l_age}:</color> {profile.age}\n" +
                 $"<color=#B46420>{l_role}:</color> {profile.role}\n" +
-                $"<color=#B46420>{l_mbti}:</color> {profile.mbti}\n\n" +
-                $"<color=#B46420>{l_app}:</color> {profile.appearance}\n\n" +
-                $"<color=#B46420>{l_pers}:</color> {profile.personality}\n\n" +
-                $"<color=#B46420>{l_speech}:</color> {profile.speechStyle}\n\n" +
+                $"<color=#B46420>{l_mbti}:</color> {profile.mbti}" + gap +
+                $"<color=#B46420>{l_app}:</color> {profile.appearance}" + gap +
+                $"<color=#B46420>{l_pers}:</color> {profile.personality}" + gap +
+                $"<color=#B46420>{l_speech}:</color> {profile.speechStyle}" + gap +
                 $"<color=#B46420>{l_secret}:</color> {profile.secret}";
         }
 
@@ -254,8 +255,8 @@ namespace HalloweenVN.UI
                 if (isSelected)
                 {
                     // Move to center/active position
-                    rt.offsetMin = new Vector2(150, 10);
-                    rt.offsetMax = new Vector2(-150, -220);
+                    rt.offsetMin = new Vector2(250, 80);
+                    rt.offsetMax = new Vector2(-250, -180);
 
                     // Selected folder: bright manila color
                     if (i < folderBodyImages.Count && folderBodyImages[i] != null)
@@ -268,7 +269,7 @@ namespace HalloweenVN.UI
                     if (i < folderTabTexts.Count && folderTabTexts[i] != null)
                     {
                         folderTabTexts[i].color = selectedTabTextColor;
-                        folderTabTexts[i].fontSize = 20;
+                        folderTabTexts[i].fontSize = 45;
                         folderTabTexts[i].fontStyle = FontStyles.Bold;
                     }
                 }
@@ -289,7 +290,7 @@ namespace HalloweenVN.UI
                     if (i < folderTabTexts.Count && folderTabTexts[i] != null)
                     {
                         folderTabTexts[i].color = unselectedTabTextColor;
-                        folderTabTexts[i].fontSize = 16;
+                        folderTabTexts[i].fontSize = 35;
                         folderTabTexts[i].fontStyle = FontStyles.Normal;
                     }
                 }
@@ -307,6 +308,11 @@ namespace HalloweenVN.UI
             if (portrait != null)
             {
                 Sprite sprite = Resources.Load<Sprite>(profile.spritePath);
+                if (sprite == null) {
+                    Sprite[] allSprites = Resources.LoadAll<Sprite>(profile.spritePath);
+                    if (allSprites != null && allSprites.Length > 0) sprite = allSprites[0];
+                }
+                
                 if (sprite != null) { portrait.sprite = sprite; portrait.color = Color.white; }
                 else { portrait.color = new Color(0, 0, 0, 0); }
                 

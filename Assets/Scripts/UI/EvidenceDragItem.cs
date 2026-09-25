@@ -1,4 +1,5 @@
 using HalloweenVN.Data;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
@@ -11,6 +12,7 @@ namespace HalloweenVN.UI
     public class EvidenceDragItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
     {
         [SerializeField] private Image iconImage;
+        [SerializeField] private TextMeshProUGUI nameText;
         
         private EvidenceInfo evidenceInfo;
         private Canvas canvas;
@@ -37,6 +39,10 @@ namespace HalloweenVN.UI
         public void Initialize(EvidenceInfo evidence)
         {
             evidenceInfo = evidence;
+            if (nameText != null)
+            {
+                nameText.text = evidence.evidenceName;
+            }
             if (iconImage != null && !string.IsNullOrEmpty(evidence.iconPath))
             {
                 Sprite iconSprite = Resources.Load<Sprite>(evidence.iconPath);

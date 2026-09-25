@@ -1,4 +1,4 @@
-﻿﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System.Collections.Generic;
@@ -18,6 +18,8 @@ namespace HalloweenVN.UI
         [SerializeField] private ScrollRect scrollRect;
 
         private static List<BacklogEntry> history = new List<BacklogEntry>();
+        private bool subscribedToDialogue = false;
+        private bool subscribedToPhase = false;
 
         private class BacklogEntry
         {
@@ -31,31 +33,64 @@ namespace HalloweenVN.UI
             }
         }
 
-        private void OnEnable()
+        private void Start()
         {
-            if (DialogueManager.Instance != null)
-            {
-                DialogueManager.Instance.OnNodeDisplayed += RecordNode;
-            }
-            if (GameManager.Instance != null)
-            {
-                GameManager.Instance.OnPhaseChanged += HandlePhaseChanged;
-            }
+            // Subscribe in Start to ensure managers are initialized
+            TrySubscribe();
             if (closeButton != null)
             {
                 closeButton.onClick.AddListener(HideBacklog);
             }
         }
 
+        private void OnEnable()
+        {
+            // Re-subscribe if previously unsubscribed
+            TrySubscribe();
+        }
+
+        private void Update()
+        {
+            // Lazy subscription fallback: if DialogueManager wasn't ready at Start/OnEnable,
+            // keep trying each frame until we successfully subscribe
+            if (!subscribedToDialogue || !subscribedToPhase)
+            {
+                TrySubscribe();
+            }
+        }
+
+        private void TrySubscribe()
+        {
+            if (!subscribedToDialogue && DialogueManager.Instance != null)
+            {
+                DialogueManager.Instance.OnNodeDisplayed += RecordNode;
+                subscribedToDialogue = true;
+            }
+            if (!subscribedToPhase && GameManager.Instance != null)
+            {
+                GameManager.Instance.OnPhaseChanged += HandlePhaseChanged;
+                subscribedToPhase = true;
+            }
+        }
+
         private void OnDisable()
         {
-            if (DialogueManager.Instance != null)
+            // Only unsubscribe the phase handler, NOT the dialogue recording
+            // This way even if the GO is briefly disabled, we don't lose the subscription flag
+        }
+
+        private void OnDestroy()
+        {
+            // Final cleanup only on destroy
+            if (subscribedToDialogue && DialogueManager.Instance != null)
             {
                 DialogueManager.Instance.OnNodeDisplayed -= RecordNode;
+                subscribedToDialogue = false;
             }
-            if (GameManager.Instance != null)
+            if (subscribedToPhase && GameManager.Instance != null)
             {
                 GameManager.Instance.OnPhaseChanged -= HandlePhaseChanged;
+                subscribedToPhase = false;
             }
             if (closeButton != null)
             {
@@ -79,6 +114,8 @@ namespace HalloweenVN.UI
             if (phase == GamePhase.Lobby)
             {
                 HideBacklog();
+                // Clear history when returning to lobby (new game)
+                history.Clear();
             }
         }
 
@@ -124,25 +161,55 @@ namespace HalloweenVN.UI
 
         private void PopulateBacklog()
         {
+            if (contentContainer == null) return;
+
             // Clear existing entries
             foreach (Transform child in contentContainer)
             {
                 Destroy(child.gameObject);
             }
 
+            if (history.Count == 0)
+            {
+                // Show empty state message
+                if (backlogEntryPrefab != null)
+                {
+                    GameObject emptyEntry = Instantiate(backlogEntryPrefab, contentContainer);
+                    TMP_Text tmpText = emptyEntry.GetComponentInChildren<TMP_Text>();
+                    if (tmpText != null)
+                    {
+                        string textHex = ColorUtility.ToHtmlStringRGB(HalloweenTheme.TextPrimary);
+                        tmpText.text = $"<color=#{textHex}><i>기록된 대화가 없습니다.</i></color>";
+                    }
+                }
+                return;
+            }
+
             string speakerHex = ColorUtility.ToHtmlStringRGB(HalloweenTheme.TextSpeaker);
-            string textHex = ColorUtility.ToHtmlStringRGB(HalloweenTheme.TextPrimary);
+            string textHex2 = ColorUtility.ToHtmlStringRGB(HalloweenTheme.TextPrimary);
 
             foreach (var entry in history)
             {
+                if (backlogEntryPrefab == null) break;
+                
                 GameObject newEntry = Instantiate(backlogEntryPrefab, contentContainer);
                 TMP_Text tmpText = newEntry.GetComponentInChildren<TMP_Text>();
                 if (tmpText != null)
                 {
-                    string speakerFormat = string.IsNullOrEmpty(entry.speaker) ? "" : $"<color=#{speakerHex}>{entry.speaker}</color>: ";
-                    tmpText.text = $"{speakerFormat}<color=#{textHex}>{entry.text}</color>";
+                    string speakerFormat = string.IsNullOrEmpty(entry.speaker) 
+                        ? "" 
+                        : $"<color=#{speakerHex}>{entry.speaker}</color>: ";
+                    tmpText.text = $"{speakerFormat}<color=#{textHex2}>{entry.text}</color>";
                 }
             }
+        }
+
+        /// <summary>
+        /// Clear all recorded history (e.g., when starting a new game).
+        /// </summary>
+        public static void ClearHistory()
+        {
+            history.Clear();
         }
     }
 }

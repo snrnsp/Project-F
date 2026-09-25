@@ -22,6 +22,19 @@ namespace HalloweenVN.Investigation
         private void Start()
         {
             evidenceDatabase = DataLoader.LoadEvidenceDatabase(evidenceDatabaseName);
+            
+            // Auto-populate required evidence IDs from database if not set in Inspector
+            if (requiredEvidenceIds.Count == 0 && evidenceDatabase != null && evidenceDatabase.evidences != null)
+            {
+                foreach (var evidence in evidenceDatabase.evidences)
+                {
+                    if (evidence.required)
+                    {
+                        requiredEvidenceIds.Add(evidence.id);
+                    }
+                }
+                Debug.Log($"[InvestigationManager] Auto-loaded {requiredEvidenceIds.Count} required evidence IDs from database.");
+            }
         }
 
         private void OnEnable()

@@ -1,4 +1,4 @@
-﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿using System.Collections;
+﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -47,7 +47,6 @@ namespace HalloweenVN.UI
             if (lang == GameLanguage.Korean)
             {
                 if (lobbyTitleText != null) lobbyTitleText.text = "오블리비언\n<size=22>OBLIVION</size>";
-                continueText.text = "이어하기";
                 newGameText.text = "새 게임";
                 extraText.text = "캐릭터";
                 settingsText.text = "환경 설정";
@@ -57,7 +56,6 @@ namespace HalloweenVN.UI
             else if (lang == GameLanguage.English)
             {
                 if (lobbyTitleText != null) lobbyTitleText.text = "OBLIVION";
-                continueText.text = "Continue";
                 newGameText.text = "New Game";
                 extraText.text = "Character";
                 settingsText.text = "Settings";
@@ -67,7 +65,6 @@ namespace HalloweenVN.UI
             else if (lang == GameLanguage.Japanese)
             {
                 if (lobbyTitleText != null) lobbyTitleText.text = "オブリビオン\n<size=22>OBLIVION</size>";
-                continueText.text = "続きから";
                 newGameText.text = "初めから";
                 extraText.text = "キャラクター";
                 settingsText.text = "設定";
@@ -77,7 +74,6 @@ namespace HalloweenVN.UI
             else if (lang == GameLanguage.ChineseSimplified)
             {
                 if (lobbyTitleText != null) lobbyTitleText.text = "遗忘\n<size=22>OBLIVION</size>";
-                continueText.text = "继续游戏";
                 newGameText.text = "新游戏";
                 extraText.text = "角色";
                 settingsText.text = "设置";
@@ -87,7 +83,6 @@ namespace HalloweenVN.UI
             else if (lang == GameLanguage.ChineseTraditional)
             {
                 if (lobbyTitleText != null) lobbyTitleText.text = "遺忘\n<size=22>OBLIVION</size>";
-                continueText.text = "繼續遊戲";
                 newGameText.text = "新遊戲";
                 extraText.text = "額外內容";
                 settingsText.text = "設定";
@@ -179,9 +174,10 @@ namespace HalloweenVN.UI
             float duration = 0.5f;
             float time = 0f;
             
-            // X offset: 0 for show, -1920 for hide (sliding left)
+            // X offset: 0 for show, -canvasWidth for hide (sliding left, resolution-independent)
             Vector2 startPos = rt.anchoredPosition;
-            Vector2 targetPos = show ? Vector2.zero : new Vector2(-1920, 0);
+            float canvasWidth = rt.rect.width > 0 ? rt.rect.width : 1920f;
+            Vector2 targetPos = show ? Vector2.zero : new Vector2(-canvasWidth, 0);
 
             while (time < duration)
             {

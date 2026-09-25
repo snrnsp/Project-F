@@ -1,0 +1,358 @@
+﻿{
+  "dialogueId": "ch0_origin",
+  "nodes": [
+    {
+      "id": 0,
+      "speaker": "",
+      "text": "— 5년 전. 가을.",
+      "backgroundSprite": "Images/bg_flashback",
+      "nextNodeId": 1
+    },
+    {
+      "id": 1,
+      "speaker": "",
+      "text": "노을시 지방법원. 한 여자가 재판 기록 더미 앞에 앉아 있었다.",
+      "nextNodeId": 2
+    },
+    {
+      "id": 2,
+      "speaker": "세이카",
+      "text": "......이상하다.",
+      "characterSpriteCenter": "Characters/세이카/기본",
+      "noFade": true,
+      "nextNodeId": 100
+    },
+    {
+      "id": 100,
+      "speaker": "세이카",
+      "text": "단순 가출로 처리된 사건들이 하나같이...... 흔적조차 없이 너무 깨끗하게 끊어져 있어.",
+      "characterSpriteCenter": "Characters/세이카/찡그림",
+      "noFade": true,
+      "nextNodeId": 101
+    },
+    {
+      "id": 101,
+      "speaker": "세이카",
+      "text": "카드 결제 내역도, 통화 기록도, 주변 CCTV마저. 어느 특정 날짜를 기점으로 완전히 증발해버린 것처럼.",
+      "characterSpriteCenter": "Characters/세이카/찡그림",
+      "noFade": true,
+      "nextNodeId": 3
+    },
+    {
+      "id": 3,
+      "speaker": "",
+      "text": "세이카는 명문대 법학과를 수석으로 졸업한 뒤, 대형 로펌 '한성합동'에 인턴으로 들어간 상태였다.",
+      "nextNodeId": 4
+    },
+    {
+      "id": 4,
+      "speaker": "",
+      "text": "실종자 관련 민사 소송 자료를 정리하던 중, 이상한 패턴을 발견했다.",
+      "nextNodeId": 5
+    },
+    {
+      "id": 5,
+      "speaker": "세이카",
+      "text": "노을시 구시가지 실종 사건... 2003년, 2008년, 2014년, 2019년. 5년 간격으로 실종자가 발생하는데......",
+      "characterSpriteCenter": "Characters/세이카/기본",
+      "noFade": true,
+      "nextNodeId": 6
+    },
+    {
+      "id": 6,
+      "speaker": "세이카",
+      "text": "전부 수사 중단. 가족은 소송 취하. 주민등록 말소. 기록이 거의 남아있지 않아. ......마치 처음부터 존재하지 않았던 사람들처럼.",
+      "characterSpriteCenter": "Characters/세이카/찡그림",
+      "noFade": true,
+      "nextNodeId": 7
+    },
+    {
+      "id": 7,
+      "speaker": "",
+      "text": "세이카는 이 자료를 선임 변호사에게 보고했다.",
+      "nextNodeId": 8
+    },
+    {
+      "id": 8,
+      "speaker": "세이카",
+      "text": "실종 사건 기록에 의도적인 누락이 있는 것 같습니다. 경찰 쪽에서 조직적으로 은폐한 흔적이——",
+      "characterSpriteCenter": "Characters/세이카/기본",
+      "noFade": true,
+      "nextNodeId": 9
+    },
+    {
+      "id": 9,
+      "speaker": "",
+      "text": "선임 변호사는 세이카의 말을 끊었다.",
+      "nextNodeId": 10
+    },
+    {
+      "id": 10,
+      "speaker": "",
+      "text": "\"세이카 씨, 우리 로펌의 주요 고객 중에 노을시 경찰청 관계자가 있다는 거 알지? 이 건은 더 이상 건드리지 마.\"",
+      "nextNodeId": 11
+    },
+    {
+      "id": 11,
+      "speaker": "세이카",
+      "text": ".......",
+      "characterSpriteCenter": "Characters/세이카/찡그림",
+      "noFade": true,
+      "nextNodeId": 12
+    },
+    {
+      "id": 12,
+      "speaker": "",
+      "text": "법이 진실을 지켜줄 거라고 믿었다. 하지만 법은 때때로, 진실을 묻는 도구로도 쓰인다.",
+      "nextNodeId": 13
+    },
+    {
+      "id": 13,
+      "speaker": "",
+      "text": "그날 밤, 세이카는 잠을 이루지 못했다.",
+      "nextNodeId": 14
+    },
+    {
+      "id": 14,
+      "speaker": "세이카",
+      "text": "......사라진 사람들. 기록에서 지워진 사람들. 아무도 기억하지 못하는 사람들. 이걸 그냥 넘기면, 나도 공범이 되는 거 아닌가.",
+      "characterSpriteCenter": "Characters/세이카/기본",
+      "noFade": true,
+      "nextNodeId": 15
+    },
+    {
+      "id": 15,
+      "speaker": "",
+      "text": "— 4년 전. 10월 31일. 할로윈 밤.",
+      "nextNodeId": 16,
+      "backgroundSprite": "Images/bg_flashback"
+    },
+    {
+      "id": 16,
+      "speaker": "",
+      "text": "실종 사건을 혼자 조사하던 세이카는 모든 사건의 중심에 있는 장소를 찾아냈다.",
+      "nextNodeId": 17
+    },
+    {
+      "id": 17,
+      "speaker": "",
+      "text": "노을시 구시가지, 언덕 꼭대기. '이케다 저택'. 1920년대에 지어져 수십 년간 방치된 서양식 저택.",
+      "nextNodeId": 18
+    },
+    {
+      "id": 18,
+      "speaker": "세이카",
+      "text": "할로윈 밤에 유령의 집을 조사하다니...... 영화 같은 전개네.",
+      "characterSpriteCenter": "Characters/세이카/기본",
+      "noFade": true,
+      "nextNodeId": 19
+    },
+    {
+      "id": 19,
+      "speaker": "",
+      "text": "삐걱거리는 계단을 올라 3층 서재에 들어선 순간—",
+      "nextNodeId": 20,
+      "command": "EFFECT:SHAKE"
+    },
+    {
+      "id": 20,
+      "speaker": "",
+      "text": "아무도 없는 서재에서, 책장의 책들이 한 권씩 스스로 빠져나와 바닥에 쌓이기 시작했다.",
+      "nextNodeId": 21,
+      "command": "EFFECT:FLASH"
+    },
+    {
+      "id": 21,
+      "speaker": "세이카",
+      "text": "......뭐야.",
+      "characterSpriteCenter": "Characters/세이카/놀람",
+      "noFade": true,
+      "nextNodeId": 22
+    },
+    {
+      "id": 22,
+      "speaker": "",
+      "text": "바닥에 떨어진 책들의 제목을 이으면 하나의 문장이 되었다.",
+      "nextNodeId": 23
+    },
+    {
+      "id": 23,
+      "speaker": "",
+      "text": "「찾아야 한다. 잊혀진 이들을.」",
+      "nextNodeId": 24,
+      "command": "EFFECT:FLASH"
+    },
+    {
+      "id": 24,
+      "speaker": "세이카",
+      "text": "......잊혀진 이들. 내가 찾던 답이 여기에 있었던 건가.",
+      "characterSpriteCenter": "Characters/세이카/놀람",
+      "noFade": true,
+      "nextNodeId": 25
+    },
+    {
+      "id": 25,
+      "speaker": "",
+      "text": "경찰에 신고했지만, '기류에 의한 낙하'로 종결. 예상했던 결과였다. 이 도시에서 '설명할 수 없는 것'은 언제나 그렇게 처리된다.",
+      "nextNodeId": 26
+    },
+    {
+      "id": 26,
+      "speaker": "",
+      "text": "하지만 세이카에게는 확신이 생겼다.",
+      "nextNodeId": 27
+    },
+    {
+      "id": 27,
+      "speaker": "세이카",
+      "text": "법으로는 안 돼. 경찰도 안 돼. 그렇다면 내가 직접 파헤칠 수밖에 없어.",
+      "characterSpriteCenter": "Characters/세이카/기본",
+      "noFade": true,
+      "nextNodeId": 28
+    },
+    {
+      "id": 28,
+      "speaker": "",
+      "text": "세이카는 로펌 취직을 포기했다. 부모님은 격렬하게 반대했다.",
+      "nextNodeId": 29
+    },
+    {
+      "id": 29,
+      "speaker": "",
+      "text": "\"수석 졸업에 대형 로펌 확정인데 미쳤니?! 유령의 집에서 탐정 놀이를 하겠다고?!\"",
+      "nextNodeId": 30
+    },
+    {
+      "id": 30,
+      "speaker": "세이카",
+      "text": "......탐정 놀이가 아니에요. 이 도시에서 사라진 사람들이 있어요. 아무도 기억하지 못하는 사람들. 경찰도, 법원도, 로펌도 덮어버린 사건들.",
+      "characterSpriteCenter": "Characters/세이카/기본",
+      "noFade": true,
+      "nextNodeId": 31
+    },
+    {
+      "id": 31,
+      "speaker": "세이카",
+      "text": "누군가는 그 사람들을 찾아야 해요. 시스템 안에서는 못 해요. 이미 막혀버렸으니까. 밖에서, 내 방식으로 해야 해요.",
+      "characterSpriteCenter": "Characters/세이카/기본",
+      "noFade": true,
+      "nextNodeId": 32
+    },
+    {
+      "id": 32,
+      "speaker": "",
+      "text": "결국 부모님은 조건부로 자금을 지원해주었다. \"1년 안에 성과가 없으면 돌아와라.\"",
+      "nextNodeId": 33
+    },
+    {
+      "id": 33,
+      "speaker": "",
+      "text": "전 재산과 가족 자금을 투입해 저택을 매입. 1년에 걸친 리모델링 끝에, 현관에 새로운 간판이 걸렸다.",
+      "nextNodeId": 34
+    },
+    {
+      "id": 34,
+      "speaker": "",
+      "text": "「네버모어 오컬트 탐정 사무소」",
+      "nextNodeId": 35,
+      "command": "EFFECT:FLASH"
+    },
+    {
+      "id": 35,
+      "speaker": "",
+      "text": "......그런데 왜 '오컬트'인가? 그리고 왜 저택 전체가 할로윈 장식으로 도배되어 있는가?",
+      "nextNodeId": 36
+    },
+    {
+      "id": 36,
+      "speaker": "세이카",
+      "text": "내가 이케다 저택에서 '현상'을 목격한 게 할로윈 밤이었어. 그날 이후로 나는 확신했지. 이 저택에는 뭔가가 있다고.",
+      "characterSpriteCenter": "Characters/세이카/기본",
+      "noFade": true,
+      "nextNodeId": 37
+    },
+    {
+      "id": 37,
+      "speaker": "세이카",
+      "text": "할로윈 장식은 반은 내 취향이지만, 나머지 반은 전략이야.",
+      "characterSpriteCenter": "Characters/세이카/웃음",
+      "noFade": true,
+      "nextNodeId": 38
+    },
+    {
+      "id": 38,
+      "speaker": "세이카",
+      "text": "생각해봐. '설명할 수 없는 일'을 겪은 사람이 어디에 상담을 하러 가겠어? 경찰서? 정신병원?",
+      "characterSpriteCenter": "Characters/세이카/기본",
+      "noFade": true,
+      "nextNodeId": 39
+    },
+    {
+      "id": 39,
+      "speaker": "세이카",
+      "text": "아니지. 오컬트 탐정 사무소라면? \"아, 여기는 그런 이야기를 진지하게 들어주겠구나.\" 그 안심감이 필요한 거야.",
+      "characterSpriteCenter": "Characters/세이카/웃음",
+      "noFade": true,
+      "nextNodeId": 40
+    },
+    {
+      "id": 40,
+      "speaker": "세이카",
+      "text": "할로윈 인테리어도 마찬가지. 괴짜 의뢰인들이 문턱을 넘기 쉽도록. '여기는 이상한 게 당연한 곳'이라는 메시지를 주는 거지.",
+      "characterSpriteCenter": "Characters/세이카/기본",
+      "noFade": true,
+      "nextNodeId": 41
+    },
+    {
+      "id": 41,
+      "speaker": "",
+      "text": "그렇게 사무소를 열었지만, 의뢰인은 오지 않았다. 관리할 저택은 넓고, 혼자서는 아무것도 할 수 없었다.",
+      "nextNodeId": 42
+    },
+    {
+      "id": 42,
+      "speaker": "",
+      "text": "첫 6개월. 거의 매일 빈 사무실에서 혼자 와인을 마셨다. 서재에서 발견한 기록들을 정리하고, 실종자들의 흔적을 추적했지만——",
+      "nextNodeId": 43
+    },
+    {
+      "id": 43,
+      "speaker": "세이카",
+      "text": "혼자서는 한계가 있어. 추리할 사람, 현장을 뛸 사람, 기술을 다룰 사람... 사람이 필요해.",
+      "characterSpriteCenter": "Characters/세이카/측은",
+      "noFade": true,
+      "nextNodeId": 44
+    },
+    {
+      "id": 44,
+      "speaker": "",
+      "text": "하지만 이 일에 뛰어들 사람을 찾기란 쉽지 않았다.",
+      "nextNodeId": 45
+    },
+    {
+      "id": 45,
+      "speaker": "",
+      "text": "\"유령의 집에서 탐정 놀이?\"\n\"보수는요?\"\n\"경력에 도움이 돼요?\"",
+      "nextNodeId": 46
+    },
+    {
+      "id": 46,
+      "speaker": "",
+      "text": "안정적인 직장, 학벌, 경력—— 그런 것에 아무 미련 없이 이 으스스한 저택에 뛰어들 사람이 어디 있을까.",
+      "nextNodeId": 47
+    },
+    {
+      "id": 47,
+      "speaker": "",
+      "text": "당시의 세이카는 그저 답답한 마음으로 첫 번째 동료를 기다리고 있었다.",
+      "nextNodeId": 48
+    },
+    {
+      "id": 48,
+      "speaker": "",
+      "text": "",
+      "nextNodeId": -1,
+      "command": "START_DIALOGUE:ch0_gathering"
+    }
+  ]
+}

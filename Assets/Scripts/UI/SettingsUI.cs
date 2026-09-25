@@ -16,13 +16,11 @@ namespace HalloweenVN.UI
         [SerializeField] private Text sfxVolumeLabel;
         [SerializeField] private Toggle fullscreenToggle;
         [SerializeField] private Button closeButton;
-        [SerializeField] private Button deleteDataButton;
-        
+                
         [SerializeField] private Text previewTextLabel;
         [SerializeField] private Text titleTextLabel;
         [SerializeField] private Text closeButtonText;
-        [SerializeField] private Text deleteDataButtonText;
-        private Coroutine typingCoroutine;
+                private Coroutine typingCoroutine;
         private string previewMessage = "\uD14D\uC2A4\uD2B8 \uC18D\uB3C4\uAC00 \uC774 \uC815\uB3C4\uB85C \uCD9C\uB825\uB429\uB2C8\uB2E4. \uB208\uC73C\uB85C \uD655\uC778\uD574 \uBCF4\uC138\uC694!";
 
         private void OnEnable()
@@ -51,11 +49,7 @@ namespace HalloweenVN.UI
             {
                 closeButton.onClick.AddListener(Hide);
             }
-            if (deleteDataButton != null)
-            {
-                deleteDataButton.onClick.AddListener(OnDeleteDataClicked);
-            }
-
+            
             UpdateLabels();
             UpdateLanguage();
         }
@@ -71,8 +65,7 @@ namespace HalloweenVN.UI
                 if (bgmVolumeLabel != null) bgmVolumeLabel.text = "BGM";
                 if (sfxVolumeLabel != null) sfxVolumeLabel.text = "SFX";
                 if (closeButtonText != null) closeButtonText.text = "\uB2EB\uAE30";
-                if (deleteDataButtonText != null) deleteDataButtonText.text = "데이터 삭제";
-                previewMessage = "\uD14D\uC2A4\uD2B8 \uC18D\uB3C4\uAC00 \uC774 \uC815\uB3C4\uB85C \uCD9C\uB825\uB429\uB2C8\uB2E4. \uB208\uC73C\uB85C \uD655\uC778\uD574 \uBCF4\uC138\uC694!";
+                                previewMessage = "\uD14D\uC2A4\uD2B8 \uC18D\uB3C4\uAC00 \uC774 \uC815\uB3C4\uB85C \uCD9C\uB825\uB429\uB2C8\uB2E4. \uB208\uC73C\uB85C \uD655\uC778\uD574 \uBCF4\uC138\uC694!";
             }
             else if (lang == GameLanguage.English)
             {
@@ -81,8 +74,7 @@ namespace HalloweenVN.UI
                 if (bgmVolumeLabel != null) bgmVolumeLabel.text = "BGM";
                 if (sfxVolumeLabel != null) sfxVolumeLabel.text = "SFX";
                 if (closeButtonText != null) closeButtonText.text = "Close";
-                if (deleteDataButtonText != null) deleteDataButtonText.text = "Delete Data";
-                previewMessage = "This is a text speed test. Please check it carefully!";
+                                previewMessage = "This is a text speed test. Please check it carefully!";
             }
             else if (lang == GameLanguage.Japanese)
             {
@@ -91,8 +83,7 @@ namespace HalloweenVN.UI
                 if (bgmVolumeLabel != null) bgmVolumeLabel.text = "BGM";
                 if (sfxVolumeLabel != null) sfxVolumeLabel.text = "SFX";
                 if (closeButtonText != null) closeButtonText.text = "\u9589\u3058\u308B";
-                if (deleteDataButtonText != null) deleteDataButtonText.text = "データ削除";
-                previewMessage = "\u30C6\u30AD\u30B9\u30C8\u901F\u5EA6\u306E\u30C6\u30B9\u30C8\u3067\u3059\u3002\u3054\u78BA\u8A8D\u304F\u3060\u3055\u3044\u3002";
+                                previewMessage = "\u30C6\u30AD\u30B9\u30C8\u901F\u5EA6\u306E\u30C6\u30B9\u30C8\u3067\u3059\u3002\u3054\u78BA\u8A8D\u304F\u3060\u3055\u3044\u3002";
             }
             else if (lang == GameLanguage.ChineseSimplified)
             {
@@ -101,8 +92,7 @@ namespace HalloweenVN.UI
                 if (bgmVolumeLabel != null) bgmVolumeLabel.text = "\u80CC\u666F\u97F3\u4E50";
                 if (sfxVolumeLabel != null) sfxVolumeLabel.text = "\u97F3\u6548";
                 if (closeButtonText != null) closeButtonText.text = "\u5173\u95ED";
-                if (deleteDataButtonText != null) deleteDataButtonText.text = "删除数据";
-                previewMessage = "\u8FD9\u662F\u6587\u672C\u901F\u5EA6\u6D4B\u8BD5\u3002\u8BF7\u4ED4\u7EC6\u68C0\u67E5\uFF01";
+                                previewMessage = "\u8FD9\u662F\u6587\u672C\u901F\u5EA6\u6D4B\u8BD5\u3002\u8BF7\u4ED4\u7EC6\u68C0\u67E5\uFF01";
             }
             else if (lang == GameLanguage.ChineseTraditional)
             {
@@ -370,7 +360,6 @@ namespace HalloweenVN.UI
         {
             SettingsData.TextSpeed = SliderToSpeed(val);
             UpdateLabels();
-            PlayPreviewText();
         }
 
         private void OnBGMVolumeChanged(float val)
@@ -397,14 +386,14 @@ namespace HalloweenVN.UI
 
         private float SpeedToSlider(float speed)
         {
-            float t = Mathf.InverseLerp(0.1f, 0.01f, speed);
-            return Mathf.Lerp(0f, 100f, t);
+            float t = Mathf.InverseLerp(0.05f, 0.005f, speed);
+            return Mathf.Lerp(0f, 1f, t);
         }
 
         private float SliderToSpeed(float sliderVal)
         {
-            float t = Mathf.InverseLerp(0f, 100f, sliderVal);
-            return Mathf.Lerp(0.1f, 0.01f, t);
+            float t = Mathf.InverseLerp(0f, 1f, sliderVal);
+            return Mathf.Lerp(0.05f, 0.005f, t);
         }
     }
 }

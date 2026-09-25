@@ -22,6 +22,7 @@ namespace HalloweenVN.UI
         [SerializeField] private TextMeshProUGUI caseNameText;
         [SerializeField] private GameObject resultPanel;
         [SerializeField] private TextMeshProUGUI resultText;
+        [SerializeField] private Button resultProceedButton;
         
         private DeductionManager deductionManager;
         private List<EvidenceSlot> currentSlots = new List<EvidenceSlot>();
@@ -33,6 +34,19 @@ namespace HalloweenVN.UI
             {
                 submitButton.onClick.AddListener(OnSubmitClicked);
             }
+            if (resultProceedButton != null)
+            {
+                resultProceedButton.onClick.AddListener(OnResultProceedClicked);
+            }
+        }
+
+        private void OnResultProceedClicked()
+        {
+            if (resultPanel != null)
+            {
+                resultPanel.SetActive(false);
+            }
+            Hide();
         }
 
         private void OnEnable()
@@ -139,10 +153,10 @@ namespace HalloweenVN.UI
             }
             if (resultText != null)
             {
-                resultText.text = $"Result: {result.correctAnswers} / {result.totalQuestions}";
+                resultText.text = $"결과: {result.correctAnswers} / {result.totalQuestions}";
                 if (result.isPerfect)
                 {
-                    resultText.text += "\nPerfect Deduction!";
+                    resultText.text += "\n완벽한 추리!";
                 }
             }
         }

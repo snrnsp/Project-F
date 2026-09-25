@@ -9,6 +9,7 @@ namespace HalloweenVN.Data
         public string evidenceName;
         public string description;
         public string iconPath;
+        public bool required = true;
     }
 
     [System.Serializable]

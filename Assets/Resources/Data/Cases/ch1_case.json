@@ -2,9 +2,26 @@
   "caseId": "ch1_case",
   "caseName": "잊혀진 피아니스트",
   "questions": [
-    {"questionText": "피아노가 실제로 연주되고 있다는 물리적 증거는?", "correctEvidenceId": "dustless_keys"},
-    {"questionText": "피아니스트가 이 음악실에 존재했다는 유일한 흔적은?", "correctEvidenceId": "faded_program"},
-    {"questionText": "소리의 정체에 대한 결정적 단서는?", "correctEvidenceId": "sound_analysis"}
+    {
+      "questionText": "누군가가 최근까지 이 피아노를 연주했다는 물리적 증거는?",
+      "correctEvidenceId": "dustless_keys"
+    },
+    {
+      "questionText": "피아니스트가 이 음악실에 존재했다는 유일한 기록은?",
+      "correctEvidenceId": "faded_program"
+    },
+    {
+      "questionText": "연주된 소리가 일반적인 피아노 음향이 아니라는 결정적 단서는?",
+      "correctEvidenceId": "sound_analysis"
+    },
+    {
+      "questionText": "피아노 주변에서 존재의 이동 흔적을 보여주는 단서는?",
+      "correctEvidenceId": "dusty_footprints"
+    },
+    {
+      "questionText": "'현상'이 온도나 기류 등 주변 환경에 미치는 영향의 단서는?",
+      "correctEvidenceId": "temperature_anomaly"
+    }
   ],
   "perfectDialogueId": "ch1_result_perfect",
   "failDialogueId": "ch1_result_fail"

@@ -1,4 +1,4 @@
-﻿﻿{
+{
   "dialogueId": "ch1_morning",
   "nodes": [
     {
@@ -11,7 +11,7 @@
     {
       "id": 1,
       "speaker": "",
-      "text": "호박 램프의 불빛이 은은하게 켜진 사무소 안. 벽난로에서 장작이 타닥거리고, 거미줄 장식 사이로 아침 햇살이 비친다.",
+      "text": "호박 램프의 불빛이 은은하게 켜진 사무소 안.\n벽난로에서 장작이 타닥거리고, 거미줄 장식 사이로 아침 햇살이 비친다.",
       "nextNodeId": 2
     },
     {
@@ -558,7 +558,7 @@
       "speaker": "",
       "text": "",
       "nextNodeId": -1,
-      "command": "END"
+      "command": "START_DIALOGUE:ch1_night"
     }
   ]
 }

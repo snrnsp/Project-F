@@ -1,480 +1,466 @@
-﻿{
+{
   "dialogueId": "ch0_gathering",
   "nodes": [
     {
       "id": 0,
       "speaker": "",
       "text": "부모님이 준 1년의 기한. 이미 6개월이 지났다. 남은 시간은 반 년.",
+      "characterSpriteLeft": "",
+      "characterSpriteCenter": "",
+      "characterSpriteRight": "",
       "backgroundSprite": "Images/bg_flashback",
-      "nextNodeId": 1
+      "choices": [],
+      "nextNodeId": 1,
+      "command": ""
     },
     {
       "id": 1,
       "speaker": "",
-      "text": "의뢰인도, 동료도 없이 혼자 저택을 지키던 어느 날——",
-      "nextNodeId": 2
+      "text": "그런데 구시가지에서 또다시 실종 사건이 발생했다.\n5년 주기의 패턴. 다음 실종이 일어날 시기가 바로 올해였다.",
+      "characterSpriteLeft": "",
+      "characterSpriteCenter": "",
+      "characterSpriteRight": "",
+      "backgroundSprite": "",
+      "choices": [],
+      "nextNodeId": 2,
+      "command": ""
     },
     {
       "id": 2,
-      "speaker": "",
-      "text": "노을시 구시가지에서 또다시 실종 사건이 발생했다.",
-      "nextNodeId": 3
+      "speaker": "세이카",
+      "text": "시작됐어. 더 이상 준비할 시간이 없어.",
+      "characterSpriteLeft": "",
+      "characterSpriteCenter": "Characters/세이카/찡그림",
+      "characterSpriteRight": "",
+      "backgroundSprite": "",
+      "choices": [],
+      "nextNodeId": 3,
+      "command": "",
+      "noFade": true
     },
     {
       "id": 3,
       "speaker": "",
-      "text": "5년 주기의 패턴. 다음 실종이 일어날 시기가 바로 올해였다.",
-      "nextNodeId": 4
+      "text": "실종 사건의 파장 속에서, 각자의 이유로 진실에 가까이 있던 사람들이 움직이기 시작했다.",
+      "characterSpriteLeft": "",
+      "characterSpriteCenter": "",
+      "characterSpriteRight": "",
+      "backgroundSprite": "",
+      "choices": [],
+      "nextNodeId": 4,
+      "command": ""
     },
     {
       "id": 4,
-      "speaker": "세이카",
-      "text": "시작됐어. 더 이상 준비할 시간이 없어.",
-      "characterSpriteCenter": "Characters/세이카/찡그림",
-      "noFade": true,
-      "nextNodeId": 5
+      "speaker": "",
+      "text": "— 카스미 합류. 실종 발생 직후.",
+      "characterSpriteLeft": "",
+      "characterSpriteCenter": "",
+      "characterSpriteRight": "",
+      "backgroundSprite": "",
+      "choices": [],
+      "nextNodeId": 5,
+      "command": ""
     },
     {
       "id": 5,
       "speaker": "",
-      "text": "그런데 이 사건은 세이카만 주목한 것이 아니었다.",
-      "nextNodeId": 6
+      "text": "경찰청 과학수사대 인턴.\n어린 시절 사라진 언니를 찾기 위해 수사의 길을 택했지만, '설명할 수 없는 현장'을 무조건 덮는 관행에 지쳐 있었다.",
+      "characterSpriteLeft": "",
+      "characterSpriteCenter": "",
+      "characterSpriteRight": "",
+      "backgroundSprite": "",
+      "choices": [],
+      "nextNodeId": 6,
+      "command": ""
     },
     {
       "id": 6,
-      "speaker": "",
-      "text": "실종 사건의 파장이 노을시 전체를 흔들면서, 각자의 이유로 진실에 가까이 있던 사람들이 움직이기 시작했다.",
-      "nextNodeId": 7
+      "speaker": "세이카",
+      "text": "한 장의 사진을 보여줄게. 네 언니가 실종된 현장에서 발견된 건데...... 경찰 보고서에는 없는 증거물이야.",
+      "characterSpriteLeft": "Characters/세이카/기본",
+      "characterSpriteCenter": "",
+      "characterSpriteRight": "",
+      "backgroundSprite": "",
+      "choices": [],
+      "nextNodeId": 7,
+      "command": "",
+      "noFade": true
     },
     {
       "id": 7,
-      "speaker": "",
-      "text": "— 카스미 합류. 실종 발생 직후.",
-      "nextNodeId": 8
+      "speaker": "카스미",
+      "text": "...이걸 어디서 구하셨습니까.",
+      "characterSpriteLeft": "Characters/세이카/기본",
+      "characterSpriteCenter": "",
+      "characterSpriteRight": "Characters/카스미/기본",
+      "backgroundSprite": "",
+      "choices": [],
+      "nextNodeId": 8,
+      "command": "",
+      "noFade": true
     },
     {
       "id": 8,
-      "speaker": "",
-      "text": "경찰청 과학수사대 인턴. 어린 시절 갑자기 사라진 언니의 행방을 찾기 위해 범죄수사의 길을 택한 여자.",
-      "nextNodeId": 9
+      "speaker": "카스미",
+      "text": "......좋습니다. 다만 한 가지. 유령 운운하는 소리는 하지 마십시오.",
+      "characterSpriteLeft": "Characters/세이카/웃음",
+      "characterSpriteCenter": "",
+      "characterSpriteRight": "Characters/카스미/기본",
+      "backgroundSprite": "",
+      "choices": [],
+      "nextNodeId": 9,
+      "command": "",
+      "noFade": true
     },
     {
       "id": 9,
       "speaker": "",
-      "text": "하지만 '설명할 수 없는 현장'이 발생하면 상부에서 무조건 덮는 관행에 지쳐 있었다.",
-      "nextNodeId": 10
+      "text": "— 리나 합류. 카스미 합류 2주 후.",
+      "characterSpriteLeft": "",
+      "characterSpriteCenter": "",
+      "characterSpriteRight": "",
+      "backgroundSprite": "",
+      "choices": [],
+      "nextNodeId": 10,
+      "command": ""
     },
     {
       "id": 10,
       "speaker": "",
-      "text": "이번 실종 사건도 마찬가지였다. 카스미가 올린 분석 보고서는 상부에 의해 묵살됐다.",
-      "nextNodeId": 11
+      "text": "첫 번째 의뢰 현장에서, 실종된 후배를 찾으러 혼자 뛰어든 여자와 마주쳤다.",
+      "characterSpriteLeft": "",
+      "characterSpriteCenter": "",
+      "characterSpriteRight": "",
+      "backgroundSprite": "",
+      "choices": [],
+      "nextNodeId": 11,
+      "command": ""
     },
     {
       "id": 11,
-      "speaker": "세이카",
-      "text": "한 장의 사진을 보여줄게. 네 언니가 실종된 현장에서 발견된 건데...... 경찰 보고서에는 없는 증거물이야.",
-      "characterSpriteLeft": "Characters/세이카/기본",
+      "speaker": "리나",
+      "text": "경찰이 안 움직이면 내가 직접 찾으면 되잖아! 뭘 그렇게 쳐다봐?!",
+      "characterSpriteLeft": "",
+      "characterSpriteCenter": "Characters/리나/기본",
+      "characterSpriteRight": "",
+      "backgroundSprite": "",
+      "choices": [],
+      "nextNodeId": 12,
+      "command": "",
       "noFade": true,
-      "nextNodeId": 12
+      "slideIn": true,
+      "slideFromRight": true
     },
     {
       "id": 12,
       "speaker": "카스미",
-      "text": "...이걸 어디서 구하셨습니까.",
-      "characterSpriteLeft": "Characters/세이카/기본",
-      "characterSpriteRight": "Characters/카스미/기본",
-      "noFade": true,
-      "nextNodeId": 13
+      "text": "(보고서) ......저 무식한 사람, 놀랍게도 쓸모가 있습니다.",
+      "characterSpriteLeft": "Characters/카스미/찡그림",
+      "characterSpriteCenter": "Characters/리나/기본",
+      "characterSpriteRight": "Characters/세이카/웃음",
+      "backgroundSprite": "",
+      "choices": [],
+      "nextNodeId": 13,
+      "command": "",
+      "noFade": true
     },
     {
       "id": 13,
-      "speaker": "세이카",
-      "text": "이번 실종 사건과 네 언니 사건은 연결되어 있어. 우리 사무소에 오면, 경찰이 묻어버린 파일도 열어볼 수 있어.",
-      "characterSpriteLeft": "Characters/세이카/웃음",
-      "characterSpriteRight": "Characters/카스미/기본",
-      "noFade": true,
-      "nextNodeId": 14
+      "speaker": "리나",
+      "text": "어차피 딱히 하는 것도 없었고, 여기 일이 재밌잖아. 그리고 밥도 주고.",
+      "characterSpriteLeft": "Characters/카스미/찡그림",
+      "characterSpriteCenter": "Characters/리나/웃음",
+      "characterSpriteRight": "Characters/세이카/웃음",
+      "backgroundSprite": "",
+      "choices": [],
+      "nextNodeId": 14,
+      "command": "",
+      "noFade": true
     },
     {
       "id": 14,
-      "speaker": "카스미",
-      "text": "......좋습니다. 다만 한 가지. 유령 운운하는 소리는 하지 마십시오.",
+      "speaker": "",
+      "text": "— 리리스 합류. 리나 합류 1달 후.",
+      "characterSpriteLeft": "Characters/리리스/기본",
       "characterSpriteCenter": "",
-      "noFade": true,
+      "characterSpriteRight": "Characters/세이카/기본",
+      "backgroundSprite": "",
+      "choices": [],
       "nextNodeId": 15,
-      "characterSpriteLeft": "Characters/세이카/웃음",
-      "characterSpriteRight": "Characters/카스미/기본"
+      "command": ""
     },
     {
       "id": 15,
       "speaker": "",
-      "text": "네버모어의 수석 탐정이 탄생한 순간이었다.",
-      "nextNodeId": 16
+      "text": "온라인에서 「유령 드론(GhostDrone)」이라는 이름으로 활동하던 프리랜서 해커.\n자작 드론으로 구시가지를 촬영하다가, 30년간 비어있는 폐건물에서 있을 수 없는 열원을 포착했다.",
+      "characterSpriteLeft": "Characters/리리스/기본",
+      "characterSpriteCenter": "",
+      "characterSpriteRight": "Characters/세이카/기본",
+      "backgroundSprite": "",
+      "choices": [],
+      "nextNodeId": 16,
+      "command": ""
     },
     {
       "id": 16,
-      "speaker": "",
-      "text": "— 리나 합류. 카스미 합류 2주 후.",
-      "nextNodeId": 17
+      "speaker": "세이카",
+      "text": "그 드론 영상, 결정적인 증거였어. 우리랑 같이 일할 생각 없어?",
+      "characterSpriteLeft": "Characters/리리스/기본",
+      "characterSpriteCenter": "",
+      "characterSpriteRight": "Characters/세이카/기본",
+      "backgroundSprite": "",
+      "choices": [],
+      "nextNodeId": 17,
+      "command": "",
+      "noFade": true
     },
     {
       "id": 17,
-      "speaker": "",
-      "text": "네버모어의 첫 번째 의뢰. 카스미와 함께 실종 현장을 조사하던 중이었다.",
-      "nextNodeId": 18
+      "speaker": "리리스",
+      "text": "...작업실이 필요했는데. 여기 3층 빈 방 쓸 수 있어?",
+      "characterSpriteLeft": "Characters/리리스/기본",
+      "characterSpriteCenter": "",
+      "characterSpriteRight": "Characters/세이카/기본",
+      "backgroundSprite": "",
+      "choices": [],
+      "nextNodeId": 18,
+      "command": "",
+      "noFade": true
     },
     {
       "id": 18,
       "speaker": "",
-      "text": "사건 현장 부근에서 무모하게 혼자 탐색하는 여자와 마주쳤다. 실종자 중 한 명이 자신의 고등학교 후배였기 때문이었다.",
-      "nextNodeId": 19
+      "text": "이후 3층 다락방을 자신의 작업실로 개조하여 입주.\n정찰 드론 「잭오(Jack-O)」가 만들어진 것도 이 시기였다.",
+      "characterSpriteLeft": "",
+      "characterSpriteCenter": "",
+      "characterSpriteRight": "",
+      "backgroundSprite": "",
+      "choices": [],
+      "nextNodeId": 19,
+      "command": ""
     },
     {
       "id": 19,
-      "speaker": "리나",
-      "text": "경찰이 안 움직이면 내가 직접 찾으면 되잖아! 뭘 그렇게 쳐다봐?!",
-      "characterSpriteCenter": "Characters/리나/기본",
-      "noFade": true,
-      "nextNodeId": 20
+      "speaker": "",
+      "text": "— 미나 합류. 리리스 합류 2주 후.",
+      "characterSpriteLeft": "",
+      "characterSpriteCenter": "",
+      "characterSpriteRight": "",
+      "backgroundSprite": "",
+      "choices": [],
+      "nextNodeId": 20,
+      "command": ""
     },
     {
       "id": 20,
-      "speaker": "카스미",
-      "text": "(보고서) ......저 무식한 사람, 놀랍게도 쓸모가 있습니다.",
-      "characterSpriteLeft": "Characters/카스미/찡그림",
-      "characterSpriteRight": "Characters/세이카/웃음",
-      "noFade": true,
+      "speaker": "",
+      "text": "가장 미스터리한 합류.\n어느 비 오는 밤, 저택 현관 앞에 쓰러져 있는 채로 발견되었다.\n신원 불명. 이름이 '미나'라는 것 외에는 아무것도 기억나지 않는다고 주장했다.",
+      "characterSpriteLeft": "",
+      "characterSpriteCenter": "",
+      "characterSpriteRight": "",
+      "backgroundSprite": "",
+      "choices": [],
       "nextNodeId": 21,
-      "characterSpriteCenter": "Characters/리나/기본"
+      "command": ""
     },
     {
       "id": 21,
-      "speaker": "세이카",
-      "text": "후훗, 그렇지? 스카우트할까?",
-      "characterSpriteLeft": "Characters/카스미/찡그림",
-      "characterSpriteRight": "Characters/세이카/웃음",
-      "noFade": true,
+      "speaker": "미나",
+      "text": "크큭... 미나라고 하느니라. 천 년을 묵은 원혼이 인간의 몸을 빌려 이곳에 나타난 것이다......",
+      "characterSpriteLeft": "",
+      "characterSpriteCenter": "Characters/미나/기본",
+      "characterSpriteRight": "",
+      "backgroundSprite": "",
+      "choices": [],
       "nextNodeId": 22,
-      "characterSpriteCenter": "Characters/리나/기본"
+      "command": "",
+      "noFade": true
     },
     {
       "id": 22,
-      "speaker": "리나",
-      "text": "어차피 딱히 하는 것도 없었고, 여기 일이 재밌잖아. 그리고 밥도 주고.",
-      "characterSpriteCenter": "Characters/리나/웃음",
-      "noFade": true,
-      "nextNodeId": 23,
+      "speaker": "카스미",
+      "text": "......기억상실 환자의 망상으로 보입니다.",
       "characterSpriteLeft": "Characters/카스미/찡그림",
-      "characterSpriteRight": "Characters/세이카/웃음"
+      "characterSpriteCenter": "",
+      "characterSpriteRight": "Characters/미나/기본",
+      "backgroundSprite": "",
+      "choices": [],
+      "nextNodeId": 23,
+      "command": "",
+      "noFade": true
     },
     {
       "id": 23,
       "speaker": "",
-      "text": "생각보다 몸이 먼저 움직이는 행동대장. 사무소에서 가장 시끄러운 존재가 합류했다.",
+      "text": "하지만 미나에게는 설명할 수 없는 능력이 있었다.\n한 번도 가보지 않은 폐건물의 구조를 알고, 사건의 결말을 예언하듯 중얼거리면, 그것이 맞았다.",
+      "characterSpriteLeft": "",
+      "characterSpriteCenter": "",
+      "characterSpriteRight": "",
+      "backgroundSprite": "",
+      "choices": [],
       "nextNodeId": 24,
-      "characterSpriteLeft": "Characters/리리스/기본",
-      "characterSpriteRight": "Characters/세이카/기본"
+      "command": ""
     },
     {
       "id": 24,
-      "speaker": "",
-      "text": "— 리리스 합류. 리나 합류 1달 후.",
+      "speaker": "세이카",
+      "text": "미나는... 이 저택이 부른 거야. 아마.",
+      "characterSpriteLeft": "",
+      "characterSpriteCenter": "Characters/세이카/기본",
+      "characterSpriteRight": "",
+      "backgroundSprite": "",
+      "choices": [],
       "nextNodeId": 25,
-      "characterSpriteLeft": "Characters/리리스/기본",
-      "characterSpriteRight": "Characters/세이카/기본"
+      "command": "",
+      "noFade": true
     },
     {
       "id": 25,
       "speaker": "",
-      "text": "실종 사건을 추적하는 과정에서, 세이카는 결정적인 디지털 증거가 필요했다.",
+      "text": "— 하루카 합류. 미나 합류 약 3주 후.",
+      "characterSpriteLeft": "",
+      "characterSpriteCenter": "",
+      "characterSpriteRight": "",
+      "backgroundSprite": "",
+      "choices": [],
       "nextNodeId": 26,
-      "characterSpriteLeft": "Characters/리리스/기본",
-      "characterSpriteRight": "Characters/세이카/기본"
+      "command": ""
     },
     {
       "id": 26,
       "speaker": "",
-      "text": "온라인에서 「유령 드론(GhostDrone)」이라는 이름으로 활동하는 프리랜서 화이트해커가 있었다.",
+      "text": "구시가지의 작은 카페에서 아르바이트를 하던 19세 소녀.\n학교에서 심한 따돌림을 당해 자퇴한 뒤, 혼자서 생계를 유지하고 있었다.",
+      "characterSpriteLeft": "",
+      "characterSpriteCenter": "",
+      "characterSpriteRight": "",
+      "backgroundSprite": "",
+      "choices": [],
       "nextNodeId": 27,
-      "characterSpriteLeft": "Characters/리리스/기본",
-      "characterSpriteRight": "Characters/세이카/기본"
+      "command": ""
     },
     {
       "id": 27,
-      "speaker": "",
-      "text": "어느 날 밤, 자작 드론으로 도시 야경을 촬영하던 중 있을 수 없는 열원(熱源)을 포착했다.",
+      "speaker": "리나",
+      "text": "넌 사람을 잘 보는 눈이 있네. 우리 사무소에 올래? 밥도 나오고 방도 줄 수 있어.",
+      "characterSpriteLeft": "",
+      "characterSpriteCenter": "Characters/리나/기본",
+      "characterSpriteRight": "",
+      "backgroundSprite": "",
+      "choices": [],
       "nextNodeId": 28,
-      "characterSpriteLeft": "Characters/리리스/기본",
-      "characterSpriteRight": "Characters/세이카/기본"
+      "command": "",
+      "noFade": true
     },
     {
       "id": 28,
-      "speaker": "",
-      "text": "30년간 아무도 살지 않는 폐건물 내부에서 사람 체온에 해당하는 열 반응이 매일 밤 같은 시간에 나타났다가 사라지는 것이었다.",
+      "speaker": "하루카",
+      "text": "여기... 진짜 무섭긴 한데... 되게 따뜻해요.",
+      "characterSpriteLeft": "",
+      "characterSpriteCenter": "Characters/하루카/홍조",
+      "characterSpriteRight": "",
+      "backgroundSprite": "",
+      "choices": [],
       "nextNodeId": 29,
-      "characterSpriteLeft": "Characters/리리스/기본",
-      "characterSpriteRight": "Characters/세이카/기본"
+      "command": "",
+      "noFade": true
     },
     {
       "id": 29,
       "speaker": "",
-      "text": "호기심에 혼자 조사하다가, 같은 현장을 조사 중이던 네버모어 팀과 조우했다.",
+      "text": "하루카가 오고 나서 저택에는 항상 호박으로 만든 무언가의 냄새가 풍기게 되었다.",
+      "characterSpriteLeft": "",
+      "characterSpriteCenter": "",
+      "characterSpriteRight": "",
+      "backgroundSprite": "",
+      "choices": [],
       "nextNodeId": 30,
-      "characterSpriteLeft": "Characters/리리스/기본",
-      "characterSpriteRight": "Characters/세이카/기본"
+      "command": ""
     },
     {
       "id": 30,
-      "speaker": "세이카",
-      "text": "그 드론 영상, 결정적인 증거였어. 우리랑 같이 일할 생각 없어?",
-      "characterSpriteLeft": "Characters/리리스/기본",
-      "characterSpriteRight": "Characters/세이카/기본",
-      "noFade": true,
-      "nextNodeId": 31
+      "speaker": "",
+      "text": "불과 3개월 남짓한 시간 동안, 다섯 명이 연달아 합류했다.\n실종 사건이라는 파장이 각자의 삶에 금을 내면서, 갈 곳 없는 사람들이 같은 장소로 흘러들어온 것이다.",
+      "characterSpriteLeft": "",
+      "characterSpriteCenter": "",
+      "characterSpriteRight": "",
+      "backgroundSprite": "",
+      "choices": [],
+      "nextNodeId": 31,
+      "command": ""
     },
     {
       "id": 31,
-      "speaker": "리리스",
-      "text": "...작업실이 필요했는데. 여기 3층 빈 방 쓸 수 있어?",
-      "characterSpriteLeft": "Characters/리리스/기본",
-      "characterSpriteRight": "Characters/세이카/기본",
-      "noFade": true,
-      "nextNodeId": 32
+      "speaker": "세이카",
+      "text": "......그러고 보니, 전부 여자네. 일부러 그런 건 아니야. 그냥 결과적으로 이렇게 된 거지.",
+      "characterSpriteLeft": "",
+      "characterSpriteCenter": "Characters/세이카/웃음",
+      "characterSpriteRight": "",
+      "backgroundSprite": "",
+      "choices": [],
+      "nextNodeId": 32,
+      "command": "",
+      "noFade": true
     },
     {
       "id": 32,
-      "speaker": "",
-      "text": "이후 3층 다락방을 자신의 작업실로 개조하여 입주. 사무소 전체의 네트워크, 보안 카메라, 통신 장비를 맡게 되었다.",
+      "speaker": "세이카",
+      "text": "시스템 밖으로 밀려난 사람들. 기존 질서에서 제 자리를 찾지 못한 사람들. 그런 사람들이 이 으스스한 저택에 모인 거야.",
+      "characterSpriteLeft": "",
+      "characterSpriteCenter": "Characters/세이카/기본",
+      "characterSpriteRight": "",
+      "backgroundSprite": "",
+      "choices": [],
       "nextNodeId": 33,
-      "characterSpriteLeft": "Characters/리리스/기본",
-      "characterSpriteRight": "Characters/세이카/기본"
+      "command": "",
+      "noFade": true
     },
     {
       "id": 33,
-      "speaker": "",
-      "text": "정찰 드론 「잭오(Jack-O)」가 만들어진 것도 이 시기였다.",
-      "nextNodeId": 34
+      "speaker": "세이카",
+      "text": "어쩌면 이 저택이 부른 건지도 몰라. '잊혀진 이들'을 찾으려면, 세상에서 한번쯤 잊혀본 사람이어야 하니까.",
+      "characterSpriteLeft": "",
+      "characterSpriteCenter": "Characters/세이카/기본",
+      "characterSpriteRight": "",
+      "backgroundSprite": "",
+      "choices": [],
+      "nextNodeId": 34,
+      "command": "",
+      "noFade": true
     },
     {
       "id": 34,
       "speaker": "",
-      "text": "— 미나 합류. 리리스 합류 2주 후.",
-      "nextNodeId": 35
+      "text": "부모님이 준 1년의 기한.\n그 마감 직전에 기적처럼 팀이 갖춰졌다.\n경찰이 닫아버린 파일을 다시 여는 사람들. 세상이 외면한 것들을 마주하는 사람들.",
+      "characterSpriteLeft": "",
+      "characterSpriteCenter": "",
+      "characterSpriteRight": "",
+      "backgroundSprite": "",
+      "choices": [],
+      "nextNodeId": 35,
+      "command": ""
     },
     {
       "id": 35,
       "speaker": "",
-      "text": "가장 미스터리한 합류. 어느 비 오는 밤, 저택 현관 앞에 쓰러져 있는 채로 발견되었다.",
-      "nextNodeId": 36
+      "text": "그리고 지금—",
+      "characterSpriteLeft": "",
+      "characterSpriteCenter": "",
+      "characterSpriteRight": "",
+      "backgroundSprite": "",
+      "choices": [],
+      "nextNodeId": 36,
+      "command": ""
     },
     {
       "id": 36,
       "speaker": "",
-      "text": "신원 불명. 신분증 없음. 본인은 자신의 이름이 '미나'라는 것 외에는 아무것도 기억나지 않는다고 주장했다.",
-      "nextNodeId": 37
-    },
-    {
-      "id": 37,
-      "speaker": "",
-      "text": "마치 실종 사건이 이 저택에 사람들을 끌어모으는 것처럼, 미나도 그 흐름 속에 나타났다.",
-      "nextNodeId": 38
-    },
-    {
-      "id": 38,
-      "speaker": "미나",
-      "text": "크큭... 미나라고 하느니라. 천 년을 묵은 원혼이 인간의 몸을 빌려 이곳에 나타난 것이다......",
-      "characterSpriteCenter": "Characters/미나/기본",
-      "noFade": true,
-      "nextNodeId": 39
-    },
-    {
-      "id": 39,
-      "speaker": "카스미",
-      "text": "......기억상실 환자의 망상으로 보입니다.",
-      "characterSpriteLeft": "Characters/카스미/찡그림",
-      "characterSpriteRight": "Characters/미나/기본",
-      "noFade": true,
-      "nextNodeId": 40
-    },
-    {
-      "id": 40,
-      "speaker": "",
-      "text": "하지만 미나에게는 설명할 수 없는 능력이 있었다.",
-      "nextNodeId": 41
-    },
-    {
-      "id": 41,
-      "speaker": "",
-      "text": "한 번도 가보지 않은 폐건물의 내부 구조를 정확히 알고 있었다. 고문서와 제의 도구를 전문가 수준으로 해독할 수 있었다. 가끔 사건의 결말을 '예언'하듯 중얼거리는데, 그것이 맞았다.",
-      "nextNodeId": 42
-    },
-    {
-      "id": 42,
-      "speaker": "세이카",
-      "text": "미나는... 이 저택이 부른 거야. 아마.",
-      "characterSpriteCenter": "Characters/세이카/기본",
-      "noFade": true,
-      "nextNodeId": 43
-    },
-    {
-      "id": 43,
-      "speaker": "",
-      "text": "기억상실인지, 의도적 은폐인지, 진짜 사람이 아닌 건지. 아무도 모른다. 그래서 미나를 오컬트 고문으로 사무소에 받아들였다.",
-      "nextNodeId": 44
-    },
-    {
-      "id": 44,
-      "speaker": "",
-      "text": "— 하루카 합류. 미나 합류 약 3주 후.",
-      "nextNodeId": 45
-    },
-    {
-      "id": 45,
-      "speaker": "",
-      "text": "구시가지의 작은 카페에서 아르바이트를 하던 19세 소녀. 학교에서 심한 따돌림을 당해 자퇴한 뒤, 혼자서 생계를 유지하고 있었다.",
-      "nextNodeId": 46
-    },
-    {
-      "id": 46,
-      "speaker": "",
-      "text": "어느 날, 의뢰 관련 탐문을 하러 카페에 들른 리나와 대화를 나누게 되었다.",
-      "nextNodeId": 47
-    },
-    {
-      "id": 47,
-      "speaker": "리나",
-      "text": "넌 사람을 잘 보는 눈이 있네. 우리 사무소에 올래? 밥도 나오고 방도 줄 수 있어.",
-      "characterSpriteCenter": "Characters/리나/기본",
-      "noFade": true,
-      "nextNodeId": 48
-    },
-    {
-      "id": 48,
-      "speaker": "",
-      "text": "처음 방문한 사무소는 거미줄과 호박 장식으로 가득한 으스스한 저택이었다.",
-      "nextNodeId": 49
-    },
-    {
-      "id": 49,
-      "speaker": "",
-      "text": "하루카는 처음에 기겁했다. 하지만 안에서 티격태격하면서도 서로를 챙기는 다섯 명의 모습을 보고—",
-      "nextNodeId": 50
-    },
-    {
-      "id": 50,
-      "speaker": "하루카",
-      "text": "여기... 진짜 무섭긴 한데... 되게 따뜻해요.",
-      "characterSpriteCenter": "Characters/하루카/홍조",
-      "noFade": true,
-      "nextNodeId": 51
-    },
-    {
-      "id": 51,
-      "speaker": "",
-      "text": "울음을 터트렸다.",
-      "nextNodeId": 52
-    },
-    {
-      "id": 52,
-      "speaker": "",
-      "text": "하루카가 오고 나서 의뢰인 응대가 훨씬 부드러워졌고, 저택에는 항상 호박으로 만든 무언가의 냄새가 풍기게 되었다.",
-      "nextNodeId": 53
-    },
-    {
-      "id": 53,
-      "speaker": "",
-      "text": "불과 3개월 남짓한 시간 동안, 다섯 명이 연달아 합류했다.",
-      "nextNodeId": 54
-    },
-    {
-      "id": 54,
-      "speaker": "",
-      "text": "실종 사건이라는 하나의 파장이 각자의 삶에 금을 내면서, 갈 곳 없는 사람들이 같은 장소로 흘러들어온 것이다.",
-      "nextNodeId": 55
-    },
-    {
-      "id": 55,
-      "speaker": "",
-      "text": "소장이자 설립자, 세이카. 수석 탐정, 카스미. 현장 돌격 담당, 리나. 기술·정보 담당, 리리스. 오컬트 고문, 미나. 접수·행정 담당, 하루카.",
-      "nextNodeId": 56
-    },
-    {
-      "id": 56,
-      "speaker": "",
-      "text": "각자의 사정으로, 각자의 이유로 이곳에 모인 여섯 명. 돌아보면 한 가지 재밌는 점이 있었다.",
-      "nextNodeId": 57
-    },
-    {
-      "id": 57,
-      "speaker": "세이카",
-      "text": "......그러고 보니, 전부 여자네.",
-      "characterSpriteCenter": "Characters/세이카/웃음",
-      "noFade": true,
-      "nextNodeId": 58
-    },
-    {
-      "id": 58,
-      "speaker": "세이카",
-      "text": "일부러 그런 건 아니야. 그냥 결과적으로 이렇게 된 거지.",
-      "characterSpriteCenter": "Characters/세이카/기본",
-      "noFade": true,
-      "nextNodeId": 59
-    },
-    {
-      "id": 59,
-      "speaker": "세이카",
-      "text": "카스미는 과학수사대에서 여자라는 이유로 핵심 수사에서 밀려났고, 리리스는 실력을 인정받으면서도 '어린 여자애'라는 이유로 제 자리를 못 잡았어.",
-      "characterSpriteCenter": "Characters/세이카/기본",
-      "noFade": true,
-      "nextNodeId": 60
-    },
-    {
-      "id": 60,
-      "speaker": "세이카",
-      "text": "리나는 학교를 그만두고 갈 곳이 없었고, 하루카는 학교에서 쫓겨나다시피 했지. 미나는...... 뭐, 아직도 수수께끼지만 갈 곳이 없는 건 확실했고.",
-      "characterSpriteCenter": "Characters/세이카/측은",
-      "noFade": true,
-      "nextNodeId": 61
-    },
-    {
-      "id": 61,
-      "speaker": "세이카",
-      "text": "시스템 밖으로 밀려난 사람들. 기존 질서에서 제 자리를 찾지 못한 사람들. 그런 사람들이 이 으스스한 저택에 모인 거야.",
-      "characterSpriteCenter": "Characters/세이카/기본",
-      "noFade": true,
-      "nextNodeId": 62
-    },
-    {
-      "id": 62,
-      "speaker": "세이카",
-      "text": "어쩌면 이 저택이 부른 건지도 몰라. '잊혀진 이들'을 찾으려면, 세상에서 한번쯤 잊혀본 사람이어야 하니까.",
-      "characterSpriteCenter": "Characters/세이카/기본",
-      "noFade": true,
-      "nextNodeId": 63
-    },
-    {
-      "id": 63,
-      "speaker": "",
-      "text": "부모님이 준 1년의 기한. 그 마감 직전에 기적처럼 팀이 갖춰졌다.",
-      "nextNodeId": 64
-    },
-    {
-      "id": 64,
-      "speaker": "",
-      "text": "경찰이 닫아버린 파일을 다시 여는 사람들. 세상이 외면한 것들을 마주하는 사람들.",
-      "nextNodeId": 65
-    },
-    {
-      "id": 65,
-      "speaker": "",
-      "text": "그리고 지금—",
-      "nextNodeId": 66
-    },
-    {
-      "id": 66,
-      "speaker": "",
       "text": "",
+      "characterSpriteLeft": "",
+      "characterSpriteCenter": "",
+      "characterSpriteRight": "",
+      "backgroundSprite": "",
+      "choices": [],
       "nextNodeId": -1,
       "command": "START_DIALOGUE:ch0_opening"
     }
