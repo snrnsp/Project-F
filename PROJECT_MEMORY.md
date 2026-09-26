@@ -1,86 +1,86 @@
-# 🎃 Project F (OBLIVION) — 프로젝트 기억 저장소
+﻿# ?럠 Project F (OBLIVION) ???꾨줈?앺듃 湲곗뼲 ??μ냼
 
-> **이 파일은 프로젝트에 대한 모든 핵심 정보를 담고 있습니다.**
-> 변경사항이 발생하면 반드시 이 파일을 업데이트해야 합니다.
-> 마지막 업데이트: 2026-09-24 14:05 KST
+> **???뚯씪? ?꾨줈?앺듃?????紐⑤뱺 ?듭떖 ?뺣낫瑜??닿퀬 ?덉뒿?덈떎.**
+> 蹂寃쎌궗??씠 諛쒖깮?섎㈃ 諛섎뱶?????뚯씪???낅뜲?댄듃?댁빞 ?⑸땲??
+> 留덉?留??낅뜲?댄듃: 2026-09-24 14:05 KST
 
 ---
 
-## 📁 프로젝트 기본 정보
+## ?뱚 ?꾨줈?앺듃 湲곕낯 ?뺣낫
 
-| 항목 | 값 |
+| ??ぉ | 媛?|
 |------|-----|
-| **프로젝트 경로** | `F:\Project-F` |
-| **Git 저장소** | `F:\Project-F` (main 브랜치) |
-| **Unity 버전** | 6000.3.19f1 |
-| **빌드 타겟** | WebGL |
-| **네임스페이스** | `HalloweenVN.*` (Core, UI, Dialogue, Investigation, Deduction, Data, Effects) |
-| **게임 이름** | OBLIVION (오블리비언) |
-| **장르** | 미스터리 비주얼 노벨 + 탐정 추리 |
+| **?꾨줈?앺듃 寃쎈줈** | `F:\Project-F` |
+| **Git ??μ냼** | `F:\Project-F` (main 釉뚮옖移? |
+| **Unity 踰꾩쟾** | 6000.3.19f1 |
+| **鍮뚮뱶 ?寃?* | WebGL |
+| **?ㅼ엫?ㅽ럹?댁뒪** | `HalloweenVN.*` (Core, UI, Dialogue, Investigation, Deduction, Data, Effects) |
+| **寃뚯엫 ?대쫫** | OBLIVION (?ㅻ툝由щ퉬?? |
+| **?λⅤ** | 誘몄뒪?곕━ 鍮꾩＜???몃꺼 + ?먯젙 異붾━ |
 
 ---
 
-## ⚠️ 치명적 주의사항 (CRITICAL)
+## ?좑툘 移섎챸??二쇱쓽?ы빆 (CRITICAL)
 
-### 인코딩 & 파일 작성
-- **C# 파일 수정 시**: 반드시 `encoding='utf-8-sig'`로 읽고 쓸 것
-- **Python으로 C# 문자열 주입 시**: `\n`은 `\\n`으로, `\"`는 `\\"`로 이중 이스케이프 필수
-  - 잘못하면 `CS1010: Newline in constant`, `CS1039: Unterminated string literal` 발생
-- **JSON 파일**: `utf-8`로 작성. BOM이 여러 개 겹칠 수 있으므로 읽을 때 `while raw.startswith(b'\xef\xbb\xbf'): raw = raw[3:]`로 제거
+### ?몄퐫??& ?뚯씪 ?묒꽦
+- **C# ?뚯씪 ?섏젙 ??*: 諛섎뱶??`encoding='utf-8-sig'`濡??쎄퀬 ??寃?
+- **Python?쇰줈 C# 臾몄옄??二쇱엯 ??*: `\n`? `\\n`?쇰줈, `\"`??`\\"`濡??댁쨷 ?댁뒪耳?댄봽 ?꾩닔
+  - ?섎せ?섎㈃ `CS1010: Newline in constant`, `CS1039: Unterminated string literal` 諛쒖깮
+- **JSON ?뚯씪**: `utf-8`濡??묒꽦. BOM???щ윭 媛?寃뱀튌 ???덉쑝誘濡??쎌쓣 ??`while raw.startswith(b'\xef\xbb\xbf'): raw = raw[3:]`濡??쒓굅
 
-### WebGL 빌드 제약
-- **시스템 폰트 사용 불가**: `Font.CreateDynamicFontFromOSFont()` 사용 금지
-  - Legacy Text는 `Resources.Load<Font>("Fonts/MalgunGothic")`으로 직접 로드
-  - TMP Text는 `TMP_FontAsset.CreateFontAsset(rawFont)`로 런타임 생성
-- **System.IO.File 사용 불가**: WebGL에서는 파일 시스템 접근 안 됨. `PlayerPrefs` 사용
+### WebGL 鍮뚮뱶 ?쒖빟
+- **?쒖뒪???고듃 ?ъ슜 遺덇?**: `Font.CreateDynamicFontFromOSFont()` ?ъ슜 湲덉?
+  - Legacy Text??`Resources.Load<Font>("Fonts/MalgunGothic")`?쇰줈 吏곸젒 濡쒕뱶
+  - TMP Text??`TMP_FontAsset.CreateFontAsset(rawFont)`濡??고????앹꽦
+- **System.IO.File ?ъ슜 遺덇?**: WebGL?먯꽌???뚯씪 ?쒖뒪???묎렐 ???? `PlayerPrefs` ?ъ슜
 
-### HalloweenUIBuilder.cs 수정 시
-- 이 파일은 **모든 UI를 코드로 생성**하는 핵심 파일 (프리팹 없음)
-- Python 스크립트로 수정할 때 **파일 후반부가 잘려나가는 사고 주의**
-  - `find()` 실패 시 `-1` 반환 → 파일 절삭 위험
-  - 수정 전 반드시 `git status` 확인, 실패 시 `git checkout`으로 복원 가능
+### HalloweenUIBuilder.cs ?섏젙 ??
+- ???뚯씪? **紐⑤뱺 UI瑜?肄붾뱶濡??앹꽦**?섎뒗 ?듭떖 ?뚯씪 (?꾨━???놁쓬)
+- Python ?ㅽ겕由쏀듃濡??섏젙????**?뚯씪 ?꾨컲遺媛 ?섎젮?섍????ш퀬 二쇱쓽**
+  - `find()` ?ㅽ뙣 ??`-1` 諛섑솚 ???뚯씪 ?덉궘 ?꾪뿕
+  - ?섏젙 ??諛섎뱶??`git status` ?뺤씤, ?ㅽ뙣 ??`git checkout`?쇰줈 蹂듭썝 媛??
 
 ---
 
-## 🏗️ 아키텍처 개요
+## ?룛截??꾪궎?띿쿂 媛쒖슂
 
-### 게임 페이즈
+### 寃뚯엫 ?섏씠利?
 ```
-Lobby → Dialogue → Investigation → Deduction → Result(Dialogue) → Lobby
+Lobby ??Dialogue ??Investigation ??Deduction ??Result(Dialogue) ??Lobby
 ```
 
-| 페이즈 | 담당 스크립트 | 설명 |
+| ?섏씠利?| ?대떦 ?ㅽ겕由쏀듃 | ?ㅻ챸 |
 |--------|-------------|------|
-| `Lobby` | `LobbyUI.cs` | 타이틀 화면, 새 게임/설정/캐릭터/언어 |
-| `Dialogue` | `DialogueManager.cs`, `DialogueUI.cs` | VN 대화, 선택지, 내레이션 |
-| `Investigation` | `InvestigationManager.cs`, `InvestigationUI.cs` | 클릭으로 증거 수집 |
-| `Deduction` | `DeductionManager.cs`, `DeductionUI.cs` | 증거↔질문 드래그앤드롭 매칭 |
-| `Result` | Dialogue 페이즈 재활용 | 추리 결과에 따라 perfect/fail 대사 재생 |
+| `Lobby` | `LobbyUI.cs` | ??댄? ?붾㈃, ??寃뚯엫/?ㅼ젙/罹먮┃???몄뼱 |
+| `Dialogue` | `DialogueManager.cs`, `DialogueUI.cs` | VN ??? ?좏깮吏, ?대젅?댁뀡 |
+| `Investigation` | `InvestigationManager.cs`, `InvestigationUI.cs` | ?대┃?쇰줈 利앷굅 ?섏쭛 |
+| `Deduction` | `DeductionManager.cs`, `DeductionUI.cs` | 利앷굅?붿쭏臾??쒕옒洹몄븻?쒕∼ 留ㅼ묶 |
+| `Result` | Dialogue ?섏씠利??ы솢??| 異붾━ 寃곌낵???곕씪 perfect/fail ????ъ깮 |
 
-### 다이얼로그 커맨드
-| 커맨드 | 동작 |
+### ?ㅼ씠?쇰줈洹?而ㅻ㎤??
+| 而ㅻ㎤??| ?숈옉 |
 |--------|------|
-| `EFFECT:SHAKE` | 카메라 흔들림 |
-| `EFFECT:FLASH` | 화면 백색 플래시 |
-| `EFFECT:FLASH_RED` | 화면 적색 플래시 |
-| `EFFECT:FADE_TO_BLACK` | 화면 암전 |
-| `EFFECT:FADE_FROM_BLACK` | 암전 해제 |
-| `CHANGE_PHASE:Investigation` | 수사 페이즈로 전환 |
-| `CHANGE_PHASE:Deduction` | 추리 페이즈로 전환 |
-| `START_DIALOGUE:id` | 다음 대화 파일로 체이닝 (페이드 트랜지션) |
-| `END` | 대화 종료 → 로비 복귀 |
+| `EFFECT:SHAKE` | 移대찓???붾뱾由?|
+| `EFFECT:FLASH` | ?붾㈃ 諛깆깋 ?뚮옒??|
+| `EFFECT:FLASH_RED` | ?붾㈃ ?곸깋 ?뚮옒??|
+| `EFFECT:FADE_TO_BLACK` | ?붾㈃ ?붿쟾 |
+| `EFFECT:FADE_FROM_BLACK` | ?붿쟾 ?댁젣 |
+| `CHANGE_PHASE:Investigation` | ?섏궗 ?섏씠利덈줈 ?꾪솚 |
+| `CHANGE_PHASE:Deduction` | 異붾━ ?섏씠利덈줈 ?꾪솚 |
+| `START_DIALOGUE:id` | ?ㅼ쓬 ????뚯씪濡?泥댁씠??(?섏씠???몃옖吏?? |
+| `END` | ???醫낅즺 ??濡쒕퉬 蹂듦? |
 
-### 다이얼로그 노드 JSON 형식
+### ?ㅼ씠?쇰줈洹??몃뱶 JSON ?뺤떇
 ```json
 {
   "id": 0,
-  "speaker": "캐릭터명 또는 빈 문자열(나레이터)",
-  "text": "대사 내용",
-  "characterSpriteLeft": "Characters/카스미/기본",
+  "speaker": "罹먮┃?곕챸 ?먮뒗 鍮?臾몄옄???섎젅?댄꽣)",
+  "text": "????댁슜",
+  "characterSpriteLeft": "Characters/移댁뒪誘?湲곕낯",
   "characterSpriteCenter": "",
-  "characterSpriteRight": "Characters/세이카/기본",
-  "backgroundSprite": "Images/배경명",
-  "choices": [{"text": "선택지 텍스트", "nextNodeId": 1}],
+  "characterSpriteRight": "Characters/?몄씠移?湲곕낯",
+  "backgroundSprite": "Images/諛곌꼍紐?,
+  "choices": [{"text": "?좏깮吏 ?띿뒪??, "nextNodeId": 1}],
   "nextNodeId": 1,
   "command": "",
   "slideIn": false,
@@ -90,261 +90,265 @@ Lobby → Dialogue → Investigation → Deduction → Result(Dialogue) → Lobb
 
 ---
 
-## 👥 캐릭터 정보
+## ?뫁 罹먮┃???뺣낫
 
-| 이름 | 나이 | 역할 | MBTI | 말투 |
+| ?대쫫 | ?섏씠 | ??븷 | MBTI | 留먰닾 |
 |------|------|------|------|------|
-| **세이카** | 25 | 사무소 소장 | ENTJ | 반말, 여유롭고 장난기 있는 품격 있는 톤 |
-| **카스미** | 23 | 수석 탐정 | INTJ | 경어체, 건조하고 격식. 흥분하면 반말 섞임 |
-| **리나** | 21 | 현장 돌격 | ESTP | 반말, 활기차고 직설적. 감탄사 많음 |
-| **리리스** | 20 | 기술/해커 | ISTP | 짧은 반말, 명사형 종결. 기계 얘기할 때만 길어짐 |
-| **미나** | ?세 | 오컬트 고문 | INFP | 고풍 어투(~하느니라). 긴장하면 현대어로 복귀 |
-| **하루카** | 19 | 접수/행정 | ENFP | 밝은 존댓말+반말 혼합. 물결표(~) 많음 |
+| **?몄씠移?* | 25 | ?щТ???뚯옣 | ENTJ | 諛섎쭚, ?ъ쑀濡?퀬 ?λ궃湲??덈뒗 ?덇꺽 ?덈뒗 ??|
+| **移댁뒪誘?* | 23 | ?섏꽍 ?먯젙 | INTJ | 寃쎌뼱泥? 嫄댁“?섍퀬 寃⑹떇. ?λ텇?섎㈃ 諛섎쭚 ?욎엫 |
+| **由щ굹** | 21 | ?꾩옣 ?뚭꺽 | ESTP | 諛섎쭚, ?쒓린李④퀬 吏곸꽕?? 媛먰깂??留롮쓬 |
+| **由щ━??* | 20 | 湲곗닠/?댁빱 | ISTP | 吏㏃? 諛섎쭚, 紐낆궗??醫낃껐. 湲곌퀎 ?섍린???뚮쭔 湲몄뼱吏?|
+| **誘몃굹** | ???| ?ㅼ뺄??怨좊Ц | INFP | 怨좏뭾 ?댄닾(~?섎뒓?덈씪). 湲댁옣?섎㈃ ?꾨??대줈 蹂듦? |
+| **?섎（移?* | 19 | ?묒닔/?됱젙 | ENFP | 諛앹? 議대뙎留?諛섎쭚 ?쇳빀. 臾쇨껐??~) 留롮쓬 |
 
-### 캐릭터 스프라이트 (Characters/{이름}/{표정})
-| 캐릭터 | 사용 가능한 표정 |
+### 罹먮┃???ㅽ봽?쇱씠??(Characters/{?대쫫}/{?쒖젙})
+| 罹먮┃??| ?ъ슜 媛?ν븳 ?쒖젙 |
 |--------|-----------------|
-| 카스미 | 기본, 경멸, 공포, 당황2, 미소, 시선회피, 찡그림, 측은, 홍조 |
-| 리나 | 기본, 경멸, 공포, 놀람, 당황, 웃음, 찡그림, 측은, 홍조 |
-| 미나 | 기본, 경멸, 공포, 놀람, 당황, 미소, 삐짐, 음침, 의아, 홍조 + 검은색 버전/ |
-| 세이카 | 기본, 경멸, 공포, 놀람, 당황, 웃음, 음침, 찡그림, 측은, 홍조 |
-| 리리스 | 기본, 경멸, 공포, 놀람, 눈 감음, 미소, 웃음, 음침, 입 벌린 미소, 찡그림, 측은, 홍조 |
-| 하루카 | 기본, 경멸, 공포, 놀람, 모자 착용, 미소, 삐짐, 웃음, 음침, 측은, 홍조 |
+| 移댁뒪誘?| 湲곕낯, 寃쎈㈇, 怨듯룷, ?뱁솴2, 誘몄냼, ?쒖꽑?뚰뵾, 李↔렇由? 痢≪?, ?띿“ |
+| 由щ굹 | 湲곕낯, 寃쎈㈇, 怨듯룷, ??? ?뱁솴, ?껋쓬, 李↔렇由? 痢≪?, ?띿“ |
+| 誘몃굹 | 湲곕낯, 寃쎈㈇, 怨듯룷, ??? ?뱁솴, 誘몄냼, ?먯쭚, ?뚯묠, ?섏븘, ?띿“ + 寃???踰꾩쟾/ |
+| ?몄씠移?| 湲곕낯, 寃쎈㈇, 怨듯룷, ??? ?뱁솴, ?껋쓬, ?뚯묠, 李↔렇由? 痢≪?, ?띿“ |
+| 由щ━??| 湲곕낯, 寃쎈㈇, 怨듯룷, ??? ??媛먯쓬, 誘몄냼, ?껋쓬, ?뚯묠, ??踰뚮┛ 誘몄냼, 李↔렇由? 痢≪?, ?띿“ |
+| ?섎（移?| 湲곕낯, 寃쎈㈇, 怨듯룷, ??? 紐⑥옄 李⑹슜, 誘몄냼, ?먯쭚, ?껋쓬, ?뚯묠, 痢≪?, ?띿“ |
 
 ---
 
-## 🗺️ 스토리 현황
+## ?뿺截??ㅽ넗由??꾪솴
 
-### 완성된 스토리 흐름 (제1화까지)
+### ?꾩꽦???ㅽ넗由??먮쫫 (???붽퉴吏)
 ```
-[로비] → 새 게임 클릭
-  ↓
-ch0_origin (51노드) — 세이카의 과거: 로펌 → 이케다 저택 발견 → 네버모어 설립
-  ↓ START_DIALOGUE:ch0_gathering
-ch0_gathering (67노드) — 멤버 모집: 카스미→리나→리리스→미나→하루카
-  ↓ START_DIALOGUE:ch0_opening
-ch0_opening (16노드) — 노을시와 네버모어 분위기 소개
-  ↓ START_DIALOGUE:ch1_morning
-ch1_morning (69노드) — 아침 일상 + "폐쇄된 음악실 피아노 소리" 의뢰 접수
-  ↓ START_DIALOGUE:ch1_night
-ch1_night (28노드) — 밤 출동, 음악실 진입, 자동 연주 목격
-  ↓ CHANGE_PHASE:Investigation
-🔍 증거 수집 (3개: 먼지 없는 건반, 빛바랜 프로그램, 음파 분석)
-  ↓ (전부 수집 후)
-ch1_investigation_talk (18노드) — 증거 분석 토론
-  ↓ CHANGE_PHASE:Deduction
-🧩 추리 퍼즐 (3개 증거↔질문 매칭)
-  ↓
-ch1_result_perfect (19노드) — 완벽 추리: "나를 찾아줘" 메시지 → 제1화 완
-ch1_result_fail (6노드) — 실패 → 재도전
+[濡쒕퉬] ????寃뚯엫 ?대┃
+  ??
+ch0_origin (51?몃뱶) ???몄씠移댁쓽 怨쇨굅: 濡쒗럩 ???댁??????諛쒓껄 ???ㅻ쾭紐⑥뼱 ?ㅻ┰
+  ??START_DIALOGUE:ch0_gathering
+ch0_gathering (67?몃뱶) ??硫ㅻ쾭 紐⑥쭛: 移댁뒪誘멤넂由щ굹?믩━由ъ뒪?믩??섃넂?섎（移?
+  ??START_DIALOGUE:ch0_opening
+ch0_opening (16?몃뱶) ???몄쓣?쒖? ?ㅻ쾭紐⑥뼱 遺꾩쐞湲??뚭컻
+  ??START_DIALOGUE:ch1_morning
+ch1_morning (69?몃뱶) ???꾩묠 ?쇱긽 + "?먯뇙???뚯븙???쇱븘???뚮━" ?섎ː ?묒닔
+  ??START_DIALOGUE:ch1_night
+ch1_night (28?몃뱶) ??諛?異쒕룞, ?뚯븙??吏꾩엯, ?먮룞 ?곗＜ 紐⑷꺽
+  ??CHANGE_PHASE:Investigation
+?뵇 利앷굅 ?섏쭛 (3媛? 癒쇱? ?녿뒗 嫄대컲, 鍮쏅컮???꾨줈洹몃옩, ?뚰뙆 遺꾩꽍)
+  ??(?꾨? ?섏쭛 ??
+ch1_investigation_talk (18?몃뱶) ??利앷굅 遺꾩꽍 ?좊줎
+  ??CHANGE_PHASE:Deduction
+?㎥ 異붾━ ?쇱쫹 (3媛?利앷굅?붿쭏臾?留ㅼ묶)
+  ??
+ch1_result_perfect (19?몃뱶) ???꾨꼍 異붾━: "?섎? 李얠븘以? 硫붿떆吏 ????????
+ch1_result_fail (6?몃뱶) ???ㅽ뙣 ???щ룄??
 ```
 
-### 제1화 핵심 진실
-- 피아니스트는 죽은 게 아니라 노을시의 "현상"에 의해 **존재 자체가 잊혀진 것**
-- 5년 주기 실종 사건과 연결되는 첫 번째 결정적 증거
-- 잊혀진 존재가 아직 그곳에서 연주하고 있음 (먼지 없는 건반)
+### ?????듭떖 吏꾩떎
+- ?쇱븘?덉뒪?몃뒗 二쎌? 寃??꾨땲???몄쓣?쒖쓽 "?꾩긽"???섑빐 **議댁옱 ?먯껜媛 ?딇?吏?寃?*
+- 5??二쇨린 ?ㅼ쥌 ?ш굔怨??곌껐?섎뒗 泥?踰덉㎏ 寃곗젙??利앷굅
+- ?딇?吏?議댁옱媛 ?꾩쭅 洹멸납?먯꽌 ?곗＜?섍퀬 ?덉쓬 (癒쇱? ?녿뒗 嫄대컲)
 
-### 세계관 핵심
-- **노을시 (Sunset City)**: 인구 80만 항구도시. 5년 주기로 설명 불가능한 실종 사건 발생
-- **"현상"**: 사람의 존재 자체가 세상에서 지워지는 초자연적 현상 (기록, 기억 모두 소멸)
-- **네버모어 오컬트 탐정 사무소**: 이케다 저택에 위치. 365일 할로윈 장식. 경찰이 닫은 파일을 다시 여는 곳
+### ?멸퀎愿 ?듭떖
+- **?몄쓣??(Sunset City)**: ?멸뎄 80留???뎄?꾩떆. 5??二쇨린濡??ㅻ챸 遺덇??ν븳 ?ㅼ쥌 ?ш굔 諛쒖깮
+- **"?꾩긽"**: ?щ엺??議댁옱 ?먯껜媛 ?몄긽?먯꽌 吏?뚯???珥덉옄?곗쟻 ?꾩긽 (湲곕줉, 湲곗뼲 紐⑤몢 ?뚮㈇)
+- **?ㅻ쾭紐⑥뼱 ?ㅼ뺄???먯젙 ?щТ??*: ?댁?????앹뿉 ?꾩튂. 365???좊줈???μ떇. 寃쎌같???レ? ?뚯씪???ㅼ떆 ?щ뒗 怨?
 
 ---
 
-## 🎨 UI / 테마 정보
+## ?렓 UI / ?뚮쭏 ?뺣낫
 
-### 로비 화면
-- 배경: `Images/lobby_bg`
-- 버튼 4개: 새 게임, 캐릭터, Language, 환경 설정 (이어하기 삭제됨)
-- 버튼은 언어에 따라 번역됨 (`HalloweenUIBuilder.CreateLobbyUI()` 내 switch문)
-- 타이틀: "오블리비언\nOBLIVION"
+### 濡쒕퉬 ?붾㈃
+- 諛곌꼍: `Images/lobby_bg`
+- 踰꾪듉 4媛? ??寃뚯엫, 罹먮┃?? Language, ?섍꼍 ?ㅼ젙 (?댁뼱?섍린 ??젣??
+- 踰꾪듉? ?몄뼱???곕씪 踰덉뿭??(`HalloweenUIBuilder.CreateLobbyUI()` ??switch臾?
+- ??댄?: "?ㅻ툝由щ퉬??nOBLIVION"
 
-### 캐릭터 설정집 (ExtraUI)
-- 마닐라/크라프트지 폴더 테마
-- 이름택 글자 크기: 45, 프로필 이름 크기: 60, 본문 크기: 36
-- 텍스트 색상: 검정, 필기체 폰트 사용
-- 클릭 관통 방지: Body와 ShadowBox에 빈 Button 컴포넌트 추가됨
-- 다국어 번역 완료 (ExtraUI.cs 내 GetLabel 메서드)
+### 罹먮┃???ㅼ젙吏?(ExtraUI)
+- 留덈땺???щ씪?꾪듃吏 ?대뜑 ?뚮쭏
+- ?대쫫??湲???ш린: 45, ?꾨줈???대쫫 ?ш린: 60, 蹂몃Ц ?ш린: 36
+- ?띿뒪???됱긽: 寃?? ?꾧린泥??고듃 ?ъ슜
+- ?대┃ 愿??諛⑹?: Body? ShadowBox??鍮?Button 而댄룷?뚰듃 異붽???
+- ?ㅺ뎅??踰덉뿭 ?꾨즺 (ExtraUI.cs ??GetLabel 硫붿꽌??
 
-### 폰트 시스템
-| 용도 | 폰트 파일 | 비고 |
+### ?고듃 ?쒖뒪??
+| ?⑸룄 | ?고듃 ?뚯씪 | 鍮꾧퀬 |
 |------|-----------|------|
-| 한국어 필기체 | NanumPenScript.ttf | 캐릭터 설정집 기본 |
-| 영어 필기체 | Caveat-Regular.ttf | |
-| 일본어 필기체 | ZenKurenaido-Regular.ttf | |
-| 중국어 간체 필기체 | MaShanZheng-Regular.ttf | |
-| 중국어 번체 필기체 | LongCang-Regular.ttf | |
-| CJK 기본 (Legacy Text) | MalgunGothic.ttf | WebGL용 시스템 폰트 대체 |
-| CJK 기본 (TMP) | MalgunGothic SDF.asset | |
+| ?쒓뎅???꾧린泥?| NanumPenScript.ttf | 罹먮┃???ㅼ젙吏?湲곕낯 |
+| ?곸뼱 ?꾧린泥?| Caveat-Regular.ttf | |
+| ?쇰낯???꾧린泥?| ZenKurenaido-Regular.ttf | |
+| 以묎뎅??媛꾩껜 ?꾧린泥?| MaShanZheng-Regular.ttf | |
+| 以묎뎅??踰덉껜 ?꾧린泥?| LongCang-Regular.ttf | |
+| CJK 湲곕낯 (Legacy Text) | MalgunGothic.ttf | WebGL???쒖뒪???고듃 ?泥?|
+| CJK 湲곕낯 (TMP) | MalgunGothic SDF.asset | |
 
-### 다국어 지원
-- 지원 언어: 한국어(기본), English, 日本語, 简体中文, 繁體中文
+### ?ㅺ뎅??吏??
+- 吏???몄뼱: ?쒓뎅??湲곕낯), English, ?ζ쑍沃? 嶸鵝볞릎?? 濚곲쳱訝?뻼
 - `GameLanguage` enum: Korean, English, Japanese, ChineseSimplified, ChineseTraditional
-- 로비 버튼, 경고 팝업, 캐릭터 설정집 모두 번역 완료
-- `SettingsData.Language`로 현재 언어 참조
+- 濡쒕퉬 踰꾪듉, 寃쎄퀬 ?앹뾽, 罹먮┃???ㅼ젙吏?紐⑤몢 踰덉뿭 ?꾨즺
+- `SettingsData.Language`濡??꾩옱 ?몄뼱 李몄“
 
 ---
 
-## 📂 데이터 파일 목록
+## ?뱛 ?곗씠???뚯씪 紐⑸줉
 
-### 대화 파일 (Assets/Resources/Data/Dialogues/)
-| 파일명 | 노드 수 | 설명 |
+### ????뚯씪 (Assets/Resources/Data/Dialogues/)
+| ?뚯씪紐?| ?몃뱶 ??| ?ㅻ챸 |
 |--------|---------|------|
-| ch0_origin.json | 25 | 세이카의 과거 (5년 전~4년 전) |
-| ch0_gathering.json | 37 | 6인 멤버 모집 |
-| ch0_opening.json | 16 | 노을시/네버모어 소개 |
-| ch1_morning.json | 69 | 1화 아침 일상 + 의뢰 접수 |
-| ch1_night.json | 28 | 1화 밤 출동 + 피아노 장면 |
-| ch1_prologue.json | 13 | 1화 축약 프롤로그 (미사용) |
-| ch1_incident.json | 7 | 1화 현장 도착 (미사용, ch1_night로 대체) |
-| ch1_investigation_talk.json | 18 | 1화 증거 분석 토론 |
-| ch1_result_perfect.json | 19 | 1화 완벽 추리 결과 |
-| ch1_result_fail.json | 6 | 1화 실패 → 재도전 |
-| test_* | 각 2-5 | 테스트용 (게임에서 미사용) |
-| _legacy/* | 각 5-8 | 구버전 (미사용) |
+| ch0_origin.json | 25 | ?몄씠移댁쓽 怨쇨굅 (5????4???? |
+| ch0_gathering.json | 37 | 6??硫ㅻ쾭 紐⑥쭛 |
+| ch0_opening.json | 16 | ?몄쓣???ㅻ쾭紐⑥뼱 ?뚭컻 |
+| ch1_morning.json | 69 | 1???꾩묠 ?쇱긽 + ?섎ː ?묒닔 |
+| ch1_night.json | 28 | 1??諛?異쒕룞 + ?쇱븘???λ㈃ |
+| ch1_prologue.json | 13 | 1??異뺤빟 ?꾨·濡쒓렇 (誘몄궗?? |
+| ch1_incident.json | 7 | 1???꾩옣 ?꾩갑 (誘몄궗?? ch1_night濡??泥? |
+| ch1_investigation_talk.json | 18 | 1??利앷굅 遺꾩꽍 ?좊줎 |
+| ch1_result_perfect.json | 19 | 1???꾨꼍 異붾━ 寃곌낵 |
+| ch1_result_fail.json | 6 | 1???ㅽ뙣 ???щ룄??|
+| test_* | 媛?2-5 | ?뚯뒪?몄슜 (寃뚯엫?먯꽌 誘몄궗?? |
+| _legacy/* | 媛?5-8 | 援щ쾭??(誘몄궗?? |
 
-### 증거 파일 (Assets/Resources/Data/Evidence/)
-| 파일명 | 증거 수 | 설명 |
+### 利앷굅 ?뚯씪 (Assets/Resources/Data/Evidence/)
+| ?뚯씪紐?| 利앷굅 ??| ?ㅻ챸 |
 |--------|---------|------|
-| ch1_evidence.json | 3 | 1화: 먼지 없는 건반, 빛바랜 프로그램, 음파 분석 |
-| test_evidence_db.json | 3 | 테스트용 |
+| ch1_evidence.json | 3 | 1?? 癒쇱? ?녿뒗 嫄대컲, 鍮쏅컮???꾨줈洹몃옩, ?뚰뙆 遺꾩꽍 |
+| test_evidence_db.json | 3 | ?뚯뒪?몄슜 |
 
-### 사건 파일 (Assets/Resources/Data/Cases/)
-| 파일명 | 질문 수 | 설명 |
+### ?ш굔 ?뚯씪 (Assets/Resources/Data/Cases/)
+| ?뚯씪紐?| 吏덈Ц ??| ?ㅻ챸 |
 |--------|---------|------|
-| ch1_case.json | 3 | 1화: 잊혀진 피아니스트 |
-| test_case.json | 3 | 테스트용 |
+| ch1_case.json | 3 | 1?? ?딇?吏??쇱븘?덉뒪??|
+| test_case.json | 3 | ?뚯뒪?몄슜 |
 
-### 배경 이미지 (Assets/Resources/Images/)
-| 파일명 | 용도 |
+### 諛곌꼍 ?대?吏 (Assets/Resources/Images/)
+| ?뚯씪紐?| ?⑸룄 |
 |--------|------|
-| lobby_bg.jpg | 로비 배경 (저택 외관) |
-| city_night.jpg | 노을시 야경 |
-| mansion_interior.jpg | 저택/음악실 내부 |
-| mansion_interior_morning.jpg | 저택 내부 (아침) |
-| bg_flashback.png | 회상 씬 배경 |
+| lobby_bg.jpg | 濡쒕퉬 諛곌꼍 (????멸?) |
+| city_night.jpg | ?몄쓣???쇨꼍 |
+| mansion_interior.jpg | ????뚯븙???대? |
+| mansion_interior_morning.jpg | ????대? (?꾩묠) |
+| bg_flashback.png | ?뚯긽 ??諛곌꼍 |
 
 ---
 
-## 🔧 핵심 스크립트 구조
+## ?뵩 ?듭떖 ?ㅽ겕由쏀듃 援ъ“
 
 ```
 Assets/Scripts/
-├── Core/
-│   ├── GameBootstrap.cs      — AutoSetup, DontDestroyOnLoad
-│   ├── GameManager.cs        — 싱글톤, 페이즈 관리
-│   ├── GamePhase.cs          — enum (Lobby/Dialogue/Investigation/Deduction/Result)
-│   ├── SaveData.cs           — PlayerPrefs 기반 세이브
-│   └── SettingsData.cs       — 설정값 (텍스트속도/볼륨/언어 등)
-├── Data/
-│   ├── CaseData.cs           — CaseContainer, CaseQuestion
-│   ├── DataLoader.cs         — Resources.Load JSON 파서
-│   ├── DialogueData.cs       — DialogueContainer, DialogueNode, DialogueChoice
-│   └── EvidenceData.cs       — EvidenceDatabase, EvidenceInfo
-├── Dialogue/
-│   └── DialogueManager.cs    — 대화 진행/커맨드 처리/선택지/체이닝
-├── Deduction/
-│   └── DeductionManager.cs   — 추리 퍼즐 로직/채점
-├── Investigation/
-│   ├── InvestigationManager.cs — 수사 페이즈 관리
-│   ├── InvestigationObject.cs  — 클릭 가능 증거 오브젝트
-│   └── EvidenceInventory.cs    — 증거 인벤토리 싱글톤
-├── Effects/
-│   └── ScreenEffects.cs      — 화면 효과 (Shake/Flash/Fade)
-└── UI/
-    ├── Theme/
-    │   ├── HalloweenUIBuilder.cs — 모든 UI를 코드로 생성 (핵심 파일)
-    │   ├── HalloweenTheme.cs     — 색상/스타일 상수
-    │   ├── UIHelper.cs           — UI 생성 유틸리티
-    │   ├── ScreenTransition.cs   — 화면 전환 페이드
-    │   ├── PanelAnimator.cs      — 패널 애니메이션
-    │   └── SpookyTextEffect.cs   — 텍스트 효과
-    ├── LobbyUI.cs            — 로비 화면
-    ├── DialogueUI.cs         — 대화 UI (3슬롯 캐릭터 스테이징)
-    ├── ExtraUI.cs            — 캐릭터 설정집
-    ├── SettingsUI.cs         — 설정 화면
-    ├── LanguageUI.cs         — 언어 선택
-    ├── BacklogUI.cs          — 백로그
-    ├── InvestigationUI.cs    — 수사 UI
-    ├── DeductionUI.cs        — 추리 UI
-    ├── EvidenceDragItem.cs   — 증거 드래그 아이템
-    ├── EvidenceSlot.cs       — 증거 슬롯
-    └── GlobalUIManager.cs    — 글로벌 UI 관리
+?쒋?? Core/
+??  ?쒋?? GameBootstrap.cs      ??AutoSetup, DontDestroyOnLoad
+??  ?쒋?? GameManager.cs        ???깃??? ?섏씠利?愿由?
+??  ?쒋?? GamePhase.cs          ??enum (Lobby/Dialogue/Investigation/Deduction/Result)
+??  ?쒋?? SaveData.cs           ??PlayerPrefs 湲곕컲 ?몄씠釉?
+??  ?붴?? SettingsData.cs       ???ㅼ젙媛?(?띿뒪?몄냽??蹂쇰ⅷ/?몄뼱 ??
+?쒋?? Data/
+??  ?쒋?? CaseData.cs           ??CaseContainer, CaseQuestion
+??  ?쒋?? DataLoader.cs         ??Resources.Load JSON ?뚯꽌
+??  ?쒋?? DialogueData.cs       ??DialogueContainer, DialogueNode, DialogueChoice
+??  ?붴?? EvidenceData.cs       ??EvidenceDatabase, EvidenceInfo
+?쒋?? Dialogue/
+??  ?붴?? DialogueManager.cs    ?????吏꾪뻾/而ㅻ㎤??泥섎━/?좏깮吏/泥댁씠??
+?쒋?? Deduction/
+??  ?붴?? DeductionManager.cs   ??異붾━ ?쇱쫹 濡쒖쭅/梨꾩젏
+?쒋?? Investigation/
+??  ?쒋?? InvestigationManager.cs ???섏궗 ?섏씠利?愿由?
+??  ?쒋?? InvestigationObject.cs  ???대┃ 媛??利앷굅 ?ㅻ툕?앺듃
+??  ?붴?? EvidenceInventory.cs    ??利앷굅 ?몃깽?좊━ ?깃???
+?쒋?? Effects/
+??  ?붴?? ScreenEffects.cs      ???붾㈃ ?④낵 (Shake/Flash/Fade)
+?붴?? UI/
+    ?쒋?? Theme/
+    ??  ?쒋?? HalloweenUIBuilder.cs ??紐⑤뱺 UI瑜?肄붾뱶濡??앹꽦 (?듭떖 ?뚯씪)
+    ??  ?쒋?? HalloweenTheme.cs     ???됱긽/?ㅽ????곸닔
+    ??  ?쒋?? UIHelper.cs           ??UI ?앹꽦 ?좏떥由ы떚
+    ??  ?쒋?? ScreenTransition.cs   ???붾㈃ ?꾪솚 ?섏씠??
+    ??  ?쒋?? PanelAnimator.cs      ???⑤꼸 ?좊땲硫붿씠??
+    ??  ?붴?? SpookyTextEffect.cs   ???띿뒪???④낵
+    ?쒋?? LobbyUI.cs            ??濡쒕퉬 ?붾㈃
+    ?쒋?? DialogueUI.cs         ?????UI (3?щ’ 罹먮┃???ㅽ뀒?댁쭠)
+    ?쒋?? ExtraUI.cs            ??罹먮┃???ㅼ젙吏?
+    ?쒋?? SettingsUI.cs         ???ㅼ젙 ?붾㈃
+    ?쒋?? LanguageUI.cs         ???몄뼱 ?좏깮
+    ?쒋?? BacklogUI.cs          ??諛깅줈洹?
+    ?쒋?? InvestigationUI.cs    ???섏궗 UI
+    ?쒋?? DeductionUI.cs        ??異붾━ UI
+    ?쒋?? EvidenceDragItem.cs   ??利앷굅 ?쒕옒洹??꾩씠??
+    ?쒋?? EvidenceSlot.cs       ??利앷굅 ?щ’
+    ?붴?? GlobalUIManager.cs    ??湲濡쒕쾶 UI 愿由?
 ```
 
 ---
 
-## 📝 변경 이력
+## ?뱷 蹂寃??대젰
 
-| 날짜 | 변경 내용 |
+| ?좎쭨 | 蹂寃??댁슜 |
 |------|-----------|
-| 2026-09-25 | 백로그(대화기록) 시스템 전면 수정: (1) OnPhaseChanged에서 backlogModalRoot 비활성화 제거(이벤트 구독 끊김 방지), (2) BacklogUI.cs 재작성: Start() 구독+Update() lazy fallback+OnDestroy()에서만 정리+빈 기록 안내 메시지+Lobby 복귀시 기록 초기화 |
-| 2026-09-25 | 대화 로그 전수 감사(237노드): 장문 내레이션 줄바꿈 20건, 장문 대사 분할/줄바꿈 5건, 카스미 말투 수정 1건(인정할 수밖에->인정할 수밖에 없습니다), 미나 말투 급변은 의도된 연출로 유지. 총 27건 수정. |
-| 2026-09-25 | 프롤로그 텍스트 깨짐 수정: ch0_origin.json 노드 5의 깨지는 글자(랐)를 우회하여 문장을 수정하고 줄바꿈 추가 (잘랐다 -> 끊었다) |
-| 2026-09-25 | UI 디자인 전수 감사 및 수정: (1-2) 복사-붙여넣기 버그 수정(수사패널/백로그 제목이 언어설정으로 표시), (3) ResultPanel에 계속 버튼 추가(게임 멈춤 방지), (4) OnPhaseChanged에서 모달 오버레이 자동 닫기, (5) 색상 대비 개선(SlotEmpty/SlotFilled/SlotHighlight 밝기 상향), (6) 로비 슬라이드 -1920 하드코딩을 동적 캔버스 폭으로 변경 |
-| 2026-09-25 | 추리 디자인 전수 수정 7건: (1) EvidenceDragItem/EvidenceSlot에 증거 이름 텍스트 추가, UIBuilder 프리팹 재구성(90x90 grid -> 300x50 single-column list), (2) 결과 텍스트 영어->한국어, (3) ch1_night에 발자국/온도 복선 3노드 추가, (4) 함정증거 공개 노드를 애매한 표현으로 변경, (5) 질문 Q4/Q5 표현 차별화, (6) ch1_result_fail 재작성(구체적 피드백+힌트) |
-| 2026-09-25 | 추리 난이도 대폭 상향: 증거 3->7개(핵심5+함정2), 질문 3->5개, 경우의수 6->2520. EvidenceData.cs에 required 필드 추가, InvestigationManager.cs에 자동 로드 로직 추가. ch1_evidence/case/investigation_talk/result_perfect.json 모두 업데이트 |
-| 2026-09-25 | 프롤로그 압축: ch0_origin(51->25노드), ch0_gathering(67->37노드). 총 118->62노드. 핵심 스토리 비트(5년 주기, 저택 메시지, 각 캐릭터 합류 계기, 시스템 밖 연설)는 모두 보존. 원본은 _legacy에 백업 |
-| 2026-09-25 | 스토리 종합 리뷰: (1) ch1_result_perfect/ch1_investigation_talk의 미존재 스프라이트 5건 수정(진지->찡그림, 슬픔->측은, 미소->웃음), (2) worldbuilding.md 타임라인을 ch0_gathering 기준(3개월 내 전원 합류)으로 통일, (3) 미사용 파일(ch1_prologue, ch1_incident) _legacy 이동 |
-| 2026-09-25 | 독백(화면 가림) 씬에서 대화 씬으로 넘어갈 때, 캐릭터가 0.2초간 밝게 번쩍였다가 어두워지는 하이라이트 깜빡임 현상 수정 (즉시 어두워지도록 예외 처리) |
-| 2026-09-25 | 대화창에서 엔터/스페이스바 입력 시 유니티 UI 이벤트 시스템과 Input System이 중복(더블 클릭)으로 이벤트를 발생시켜 타이핑 애니메이션이 즉시 스킵되던 버그 수정 (0.05초 쿨타임 적용) |
-| 2026-09-24 | DialogueUI.cs 코루틴 처리 로직 변경 중 발생한 컴파일 에러(Cannot implicitly convert type void to Coroutine) 수정 |
-| 2026-09-24 | 같은 자리에서 이전 캐릭터가 퇴장(FadeOut)함과 동시에 새 캐릭터가 등장(FadeIn)할 때, 퇴장 코루틴이 뒤늦게 이미지를 비활성화시켜 새 캐릭터(리리스 등)가 안 보이게 되는 코루틴 충돌 버그 수정 |
-| 2026-09-24 | 대화 진행 중 캐릭터 위치 계산 로직 불일치(0.25 vs 0.34 등)로 인해 특정 대사에서 캐릭터가 우측으로 밀리던 버그 수정 |
-| 2026-09-24 | 중앙 캐릭터 슬라이드 인 방향 지정용 slideFromRight 속성 추가 및 리나 첫 등장 씬(ch0_gathering.json)에만 제한적용 (다른 씬 영향 제거) |
-| 2026-09-24 | 대화창 첫 캐릭터 등장 시 페이드 효과가 없을(noFade) 경우 화면 오른쪽에서 슬라이드 인(Slide In) 하도록 애니메이션 로직 복구 |
-| 2026-09-24 | 미나 캐릭터 설정집 나이 정보 업데이트 (1,000살 -> 1,000살(?)) |
-| 2026-09-24 | 하루카 캐릭터 설정집 나이 정보 업데이트 (19세 -> 19세(최연소)) |
-| 2026-09-24 | 캐릭터 설정집 본문 텍스트 크기 축소 (이름: 60->55, 본문: 36->32) |
-| 2026-09-24 | 하루카 캐릭터 설정집 외모 정보 실제 일러스트 기반으로 전면 수정 (연갈색->회보라색 머리+꽃 핀, 호박색 눈->연보라 눈, 블라우스->캐미솔 원피스+핑크 재킷+프릴 롱스커트+샌들) |
-| 2026-09-24 | 리리스 캐릭터 설정집 외모 정보 실제 일러스트 기반으로 전면 수정 (트윈테일->투톤 숏컷 보브, 헤드셋 삭제, 테크웨어 스타일 상세 묘사) |
-| 2026-09-24 | 리나 캐릭터 설정집 외모 정보 실제 일러스트 기반으로 전면 수정 (숏컷->웨이브 중간 머리, 귀걸이->헤어핀, 봄버 재킷->카고 재킷+홀터넥+체크 숏팬츠+회색 워커) |
-| 2026-09-24 | 카스미 캐릭터 설정집 외모 정보 실제 일러스트 기반으로 전면 수정 (금안->청록색 눈, 밤색 셔츠->하얀 셔츠, 하네스->하이웨스트 슬랙스+목걸이) |
-| 2026-09-24 | 세이카 캐릭터 설정집 외모 정보 실제 일러스트 기반으로 전면 수정 (단발->긴 머리, 귀걸이->헤어핀, 트렌치코트->롱 스커트+재킷+숄더백) |
-| 2026-09-24 | 미나 캐릭터 설정집 외모 정보 재수정 (실제 일러스트 기반 분석: 해진 순백의 드레스, 한쪽 눈을 가린 머리, 유령 같은 분위기 등 묘사 추가) |
-| 2026-09-24 | 미나 캐릭터 설정집 외모 정보 수정 (하얀 은발/검은 드레스 -> 하늘색 머리/하얀색 옷) |
-| 2026-09-24 | 설정집(ExtraUI)에서 스프라이트 로드 시 Resources.LoadAll Fallback 로직 추가 (리리스 등 다중 스프라이트 이미지 미출력 버그 수정) |
-| 2026-09-24 | 대화창 텍스트 출력 중 줄내림(\\n) 발생 시 0.7초 대기 후 다음 문장 출력되도록 수정 (연출 강화) |
-| 2026-09-24 | 캐릭터 설정집 본문 텍스트 단락 간 여백 대폭 축소 (TextMeshPro size 태그 활용) |
-| 2026-09-24 | 캐릭터 설정집 폴더 이름택(Tab) 폰트 크기 미세 축소 (50/40 -> 45/35) |
-| 2026-09-24 | 캐릭터 설정집(폴더 UI) 전체 크기 축소 및 위치 상향 조정 (가로폭 감소, 세로폭 감소, 상단 여백 감소, 하단 여백 증가) |
-| 2026-09-24 | 캐릭터 설정집 폴더 이름택(Tab) 위치 아래로 미세 이동 및 폰트 크기 추가 축소 (50/40) |
-| 2026-09-24 | 환경 설정 텍스트 속도 바 조절 시, 미리보기 텍스트가 처음부터 다시 재생되지 않고 출력되는 도중에 실시간으로 속도만 바뀌도록 수정 |
-| 2026-09-24 | 텍스트 속도 최소/최대값 상향 조정 (가장 느릴 때 0.05초/글자, 가장 빠를 때 0.005초/글자) |
-| 2026-09-24 | 환경 설정 창 진입 시 텍스트 속도가 영구적으로 느려지는 버그 수정 (Slider 범위 0~1로 정규화) |
-| 2026-09-24 | 수치바 테두리가 보이지 않는 문제 해결 (Outline 컴포넌트 대신 별도의 Solid 검정색 백그라운드 객체를 생성하여 뒤에 배치) |
-| 2026-09-24 | 환경 설정 수치바 배경색을 밝은 보라색으로, 테두리를 완전한 검정색으로 수정 (시인성 향상) |
-| 2026-09-24 | 캐릭터 등장 시 슬라이드 애니메이션 속도 상향 (0.5s -> 0.25s) |
-| 2026-09-24 | 환경 설정 수치바(Slider) 테두리 색상 및 두께 변경 (주황색 -> 다크 퍼플, 2px -> 4px) |
-| 2026-09-24 | 환경 설정 수치바(Slider)에 패널과 동일한 색상의 테두리(Outline) 추가 |
-| 2026-09-24 | LobbyUI.UpdateLanguage에서 삭제된 continueText 참조 에러 (NullReferenceException) 해결 |
-| 2026-09-24 | 캐릭터 설정집 폴더 이름택 폰트 크기 미세 축소 (65/55 -> 55/45) |
-| 2026-09-24 | ExtraUI.cs 내 폴더 탭 폰트 동적 리사이징 로직 수정 (20/16 -> 65/55) |
-| 2026-09-24 | 캐릭터 설정집 폴더 이름택(Tab) 폰트 크기 확대 (45 -> 65) |
-| 2026-09-24 | 설정 창 상하 테두리 두께 보강 (Outline.effectDistance Y값 증가) |
-| 2026-09-24 | 설정 창 텍스트 라벨 위치 미세 하향 조정 (+15f -> +5f) |
-| 2026-09-24 | 설정 창 레이아웃 세부 조정 (텍스트 속도, BGM, SFX 라벨 위치 상향) |
-| 2026-09-24 | HalloweenUIBuilder.cs 내 미사용 변수(t_continue) 제거 (CS0219 경고 해결) |
-| 2026-09-24 | SettingsUI 내 데이터 삭제 버튼 제거 및 닫기 버튼 중앙 정렬 |
-| 2026-09-24 | Legacy Text 폰트를 시스템 폰트 → Resources/Fonts/MalgunGothic으로 변경 (WebGL 호환) |
-| 2026-09-24 | 로비 버튼 다국어 번역 추가 (HalloweenUIBuilder.cs) |
-| 2026-09-24 | 캐릭터 설정집 클릭 관통 방지 (Body/ShadowBox에 빈 Button 추가) |
-| 2026-09-24 | 이어하기 버튼 삭제 (로비 4버튼 체제) |
-| 2026-09-24 | ch1_morning.json: END → START_DIALOGUE:ch1_night 연결 |
-| 2026-09-24 | ch1_night.json 생성 (28노드, 밤 출동 장면) |
-| 2026-09-24 | ch1_investigation_talk.json 생성 (18노드, 증거 분석 토론) |
-| 2026-09-24 | ch1_result_perfect.json 생성 (19노드, 완벽 추리 결과) |
-| 2026-09-24 | ch1_result_fail.json 생성 (6노드, 실패 → 재도전) |
-| 2026-09-24 | ExtraUI.cs 문자열 리터럴 이스케이프 오류 수정 |
-| 2026-09-24 | SettingsUI.cs FindObjectOfType → FindFirstObjectByType 경고 수정 |
+| 2026-09-25 | 諛깅줈洹???붽린濡? ?쒖뒪???꾨㈃ ?섏젙: (1) OnPhaseChanged?먯꽌 backlogModalRoot 鍮꾪솢?깊솕 ?쒓굅(?대깽??援щ룆 ?딄? 諛⑹?), (2) BacklogUI.cs ?ъ옉?? Start() 援щ룆+Update() lazy fallback+OnDestroy()?먯꽌留??뺣━+鍮?湲곕줉 ?덈궡 硫붿떆吏+Lobby 蹂듦???湲곕줉 珥덇린??|
+| 2026-09-25 | ???濡쒓렇 ?꾩닔 媛먯궗(237?몃뱶): ?λЦ ?대젅?댁뀡 以꾨컮轅?20嫄? ?λЦ ???遺꾪븷/以꾨컮轅?5嫄? 移댁뒪誘?留먰닾 ?섏젙 1嫄??몄젙???섎컰??>?몄젙???섎컰???놁뒿?덈떎), 誘몃굹 留먰닾 湲됰?? ?섎룄???곗텧濡??좎?. 珥?27嫄??섏젙. |
+| 2026-09-25 | ?꾨·濡쒓렇 ?띿뒪??源⑥쭚 ?섏젙: ch0_origin.json ?몃뱶 5??源⑥???湲????瑜??고쉶?섏뿬 臾몄옣???섏젙?섍퀬 以꾨컮轅?異붽? (?섎옄??-> ?딆뿀?? |
+| 2026-09-25 | UI ?붿옄???꾩닔 媛먯궗 諛??섏젙: (1-2) 蹂듭궗-遺숈뿬?ｊ린 踰꾧렇 ?섏젙(?섏궗?⑤꼸/諛깅줈洹??쒕ぉ???몄뼱?ㅼ젙?쇰줈 ?쒖떆), (3) ResultPanel??怨꾩냽 踰꾪듉 異붽?(寃뚯엫 硫덉땄 諛⑹?), (4) OnPhaseChanged?먯꽌 紐⑤떖 ?ㅻ쾭?덉씠 ?먮룞 ?リ린, (5) ?됱긽 ?鍮?媛쒖꽑(SlotEmpty/SlotFilled/SlotHighlight 諛앷린 ?곹뼢), (6) 濡쒕퉬 ?щ씪?대뱶 -1920 ?섎뱶肄붾뵫???숈쟻 罹붾쾭????쑝濡?蹂寃?|
+| 2026-09-25 | 異붾━ ?붿옄???꾩닔 ?섏젙 7嫄? (1) EvidenceDragItem/EvidenceSlot??利앷굅 ?대쫫 ?띿뒪??異붽?, UIBuilder ?꾨━???ш뎄??90x90 grid -> 300x50 single-column list), (2) 寃곌낵 ?띿뒪???곸뼱->?쒓뎅?? (3) ch1_night??諛쒖옄援??⑤룄 蹂듭꽑 3?몃뱶 異붽?, (4) ?⑥젙利앷굅 怨듦컻 ?몃뱶瑜??좊ℓ???쒗쁽?쇰줈 蹂寃? (5) 吏덈Ц Q4/Q5 ?쒗쁽 李⑤퀎?? (6) ch1_result_fail ?ъ옉??援ъ껜???쇰뱶諛??뚰듃) |
+| 2026-09-25 | 異붾━ ?쒖씠??????곹뼢: 利앷굅 3->7媛??듭떖5+?⑥젙2), 吏덈Ц 3->5媛? 寃쎌슦?섏닔 6->2520. EvidenceData.cs??required ?꾨뱶 異붽?, InvestigationManager.cs???먮룞 濡쒕뱶 濡쒖쭅 異붽?. ch1_evidence/case/investigation_talk/result_perfect.json 紐⑤몢 ?낅뜲?댄듃 |
+| 2026-09-25 | ?꾨·濡쒓렇 ?뺤텞: ch0_origin(51->25?몃뱶), ch0_gathering(67->37?몃뱶). 珥?118->62?몃뱶. ?듭떖 ?ㅽ넗由?鍮꾪듃(5??二쇨린, ???硫붿떆吏, 媛?罹먮┃???⑸쪟 怨꾧린, ?쒖뒪??諛??곗꽕)??紐⑤몢 蹂댁〈. ?먮낯? _legacy??諛깆뾽 |
+| 2026-09-25 | ?ㅽ넗由?醫낇빀 由щ럭: (1) ch1_result_perfect/ch1_investigation_talk??誘몄〈???ㅽ봽?쇱씠??5嫄??섏젙(吏꾩?->李↔렇由? ?ы뵒->痢≪?, 誘몄냼->?껋쓬), (2) worldbuilding.md ??꾨씪?몄쓣 ch0_gathering 湲곗?(3媛쒖썡 ???꾩썝 ?⑸쪟)?쇰줈 ?듭씪, (3) 誘몄궗???뚯씪(ch1_prologue, ch1_incident) _legacy ?대룞 |
+| 2026-09-25 | ?낅갚(?붾㈃ 媛由? ?ъ뿉??????ъ쑝濡??섏뼱媛??? 罹먮┃?곌? 0.2珥덇컙 諛앷쾶 踰덉찉??ㅺ? ?대몢?뚯????섏씠?쇱씠??源쒕묀???꾩긽 ?섏젙 (利됱떆 ?대몢?뚯??꾨줉 ?덉쇅 泥섎━) |
+| 2026-09-25 | ??붿갹?먯꽌 ?뷀꽣/?ㅽ럹?댁뒪諛??낅젰 ???좊땲??UI ?대깽???쒖뒪?쒓낵 Input System??以묐났(?붾툝 ?대┃)?쇰줈 ?대깽?몃? 諛쒖깮?쒖폒 ??댄븨 ?좊땲硫붿씠?섏씠 利됱떆 ?ㅽ궢?섎뜕 踰꾧렇 ?섏젙 (0.05珥?荑⑦????곸슜) |
+| 2026-09-24 | DialogueUI.cs 肄붾（??泥섎━ 濡쒖쭅 蹂寃?以?諛쒖깮??而댄뙆???먮윭(Cannot implicitly convert type void to Coroutine) ?섏젙 |
+| 2026-09-24 | 媛숈? ?먮━?먯꽌 ?댁쟾 罹먮┃?곌? ?댁옣(FadeOut)?④낵 ?숈떆????罹먮┃?곌? ?깆옣(FadeIn)???? ?댁옣 肄붾（?댁씠 ?ㅻ뒭寃??대?吏瑜?鍮꾪솢?깊솕?쒖폒 ??罹먮┃??由щ━????媛 ??蹂댁씠寃??섎뒗 肄붾（??異⑸룎 踰꾧렇 ?섏젙 |
+| 2026-09-24 | ???吏꾪뻾 以?罹먮┃???꾩튂 怨꾩궛 濡쒖쭅 遺덉씪移?0.25 vs 0.34 ??濡??명빐 ?뱀젙 ??ъ뿉??罹먮┃?곌? ?곗륫?쇰줈 諛由щ뜕 踰꾧렇 ?섏젙 |
+| 2026-09-24 | 以묒븰 罹먮┃???щ씪?대뱶 ??諛⑺뼢 吏?뺤슜 slideFromRight ?띿꽦 異붽? 諛?由щ굹 泥??깆옣 ??ch0_gathering.json)?먮쭔 ?쒗븳?곸슜 (?ㅻⅨ ???곹뼢 ?쒓굅) |
+| 2026-09-24 | ??붿갹 泥?罹먮┃???깆옣 ???섏씠???④낵媛 ?놁쓣(noFade) 寃쎌슦 ?붾㈃ ?ㅻⅨ履쎌뿉???щ씪?대뱶 ??Slide In) ?섎룄濡??좊땲硫붿씠??濡쒖쭅 蹂듦뎄 |
+| 2026-09-24 | 誘몃굹 罹먮┃???ㅼ젙吏??섏씠 ?뺣낫 ?낅뜲?댄듃 (1,000??-> 1,000???)) |
+| 2026-09-24 | ?섎（移?罹먮┃???ㅼ젙吏??섏씠 ?뺣낫 ?낅뜲?댄듃 (19??-> 19??理쒖뿰??) |
+| 2026-09-24 | 罹먮┃???ㅼ젙吏?蹂몃Ц ?띿뒪???ш린 異뺤냼 (?대쫫: 60->55, 蹂몃Ц: 36->32) |
+| 2026-09-24 | ?섎（移?罹먮┃???ㅼ젙吏??몃え ?뺣낫 ?ㅼ젣 ?쇰윭?ㅽ듃 湲곕컲?쇰줈 ?꾨㈃ ?섏젙 (?곌컝??>?뚮낫?쇱깋 癒몃━+苑??, ?몃컯????>?곕낫???? 釉붾씪?곗뒪->罹먮????먰뵾???묓겕 ?ы궥+?꾨┫ 濡깆뒪而ㅽ듃+?뚮뱾) |
+| 2026-09-24 | 由щ━??罹먮┃???ㅼ젙吏??몃え ?뺣낫 ?ㅼ젣 ?쇰윭?ㅽ듃 湲곕컲?쇰줈 ?꾨㈃ ?섏젙 (?몄쐢?뚯씪->?ы넠 ?륁뻔 蹂대툕, ?ㅻ뱶????젣, ?뚰겕?⑥뼱 ?ㅽ????곸꽭 臾섏궗) |
+| 2026-09-24 | 由щ굹 罹먮┃???ㅼ젙吏??몃え ?뺣낫 ?ㅼ젣 ?쇰윭?ㅽ듃 湲곕컲?쇰줈 ?꾨㈃ ?섏젙 (?륁뻔->?⑥씠釉?以묎컙 癒몃━, 洹嫄몄씠->?ㅼ뼱?, 遊꾨쾭 ?ы궥->移닿퀬 ?ы궥+??곕꽖+泥댄겕 ?륂뙩痢??뚯깋 ?뚯빱) |
+| 2026-09-24 | 移댁뒪誘?罹먮┃???ㅼ젙吏??몃え ?뺣낫 ?ㅼ젣 ?쇰윭?ㅽ듃 湲곕컲?쇰줈 ?꾨㈃ ?섏젙 (湲덉븞->泥?줉???? 諛ㅼ깋 ?붿툩->?섏? ?붿툩, ?섎꽕??>?섏씠?⑥뒪???щ옓??紐⑷구?? |
+| 2026-09-24 | ?몄씠移?罹먮┃???ㅼ젙吏??몃え ?뺣낫 ?ㅼ젣 ?쇰윭?ㅽ듃 湲곕컲?쇰줈 ?꾨㈃ ?섏젙 (?⑤컻->湲?癒몃━, 洹嫄몄씠->?ㅼ뼱?, ?몃젋移섏퐫??>濡??ㅼ빱???ы궥+?꾨뜑諛? |
+| 2026-09-24 | 誘몃굹 罹먮┃???ㅼ젙吏??몃え ?뺣낫 ?ъ닔??(?ㅼ젣 ?쇰윭?ㅽ듃 湲곕컲 遺꾩꽍: ?댁쭊 ?쒕갚???쒕젅?? ?쒖そ ?덉쓣 媛由?癒몃━, ?좊졊 媛숈? 遺꾩쐞湲???臾섏궗 異붽?) |
+| 2026-09-24 | 誘몃굹 罹먮┃???ㅼ젙吏??몃え ?뺣낫 ?섏젙 (?섏? ?諛?寃? ?쒕젅??-> ?섎뒛??癒몃━/?섏????? |
+| 2026-09-24 | ?ㅼ젙吏?ExtraUI)?먯꽌 ?ㅽ봽?쇱씠??濡쒕뱶 ??Resources.LoadAll Fallback 濡쒖쭅 異붽? (由щ━?????ㅼ쨷 ?ㅽ봽?쇱씠???대?吏 誘몄텧??踰꾧렇 ?섏젙) |
+| 2026-09-24 | ??붿갹 ?띿뒪??異쒕젰 以?以꾨궡由?\\n) 諛쒖깮 ??0.7珥??湲????ㅼ쓬 臾몄옣 異쒕젰?섎룄濡??섏젙 (?곗텧 媛뺥솕) |
+| 2026-09-24 | 罹먮┃???ㅼ젙吏?蹂몃Ц ?띿뒪???⑤씫 媛??щ갚 ???異뺤냼 (TextMeshPro size ?쒓렇 ?쒖슜) |
+| 2026-09-24 | 罹먮┃???ㅼ젙吏??대뜑 ?대쫫??Tab) ?고듃 ?ш린 誘몄꽭 異뺤냼 (50/40 -> 45/35) |
+| 2026-09-24 | 罹먮┃???ㅼ젙吏??대뜑 UI) ?꾩껜 ?ш린 異뺤냼 諛??꾩튂 ?곹뼢 議곗젙 (媛濡쒗룺 媛먯냼, ?몃줈??媛먯냼, ?곷떒 ?щ갚 媛먯냼, ?섎떒 ?щ갚 利앷?) |
+| 2026-09-24 | 罹먮┃???ㅼ젙吏??대뜑 ?대쫫??Tab) ?꾩튂 ?꾨옒濡?誘몄꽭 ?대룞 諛??고듃 ?ш린 異붽? 異뺤냼 (50/40) |
+| 2026-09-24 | ?섍꼍 ?ㅼ젙 ?띿뒪???띾룄 諛?議곗젅 ?? 誘몃━蹂닿린 ?띿뒪?멸? 泥섏쓬遺???ㅼ떆 ?ъ깮?섏? ?딄퀬 異쒕젰?섎뒗 ?꾩쨷???ㅼ떆媛꾩쑝濡??띾룄留?諛붾뚮룄濡??섏젙 |
+| 2026-09-24 | ?띿뒪???띾룄 理쒖냼/理쒕?媛??곹뼢 議곗젙 (媛???먮┫ ??0.05珥?湲?? 媛??鍮좊? ??0.005珥?湲?? |
+| 2026-09-24 | ?섍꼍 ?ㅼ젙 李?吏꾩엯 ???띿뒪???띾룄媛 ?곴뎄?곸쑝濡??먮젮吏??踰꾧렇 ?섏젙 (Slider 踰붿쐞 0~1濡??뺢퇋?? |
+| 2026-09-24 | ?섏튂諛??뚮몢由ш? 蹂댁씠吏 ?딅뒗 臾몄젣 ?닿껐 (Outline 而댄룷?뚰듃 ???蹂꾨룄??Solid 寃?뺤깋 諛깃렇?쇱슫??媛앹껜瑜??앹꽦?섏뿬 ?ㅼ뿉 諛곗튂) |
+| 2026-09-24 | ?섍꼍 ?ㅼ젙 ?섏튂諛?諛곌꼍?됱쓣 諛앹? 蹂대씪?됱쑝濡? ?뚮몢由щ? ?꾩쟾??寃?뺤깋?쇰줈 ?섏젙 (?쒖씤???μ긽) |
+| 2026-09-24 | 罹먮┃???깆옣 ???щ씪?대뱶 ?좊땲硫붿씠???띾룄 ?곹뼢 (0.5s -> 0.25s) |
+| 2026-09-24 | ?섍꼍 ?ㅼ젙 ?섏튂諛?Slider) ?뚮몢由??됱긽 諛??먭퍡 蹂寃?(二쇳솴??-> ?ㅽ겕 ?쇳뵆, 2px -> 4px) |
+| 2026-09-24 | ?섍꼍 ?ㅼ젙 ?섏튂諛?Slider)???⑤꼸怨??숈씪???됱긽???뚮몢由?Outline) 異붽? |
+| 2026-09-24 | LobbyUI.UpdateLanguage?먯꽌 ??젣??continueText 李몄“ ?먮윭 (NullReferenceException) ?닿껐 |
+| 2026-09-24 | 罹먮┃???ㅼ젙吏??대뜑 ?대쫫???고듃 ?ш린 誘몄꽭 異뺤냼 (65/55 -> 55/45) |
+| 2026-09-24 | ExtraUI.cs ???대뜑 ???고듃 ?숈쟻 由ъ궗?댁쭠 濡쒖쭅 ?섏젙 (20/16 -> 65/55) |
+| 2026-09-24 | 罹먮┃???ㅼ젙吏??대뜑 ?대쫫??Tab) ?고듃 ?ш린 ?뺣? (45 -> 65) |
+| 2026-09-24 | ?ㅼ젙 李??곹븯 ?뚮몢由??먭퍡 蹂닿컯 (Outline.effectDistance Y媛?利앷?) |
+| 2026-09-24 | ?ㅼ젙 李??띿뒪???쇰꺼 ?꾩튂 誘몄꽭 ?섑뼢 議곗젙 (+15f -> +5f) |
+| 2026-09-24 | ?ㅼ젙 李??덉씠?꾩썐 ?몃? 議곗젙 (?띿뒪???띾룄, BGM, SFX ?쇰꺼 ?꾩튂 ?곹뼢) |
+| 2026-09-24 | HalloweenUIBuilder.cs ??誘몄궗??蹂??t_continue) ?쒓굅 (CS0219 寃쎄퀬 ?닿껐) |
+| 2026-09-24 | SettingsUI ???곗씠????젣 踰꾪듉 ?쒓굅 諛??リ린 踰꾪듉 以묒븰 ?뺣젹 |
+| 2026-09-24 | Legacy Text ?고듃瑜??쒖뒪???고듃 ??Resources/Fonts/MalgunGothic?쇰줈 蹂寃?(WebGL ?명솚) |
+| 2026-09-24 | 濡쒕퉬 踰꾪듉 ?ㅺ뎅??踰덉뿭 異붽? (HalloweenUIBuilder.cs) |
+| 2026-09-24 | 罹먮┃???ㅼ젙吏??대┃ 愿??諛⑹? (Body/ShadowBox??鍮?Button 異붽?) |
+| 2026-09-24 | ?댁뼱?섍린 踰꾪듉 ??젣 (濡쒕퉬 4踰꾪듉 泥댁젣) |
+| 2026-09-24 | ch1_morning.json: END ??START_DIALOGUE:ch1_night ?곌껐 |
+| 2026-09-24 | ch1_night.json ?앹꽦 (28?몃뱶, 諛?異쒕룞 ?λ㈃) |
+| 2026-09-24 | ch1_investigation_talk.json ?앹꽦 (18?몃뱶, 利앷굅 遺꾩꽍 ?좊줎) |
+| 2026-09-24 | ch1_result_perfect.json ?앹꽦 (19?몃뱶, ?꾨꼍 異붾━ 寃곌낵) |
+| 2026-09-24 | ch1_result_fail.json ?앹꽦 (6?몃뱶, ?ㅽ뙣 ???щ룄?? |
+| 2026-09-24 | ExtraUI.cs 臾몄옄??由ы꽣???댁뒪耳?댄봽 ?ㅻ쪟 ?섏젙 |
+| 2026-09-24 | SettingsUI.cs FindObjectOfType ??FindFirstObjectByType 寃쎄퀬 ?섏젙 |
 
+| 2026-09-26 | (시스템 점검) WebGL 빌드 호환성 수정: HalloweenUIBuilder.cs 및 SettingsUI.cs 내 Font.CreateDynamicFontFromOSFont() 시스템 폰트 호출을 Resources.Load<Font>로 대체하여 WebGL 지원 오류 해결 |
+| 2026-09-26 | (시스템 점검) DataLoader.cs 내 WebGL에서 지원되지 않는 System.IO.File 호출부(LoadFromStreamingAssets)를 #if !UNITY_WEBGL 전처리기로 감싸서 빌드 오류 방지 |
+| 2026-09-26 | (시스템 점검) 인코딩 표준화: utf-8-sig (BOM 포함) 규격을 따르지 않던 21개의 C# 파일들에 대해 BOM을 일괄 추가하여 잠재적 인코딩/빌드 에러 방지 |
 ---
 
-## 📌 향후 작업 메모
+## ?뱦 ?ν썑 ?묒뾽 硫붾え
 
-- [ ] Investigation 페이즈에 실제 클릭 가능한 오브젝트 배치 (현재 InvestigationObject가 씬에 없음)
-- [ ] 캐릭터 스프라이트가 실제로 표시되는지 WebGL 빌드에서 확인
-- [ ] ch1_prologue.json, ch1_incident.json은 현재 미사용 (ch1_night가 대체)
-- [ ] 제2화 이후 스토리 개발
-- [ ] 데이터 삭제 경고 팝업 기능 (SettingsUI 내)
-- [ ] BGM/SFX 오디오 파일 추가
+- [ ] Investigation ?섏씠利덉뿉 ?ㅼ젣 ?대┃ 媛?ν븳 ?ㅻ툕?앺듃 諛곗튂 (?꾩옱 InvestigationObject媛 ?ъ뿉 ?놁쓬)
+- [ ] 罹먮┃???ㅽ봽?쇱씠?멸? ?ㅼ젣濡??쒖떆?섎뒗吏 WebGL 鍮뚮뱶?먯꽌 ?뺤씤
+- [ ] ch1_prologue.json, ch1_incident.json? ?꾩옱 誘몄궗??(ch1_night媛 ?泥?
+- [ ] ?????댄썑 ?ㅽ넗由?媛쒕컻
+- [ ] ?곗씠????젣 寃쎄퀬 ?앹뾽 湲곕뒫 (SettingsUI ??
+- [ ] BGM/SFX ?ㅻ뵒???뚯씪 異붽?
+| 2026-09-26 | (편의성 개선) DialogueUI.cs 에서 대화 스킵(Skip) 모드를 마우스 클릭으로 정지할 수 있도록 개선하고, 다중 스킵 코루틴 중복 실행 방어 및 선택지 등장 시 무한 루프 방지 처리 |

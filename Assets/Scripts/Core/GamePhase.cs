@@ -1,4 +1,4 @@
-namespace HalloweenVN.Core
+﻿namespace HalloweenVN.Core
 {
     /// <summary>
     /// Represents the different phases of gameplay.

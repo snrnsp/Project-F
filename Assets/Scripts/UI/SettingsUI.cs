@@ -1,4 +1,4 @@
-﻿﻿﻿﻿﻿﻿﻿using UnityEngine;
+﻿﻿﻿﻿﻿using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using HalloweenVN.Core;
@@ -54,9 +54,37 @@ namespace HalloweenVN.UI
             UpdateLanguage();
         }
 
+        private static System.Collections.Generic.Dictionary<string, Font> _legacyFontCache = new System.Collections.Generic.Dictionary<string, Font>();
+        private Font GetLegacyFont(string name) {
+            if (string.IsNullOrEmpty(name)) return null;
+            if (_legacyFontCache.ContainsKey(name)) return _legacyFontCache[name];
+            Font rawFont = Resources.Load<Font>("Fonts/" + name);
+            if (rawFont != null) _legacyFontCache[name] = rawFont;
+            return rawFont;
+        }
+
         public void UpdateLanguage()
         {
             GameLanguage lang = SettingsData.Language;
+
+            string fontName = null;
+            switch (lang) {
+                case GameLanguage.ChineseSimplified: fontName = "MaShanZheng-Regular"; break;
+                case GameLanguage.ChineseTraditional: fontName = "LongCang-Regular"; break;
+                case GameLanguage.Japanese: fontName = "ZenKurenaido-Regular"; break;
+                default: fontName = "MalgunGothic"; break;
+            }
+            if (fontName != null) {
+                Font f = GetLegacyFont(fontName);
+                if (f != null) {
+                    if (titleTextLabel != null) titleTextLabel.font = f;
+                    if (textSpeedLabel != null) textSpeedLabel.font = f;
+                    if (bgmVolumeLabel != null) bgmVolumeLabel.font = f;
+                    if (sfxVolumeLabel != null) sfxVolumeLabel.font = f;
+                    if (closeButtonText != null) closeButtonText.font = f;
+                    if (previewTextLabel != null) previewTextLabel.font = f;
+                }
+            }
 
             if (lang == GameLanguage.Korean)
             {
@@ -180,14 +208,7 @@ namespace HalloweenVN.UI
             
             UnityEngine.UI.Text msgText = msgObj.AddComponent<UnityEngine.UI.Text>();
             
-            string[] fontNames = { 
-                "Malgun Gothic", "Apple SD Gothic Neo",
-                "Meiryo", "Yu Gothic", "MS Gothic", "Hiragino Sans",
-                "Microsoft YaHei", "SimHei", "PingFang SC", "Noto Sans CJK SC",
-                "Microsoft JhengHei", "PingFang TC", "Noto Sans CJK TC",
-                "Arial Unicode MS", "sans-serif"
-            };
-            Font cjkFont = Font.CreateDynamicFontFromOSFont(fontNames, 22);
+            Font cjkFont = Resources.Load<Font>("Fonts/MalgunGothic");
             if (cjkFont == null) cjkFont = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
             msgText.font = cjkFont;
 

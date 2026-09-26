@@ -1,4 +1,4 @@
-{
+﻿{
   "dialogueId": "ch1_result_perfect",
   "nodes": [
     {
@@ -291,7 +291,7 @@
       "backgroundSprite": "",
       "choices": [],
       "nextNodeId": -1,
-      "command": "END",
+      "command": "START_DIALOGUE:ch1_epilogue",
       "slideIn": false,
       "noFade": false
     }

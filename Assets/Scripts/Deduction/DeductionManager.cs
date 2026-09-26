@@ -1,4 +1,4 @@
-using HalloweenVN.Core;
+﻿using HalloweenVN.Core;
 using HalloweenVN.Data;
 using HalloweenVN.Investigation;
 using HalloweenVN.Dialogue;

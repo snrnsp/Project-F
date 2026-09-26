@@ -1,0 +1,154 @@
+﻿import json
+import codecs
+
+epilogue_data = {
+  "dialogueId": "ch1_epilogue",
+  "nodes": [
+    {
+      "id": 0,
+      "speaker": "",
+      "text": "다음 날 아침, 네버모어 오컬트 탐정 사무소.",
+      "backgroundSprite": "Images/mansion_interior_morning",
+      "nextNodeId": 1
+    },
+    {
+      "id": 1,
+      "speaker": "하루카",
+      "text": "소장님, 단호박 차 드세요. 밤새 조사하시느라 피곤하시죠?",
+      "characterSpriteLeft": "",
+      "characterSpriteCenter": "Characters/하루카/미소",
+      "characterSpriteRight": "",
+      "slideIn": True,
+      "nextNodeId": 2
+    },
+    {
+      "id": 2,
+      "speaker": "세이카",
+      "text": "고마워, 하루카. 향이 좋네.",
+      "characterSpriteLeft": "Characters/하루카/미소",
+      "characterSpriteCenter": "",
+      "characterSpriteRight": "Characters/세이카/웃음",
+      "slideIn": True,
+      "nextNodeId": 3
+    },
+    {
+      "id": 3,
+      "speaker": "리나",
+      "text": "아아~ 결국 어제 텅 빈 강당만 뒤지다가 끝났네! 그 피아니스트는 대체 어디로 간 거야?",
+      "characterSpriteLeft": "Characters/세이카/기본",
+      "characterSpriteCenter": "Characters/리나/찡그림",
+      "characterSpriteRight": "",
+      "slideIn": True,
+      "nextNodeId": 4
+    },
+    {
+      "id": 4,
+      "speaker": "카스미",
+      "text": "'어디로'가 아니라 '어디로 지워졌는가'가 맞겠죠. 물리적 실종이 아니니까요.",
+      "characterSpriteLeft": "Characters/세이카/기본",
+      "characterSpriteCenter": "Characters/리나/찡그림",
+      "characterSpriteRight": "Characters/카스미/기본",
+      "slideIn": True,
+      "nextNodeId": 5
+    },
+    {
+      "id": 5,
+      "speaker": "카스미",
+      "text": "결국 우리는 '잊혀지는 현상'의 흔적만 확인했을 뿐, 현상 자체를 막거나 해결하지는 못했습니다.",
+      "characterSpriteLeft": "Characters/세이카/기본",
+      "characterSpriteCenter": "",
+      "characterSpriteRight": "Characters/카스미/찡그림",
+      "nextNodeId": 6
+    },
+    {
+      "id": 6,
+      "speaker": "리리스",
+      "text": "잭오의 스캔 데이터는 클라우드에 백업 완료. 다음 징후가 나타나면 바로 추적 가능해.",
+      "characterSpriteLeft": "Characters/카스미/기본",
+      "characterSpriteCenter": "Characters/리리스/기본",
+      "characterSpriteRight": "",
+      "slideIn": True,
+      "nextNodeId": 7
+    },
+    {
+      "id": 7,
+      "speaker": "미나",
+      "text": "후후... 톱니바퀴는 돌기 시작했다... 다음 제물은 누구일까...",
+      "characterSpriteLeft": "Characters/리리스/기본",
+      "characterSpriteCenter": "",
+      "characterSpriteRight": "Characters/미나/음침",
+      "slideIn": True,
+      "nextNodeId": 8
+    },
+    {
+      "id": 8,
+      "speaker": "하루카",
+      "text": "제, 제물이라니... 무서운 소리 하지 마세요 미나 언니...!",
+      "characterSpriteLeft": "Characters/하루카/공포",
+      "characterSpriteCenter": "",
+      "characterSpriteRight": "Characters/미나/음침",
+      "slideIn": True,
+      "nextNodeId": 9
+    },
+    {
+      "id": 9,
+      "speaker": "세이카",
+      "text": "괜찮아. 다음 타겟이 누가 되든, 그 현상이 어디서 일어나든...",
+      "characterSpriteLeft": "",
+      "characterSpriteCenter": "Characters/세이카/기본",
+      "characterSpriteRight": "",
+      "slideIn": True,
+      "nextNodeId": 10
+    },
+    {
+      "id": 10,
+      "speaker": "세이카",
+      "text": "우리가 먼저 찾아낼 거야. 잊혀진 피아니스트도, 앞으로 잊혀질 사람들도.",
+      "characterSpriteLeft": "",
+      "characterSpriteCenter": "Characters/세이카/웃음",
+      "characterSpriteRight": "",
+      "nextNodeId": 11
+    },
+    {
+      "id": 11,
+      "speaker": "",
+      "text": "네버모어 탐정 사무소의 첫 번째 사건은 그렇게 막을 내렸다.",
+      "characterSpriteLeft": "",
+      "characterSpriteCenter": "",
+      "characterSpriteRight": "",
+      "nextNodeId": 12
+    },
+    {
+      "id": 12,
+      "speaker": "",
+      "text": "하지만 그것은 5년 주기의 거대한 미스터리를 향한 아주 작은 첫걸음일 뿐이었다.",
+      "nextNodeId": 13
+    },
+    {
+      "id": 13,
+      "speaker": "",
+      "text": "",
+      "command": "EFFECT:FLASH",
+      "nextNodeId": 14
+    },
+    {
+      "id": 14,
+      "speaker": "",
+      "text": "제작: 사차지\n\n플레이해주셔서 감사합니다.",
+      "backgroundSprite": "Images/bg_black",
+      "nextNodeId": 15
+    },
+    {
+      "id": 15,
+      "speaker": "",
+      "text": "",
+      "nextNodeId": -1,
+      "command": "END"
+    }
+  ]
+}
+
+with codecs.open('Assets/Resources/Data/Dialogues/ch1_epilogue.json', 'w', 'utf-8-sig') as f:
+    json.dump(epilogue_data, f, ensure_ascii=False, indent=2)
+
+print('Epilogue created successfully.')

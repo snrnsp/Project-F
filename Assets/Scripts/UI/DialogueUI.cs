@@ -928,7 +928,7 @@ namespace HalloweenVN.UI
             // If UI is hidden, left clicking restores it instead of advancing text
             if (isUiHidden)
             {
-                if ((Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame) || (Keyboard.current != null && Keyboard.current.spaceKey.wasPressedThisFrame) || (Keyboard.current != null && Keyboard.current.enterKey.wasPressedThisFrame))
+                if(skipCoroutine!=null) StopSkipping(); if ((Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame) || (Keyboard.current != null && Keyboard.current.spaceKey.wasPressedThisFrame) || (Keyboard.current != null && Keyboard.current.enterKey.wasPressedThisFrame))
                 {
                     isUiHidden = false;
                     if (dialoguePanel != null) dialoguePanel.SetActive(true);
@@ -959,9 +959,7 @@ namespace HalloweenVN.UI
 
         private float _lastClickTime = 0f;
 
-        public void OnClick()
-        {
-            if (Time.unscaledTime - _lastClickTime < 0.05f) return; // Prevent double-trigger from UI Event System + Input System
+        public void OnClick() { if (skipCoroutine != null) { StopSkipping(); return; } if (Time.unscaledTime - _lastClickTime < 0.05f) return; // Prevent double-trigger from UI Event System + Input System
             _lastClickTime = Time.unscaledTime;
 
             Debug.Log($"[DialogueUI] OnClick triggered. isTyping={isTyping}");
@@ -996,9 +994,7 @@ namespace HalloweenVN.UI
                 Button btn = btnObj.GetComponent<Button>();
                 if (btn != null)
                 {
-                    btn.onClick.AddListener(() =>
-                    {
-                        ClearChoices();
+                    btn.onClick.AddListener(() => { StopSkipping(); ClearChoices();
                         if (DialogueManager.Instance != null)
                         {
                             DialogueManager.Instance.SelectChoice(index);
@@ -1035,22 +1031,9 @@ namespace HalloweenVN.UI
             }
         }
 
-        public void SkipAll()
-        {
-            StopAutoPlay();
-            StartCoroutine(SkipCoroutine());
-        }
+        public void SkipAll() { if(skipCoroutine!=null){StopSkipping();return;} StopAutoPlay(); skipCoroutine = StartCoroutine(SkipCoroutine()); }
 
-        private IEnumerator SkipCoroutine()
-        {
-            while (DialogueManager.Instance != null && DialogueManager.Instance.IsPlaying)
-            {
-                SkipTyping();
-                yield return null;
-                DialogueManager.Instance.AdvanceDialogue();
-                yield return null;
-            }
-        }
+        private Coroutine skipCoroutine; public void StopSkipping() { if(skipCoroutine!=null){StopCoroutine(skipCoroutine);skipCoroutine=null;} } private IEnumerator SkipCoroutine() { while(DialogueManager.Instance!=null && DialogueManager.Instance.IsPlaying) { if(choicePanel!=null && choicePanel.activeSelf){yield return null; continue;} SkipTyping(); yield return null; DialogueManager.Instance.AdvanceDialogue(); yield return null; } skipCoroutine=null; }
 
         private void StopAutoPlay()
         {

@@ -1,4 +1,4 @@
-using HalloweenVN.Data;
+﻿using HalloweenVN.Data;
 using HalloweenVN.Dialogue;
 using HalloweenVN.Core;
 using UnityEngine;

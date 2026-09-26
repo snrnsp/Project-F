@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.IO;
 
 namespace HalloweenVN.Data
@@ -24,6 +24,7 @@ namespace HalloweenVN.Data
             return default;
         }
 
+#if !UNITY_WEBGL
         /// <summary>
         /// Loads and deserializes a JSON file from StreamingAssets.
         /// </summary>
@@ -38,6 +39,7 @@ namespace HalloweenVN.Data
             Debug.LogError($"DataLoader: Failed to load file from StreamingAssets at path: {path}");
             return default;
         }
+#endif
 
         /// <summary>
         /// Convenience method to load a DialogueContainer.

@@ -1,10 +1,10 @@
-{
+﻿{
   "dialogueId": "ch0_origin",
   "nodes": [
     {
       "id": 0,
       "speaker": "",
-      "text": "— 5년 전. 가을.",
+      "text": "— 2021년. 5년 전 가을.",
       "characterSpriteLeft": "",
       "characterSpriteCenter": "",
       "characterSpriteRight": "",
@@ -28,7 +28,7 @@
     {
       "id": 2,
       "speaker": "세이카",
-      "text": "......이상하다. 노을시 구시가지 실종 사건... 2003년, 2008년, 2014년, 2019년. 5년 간격으로 실종자가 발생하는데, 전부 수사 중단. 기록이 거의 남아있지 않아.",
+      "text": "......이상하다. 노을시 구시가지 실종 사건... 2001년, 2006년, 2011년, 2016년. 5년 간격으로 실종자가 발생하는데, 전부 수사 중단. 기록이 거의 남아있지 않아.",
       "characterSpriteLeft": "",
       "characterSpriteCenter": "Characters/세이카/찡그림",
       "characterSpriteRight": "",
@@ -104,7 +104,7 @@
     {
       "id": 8,
       "speaker": "",
-      "text": "— 4년 전. 10월 31일. 할로윈 밤.",
+      "text": "— 2022년 10월 31일. 4년 전 할로윈 밤.",
       "characterSpriteLeft": "",
       "characterSpriteCenter": "",
       "characterSpriteRight": "",

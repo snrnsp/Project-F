@@ -1,4 +1,4 @@
-﻿﻿using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
@@ -317,16 +317,19 @@ namespace HalloweenVN.UI
                 else { portrait.color = new Color(0, 0, 0, 0); }
                 
                 RectTransform portRt = portrait.GetComponent<RectTransform>();
-                if (profile.name.Contains("카스미") || profile.name.Contains("Kasumi") ||
-                    profile.name.Contains("미나") || profile.name.Contains("Mina") ||
-                    profile.name.Contains("하루카") || profile.name.Contains("Haruka")) {
-                    // Shift Kasumi slightly to the right (move by +30px X)
+                if (profile.name.Contains("미나") || profile.name.Contains("Mina")) {
+                    // Keep Mina at her original size
                     portRt.offsetMin = new Vector2(60, 60);
                     portRt.offsetMax = new Vector2(10, -50);
+                } else if (profile.name.Contains("카스미") || profile.name.Contains("Kasumi") ||
+                           profile.name.Contains("하루카") || profile.name.Contains("Haruka")) {
+                    // Shrink Kasumi and Haruka (increase vertical padding)
+                    portRt.offsetMin = new Vector2(60, 100);
+                    portRt.offsetMax = new Vector2(10, -90);
                 } else {
-                    // Default portrait placement
-                    portRt.offsetMin = new Vector2(30, 60);
-                    portRt.offsetMax = new Vector2(-20, -50);
+                    // Shrink Seika, Rina, Lilith
+                    portRt.offsetMin = new Vector2(30, 100);
+                    portRt.offsetMax = new Vector2(-20, -90);
                 }
             }
             if (nameTxt != null) nameTxt.text = profile.name;

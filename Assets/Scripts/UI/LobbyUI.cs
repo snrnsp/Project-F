@@ -1,4 +1,4 @@
-﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿using System.Collections;
+﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -25,6 +25,8 @@ namespace HalloweenVN.UI
         [SerializeField] private Text settingsText;
         [SerializeField] private Text versionText;
         [SerializeField] private Text lobbyTitleText;
+        [SerializeField] private Text lobbySubtitleText;
+        [SerializeField] private Text languageBtnText;
         private bool isStartingGame = false;
 
         private void OnEnable()
@@ -42,50 +44,85 @@ namespace HalloweenVN.UI
             if (newGameText == null) return;
 
             GameLanguage lang = SettingsData.Language;
+            string fontName = FontHelper.GetFontNameForLanguage(lang);
+            if (fontName != null) {
+                Font f = FontHelper.GetFont(fontName);
+                if (f != null) {
+                    if (lobbyTitleText != null) lobbyTitleText.font = f;
+                    if (lobbySubtitleText != null) {
+                        Font engFont = FontHelper.GetFont("Caveat-Regular");
+                        if (engFont != null) lobbySubtitleText.font = engFont;
+                    }
+                    if (newGameText != null) newGameText.font = f;
+                    if (continueText != null) continueText.font = f;
+                    if (settingsText != null) settingsText.font = f;
+                    if (extraText != null) extraText.font = f;
+                    
+                    if (languageBtnText != null) languageBtnText.font = f;
+
+                    int offset = (lang == GameLanguage.Korean) ? 0 : 0;
+                    if (newGameText != null) newGameText.fontSize = 35 + offset;
+                    if (continueText != null) continueText.fontSize = 35 + offset;
+                    if (settingsText != null) settingsText.fontSize = 35 + offset;
+                    if (extraText != null) extraText.fontSize = 35 + offset;
+                    
+                    if (languageBtnText != null) languageBtnText.fontSize = 35 + offset;
+                }
+            }
 
             // Korean (Default)
             if (lang == GameLanguage.Korean)
             {
-                if (lobbyTitleText != null) lobbyTitleText.text = "오블리비언\n<size=22>OBLIVION</size>";
-                newGameText.text = "새 게임";
-                extraText.text = "캐릭터";
-                settingsText.text = "환경 설정";
+                if (lobbyTitleText != null) lobbyTitleText.text = "오블리비언";
+                if (lobbySubtitleText != null) lobbySubtitleText.text = "OBLIVION";
+                if (newGameText != null) newGameText.text = "새 게임";
+                if (extraText != null) extraText.text = "캐릭터";
+                if (settingsText != null) settingsText.text = "환경 설정";
+                if (languageBtnText != null) languageBtnText.text = "Language";
                 if (versionText != null) versionText.text = "버전 1.0.2";
             }
             // English
             else if (lang == GameLanguage.English)
             {
                 if (lobbyTitleText != null) lobbyTitleText.text = "OBLIVION";
-                newGameText.text = "New Game";
-                extraText.text = "Character";
-                settingsText.text = "Settings";
+                if (lobbySubtitleText != null) lobbySubtitleText.text = "";
+                if (newGameText != null) newGameText.text = "New Game";
+                if (extraText != null) extraText.text = "Characters";
+                if (settingsText != null) settingsText.text = "Settings";
+                if (languageBtnText != null) languageBtnText.text = "Language";
                 if (versionText != null) versionText.text = "Ver 1.0.2";
             }
             // Japanese
             else if (lang == GameLanguage.Japanese)
             {
-                if (lobbyTitleText != null) lobbyTitleText.text = "オブリビオン\n<size=22>OBLIVION</size>";
-                newGameText.text = "初めから";
-                extraText.text = "キャラクター";
-                settingsText.text = "設定";
+                if (lobbyTitleText != null) lobbyTitleText.text = "忘却";
+                if (lobbySubtitleText != null) lobbySubtitleText.text = "OBLIVION";
+                if (newGameText != null) newGameText.text = "はじめから";
+                if (extraText != null) extraText.text = "キャラクター";
+                if (settingsText != null) settingsText.text = "設定";
+                if (languageBtnText != null) languageBtnText.text = "Language";
                 if (versionText != null) versionText.text = "バージョン 1.0.2";
             }
             // Simplified Chinese
             else if (lang == GameLanguage.ChineseSimplified)
             {
-                if (lobbyTitleText != null) lobbyTitleText.text = "遗忘\n<size=22>OBLIVION</size>";
-                newGameText.text = "新游戏";
-                extraText.text = "角色";
-                settingsText.text = "设置";
+                if (lobbyTitleText != null) lobbyTitleText.text = "遗忘";
+                if (lobbySubtitleText != null) lobbySubtitleText.text = "OBLIVION";
+                if (newGameText != null) newGameText.text = "新游戏";
+                if (extraText != null) extraText.text = "角色";
+                if (settingsText != null) settingsText.text = "设置";
+                if (languageBtnText != null) languageBtnText.text = "Language";
                 if (versionText != null) versionText.text = "版本 1.0.2";
             }
             // Traditional Chinese
             else if (lang == GameLanguage.ChineseTraditional)
             {
-                if (lobbyTitleText != null) lobbyTitleText.text = "遺忘\n<size=22>OBLIVION</size>";
-                newGameText.text = "新遊戲";
-                extraText.text = "額外內容";
-                settingsText.text = "設定";
+                if (lobbyTitleText != null) lobbyTitleText.text = "遺忘";
+                if (lobbySubtitleText != null) lobbySubtitleText.text = "OBLIVION";
+                if (newGameText != null) newGameText.text = "新遊戲";
+                if (extraText != null) extraText.text = "角色";
+                if (settingsText != null) settingsText.text = "設定";
+                if (languageBtnText != null) languageBtnText.text = "Language";
                 if (versionText != null) versionText.text = "版本 1.0.2";
             }
         }
@@ -101,8 +138,8 @@ namespace HalloweenVN.UI
                 continueButton.onClick.AddListener(OnContinueClicked);
             }
             UpdateContinueButton();
+            UpdateLanguage();
         }
-
         private void OnDisable()
         {
             if (GameManager.Instance != null)

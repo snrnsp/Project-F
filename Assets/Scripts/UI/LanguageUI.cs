@@ -1,4 +1,4 @@
-﻿﻿using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using TMPro;
@@ -11,7 +11,7 @@ namespace HalloweenVN.UI
         [SerializeField] private GameObject panelRoot;
         [SerializeField] private Button[] languageButtons;
         [SerializeField] private Button closeButton;
-        [SerializeField] private TextMeshProUGUI titleText;
+        [SerializeField] private Text titleText;
         [SerializeField] private Text closeText;
 
         private void OnEnable()
@@ -84,23 +84,41 @@ if (panelRoot != null)
             Debug.Log($"Language set to {lang}");
         }
 
+        
+        private static System.Collections.Generic.Dictionary<string, Font> _legacyFontCache = new System.Collections.Generic.Dictionary<string, Font>();
+        private Font GetLegacyFont(string name) {
+            if (string.IsNullOrEmpty(name)) return null;
+            if (_legacyFontCache.ContainsKey(name)) return _legacyFontCache[name];
+            Font rawFont = Resources.Load<Font>("Fonts/" + name);
+            if (rawFont != null) _legacyFontCache[name] = rawFont;
+            return rawFont;
+        }
+
         private void UpdateLanguageButtonsUI()
         {
             if (titleText != null)
             {
+                string fontName = FontHelper.GetFontNameForLanguage(SettingsData.Language);
+                if (fontName != null) {
+                    var f = FontHelper.GetFont(fontName);
+                    if (f != null) titleText.font = f;
+                }
+                if (SettingsData.Language == GameLanguage.Korean) titleText.fontSize = 32;
+                else titleText.fontSize = 28;
+                
                 if (SettingsData.Language == GameLanguage.English) titleText.text = "Language Settings";
-                else if (SettingsData.Language == GameLanguage.Japanese) titleText.text = "言語設定";
-                else if (SettingsData.Language == GameLanguage.ChineseSimplified) titleText.text = "语言设置";
-                else if (SettingsData.Language == GameLanguage.ChineseTraditional) titleText.text = "語言設定";
-                else titleText.text = "언어 설정";
+                else if (SettingsData.Language == GameLanguage.Japanese) titleText.text = "\u8A00\u8A9E\u8A2D\u5B9A";
+                else if (SettingsData.Language == GameLanguage.ChineseSimplified) titleText.text = "\u8BED\u8A00\u8BBE\u7F6E";
+                else if (SettingsData.Language == GameLanguage.ChineseTraditional) titleText.text = "\u8A9E\u8A00\u8A2D\u5B9A";
+                else titleText.text = "\uC5B8\uC5B4 \uC124\uC815";
             }
             if (closeText != null)
             {
                 if (SettingsData.Language == GameLanguage.English) closeText.text = "Close";
-                else if (SettingsData.Language == GameLanguage.Japanese) closeText.text = "閉じる";
-                else if (SettingsData.Language == GameLanguage.ChineseSimplified) closeText.text = "关闭";
-                else if (SettingsData.Language == GameLanguage.ChineseTraditional) closeText.text = "關閉";
-                else closeText.text = "닫기";
+                else if (SettingsData.Language == GameLanguage.Japanese) closeText.text = "\u9589\u3058\u308B";
+                else if (SettingsData.Language == GameLanguage.ChineseSimplified) closeText.text = "\u5173\u95ED";
+                else if (SettingsData.Language == GameLanguage.ChineseTraditional) closeText.text = "\u95DC\u9589";
+                else closeText.text = "\uB2EB\uAE30";
             }
 
             if (languageButtons == null) return;
@@ -113,6 +131,15 @@ if (panelRoot != null)
                 TextMeshProUGUI txt = languageButtons[i].GetComponentInChildren<TextMeshProUGUI>();
                 Text legacyTxt = languageButtons[i].GetComponentInChildren<Text>();
                 
+                if (legacyTxt != null) {
+                    string btnFontName = FontHelper.GetFontNameForLanguage((GameLanguage)i);
+                    Font f = FontHelper.GetFont(btnFontName);
+                    if (f != null) legacyTxt.font = f;
+                    
+                    if ((GameLanguage)i == GameLanguage.Korean) legacyTxt.fontSize = 33;
+                    else legacyTxt.fontSize = 28;
+                }
+                
                 if ((int)SettingsData.Language == i)
                 {
                     if (img != null) img.color = new Color32(230, 100, 20, 255); // Orange
@@ -123,10 +150,9 @@ if (panelRoot != null)
                 {
                     if (img != null) img.color = new Color32(40, 25, 60, 255); // Dark Purple
                     if (txt != null) txt.color = new Color32(180, 180, 180, 255); // Grey
-                    if (legacyTxt != null) legacyTxt.color = new Color32(180, 180, 180, 255);
+                    if (legacyTxt != null) legacyTxt.color = new Color32(180, 180, 180, 255); // Grey
                 }
             }
         }
     }
 }
-

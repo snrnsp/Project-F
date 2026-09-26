@@ -1,4 +1,4 @@
-﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿using HalloweenVN.Core;
+﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿using HalloweenVN.Core;
 using HalloweenVN.Dialogue;
 using HalloweenVN.Investigation;
 using HalloweenVN.Deduction;
@@ -129,15 +129,24 @@ namespace HalloweenVN.UI.Theme
             GameObject titleObj = UIHelper.CreateUIObject("LobbyTitleText", lobbyPanelRoot.transform);
             RectTransform titleRt = titleObj.GetComponent<RectTransform>();
             UIHelper.SetAnchors(titleRt, new Vector2(0, 0.5f), new Vector2(0, 0.5f), new Vector2(0, 0.5f));
-            titleRt.anchoredPosition = new Vector2(110, 310);
-            titleRt.sizeDelta = new Vector2(400, 120);
-            Text lobbyTitleText = CreateLegacyText(titleObj, "오블리비언\n<size=22>OBLIVION</size>", new Color32(255, 150, 40, 255), 56, TextAnchor.MiddleCenter);
+            titleRt.anchoredPosition = new Vector2(110, 320);
+            titleRt.sizeDelta = new Vector2(400, 60);
+            Text lobbyTitleText = CreateLegacyText(titleObj, "오블리비언", new Color32(255, 150, 40, 255), 56, TextAnchor.MiddleCenter);
             lobbyTitleText.fontStyle = FontStyle.Bold;
-            lobbyTitleText.lineSpacing = 0.65f;
             UnityEngine.UI.Outline titleOutline = titleObj.AddComponent<UnityEngine.UI.Outline>();
             titleOutline.effectColor = new Color32(0, 0, 0, 255);
             titleOutline.effectDistance = new Vector2(2, -2);
 
+            GameObject subTitleObj = UIHelper.CreateUIObject("LobbySubtitleText", lobbyPanelRoot.transform);
+            RectTransform subRt = subTitleObj.GetComponent<RectTransform>();
+            UIHelper.SetAnchors(subRt, new Vector2(0, 0.5f), new Vector2(0, 0.5f), new Vector2(0, 0.5f));
+            subRt.anchoredPosition = new Vector2(110, 270);
+            subRt.sizeDelta = new Vector2(400, 40);
+            Text lobbySubtitleText = CreateLegacyText(subTitleObj, "OBLIVION", new Color32(255, 150, 40, 255), 24, TextAnchor.MiddleCenter);
+            lobbySubtitleText.fontStyle = FontStyle.Bold;
+            UnityEngine.UI.Outline subOutline = subTitleObj.AddComponent<UnityEngine.UI.Outline>();
+            subOutline.effectColor = new Color32(0, 0, 0, 255);
+            subOutline.effectDistance = new Vector2(2, -2);
             // Buttons (Left side, Halloween, 100% Opacity)
             Color32 btnBg = new Color32(230, 100, 20, 255); // Pumpkin orange
             
@@ -211,7 +220,9 @@ namespace HalloweenVN.UI.Theme
             UIHelper.SetField(lobbyUi, "continueText", null);
             UIHelper.SetField(lobbyUi, "extraText", extraTuple.text);
             UIHelper.SetField(lobbyUi, "settingsText", settingsTuple.text);
+            UIHelper.SetField(lobbyUi, "languageBtnText", langTuple.text);
             UIHelper.SetField(lobbyUi, "lobbyTitleText", lobbyTitleText);
+            UIHelper.SetField(lobbyUi, "lobbySubtitleText", lobbySubtitleText);
             UIHelper.SetField(lobbyUi, "versionText", versionText);
 
             settingsButtonRef = settingsBtn; // for CreateSettingsUI to attach
@@ -831,7 +842,7 @@ namespace HalloweenVN.UI.Theme
             UIHelper.SetAnchors(titleRt, new Vector2(0.5f, 1), new Vector2(0.5f, 1), new Vector2(0.5f, 1));
             titleRt.anchoredPosition = new Vector2(0, -30);
             titleRt.sizeDelta = new Vector2(400, 40);
-            UIHelper.AddText(titleObj, "\uc5b8\uc5b4 \uc124\uc815", HalloweenTheme.AccentOrange, 28, TextAlignmentOptions.Center);
+            Text titleText = CreateLegacyText(titleObj, "\uc5b8\uc5b4 \uc124\uc815", HalloweenTheme.AccentOrange, 28, TextAnchor.UpperCenter);
 
             // Buttons Container
             GameObject langContainer = UIHelper.CreateUIObject("LanguageContainer", panel.transform);
@@ -870,7 +881,7 @@ namespace HalloweenVN.UI.Theme
             UIHelper.SetField(langUi, "panelRoot", langRoot);
             UIHelper.SetField(langUi, "languageButtons", langBtns);
             UIHelper.SetField(langUi, "closeButton", closeTuple.btn);
-            UIHelper.SetField(langUi, "titleText", titleObj.GetComponent<TextMeshProUGUI>());
+            UIHelper.SetField(langUi, "titleText", titleText);
             UIHelper.SetField(langUi, "closeText", closeTuple.text);
 
             langRoot.SetActive(false);
@@ -923,14 +934,7 @@ namespace HalloweenVN.UI.Theme
             legacyText.color = HalloweenTheme.ButtonText;
             
             // Assign standard OS font to prevent Chinese characters from breaking
-            string[] fontNames = { 
-                "Malgun Gothic", "Apple SD Gothic Neo",
-                "Meiryo", "Yu Gothic", "MS Gothic", "Hiragino Sans",
-                "Microsoft YaHei", "SimHei", "PingFang SC", "Noto Sans CJK SC",
-                "Microsoft JhengHei", "PingFang TC", "Noto Sans CJK TC",
-                "Arial Unicode MS", "sans-serif"
-            };
-            Font rawFont = Font.CreateDynamicFontFromOSFont(fontNames, 20);
+            Font rawFont = Resources.Load<Font>("Fonts/MalgunGothic");
             if (rawFont != null) legacyText.font = rawFont;
             else legacyText.font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
 
@@ -1330,7 +1334,13 @@ namespace HalloweenVN.UI.Theme
             RectTransform titleRt = titleObj.GetComponent<RectTransform>();
             UIHelper.SetAnchors(titleRt, new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f));
             titleRt.sizeDelta = new Vector2(400, 50);
-            UIHelper.AddText(titleObj, "\uce90\ub9ad\ud130 \uc124\uc815\uc9d1", new Color32(210, 185, 140, 255), 30, TextAlignmentOptions.Center);
+            var extraTitleText = UIHelper.AddText(titleObj, "\uce90\ub9ad\ud130 \uc124\uc815\uc9d1", new Color32(210, 185, 140, 255), 36, TextAlignmentOptions.Center);
+            if (hwFontAsset != null) {
+                extraTitleText.font = hwFontAsset;
+            }
+            UnityEngine.UI.Outline extraOutline = titleObj.AddComponent<UnityEngine.UI.Outline>();
+            extraOutline.effectColor = new Color32(50, 30, 15, 255);
+            extraOutline.effectDistance = new Vector2(2f, -2f);
 
             // ===== Close Button =====
             GameObject closeBtnObj = UIHelper.CreateUIObject("CloseBtn", headerObj.transform);
@@ -1406,14 +1416,7 @@ namespace HalloweenVN.UI.Theme
             btn.targetGraphic = iconText;
             
             // Assign font
-            string[] fontNames = { 
-                "Malgun Gothic", "Apple SD Gothic Neo",
-                "Meiryo", "Yu Gothic", "MS Gothic", "Hiragino Sans",
-                "Microsoft YaHei", "SimHei", "PingFang SC", "Noto Sans CJK SC",
-                "Microsoft JhengHei", "PingFang TC", "Noto Sans CJK TC",
-                "Arial Unicode MS", "sans-serif"
-            };
-            Font rawFont = Font.CreateDynamicFontFromOSFont(fontNames, 40);
+            Font rawFont = Resources.Load<Font>("Fonts/MalgunGothic");
             if (rawFont != null) iconText.font = rawFont;
             else iconText.font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
         }

@@ -1,10 +1,10 @@
-{
+﻿{
   "dialogueId": "ch0_opening",
   "nodes": [
     {
       "id": 0,
       "speaker": "",
-      "text": "노을시(市).",
+      "text": "2026년. 노을시(市).",
       "backgroundSprite": "Images/city_night",
       "nextNodeId": 1
     },
