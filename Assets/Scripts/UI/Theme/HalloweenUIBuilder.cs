@@ -408,15 +408,11 @@ namespace HalloweenVN.UI.Theme
             RectTransform autoRt = autoTuple.btn.GetComponent<RectTransform>();
             UIHelper.SetAnchors(autoRt, new Vector2(1, 1), new Vector2(1, 1), new Vector2(1, 1));
             // pivot is 1, 1. Placed above the panel (Y=56) to sit on top of the 6px outline.
-            autoRt.anchoredPosition = new Vector2(-(10 + btnW * 2 + btnSpacing * 2), 56);
+            autoRt.anchoredPosition = new Vector2(-(10 + btnW + btnSpacing), 56);
             Text autoText = autoTuple.text;
             autoText.fontSize = 32;
 
-            var skipTuple = CreateLegacyButton(dialoguePanel.transform, "SKIP", btnW, btnH, new Color32(40, 25, 60, 255), softIndigo, true);
-            RectTransform skipRt = skipTuple.btn.GetComponent<RectTransform>();
-            UIHelper.SetAnchors(skipRt, new Vector2(1, 1), new Vector2(1, 1), new Vector2(1, 1));
-            skipRt.anchoredPosition = new Vector2(-(10 + btnW + btnSpacing), 56);
-            skipTuple.text.fontSize = 32;
+
 
             var logTuple = CreateLegacyButton(dialoguePanel.transform, "LOG", btnW, btnH, new Color32(40, 25, 60, 255), softIndigo, true);
             RectTransform logRt = logTuple.btn.GetComponent<RectTransform>();
@@ -437,10 +433,8 @@ namespace HalloweenVN.UI.Theme
             UIHelper.SetField(ui, "choiceButtonPrefab", choiceButtonPrefab);
             UIHelper.SetField(ui, "choiceButtonContainer", choiceContainer.transform);
             UIHelper.SetField(ui, "autoButton", autoTuple.btn);
-            UIHelper.SetField(ui, "skipButton", skipTuple.btn);
             UIHelper.SetField(ui, "backlogButton", logTuple.btn);
             UIHelper.SetField(ui, "autoButtonText", autoText);
-            UIHelper.SetField(ui, "skipButtonText", skipTuple.text);
             UIHelper.SetField(ui, "backlogButtonText", logTuple.text);
 
             // Wire up fullscreen click (Background + DialoguePanel itself)
@@ -752,7 +746,7 @@ namespace HalloweenVN.UI.Theme
             if (outline != null) outline.effectDistance = new Vector2(HalloweenTheme.PanelBorderWidth, HalloweenTheme.PanelBorderWidth + 4f);
             RectTransform panelRt = panel.GetComponent<RectTransform>();
             UIHelper.SetAnchors(panelRt, new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f));
-            panelRt.sizeDelta = new Vector2(700, 800);
+            panelRt.sizeDelta = new Vector2(700, 650);
 
             // Title
             GameObject titleObj = UIHelper.CreateUIObject("Title", panel.transform);
@@ -771,27 +765,12 @@ namespace HalloweenVN.UI.Theme
             // Preview Text & Background (to see opacity)
         yPos -= 90;
             
-            // Bright background for contrast
-            GameObject previewBgObj = UIHelper.CreateUIObject("PreviewGameBg", panel.transform);
-            RectTransform pbgRt = previewBgObj.GetComponent<RectTransform>();
-            UIHelper.SetAnchors(pbgRt, new Vector2(0.5f, 1), new Vector2(0.5f, 1), new Vector2(0.5f, 1));
-            pbgRt.anchoredPosition = new Vector2(0, yPos);
-            pbgRt.sizeDelta = new Vector2(620, 60);
-            // Orange/brownish color to contrast with dark purple
-            UIHelper.AddImage(previewBgObj, new Color32(200, 150, 100, 255));
-            
-            // The Box itself (simulates Dialogue panel)
-            GameObject previewBoxObj = UIHelper.CreateUIObject("PreviewBox", previewBgObj.transform);
-            RectTransform pboxRt = previewBoxObj.GetComponent<RectTransform>();
-            UIHelper.StretchFull(pboxRt);
-            Color boxColor = HalloweenTheme.PanelBackground;
-            boxColor.a = SettingsData.DialogueBoxOpacity;
-            Image previewBoxImg = UIHelper.AddImage(previewBoxObj, boxColor);
-
-            // The Text
-            GameObject previewTextObj = UIHelper.CreateUIObject("PreviewText", previewBoxObj.transform);
+            // The Text (No background needed anymore since Opacity setting is gone)
+            GameObject previewTextObj = UIHelper.CreateUIObject("PreviewText", panel.transform);
             RectTransform ptextRt = previewTextObj.GetComponent<RectTransform>();
-            UIHelper.StretchFull(ptextRt);
+            UIHelper.SetAnchors(ptextRt, new Vector2(0.5f, 1), new Vector2(0.5f, 1), new Vector2(0.5f, 1));
+            ptextRt.anchoredPosition = new Vector2(0, yPos);
+            ptextRt.sizeDelta = new Vector2(620, 60);
             Text previewText = CreateLegacyText(previewTextObj, "", HalloweenTheme.TextPrimary, 24, TextAnchor.MiddleCenter);
 
             // ─── 2. Auto-play Delay ───
@@ -829,29 +808,30 @@ namespace HalloweenVN.UI.Theme
             Slider opacitySlider = CreateSettingsSlider(panel.transform, yPos - 45);
 
             // ─── 4. Skip Mode (toggle button) ───
-        yPos -= 100;
-            var skipModeLabel = CreateSettingsLabel(panel.transform, "\uC2A4\uD0B5 \uBAA8\uB4DC", yPos);
+        yPos -= 120;
+            var skipModeLabel = CreateSettingsLabel(panel.transform, "스킵 단축키", yPos);
             var skipTuple = CreateLegacyButton(panel.transform, "\uC77D\uC740 \uB300\uC0AC\uB9CC", 220, 40, new Color32(60, 40, 80, 255));
             RectTransform skipRt = skipTuple.btn.GetComponent<RectTransform>();
             UIHelper.SetAnchors(skipRt, new Vector2(0.5f, 1), new Vector2(0.5f, 1), new Vector2(0.5f, 1));
-            skipRt.anchoredPosition = new Vector2(90, yPos - 5);
+            skipRt.anchoredPosition = new Vector2(0, yPos - 45);
             skipTuple.text.fontSize = 22;
 
             // ─── 5. Font Style (toggle button) ───
-        yPos -= 80;
+        yPos -= 120;
             var fontStyleLabel = CreateSettingsLabel(panel.transform, "\uAE00\uAF34", yPos);
             var fontTuple = CreateLegacyButton(panel.transform, "\uC190\uAE00\uC528", 220, 40, new Color32(60, 40, 80, 255));
             RectTransform fontRt = fontTuple.btn.GetComponent<RectTransform>();
             UIHelper.SetAnchors(fontRt, new Vector2(0.5f, 1), new Vector2(0.5f, 1), new Vector2(0.5f, 1));
-            fontRt.anchoredPosition = new Vector2(90, yPos - 5);
+            fontRt.anchoredPosition = new Vector2(0, yPos - 45);
             fontTuple.text.fontSize = 22;
 
             // ─── Close Button ───
-            var closeTuple = CreateLegacyButton(panel.transform, "\uB2EB\uAE30", 200, 50, HalloweenTheme.ButtonNormal);
+            var closeTuple = CreateLegacyButton(panel.transform, "X", 44, 44, new Color32(180, 50, 50, 255));
             RectTransform closeRt = closeTuple.btn.GetComponent<RectTransform>();
-            UIHelper.SetAnchors(closeRt, new Vector2(0.5f, 0), new Vector2(0.5f, 0), new Vector2(0.5f, 0));
-            closeRt.anchoredPosition = new Vector2(0, 40);
-            closeTuple.text.fontSize = 28;
+            UIHelper.SetAnchors(closeRt, new Vector2(1, 1), new Vector2(1, 1), new Vector2(1, 1));
+            closeRt.anchoredPosition = new Vector2(-40, -40);
+            closeTuple.text.fontSize = 26;
+            closeTuple.text.fontStyle = FontStyle.Bold;
 
             // Attach SettingsUI
             SettingsUI settingsUi = settingsRoot.AddComponent<SettingsUI>();
@@ -863,19 +843,15 @@ namespace HalloweenVN.UI.Theme
             UIHelper.SetField(settingsUi, "textSpeedSlider", textSpeedSlider);
             UIHelper.SetField(settingsUi, "textSpeedLabel", textSpeedLabel);
             UIHelper.SetField(settingsUi, "previewTextLabel", previewText);
-            UIHelper.SetField(settingsUi, "previewBoxImage", previewBoxImg);
             UIHelper.SetField(settingsUi, "autoPlaySlider", autoPlaySlider);
             UIHelper.SetField(settingsUi, "autoPlayLabel", autoPlayLabel);
             UIHelper.SetField(settingsUi, "autoPlayInputField", autoPlayInputField);
-            UIHelper.SetField(settingsUi, "opacitySlider", opacitySlider);
-            UIHelper.SetField(settingsUi, "opacityLabel", opacityLabel);
-            UIHelper.SetField(settingsUi, "skipModeButton", skipTuple.btn);
+                                    UIHelper.SetField(settingsUi, "skipModeButton", skipTuple.btn);
             UIHelper.SetField(settingsUi, "skipModeLabel", skipModeLabel);
             UIHelper.SetField(settingsUi, "skipModeValueText", skipTuple.text);
             UIHelper.SetField(settingsUi, "fontStyleButton", fontTuple.btn);
             UIHelper.SetField(settingsUi, "fontStyleLabel", fontStyleLabel);
             UIHelper.SetField(settingsUi, "fontStyleValueText", fontTuple.text);
-            UIHelper.SetField(settingsUi, "closeButtonText", closeTuple.text);
             UIHelper.SetField(settingsUi, "closeButton", closeTuple.btn);
 
             settingsRoot.SetActive(false);
@@ -1050,7 +1026,7 @@ namespace HalloweenVN.UI.Theme
             UIHelper.SetAnchors(rt, new Vector2(0.5f, 1), new Vector2(0.5f, 1), new Vector2(0.5f, 1));
             rt.anchoredPosition = new Vector2(0, yPos);
             rt.sizeDelta = new Vector2(400, 40);
-            return CreateLegacyText(obj, text, HalloweenTheme.TextPrimary, 28, TextAnchor.UpperLeft);
+            return CreateLegacyText(obj, text, HalloweenTheme.TextPrimary, 28, TextAnchor.MiddleCenter);
         }
 
         private Slider CreateSettingsSlider(Transform parent, float yPos)

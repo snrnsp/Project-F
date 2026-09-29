@@ -7,7 +7,7 @@ namespace HalloweenVN.UI.Theme
     {
         // Main palette
         public static readonly Color BackgroundDark = new Color32(13, 10, 20, 255);        // near-black purple
-        public static readonly Color PanelBackground = new Color32(30, 15, 45, 255);       // dark purple, semi-transparent
+        public static readonly Color PanelBackground = new Color32(30, 15, 45, 210);       // dark purple, semi-transparent
         public static readonly Color PanelBorder = new Color32(180, 100, 20, 255);         // warm amber/orange
         public static readonly Color AccentOrange = new Color32(255, 140, 0, 255);         // bright orange
         public static readonly Color AccentRed = new Color32(180, 30, 30, 255);            // blood red

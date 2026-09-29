@@ -26,17 +26,16 @@ namespace HalloweenVN.UI
         [SerializeField] private GameObject choiceButtonPrefab;
         [SerializeField] private Transform choiceButtonContainer;
         [SerializeField] private Button autoButton;
-        [SerializeField] private Button skipButton;
         [SerializeField] private Button backlogButton;
 
         [SerializeField] private Text autoButtonText;
-        [SerializeField] private Text skipButtonText;
         [SerializeField] private Text backlogButtonText;
 // ═══════════ Typing & Auto ═══════════
         private Coroutine typingCoroutine;
         private Coroutine autoPlayCoroutine;
         private bool isTyping;
         private bool isAutoPlay;
+        private float ctrlSkipTimer = 0f;
         private string fullText;
 
         // ═══════════ Character Position System (ported from old project) ═══════════
@@ -132,7 +131,6 @@ namespace HalloweenVN.UI
         public void UpdateLanguage()
         {
 
-            if (skipButtonText != null) skipButtonText.resizeTextForBestFit = false;
             if (backlogButtonText != null) backlogButtonText.resizeTextForBestFit = false;
             if (autoButtonText != null) autoButtonText.resizeTextForBestFit = false;
             
@@ -142,7 +140,6 @@ namespace HalloweenVN.UI
             float dialogueSize = isGothic ? 26f : 36f;
             float speakerSize = isGothic ? 28f : 40f;
 
-            if (skipButtonText != null) skipButtonText.fontSize = btnSize;
             if (backlogButtonText != null) backlogButtonText.fontSize = btnSize;
             if (autoButtonText != null) autoButtonText.fontSize = btnSize;
 
@@ -151,7 +148,6 @@ namespace HalloweenVN.UI
             if (speakerNameText != null) speakerNameText.fontSize = speakerSize;
             if (narratorText != null) narratorText.fontSize = dialogueSize;
 
-            if (skipButtonText == null) return;
             var lang = HalloweenVN.Core.SettingsData.Language;
             string autoOff = "AUTO";
             string autoOn = "AUTO ON";
@@ -159,31 +155,26 @@ namespace HalloweenVN.UI
             if (lang == HalloweenVN.Core.GameLanguage.Korean)
             {
                 autoOff = "오토"; autoOn = "오토 중";
-                skipButtonText.text = "스킵";
                 backlogButtonText.text = "로그";
             }
             else if (lang == HalloweenVN.Core.GameLanguage.English)
             {
                 autoOff = "AUTO"; autoOn = "AUTO ON";
-                skipButtonText.text = "SKIP";
                 backlogButtonText.text = "LOG";
             }
             else if (lang == HalloweenVN.Core.GameLanguage.Japanese)
             {
                 autoOff = "オート"; autoOn = "オート中";
-                skipButtonText.text = "スキップ";
                 backlogButtonText.text = "ログ";
             }
             else if (lang == HalloweenVN.Core.GameLanguage.ChineseSimplified)
             {
                 autoOff = "自动"; autoOn = "自动中";
-                skipButtonText.text = "跳过";
                 backlogButtonText.text = "记录";
             }
             else if (lang == HalloweenVN.Core.GameLanguage.ChineseTraditional)
             {
                 autoOff = "自動"; autoOn = "自動中";
-                skipButtonText.text = "跳過";
                 backlogButtonText.text = "紀錄";
             }
             
@@ -208,8 +199,7 @@ namespace HalloweenVN.UI
                 DialogueManager.Instance.OnChoicesDisplayed += ShowChoices;
             }
             if (autoButton != null) autoButton.onClick.AddListener(ToggleAutoPlay);
-            if (skipButton != null) skipButton.onClick.AddListener(SkipAll);
-        }
+            }
 
         private void OnDisable()
         {
@@ -221,7 +211,6 @@ namespace HalloweenVN.UI
                 DialogueManager.Instance.OnChoicesDisplayed -= ShowChoices;
             }
             if (autoButton != null) autoButton.onClick.RemoveListener(ToggleAutoPlay);
-            if (skipButton != null) skipButton.onClick.RemoveListener(SkipAll);
             StopAutoPlay();
         }
 
@@ -972,22 +961,52 @@ namespace HalloweenVN.UI
                 if (isUiHidden) StopAutoPlay();
                 if (dialoguePanel != null) dialoguePanel.SetActive(!isUiHidden);
                 if (autoButton != null) autoButton.gameObject.SetActive(!isUiHidden);
-                if (skipButton != null) skipButton.gameObject.SetActive(!isUiHidden);
                 if (backlogButton != null) backlogButton.gameObject.SetActive(!isUiHidden);
             }
 
             // If UI is hidden, left clicking restores it instead of advancing text
             if (isUiHidden)
             {
-                if(skipCoroutine!=null) StopSkipping(); if ((Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame) || (Keyboard.current != null && Keyboard.current.spaceKey.wasPressedThisFrame) || (Keyboard.current != null && Keyboard.current.enterKey.wasPressedThisFrame))
+                if ((Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame) || (Keyboard.current != null && Keyboard.current.spaceKey.wasPressedThisFrame) || (Keyboard.current != null && Keyboard.current.enterKey.wasPressedThisFrame))
                 {
                     isUiHidden = false;
                     if (dialoguePanel != null) dialoguePanel.SetActive(true);
                     if (autoButton != null) autoButton.gameObject.SetActive(true);
-                    if (skipButton != null) skipButton.gameObject.SetActive(true);
                     if (backlogButton != null) backlogButton.gameObject.SetActive(true);
                 }
                 return;
+            }
+
+            
+            // 3. Ctrl Skip Logic
+            bool isSkipPressed = false;
+            if (Keyboard.current != null)
+            {
+                if (SettingsData.SkipKey == SettingsData.SkipKeyOption.Ctrl)
+                    isSkipPressed = Keyboard.current.leftCtrlKey.isPressed || Keyboard.current.rightCtrlKey.isPressed;
+                else if (SettingsData.SkipKey == SettingsData.SkipKeyOption.Shift)
+                    isSkipPressed = Keyboard.current.leftShiftKey.isPressed || Keyboard.current.rightShiftKey.isPressed;
+                else if (SettingsData.SkipKey == SettingsData.SkipKeyOption.Space)
+                    isSkipPressed = Keyboard.current.spaceKey.isPressed;
+            }
+
+            if (isSkipPressed)
+            {
+                if (DialogueManager.Instance != null && DialogueManager.Instance.IsPlaying && (choicePanel == null || !choicePanel.activeSelf))
+                {
+                    if (isTyping) SkipTyping();
+                    
+                    ctrlSkipTimer += Time.deltaTime;
+                    if (ctrlSkipTimer >= 0.05f)
+                    {
+                        ctrlSkipTimer = 0f;
+                        if (!isTyping) DialogueManager.Instance.AdvanceDialogue();
+                    }
+                }
+            }
+            else
+            {
+                ctrlSkipTimer = 0f;
             }
 
             // 2. Mouse Scroll Up to open Backlog
@@ -1010,7 +1029,7 @@ namespace HalloweenVN.UI
 
         private float _lastClickTime = 0f;
 
-        public void OnClick() { if (skipCoroutine != null) { StopSkipping(); return; } if (Time.unscaledTime - _lastClickTime < 0.05f) return; // Prevent double-trigger from UI Event System + Input System
+        public void OnClick() { if (Time.unscaledTime - _lastClickTime < 0.05f) return; // Prevent double-trigger from UI Event System + Input System
             _lastClickTime = Time.unscaledTime;
 
             Debug.Log($"[DialogueUI] OnClick triggered. isTyping={isTyping}");
@@ -1045,7 +1064,7 @@ namespace HalloweenVN.UI
                 Button btn = btnObj.GetComponent<Button>();
                 if (btn != null)
                 {
-                    btn.onClick.AddListener(() => { StopSkipping(); ClearChoices();
+                    btn.onClick.AddListener(() => { ClearChoices();
                         if (DialogueManager.Instance != null)
                         {
                             DialogueManager.Instance.SelectChoice(index);
@@ -1082,10 +1101,9 @@ namespace HalloweenVN.UI
             }
         }
 
-        public void SkipAll() { if(skipCoroutine!=null){StopSkipping();return;} StopAutoPlay(); skipCoroutine = StartCoroutine(SkipCoroutine()); }
+        
 
-        private Coroutine skipCoroutine; public void StopSkipping() { if(skipCoroutine!=null){StopCoroutine(skipCoroutine);skipCoroutine=null;} } private IEnumerator SkipCoroutine() { while(DialogueManager.Instance!=null && DialogueManager.Instance.IsPlaying) { if(choicePanel!=null && choicePanel.activeSelf){yield return null; continue;} SkipTyping(); yield return null; DialogueManager.Instance.AdvanceDialogue(); yield return null; } skipCoroutine=null; }
-
+        
         private void StopAutoPlay()
         {
             isAutoPlay = false;
