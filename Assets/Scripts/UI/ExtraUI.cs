@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
@@ -384,7 +384,7 @@ namespace HalloweenVN.UI
                     {
                         bool isGothic = !HalloweenVN.Core.SettingsData.UseHandwritingFont;
                         folderTabTexts[i].color = selectedTabTextColor;
-                        folderTabTexts[i].fontSize = isGothic ? 32 : 45;
+                        folderTabTexts[i].fontSize = isGothic ? 24 : 45;
                         folderTabTexts[i].fontStyle = FontStyles.Bold;
                     }
                 }
@@ -406,7 +406,7 @@ namespace HalloweenVN.UI
                     {
                         bool isGothic = !HalloweenVN.Core.SettingsData.UseHandwritingFont;
                         folderTabTexts[i].color = unselectedTabTextColor;
-                        folderTabTexts[i].fontSize = isGothic ? 26 : 35;
+                        folderTabTexts[i].fontSize = isGothic ? 18 : 35;
                         folderTabTexts[i].fontStyle = FontStyles.Normal;
                     }
                 }
@@ -462,3 +462,5 @@ namespace HalloweenVN.UI
         }
     }
 }
+
+

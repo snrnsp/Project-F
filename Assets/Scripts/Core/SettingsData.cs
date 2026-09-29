@@ -18,7 +18,6 @@ namespace HalloweenVN.Core
         public static float SFXVolume { get; set; } = 1.0f;
         public static bool IsFullScreen { get; set; } = true;
         public static float AutoPlayDelay { get; set; } = 2.0f;
-        public static float DialogueBoxOpacity { get; set; } = 0.85f;
         public enum SkipKeyOption { Ctrl, Shift, Space, Off }
         public static SkipKeyOption SkipKey = SkipKeyOption.Ctrl;
         public static bool UseHandwritingFont { get; set; } = true;
@@ -40,7 +39,6 @@ namespace HalloweenVN.Core
             SFXVolume = PlayerPrefs.GetFloat(Prefix + "SFXVolume", 1.0f);
             IsFullScreen = PlayerPrefs.GetInt(Prefix + "IsFullScreen", 1) == 1;
             AutoPlayDelay = PlayerPrefs.GetFloat(Prefix + "AutoPlayDelay", 2.0f);
-            DialogueBoxOpacity = PlayerPrefs.GetFloat(Prefix + "DialogueBoxOpacity", 0.85f);
             SkipKey = (SkipKeyOption)PlayerPrefs.GetInt(Prefix + "SkipKey", 0);
             UseHandwritingFont = PlayerPrefs.GetInt(Prefix + "UseHandwritingFont", 1) == 1;
             PerformanceMode = PlayerPrefs.GetInt(Prefix + "PerformanceMode", 1);
@@ -54,7 +52,6 @@ namespace HalloweenVN.Core
             PlayerPrefs.SetFloat(Prefix + "SFXVolume", Mathf.Clamp01(SFXVolume));
             PlayerPrefs.SetInt(Prefix + "IsFullScreen", IsFullScreen ? 1 : 0);
             PlayerPrefs.SetFloat(Prefix + "AutoPlayDelay", Mathf.Clamp(AutoPlayDelay, 0.1f, 5.0f));
-            PlayerPrefs.SetFloat(Prefix + "DialogueBoxOpacity", Mathf.Clamp(DialogueBoxOpacity, 0.2f, 1.0f));
             PlayerPrefs.SetInt(Prefix + "SkipKey", (int)SkipKey);
             PlayerPrefs.SetInt(Prefix + "UseHandwritingFont", UseHandwritingFont ? 1 : 0);
             PlayerPrefs.SetInt(Prefix + "PerformanceMode", PerformanceMode);
@@ -84,7 +81,6 @@ namespace HalloweenVN.Core
             SFXVolume = 1.0f;
             IsFullScreen = true;
             AutoPlayDelay = 2.0f;
-            DialogueBoxOpacity = 0.85f;
             SkipKey = SkipKeyOption.Ctrl;
             UseHandwritingFont = true;
             PerformanceMode = 1;
@@ -92,3 +88,4 @@ namespace HalloweenVN.Core
         }
     }
 }
+

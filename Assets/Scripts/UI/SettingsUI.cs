@@ -22,8 +22,15 @@ namespace HalloweenVN.UI
         // Dialogue Box Opacity
                 // Skip Mode Toggle
         [SerializeField] private Button ctrlSkipButton;
+
         [SerializeField] private Text skipModeLabel;
+        [SerializeField] private Button skipHelpButton;
+        [SerializeField] private GameObject skipHelpPanel;
         [SerializeField] private Text ctrlSkipValueText;
+        [SerializeField] private GameObject skipDropdownPanel;
+        [SerializeField] private Button skipOptCtrl;
+        [SerializeField] private Button skipOptShift;
+        [SerializeField] private Button skipOptSpace;
 
         // Font Style Toggle
         [SerializeField] private Button fontStyleButton;
@@ -67,11 +74,29 @@ namespace HalloweenVN.UI
                 autoPlaySlider.value = SettingsData.AutoPlayDelay;
                 autoPlaySlider.onValueChanged.AddListener(OnAutoPlayChanged);
             }
-            
+            if (skipHelpButton != null && skipHelpPanel != null)
+            {
+                EventTrigger trigger = skipHelpButton.gameObject.AddComponent<EventTrigger>();
+                EventTrigger.Entry enter = new EventTrigger.Entry { eventID = EventTriggerType.PointerEnter };
+                enter.callback.AddListener((data) => { skipHelpPanel.SetActive(true); skipHelpPanel.transform.SetAsLastSibling(); });
+                trigger.triggers.Add(enter);
+                EventTrigger.Entry exit = new EventTrigger.Entry { eventID = EventTriggerType.PointerExit };
+                exit.callback.AddListener((data) => { skipHelpPanel.SetActive(false); });
+                trigger.triggers.Add(exit);
+            }
             if (ctrlSkipButton != null)
             {
-                ctrlSkipButton.onClick.AddListener(OnCtrlSkipToggled);
+                ctrlSkipButton.onClick.AddListener(() => {
+                    if (skipDropdownPanel != null) {
+                        bool isActive = skipDropdownPanel.activeSelf;
+                        skipDropdownPanel.SetActive(!isActive);
+                        if (!isActive) skipDropdownPanel.transform.SetAsLastSibling();
+                    }
+                });
             }
+            if (skipOptCtrl != null) skipOptCtrl.onClick.AddListener(() => SetSkipKey(SettingsData.SkipKeyOption.Ctrl));
+            if (skipOptShift != null) skipOptShift.onClick.AddListener(() => SetSkipKey(SettingsData.SkipKeyOption.Shift));
+            if (skipOptSpace != null) skipOptSpace.onClick.AddListener(() => SetSkipKey(SettingsData.SkipKeyOption.Space));
             if (fontStyleButton != null)
             {
                 fontStyleButton.onClick.AddListener(OnFontStyleToggled);
@@ -91,8 +116,7 @@ namespace HalloweenVN.UI
             if (textSpeedSlider != null) textSpeedSlider.onValueChanged.RemoveListener(OnTextSpeedChanged);
             if (autoPlaySlider != null) autoPlaySlider.onValueChanged.RemoveListener(OnAutoPlayChanged);
         if (autoPlayInputField != null) autoPlayInputField.onEndEdit.RemoveListener(OnAutoPlayInputEdit);
-            
-            if (ctrlSkipButton != null) ctrlSkipButton.onClick.RemoveListener(OnCtrlSkipToggled);
+
             if (fontStyleButton != null) fontStyleButton.onClick.RemoveListener(OnFontStyleToggled);
             if (closeButton != null) closeButton.onClick.RemoveListener(Hide);
         }
@@ -254,15 +278,10 @@ namespace HalloweenVN.UI
             SettingsData.AutoPlayDelay = Mathf.Round(val * 10f) / 10f;
             UpdateAllLabels();
         }
-
-        
-
-        private void OnCtrlSkipToggled()
+        private void SetSkipKey(SettingsData.SkipKeyOption key)
         {
-            int current = (int)SettingsData.SkipKey;
-            current++;
-            if (current > 3) current = 0;
-            SettingsData.SkipKey = (SettingsData.SkipKeyOption)current;
+            SettingsData.SkipKey = key;
+            if (skipDropdownPanel != null) skipDropdownPanel.SetActive(false);
             UpdateAllLabels();
         }
 
@@ -291,27 +310,10 @@ namespace HalloweenVN.UI
             if (autoPlayInputField != null) autoPlayInputField.text = SettingsData.AutoPlayDelay.ToString("0.0");
             if (ctrlSkipValueText != null)
             {
-                string keyName = "Ctrl";
-                if (SettingsData.SkipKey == SettingsData.SkipKeyOption.Shift) keyName = "Shift";
-                else if (SettingsData.SkipKey == SettingsData.SkipKeyOption.Space) keyName = "Space";
-                else if (SettingsData.SkipKey == SettingsData.SkipKeyOption.Off) keyName = "";
-
-                if (SettingsData.SkipKey == SettingsData.SkipKeyOption.Off)
-                {
-                    switch (lang)
-                    {
-                        case GameLanguage.Korean: ctrlSkipValueText.text = "사용 안 함"; break;
-                        case GameLanguage.English: ctrlSkipValueText.text = "Off"; break;
-                        case GameLanguage.Japanese: ctrlSkipValueText.text = "オフ"; break;
-                        case GameLanguage.ChineseSimplified: ctrlSkipValueText.text = "关闭"; break;
-                        case GameLanguage.ChineseTraditional: ctrlSkipValueText.text = "關閉"; break;
-                        default: ctrlSkipValueText.text = "Off"; break;
-                    }
-                }
-                else
-                {
-                    ctrlSkipValueText.text = keyName;
-                }
+                string keyName = "Ctrl ▼";
+                if (SettingsData.SkipKey == SettingsData.SkipKeyOption.Shift) keyName = "Shift ▼";
+                else if (SettingsData.SkipKey == SettingsData.SkipKeyOption.Space) keyName = "Space ▼";
+                ctrlSkipValueText.text = keyName;
             }
 
             if (fontStyleValueText != null)
@@ -377,3 +379,8 @@ namespace HalloweenVN.UI
         }
     }
 }
+
+
+
+
+

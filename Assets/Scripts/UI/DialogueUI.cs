@@ -141,14 +141,20 @@ namespace HalloweenVN.UI
             float speakerSize = isGothic ? 28f : 40f;
 
             if (backlogButtonText != null) backlogButtonText.fontSize = btnSize;
-            if (autoButtonText != null) autoButtonText.fontSize = btnSize;
-
-            // Adjust dialogue and speaker TMP text sizes
+            if (autoButtonText != null) autoButtonText.fontSize = btnSize;            // Adjust dialogue and speaker TMP text sizes
             if (dialogueText != null) dialogueText.fontSize = dialogueSize;
             if (speakerNameText != null) speakerNameText.fontSize = speakerSize;
             if (narratorText != null) narratorText.fontSize = dialogueSize;
 
             var lang = HalloweenVN.Core.SettingsData.Language;
+            string fontName = HalloweenVN.UI.FontHelper.GetFontNameForLanguage(lang);
+            var font = HalloweenVN.UI.FontHelper.GetTMPFont(fontName);
+            if (font != null)
+            {
+                if (dialogueText != null) dialogueText.font = font;
+                if (speakerNameText != null) speakerNameText.font = font;
+                if (narratorText != null) narratorText.font = font;
+            }
             string autoOff = "AUTO";
             string autoOn = "AUTO ON";
             
@@ -1130,3 +1136,13 @@ namespace HalloweenVN.UI
         }
     }
 }
+
+
+
+
+
+
+
+
+
+

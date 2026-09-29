@@ -1,4 +1,4 @@
-﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿using HalloweenVN.Core;
+﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿using HalloweenVN.Core;
 using HalloweenVN.Dialogue;
 using HalloweenVN.Investigation;
 using HalloweenVN.Deduction;
@@ -412,8 +412,6 @@ namespace HalloweenVN.UI.Theme
             Text autoText = autoTuple.text;
             autoText.fontSize = 32;
 
-
-
             var logTuple = CreateLegacyButton(dialoguePanel.transform, "LOG", btnW, btnH, new Color32(40, 25, 60, 255), softIndigo, true);
             RectTransform logRt = logTuple.btn.GetComponent<RectTransform>();
             UIHelper.SetAnchors(logRt, new Vector2(1, 1), new Vector2(1, 1), new Vector2(1, 1));
@@ -752,19 +750,18 @@ namespace HalloweenVN.UI.Theme
             GameObject titleObj = UIHelper.CreateUIObject("Title", panel.transform);
             RectTransform titleRt = titleObj.GetComponent<RectTransform>();
             UIHelper.SetAnchors(titleRt, new Vector2(0.5f, 1), new Vector2(0.5f, 1), new Vector2(0.5f, 1));
-        titleRt.anchoredPosition = new Vector2(0, 230);
-        titleRt.sizeDelta = new Vector2(750, 312);
-            Text titleText = CreateLegacyText(titleObj, "\uC124\uC815", HalloweenTheme.AccentOrange, 42, TextAnchor.UpperCenter);
+            titleRt.anchoredPosition = new Vector2(0, -60);
+            titleRt.sizeDelta = new Vector2(400, 60);
+            Text titleText = CreateLegacyText(titleObj, "환경 설정", HalloweenTheme.AccentOrange, 42, TextAnchor.UpperCenter);
 
-            float yPos = -85;
+            float yPos = -120;
 
             // ─── 1. Text Speed ───
             var textSpeedLabel = CreateSettingsLabel(panel.transform, "\uD14D\uC2A4\uD2B8 \uC18D\uB3C4", yPos);
             Slider textSpeedSlider = CreateSettingsSlider(panel.transform, yPos - 45);
 
             // Preview Text & Background (to see opacity)
-        yPos -= 90;
-            
+            yPos -= 105;
             // The Text (No background needed anymore since Opacity setting is gone)
             GameObject previewTextObj = UIHelper.CreateUIObject("PreviewText", panel.transform);
             RectTransform ptextRt = previewTextObj.GetComponent<RectTransform>();
@@ -774,50 +771,94 @@ namespace HalloweenVN.UI.Theme
             Text previewText = CreateLegacyText(previewTextObj, "", HalloweenTheme.TextPrimary, 24, TextAnchor.MiddleCenter);
 
             // ─── 2. Auto-play Delay ───
-        yPos -= 95;
-        var autoPlayLabel = CreateSettingsLabel(panel.transform, "\uC624\uD1A0 \uB300\uAE30 \uC2DC\uAC04", yPos);
-        Slider autoPlaySlider = CreateSettingsSlider(panel.transform, yPos - 45);
+            yPos -= 95;
+            var autoPlayLabel = CreateSettingsLabel(panel.transform, "\uC624\uD1A0 \uB300\uAE30 \uC2DC\uAC04", yPos);
+            Slider autoPlaySlider = CreateSettingsSlider(panel.transform, yPos - 45);
 
-        // Value InputField (right side of slider)
-        GameObject autoValObj = UIHelper.CreateUIObject("AutoPlayValue", panel.transform);
-        RectTransform autoValRt = autoValObj.GetComponent<RectTransform>();
-        UIHelper.SetAnchors(autoValRt, new Vector2(0.5f, 1), new Vector2(0.5f, 1), new Vector2(0.5f, 1));
-        autoValRt.anchoredPosition = new Vector2(235, yPos - 45); // slider spans -175 to 175. Center is 235
-        autoValRt.sizeDelta = new Vector2(90, 30);
+            // Value InputField (right side of slider)
+            GameObject autoValObj = UIHelper.CreateUIObject("AutoPlayValue", panel.transform);
+            RectTransform autoValRt = autoValObj.GetComponent<RectTransform>();
+            UIHelper.SetAnchors(autoValRt, new Vector2(0.5f, 1), new Vector2(0.5f, 1), new Vector2(0.5f, 1));
+            autoValRt.anchoredPosition = new Vector2(235, yPos - 40);
+            autoValRt.sizeDelta = new Vector2(90, 30);
 
-        UnityEngine.UI.Image inputBg = UIHelper.AddImage(autoValObj, new Color32(0, 0, 0, 255));
-        UnityEngine.UI.Outline inputOutline = autoValObj.AddComponent<UnityEngine.UI.Outline>();
-        inputOutline.effectColor = HalloweenTheme.AccentOrange;
-        inputOutline.effectDistance = new Vector2(2, -2);
+            UnityEngine.UI.Image inputBg = UIHelper.AddImage(autoValObj, new Color32(0, 0, 0, 255));
+            UnityEngine.UI.Outline inputOutline = autoValObj.AddComponent<UnityEngine.UI.Outline>();
+            inputOutline.effectColor = HalloweenTheme.AccentOrange;
+            inputOutline.effectDistance = new Vector2(2, -2);
 
-        UnityEngine.UI.InputField autoPlayInputField = autoValObj.AddComponent<UnityEngine.UI.InputField>();
-        autoPlayInputField.transition = UnityEngine.UI.Selectable.Transition.ColorTint;
-        autoPlayInputField.characterValidation = UnityEngine.UI.InputField.CharacterValidation.Decimal;
+            UnityEngine.UI.InputField autoPlayInputField = autoValObj.AddComponent<UnityEngine.UI.InputField>();
+            autoPlayInputField.transition = UnityEngine.UI.Selectable.Transition.ColorTint;
+            autoPlayInputField.characterValidation = UnityEngine.UI.InputField.CharacterValidation.Decimal;
 
-        GameObject inputTextObj = UIHelper.CreateUIObject("Text", autoValObj.transform);
-        RectTransform inputTextRt = inputTextObj.GetComponent<RectTransform>();
-        UIHelper.StretchFull(inputTextRt);
-        inputTextRt.offsetMin = new Vector2(0, 0);
-        inputTextRt.offsetMax = new Vector2(0, 0);
-        Text autoPlayValueText = CreateLegacyText(inputTextObj, "2.0", new Color32(255, 255, 255, 255), 22, TextAnchor.MiddleCenter);
-        autoPlayInputField.textComponent = autoPlayValueText;
-
-            // ─── 3. Dialogue Box Opacity ───
-        yPos -= 100;
-            var opacityLabel = CreateSettingsLabel(panel.transform, "\uB300\uC0AC\uCC3D \uD22C\uBA85\uB3C4", yPos);
-            Slider opacitySlider = CreateSettingsSlider(panel.transform, yPos - 45);
-
-            // ─── 4. Skip Mode (toggle button) ───
-        yPos -= 120;
+            GameObject inputTextObj = UIHelper.CreateUIObject("Text", autoValObj.transform);
+            RectTransform inputTextRt = inputTextObj.GetComponent<RectTransform>();
+            UIHelper.StretchFull(inputTextRt);
+            inputTextRt.offsetMin = new Vector2(0, 0);
+            inputTextRt.offsetMax = new Vector2(0, 0);
+            Text autoPlayValueText = CreateLegacyText(inputTextObj, "2.0", new Color32(255, 255, 255, 255), 22, TextAnchor.MiddleCenter);
+            autoPlayInputField.textComponent = autoPlayValueText;
+            // ─── 3. Skip Mode (Dropdown) ───
+            yPos -= 105;
             var skipModeLabel = CreateSettingsLabel(panel.transform, "스킵 단축키", yPos);
-            var skipTuple = CreateLegacyButton(panel.transform, "\uC77D\uC740 \uB300\uC0AC\uB9CC", 220, 40, new Color32(60, 40, 80, 255));
+            // Help Button (?)
+            GameObject skipHelpBtnObj = UIHelper.CreateUIObject("HelpButton", panel.transform);
+            RectTransform skipHelpRt = skipHelpBtnObj.GetComponent<RectTransform>();
+            UIHelper.SetAnchors(skipHelpRt, new Vector2(0.5f, 1), new Vector2(0.5f, 1), new Vector2(0.5f, 0.5f));
+            skipHelpRt.anchoredPosition = new Vector2(60, yPos - 20);
+            skipHelpRt.sizeDelta = new Vector2(30, 30);
+            UIHelper.AddImage(skipHelpBtnObj, new Color(0, 0, 0, 0)); // Invisible hit box
+            Button skipHelpBtn = skipHelpBtnObj.AddComponent<Button>();
+            GameObject skipHelpBtnTextObj = UIHelper.CreateUIObject("Text", skipHelpBtnObj.transform);
+            RectTransform shtRt = skipHelpBtnTextObj.GetComponent<RectTransform>();
+            UIHelper.StretchFull(shtRt);
+            Text skipHelpText = CreateLegacyText(skipHelpBtnTextObj, "?", HalloweenTheme.AccentOrange, 22, TextAnchor.MiddleCenter);
+            skipHelpText.fontStyle = FontStyle.Bold;
+
+            // Help Panel
+            GameObject skipHelpPanelObj = UIHelper.CreateUIObject("SkipHelpPanel", panel.transform);
+            RectTransform skipHelpPanelRt = skipHelpPanelObj.GetComponent<RectTransform>();
+            UIHelper.SetAnchors(skipHelpPanelRt, new Vector2(0.5f, 1), new Vector2(0.5f, 1), new Vector2(0.5f, 0.5f));
+            skipHelpPanelRt.sizeDelta = new Vector2(340, 60);
+            skipHelpPanelRt.anchoredPosition = new Vector2(120, yPos + 25);
+            UIHelper.AddImage(skipHelpPanelObj, new Color32(40, 25, 60, 240));
+            var skipHelpOutline = skipHelpPanelObj.AddComponent<Outline>();
+            skipHelpOutline.effectColor = new Color32(90, 70, 120, 255);
+            skipHelpOutline.effectDistance = new Vector2(2, -2);
+            
+            GameObject skipHelpTextObj = UIHelper.CreateUIObject("HelpText", skipHelpPanelObj.transform);
+            RectTransform skipHtRt = skipHelpTextObj.GetComponent<RectTransform>();
+            UIHelper.StretchFull(skipHtRt);
+            skipHtRt.offsetMin = new Vector2(5, 5);
+            skipHtRt.offsetMax = new Vector2(-5, -5);
+            CreateLegacyText(skipHelpTextObj, "설정하신 단축키를 누르고 있으면\n대사를 빠르게 넘길 수 있습니다.", Color.white, 16, TextAnchor.MiddleCenter);
+            skipHelpPanelObj.SetActive(false);
+            var skipTuple = CreateLegacyButton(panel.transform, "Ctrl ▼", 220, 40, new Color32(60, 40, 80, 255));
             RectTransform skipRt = skipTuple.btn.GetComponent<RectTransform>();
             UIHelper.SetAnchors(skipRt, new Vector2(0.5f, 1), new Vector2(0.5f, 1), new Vector2(0.5f, 1));
             skipRt.anchoredPosition = new Vector2(0, yPos - 45);
             skipTuple.text.fontSize = 22;
 
-            // ─── 5. Font Style (toggle button) ───
-        yPos -= 120;
+            GameObject dropPanelObj = UIHelper.CreateUIObject("DropdownList", panel.transform);
+            RectTransform dropRt = dropPanelObj.GetComponent<RectTransform>();
+            UIHelper.SetAnchors(dropRt, new Vector2(0.5f, 1), new Vector2(0.5f, 1), new Vector2(0.5f, 1));
+            dropRt.sizeDelta = new Vector2(220, 120);
+            dropRt.anchoredPosition = new Vector2(0, yPos - 85);
+            Image dropImg = UIHelper.AddImage(dropPanelObj, new Color32(40, 25, 60, 255));
+            VerticalLayoutGroup vlg = dropPanelObj.AddComponent<VerticalLayoutGroup>();
+            vlg.childControlHeight = true;
+            vlg.childControlWidth = true;
+            dropPanelObj.SetActive(false);
+
+            var optCtrl = CreateLegacyButton(dropPanelObj.transform, "Ctrl", 220, 40, new Color32(50, 35, 70, 255));
+            optCtrl.text.fontSize = 20;
+            var optShift = CreateLegacyButton(dropPanelObj.transform, "Shift", 220, 40, new Color32(50, 35, 70, 255));
+            optShift.text.fontSize = 20;
+            var optSpace = CreateLegacyButton(dropPanelObj.transform, "Space", 220, 40, new Color32(50, 35, 70, 255));
+            optSpace.text.fontSize = 20;
+
+            // ─── 4. Font Style (toggle button) ───
+            yPos -= 105;
             var fontStyleLabel = CreateSettingsLabel(panel.transform, "\uAE00\uAF34", yPos);
             var fontTuple = CreateLegacyButton(panel.transform, "\uC190\uAE00\uC528", 220, 40, new Color32(60, 40, 80, 255));
             RectTransform fontRt = fontTuple.btn.GetComponent<RectTransform>();
@@ -846,9 +887,15 @@ namespace HalloweenVN.UI.Theme
             UIHelper.SetField(settingsUi, "autoPlaySlider", autoPlaySlider);
             UIHelper.SetField(settingsUi, "autoPlayLabel", autoPlayLabel);
             UIHelper.SetField(settingsUi, "autoPlayInputField", autoPlayInputField);
-                                    UIHelper.SetField(settingsUi, "skipModeButton", skipTuple.btn);
+            UIHelper.SetField(settingsUi, "ctrlSkipButton", skipTuple.btn);
             UIHelper.SetField(settingsUi, "skipModeLabel", skipModeLabel);
-            UIHelper.SetField(settingsUi, "skipModeValueText", skipTuple.text);
+            UIHelper.SetField(settingsUi, "skipHelpButton", skipHelpBtn);
+            UIHelper.SetField(settingsUi, "skipHelpPanel", skipHelpPanelObj);
+            UIHelper.SetField(settingsUi, "ctrlSkipValueText", skipTuple.text);
+            UIHelper.SetField(settingsUi, "skipDropdownPanel", dropPanelObj);
+            UIHelper.SetField(settingsUi, "skipOptCtrl", optCtrl.btn);
+            UIHelper.SetField(settingsUi, "skipOptShift", optShift.btn);
+            UIHelper.SetField(settingsUi, "skipOptSpace", optSpace.btn);
             UIHelper.SetField(settingsUi, "fontStyleButton", fontTuple.btn);
             UIHelper.SetField(settingsUi, "fontStyleLabel", fontStyleLabel);
             UIHelper.SetField(settingsUi, "fontStyleValueText", fontTuple.text);
@@ -1287,12 +1334,17 @@ namespace HalloweenVN.UI.Theme
                 Image seamImg = UIHelper.AddImage(seamObj, folderBodyDefault);
 
                 // Tab text - Make it a child of TabContainer so it perfectly centers in the visible area!
-                GameObject tabTextObj = UIHelper.CreateUIObject("Text", tabContainerObj.transform);
-                RectTransform tabTextRt = tabTextObj.GetComponent<RectTransform>();
+                GameObject tabTextObj = UIHelper.CreateUIObject("Text", tabContainerObj.transform);                RectTransform tabTextRt = tabTextObj.GetComponent<RectTransform>();
                 UIHelper.StretchFull(tabTextRt);
+                
+                // Visual balancing: shift first tab right (away from hard left edge) and last tab left (away from hard right edge)
+                float xOffset = 0f;
+                if (ci == 0) xOffset = 0f;
+                else if (ci == folderCount - 1) xOffset = 0f;
+                
                 // Shift text down slightly to the dead center (removed previous +5 upward bias)
-                tabTextRt.offsetMin = new Vector2(0, -10);
-                tabTextRt.offsetMax = new Vector2(0, -10);
+                tabTextRt.offsetMin = new Vector2(xOffset, 0);
+                tabTextRt.offsetMax = new Vector2(xOffset, 0);
                 TextMeshProUGUI tabText = UIHelper.AddText(tabTextObj, charNames[ci], Color.black, 45, TextAlignmentOptions.Center);
                 if (hwFontAsset != null) tabText.font = hwFontAsset;
                 tabText.fontStyle = FontStyles.Bold;
@@ -1523,3 +1575,25 @@ namespace HalloweenVN.UI.Theme
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
