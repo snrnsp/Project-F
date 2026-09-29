@@ -1,4 +1,4 @@
-﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿using System.Collections;
+﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -40,7 +40,7 @@ namespace HalloweenVN.UI
         private string fullText;
 
         // ═══════════ Character Position System (ported from old project) ═══════════
-        private static readonly Color DIM_COLOR = new Color(0.45f, 0.45f, 0.45f, 1f);
+        private static readonly Color DIM_COLOR = new Color(0.3f, 0.3f, 0.3f, 1f);
         private static readonly Color ACTIVE_COLOR = Color.white;
         private const float DEFAULT_FADE_SPEED = 0.35f;
         private const float MOVE_DURATION = 0.25f;
@@ -97,7 +97,10 @@ namespace HalloweenVN.UI
             narratorText.margin = new Vector4(100, 100, 100, 100);
             
             TMP_FontAsset font = null;
-            if (dialogueText != null && dialogueText.font != null)
+            string fontName = HalloweenVN.UI.FontHelper.GetFontNameForLanguage(HalloweenVN.Core.SettingsData.Language);
+            font = HalloweenVN.UI.FontHelper.GetTMPFont(fontName);
+            
+            if (font == null && dialogueText != null && dialogueText.font != null)
                 font = dialogueText.font;
             if (font == null)
                 font = Resources.Load<TMP_FontAsset>("Fonts/MalgunGothic SDF");
@@ -133,9 +136,20 @@ namespace HalloweenVN.UI
             if (backlogButtonText != null) backlogButtonText.resizeTextForBestFit = false;
             if (autoButtonText != null) autoButtonText.resizeTextForBestFit = false;
             
-            if (skipButtonText != null) skipButtonText.fontSize = 20;
-            if (backlogButtonText != null) backlogButtonText.fontSize = 20;
-            if (autoButtonText != null) autoButtonText.fontSize = 20;
+            // Gothic font renders visually larger than handwriting — reduce sizes
+            bool isGothic = !HalloweenVN.Core.SettingsData.UseHandwritingFont;
+            int btnSize = isGothic ? 24 : 32;
+            float dialogueSize = isGothic ? 26f : 36f;
+            float speakerSize = isGothic ? 28f : 40f;
+
+            if (skipButtonText != null) skipButtonText.fontSize = btnSize;
+            if (backlogButtonText != null) backlogButtonText.fontSize = btnSize;
+            if (autoButtonText != null) autoButtonText.fontSize = btnSize;
+
+            // Adjust dialogue and speaker TMP text sizes
+            if (dialogueText != null) dialogueText.fontSize = dialogueSize;
+            if (speakerNameText != null) speakerNameText.fontSize = speakerSize;
+            if (narratorText != null) narratorText.fontSize = dialogueSize;
 
             if (skipButtonText == null) return;
             var lang = HalloweenVN.Core.SettingsData.Language;
@@ -234,10 +248,35 @@ namespace HalloweenVN.UI
         // ═══════════ Display Node ═══════════
 
 
+        private Color GetSpeakerColor(string speaker)
+        {
+            if (string.IsNullOrWhiteSpace(speaker)) return HalloweenVN.UI.Theme.HalloweenTheme.TextSpeaker;
+            switch (speaker.Trim())
+            {
+                case "세이카": return new Color32(100, 140, 255, 255); // Royal Blue (짙은 파란 머리 + 파란 눈)
+                case "카스미": return new Color32(120, 200, 200, 255); // Teal (짙은 남보라 머리 + 청록색 눈동자)
+                case "리나": return new Color32(110, 170, 255, 255); // Sky Blue (파란 눈 + 은색 X헤어핀)
+                case "미나": return new Color32(170, 170, 255, 255); // Lavender Blue (연보라~은빛 머리 + 흰 드레스)
+                case "리리스": return new Color32(180, 230, 240, 255); // Ice Cyan (은백~하늘색 숏컷 + 흰 테크웨어)
+                case "하루카": return new Color32(240, 180, 210, 255); // Soft Pink (연핑크 재킷 + 흰 원피스)
+                case "???": return new Color32(180, 180, 180, 255); // Grey
+                default: return HalloweenVN.UI.Theme.HalloweenTheme.TextSpeaker;
+            }
+        }
+
         public void DisplayNode(DialogueNode node)
         {
-
-            if (speakerNameText != null) speakerNameText.text = node.speaker;
+            if (speakerNameText != null) 
+            { 
+                speakerNameText.text = node.speaker; 
+                speakerNameText.color = GetSpeakerColor(node.speaker); 
+                
+                // Hide the speaker box entirely if it's a monologue (empty or just spaces)
+                if (speakerNameText.transform.parent != null)
+                {
+                    speakerNameText.transform.parent.gameObject.SetActive(!string.IsNullOrWhiteSpace(node.speaker));
+                }
+            }
 
             // Determine which character sprites are requested
             string spriteLeft = node.characterSpriteLeft;
@@ -846,6 +885,18 @@ namespace HalloweenVN.UI
             if (target != null)
             {
                 target.ForceMeshUpdate(true);
+                
+                // === 내레이션 텍스트 세로 밀림 현상 방지 ===
+                if (target == narratorText)
+                {
+                    float prefH = target.preferredHeight;
+                    target.rectTransform.anchorMin = new Vector2(0f, 0.5f);
+                    target.rectTransform.anchorMax = new Vector2(1f, 0.5f);
+                    target.rectTransform.sizeDelta = new Vector2(0, prefH);
+                    target.rectTransform.anchoredPosition = Vector2.zero;
+                    target.alignment = TextAlignmentOptions.Top;
+                }
+
                 target.maxVisibleCharacters = 0; // 혹시 몰라 다시 0으로 설정
                 Debug.Log($"[DialogueUI] TMPro rect size: {target.rectTransform.rect.size}, Active: {target.gameObject.activeInHierarchy}");
             }
@@ -868,7 +919,7 @@ namespace HalloweenVN.UI
                     char c = target.textInfo.characterInfo[visibleCount - 1].character;
                     if (c == '\n')
                     {
-                        yield return new WaitForSeconds(0.7f);
+                        yield return new WaitForSeconds( 0.15f);
                     }
                 }
                 
@@ -1043,6 +1094,20 @@ namespace HalloweenVN.UI
             {
                 StopCoroutine(autoPlayCoroutine);
                 autoPlayCoroutine = null;
+            }
+        }
+
+        public void ApplyOpacity(float opacity)
+        {
+            if (dialoguePanel != null)
+            {
+                var img = dialoguePanel.GetComponent<UnityEngine.UI.Image>();
+                if (img != null)
+                {
+                    Color c = img.color;
+                    c.a = opacity;
+                    img.color = c;
+                }
             }
         }
     }

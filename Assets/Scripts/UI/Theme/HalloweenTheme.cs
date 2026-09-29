@@ -33,9 +33,9 @@ namespace HalloweenVN.UI.Theme
         
         // Sizes
         public const float DialoguePanelHeight = 250f;
-        public const float SpeakerFontSize = 32f;
-        public const float DialogueFontSize = 26f;
-        public const float ChoiceFontSize = 24f;
+        public const float SpeakerFontSize = 40f;
+        public const float DialogueFontSize = 36f;
+        public const float ChoiceFontSize = 32f;
         public const float ButtonFontSize = 22f;
         public const float HeaderFontSize = 36f;
         public const float BodyFontSize = 20f;

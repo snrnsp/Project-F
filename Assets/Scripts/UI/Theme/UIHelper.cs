@@ -117,27 +117,29 @@ namespace HalloweenVN.UI.Theme
             tmp.fontSize = fontSize;
             tmp.alignment = alignment;
 
-            // Load or create Korean Font at runtime
-            if (cachedKoreanFont == null)
+            string fontName = HalloweenVN.UI.FontHelper.GetFontNameForLanguage(HalloweenVN.Core.SettingsData.Language);
+            TMP_FontAsset fontAsset = HalloweenVN.UI.FontHelper.GetTMPFont(fontName);
+            
+            if (fontAsset != null)
             {
-                // Try to load pre-made asset first
-                cachedKoreanFont = Resources.Load<TMP_FontAsset>("Fonts/MalgunGothic SDF");
-                
-                // If not found, create dynamic font asset from TTF at runtime
+                tmp.font = fontAsset;
+            }
+            else
+            {
                 if (cachedKoreanFont == null)
                 {
-                    Font rawFont = Resources.Load<Font>("Fonts/MalgunGothic");
-                    if (rawFont != null)
+                    cachedKoreanFont = Resources.Load<TMP_FontAsset>("Fonts/MalgunGothic SDF");
+                    if (cachedKoreanFont == null)
                     {
-                        cachedKoreanFont = TMP_FontAsset.CreateFontAsset(rawFont);
-                        cachedKoreanFont.name = "MalgunGothic Runtime SDF";
+                        Font rawFont = Resources.Load<Font>("Fonts/MalgunGothic");
+                        if (rawFont != null)
+                        {
+                            cachedKoreanFont = TMP_FontAsset.CreateFontAsset(rawFont);
+                            cachedKoreanFont.name = "MalgunGothic Runtime SDF";
+                        }
                     }
                 }
-            }
-
-            if (cachedKoreanFont != null)
-            {
-                tmp.font = cachedKoreanFont;
+                if (cachedKoreanFont != null) tmp.font = cachedKoreanFont;
             }
 
             return tmp;

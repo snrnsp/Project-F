@@ -18,6 +18,9 @@ namespace HalloweenVN.Core
         public static float SFXVolume { get; set; } = 1.0f;
         public static bool IsFullScreen { get; set; } = true;
         public static float AutoPlayDelay { get; set; } = 2.0f;
+        public static float DialogueBoxOpacity { get; set; } = 0.85f;
+        public static bool SkipReadOnly { get; set; } = true;
+        public static bool UseHandwritingFont { get; set; } = true;
         public static int PerformanceMode { get; set; } = 1; // 0: Power Saving, 1: High Quality
         public static GameLanguage Language { get; set; } = GameLanguage.Korean;
 
@@ -36,6 +39,9 @@ namespace HalloweenVN.Core
             SFXVolume = PlayerPrefs.GetFloat(Prefix + "SFXVolume", 1.0f);
             IsFullScreen = PlayerPrefs.GetInt(Prefix + "IsFullScreen", 1) == 1;
             AutoPlayDelay = PlayerPrefs.GetFloat(Prefix + "AutoPlayDelay", 2.0f);
+            DialogueBoxOpacity = PlayerPrefs.GetFloat(Prefix + "DialogueBoxOpacity", 0.85f);
+            SkipReadOnly = PlayerPrefs.GetInt(Prefix + "SkipReadOnly", 1) == 1;
+            UseHandwritingFont = PlayerPrefs.GetInt(Prefix + "UseHandwritingFont", 1) == 1;
             PerformanceMode = PlayerPrefs.GetInt(Prefix + "PerformanceMode", 1);
             Language = (GameLanguage)PlayerPrefs.GetInt(Prefix + "Language", 0);
         }
@@ -46,7 +52,10 @@ namespace HalloweenVN.Core
             PlayerPrefs.SetFloat(Prefix + "BGMVolume", Mathf.Clamp01(BGMVolume));
             PlayerPrefs.SetFloat(Prefix + "SFXVolume", Mathf.Clamp01(SFXVolume));
             PlayerPrefs.SetInt(Prefix + "IsFullScreen", IsFullScreen ? 1 : 0);
-            PlayerPrefs.SetFloat(Prefix + "AutoPlayDelay", Mathf.Clamp(AutoPlayDelay, 1.0f, 5.0f));
+            PlayerPrefs.SetFloat(Prefix + "AutoPlayDelay", Mathf.Clamp(AutoPlayDelay, 0.1f, 5.0f));
+            PlayerPrefs.SetFloat(Prefix + "DialogueBoxOpacity", Mathf.Clamp(DialogueBoxOpacity, 0.2f, 1.0f));
+            PlayerPrefs.SetInt(Prefix + "SkipReadOnly", SkipReadOnly ? 1 : 0);
+            PlayerPrefs.SetInt(Prefix + "UseHandwritingFont", UseHandwritingFont ? 1 : 0);
             PlayerPrefs.SetInt(Prefix + "PerformanceMode", PerformanceMode);
             PlayerPrefs.SetInt(Prefix + "Language", (int)Language);
             PlayerPrefs.Save();
@@ -74,6 +83,9 @@ namespace HalloweenVN.Core
             SFXVolume = 1.0f;
             IsFullScreen = true;
             AutoPlayDelay = 2.0f;
+            DialogueBoxOpacity = 0.85f;
+            SkipReadOnly = true;
+            UseHandwritingFont = true;
             PerformanceMode = 1;
             Save();
         }

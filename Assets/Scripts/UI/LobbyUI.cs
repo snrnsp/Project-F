@@ -1,4 +1,4 @@
-﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿using System.Collections;
+﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -24,7 +24,7 @@ namespace HalloweenVN.UI
         [SerializeField] private Text extraText;
         [SerializeField] private Text settingsText;
         [SerializeField] private Text versionText;
-        [SerializeField] private Text lobbyTitleText;
+        [SerializeField] private Image logoImage;
         [SerializeField] private Text lobbySubtitleText;
         [SerializeField] private Text languageBtnText;
         private bool isStartingGame = false;
@@ -39,17 +39,31 @@ namespace HalloweenVN.UI
             UpdateLanguage();
         }
 
-        public void UpdateLanguage()
+    public void UpdateLanguage()
+    {
+        GameLanguage lang = SettingsData.Language;
+        
+        if (logoImage != null)
         {
-            if (newGameText == null) return;
+            string logoPath = "Images/Logos/logo_en";
+            if (lang == GameLanguage.Korean)
+            {
+                logoPath = "Images/Logos/logo_ko";
+            }
+            Sprite logoSprite = Resources.Load<Sprite>(logoPath);
+            if (logoSprite != null) 
+            {
+                logoImage.sprite = logoSprite;
+                logoImage.color = Color.white; // ensure it's not tinted
+            }
+        }
 
-            GameLanguage lang = SettingsData.Language;
+        if (newGameText == null) return;
             string fontName = FontHelper.GetFontNameForLanguage(lang);
             if (fontName != null) {
                 Font f = FontHelper.GetFont(fontName);
                 if (f != null) {
-                    if (lobbyTitleText != null) lobbyTitleText.font = f;
-                    if (lobbySubtitleText != null) {
+                                        if (lobbySubtitleText != null) {
                         Font engFont = FontHelper.GetFont("Caveat-Regular");
                         if (engFont != null) lobbySubtitleText.font = engFont;
                     }
@@ -60,21 +74,20 @@ namespace HalloweenVN.UI
                     
                     if (languageBtnText != null) languageBtnText.font = f;
 
-                    int offset = (lang == GameLanguage.Korean) ? 0 : 0;
-                    if (newGameText != null) newGameText.fontSize = 35 + offset;
-                    if (continueText != null) continueText.fontSize = 35 + offset;
-                    if (settingsText != null) settingsText.fontSize = 35 + offset;
-                    if (extraText != null) extraText.fontSize = 35 + offset;
+                    int gothicReduction = SettingsData.UseHandwritingFont ? 0 : -6;
+                    if (newGameText != null) newGameText.fontSize = 26 + gothicReduction;
+                    if (continueText != null) continueText.fontSize = 26 + gothicReduction;
+                    if (settingsText != null) settingsText.fontSize = 26 + gothicReduction;
+                    if (extraText != null) extraText.fontSize = 26 + gothicReduction;
                     
-                    if (languageBtnText != null) languageBtnText.fontSize = 35 + offset;
+                    if (languageBtnText != null) languageBtnText.fontSize = 26 + gothicReduction;
                 }
             }
 
             // Korean (Default)
             if (lang == GameLanguage.Korean)
             {
-                if (lobbyTitleText != null) lobbyTitleText.text = "오블리비언";
-                if (lobbySubtitleText != null) lobbySubtitleText.text = "OBLIVION";
+                                if (lobbySubtitleText != null) lobbySubtitleText.text = "OBLIVION";
                 if (newGameText != null) newGameText.text = "새 게임";
                 if (extraText != null) extraText.text = "캐릭터";
                 if (settingsText != null) settingsText.text = "환경 설정";
@@ -84,8 +97,7 @@ namespace HalloweenVN.UI
             // English
             else if (lang == GameLanguage.English)
             {
-                if (lobbyTitleText != null) lobbyTitleText.text = "OBLIVION";
-                if (lobbySubtitleText != null) lobbySubtitleText.text = "";
+                                if (lobbySubtitleText != null) lobbySubtitleText.text = "";
                 if (newGameText != null) newGameText.text = "New Game";
                 if (extraText != null) extraText.text = "Characters";
                 if (settingsText != null) settingsText.text = "Settings";
@@ -95,8 +107,7 @@ namespace HalloweenVN.UI
             // Japanese
             else if (lang == GameLanguage.Japanese)
             {
-                if (lobbyTitleText != null) lobbyTitleText.text = "忘却";
-                if (lobbySubtitleText != null) lobbySubtitleText.text = "OBLIVION";
+                                if (lobbySubtitleText != null) lobbySubtitleText.text = "OBLIVION";
                 if (newGameText != null) newGameText.text = "はじめから";
                 if (extraText != null) extraText.text = "キャラクター";
                 if (settingsText != null) settingsText.text = "設定";
@@ -106,8 +117,7 @@ namespace HalloweenVN.UI
             // Simplified Chinese
             else if (lang == GameLanguage.ChineseSimplified)
             {
-                if (lobbyTitleText != null) lobbyTitleText.text = "遗忘";
-                if (lobbySubtitleText != null) lobbySubtitleText.text = "OBLIVION";
+                                if (lobbySubtitleText != null) lobbySubtitleText.text = "OBLIVION";
                 if (newGameText != null) newGameText.text = "新游戏";
                 if (extraText != null) extraText.text = "角色";
                 if (settingsText != null) settingsText.text = "设置";
@@ -117,8 +127,7 @@ namespace HalloweenVN.UI
             // Traditional Chinese
             else if (lang == GameLanguage.ChineseTraditional)
             {
-                if (lobbyTitleText != null) lobbyTitleText.text = "遺忘";
-                if (lobbySubtitleText != null) lobbySubtitleText.text = "OBLIVION";
+                                if (lobbySubtitleText != null) lobbySubtitleText.text = "OBLIVION";
                 if (newGameText != null) newGameText.text = "新遊戲";
                 if (extraText != null) extraText.text = "角色";
                 if (settingsText != null) settingsText.text = "設定";
@@ -267,6 +276,7 @@ namespace HalloweenVN.UI
             Button overlayBtn = overlay.AddComponent<Button>();
             overlayBtn.transition = Selectable.Transition.None;
             overlayBtn.onClick.AddListener(() => {
+                if (isStartingGame) return;
                 Destroy(overlay);
             });
 
@@ -283,7 +293,7 @@ namespace HalloweenVN.UI
             Button panelDummyBtn = panel.AddComponent<Button>();
             panelDummyBtn.transition = Selectable.Transition.None;
 
-            float titleY = -60f;
+            float titleY = -50f;
 
             GameObject iconObj = new GameObject("PreAlphaTitle");
             iconObj.transform.SetParent(panel.transform, false);
@@ -291,22 +301,28 @@ namespace HalloweenVN.UI
             iconRt.anchorMin = new Vector2(0.5f, 1f);
             iconRt.anchorMax = new Vector2(0.5f, 1f);
             iconRt.anchoredPosition = new Vector2(0, titleY);
-            iconRt.sizeDelta = new Vector2(500, 45);
-            TextMeshProUGUI iconText = Theme.UIHelper.AddText(iconObj, "Pre-Alpha 안내", new Color32(150, 200, 255, 255), 30, TextAlignmentOptions.Center);
+            iconRt.sizeDelta = new Vector2( 600, 50);
+            TextMeshProUGUI iconText = Theme.UIHelper.AddText(iconObj, "Pre-Alpha 안내", new Color32(150, 200, 255, 255),  SettingsData.UseHandwritingFont ? 36 : 30, TextAlignmentOptions.Center);
             iconText.fontStyle = FontStyles.Bold;
+            iconText.enableAutoSizing = true;
+            iconText.fontSizeMin = 24f;
+            iconText.fontSizeMax =  SettingsData.UseHandwritingFont ? 36f : 30f;
 
             GameObject msgObj = new GameObject("WarningMessage");
             msgObj.transform.SetParent(panel.transform, false);
             RectTransform msgRt = msgObj.AddComponent<RectTransform>();
             msgRt.anchorMin = new Vector2(0.5f, 1f);
             msgRt.anchorMax = new Vector2(0.5f, 1f);
-            msgRt.anchoredPosition = new Vector2(0, -180);
-            msgRt.sizeDelta = new Vector2(720, 200);
+            msgRt.anchoredPosition = new Vector2(0, -210);
+            msgRt.sizeDelta = new Vector2( 760, 250);
             
             string preAlphaMsg = "현재 오블리비언은 '<color=#80C0FF>프리 알파</color>(소프트웨어나 게임 개발 과정에서 정식 알파 테스트 이전의 초기 제작 및 설계 단계)'에 있습니다!\n\n게임의 품질이 낮을 수 있는 점 양해 바랍니다!";
             
-            TextMeshProUGUI msgText = Theme.UIHelper.AddText(msgObj, preAlphaMsg, new Color32(230, 230, 230, 255), 24, TextAlignmentOptions.Center);
-            msgText.lineSpacing = 15f;
+            TextMeshProUGUI msgText = Theme.UIHelper.AddText(msgObj, preAlphaMsg, new Color32(230, 230, 230, 255),  SettingsData.UseHandwritingFont ? 28 : 22, TextAlignmentOptions.Center);
+            msgText.lineSpacing =  5f;
+            msgText.enableAutoSizing = true;
+            msgText.fontSizeMin = 18f;
+            msgText.fontSizeMax =  SettingsData.UseHandwritingFont ? 28f : 22f;
 
             GameObject btnObj = new GameObject("OkButton");
             btnObj.transform.SetParent(panel.transform, false);
@@ -335,7 +351,7 @@ namespace HalloweenVN.UI
             btnTextRt.anchorMax = Vector2.one;
             btnTextRt.offsetMin = Vector2.zero;
             btnTextRt.offsetMax = Vector2.zero;
-            TextMeshProUGUI btnText = Theme.UIHelper.AddText(btnTextObj, "확인", new Color32(255, 255, 255, 255), 28, TextAlignmentOptions.Center);
+            TextMeshProUGUI btnText = Theme.UIHelper.AddText(btnTextObj, "확인", new Color32(255, 255, 255, 255), SettingsData.UseHandwritingFont ? 28 : 22, TextAlignmentOptions.Center);
             btnText.fontStyle = FontStyles.Bold;
 
             btn.onClick.AddListener(() =>
@@ -362,6 +378,7 @@ void ShowPhotosensitivityWarning()
             Button overlayBtn = overlay.AddComponent<Button>();
             overlayBtn.transition = Selectable.Transition.None;
             overlayBtn.onClick.AddListener(() => {
+                if (isStartingGame) return;
                 Destroy(overlay);
             });
 
@@ -383,7 +400,7 @@ void ShowPhotosensitivityWarning()
             // --- Warning triangle icon (solid triangle with "!" cutout) ---
             float triW = 52f;
             float triH = 48f;
-            float titleY = -75f;
+            float titleY = -50f;
 
             // Generate triangle texture with "!" negative space
             int texSize = 64;
@@ -445,9 +462,12 @@ void ShowPhotosensitivityWarning()
             iconRt.anchorMin = new Vector2(0.5f, 1f);
             iconRt.anchorMax = new Vector2(0.5f, 1f);
             iconRt.anchoredPosition = new Vector2(15, titleY);
-            iconRt.sizeDelta = new Vector2(500, 45);
-            TextMeshProUGUI iconText = Theme.UIHelper.AddText(iconObj, "광과민성 발작 경고", new Color32(255, 180, 80, 255), 30, TextAlignmentOptions.Center);
+            iconRt.sizeDelta = new Vector2( 600, 50);
+            TextMeshProUGUI iconText = Theme.UIHelper.AddText(iconObj, "광과민성 발작 경고", new Color32(255, 180, 80, 255),  SettingsData.UseHandwritingFont ? 36 : 30, TextAlignmentOptions.Center);
             iconText.fontStyle = FontStyles.Bold;
+            iconText.enableAutoSizing = true;
+            iconText.fontSizeMin = 24f;
+            iconText.fontSizeMax =  SettingsData.UseHandwritingFont ? 36f : 30f;
 
             // Warning message — use color tags for stronger emphasis
             string warn = "<color=#FFD080>";
@@ -455,8 +475,8 @@ void ShowPhotosensitivityWarning()
             GameObject msgObj = new GameObject("WarningMessage");
             msgObj.transform.SetParent(panel.transform, false);
             RectTransform msgRt = msgObj.AddComponent<RectTransform>();
-            msgRt.anchorMin = new Vector2(0, 0.13f);
-            msgRt.anchorMax = new Vector2(1, 0.82f);
+            msgRt.anchorMin = new Vector2(0, 0.22f);
+            msgRt.anchorMax = new Vector2(1, 0.80f);
             msgRt.offsetMin = new Vector2(45, 0);
             msgRt.offsetMax = new Vector2(-45, 0);
             TextMeshProUGUI msgText = Theme.UIHelper.AddText(msgObj,
@@ -472,9 +492,12 @@ void ShowPhotosensitivityWarning()
                 $"<b>{warn}혼란{warnEnd}</b>, " +
                 $"또는 <b>{warn}일시적인 의식 상실{warnEnd}</b> 등의 증상을 겪는다면 " +
                 $"<b>{warn}즉시 게임을 중단{warnEnd}</b>하고 의사와 상담하십시오.",
-                new Color32(200, 195, 210, 255), 20, TextAlignmentOptions.Center);
+                new Color32(200, 195, 210, 255),  SettingsData.UseHandwritingFont ? 28 : 22, TextAlignmentOptions.Center);
             msgText.textWrappingMode = TextWrappingModes.Normal;
-            msgText.lineSpacing = 8f;
+            msgText.lineSpacing =  3f;
+            msgText.enableAutoSizing = true;
+            msgText.fontSizeMin = 18f;
+            msgText.fontSizeMax = SettingsData.UseHandwritingFont ? 28f : 22f;
             msgText.richText = true;
 
             // OK button
@@ -525,7 +548,7 @@ void ShowPhotosensitivityWarning()
             btnTextRt.anchorMax = Vector2.one;
             btnTextRt.offsetMin = Vector2.zero;
             btnTextRt.offsetMax = Vector2.zero;
-            TextMeshProUGUI btnText = Theme.UIHelper.AddText(btnTextObj, "확인", new Color32(255, 255, 255, 255), 28, TextAlignmentOptions.Center);
+            TextMeshProUGUI btnText = Theme.UIHelper.AddText(btnTextObj, "확인", new Color32(255, 255, 255, 255), SettingsData.UseHandwritingFont ? 28 : 22, TextAlignmentOptions.Center);
             btnText.fontStyle = FontStyles.Bold;
 
             btn.onClick.AddListener(() =>
@@ -559,13 +582,14 @@ void ShowPhotosensitivityWarning()
 
         private IEnumerator DelayedNewGameRoutine(Theme.ScreenTransition transition, GameObject popupOverlay)
         {
-            float fadeTime = 1.7f; // 0.5s faster than previous 2.2f
+            float fadeOutTime = 1.5f;
+            float fadeInTime = 0.8f;
             float waitTime = 2.0f; // 2 seconds wait on black screen
 
             transition.autoTransitionOnPhaseChange = false;
             
             bool fadeOutDone = false;
-            transition.FadeOut(fadeTime, () => fadeOutDone = true);
+            transition.FadeOut(fadeOutTime, () => fadeOutDone = true);
             
             // Wait for fade out to complete
             yield return new WaitUntil(() => fadeOutDone);
@@ -580,7 +604,7 @@ void ShowPhotosensitivityWarning()
             // Start the story and fade back in using the same fadeTime
             if (DialogueManager.Instance != null) DialogueManager.Instance.StartDialogue("ch0_origin");
             
-            transition.FadeIn(fadeTime, () => {
+            transition.FadeIn(fadeInTime, () => {
                 transition.autoTransitionOnPhaseChange = true;
             });
         }

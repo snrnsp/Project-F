@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using TMPro;
@@ -71,16 +71,32 @@ if (panelRoot != null)
             SettingsData.Language = lang;
             SettingsData.Save();
             UpdateLanguageButtonsUI();
-            
+
             LobbyUI lobby = Object.FindAnyObjectByType<LobbyUI>();
             if (lobby != null) lobby.UpdateLanguage();
-            
+
             SettingsUI settings = Object.FindAnyObjectByType<SettingsUI>(FindObjectsInactive.Include);
             if (settings != null) settings.UpdateLanguage();
 
             DialogueUI dialogue = Object.FindAnyObjectByType<DialogueUI>(FindObjectsInactive.Include);
             if (dialogue != null) dialogue.UpdateLanguage();
-            
+            var extra = UnityEngine.Object.FindAnyObjectByType<ExtraUI>(UnityEngine.FindObjectsInactive.Include);
+            if (extra != null) extra.UpdateLanguage();
+
+            string fontName = HalloweenVN.UI.FontHelper.GetFontNameForLanguage(lang);
+            var tmpFont = HalloweenVN.UI.FontHelper.GetTMPFont(fontName);
+            if (tmpFont != null)
+            {
+                var allTmp = Resources.FindObjectsOfTypeAll<TMPro.TextMeshProUGUI>();
+                foreach (var tmp in allTmp)
+                {
+                    if (tmp.gameObject.scene.name != null)
+                    {
+                        tmp.font = tmpFont;
+                    }
+                }
+            }
+
             Debug.Log($"Language set to {lang}");
         }
 
@@ -103,8 +119,10 @@ if (panelRoot != null)
                     var f = FontHelper.GetFont(fontName);
                     if (f != null) titleText.font = f;
                 }
-                if (SettingsData.Language == GameLanguage.Korean) titleText.fontSize = 32;
-                else titleText.fontSize = 28;
+                bool isGothic = !SettingsData.UseHandwritingFont;
+                
+                if (SettingsData.Language == GameLanguage.Korean) titleText.fontSize = isGothic ? 24 : 32;
+                else titleText.fontSize = isGothic ? 22 : 28;
                 
                 if (SettingsData.Language == GameLanguage.English) titleText.text = "Language Settings";
                 else if (SettingsData.Language == GameLanguage.Japanese) titleText.text = "\u8A00\u8A9E\u8A2D\u5B9A";
@@ -114,6 +132,9 @@ if (panelRoot != null)
             }
             if (closeText != null)
             {
+                bool isGothic = !SettingsData.UseHandwritingFont;
+                closeText.fontSize = isGothic ? 22 : 28;
+
                 if (SettingsData.Language == GameLanguage.English) closeText.text = "Close";
                 else if (SettingsData.Language == GameLanguage.Japanese) closeText.text = "\u9589\u3058\u308B";
                 else if (SettingsData.Language == GameLanguage.ChineseSimplified) closeText.text = "\u5173\u95ED";
@@ -136,8 +157,9 @@ if (panelRoot != null)
                     Font f = FontHelper.GetFont(btnFontName);
                     if (f != null) legacyTxt.font = f;
                     
-                    if ((GameLanguage)i == GameLanguage.Korean) legacyTxt.fontSize = 33;
-                    else legacyTxt.fontSize = 28;
+                    bool isGothic = !SettingsData.UseHandwritingFont;
+                    if ((GameLanguage)i == GameLanguage.Korean) legacyTxt.fontSize = isGothic ? 24 : 33;
+                    else legacyTxt.fontSize = isGothic ? 22 : 28;
                 }
                 
                 if ((int)SettingsData.Language == i)

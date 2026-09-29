@@ -17,6 +17,14 @@ namespace HalloweenVN.UI
         {
             if (Keyboard.current != null && Keyboard.current.escapeKey.wasPressedThisFrame)
             {
+                                // 0. If LanguageUI is open, close it.
+                var langUi = UnityEngine.Object.FindFirstObjectByType<LanguageUI>(UnityEngine.FindObjectsInactive.Exclude);
+                if (langUi != null && langUi.gameObject.activeInHierarchy)
+                {
+                    langUi.Hide();
+                    return;
+                }
+
                 // 1. If Settings is open, close it.
                 var settings = UnityEngine.Object.FindFirstObjectByType<SettingsUI>(UnityEngine.FindObjectsInactive.Exclude);
                 if (settings != null && settings.gameObject.activeInHierarchy)
