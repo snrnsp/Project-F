@@ -1,0 +1,686 @@
+[
+  {
+    "Category": "Character Name",
+    "Korean (KO)": "세이카",
+    "English (EN)": "Seika",
+    "Japanese (JA)": "セイカ",
+    "Chinese Simplified (ZH-CN)": "星华",
+    "Chinese Traditional (ZH-TW)": "星華",
+    "Notes": "Agency director. Age 25. Female. Casual speech (banmal)."
+  },
+  {
+    "Category": "Character Name",
+    "Korean (KO)": "카스미",
+    "English (EN)": "Kasumi",
+    "Japanese (JA)": "カスミ",
+    "Chinese Simplified (ZH-CN)": "霞",
+    "Chinese Traditional (ZH-TW)": "霞",
+    "Notes": "Lead detective. Age 23. Female. Formal/polite speech (jondaenmal)."
+  },
+  {
+    "Category": "Character Name",
+    "Korean (KO)": "리나",
+    "English (EN)": "Rina",
+    "Japanese (JA)": "リナ",
+    "Chinese Simplified (ZH-CN)": "莉娜",
+    "Chinese Traditional (ZH-TW)": "莉娜",
+    "Notes": "Field operative. Age 21. Female. Casual speech with slang."
+  },
+  {
+    "Category": "Character Name",
+    "Korean (KO)": "미나",
+    "English (EN)": "Mina",
+    "Japanese (JA)": "ミナ",
+    "Chinese Simplified (ZH-CN)": "美奈",
+    "Chinese Traditional (ZH-TW)": "美奈",
+    "Notes": "Occult advisor. Age unknown. Female. Switches between theatrical/chuunibyou speech and normal speech."
+  },
+  {
+    "Category": "Character Name",
+    "Korean (KO)": "리리스",
+    "English (EN)": "Lilith",
+    "Japanese (JA)": "リリス",
+    "Chinese Simplified (ZH-CN)": "莉莉丝",
+    "Chinese Traditional (ZH-TW)": "莉莉絲",
+    "Notes": "Tech/hacker. Age 20. Female. Speaks in clipped, noun-ending sentences."
+  },
+  {
+    "Category": "Character Name",
+    "Korean (KO)": "하루카",
+    "English (EN)": "Haruka",
+    "Japanese (JA)": "ハルカ",
+    "Chinese Simplified (ZH-CN)": "遥",
+    "Chinese Traditional (ZH-TW)": "遙",
+    "Notes": "Receptionist/admin. Age 19 (youngest). Female. Bright, polite speech."
+  },
+  {
+    "Category": "Character Name",
+    "Korean (KO)": "서하유",
+    "English (EN)": "Seo Hayu",
+    "Japanese (JA)": "ソ・ハユ",
+    "Chinese Simplified (ZH-CN)": "徐夏悠",
+    "Chinese Traditional (ZH-TW)": "徐夏悠",
+    "Notes": "The Forgotten Pianist (Ch.1). Full name. 2016 national competition grand prize winner."
+  },
+  {
+    "Category": "Character Name",
+    "Korean (KO)": "하유",
+    "English (EN)": "Hayu",
+    "Japanese (JA)": "ハユ",
+    "Chinese Simplified (ZH-CN)": "夏悠",
+    "Chinese Traditional (ZH-TW)": "夏悠",
+    "Notes": "Fragment of Seo Hayu's name. Decoded from Morse code in piano frequencies."
+  },
+  {
+    "Category": "Character Name",
+    "Korean (KO)": "이케다",
+    "English (EN)": "Ikeda",
+    "Japanese (JA)": "イケダ",
+    "Chinese Simplified (ZH-CN)": "池田",
+    "Chinese Traditional (ZH-TW)": "池田",
+    "Notes": "Japanese businessman who built the mansion in the 1920s. Does not appear directly."
+  },
+  {
+    "Category": "Character Name",
+    "Korean (KO)": "사차지",
+    "English (EN)": "Sachaji",
+    "Japanese (JA)": "サチャジ",
+    "Chinese Simplified (ZH-CN)": "萨查基",
+    "Chinese Traditional (ZH-TW)": "薩查基",
+    "Notes": "Game creator. Appears in ending credits."
+  },
+  {
+    "Category": "Honorific/Title",
+    "Korean (KO)": "소장님",
+    "English (EN)": "Director",
+    "Japanese (JA)": "所長",
+    "Chinese Simplified (ZH-CN)": "所长",
+    "Chinese Traditional (ZH-TW)": "所長",
+    "Notes": "Formal title members use for Seika."
+  },
+  {
+    "Category": "Honorific/Title",
+    "Korean (KO)": "~언니",
+    "English (EN)": "(name)",
+    "Japanese (JA)": "〜さん / 〜先輩",
+    "Chinese Simplified (ZH-CN)": "~姐",
+    "Chinese Traditional (ZH-TW)": "~姐",
+    "Notes": "Used by Haruka/Rina when addressing senior members."
+  },
+  {
+    "Category": "Honorific/Title",
+    "Korean (KO)": "하유 씨",
+    "English (EN)": "Hayu",
+    "Japanese (JA)": "ハユさん",
+    "Chinese Simplified (ZH-CN)": "夏悠小姐",
+    "Chinese Traditional (ZH-TW)": "夏悠小姐",
+    "Notes": "Respectful form of address for Seo Hayu."
+  },
+  {
+    "Category": "Honorific/Title",
+    "Korean (KO)": "이 몸",
+    "English (EN)": "This great one / I",
+    "Japanese (JA)": "妾（わらわ）",
+    "Chinese Simplified (ZH-CN)": "本大人",
+    "Chinese Traditional (ZH-TW)": "本大人",
+    "Notes": "Mina's theatrical first-person pronoun (chuunibyou persona)."
+  },
+  {
+    "Category": "Organization",
+    "Korean (KO)": "네버모어 오컬트 탐정 사무소",
+    "English (EN)": "Nevermore Occult Detective Agency",
+    "Japanese (JA)": "ネバーモア・オカルト探偵事務所",
+    "Chinese Simplified (ZH-CN)": "永不复焉超自然侦探事务所",
+    "Chinese Traditional (ZH-TW)": "永不復焉超自然偵探事務所",
+    "Notes": "Official full name."
+  },
+  {
+    "Category": "Organization",
+    "Korean (KO)": "네버모어 탐정 사무소",
+    "English (EN)": "Nevermore Detective Agency",
+    "Japanese (JA)": "ネバーモア探偵事務所",
+    "Chinese Simplified (ZH-CN)": "永不复焉侦探事务所",
+    "Chinese Traditional (ZH-TW)": "永不復焉偵探事務所",
+    "Notes": "Common shortened name used in dialogue."
+  },
+  {
+    "Category": "Organization",
+    "Korean (KO)": "네버모어",
+    "English (EN)": "Nevermore",
+    "Japanese (JA)": "ネバーモア",
+    "Chinese Simplified (ZH-CN)": "永不复焉",
+    "Chinese Traditional (ZH-TW)": "永不復焉",
+    "Notes": "Shortest abbreviation. Derived from Edgar Allan Poe's \"The Raven\"."
+  },
+  {
+    "Category": "Organization",
+    "Korean (KO)": "노을시 경찰청",
+    "English (EN)": "Noeul City Police Department",
+    "Japanese (JA)": "ノウル市警察庁",
+    "Chinese Simplified (ZH-CN)": "落霞市警察厅",
+    "Chinese Traditional (ZH-TW)": "落霞市警察廳",
+    "Notes": "Bureaucratic institution that covers up supernatural cases."
+  },
+  {
+    "Category": "Organization",
+    "Korean (KO)": "과학수사대",
+    "English (EN)": "Forensic Investigation Unit",
+    "Japanese (JA)": "科学捜査隊",
+    "Chinese Simplified (ZH-CN)": "刑事技术科",
+    "Chinese Traditional (ZH-TW)": "刑事鑑識科",
+    "Notes": "Kasumi's former workplace (intern)."
+  },
+  {
+    "Category": "Organization",
+    "Korean (KO)": "대형 로펌",
+    "English (EN)": "Major Law Firm",
+    "Japanese (JA)": "大手法律事務所",
+    "Chinese Simplified (ZH-CN)": "大型律师事务所",
+    "Chinese Traditional (ZH-TW)": "大型律師事務所",
+    "Notes": "Seika's former workplace."
+  },
+  {
+    "Category": "Location",
+    "Korean (KO)": "노을시",
+    "English (EN)": "Noeul City",
+    "Japanese (JA)": "ノウル市",
+    "Chinese Simplified (ZH-CN)": "落霞市",
+    "Chinese Traditional (ZH-TW)": "落霞市",
+    "Notes": "Main setting. Fictional Korean port city. Pop. ~800,000."
+  },
+  {
+    "Category": "Location",
+    "Korean (KO)": "구시가지",
+    "English (EN)": "Old Town",
+    "Japanese (JA)": "旧市街",
+    "Chinese Simplified (ZH-CN)": "旧城区",
+    "Chinese Traditional (ZH-TW)": "舊城區",
+    "Notes": "District with colonial-era buildings. Epicenter of incidents."
+  },
+  {
+    "Category": "Location",
+    "Korean (KO)": "신시가지",
+    "English (EN)": "New Town",
+    "Japanese (JA)": "新市街",
+    "Chinese Simplified (ZH-CN)": "新城区",
+    "Chinese Traditional (ZH-TW)": "新城區",
+    "Notes": "Modern urban district."
+  },
+  {
+    "Category": "Location",
+    "Korean (KO)": "이케다 저택",
+    "English (EN)": "Ikeda Mansion",
+    "Japanese (JA)": "イケダ邸",
+    "Chinese Simplified (ZH-CN)": "池田宅邸",
+    "Chinese Traditional (ZH-TW)": "池田宅邸",
+    "Notes": "Nevermore HQ. 3-story Victorian mansion atop Old Town hill."
+  },
+  {
+    "Category": "Location",
+    "Korean (KO)": "3층 서재",
+    "English (EN)": "Third Floor Study",
+    "Japanese (JA)": "三階書斎",
+    "Chinese Simplified (ZH-CN)": "三楼书房",
+    "Chinese Traditional (ZH-TW)": "三樓書房",
+    "Notes": "Where Seika witnessed the paranormal event."
+  },
+  {
+    "Category": "Location",
+    "Korean (KO)": "폐쇄 음악실",
+    "English (EN)": "Abandoned Music Hall",
+    "Japanese (JA)": "閉鎖された音楽室",
+    "Chinese Simplified (ZH-CN)": "废弃音乐教室",
+    "Chinese Traditional (ZH-TW)": "廢棄音樂教室",
+    "Notes": "Ch.1 crime scene. Former music academy."
+  },
+  {
+    "Category": "Location",
+    "Korean (KO)": "메인 공연장",
+    "English (EN)": "Main Concert Hall",
+    "Japanese (JA)": "メインホール",
+    "Chinese Simplified (ZH-CN)": "主演奏厅",
+    "Chinese Traditional (ZH-TW)": "主演奏廳",
+    "Notes": "Interior of the Abandoned Music Hall. Contains the grand piano."
+  },
+  {
+    "Category": "Location",
+    "Korean (KO)": "구시가지 3번 골목",
+    "English (EN)": "Old Town Alley No. 3",
+    "Japanese (JA)": "旧市街三番路地",
+    "Chinese Simplified (ZH-CN)": "旧城区3号巷",
+    "Chinese Traditional (ZH-TW)": "舊城區3號巷",
+    "Notes": "Previous day's noise complaint location."
+  },
+  {
+    "Category": "Location",
+    "Korean (KO)": "미로 골목",
+    "English (EN)": "Labyrinth Alley",
+    "Japanese (JA)": "迷路路地",
+    "Chinese Simplified (ZH-CN)": "迷宫小巷",
+    "Chinese Traditional (ZH-TW)": "迷宮小巷",
+    "Notes": "Alley where people always get lost. Site of Nevermore's first case."
+  },
+  {
+    "Category": "Equipment",
+    "Korean (KO)": "잭오",
+    "English (EN)": "Jack-O",
+    "Japanese (JA)": "ジャック・オー",
+    "Chinese Simplified (ZH-CN)": "Jack-O",
+    "Chinese Traditional (ZH-TW)": "Jack-O",
+    "Notes": "Lilith's custom-built recon drone. Named after Jack-O'-Lantern."
+  },
+  {
+    "Category": "Equipment",
+    "Korean (KO)": "열화상 센서",
+    "English (EN)": "Thermal Imaging Sensor",
+    "Japanese (JA)": "赤外線センサー",
+    "Chinese Simplified (ZH-CN)": "热成像传感器",
+    "Chinese Traditional (ZH-TW)": "熱成像感測器",
+    "Notes": "Jack-O's built-in sensor. Detects temperature and bio-signatures."
+  },
+  {
+    "Category": "Equipment",
+    "Korean (KO)": "음향 센서",
+    "English (EN)": "Acoustic Sensor",
+    "Japanese (JA)": "音響センサー",
+    "Chinese Simplified (ZH-CN)": "声学传感器",
+    "Chinese Traditional (ZH-TW)": "聲學感測器",
+    "Notes": "Jack-O's built-in sensor. Measures frequencies and records audio."
+  },
+  {
+    "Category": "Equipment",
+    "Korean (KO)": "양자 패턴 센서",
+    "English (EN)": "Quantum Pattern Sensor",
+    "Japanese (JA)": "量子パターンセンサー",
+    "Chinese Simplified (ZH-CN)": "量子特征传感器",
+    "Chinese Traditional (ZH-TW)": "量子特徵感測器",
+    "Notes": "Jack-O's built-in sensor. Records quantum traces of existence."
+  },
+  {
+    "Category": "Equipment",
+    "Korean (KO)": "야간 정찰 모드",
+    "English (EN)": "Night Recon Mode",
+    "Japanese (JA)": "夜間偵察モード",
+    "Chinese Simplified (ZH-CN)": "夜间侦察模式",
+    "Chinese Traditional (ZH-TW)": "夜間偵察模式",
+    "Notes": "Jack-O's autonomous night flight mode."
+  },
+  {
+    "Category": "Evidence",
+    "Korean (KO)": "먼지 없는 건반",
+    "English (EN)": "Dustless Keys",
+    "Japanese (JA)": "埃のない鍵盤",
+    "Chinese Simplified (ZH-CN)": "无尘琴键",
+    "Chinese Traditional (ZH-TW)": "無塵琴鍵",
+    "Notes": "Only the keys are dust-free on an abandoned piano."
+  },
+  {
+    "Category": "Evidence",
+    "Korean (KO)": "빛바랜 콩쿠르 프로그램",
+    "English (EN)": "Faded Concert Program",
+    "Japanese (JA)": "色褪せたコンクールプログラム",
+    "Chinese Simplified (ZH-CN)": "褪色的比赛节目单",
+    "Chinese Traditional (ZH-TW)": "褪色的比賽節目單",
+    "Notes": "Found on the music stand. Seo Hayu's name is anomalously erased."
+  },
+  {
+    "Category": "Evidence",
+    "Korean (KO)": "음파 분석 데이터",
+    "English (EN)": "Sound Wave Analysis Data",
+    "Japanese (JA)": "音波分析データ",
+    "Chinese Simplified (ZH-CN)": "声波分析数据",
+    "Chinese Traditional (ZH-TW)": "聲波分析數據",
+    "Notes": "Anomalous frequency data recorded by Jack-O."
+  },
+  {
+    "Category": "Evidence",
+    "Korean (KO)": "사라지는 발자국",
+    "English (EN)": "Vanishing Footprints",
+    "Japanese (JA)": "途切れた足跡",
+    "Chinese Simplified (ZH-CN)": "消失的脚印",
+    "Chinese Traditional (ZH-TW)": "消失的腳印",
+    "Notes": "Footprints in dust that abruptly end 2m before the piano."
+  },
+  {
+    "Category": "Evidence",
+    "Korean (KO)": "국소 온도 하강 기록",
+    "English (EN)": "Localized Temperature Drop Log",
+    "Japanese (JA)": "局所温度低下記録",
+    "Chinese Simplified (ZH-CN)": "局部温度骤降记录",
+    "Chinese Traditional (ZH-TW)": "局部溫度驟降記錄",
+    "Notes": "Sub-zero temperature plunge within 1m of piano during performance."
+  },
+  {
+    "Category": "Evidence",
+    "Korean (KO)": "부서진 메트로놈",
+    "English (EN)": "Broken Metronome",
+    "Japanese (JA)": "壊れたメトロノーム",
+    "Chinese Simplified (ZH-CN)": "损坏的节拍器",
+    "Chinese Traditional (ZH-TW)": "損壞的節拍器",
+    "Notes": "Spring is broken but frozen at exactly 66 BPM."
+  },
+  {
+    "Category": "Evidence",
+    "Korean (KO)": "낡은 음악 잡지",
+    "English (EN)": "Old Music Magazine",
+    "Japanese (JA)": "古い音楽雑誌",
+    "Chinese Simplified (ZH-CN)": "旧音乐杂志",
+    "Chinese Traditional (ZH-TW)": "舊音樂雜誌",
+    "Notes": "1990s magazine featuring competition prodigy articles."
+  },
+  {
+    "Category": "Phenomenon/Concept",
+    "Korean (KO)": "현상",
+    "English (EN)": "The Phenomenon",
+    "Japanese (JA)": "現象",
+    "Chinese Simplified (ZH-CN)": "现象",
+    "Chinese Traditional (ZH-TW)": "現象",
+    "Notes": "Umbrella term for all unexplainable events in Noeul City."
+  },
+  {
+    "Category": "Phenomenon/Concept",
+    "Korean (KO)": "잊혀지는 현상",
+    "English (EN)": "The Phenomenon of Being Forgotten",
+    "Japanese (JA)": "忘れられる現象",
+    "Chinese Simplified (ZH-CN)": "被遗忘现象",
+    "Chinese Traditional (ZH-TW)": "被遺忘現象",
+    "Notes": "Core phenomenon. People's existence is erased from the world."
+  },
+  {
+    "Category": "Phenomenon/Concept",
+    "Korean (KO)": "잊혀진 이들",
+    "English (EN)": "The Forgotten Ones",
+    "Japanese (JA)": "忘れられた者たち",
+    "Chinese Simplified (ZH-CN)": "被遗忘者",
+    "Chinese Traditional (ZH-TW)": "被遺忘者",
+    "Notes": "Collective term for victims erased by the Phenomenon."
+  },
+  {
+    "Category": "Phenomenon/Concept",
+    "Korean (KO)": "5년 주기",
+    "English (EN)": "5-Year Cycle",
+    "Japanese (JA)": "五年周期",
+    "Chinese Simplified (ZH-CN)": "五年周期",
+    "Chinese Traditional (ZH-TW)": "五年週期",
+    "Notes": "Disappearance cycle: 2001→2006→2011→2016→2021→2026."
+  },
+  {
+    "Category": "Phenomenon/Concept",
+    "Korean (KO)": "기억이 곧 저항",
+    "English (EN)": "To Remember is to Resist",
+    "Japanese (JA)": "記憶こそ抵抗",
+    "Chinese Simplified (ZH-CN)": "记忆即是抵抗",
+    "Chinese Traditional (ZH-TW)": "記憶即是抵抗",
+    "Notes": "Central theme. The only force that counters the Phenomenon."
+  },
+  {
+    "Category": "Phenomenon/Concept",
+    "Korean (KO)": "기억의 닻",
+    "English (EN)": "Anchor of Memory",
+    "Japanese (JA)": "記憶の錨",
+    "Chinese Simplified (ZH-CN)": "记忆之锚",
+    "Chinese Traditional (ZH-TW)": "記憶之錨",
+    "Notes": "Remembering and calling someone's name anchors them to reality."
+  },
+  {
+    "Category": "Phenomenon/Concept",
+    "Korean (KO)": "양자 패턴",
+    "English (EN)": "Quantum Pattern",
+    "Japanese (JA)": "量子パターン",
+    "Chinese Simplified (ZH-CN)": "量子模式",
+    "Chinese Traditional (ZH-TW)": "量子模式",
+    "Notes": "Technical trace data used to track erased existences."
+  },
+  {
+    "Category": "Phenomenon/Concept",
+    "Korean (KO)": "자가 복원 프로세스",
+    "English (EN)": "Self-Restoration Process",
+    "Japanese (JA)": "自己復元プロセス",
+    "Chinese Simplified (ZH-CN)": "自我恢复进程",
+    "Chinese Traditional (ZH-TW)": "自我恢復進程",
+    "Notes": "Deleted server data spontaneously restoring after the Anchor activates."
+  },
+  {
+    "Category": "Phenomenon/Concept",
+    "Korean (KO)": "모스 부호",
+    "English (EN)": "Morse Code",
+    "Japanese (JA)": "モールス信号",
+    "Chinese Simplified (ZH-CN)": "摩尔斯电码",
+    "Chinese Traditional (ZH-TW)": "摩爾斯電碼",
+    "Notes": "Distress signal Seo Hayu embedded in piano note durations."
+  },
+  {
+    "Category": "Phenomenon/Concept",
+    "Korean (KO)": "해석의 여지",
+    "English (EN)": "Room for Interpretation",
+    "Japanese (JA)": "解釈の余地",
+    "Chinese Simplified (ZH-CN)": "解读的余地",
+    "Chinese Traditional (ZH-TW)": "解讀的餘地",
+    "Notes": "World-building principle: scientific and occult explanations both remain valid."
+  },
+  {
+    "Category": "Case/Event",
+    "Korean (KO)": "사건 파일 1: 잊혀진 피아니스트",
+    "English (EN)": "Case File 1: The Forgotten Pianist",
+    "Japanese (JA)": "事件ファイル1：忘れられたピアニスト",
+    "Chinese Simplified (ZH-CN)": "案件档案1：被遗忘的钢琴家",
+    "Chinese Traditional (ZH-TW)": "案件檔案1：被遺忘的鋼琴家",
+    "Notes": "Ch.1 main case official title."
+  },
+  {
+    "Category": "Case/Event",
+    "Korean (KO)": "제17회 전국 피아노 콩쿠르",
+    "English (EN)": "17th National Piano Competition",
+    "Japanese (JA)": "第17回全国ピアノコンクール",
+    "Chinese Simplified (ZH-CN)": "第17届全国钢琴大赛",
+    "Chinese Traditional (ZH-TW)": "第17屆全國鋼琴大賽",
+    "Notes": "2016 competition where Seo Hayu won the grand prize."
+  },
+  {
+    "Category": "Case/Event",
+    "Korean (KO)": "구시가지 미로 골목 실종 사건",
+    "English (EN)": "Old Town Labyrinth Alley Disappearance",
+    "Japanese (JA)": "旧市街迷路路地失踪事件",
+    "Chinese Simplified (ZH-CN)": "旧城区迷宫巷失踪事件",
+    "Chinese Traditional (ZH-TW)": "舊城區迷宮巷失蹤事件",
+    "Notes": "Nevermore's first case. Trigger for Rina's recruitment."
+  },
+  {
+    "Category": "Case/Event",
+    "Korean (KO)": "1년의 기한",
+    "English (EN)": "One-Year Deadline",
+    "Japanese (JA)": "一年の期限",
+    "Chinese Simplified (ZH-CN)": "一年期限",
+    "Chinese Traditional (ZH-TW)": "一年期限",
+    "Notes": "Ultimatum set by Seika's father."
+  },
+  {
+    "Category": "Key Message",
+    "Korean (KO)": "찾아줘, 잊혀진 우리를.",
+    "English (EN)": "Find us, the forgotten ones.",
+    "Japanese (JA)": "見つけて、忘れられた私たちを。",
+    "Chinese Simplified (ZH-CN)": "找到我们，那些被遗忘的人。",
+    "Chinese Traditional (ZH-TW)": "找到我們，那些被遺忘的人。",
+    "Notes": "Cryptic message formed from book titles in the study."
+  },
+  {
+    "Category": "Key Message",
+    "Korean (KO)": "나를 찾아줘",
+    "English (EN)": "Find me",
+    "Japanese (JA)": "私を見つけて",
+    "Chinese Simplified (ZH-CN)": "找到我",
+    "Chinese Traditional (ZH-TW)": "找到我",
+    "Notes": "First decoded message from the piano's frequencies."
+  },
+  {
+    "Category": "Key Message",
+    "Korean (KO)": "...고, 마워...",
+    "English (EN)": "...tha...nks...",
+    "Japanese (JA)": "…あり…がと…",
+    "Chinese Simplified (ZH-CN)": "…谢…谢…",
+    "Chinese Traditional (ZH-TW)": "…謝…謝…",
+    "Notes": "Seo Hayu's fragmented final thank-you in the epilogue."
+  },
+  {
+    "Category": "Key Message",
+    "Korean (KO)": "미제 사건 특화. 초자연 현상 환영.",
+    "English (EN)": "Specializing in cold cases. Supernatural welcome.",
+    "Japanese (JA)": "未解決事件専門。超常現象歓迎。",
+    "Chinese Simplified (ZH-CN)": "专攻悬案。超自然现象来者不拒。",
+    "Chinese Traditional (ZH-TW)": "專攻懸案。超自然現象來者不拒。",
+    "Notes": "Agency's signboard slogan."
+  },
+  {
+    "Category": "Prop/Food",
+    "Korean (KO)": "호박 쿠키",
+    "English (EN)": "Pumpkin Cookies",
+    "Japanese (JA)": "かぼちゃクッキー",
+    "Chinese Simplified (ZH-CN)": "南瓜饼干",
+    "Chinese Traditional (ZH-TW)": "南瓜餅乾",
+    "Notes": "Haruka's specialty. Key prop connecting to Seo Hayu."
+  },
+  {
+    "Category": "Prop/Food",
+    "Korean (KO)": "호박 라떼",
+    "English (EN)": "Pumpkin Latte",
+    "Japanese (JA)": "かぼちゃラテ",
+    "Chinese Simplified (ZH-CN)": "南瓜拿铁",
+    "Chinese Traditional (ZH-TW)": "南瓜拿鐵",
+    "Notes": "Morning drink Haruka prepares."
+  },
+  {
+    "Category": "Prop/Food",
+    "Korean (KO)": "호박 빙수",
+    "English (EN)": "Pumpkin Shaved Ice",
+    "Japanese (JA)": "かぼちゃかき氷",
+    "Chinese Simplified (ZH-CN)": "南瓜刨冰",
+    "Chinese Traditional (ZH-TW)": "南瓜刨冰",
+    "Notes": "Summer treat Haruka makes."
+  },
+  {
+    "Category": "Prop/Food",
+    "Korean (KO)": "단호박 수프",
+    "English (EN)": "Kabocha Soup",
+    "Japanese (JA)": "かぼちゃスープ",
+    "Chinese Simplified (ZH-CN)": "南瓜浓汤",
+    "Chinese Traditional (ZH-TW)": "南瓜濃湯",
+    "Notes": "Brought in a thermos during night investigation."
+  },
+  {
+    "Category": "Prop/Food",
+    "Korean (KO)": "잭오랜턴",
+    "English (EN)": "Jack-o'-Lantern",
+    "Japanese (JA)": "ジャック・オー・ランタン",
+    "Chinese Simplified (ZH-CN)": "南瓜灯",
+    "Chinese Traditional (ZH-TW)": "南瓜燈",
+    "Notes": "Pumpkin lantern at the agency's entrance. Lit year-round."
+  },
+  {
+    "Category": "Prop/Food",
+    "Korean (KO)": "그랜드 피아노",
+    "English (EN)": "Grand Piano",
+    "Japanese (JA)": "グランドピアノ",
+    "Chinese Simplified (ZH-CN)": "三角钢琴",
+    "Chinese Traditional (ZH-TW)": "三角鋼琴",
+    "Notes": "Central object in the Abandoned Music Hall."
+  },
+  {
+    "Category": "Prop/Food",
+    "Korean (KO)": "메트로놈",
+    "English (EN)": "Metronome",
+    "Japanese (JA)": "メトロノーム",
+    "Chinese Simplified (ZH-CN)": "节拍器",
+    "Chinese Traditional (ZH-TW)": "節拍器",
+    "Notes": "Mechanical metronome with a broken spring."
+  },
+  {
+    "Category": "Prop/Food",
+    "Korean (KO)": "타로 카드",
+    "English (EN)": "Tarot Cards",
+    "Japanese (JA)": "タロットカード",
+    "Chinese Simplified (ZH-CN)": "塔罗牌",
+    "Chinese Traditional (ZH-TW)": "塔羅牌",
+    "Notes": "Mina's divination tool."
+  },
+  {
+    "Category": "UI Term",
+    "Korean (KO)": "오토",
+    "English (EN)": "Auto",
+    "Japanese (JA)": "オート",
+    "Chinese Simplified (ZH-CN)": "自动",
+    "Chinese Traditional (ZH-TW)": "自動",
+    "Notes": "Auto-play dialogue button."
+  },
+  {
+    "Category": "UI Term",
+    "Korean (KO)": "로그",
+    "English (EN)": "Log",
+    "Japanese (JA)": "ログ",
+    "Chinese Simplified (ZH-CN)": "回顾",
+    "Chinese Traditional (ZH-TW)": "回顧",
+    "Notes": "Backlog (dialogue history) button."
+  },
+  {
+    "Category": "UI Term",
+    "Korean (KO)": "설정",
+    "English (EN)": "Settings",
+    "Japanese (JA)": "設定",
+    "Chinese Simplified (ZH-CN)": "设置",
+    "Chinese Traditional (ZH-TW)": "設定",
+    "Notes": "Settings menu."
+  },
+  {
+    "Category": "UI Term",
+    "Korean (KO)": "스킵",
+    "English (EN)": "Skip",
+    "Japanese (JA)": "スキップ",
+    "Chinese Simplified (ZH-CN)": "跳过",
+    "Chinese Traditional (ZH-TW)": "跳過",
+    "Notes": "Dialogue skip function."
+  },
+  {
+    "Category": "Alias",
+    "Korean (KO)": "유령 드론 (GhostDrone)",
+    "English (EN)": "GhostDrone",
+    "Japanese (JA)": "ゴーストドローン",
+    "Chinese Simplified (ZH-CN)": "GhostDrone",
+    "Chinese Traditional (ZH-TW)": "GhostDrone",
+    "Notes": "Lilith's freelance white-hat hacker handle."
+  },
+  {
+    "Category": "Alias",
+    "Korean (KO)": "천 년 묵은 유령",
+    "English (EN)": "Thousand-Year-Old Spirit",
+    "Japanese (JA)": "千年の亡霊",
+    "Chinese Simplified (ZH-CN)": "千年幽灵",
+    "Chinese Traditional (ZH-TW)": "千年幽靈",
+    "Notes": "Mina's self-proclaimed chuunibyou identity."
+  },
+  {
+    "Category": "Alias",
+    "Korean (KO)": "유령의 집",
+    "English (EN)": "Haunted House",
+    "Japanese (JA)": "お化け屋敷",
+    "Chinese Simplified (ZH-CN)": "鬼屋",
+    "Chinese Traditional (ZH-TW)": "鬼屋",
+    "Notes": "Local nickname for the Nevermore agency building."
+  },
+  {
+    "Category": "Alias",
+    "Korean (KO)": "유령 피아니스트",
+    "English (EN)": "Ghost Pianist",
+    "Japanese (JA)": "幽霊ピアニスト",
+    "Chinese Simplified (ZH-CN)": "幽灵钢琴家",
+    "Chinese Traditional (ZH-TW)": "幽靈鋼琴家",
+    "Notes": "Working title Seika used early in the case."
+  },
+  {
+    "Category": "Alias",
+    "Korean (KO)": "잊혀진 피아니스트",
+    "English (EN)": "The Forgotten Pianist",
+    "Japanese (JA)": "忘れられたピアニスト",
+    "Chinese Simplified (ZH-CN)": "被遗忘的钢琴家",
+    "Chinese Traditional (ZH-TW)": "被遺忘的鋼琴家",
+    "Notes": "Official case designation."
+  }
+]

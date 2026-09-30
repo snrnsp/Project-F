@@ -1,4 +1,4 @@
-﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿using System.Collections;
+﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -427,9 +427,56 @@ namespace HalloweenVN.UI
                     _speakerOrder.Remove(baseName);
                     _speakerOrder.Add(baseName);
 
-                    CharacterPosition pos = _activeSpeakerPositions[baseName];
-                    Image img = GetCharacterImage(pos);
-                    LoadSpriteToImage(img, path);
+                    CharacterPosition oldPos = _activeSpeakerPositions[baseName];
+
+                    // Check if position changed (e.g. Center → Left)
+                    if (oldPos != assignedPos)
+                    {
+                        // Fade out old slot
+                        Image oldImg = GetCharacterImage(oldPos);
+                        if (oldImg != null && oldImg.gameObject.activeSelf)
+                        {
+                            if (node.noFade)
+                            {
+                                if (_fadeCoroutines.ContainsKey(oldImg) && _fadeCoroutines[oldImg] != null) StopCoroutine(_fadeCoroutines[oldImg]);
+                                oldImg.gameObject.SetActive(false);
+                            }
+                            else
+                            {
+                                FadeOutCharacter(oldPos);
+                            }
+                        }
+
+                        // Update position mapping
+                        _activeSpeakerPositions[baseName] = assignedPos;
+
+                        // Load sprite into new slot
+                        Image newImg = GetCharacterImage(assignedPos);
+                        LoadSpriteToImage(newImg, path);
+
+                        // Set position and fade in
+                        if (layoutTargets.ContainsKey(assignedPos))
+                        {
+                            SetCharacterAnchorX(newImg.rectTransform, layoutTargets[assignedPos]);
+                        }
+
+                        if (node.noFade)
+                        {
+                            if (_fadeCoroutines.ContainsKey(newImg) && _fadeCoroutines[newImg] != null) StopCoroutine(_fadeCoroutines[newImg]);
+                            newImg.gameObject.SetActive(true);
+                            Color c = newImg.color; c.a = 1f; newImg.color = c;
+                        }
+                        else
+                        {
+                            StartFadeIn(newImg);
+                        }
+                    }
+                    else
+                    {
+                        // Same position — just update sprite
+                        Image img = GetCharacterImage(oldPos);
+                        LoadSpriteToImage(img, path);
+                    }
                 }
             }
 
@@ -923,6 +970,7 @@ namespace HalloweenVN.UI
             }
 
             isTyping = false;
+            _typingEndTime = Time.unscaledTime;
             Debug.Log($"[DialogueUI] TypeText finished.");
 
             if (isAutoPlay)
@@ -948,6 +996,7 @@ namespace HalloweenVN.UI
             if (dialogueText != null) dialogueText.maxVisibleCharacters = 99999;
             if (narratorText != null) narratorText.maxVisibleCharacters = 99999;
             isTyping = false;
+            _typingEndTime = Time.unscaledTime;
         }
 
         
@@ -1034,6 +1083,7 @@ namespace HalloweenVN.UI
 
 
         private float _lastClickTime = 0f;
+        private float _typingEndTime = -1f;
 
         public void OnClick() { if (Time.unscaledTime - _lastClickTime < 0.05f) return; // Prevent double-trigger from UI Event System + Input System
             _lastClickTime = Time.unscaledTime;
@@ -1045,6 +1095,13 @@ namespace HalloweenVN.UI
             }
             else
             {
+                // ADDED: 1-second delay check after typing is finished
+                if (Time.unscaledTime - _typingEndTime < 0.3f)
+                {
+                    Debug.Log($"[DialogueUI] Advance ignored due to 0.3-second cooldown.");
+                    return;
+                }
+
                 if (DialogueManager.Instance != null)
                 {
                     DialogueManager.Instance.AdvanceDialogue();

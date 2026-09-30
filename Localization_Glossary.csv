@@ -1,0 +1,83 @@
+﻿Category,Korean (KO),English (EN),Japanese (JA),Chinese Simplified (ZH-CN),Chinese Traditional (ZH-TW),Notes
+Character Name,세이카,Seika,セイカ,星华,星華,Agency director. Age 25. Female. Casual speech (banmal).
+Character Name,카스미,Kasumi,カスミ,霞,霞,Lead detective. Age 23. Female. Formal/polite speech (jondaenmal).
+Character Name,리나,Rina,リナ,莉娜,莉娜,Field operative. Age 21. Female. Casual speech with slang.
+Character Name,미나,Mina,ミナ,美奈,美奈,Occult advisor. Age unknown. Female. Switches between theatrical/chuunibyou speech and normal speech.
+Character Name,리리스,Lilith,リリス,莉莉丝,莉莉絲,"Tech/hacker. Age 20. Female. Speaks in clipped, noun-ending sentences."
+Character Name,하루카,Haruka,ハルカ,遥,遙,"Receptionist/admin. Age 19 (youngest). Female. Bright, polite speech."
+Character Name,서하유,Seo Hayu,ソ・ハユ,徐夏悠,徐夏悠,The Forgotten Pianist (Ch.1). Full name. 2016 national competition grand prize winner.
+Character Name,하유,Hayu,ハユ,夏悠,夏悠,Fragment of Seo Hayu's name. Decoded from Morse code in piano frequencies.
+Character Name,이케다,Ikeda,イケダ,池田,池田,Japanese businessman who built the mansion in the 1920s. Does not appear directly.
+Character Name,사차지,Sachaji,サチャジ,萨查基,薩查基,Game creator. Appears in ending credits.
+Honorific/Title,소장님,Director,所長,所长,所長,Formal title members use for Seika.
+Honorific/Title,~언니,(name),〜さん / 〜先輩,~姐,~姐,Used by Haruka/Rina when addressing senior members.
+Honorific/Title,하유 씨,Hayu,ハユさん,夏悠小姐,夏悠小姐,Respectful form of address for Seo Hayu.
+Honorific/Title,이 몸,This great one / I,我（われ）,本大人,本大人,Mina's theatrical first-person pronoun (chuunibyou persona).
+Organization,네버모어 오컬트 탐정 사무소,Nevermore Occult Detective Agency,ネバーモア・オカルト探偵事務所,永不复焉超自然侦探事务所,永不復焉超自然偵探事務所,Official full name.
+Organization,네버모어 탐정 사무소,Nevermore Detective Agency,ネバーモア探偵事務所,永不复焉侦探事务所,永不復焉偵探事務所,Common shortened name used in dialogue.
+Organization,네버모어,Nevermore,ネバーモア,永不复焉,永不復焉,"Shortest abbreviation. Derived from Edgar Allan Poe's ""The Raven""."
+Organization,노을시 경찰청,Noeul City Police Department,ノウル市警察庁,落霞市警察厅,落霞市警察廳,Bureaucratic institution that covers up supernatural cases.
+Organization,과학수사대,Forensic Investigation Unit,科学捜査隊,刑事技术科,刑事鑑識科,Kasumi's former workplace (intern).
+Organization,대형 로펌,Major Law Firm,大手法律事務所,大型律师事务所,大型律師事務所,Seika's former workplace.
+Location,노을시,Noeul City,ノウル市,落霞市,落霞市,"Main setting. Fictional Korean port city. Pop. ~800,000."
+Location,구시가지,Old Town,旧市街,旧城区,舊城區,District with colonial-era buildings. Epicenter of incidents.
+Location,신시가지,New Town,新市街,新城区,新城區,Modern urban district.
+Location,이케다 저택,Ikeda Mansion,イケダ邸,池田宅邸,池田宅邸,Nevermore HQ. 3-story Victorian mansion atop Old Town hill.
+Location,3층 서재,Third Floor Study,三階書斎,三楼书房,三樓書房,Where Seika witnessed the paranormal event.
+Location,폐쇄 음악실,Abandoned Music Hall,閉鎖された音楽室,废弃音乐教室,廢棄音樂教室,Ch.1 crime scene. Former music academy.
+Location,메인 공연장,Main Concert Hall,メインホール,主演奏厅,主演奏廳,Interior of the Abandoned Music Hall. Contains the grand piano.
+Location,구시가지 3번 골목,Old Town Alley No. 3,旧市街三番路地,旧城区3号巷,舊城區3號巷,Previous day's noise complaint location.
+Location,미로 골목,Labyrinth Alley,迷路路地,迷宫小巷,迷宮小巷,Alley where people always get lost. Site of Nevermore's first case.
+Equipment,잭오,Jack-O,ジャック・オー,Jack-O,Jack-O,Lilith's custom-built recon drone. Named after Jack-O'-Lantern.
+Equipment,열화상 센서,Thermal Imaging Sensor,赤外線センサー,热成像传感器,熱成像感測器,Jack-O's built-in sensor. Detects temperature and bio-signatures.
+Equipment,음향 센서,Acoustic Sensor,音響センサー,声学传感器,聲學感測器,Jack-O's built-in sensor. Measures frequencies and records audio.
+Equipment,양자 패턴 센서,Quantum Pattern Sensor,量子パターンセンサー,量子特征传感器,量子特徵感測器,Jack-O's built-in sensor. Records quantum traces of existence.
+Equipment,야간 정찰 모드,Night Recon Mode,夜間偵察モード,夜间侦察模式,夜間偵察模式,Jack-O's autonomous night flight mode.
+Evidence,먼지 없는 건반,Dustless Keys,埃のない鍵盤,无尘琴键,無塵琴鍵,Only the keys are dust-free on an abandoned piano.
+Evidence,빛바랜 콩쿠르 프로그램,Faded Concert Program,色褪せたコンクールプログラム,褪色的比赛节目单,褪色的比賽節目單,Found on the music stand. Seo Hayu's name is anomalously erased.
+Evidence,음파 분석 데이터,Sound Wave Analysis Data,音波分析データ,声波分析数据,聲波分析數據,Anomalous frequency data recorded by Jack-O.
+Evidence,사라지는 발자국,Vanishing Footprints,消えゆく足跡,消失的脚印,消失的腳印,Footprints in dust that abruptly end 2m before the piano.
+Evidence,국소 온도 하강 기록,Localized Temperature Drop Log,局所温度低下記録,局部温度骤降记录,局部溫度驟降記錄,Sub-zero temperature plunge within 1m of piano during performance.
+Evidence,부서진 메트로놈,Broken Metronome,壊れたメトロノーム,损坏的节拍器,損壞的節拍器,Spring is broken but frozen at exactly 66 BPM.
+Evidence,낡은 음악 잡지,Old Music Magazine,古い音楽雑誌,旧音乐杂志,舊音樂雜誌,1990s magazine featuring competition prodigy articles.
+Phenomenon/Concept,현상,The Phenomenon,現象,现象,現象,Umbrella term for all unexplainable events in Noeul City.
+Phenomenon/Concept,잊혀지는 현상,The Phenomenon of Being Forgotten,忘れられる現象,被遗忘现象,被遺忘現象,Core phenomenon. People's existence is erased from the world.
+Phenomenon/Concept,잊혀진 이들,The Forgotten Ones,忘れられた者たち,被遗忘者,被遺忘者,Collective term for victims erased by the Phenomenon.
+Phenomenon/Concept,5년 주기,5-Year Cycle,五年周期,五年周期,五年週期,Disappearance cycle: 2001→2006→2011→2016→2021→2026.
+Phenomenon/Concept,기억이 곧 저항,Memory is Resistance,記憶こそ抵抗,记忆即是抵抗,記憶即是抵抗,Central theme. The only force that counters the Phenomenon.
+Phenomenon/Concept,기억의 닻,Anchor of Memory,記憶の錨,记忆之锚,記憶之錨,Remembering and calling someone's name anchors them to reality.
+Phenomenon/Concept,양자 패턴,Quantum Pattern,量子パターン,量子模式,量子模式,Technical trace data used to track erased existences.
+Phenomenon/Concept,자가 복원 프로세스,Self-Restoration Process,自己復元プロセス,自我恢复进程,自我恢復進程,Deleted server data spontaneously restoring after the Anchor activates.
+Phenomenon/Concept,모스 부호,Morse Code,モールス信号,摩尔斯电码,摩爾斯電碼,Distress signal Seo Hayu embedded in piano note durations.
+Phenomenon/Concept,해석의 여지,Room for Interpretation,解釈の余地,解读的余地,解讀的餘地,World-building principle: scientific and occult explanations both remain valid.
+Case/Event,사건 파일 1: 잊혀진 피아니스트,Case File 1: The Forgotten Pianist,事件ファイル1：忘れられたピアニスト,案件档案1：被遗忘的钢琴家,案件檔案1：被遺忘的鋼琴家,Ch.1 main case official title.
+Case/Event,제17회 전국 피아노 콩쿠르,17th National Piano Competition,第17回全国ピアノコンクール,第17届全国钢琴大赛,第17屆全國鋼琴大賽,2016 competition where Seo Hayu won the grand prize.
+Case/Event,구시가지 미로 골목 실종 사건,Old Town Labyrinth Alley Disappearance,旧市街迷路路地失踪事件,旧城区迷宫巷失踪事件,舊城區迷宮巷失蹤事件,Nevermore's first case. Trigger for Rina's recruitment.
+Case/Event,1년의 기한,One-Year Deadline,一年の期限,一年期限,一年期限,Ultimatum set by Seika's father.
+Key Message,"찾아줘, 잊혀진 우리를.","Find us, the forgotten ones.",見つけて、忘れられた私たちを。,找到我们，那些被遗忘的人。,找到我們，那些被遺忘的人。,Cryptic message formed from book titles in the study.
+Key Message,나를 찾아줘,Find me,私を見つけて,找到我,找到我,First decoded message from the piano's frequencies.
+Key Message,"...고, 마워...",...tha...nks...,…あり…がと…,…谢…谢…,…謝…謝…,Seo Hayu's fragmented final thank-you in the epilogue.
+Key Message,미제 사건 특화. 초자연 현상 환영.,Specializing in cold cases. Supernatural welcome.,未解決事件専門。超常現象歓迎。,专攻悬案。超自然现象来者不拒。,專攻懸案。超自然現象來者不拒。,Agency's signboard slogan.
+Prop/Food,호박 쿠키,Pumpkin Cookies,かぼちゃクッキー,南瓜饼干,南瓜餅乾,Haruka's specialty. Key prop connecting to Seo Hayu.
+Prop/Food,호박 라떼,Pumpkin Latte,かぼちゃラテ,南瓜拿铁,南瓜拿鐵,Morning drink Haruka prepares.
+Prop/Food,호박 빙수,Pumpkin Shaved Ice,かぼちゃかき氷,南瓜刨冰,南瓜刨冰,Summer treat Haruka makes.
+Prop/Food,단호박 수프,Kabocha Soup,かぼちゃスープ,南瓜浓汤,南瓜濃湯,Brought in a thermos during night investigation.
+Prop/Food,잭오랜턴,Jack-o'-Lantern,ジャック・オー・ランタン,南瓜灯,南瓜燈,Pumpkin lantern at the agency's entrance. Lit year-round.
+Prop/Food,그랜드 피아노,Grand Piano,グランドピアノ,三角钢琴,三角鋼琴,Central object in the Abandoned Music Hall.
+Prop/Food,메트로놈,Metronome,メトロノーム,节拍器,節拍器,Mechanical metronome with a broken spring.
+Prop/Food,타로 카드,Tarot Cards,タロットカード,塔罗牌,塔羅牌,Mina's divination tool.
+UI Term,오토,Auto,オート,自动,自動,Auto-play dialogue button.
+UI Term,로그,Log,ログ,回顾,回顧,Backlog (dialogue history) button.
+UI Term,설정,Settings,設定,设置,設定,Settings menu.
+UI Term,스킵,Skip,スキップ,跳过,跳過,Dialogue skip function.
+Alias,유령 드론 (GhostDrone),GhostDrone,ゴーストドローン,GhostDrone,GhostDrone,Lilith's freelance white-hat hacker handle.
+Alias,천 년 묵은 유령,Thousand-Year-Old Spirit,千年の亡霊,千年幽灵,千年幽靈,Mina's self-proclaimed chuunibyou identity.
+Alias,유령의 집,Haunted House,お化け屋敷,鬼屋,鬼屋,Local nickname for the Nevermore agency building.
+Alias,유령 피아니스트,Ghost Pianist,幽霊ピアニスト,幽灵钢琴家,幽靈鋼琴家,Working title Seika used early in the case.
+Alias,잊혀진 피아니스트,The Forgotten Pianist,忘れられたピアニスト,被遗忘的钢琴家,被遺忘的鋼琴家,Official case designation.
+UI Term,새 게임,New Game,ニューゲーム,新游戏,新遊戲,Start a new game.
+UI Term,저장,Save,セーブ,保存,儲存,Save game progress.
+UI Term,불러오기,Load,ロード,读取,讀取,Load saved game.
+UI Term,타이틀로,Title Screen,タイトルへ,返回标题,返回標題,Return to title screen.
+UI Term,종료,Quit,終了,退出,結束,Exit the game.
+Game Title,네버모어 오컬트 탐정 사무소,Nevermore Occult Detective Agency,ネバーモア・オカルト探偵事務所,永不复焉超自然侦探事务所,永不復焉超自然偵探事務所,Official game title. Same as organization name.

@@ -74,7 +74,7 @@
         {
             "id": 5,
             "speaker": "카스미",
-            "text": "육체가... 지워진 겁니다.\n피아노에 닿기도 전에, 이 사람의 세상이 무너져버린 거예요.",
+            "text": "물리적으로 말이 안 됩니다. 발자국이 허공에서 갑자기 끊어지다니요.\n누군가 증거를 훼손한 게 아니라면...",
             "characterSpriteLeft": "Characters/리나/기본",
             "characterSpriteCenter": "",
             "characterSpriteRight": "Characters/카스미/찡그림",
@@ -200,7 +200,7 @@
         {
             "id": 14,
             "speaker": "미나",
-            "text": "잊혀지는 현상'. 사람의 존재 자체가 세상에서 지워지는 것이다. 기록에서도... 그리고 사람들의 기억 속에서도.",
+            "text": "'잊혀지는 현상'... 인간의 존재 자체가 이 세상에서 지워지는 것이니라. 기록에서도... 그리고 어리석은 자들의 기억 속에서도...",
             "characterSpriteLeft": "Characters/미나/기본",
             "characterSpriteCenter": "",
             "characterSpriteRight": "Characters/카스미/찡그림",
@@ -256,7 +256,7 @@
         {
             "id": 18,
             "speaker": "세이카",
-            "text": "단순한 실종이 아니었어. 그 사람에 대한 모든 기록이 사라지고, 심지어 가족들의 기억조차 서서히 지워지는 기괴한 현상이었지.",
+            "text": "그냥 실종이 아니야. 경찰 기록이 증발하고, 결국 가족들 기억 속에서도 흔적 없이 지워져 버렸어.",
             "characterSpriteLeft": "Characters/세이카/음침",
             "characterSpriteCenter": "",
             "characterSpriteRight": "Characters/카스미/기본",
@@ -291,7 +291,7 @@
             "backgroundSprite": "",
             "choices": [],
             "nextNodeId": -1,
-            "command": "CHANGE_PHASE:Deduction",
+            "command": "START_DIALOGUE:ch1_result_perfect",
             "noFade": false,
             "slideIn": false
         }

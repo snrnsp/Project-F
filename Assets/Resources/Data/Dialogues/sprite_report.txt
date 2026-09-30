@@ -1,0 +1,214 @@
+
+# ch0_origin.json
+Node 2: Speaker 세이카 is speaking but not on screen! L:  R: 
+Node 3: Speaker 세이카 is speaking but not on screen! L:  R: 
+Node 4: Speaker 세이카 is speaking but not on screen! L:  R: 
+Node 7: Speaker 세이카 is speaking but not on screen! L:  R: 
+Node 10: Speaker 세이카 is speaking but not on screen! L:  R: 
+Node 13: Speaker 세이카 is speaking but not on screen! L:  R: 
+Node 16: Speaker 세이카 is speaking but not on screen! L:  R: 
+Node 18: Speaker 세이카 is speaking but not on screen! L:  R: 
+Node 22: Speaker 세이카 is speaking but not on screen! L:  R: 
+Node 35: Speaker 세이카 is speaking but not on screen! L:  R: 
+
+# ch0_gathering.json
+Node 2: Speaker 세이카 is speaking but not on screen! L:  R: 
+Node 11: Speaker 리나 is speaking but not on screen! L:  R: 
+Node 13: Speaker 리나 is speaking but not on screen! L: Characters/카스미/찡그림 R: Characters/세이카/웃음
+Node 21: Speaker 미나 is speaking but not on screen! L:  R: 
+Node 24: Speaker 세이카 is speaking but not on screen! L:  R: 
+Node 27: Speaker 리나 is speaking but not on screen! L:  R: Characters/하루카/기본
+Node 31: Speaker 세이카 is speaking but not on screen! L:  R: 
+Node 32: Speaker 세이카 is speaking but not on screen! L:  R: 
+Node 33: Speaker 세이카 is speaking but not on screen! L:  R: 
+
+# ch0_opening.json
+Node 8: BG changed from Images/city_night to Images/lobby_bg
+
+# ch1_morning.json
+Node 0: Speaker   is speaking but not on screen! L:  R: 
+Node 1: Speaker   is speaking but not on screen! L:  R: 
+Node 2: Speaker   is speaking but not on screen! L:  R: 
+Node 3: Speaker 카스미 is speaking but not on screen! L:  R: 
+Node 4: Speaker 카스미 is speaking but not on screen! L:  R: 
+Node 5: Speaker 카스미 is speaking but not on screen! L:  R: 
+Node 12: Speaker   is speaking but not on screen! L: Characters/카스미/당황2 R: Characters/하루카/놀람
+Node 13: Speaker 리나 is speaking but not on screen! L:  R: 
+Node 15: Speaker 리나 is speaking but not on screen! L: Characters/카스미/찡그림 R: 
+Node 17: Speaker 리나 is speaking but not on screen! L: Characters/카스미/찡그림 R: Characters/하루카/삐짐
+Node 19: Speaker   is speaking but not on screen! L: Characters/리리스/찡그림 R: Characters/하루카/삐짐
+Node 25: Speaker 미나 is speaking but not on screen! L: Characters/리나/찡그림 R: Characters/리리스/기본
+Node 26: Speaker   is speaking but not on screen! L: Characters/리나/찡그림 R: Characters/리리스/기본
+Node 28: Speaker 미나 is speaking but not on screen! L: Characters/리나/찡그림 R: Characters/리리스/기본
+Node 31: Speaker   is speaking but not on screen! L:  R: 
+Node 32: Speaker 세이카 is speaking but not on screen! L:  R: 
+Node 33: Speaker   is speaking but not on screen! L:  R: 
+Node 34: Speaker 세이카 is speaking but not on screen! L:  R: 
+Node 38: Speaker 카스미 is speaking but not on screen! L: Characters/세이카/기본 R: Characters/리리스/기본
+Node 41: Speaker 하루카 is speaking but not on screen! L: Characters/카스미/찡그림 R: Characters/미나/삐짐
+Node 45: Speaker   is speaking but not on screen! L:  R: 
+Node 49: Speaker   is speaking but not on screen! L:  R: 
+Node 51: Speaker 리나 is speaking but not on screen! L: Characters/세이카/기본 R: Characters/하루카/측은
+Node 53: Speaker 미나 is speaking but not on screen! L: Characters/카스미/기본 R: Characters/리나/기본
+Node 56: Speaker   is speaking but not on screen! L:  R: 
+Node 57: Speaker 세이카 is speaking but not on screen! L:  R: 
+Node 58: Speaker   is speaking but not on screen! L:  R: 
+Node 59: Speaker 세이카 is speaking but not on screen! L:  R: 
+Node 62: Speaker 카스미 is speaking but not on screen! L: Characters/리나/놀람 R: Characters/세이카/기본
+Node 63: Speaker 카스미 is speaking but not on screen! L: Characters/리나/놀람 R: Characters/세이카/기본
+Node 66: Speaker 미나 is speaking but not on screen! L: Characters/리나/웃음 R: Characters/리리스/기본
+Node 70: Speaker 세이카 is speaking but not on screen! L: Characters/카스미/미소 R: Characters/하루카/웃음
+Node 71: Speaker 세이카 is speaking but not on screen! L: Characters/카스미/미소 R: Characters/하루카/웃음
+Node 72: Speaker   is speaking but not on screen! L:  R: 
+Node 73: Speaker   is speaking but not on screen! L:  R: 
+
+# ch1_night.json
+Node 0: Speaker   is speaking but not on screen! L:  R: 
+Node 1: Speaker 세이카 is speaking but not on screen! L:  R: 
+Node 5: Speaker 미나 is speaking but not on screen! L:  R: 
+Node 8: BG changed from Images/city_night to Images/mansion_interior
+Node 8: Speaker   is speaking but not on screen! L:  R: 
+Node 9: Speaker 리리스 is speaking but not on screen! L:  R: 
+Node 12: Speaker 리리스 is speaking but not on screen! L:  R: 
+Node 13: Speaker   is speaking but not on screen! L:  R: 
+Node 10013: Speaker   is speaking but not on screen! L: Characters/리나/당황 R: Characters/카스미/기본
+Node 15: Speaker 미나 is speaking but not on screen! L:  R: 
+Node 16: Speaker 미나 is speaking but not on screen! L:  R: 
+Node 17: Speaker   is speaking but not on screen! L:  R: 
+Node 18: Speaker 카스미 is speaking but not on screen! L:  R: 
+Node 19: Speaker   is speaking but not on screen! L:  R: 
+Node 20: Speaker   is speaking but not on screen! L:  R: 
+Node 21: Speaker   is speaking but not on screen! L:  R: 
+Node 22: Speaker   is speaking but not on screen! L:  R: 
+Node 23: Speaker 하루카 is speaking but not on screen! L:  R: 
+Node 25: Speaker 리리스 is speaking but not on screen! L:  R: 
+Node 33: Speaker 리리스 is speaking but not on screen! L:  R: 
+Node 29: Speaker 세이카 is speaking but not on screen! L:  R: 
+Node 30: Speaker   is speaking but not on screen! L:  R: 
+Node 31: Speaker 세이카 is speaking but not on screen! L:  R: 
+
+# ch1_investigation_talk.json
+Node 2: Speaker 카스미 is speaking but not on screen! L:  R: 
+Node 3: Speaker 카스미 is speaking but not on screen! L:  R: 
+Node 11: Speaker 카스미 is speaking but not on screen! L:  R: 
+
+# ch1_result_perfect.json
+Node 0: Speaker   is speaking but not on screen! L:  R: 
+Node 1: Speaker 세이카 is speaking but not on screen! L:  R: 
+Node 2: Speaker 세이카 is speaking but not on screen! L:  R: 
+Node 3: Speaker 세이카 is speaking but not on screen! L:  R: 
+Node 4: Speaker 세이카 is speaking but not on screen! L:  R: 
+Node 5: Speaker 세이카 is speaking but not on screen! L:  R: 
+Node 6: Speaker 세이카 is speaking but not on screen! L:  R: 
+Node 14: Speaker 세이카 is speaking but not on screen! L:  R: 
+Node 15: Speaker 세이카 is speaking but not on screen! L:  R: 
+
+# ch1_resolution.json
+Node 0: Speaker   is speaking but not on screen! L:  R: 
+Node 1: Speaker   is speaking but not on screen! L:  R: 
+Node 4: Speaker   is speaking but not on screen! L:  R: 
+Node 8: Speaker   is speaking but not on screen! L:  R: 
+Node 11: Speaker   is speaking but not on screen! L:  R: 
+Node 15: Speaker 카스미 is speaking but not on screen! L:  R: 
+Node 16: Speaker 카스미 is speaking but not on screen! L:  R: 
+Node 17: Speaker 카스미 is speaking but not on screen! L:  R: 
+Node 19: Speaker   is speaking but not on screen! L:  R: 
+Node 21: Speaker 카스미 is speaking but not on screen! L: Characters/리리스/기본 R: Characters/리나/기본
+Node 25: Speaker   is speaking but not on screen! L:  R: 
+Node 46: Speaker   is speaking but not on screen! L:  R: 
+Node 50: Speaker   is speaking but not on screen! L:  R: 
+Node 51: Speaker   is speaking but not on screen! L:  R: 
+Node 52: Speaker   is speaking but not on screen! L:  R: 
+Node 53: Speaker 하루카 is speaking but not on screen! L:  R: 
+Node 54: Speaker   is speaking but not on screen! L:  R: 
+Node 55: Speaker   is speaking but not on screen! L:  R: 
+Node 56: Speaker 하루카 is speaking but not on screen! L:  R: 
+Node 57: Speaker 하루카 is speaking but not on screen! L:  R: 
+Node 58: Speaker   is speaking but not on screen! L:  R: 
+Node 59: Speaker   is speaking but not on screen! L:  R: 
+Node 60: Speaker   is speaking but not on screen! L:  R: 
+Node 61: Speaker   is speaking but not on screen! L:  R: 
+Node 64: Speaker   is speaking but not on screen! L:  R: 
+Node 65: Speaker   is speaking but not on screen! L:  R: 
+Node 67: Speaker   is speaking but not on screen! L:  R: 
+Node 68: Speaker   is speaking but not on screen! L:  R: 
+Node 69: Speaker   is speaking but not on screen! L:  R: 
+Node 73: Speaker 카스미 is speaking but not on screen! L:  R: 
+Node 74: Speaker 세이카 is speaking but not on screen! L:  R: 
+Node 75: Speaker   is speaking but not on screen! L:  R: 
+Node 76: Speaker 세이카 is speaking but not on screen! L:  R: 
+Node 77: Speaker 하루카 is speaking but not on screen! L:  R: 
+Node 78: Speaker 리나 is speaking but not on screen! L:  R: 
+Node 79: Speaker 카스미 is speaking but not on screen! L:  R: 
+Node 80: Speaker 리리스 is speaking but not on screen! L:  R: 
+Node 81: Speaker 미나 is speaking but not on screen! L:  R: 
+Node 83: Speaker   is speaking but not on screen! L:  R: 
+Node 84: Speaker   is speaking but not on screen! L:  R: 
+Node 85: Speaker 하루카 is speaking but not on screen! L:  R: 
+Node 86: Speaker   is speaking but not on screen! L:  R: 
+Node 87: Speaker   is speaking but not on screen! L:  R: 
+Node 89: Speaker   is speaking but not on screen! L:  R: 
+Node 90: Speaker 리리스 is speaking but not on screen! L:  R: 
+Node 93: Speaker   is speaking but not on screen! L:  R: 
+Node 100: Speaker   is speaking but not on screen! L:  R: 
+Node 104: Speaker 리나 is speaking but not on screen! L:  R: 
+Node 105: Speaker   is speaking but not on screen! L:  R: 
+Node 108: Speaker   is speaking but not on screen! L:  R: 
+Node 110: Speaker   is speaking but not on screen! L:  R: 
+Node 111: Speaker 세이카 is speaking but not on screen! L:  R: 
+Node 113: BG changed from Images/mansion_interior to Images/bg_black
+Node 113: Speaker   is speaking but not on screen! L:  R: 
+
+# ch1_epilogue.json
+Node 0: Speaker   is speaking but not on screen! L:  R: 
+Node 1: Speaker   is speaking but not on screen! L:  R: 
+Node 2: Speaker 하루카 is speaking but not on screen! L:  R: 
+Node 4: Speaker   is speaking but not on screen! L:  R: 
+Node 9: Speaker   is speaking but not on screen! L:  R: 
+Node 10: Speaker 리리스 is speaking but not on screen! L:  R: 
+Node 11: Speaker 리리스 is speaking but not on screen! L:  R: 
+Node 12: Speaker   is speaking but not on screen! L:  R: 
+Node 13: Speaker 리리스 is speaking but not on screen! L:  R: 
+Node 14: Speaker 리리스 is speaking but not on screen! L:  R: 
+Node 15: Speaker 리리스 is speaking but not on screen! L:  R: 
+Node 16: Speaker   is speaking but not on screen! L:  R: 
+Node 17: Speaker 리리스 is speaking but not on screen! L:  R: 
+Node 18: Speaker   is speaking but not on screen! L:  R: 
+Node 200: Speaker 리리스 is speaking but not on screen! L:  R: 
+Node 201: Speaker 리리스 is speaking but not on screen! L:  R: 
+Node 203: Speaker   is speaking but not on screen! L:  R: 
+Node 206: Speaker   is speaking but not on screen! L:  R: 
+Node 207: Speaker 하루카 is speaking but not on screen! L:  R: 
+Node 208: Speaker 리리스 is speaking but not on screen! L:  R: 
+Node 209: Speaker 세이카 is speaking but not on screen! L:  R: 
+Node 211: Speaker 하루카 is speaking but not on screen! L:  R: 
+Node 212: Speaker 세이카 is speaking but not on screen! L:  R: 
+Node 25: Speaker   is speaking but not on screen! L:  R: 
+Node 36: Speaker   is speaking but not on screen! L:  R: 
+Node 37: Speaker 카스미 is speaking but not on screen! L:  R: 
+Node 38: Speaker 카스미 is speaking but not on screen! L:  R: 
+Node 39: Speaker 카스미 is speaking but not on screen! L:  R: 
+Node 40: Speaker 카스미 is speaking but not on screen! L:  R: 
+Node 41: Speaker   is speaking but not on screen! L:  R: 
+Node 42: Speaker 카스미 is speaking but not on screen! L:  R: 
+Node 45: Speaker   is speaking but not on screen! L:  R: 
+Node 46: Speaker 세이카 is speaking but not on screen! L:  R: 
+Node 47: Speaker 세이카 is speaking but not on screen! L:  R: 
+Node 48: Speaker   is speaking but not on screen! L:  R: 
+Node 49: Speaker   is speaking but not on screen! L:  R: 
+Node 50: Speaker   is speaking but not on screen! L:  R: 
+Node 51: Speaker   is speaking but not on screen! L:  R: 
+Node 52: Speaker 세이카 is speaking but not on screen! L:  R: 
+Node 53: Speaker 세이카 is speaking but not on screen! L:  R: 
+Node 54: Speaker   is speaking but not on screen! L:  R: 
+Node 55: Speaker   is speaking but not on screen! L:  R: 
+Node 56: Speaker   is speaking but not on screen! L:  R: 
+Node 57: Speaker   is speaking but not on screen! L:  R: 
+Node 58: BG changed from Images/mansion_interior_morning to Images/bg_black
+Node 59: BG changed from Images/bg_black to Images/city_night
+Node 64: BG changed from Images/city_night to Images/bg_black
+Node 65: Speaker   is speaking but not on screen! L:  R: 
+
+# ch1_result_fail.json
+Node 0: Speaker 카스미 is speaking but not on screen! L:  R: 
+Node 1: Speaker 카스미 is speaking but not on screen! L:  R: 

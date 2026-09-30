@@ -44,7 +44,7 @@
         {
             "id": 6,
             "speaker": "하루카",
-            "text": "와아~ 카스미 언니! 좋은 아침이에요! 갓 만든 호박 라떼 가져왔어요!",
+            "text": "와아~ 카스미 언니! 좋은 아침이에요오! 방금 갓 만든 호박 라떼 대령이요~!",
             "characterSpriteLeft": "Characters/카스미/기본",
             "characterSpriteRight": "Characters/하루카/웃음",
             "nextNodeId": 7
@@ -97,15 +97,15 @@
             "command": "EFFECT:SHAKE",
             "characterSpriteLeft": "Characters/카스미/당황2",
             "characterSpriteCenter": "",
-            "characterSpriteRight": ""
+            "characterSpriteRight": "Characters/하루카/놀람"
         },
         {
             "id": 13,
             "speaker": "리나",
-            "text": "와씨~~ 다녀왔어!! 밖에 미친 듯이 더워!! 에어컨 어케 된 거야, 왜 안 켜져 있어?!",
+            "text": "와씨, 더워 죽을 뻔! 다녀왔어! 야, 에어컨 어케 된 거야, 쪄 죽으라고?!",
             "characterSpriteCenter": "Characters/리나/웃음",
             "nextNodeId": 14,
-            "characterSpriteLeft": "Characters/카스미/당황2",
+            "characterSpriteLeft": "",
             "characterSpriteRight": "",
             "slideIn": true
         },
@@ -141,7 +141,7 @@
         {
             "id": 17,
             "speaker": "리나",
-            "text": "대박 빙수!! 먹을래!! ...잠깐, 왜 또 호박이야?",
+            "text": "와씨 대박!! 무조건 먹어!! ...근데 잠깐, 설마 또 호박이야?",
             "characterSpriteLeft": "Characters/카스미/찡그림",
             "characterSpriteRight": "Characters/하루카/삐짐",
             "nextNodeId": 18,
@@ -150,7 +150,7 @@
         {
             "id": 18,
             "speaker": "리리스",
-            "text": "...시끄러워.",
+            "text": "...시끄러움.",
             "characterSpriteCenter": "Characters/리나/웃음",
             "nextNodeId": 19,
             "characterSpriteLeft": "Characters/리리스/찡그림",
@@ -168,7 +168,7 @@
         {
             "id": 20,
             "speaker": "리리스",
-            "text": "잭오 야간 비행 로그 디코딩 중. 진동 탓에 납땜 오차 발생. 짜증.",
+            "text": "잭오 야간 비행 로그 디코딩 중. 기체 진동으로 납땜 오차. ...짜증.",
             "characterSpriteCenter": "Characters/리나/웃음",
             "nextNodeId": 21,
             "characterSpriteLeft": "Characters/리리스/찡그림",
@@ -254,7 +254,7 @@
         {
             "id": 30,
             "speaker": "미나",
-            "text": "어... 카스미! 그게, 지금은 분위기 좀 맞춰주면 안 돼...?",
+            "text": "(소곤) 카, 카스미... 그, 그냥 분위기 좀 맞춰 주면 안 돼...?",
             "characterSpriteLeft": "Characters/카스미/기본",
             "characterSpriteRight": "Characters/미나/삐짐",
             "nextNodeId": 31
@@ -454,7 +454,7 @@
         {
             "id": 52,
             "speaker": "카스미",
-            "text": "경찰이 이미 내부를 확인했지만 아무도 없었다는 점이 문제입니다. 출입구는 전부 잠겨 있었을 테고...",
+            "text": "경찰이 수색했을 때 내부에 아무도 없었다는 게 문제입니다. 출입구도 전부 잠겨 있었고요.",
             "characterSpriteLeft": "Characters/카스미/기본",
             "characterSpriteRight": "Characters/리나/기본",
             "nextNodeId": 53
@@ -462,7 +462,7 @@
         {
             "id": 53,
             "speaker": "미나",
-            "text": "(조용히) ...그 음악실, 예전에 한 피아니스트가 콩쿠르 직전에 갑자기 사라진 곳이다.",
+            "text": "크큭... 그 음악실, 예전에 한 피아니스트가 콩쿠르 직전에 어둠 속으로 사라진 곳이니라...",
             "characterSpriteCenter": "Characters/미나/기본",
             "nextNodeId": 54,
             "characterSpriteLeft": "Characters/카스미/기본",
@@ -479,7 +479,7 @@
         {
             "id": 55,
             "speaker": "미나",
-            "text": "아니, 더 이상하지. 실종 신고 기록이 없고, 그 피아니스트가 존재했다는 기록 자체가... 거의 없는 것이다.",
+            "text": "아니, 더 기괴하지. 실종 신고 기록도, 그 자가 존재했다는 흔적조차... 전부 지워진 것이니라.",
             "characterSpriteLeft": "Characters/카스미/기본",
             "characterSpriteRight": "Characters/미나/기본",
             "nextNodeId": 56

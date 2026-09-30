@@ -28,7 +28,7 @@
         {
             "id": 2,
             "speaker": "세이카",
-            "text": "...이상하다. 노을시 구시가지 실종 사건... 2001년, 2006년, 2011년, 2016년, 2021년.\n5년 간격으로 실종자가 발생하는데, 전부 수사 중단...? 기록이 거의 남아있지 않아...",
+            "text": "...이상하네. 노을시 구시가지 실종 사건... 5년 간격으로 사람이 증발했는데 전부 수사 중단이라고? 심지어 기록조차 거의 안 남아있잖아.",
             "characterSpriteLeft": "",
             "characterSpriteCenter": "Characters/세이카/찡그림",
             "characterSpriteRight": "",
@@ -65,6 +65,16 @@
             "noFade": true
         },
         {
+            "id": 10004,
+            "speaker": "세이카",
+            "text": "기록 대부분은 이미 사라져 있었어. 하지만 법원 깊숙한 서고에\n종이로만 남아있던 재판 기록 몇 건이... 아슬아슬하게 남아 있었지.",
+            "characterSpriteLeft": "",
+            "characterSpriteCenter": "Characters/세이카/기본",
+            "characterSpriteRight": "",
+            "command": "",
+            "nextNodeId": 6
+        },
+        {
             "id": 5,
             "speaker": "",
             "text": "\"세이카 씨, 우리 로펌의 주요 고객 중에 노을시 경찰청 관계자가 있다는 거 알지? 그러니까 이 건은 더 이상 건드리지 마.\"\n선임은 단호하게 세이카의 말을 끊었다.",
@@ -73,8 +83,18 @@
             "characterSpriteRight": "",
             "backgroundSprite": "",
             "choices": [],
-            "nextNodeId": 6,
+            "nextNodeId": 10005,
             "command": ""
+        },
+        {
+            "id": 10005,
+            "speaker": "세이카",
+            "text": "...",
+            "characterSpriteLeft": "",
+            "characterSpriteCenter": "Characters/세이카/기본",
+            "characterSpriteRight": "",
+            "command": "",
+            "nextNodeId": 10004
         },
         {
             "id": 6,
@@ -396,7 +416,7 @@
         },
         {
             "speaker": "세이카",
-            "text": "설명할 수 없는 기괴한 일'을 겪은 사람이 딱딱한 경찰서나 평범한 사무실을 찾아가긴 힘들잖아?",
+            "text": "'기괴한 일' 겪은 사람이 각 잡힌 경찰서 가면 미친 사람 취급밖에 더 받겠어? 오히려 이런 분위기가 털어놓기 편하지.",
             "characterSpriteLeft": "Characters/세이카/기본",
             "characterSpriteCenter": "",
             "characterSpriteRight": "",

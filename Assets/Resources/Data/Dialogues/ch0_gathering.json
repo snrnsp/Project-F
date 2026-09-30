@@ -140,7 +140,7 @@
         {
             "id": 11,
             "speaker": "리나",
-            "text": "경찰이 안 움직이면 내가 직접 찾으면 되잖아! 야, 뭘 그렇게 쳐다봐?!",
+            "text": "경찰이 안 움직이면 내가 직접 찾으면 되잖아! 뭐, 뭘 그렇게 쳐다봐?!",
             "characterSpriteLeft": "",
             "characterSpriteCenter": "Characters/리나/기본",
             "characterSpriteRight": "",
@@ -445,7 +445,7 @@
         {
             "id": 35,
             "speaker": "",
-            "text": "그리고 지금?",
+            "text": "그리고 지금—",
             "characterSpriteLeft": "",
             "characterSpriteCenter": "",
             "characterSpriteRight": "",
