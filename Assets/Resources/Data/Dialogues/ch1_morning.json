@@ -11,7 +11,7 @@
         {
             "id": 1,
             "speaker": " ",
-            "text": "호박 램프의 불빛이 은은하게 켜진 사무소 안.\n벽난로에서 장작이 타닥거리고, 거미줄 장식 사이로 아침 햇살이 비친다.",
+            "text": "호박 램프의 불빛이 은은하게 켜진 사무소 안. 벽난로에서 장작이 타닥거리고, 거미줄 장식 사이로 아침 햇살이 비친다.",
             "nextNodeId": 2
         },
         {
@@ -178,33 +178,37 @@
             "id": 21,
             "speaker": "리나",
             "text": "아 미안미안. 그니까 넌 맨날 그 드론만 만지작거리냐? 밖에 좀 나가라니까.",
-            "characterSpriteLeft": "Characters/리나/웃음",
-            "characterSpriteRight": "Characters/리리스/찡그림",
-            "nextNodeId": 22
+            "characterSpriteLeft": "Characters/리리스/찡그림",
+            "characterSpriteRight": "",
+            "nextNodeId": 22,
+            "characterSpriteCenter": "Characters/리나/웃음"
         },
         {
             "id": 22,
             "speaker": "리리스",
             "text": "잭오가 내 발. 직접 갈 필요 없음.",
-            "characterSpriteLeft": "Characters/리나/웃음",
-            "characterSpriteRight": "Characters/리리스/기본",
-            "nextNodeId": 23
+            "characterSpriteLeft": "Characters/리리스/기본",
+            "characterSpriteRight": "",
+            "nextNodeId": 23,
+            "characterSpriteCenter": "Characters/리나/웃음"
         },
         {
             "id": 23,
             "speaker": "리나",
             "text": "비타민D 결핍으로 쓰러져도 내가 안 업어다 줄 거야.",
-            "characterSpriteLeft": "Characters/리나/찡그림",
-            "characterSpriteRight": "Characters/리리스/기본",
-            "nextNodeId": 24
+            "characterSpriteLeft": "Characters/리리스/기본",
+            "characterSpriteRight": "",
+            "nextNodeId": 24,
+            "characterSpriteCenter": "Characters/리나/찡그림"
         },
         {
             "id": 24,
             "speaker": "리리스",
             "text": "노상관.",
-            "characterSpriteLeft": "Characters/리나/찡그림",
-            "characterSpriteRight": "Characters/리리스/눈 감음",
-            "nextNodeId": 25
+            "characterSpriteLeft": "Characters/리리스/눈 감음",
+            "characterSpriteRight": "",
+            "nextNodeId": 25,
+            "characterSpriteCenter": "Characters/리나/찡그림"
         },
         {
             "id": 25,
@@ -446,9 +450,9 @@
             "id": 51,
             "speaker": "리나",
             "text": "밤마다 3시에 피아노? 무단 침입이면 그냥 현장에서 잡으면 되는 거 아냐?",
-            "characterSpriteCenter": "Characters/리나/기본",
+            "characterSpriteCenter": "Characters/세이카/기본",
             "nextNodeId": 52,
-            "characterSpriteLeft": "Characters/세이카/기본",
+            "characterSpriteLeft": "Characters/리나/기본",
             "characterSpriteRight": "Characters/하루카/측은"
         },
         {

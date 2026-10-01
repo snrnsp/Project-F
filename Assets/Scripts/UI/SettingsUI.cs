@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using HalloweenVN.Core;
@@ -60,6 +60,8 @@ namespace HalloweenVN.UI
             return rawFont;
         }
 
+        private GameObject dropdownBlocker;
+
         private void OnEnable()
         {
             if (textSpeedSlider != null)
@@ -84,19 +86,50 @@ namespace HalloweenVN.UI
                 exit.callback.AddListener((data) => { skipHelpPanel.SetActive(false); });
                 trigger.triggers.Add(exit);
             }
+            
+            if (dropdownBlocker == null && skipDropdownPanel != null)
+            {
+                dropdownBlocker = new GameObject("DropdownBlocker");
+                RectTransform blockerRt = dropdownBlocker.AddComponent<RectTransform>();
+                blockerRt.SetParent(skipDropdownPanel.transform.parent, false);
+                blockerRt.anchorMin = new Vector2(0.5f, 0.5f);
+                blockerRt.anchorMax = new Vector2(0.5f, 0.5f);
+                blockerRt.sizeDelta = new Vector2(10000, 10000);
+                
+                Image blockerImg = dropdownBlocker.AddComponent<Image>();
+                blockerImg.color = new Color(0, 0, 0, 0); // completely invisible
+                
+                Button blockerBtn = dropdownBlocker.AddComponent<Button>();
+                blockerBtn.transition = Selectable.Transition.None;
+                blockerBtn.onClick.AddListener(() => {
+                    if (skipDropdownPanel != null) skipDropdownPanel.SetActive(false);
+                    dropdownBlocker.SetActive(false);
+                });
+                
+                dropdownBlocker.SetActive(false);
+            }
+
             if (ctrlSkipButton != null)
             {
+                ctrlSkipButton.onClick.RemoveAllListeners();
                 ctrlSkipButton.onClick.AddListener(() => {
                     if (skipDropdownPanel != null) {
                         bool isActive = skipDropdownPanel.activeSelf;
                         skipDropdownPanel.SetActive(!isActive);
-                        if (!isActive) skipDropdownPanel.transform.SetAsLastSibling();
+                        if (dropdownBlocker != null) dropdownBlocker.SetActive(!isActive);
+                        
+                        if (!isActive) {
+                            if (dropdownBlocker != null) dropdownBlocker.transform.SetAsLastSibling();
+                            skipDropdownPanel.transform.SetAsLastSibling();
+                        }
                     }
                 });
             }
-            if (skipOptCtrl != null) skipOptCtrl.onClick.AddListener(() => SetSkipKey(SettingsData.SkipKeyOption.Ctrl));
-            if (skipOptShift != null) skipOptShift.onClick.AddListener(() => SetSkipKey(SettingsData.SkipKeyOption.Shift));
-            if (skipOptSpace != null) skipOptSpace.onClick.AddListener(() => SetSkipKey(SettingsData.SkipKeyOption.Space));
+            
+            // Remove previous listeners just in case
+            if (skipOptCtrl != null) { skipOptCtrl.onClick.RemoveAllListeners(); skipOptCtrl.onClick.AddListener(() => SetSkipKey(SettingsData.SkipKeyOption.Ctrl)); }
+            if (skipOptShift != null) { skipOptShift.onClick.RemoveAllListeners(); skipOptShift.onClick.AddListener(() => SetSkipKey(SettingsData.SkipKeyOption.Shift)); }
+            if (skipOptSpace != null) { skipOptSpace.onClick.RemoveAllListeners(); skipOptSpace.onClick.AddListener(() => SetSkipKey(SettingsData.SkipKeyOption.Space)); }
             if (fontStyleButton != null)
             {
                 fontStyleButton.onClick.AddListener(OnFontStyleToggled);
@@ -147,7 +180,7 @@ namespace HalloweenVN.UI
                     SetText(textSpeedLabel, "Text Speed");
                     SetText(autoPlayLabel, "Auto-play Delay");
                     
-                    SetText(skipModeLabel, "Skip Hotkey");
+                    SetText(skipModeLabel, "Skip Hotkey  ");
                     SetText(fontStyleLabel, "Font");
                     previewMessage = "This is a text speed test. Please check it carefully!";
                     break;
@@ -282,6 +315,7 @@ namespace HalloweenVN.UI
         {
             SettingsData.SkipKey = key;
             if (skipDropdownPanel != null) skipDropdownPanel.SetActive(false);
+            if (dropdownBlocker != null) dropdownBlocker.SetActive(false);
             UpdateAllLabels();
         }
 
@@ -301,6 +335,34 @@ namespace HalloweenVN.UI
             if (dialogue != null) dialogue.UpdateLanguage();
             var extra = Object.FindAnyObjectByType<ExtraUI>(FindObjectsInactive.Include);
             if (extra != null) extra.UpdateLanguage();
+
+            string fontName = FontHelper.GetFontNameForLanguage(SettingsData.Language);
+            var tmpFont = FontHelper.GetTMPFont(fontName);
+            if (tmpFont != null)
+            {
+                var allTmp = Resources.FindObjectsOfTypeAll<TMPro.TextMeshProUGUI>();
+                foreach (var tmp in allTmp)
+                {
+                    if (tmp.gameObject.scene.name != null)
+                    {
+                        tmp.font = tmpFont;
+                    }
+                }
+            }
+            
+            var legacyFont = GetLegacyFont(fontName);
+            if (legacyFont != null)
+            {
+                var allLegacy = Resources.FindObjectsOfTypeAll<UnityEngine.UI.Text>();
+                foreach (var txt in allLegacy)
+                {
+                    if (txt.gameObject.scene.name != null && txt.gameObject != fontStyleValueText.gameObject)
+                    {
+                        txt.font = legacyFont;
+                    }
+                }
+            }
+
         }
 
         private void UpdateAllLabels()

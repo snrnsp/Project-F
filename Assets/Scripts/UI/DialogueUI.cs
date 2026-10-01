@@ -34,6 +34,22 @@ namespace HalloweenVN.UI
         private Coroutine typingCoroutine;
         private Coroutine autoPlayCoroutine;
         private bool isTyping;
+
+        private bool IsFastForwarding
+        {
+            get
+            {
+                if (UnityEngine.InputSystem.Keyboard.current == null) return false;
+                if (HalloweenVN.Core.SettingsData.SkipKey == HalloweenVN.Core.SettingsData.SkipKeyOption.Ctrl)
+                    return UnityEngine.InputSystem.Keyboard.current.leftCtrlKey.isPressed || UnityEngine.InputSystem.Keyboard.current.rightCtrlKey.isPressed;
+                if (HalloweenVN.Core.SettingsData.SkipKey == HalloweenVN.Core.SettingsData.SkipKeyOption.Shift)
+                    return UnityEngine.InputSystem.Keyboard.current.leftShiftKey.isPressed || UnityEngine.InputSystem.Keyboard.current.rightShiftKey.isPressed;
+                if (HalloweenVN.Core.SettingsData.SkipKey == HalloweenVN.Core.SettingsData.SkipKeyOption.Space)
+                    return UnityEngine.InputSystem.Keyboard.current.spaceKey.isPressed;
+                return false;
+            }
+        }
+
         private bool isAutoPlay;
         private float ctrlSkipTimer = 0f;
         private string fullText;
@@ -128,6 +144,22 @@ namespace HalloweenVN.UI
 
         // ═══════════ Events ═══════════
         
+        
+        public void ClearAll()
+        {
+            if (backgroundImage != null) backgroundImage.enabled = false;
+            if (characterImageLeft != null) characterImageLeft.gameObject.SetActive(false);
+            if (characterImageCenter != null) characterImageCenter.gameObject.SetActive(false);
+            if (characterImageRight != null) characterImageRight.gameObject.SetActive(false);
+            
+            _activeSpeakerPositions.Clear();
+            _speakerOrder.Clear();
+            _tempPositionList.Clear();
+            
+            if (dialoguePanel != null) dialoguePanel.SetActive(false);
+            if (narratorText != null && narratorText.transform.parent != null) narratorText.transform.parent.gameObject.SetActive(false);
+        }
+
         public void UpdateLanguage()
         {
 
@@ -259,21 +291,11 @@ namespace HalloweenVN.UI
             }
         }
 
-        public void DisplayNode(DialogueNode node)
+        
+        public void UpdateVisualsOnly(DialogueNode node, bool instant)
         {
-            if (speakerNameText != null) 
-            { 
-                speakerNameText.text = node.speaker; 
-                speakerNameText.color = GetSpeakerColor(node.speaker); 
-                
-                // Hide the speaker box entirely if it's a monologue (empty or just spaces)
-                if (speakerNameText.transform.parent != null)
-                {
-                    speakerNameText.transform.parent.gameObject.SetActive(!string.IsNullOrWhiteSpace(node.speaker));
-                }
-            }
-
             // Determine which character sprites are requested
+
             string spriteLeft = node.characterSpriteLeft;
             string spriteCenter = node.characterSpriteCenter;
             string spriteRight = node.characterSpriteRight;
@@ -305,7 +327,7 @@ namespace HalloweenVN.UI
             }
             foreach (string name in toRemove)
             {
-                if (node.noFade)
+                if (node.noFade || instant)
                 {
                     // Instant hide
                     Image hideImg = GetCharacterImage(_activeSpeakerPositions[name]);
@@ -364,7 +386,7 @@ namespace HalloweenVN.UI
                         // Evict oldest character
                         string oldest = _speakerOrder[0];
                         CharacterPosition oldPos = _activeSpeakerPositions[oldest];
-                        if (node.noFade)
+                        if (node.noFade || instant)
                         {
                             Image hideImg = GetCharacterImage(oldPos);
                             if (hideImg != null) hideImg.gameObject.SetActive(false);
@@ -408,7 +430,7 @@ namespace HalloweenVN.UI
                         }
                     }
 
-                    if (node.noFade)
+                    if (node.noFade || instant)
                     {
                         if (_fadeCoroutines.ContainsKey(img) && _fadeCoroutines[img] != null) StopCoroutine(_fadeCoroutines[img]);
                         img.gameObject.SetActive(true);
@@ -436,7 +458,7 @@ namespace HalloweenVN.UI
                         Image oldImg = GetCharacterImage(oldPos);
                         if (oldImg != null && oldImg.gameObject.activeSelf)
                         {
-                            if (node.noFade)
+                            if (node.noFade || instant)
                             {
                                 if (_fadeCoroutines.ContainsKey(oldImg) && _fadeCoroutines[oldImg] != null) StopCoroutine(_fadeCoroutines[oldImg]);
                                 oldImg.gameObject.SetActive(false);
@@ -460,7 +482,7 @@ namespace HalloweenVN.UI
                             SetCharacterAnchorX(newImg.rectTransform, layoutTargets[assignedPos]);
                         }
 
-                        if (node.noFade)
+                        if (node.noFade || instant)
                         {
                             if (_fadeCoroutines.ContainsKey(newImg) && _fadeCoroutines[newImg] != null) StopCoroutine(_fadeCoroutines[newImg]);
                             newImg.gameObject.SetActive(true);
@@ -510,11 +532,27 @@ namespace HalloweenVN.UI
             bool wasNarrator = !_currentlyInDialoguePanel;
             bool isNarratorNow = string.IsNullOrEmpty(node.speaker);
             bool usePanelNow = !isNarratorNow;
-            bool instantHighlight = wasNarrator && usePanelNow; // 컷신(독백)에서 대화로 넘어올 때는 깜빡임 방지를 위해 즉시 색상 적용
+                        bool instantHighlight = instant || (wasNarrator && usePanelNow);
             UpdateSpeakerHighlight(node.speaker, instantHighlight);
-
-            // Background
             UpdateBackground(node.backgroundSprite);
+        }
+
+        public void DisplayNode(DialogueNode node)
+        {
+            if (speakerNameText != null) 
+            { 
+                speakerNameText.text = node.speaker; 
+                speakerNameText.color = GetSpeakerColor(node.speaker); 
+                
+                // Hide the speaker box entirely if it's a monologue (empty or just spaces)
+                if (speakerNameText.transform.parent != null)
+                {
+                    speakerNameText.transform.parent.gameObject.SetActive(!string.IsNullOrWhiteSpace(node.speaker));
+                }
+            }
+
+            // Determine which character sprites are requested
+            UpdateVisualsOnly(node, false);
 
             // Typing & Formatting
             fullText = node.text ?? "";
@@ -637,7 +675,7 @@ namespace HalloweenVN.UI
             float elapsed = 0f;
             while (elapsed < MOVE_DURATION)
             {
-                elapsed += Time.deltaTime;
+                elapsed += Time.deltaTime * (IsFastForwarding ? 10f : 1f);
                 float t = Mathf.SmoothStep(0f, 1f, elapsed / MOVE_DURATION);
                 float newX = Mathf.Lerp(startX, targetAnchorX, t);
                 SetCharacterAnchorX(rt, newX);
@@ -678,7 +716,7 @@ namespace HalloweenVN.UI
             float elapsed = 0f;
             while (elapsed < DEFAULT_FADE_SPEED)
             {
-                elapsed += Time.deltaTime;
+                elapsed += Time.deltaTime * (IsFastForwarding ? 10f : 1f);
                 c.a = Mathf.SmoothStep(0f, 1f, elapsed / DEFAULT_FADE_SPEED);
                 img.color = c;
                 yield return null;
@@ -708,7 +746,7 @@ namespace HalloweenVN.UI
 
             while (elapsed < DEFAULT_FADE_SPEED)
             {
-                elapsed += Time.deltaTime;
+                elapsed += Time.deltaTime * (IsFastForwarding ? 10f : 1f);
                 float t = elapsed / DEFAULT_FADE_SPEED;
                 c.a = Mathf.SmoothStep(startAlpha, 0f, t);
                 img.color = c;
@@ -764,7 +802,7 @@ namespace HalloweenVN.UI
             if (!image.gameObject.activeSelf) return;
 
             Color targetColor = isActive ? ACTIVE_COLOR : DIM_COLOR;
-            float duration = instant ? 0f : 0.2f;
+            float duration = instant ? 0f : 0.1f;
 
             if (_highlightCoroutines.ContainsKey(image) && _highlightCoroutines[image] != null)
             {
@@ -791,7 +829,7 @@ namespace HalloweenVN.UI
 
             while (elapsed < duration)
             {
-                elapsed += Time.deltaTime;
+                elapsed += Time.deltaTime * (IsFastForwarding ? 10f : 1f);
                 float smoothT = Mathf.SmoothStep(0f, 1f, elapsed / duration);
 
                 Color lerpedColor = Color.Lerp(startColor, targetColor, smoothT);
@@ -857,7 +895,7 @@ namespace HalloweenVN.UI
                 dialoguePanel.SetActive(true);
                 while (elapsed < duration)
                 {
-                    elapsed += Time.deltaTime;
+                    elapsed += Time.deltaTime * (IsFastForwarding ? 10f : 1f);
                     float t = elapsed / duration;
                     diagCG.alpha = Mathf.SmoothStep(startDiagAlpha, 1f, t);
                     narrCG.alpha = Mathf.SmoothStep(startNarrAlpha, 0f, t);
@@ -872,7 +910,7 @@ namespace HalloweenVN.UI
                 narratorParent.SetActive(true);
                 while (elapsed < duration)
                 {
-                    elapsed += Time.deltaTime;
+                    elapsed += Time.deltaTime * (IsFastForwarding ? 10f : 1f);
                     float t = elapsed / duration;
                     narrCG.alpha = Mathf.SmoothStep(startNarrAlpha, 1f, t);
                     diagCG.alpha = Mathf.SmoothStep(startDiagAlpha, 0f, t);
@@ -884,7 +922,7 @@ namespace HalloweenVN.UI
             }
         }
 
-        private void UpdateBackground(string spritePath)
+        public void UpdateBackground(string spritePath)
         {
             if (backgroundImage == null) return;
             if (!string.IsNullOrEmpty(spritePath))
@@ -1034,16 +1072,7 @@ namespace HalloweenVN.UI
 
             
             // 3. Ctrl Skip Logic
-            bool isSkipPressed = false;
-            if (Keyboard.current != null)
-            {
-                if (SettingsData.SkipKey == SettingsData.SkipKeyOption.Ctrl)
-                    isSkipPressed = Keyboard.current.leftCtrlKey.isPressed || Keyboard.current.rightCtrlKey.isPressed;
-                else if (SettingsData.SkipKey == SettingsData.SkipKeyOption.Shift)
-                    isSkipPressed = Keyboard.current.leftShiftKey.isPressed || Keyboard.current.rightShiftKey.isPressed;
-                else if (SettingsData.SkipKey == SettingsData.SkipKeyOption.Space)
-                    isSkipPressed = Keyboard.current.spaceKey.isPressed;
-            }
+            bool isSkipPressed = IsFastForwarding;
 
             if (isSkipPressed)
             {

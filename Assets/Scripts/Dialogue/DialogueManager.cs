@@ -105,6 +105,43 @@ namespace HalloweenVN.Dialogue
         /// Displays a specific dialogue node by ID.
         /// </summary>
         /// <param name="nodeId">The node ID to display.</param>
+        
+        public void RewindTo(string targetDialogueId, DialogueNode targetNode, System.Collections.Generic.List<HalloweenVN.UI.BacklogUI.BacklogEntry> rewindHistory)
+        {
+            if (typingCoroutine != null) StopCoroutine(typingCoroutine);
+            
+            
+            // 1. Load Dialogue Container
+            currentDialogue = HalloweenVN.Data.DataLoader.LoadDialogue(targetDialogueId);
+            if (currentDialogue == null) return;
+            
+            // 2. Clear current visual state
+            var ui = UnityEngine.Object.FindAnyObjectByType<HalloweenVN.UI.DialogueUI>();
+            if (ui != null)
+            {
+                ui.ClearAll();
+            }
+            
+            // 3. Replay history to recreate visual state
+            if (ui != null)
+            {
+                foreach (var entry in rewindHistory)
+                {
+                    if (entry.node != null)
+                    {
+                        ui.UpdateVisualsOnly(entry.node, true);
+                    }
+                }
+            }
+            
+            // 4. Resume from target node
+            currentNode = targetNode;
+            IsPlaying = true;
+            
+            // Display it
+            DisplayNode(currentNode.id);
+        }
+
         public void DisplayNode(int nodeId)
         {
             currentNode = FindNode(nodeId);

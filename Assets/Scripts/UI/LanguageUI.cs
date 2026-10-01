@@ -70,7 +70,6 @@ if (panelRoot != null)
         {
             SettingsData.Language = lang;
             SettingsData.Save();
-            UpdateLanguageButtonsUI();
 
             LobbyUI lobby = Object.FindAnyObjectByType<LobbyUI>();
             if (lobby != null) lobby.UpdateLanguage();
@@ -96,6 +95,23 @@ if (panelRoot != null)
                     }
                 }
             }
+
+            
+            var legacyFont = GetLegacyFont(fontName);
+            if (legacyFont != null)
+            {
+                var allLegacy = Resources.FindObjectsOfTypeAll<UnityEngine.UI.Text>();
+                foreach (var txt in allLegacy)
+                {
+                    if (txt.gameObject.scene.name != null)
+                    {
+                        txt.font = legacyFont;
+                    }
+                }
+            }
+
+            // Re-apply per-button fonts AFTER global refresh (so they don't get overwritten)
+            UpdateLanguageButtonsUI();
 
             Debug.Log($"Language set to {lang}");
         }
@@ -160,6 +176,16 @@ if (panelRoot != null)
                     bool isGothic = !SettingsData.UseHandwritingFont;
                     if ((GameLanguage)i == GameLanguage.Korean) legacyTxt.fontSize = isGothic ? 24 : 33;
                     else legacyTxt.fontSize = isGothic ? 22 : 28;
+                }
+                
+                if (txt != null) {
+                    string btnFontName = FontHelper.GetFontNameForLanguage((GameLanguage)i);
+                    var tmpBtnFont = FontHelper.GetTMPFont(btnFontName);
+                    if (tmpBtnFont != null) txt.font = tmpBtnFont;
+                    
+                    bool isGothic = !SettingsData.UseHandwritingFont;
+                    if ((GameLanguage)i == GameLanguage.Korean) txt.fontSize = isGothic ? 24 : 33;
+                    else txt.fontSize = isGothic ? 22 : 28;
                 }
                 
                 if ((int)SettingsData.Language == i)

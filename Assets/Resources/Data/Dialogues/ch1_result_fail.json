@@ -46,7 +46,7 @@
         {
             "id": 3,
             "speaker": "리리스",
-            "text": "힌트 제공. 증거 내 무관련 데이터 혼입 가능성 있음.\n설명문 재확인 요망.",
+            "text": "힌트 제공. 증거 내 무관련 데이터 혼입 가능성 있음. 설명문 재확인 요망.",
             "characterSpriteLeft": "Characters/리리스/기본",
             "characterSpriteCenter": "",
             "characterSpriteRight": "Characters/세이카/기본",

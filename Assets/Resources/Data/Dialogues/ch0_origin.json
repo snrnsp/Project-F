@@ -67,7 +67,7 @@
         {
             "id": 10004,
             "speaker": "세이카",
-            "text": "기록 대부분은 이미 사라져 있었어. 하지만 법원 깊숙한 서고에\n종이로만 남아있던 재판 기록 몇 건이... 아슬아슬하게 남아 있었지.",
+            "text": "기록 대부분은 이미 사라져 있었어. 하지만 법원 깊숙한 서고에 종이로만 남아있던 재판 기록 몇 건이... 아슬아슬하게 남아 있었지.",
             "characterSpriteLeft": "",
             "characterSpriteCenter": "Characters/세이카/기본",
             "characterSpriteRight": "",
@@ -136,7 +136,7 @@
         {
             "id": 9,
             "speaker": "",
-            "text": "실종 사건을 혼자 조사하던 세이카는 모든 사건의 중심에 있는 장소를 찾아냈다.\n구시가지 언덕 꼭대기에 있는 '이케다 저택'.",
+            "text": "실종 사건을 혼자 조사하던 세이카는 모든 사건의 중심에 있는 장소를 찾아냈다. 구시가지 언덕 꼭대기에 있는 '이케다 저택'.",
             "characterSpriteLeft": "",
             "characterSpriteCenter": "",
             "characterSpriteRight": "",
@@ -260,7 +260,7 @@
         {
             "id": 19,
             "speaker": "",
-            "text": "세이카는 부모님을 찾아갔다.\n로펌을 그만두고, 사설 사무소를 열겠다고.",
+            "text": "세이카는 부모님을 찾아갔다. 로펌을 그만두고, 사설 사무소를 열겠다고.",
             "characterSpriteLeft": "",
             "characterSpriteCenter": "",
             "characterSpriteRight": "",
@@ -296,7 +296,7 @@
         {
             "id": 22,
             "speaker": "세이카",
-            "text": "...내 두 눈으로 봤어. 그 사람이 남긴 필사적인 구조 요청을.\n아무도 안 한다면, 나라도 해야 해.",
+            "text": "...내 두 눈으로 봤어. 그 사람이 남긴 필사적인 구조 요청을. 아무도 안 한다면, 나라도 해야 해.",
             "characterSpriteLeft": "",
             "characterSpriteCenter": "Characters/세이카/찡그림",
             "characterSpriteRight": "",
@@ -345,7 +345,7 @@
         {
             "id": 26,
             "speaker": "",
-            "text": "로펌을 그만두고, 전 재산과 가족 자금을 투입해 저택을 매입.\n수개월에 걸친 리모델링 끝에 현관에 새로운 간판이 걸렸다.",
+            "text": "로펌을 그만두고, 전 재산과 가족 자금을 투입해 저택을 매입. 수개월에 걸친 리모델링 끝에 현관에 새로운 간판이 걸렸다.",
             "characterSpriteLeft": "",
             "characterSpriteCenter": "",
             "characterSpriteRight": "",

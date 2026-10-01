@@ -16,7 +16,7 @@
         {
             "id": 1,
             "speaker": "",
-            "text": "그런데 구시가지에서 또다시 실종 의심 징후가 포착되었다.\n5년 주기의 패턴. 다음 실종이 일어날 시기가 바로 올해였다.",
+            "text": "그런데 구시가지에서 또다시 실종 의심 징후가 포착되었다. 5년 주기의 패턴. 다음 실종이 일어날 시기가 바로 올해였다.",
             "characterSpriteLeft": "",
             "characterSpriteCenter": "",
             "characterSpriteRight": "",
@@ -231,7 +231,7 @@
         {
             "id": 18,
             "speaker": "",
-            "text": "이후 3층 다락방을 자신의 작업실로 개조하여 입주.\n정찰 드론 「잭오(Jack-O)」가 만들어진 것도 이 시기였다.",
+            "text": "이후 3층 다락방을 자신의 작업실로 개조하여 입주. 정찰 드론 「잭오(Jack-O)」가 만들어진 것도 이 시기였다.",
             "characterSpriteLeft": "",
             "characterSpriteCenter": "",
             "characterSpriteRight": "",
@@ -255,7 +255,7 @@
         {
             "id": 20,
             "speaker": "",
-            "text": "가장 미스터리한 합류.\n비가 추적추적 내리는 새벽, 저택 현관 앞에 쓰러져 있는 채로 발견되었다.\n신원 불명. 이름이 '미나'라는 것 외에는 아무것도 기억나지 않는다고 한다.",
+            "text": "가장 미스터리한 합류. 비가 추적추적 내리는 새벽, 저택 현관 앞에 쓰러져 있는 채로 발견되었다.\n신원 불명. 이름이 '미나'라는 것 외에는 아무것도 기억나지 않는다고 한다.",
             "characterSpriteLeft": "",
             "characterSpriteCenter": "",
             "characterSpriteRight": "",
@@ -282,8 +282,8 @@
             "speaker": "카스미",
             "text": "...기억상실 환자의 과대망상이네요. 병원 응급실로 인계해야 할 것 같습니다.",
             "characterSpriteLeft": "Characters/카스미/찡그림",
-            "characterSpriteCenter": "",
-            "characterSpriteRight": "Characters/미나/기본",
+            "characterSpriteCenter": "Characters/미나/기본",
+            "characterSpriteRight": "",
             "backgroundSprite": "",
             "choices": [],
             "nextNodeId": 23,
@@ -293,7 +293,7 @@
         {
             "id": 23,
             "speaker": "",
-            "text": "하지만 미나에게는 설명할 수 없는 능력이 있었다.\n한 번도 가보지 않은 폐건물의 구조를 알고, 사건의 결말을 예언하듯 중얼거리면, 그것이 맞았다.",
+            "text": "하지만 미나에게는 설명할 수 없는 능력이 있었다. 한 번도 가보지 않은 폐건물의 구조를 알고, 사건의 결말을 예언하듯 중얼거리면, 그것이 맞았다.",
             "characterSpriteLeft": "",
             "characterSpriteCenter": "",
             "characterSpriteRight": "",
@@ -330,7 +330,7 @@
         {
             "id": 26,
             "speaker": "",
-            "text": "구시가지의 작은 카페에서 아르바이트를 하던 19세 소녀.\n학교에서 심한 따돌림을 당해 자퇴한 뒤, 아르바이트로 혼자 생계를 유지하고 있었다.",
+            "text": "구시가지의 작은 카페에서 아르바이트를 하던 19세 소녀. 학교에서 심한 따돌림을 당해 자퇴한 뒤, 아르바이트로 혼자 생계를 유지하고 있었다.",
             "characterSpriteLeft": "",
             "characterSpriteCenter": "",
             "characterSpriteRight": "",
@@ -382,7 +382,7 @@
         {
             "id": 30,
             "speaker": "",
-            "text": "불과 3개월 남짓한 시간 동안, 다섯 명이 연달아 합류했다.\n실종 사건이라는 파장이 각자의 삶에 금을 내면서, 갈 곳 없는 사람들이 같은 장소로 흘러들어온 것이다.",
+            "text": "불과 3개월 남짓한 시간 동안, 다섯 명이 연달아 합류했다. 실종 사건이라는 파장이 각자의 삶에 금을 내면서, 갈 곳 없는 사람들이 같은 장소로 흘러들어온 것이다.",
             "characterSpriteLeft": "",
             "characterSpriteCenter": "",
             "characterSpriteRight": "",
@@ -433,7 +433,7 @@
         {
             "id": 34,
             "speaker": "",
-            "text": "부모님이 준 1년의 기한.\n그 마감 직전에 기적처럼 팀이 갖춰졌다.\n경찰이 닫아버린 파일을 다시 여는 사람들. 세상이 외면한 것들을 마주하는 사람들.",
+            "text": "부모님이 준 1년의 기한. 그 마감 직전에 기적처럼 팀이 갖춰졌다. 경찰이 닫아버린 파일을 다시 여는 사람들. 세상이 외면한 것들을 마주하는 사람들.",
             "characterSpriteLeft": "",
             "characterSpriteCenter": "",
             "characterSpriteRight": "",

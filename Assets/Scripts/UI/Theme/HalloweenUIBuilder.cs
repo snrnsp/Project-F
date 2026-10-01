@@ -1,4 +1,4 @@
-﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿using HalloweenVN.Core;
+﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿using HalloweenVN.Core;
 using HalloweenVN.Dialogue;
 using HalloweenVN.Investigation;
 using HalloweenVN.Deduction;
@@ -927,14 +927,14 @@ namespace HalloweenVN.UI.Theme
             GameObject panel = UIHelper.CreatePanel("LanguagePanel", langRoot.transform, HalloweenTheme.PanelBackground);
             RectTransform panelRt = panel.GetComponent<RectTransform>();
             UIHelper.SetAnchors(panelRt, new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f));
-            panelRt.sizeDelta = new Vector2(500, 500);
+            panelRt.sizeDelta = new Vector2(500, 600);
 
             // Title
             GameObject titleObj = UIHelper.CreateUIObject("Title", panel.transform);
             RectTransform titleRt = titleObj.GetComponent<RectTransform>();
             UIHelper.SetAnchors(titleRt, new Vector2(0.5f, 1), new Vector2(0.5f, 1), new Vector2(0.5f, 1));
-        titleRt.anchoredPosition = new Vector2(0, 230);
-        titleRt.sizeDelta = new Vector2(750, 312);
+            titleRt.anchoredPosition = new Vector2(0, -40);
+            titleRt.sizeDelta = new Vector2(400, 60);
             Text titleText = CreateLegacyText(titleObj, "\uc5b8\uc5b4 \uc124\uc815", HalloweenTheme.AccentOrange, 28, TextAnchor.UpperCenter);
 
             // Buttons Container
@@ -942,7 +942,7 @@ namespace HalloweenVN.UI.Theme
             RectTransform langRt = langContainer.GetComponent<RectTransform>();
             UIHelper.SetAnchors(langRt, new Vector2(0.5f, 1), new Vector2(0.5f, 1), new Vector2(0.5f, 1));
             langRt.anchoredPosition = new Vector2(0, -90);
-            langRt.sizeDelta = new Vector2(300, 300);
+            langRt.sizeDelta = new Vector2(300, 400);
             VerticalLayoutGroup vlg = langContainer.AddComponent<VerticalLayoutGroup>();
             vlg.childControlWidth = false;
             vlg.childControlHeight = false;
@@ -955,7 +955,7 @@ namespace HalloweenVN.UI.Theme
             Button[] langBtns = new Button[langNames.Length];
             for (int i = 0; i < langNames.Length; i++)
             {
-                var btnTuple = CreateLegacyButton(langContainer.transform, langNames[i], 300, 45, HalloweenTheme.ButtonNormal);
+                var btnTuple = CreateLegacyButton(langContainer.transform, langNames[i], 300, 65, HalloweenTheme.ButtonNormal);
                 langBtns[i] = btnTuple.btn;
                 
                 // Disable color tint to preserve our manual coloring logic in LanguageUI
@@ -1123,7 +1123,7 @@ namespace HalloweenVN.UI.Theme
             UIHelper.StretchFull(backlogPanel.GetComponent<RectTransform>());
 
             // Semi-transparent overlay
-            UIHelper.AddImage(backlogPanel, new Color(0, 0, 0, 0.8f));
+            UIHelper.AddImage(backlogPanel, new Color(0, 0, 0, 1f));
 
             // Scroll area
             GameObject scrollObj = UIHelper.CreateUIObject("ScrollView", backlogPanel.transform);
@@ -1271,8 +1271,8 @@ namespace HalloweenVN.UI.Theme
                 // Base Y is lowered further to 10 and -220
                 float xShift = ci * 8f;
                 float yShift = ci * 8f;
-                folderRt.offsetMin = new Vector2(250 + xShift, 80 + yShift);
-                folderRt.offsetMax = new Vector2(-250 + xShift, -180 + yShift);
+                folderRt.offsetMin = new Vector2(250 + xShift, 50 + yShift);
+                folderRt.offsetMax = new Vector2(-250 + xShift, -210 + yShift);
 
                 // ===== Body (main content area) =====
                 // Create body FIRST so it renders behind the tab
@@ -1305,9 +1305,9 @@ namespace HalloweenVN.UI.Theme
                 float rightOffset = (ci == folderCount - 1) ? 0f : -3f;
                 
                 // Sit flush with the body vertically
-                tabContainerRt.anchoredPosition = new Vector2(0, 55);
+                tabContainerRt.anchoredPosition = new Vector2(0, 70);
                 tabContainerRt.offsetMin = new Vector2(leftOffset, 0);
-                tabContainerRt.offsetMax = new Vector2(rightOffset, 55);
+                tabContainerRt.offsetMax = new Vector2(rightOffset, 70);
                 
                 // Add invisible image to container to receive clicks
                 UIHelper.AddImage(tabContainerObj, new Color(0, 0, 0, 0));
@@ -1334,7 +1334,8 @@ namespace HalloweenVN.UI.Theme
                 Image seamImg = UIHelper.AddImage(seamObj, folderBodyDefault);
 
                 // Tab text - Make it a child of TabContainer so it perfectly centers in the visible area!
-                GameObject tabTextObj = UIHelper.CreateUIObject("Text", tabContainerObj.transform);                RectTransform tabTextRt = tabTextObj.GetComponent<RectTransform>();
+                GameObject tabTextObj = UIHelper.CreateUIObject("Text", tabContainerObj.transform);
+                RectTransform tabTextRt = tabTextObj.GetComponent<RectTransform>();
                 UIHelper.StretchFull(tabTextRt);
                 
                 // Visual balancing: shift first tab right (away from hard left edge) and last tab left (away from hard right edge)
@@ -1343,8 +1344,8 @@ namespace HalloweenVN.UI.Theme
                 else if (ci == folderCount - 1) xOffset = 0f;
                 
                 // Shift text down slightly to the dead center (removed previous +5 upward bias)
-                tabTextRt.offsetMin = new Vector2(xOffset, 0);
-                tabTextRt.offsetMax = new Vector2(xOffset, 0);
+                tabTextRt.offsetMin = new Vector2(xOffset, -10);
+                tabTextRt.offsetMax = new Vector2(xOffset, -10);
                 TextMeshProUGUI tabText = UIHelper.AddText(tabTextObj, charNames[ci], Color.black, 45, TextAlignmentOptions.Center);
                 if (hwFontAsset != null) tabText.font = hwFontAsset;
                 tabText.fontStyle = FontStyles.Bold;

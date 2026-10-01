@@ -89,9 +89,9 @@ namespace HalloweenVN.UI {
             if (!SettingsData.UseHandwritingFont) return "MalgunGothic";
             switch (lang) {
                 case GameLanguage.English: return "Caveat-Regular";
-                case GameLanguage.Japanese: return "ZenKurenaido-Regular";
+                case GameLanguage.Japanese: return "YujiSyuku-Regular";
                 case GameLanguage.ChineseSimplified: return "MaShanZheng-Regular";
-                case GameLanguage.ChineseTraditional: return "ZenKurenaido-Regular";
+                case GameLanguage.ChineseTraditional: return "YujiSyuku-Regular";
                 default: return "NanumPenScript";
             }
         }

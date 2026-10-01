@@ -33,7 +33,10 @@
         "backgroundSprite": "",
         "command": "",
         "choices": [],
-        "nextNodeId": 3
+        "nextNodeId": 3,
+        "characterSpriteCenter": "",
+        "characterSpriteLeft": "Characters/하루카/미소",
+        "characterSpriteRight": "Characters/리나/기본"
     },
     {
         "id": 3,
@@ -57,7 +60,10 @@
         "backgroundSprite": "",
         "command": "",
         "choices": [],
-        "nextNodeId": 5
+        "nextNodeId": 5,
+        "characterSpriteCenter": "",
+        "characterSpriteLeft": "Characters/하루카/웃음",
+        "characterSpriteRight": "Characters/리나/기본"
     },
     {
         "id": 5,
@@ -69,7 +75,10 @@
         "backgroundSprite": "",
         "command": "",
         "choices": [],
-        "nextNodeId": 6
+        "nextNodeId": 6,
+        "characterSpriteCenter": "",
+        "characterSpriteLeft": "Characters/하루카/기본",
+        "characterSpriteRight": "Characters/리나/찡그림"
     },
     {
         "id": 6,
@@ -81,7 +90,10 @@
         "backgroundSprite": "",
         "command": "",
         "choices": [],
-        "nextNodeId": 7
+        "nextNodeId": 7,
+        "characterSpriteCenter": "",
+        "characterSpriteLeft": "Characters/하루카/삐짐",
+        "characterSpriteRight": "Characters/리나/기본"
     },
     {
         "id": 7,
@@ -93,7 +105,10 @@
         "backgroundSprite": "",
         "command": "",
         "choices": [],
-        "nextNodeId": 8
+        "nextNodeId": 8,
+        "characterSpriteCenter": "Characters/리리스/기본",
+        "characterSpriteLeft": "",
+        "characterSpriteRight": ""
     },
     {
         "id": 8,
@@ -117,7 +132,10 @@
         "backgroundSprite": "",
         "command": "",
         "choices": [],
-        "nextNodeId": 10
+        "nextNodeId": 10,
+        "characterSpriteCenter": "",
+        "characterSpriteLeft": "Characters/카스미/미소",
+        "characterSpriteRight": ""
     },
     {
         "id": 10,
@@ -141,7 +159,10 @@
         "backgroundSprite": "",
         "command": "",
         "choices": [],
-        "nextNodeId": 12
+        "nextNodeId": 12,
+        "characterSpriteCenter": "",
+        "characterSpriteLeft": "Characters/카스미/기본",
+        "characterSpriteRight": ""
     },
     {
         "id": 12,
@@ -177,7 +198,10 @@
         "backgroundSprite": "",
         "command": "",
         "choices": [],
-        "nextNodeId": 15
+        "nextNodeId": 15,
+        "characterSpriteCenter": "Characters/미나/기본",
+        "characterSpriteLeft": "",
+        "characterSpriteRight": ""
     },
     {
         "id": 15,
@@ -213,7 +237,10 @@
         "backgroundSprite": "",
         "command": "",
         "choices": [],
-        "nextNodeId": 18
+        "nextNodeId": 18,
+        "characterSpriteCenter": "",
+        "characterSpriteLeft": "Characters/리리스/기본",
+        "characterSpriteRight": "Characters/리나/기본"
     },
     {
         "id": 18,
@@ -225,7 +252,10 @@
         "backgroundSprite": "",
         "command": "",
         "choices": [],
-        "nextNodeId": 19
+        "nextNodeId": 19,
+        "characterSpriteCenter": "",
+        "characterSpriteLeft": "Characters/리리스/기본",
+        "characterSpriteRight": "Characters/리나/웃음"
     },
     {
         "id": 19,
@@ -237,7 +267,10 @@
         "backgroundSprite": "",
         "command": "",
         "choices": [],
-        "nextNodeId": 20
+        "nextNodeId": 20,
+        "characterSpriteCenter": "",
+        "characterSpriteLeft": "Characters/세이카/찡그림",
+        "characterSpriteRight": "Characters/카스미/기본"
     },
     {
         "id": 20,
@@ -249,7 +282,10 @@
         "backgroundSprite": "",
         "command": "",
         "choices": [],
-        "nextNodeId": 21
+        "nextNodeId": 21,
+        "characterSpriteCenter": "",
+        "characterSpriteLeft": "Characters/세이카/기본",
+        "characterSpriteRight": "Characters/카스미/기본"
     },
     {
         "id": 21,
@@ -261,7 +297,10 @@
         "backgroundSprite": "",
         "command": "",
         "choices": [],
-        "nextNodeId": 22
+        "nextNodeId": 22,
+        "characterSpriteCenter": "",
+        "characterSpriteLeft": "Characters/세이카/기본",
+        "characterSpriteRight": "Characters/리나/놀람"
     },
     {
         "id": 22,
@@ -273,7 +312,10 @@
         "backgroundSprite": "",
         "command": "",
         "choices": [],
-        "nextNodeId": 23
+        "nextNodeId": 23,
+        "characterSpriteCenter": "",
+        "characterSpriteLeft": "Characters/세이카/기본",
+        "characterSpriteRight": "Characters/카스미/기본"
     },
     {
         "id": 23,
@@ -285,7 +327,10 @@
         "backgroundSprite": "",
         "command": "",
         "choices": [],
-        "nextNodeId": 24
+        "nextNodeId": 24,
+        "characterSpriteCenter": "",
+        "characterSpriteLeft": "Characters/리리스/기본",
+        "characterSpriteRight": "Characters/카스미/기본"
     },
     {
         "id": 24,
@@ -309,7 +354,10 @@
         "backgroundSprite": "",
         "command": "",
         "choices": [],
-        "nextNodeId": 26
+        "nextNodeId": 26,
+        "characterSpriteCenter": "",
+        "characterSpriteLeft": "Characters/미나/음침",
+        "characterSpriteRight": "Characters/카스미/기본"
     },
     {
         "id": 26,
@@ -321,7 +369,10 @@
         "backgroundSprite": "",
         "command": "",
         "choices": [],
-        "nextNodeId": 27
+        "nextNodeId": 27,
+        "characterSpriteCenter": "",
+        "characterSpriteLeft": "Characters/미나/기본",
+        "characterSpriteRight": "Characters/카스미/기본"
     },
     {
         "id": 27,
@@ -333,7 +384,10 @@
         "backgroundSprite": "",
         "command": "",
         "choices": [],
-        "nextNodeId": 28
+        "nextNodeId": 28,
+        "characterSpriteCenter": "",
+        "characterSpriteLeft": "Characters/리나/기본",
+        "characterSpriteRight": "Characters/하루카/놀람"
     },
     {
         "id": 28,
@@ -345,7 +399,10 @@
         "backgroundSprite": "",
         "command": "",
         "choices": [],
-        "nextNodeId": 29
+        "nextNodeId": 29,
+        "characterSpriteCenter": "",
+        "characterSpriteLeft": "Characters/리나/기본",
+        "characterSpriteRight": "Characters/하루카/놀람"
     },
     {
         "id": 29,
@@ -357,7 +414,10 @@
         "backgroundSprite": "",
         "command": "",
         "choices": [],
-        "nextNodeId": 30
+        "nextNodeId": 30,
+        "characterSpriteCenter": "",
+        "characterSpriteLeft": "Characters/리나/찡그림",
+        "characterSpriteRight": "Characters/하루카/놀람"
     },
     {
         "id": 30,
@@ -369,7 +429,10 @@
         "backgroundSprite": "",
         "command": "",
         "choices": [],
-        "nextNodeId": 31
+        "nextNodeId": 31,
+        "characterSpriteCenter": "",
+        "characterSpriteLeft": "Characters/세이카/당황",
+        "characterSpriteRight": "Characters/리나/기본"
     },
     {
         "id": 31,
@@ -381,7 +444,10 @@
         "backgroundSprite": "",
         "command": "",
         "choices": [],
-        "nextNodeId": 32
+        "nextNodeId": 32,
+        "characterSpriteCenter": "Characters/리나/기본",
+        "characterSpriteLeft": "Characters/리리스/기본",
+        "characterSpriteRight": "Characters/카스미/기본"
     },
     {
         "id": 32,
@@ -393,7 +459,10 @@
         "backgroundSprite": "",
         "command": "",
         "choices": [],
-        "nextNodeId": 33
+        "nextNodeId": 33,
+        "characterSpriteCenter": "Characters/리나/놀람",
+        "characterSpriteLeft": "Characters/리리스/기본",
+        "characterSpriteRight": "Characters/카스미/기본"
     },
     {
         "id": 33,
@@ -405,7 +474,10 @@
         "backgroundSprite": "",
         "command": "",
         "choices": [],
-        "nextNodeId": 34
+        "nextNodeId": 34,
+        "characterSpriteCenter": "Characters/리나/기본",
+        "characterSpriteLeft": "Characters/리리스/기본",
+        "characterSpriteRight": "Characters/카스미/기본"
     },
     {
         "id": 34,
@@ -417,7 +489,10 @@
         "backgroundSprite": "",
         "command": "",
         "choices": [],
-        "nextNodeId": 35
+        "nextNodeId": 35,
+        "characterSpriteCenter": "Characters/리나/기본",
+        "characterSpriteLeft": "Characters/리리스/기본",
+        "characterSpriteRight": "Characters/카스미/기본"
     },
     {
         "id": 35,
@@ -429,7 +504,10 @@
         "backgroundSprite": "",
         "command": "",
         "choices": [],
-        "nextNodeId": 36
+        "nextNodeId": 36,
+        "characterSpriteCenter": "Characters/리나/기본",
+        "characterSpriteLeft": "Characters/미나/기본",
+        "characterSpriteRight": "Characters/카스미/기본"
     },
     {
         "id": 36,
@@ -441,7 +519,10 @@
         "backgroundSprite": "",
         "command": "",
         "choices": [],
-        "nextNodeId": 37
+        "nextNodeId": 37,
+        "characterSpriteCenter": "Characters/리나/놀람",
+        "characterSpriteLeft": "Characters/미나/당황",
+        "characterSpriteRight": "Characters/카스미/기본"
     },
     {
         "id": 37,
@@ -453,7 +534,10 @@
         "backgroundSprite": "",
         "command": "",
         "choices": [],
-        "nextNodeId": 38
+        "nextNodeId": 38,
+        "characterSpriteCenter": "Characters/리나/기본",
+        "characterSpriteLeft": "Characters/미나/기본",
+        "characterSpriteRight": "Characters/카스미/기본"
     },
     {
         "id": 38,
@@ -465,7 +549,10 @@
         "backgroundSprite": "",
         "command": "",
         "choices": [],
-        "nextNodeId": 39
+        "nextNodeId": 39,
+        "characterSpriteCenter": "Characters/리나/기본",
+        "characterSpriteLeft": "Characters/미나/당황",
+        "characterSpriteRight": "Characters/카스미/찡그림"
     },
     {
         "id": 39,
@@ -477,7 +564,10 @@
         "backgroundSprite": "",
         "command": "",
         "choices": [],
-        "nextNodeId": 40
+        "nextNodeId": 40,
+        "characterSpriteCenter": "",
+        "characterSpriteLeft": "Characters/세이카/기본",
+        "characterSpriteRight": "Characters/리나/기본"
     },
     {
         "id": 40,
@@ -489,7 +579,10 @@
         "backgroundSprite": "",
         "command": "",
         "choices": [],
-        "nextNodeId": 41
+        "nextNodeId": 41,
+        "characterSpriteCenter": "",
+        "characterSpriteLeft": "Characters/세이카/기본",
+        "characterSpriteRight": "Characters/리나/기본"
     },
     {
         "id": 41,
@@ -501,7 +594,10 @@
         "backgroundSprite": "",
         "command": "",
         "choices": [],
-        "nextNodeId": 42
+        "nextNodeId": 42,
+        "characterSpriteCenter": "",
+        "characterSpriteLeft": "Characters/세이카/기본",
+        "characterSpriteRight": "Characters/리나/웃음"
     },
     {
         "id": 42,
@@ -513,7 +609,10 @@
         "backgroundSprite": "",
         "command": "",
         "choices": [],
-        "nextNodeId": 43
+        "nextNodeId": 43,
+        "characterSpriteCenter": "",
+        "characterSpriteLeft": "Characters/세이카/기본",
+        "characterSpriteRight": "Characters/리나/기본"
     },
     {
         "id": 43,
@@ -537,7 +636,10 @@
         "backgroundSprite": "",
         "command": "",
         "choices": [],
-        "nextNodeId": 45
+        "nextNodeId": 45,
+        "characterSpriteCenter": "",
+        "characterSpriteLeft": "Characters/세이카/기본",
+        "characterSpriteRight": "Characters/리나/기본"
     },
     {
         "id": 45,
@@ -669,7 +771,10 @@
         "backgroundSprite": "",
         "command": "",
         "choices": [],
-        "nextNodeId": 56
+        "nextNodeId": 56,
+        "characterSpriteCenter": "",
+        "characterSpriteLeft": "Characters/리나/측은",
+        "characterSpriteRight": "Characters/카스미/기본"
     },
     {
         "id": 56,
@@ -681,7 +786,10 @@
         "backgroundSprite": "",
         "command": "",
         "choices": [],
-        "nextNodeId": 57
+        "nextNodeId": 57,
+        "characterSpriteCenter": "",
+        "characterSpriteLeft": "Characters/리나/측은",
+        "characterSpriteRight": "Characters/카스미/미소"
     },
     {
         "id": 57,
@@ -693,7 +801,10 @@
         "backgroundSprite": "",
         "command": "",
         "choices": [],
-        "nextNodeId": 58
+        "nextNodeId": 58,
+        "characterSpriteCenter": "Characters/하루카/웃음",
+        "characterSpriteLeft": "",
+        "characterSpriteRight": ""
     },
     {
         "id": 58,
@@ -717,7 +828,10 @@
         "backgroundSprite": "",
         "command": "",
         "choices": [],
-        "nextNodeId": 60
+        "nextNodeId": 60,
+        "characterSpriteCenter": "Characters/세이카/웃음",
+        "characterSpriteLeft": "",
+        "characterSpriteRight": ""
     },
     {
         "id": 60,
@@ -765,7 +879,10 @@
         "backgroundSprite": "",
         "command": "",
         "choices": [],
-        "nextNodeId": 64
+        "nextNodeId": 64,
+        "characterSpriteCenter": "",
+        "characterSpriteLeft": "Characters/하루카/놀람",
+        "characterSpriteRight": "Characters/세이카/웃음"
     },
     {
         "id": 64,
@@ -777,7 +894,10 @@
         "backgroundSprite": "",
         "command": "",
         "choices": [],
-        "nextNodeId": 65
+        "nextNodeId": 65,
+        "characterSpriteCenter": "",
+        "characterSpriteLeft": "Characters/하루카/놀람",
+        "characterSpriteRight": "Characters/세이카/웃음"
     },
     {
         "id": 65,

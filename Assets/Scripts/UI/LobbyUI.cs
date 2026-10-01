@@ -316,7 +316,7 @@ namespace HalloweenVN.UI
             msgRt.anchoredPosition = new Vector2(0, -210);
             msgRt.sizeDelta = new Vector2( 760, 250);
             
-            string preAlphaMsg = "현재 오블리비언은 '<color=#80C0FF>프리 알파</color>(소프트웨어나 게임 개발 과정에서 정식 알파 테스트 이전의 초기 제작 및 설계 단계)'에 있습니다!\n\n게임의 품질이 낮을 수 있는 점 양해 바랍니다!";
+            string preAlphaMsg = "현재 오블리비언은 '<color=#80C0FF>프리 알파</color>(소프트웨어나 게임 개발 과정에서 정식 알파 테스트 이전의 초기 제작 및 설계 단계)'에 있습니다!\n\n게임의 품질이 낮을 수 있는 점 양해 바랍니다!\n\n일부 백그라운드 배경은 임시로 AI를 사용했음을 알려드립니다.";
             
             TextMeshProUGUI msgText = Theme.UIHelper.AddText(msgObj, preAlphaMsg, new Color32(230, 230, 230, 255),  SettingsData.UseHandwritingFont ? 28 : 22, TextAlignmentOptions.Center);
             msgText.lineSpacing =  5f;
