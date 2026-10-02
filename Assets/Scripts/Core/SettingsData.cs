@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 namespace HalloweenVN.Core
 {
@@ -62,6 +62,11 @@ namespace HalloweenVN.Core
 
         public static void ApplyPerformanceMode()
         {
+#if UNITY_WEBGL && !UNITY_EDITOR
+            // WebGL: let the browser's requestAnimationFrame handle frame pacing
+            QualitySettings.vSyncCount = 0;
+            Application.targetFrameRate = (PerformanceMode == 0) ? 30 : -1;
+#else
             if (PerformanceMode == 0) // Power Saving
             {
                 Application.targetFrameRate = 30;
@@ -72,6 +77,7 @@ namespace HalloweenVN.Core
                 Application.targetFrameRate = 60;
                 QualitySettings.vSyncCount = 1;
             }
+#endif
         }
 
         public static void ResetToDefaults()

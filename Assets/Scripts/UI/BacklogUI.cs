@@ -224,6 +224,12 @@ namespace HalloweenVN.UI
                 return;
             }
 
+            // Pre-compute font and color strings once outside the loop
+            string globalFontName = HalloweenVN.UI.FontHelper.GetFontNameForLanguage(SettingsData.Language);
+            var cachedFont = HalloweenVN.UI.FontHelper.GetTMPFont(globalFontName);
+            string speakerColorHex = ColorUtility.ToHtmlStringRGB(HalloweenTheme.TextSpeaker);
+            string textColorHex = ColorUtility.ToHtmlStringRGB(HalloweenTheme.TextPrimary);
+
             for (int i = 0; i < history.Count; i++)
             {
                 var entry = history[i];
@@ -274,23 +280,18 @@ namespace HalloweenVN.UI
                     GameObject speakerObj = new GameObject("Speaker");
                     speakerObj.transform.SetParent(entryObj.transform, false);
                     var speakerTxt = speakerObj.AddComponent<TextMeshProUGUI>();
-                    speakerTxt.text = $"<color=#{ColorUtility.ToHtmlStringRGB(HalloweenTheme.TextSpeaker)}>{entry.speaker}</color>";
+                    speakerTxt.text = $"<color=#{speakerColorHex}>{entry.speaker}</color>";
                     speakerTxt.fontSize = 32;
-                    string fontName = HalloweenVN.UI.FontHelper.GetFontNameForLanguage(SettingsData.Language);
-                    var tmpFont = HalloweenVN.UI.FontHelper.GetTMPFont(fontName);
-                    if (tmpFont != null) speakerTxt.font = tmpFont;
+                    if (cachedFont != null) speakerTxt.font = cachedFont;
                 }
                 
                 // Add Dialogue Text
                 GameObject textObj = new GameObject("Text");
                 textObj.transform.SetParent(entryObj.transform, false);
                 var dialogueTxt = textObj.AddComponent<TextMeshProUGUI>();
-                dialogueTxt.text = $"<color=#{ColorUtility.ToHtmlStringRGB(HalloweenTheme.TextPrimary)}>{entry.text}</color>";
+                dialogueTxt.text = $"<color=#{textColorHex}>{entry.text}</color>";
                 dialogueTxt.fontSize = 30;
-                
-                string fontName2 = HalloweenVN.UI.FontHelper.GetFontNameForLanguage(SettingsData.Language);
-                var tmpFont2 = HalloweenVN.UI.FontHelper.GetTMPFont(fontName2);
-                if (tmpFont2 != null) dialogueTxt.font = tmpFont2;
+                if (cachedFont != null) dialogueTxt.font = cachedFont;
             }
         }
         

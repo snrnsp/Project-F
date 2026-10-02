@@ -1,4 +1,4 @@
-﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿using System.Collections;
+﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -31,6 +31,11 @@ namespace HalloweenVN.UI
         [SerializeField] private Text autoButtonText;
         [SerializeField] private Text backlogButtonText;
 // ═══════════ Typing & Auto ═══════════
+        private BacklogUI _cachedBacklogUI;
+        private WaitForSeconds _cachedNewlineDelay = new WaitForSeconds(0.15f);
+        private WaitForSeconds _cachedTextDelay;
+        private float _lastTextSpeed = -1f;
+
         private Coroutine typingCoroutine;
         private Coroutine autoPlayCoroutine;
         private bool isTyping;
@@ -844,9 +849,18 @@ namespace HalloweenVN.UI
         }
 
         // ═══════════ Sprite Loading ═══════════
+        private static Dictionary<string, Sprite> _spriteCache = new Dictionary<string, Sprite>();
+
         private void LoadSpriteToImage(Image img, string spritePath)
         {
             if (img == null || string.IsNullOrEmpty(spritePath)) return;
+
+            if (_spriteCache.TryGetValue(spritePath, out Sprite cachedSprite))
+            {
+                img.sprite = cachedSprite;
+                img.enabled = true;
+                return;
+            }
 
             Sprite sprite = Resources.Load<Sprite>(spritePath);
 
@@ -867,6 +881,7 @@ namespace HalloweenVN.UI
 
             if (sprite != null)
             {
+                _spriteCache[spritePath] = sprite;
                 img.sprite = sprite;
                 img.enabled = true;
             }
@@ -999,12 +1014,17 @@ namespace HalloweenVN.UI
                     char c = target.textInfo.characterInfo[visibleCount - 1].character;
                     if (c == '\n')
                     {
-                        yield return new WaitForSeconds( 0.15f);
+                        yield return _cachedNewlineDelay;
                     }
                 }
                 
                 visibleCount++;
-                yield return new WaitForSeconds(SettingsData.TextSpeed);
+                if (_lastTextSpeed != SettingsData.TextSpeed)
+                {
+                    _lastTextSpeed = SettingsData.TextSpeed;
+                    _cachedTextDelay = new WaitForSeconds(_lastTextSpeed);
+                }
+                yield return _cachedTextDelay;
             }
 
             isTyping = false;
@@ -1096,10 +1116,14 @@ namespace HalloweenVN.UI
             // 2. Mouse Scroll Up to open Backlog
             if (Mouse.current != null && Mouse.current.scroll.ReadValue().y > 0)
             {
-                var backlog = Object.FindFirstObjectByType<BacklogUI>(UnityEngine.FindObjectsInactive.Include);
-                if (backlog != null && !backlog.IsOpen)
+                if (_cachedBacklogUI == null)
                 {
-                    backlog.ShowBacklog();
+                    _cachedBacklogUI = Object.FindFirstObjectByType<BacklogUI>(UnityEngine.FindObjectsInactive.Include);
+                }
+
+                if (_cachedBacklogUI != null && !_cachedBacklogUI.IsOpen)
+                {
+                    _cachedBacklogUI.ShowBacklog();
                 }
             }
 

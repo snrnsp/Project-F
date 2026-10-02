@@ -1,4 +1,4 @@
-﻿﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,6 +17,9 @@ namespace HalloweenVN.Dialogue
         public event Action<List<DialogueChoice>> OnChoicesDisplayed;
 
         public bool IsPlaying { get; private set; }
+
+        private static Dictionary<string, DialogueContainer> dialogueCache = new Dictionary<string, DialogueContainer>();
+        private Dictionary<int, DialogueNode> nodeLookup = new Dictionary<int, DialogueNode>();
 
         private DialogueContainer currentDialogue;
         public string CurrentDialogueId => currentDialogue?.dialogueId;
@@ -67,7 +70,15 @@ namespace HalloweenVN.Dialogue
         public void StartDialogue(string dialogueId)
         {
             Debug.Log($"[DialogueManager] StartDialogue called with id: {dialogueId}");
-            DialogueContainer container = DataLoader.LoadDialogue(dialogueId);
+            if (!dialogueCache.TryGetValue(dialogueId, out DialogueContainer container))
+            {
+                container = DataLoader.LoadDialogue(dialogueId);
+                if (container != null)
+                {
+                    dialogueCache[dialogueId] = container;
+                }
+            }
+
             if (container != null)
             {
                 Debug.Log($"[DialogueManager] Loaded dialogue '{dialogueId}' with {container.nodes?.Count ?? 0} nodes");
@@ -83,9 +94,22 @@ namespace HalloweenVN.Dialogue
         /// Starts a dialogue using the provided container.
         /// </summary>
         /// <param name="container">The dialogue container.</param>
+        private void BuildNodeLookup()
+        {
+            nodeLookup.Clear();
+            if (currentDialogue != null && currentDialogue.nodes != null)
+            {
+                foreach (var node in currentDialogue.nodes)
+                {
+                    nodeLookup[node.id] = node;
+                }
+            }
+        }
+
         public void StartDialogue(DialogueContainer container)
         {
             currentDialogue = container;
+            BuildNodeLookup();
             IsPlaying = true;
             OnDialogueStarted?.Invoke();
             
@@ -112,8 +136,16 @@ namespace HalloweenVN.Dialogue
             
             
             // 1. Load Dialogue Container
-            currentDialogue = HalloweenVN.Data.DataLoader.LoadDialogue(targetDialogueId);
+            if (!dialogueCache.TryGetValue(targetDialogueId, out currentDialogue))
+            {
+                currentDialogue = HalloweenVN.Data.DataLoader.LoadDialogue(targetDialogueId);
+                if (currentDialogue != null)
+                {
+                    dialogueCache[targetDialogueId] = currentDialogue;
+                }
+            }
             if (currentDialogue == null) return;
+            BuildNodeLookup();
             
             // 2. Clear current visual state
             var ui = UnityEngine.Object.FindAnyObjectByType<HalloweenVN.UI.DialogueUI>();
@@ -248,8 +280,25 @@ namespace HalloweenVN.Dialogue
                 // Fade to black
                 yield return fx.FadeToBlack(1f);
                 
-                // Wait 1 second in darkness
-                yield return new WaitForSeconds(1f);
+                // Wait 1 second in darkness, skipping if Ctrl is pressed
+                float waitElapsed = 0f;
+                while (waitElapsed < 1f)
+                {
+                    bool isFastForwarding = false;
+                    if (UnityEngine.InputSystem.Keyboard.current != null)
+                    {
+                        var keyOption = HalloweenVN.Core.SettingsData.SkipKey;
+                        if (keyOption == HalloweenVN.Core.SettingsData.SkipKeyOption.Ctrl)
+                            isFastForwarding = UnityEngine.InputSystem.Keyboard.current.leftCtrlKey.isPressed || UnityEngine.InputSystem.Keyboard.current.rightCtrlKey.isPressed;
+                        else if (keyOption == HalloweenVN.Core.SettingsData.SkipKeyOption.Shift)
+                            isFastForwarding = UnityEngine.InputSystem.Keyboard.current.leftShiftKey.isPressed || UnityEngine.InputSystem.Keyboard.current.rightShiftKey.isPressed;
+                        else if (keyOption == HalloweenVN.Core.SettingsData.SkipKeyOption.Space)
+                            isFastForwarding = UnityEngine.InputSystem.Keyboard.current.spaceKey.isPressed;
+                    }
+                    
+                    waitElapsed += Time.unscaledDeltaTime * (isFastForwarding ? 10f : 1f);
+                    yield return null;
+                }
                 
                 // Change the scene behind the black screen
                 EndDialogue();
@@ -329,9 +378,9 @@ namespace HalloweenVN.Dialogue
 
         private DialogueNode FindNode(int nodeId)
         {
-            if (currentDialogue != null && currentDialogue.nodes != null)
+            if (nodeLookup.TryGetValue(nodeId, out DialogueNode node))
             {
-                return currentDialogue.nodes.Find(n => n.id == nodeId);
+                return node;
             }
             return null;
         }

@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 
@@ -20,6 +20,21 @@ namespace HalloweenVN.Effects
         private Vector3 _originalCameraPos;
         private bool _hasOriginalCameraPos;
         private Camera _mainCam;
+        
+        private bool IsFastForwarding
+        {
+            get
+            {
+                if (UnityEngine.InputSystem.Keyboard.current == null) return false;
+                if (HalloweenVN.Core.SettingsData.SkipKey == HalloweenVN.Core.SettingsData.SkipKeyOption.Ctrl)
+                    return UnityEngine.InputSystem.Keyboard.current.leftCtrlKey.isPressed || UnityEngine.InputSystem.Keyboard.current.rightCtrlKey.isPressed;
+                if (HalloweenVN.Core.SettingsData.SkipKey == HalloweenVN.Core.SettingsData.SkipKeyOption.Shift)
+                    return UnityEngine.InputSystem.Keyboard.current.leftShiftKey.isPressed || UnityEngine.InputSystem.Keyboard.current.rightShiftKey.isPressed;
+                if (HalloweenVN.Core.SettingsData.SkipKey == HalloweenVN.Core.SettingsData.SkipKeyOption.Space)
+                    return UnityEngine.InputSystem.Keyboard.current.spaceKey.isPressed;
+                return false;
+            }
+        }
 
         private void Awake()
         {
@@ -90,7 +105,7 @@ namespace HalloweenVN.Effects
                 float offsetX = Random.Range(-1f, 1f) * magnitude;
                 float offsetY = Random.Range(-1f, 1f) * magnitude;
                 _mainCam.transform.localPosition = _originalCameraPos + new Vector3(offsetX, offsetY, 0f);
-                elapsed += Time.unscaledDeltaTime;
+                elapsed += Time.unscaledDeltaTime * (IsFastForwarding ? 10f : 1f);
                 yield return null;
             }
 
@@ -117,7 +132,7 @@ namespace HalloweenVN.Effects
 
             while (elapsed < duration)
             {
-                elapsed += Time.unscaledDeltaTime;
+                elapsed += Time.unscaledDeltaTime * (IsFastForwarding ? 10f : 1f);
                 float alpha = Mathf.Lerp(color.a, 0f, elapsed / duration);
                 flashOverlay.color = new Color(color.r, color.g, color.b, alpha);
                 yield return null;
@@ -152,7 +167,7 @@ namespace HalloweenVN.Effects
 
             while (elapsed < duration)
             {
-                elapsed += Time.unscaledDeltaTime;
+                elapsed += Time.unscaledDeltaTime * (IsFastForwarding ? 10f : 1f);
                 float t = Mathf.SmoothStep(0f, 1f, elapsed / duration);
                 fadeOverlay.color = Color.Lerp(from, to, t);
                 yield return null;

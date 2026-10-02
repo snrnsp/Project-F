@@ -17,8 +17,33 @@ namespace HalloweenVN.UI {
             return rawFont;
         }
 
-                private static TMP_FontAsset GetKoreanFallback() {
+        private static TMP_FontAsset GetKoreanFallback() {
             if (_tmpFontCache.ContainsKey("KoreanFallback")) return _tmpFontCache["KoreanFallback"];
+
+            TMP_FontAsset prebakedSdf = Resources.Load<TMP_FontAsset>("Fonts/MalgunGothic SDF");
+            if (prebakedSdf != null) {
+                // To fix missing characters (□), create a lightweight dynamic fallback using the original TTF
+                if (prebakedSdf.fallbackFontAssetTable == null)
+                    prebakedSdf.fallbackFontAssetTable = new System.Collections.Generic.List<TMP_FontAsset>();
+                    
+                Font fallbackRawFont = GetFont("MalgunGothic");
+                if (fallbackRawFont != null) {
+                    bool hasDynamic = false;
+                    foreach (var fb in prebakedSdf.fallbackFontAssetTable) {
+                        if (fb != null && fb.name == "KoreanFallback Dynamic Addition") hasDynamic = true;
+                    }
+                    
+                    if (!hasDynamic) {
+                        TMP_FontAsset dynamicFallback = TMP_FontAsset.CreateFontAsset(fallbackRawFont);
+                        dynamicFallback.name = "KoreanFallback Dynamic Addition";
+                        prebakedSdf.fallbackFontAssetTable.Add(dynamicFallback);
+                    }
+                }
+                
+                _tmpFontCache["KoreanFallback"] = prebakedSdf;
+                return prebakedSdf;
+            }
+
             Font rawFont = GetFont("MalgunGothic");
             if (rawFont != null) {
                 TMP_FontAsset dynamicFallback = TMP_FontAsset.CreateFontAsset(rawFont);
@@ -54,10 +79,9 @@ namespace HalloweenVN.UI {
                 }
                 
                 // Adjust scales for notoriously large fonts
-                if (name == "ZenKurenaido-Regular" || name == "MaShanZheng-Regular") {
+                if (name == "MaShanZheng-Regular") {
                     var info = sdf.faceInfo;
-                    // Japanese handwriting font is naturally huge, scale it down to match others
-                    info.scale = name == "ZenKurenaido-Regular" ? 0.75f : 0.8f; 
+                    info.scale = 0.8f; 
                     sdf.faceInfo = info;
                 }
 
