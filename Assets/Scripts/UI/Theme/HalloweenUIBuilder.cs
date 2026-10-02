@@ -1,4 +1,4 @@
-﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿using HalloweenVN.Core;
+﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿using HalloweenVN.Core;
 using HalloweenVN.Dialogue;
 using HalloweenVN.Investigation;
 using HalloweenVN.Deduction;
@@ -354,9 +354,9 @@ namespace HalloweenVN.UI.Theme
             Image backgroundImage = UIHelper.AddImage(bgImgObj, new Color(1,1,1,0));
 
             // Character Images (Left, Center, Right) — Anchor-based like old project
-            Image characterImageLeft = CreateCharacterSlot("CharacterImageLeft", dialoguePanelRoot.transform, 0.2f);
+            Image characterImageLeft = CreateCharacterSlot("CharacterImageLeft", dialoguePanelRoot.transform, 0.25f);
             Image characterImageCenter = CreateCharacterSlot("CharacterImageCenter", dialoguePanelRoot.transform, 0.5f);
-            Image characterImageRight = CreateCharacterSlot("CharacterImageRight", dialoguePanelRoot.transform, 0.8f);
+            Image characterImageRight = CreateCharacterSlot("CharacterImageRight", dialoguePanelRoot.transform, 0.75f);
 
             // Dialogue Panel
             GameObject dialoguePanel = UIHelper.CreatePanel("DialoguePanel", dialoguePanelRoot.transform, HalloweenTheme.PanelBackground);

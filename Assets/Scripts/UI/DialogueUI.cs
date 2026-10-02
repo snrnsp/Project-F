@@ -1,4 +1,4 @@
-﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿using System.Collections;
+﻿﻿﻿﻿﻿﻿﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -636,18 +636,13 @@ namespace HalloweenVN.UI
         {
             if (_activeSpeakerPositions.Count == 0) return;
 
-            _tempPositionList.Clear();
-            foreach (var v in _activeSpeakerPositions.Values) _tempPositionList.Add(v);
-            _tempPositionList.Sort();
-
-            int n = _tempPositionList.Count;
-            for (int i = 0; i < n; i++)
+            foreach (var pos in _activeSpeakerPositions.Values)
             {
                 float targetX = 0.5f; // Default: center
-                if (n == 2) targetX = (i == 0) ? 0.25f : 0.75f;
-                else if (n == 3) targetX = (i == 0) ? 0.20f : (i == 1 ? 0.50f : 0.80f);
+                if (pos == CharacterPosition.Left) targetX = 0.25f;
+                else if (pos == CharacterPosition.Center) targetX = 0.5f;
+                else if (pos == CharacterPosition.Right) targetX = 0.75f;
 
-                CharacterPosition pos = _tempPositionList[i];
                 MoveCharacterTo(pos, targetX);
             }
         }

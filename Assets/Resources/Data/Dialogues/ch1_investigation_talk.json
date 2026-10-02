@@ -26,7 +26,7 @@
             "choices": [],
             "nextNodeId": 2,
             "command": "",
-            "noFade": false,
+            "noFade": true,
             "slideIn": false
         },
         {
@@ -34,8 +34,8 @@
             "speaker": "카스미",
             "text": "첫 번째, '먼지 없는 건반'. 건반에는 물리적인 압력이 가해진 흔적이 있지만, 기계 장치 같은 건 전혀 발견되지 않았습니다.",
             "characterSpriteLeft": "",
-            "characterSpriteCenter": "",
-            "characterSpriteRight": "Characters/카스미/기본",
+            "characterSpriteCenter": "Characters/카스미/기본",
+            "characterSpriteRight": "",
             "backgroundSprite": "",
             "choices": [],
             "nextNodeId": 3,
@@ -48,13 +48,13 @@
             "speaker": "카스미",
             "text": "즉, 눈에 보이지 않는 무언가가 피아노를 쳤다는 결론밖에 나오지 않습니다.",
             "characterSpriteLeft": "",
-            "characterSpriteCenter": "",
-            "characterSpriteRight": "Characters/카스미/찡그림",
+            "characterSpriteCenter": "Characters/카스미/찡그림",
+            "characterSpriteRight": "",
             "backgroundSprite": "",
             "choices": [],
             "nextNodeId": 4,
             "command": "",
-            "noFade": false,
+            "noFade": true,
             "slideIn": false
         },
         {
@@ -82,7 +82,7 @@
             "choices": [],
             "nextNodeId": 6,
             "command": "",
-            "noFade": false,
+            "noFade": true,
             "slideIn": false
         },
         {
@@ -110,7 +110,7 @@
             "choices": [],
             "nextNodeId": 8,
             "command": "",
-            "noFade": false,
+            "noFade": true,
             "slideIn": false
         },
         {
@@ -124,7 +124,7 @@
             "choices": [],
             "nextNodeId": 9,
             "command": "",
-            "noFade": false,
+            "noFade": true,
             "slideIn": false
         },
         {
@@ -152,15 +152,15 @@
             "choices": [],
             "nextNodeId": 11,
             "command": "",
-            "noFade": false,
+            "noFade": true,
             "slideIn": false
         },
         {
             "id": 11,
             "speaker": "카스미",
             "text": "부서진 메트로놈과 낡은 음악 잡지도 수거했습니다. 모든 증거의 연관성은 아직 단정 지을 수 없으니, 추리 단계에서 신중하게 판단해야 할 것입니다.",
-            "characterSpriteLeft": "Characters/카스미/기본",
-            "characterSpriteCenter": "",
+            "characterSpriteLeft": "",
+            "characterSpriteCenter": "Characters/카스미/기본",
             "characterSpriteRight": "",
             "backgroundSprite": "",
             "choices": [],
@@ -194,7 +194,7 @@
             "choices": [],
             "nextNodeId": 14,
             "command": "",
-            "noFade": false,
+            "noFade": true,
             "slideIn": false
         },
         {
@@ -208,7 +208,7 @@
             "choices": [],
             "nextNodeId": 15,
             "command": "",
-            "noFade": false,
+            "noFade": true,
             "slideIn": false
         },
         {
@@ -222,7 +222,7 @@
             "choices": [],
             "nextNodeId": 16,
             "command": "",
-            "noFade": false,
+            "noFade": true,
             "slideIn": false
         },
         {
@@ -250,7 +250,7 @@
             "choices": [],
             "nextNodeId": 18,
             "command": "",
-            "noFade": false,
+            "noFade": true,
             "slideIn": false
         },
         {
@@ -264,7 +264,7 @@
             "choices": [],
             "nextNodeId": 19,
             "command": "",
-            "noFade": false,
+            "noFade": true,
             "slideIn": false
         },
         {
@@ -278,7 +278,7 @@
             "choices": [],
             "nextNodeId": 20,
             "command": "",
-            "noFade": false,
+            "noFade": true,
             "slideIn": false
         },
         {

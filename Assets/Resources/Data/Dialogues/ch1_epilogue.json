@@ -78,7 +78,8 @@
         "nextNodeId": 6,
         "characterSpriteCenter": "",
         "characterSpriteLeft": "Characters/하루카/기본",
-        "characterSpriteRight": "Characters/리나/찡그림"
+        "characterSpriteRight": "Characters/리나/찡그림",
+        "noFade": true
     },
     {
         "id": 6,
@@ -93,7 +94,8 @@
         "nextNodeId": 7,
         "characterSpriteCenter": "",
         "characterSpriteLeft": "Characters/하루카/삐짐",
-        "characterSpriteRight": "Characters/리나/기본"
+        "characterSpriteRight": "Characters/리나/기본",
+        "noFade": true
     },
     {
         "id": 7,
@@ -133,8 +135,8 @@
         "command": "",
         "choices": [],
         "nextNodeId": 10,
-        "characterSpriteCenter": "",
-        "characterSpriteLeft": "Characters/카스미/미소",
+        "characterSpriteCenter": "Characters/카스미/미소",
+        "characterSpriteLeft": "",
         "characterSpriteRight": ""
     },
     {
@@ -160,8 +162,8 @@
         "command": "",
         "choices": [],
         "nextNodeId": 12,
-        "characterSpriteCenter": "",
-        "characterSpriteLeft": "Characters/카스미/기본",
+        "characterSpriteCenter": "Characters/카스미/기본",
+        "characterSpriteLeft": "",
         "characterSpriteRight": ""
     },
     {
@@ -255,7 +257,8 @@
         "nextNodeId": 19,
         "characterSpriteCenter": "",
         "characterSpriteLeft": "Characters/리리스/기본",
-        "characterSpriteRight": "Characters/리나/웃음"
+        "characterSpriteRight": "Characters/리나/웃음",
+        "noFade": true
     },
     {
         "id": 19,
@@ -285,7 +288,8 @@
         "nextNodeId": 21,
         "characterSpriteCenter": "",
         "characterSpriteLeft": "Characters/세이카/기본",
-        "characterSpriteRight": "Characters/카스미/기본"
+        "characterSpriteRight": "Characters/카스미/기본",
+        "noFade": true
     },
     {
         "id": 21,
@@ -372,7 +376,8 @@
         "nextNodeId": 27,
         "characterSpriteCenter": "",
         "characterSpriteLeft": "Characters/미나/기본",
-        "characterSpriteRight": "Characters/카스미/기본"
+        "characterSpriteRight": "Characters/카스미/기본",
+        "noFade": true
     },
     {
         "id": 27,
@@ -402,7 +407,8 @@
         "nextNodeId": 29,
         "characterSpriteCenter": "",
         "characterSpriteLeft": "Characters/리나/기본",
-        "characterSpriteRight": "Characters/하루카/놀람"
+        "characterSpriteRight": "Characters/하루카/놀람",
+        "noFade": true
     },
     {
         "id": 29,
@@ -417,7 +423,8 @@
         "nextNodeId": 30,
         "characterSpriteCenter": "",
         "characterSpriteLeft": "Characters/리나/찡그림",
-        "characterSpriteRight": "Characters/하루카/놀람"
+        "characterSpriteRight": "Characters/하루카/놀람",
+        "noFade": true
     },
     {
         "id": 30,
@@ -462,7 +469,8 @@
         "nextNodeId": 33,
         "characterSpriteCenter": "Characters/리나/놀람",
         "characterSpriteLeft": "Characters/리리스/기본",
-        "characterSpriteRight": "Characters/카스미/기본"
+        "characterSpriteRight": "Characters/카스미/기본",
+        "noFade": true
     },
     {
         "id": 33,
@@ -477,7 +485,8 @@
         "nextNodeId": 34,
         "characterSpriteCenter": "Characters/리나/기본",
         "characterSpriteLeft": "Characters/리리스/기본",
-        "characterSpriteRight": "Characters/카스미/기본"
+        "characterSpriteRight": "Characters/카스미/기본",
+        "noFade": true
     },
     {
         "id": 34,
@@ -492,7 +501,8 @@
         "nextNodeId": 35,
         "characterSpriteCenter": "Characters/리나/기본",
         "characterSpriteLeft": "Characters/리리스/기본",
-        "characterSpriteRight": "Characters/카스미/기본"
+        "characterSpriteRight": "Characters/카스미/기본",
+        "noFade": true
     },
     {
         "id": 35,
@@ -522,7 +532,8 @@
         "nextNodeId": 37,
         "characterSpriteCenter": "Characters/리나/놀람",
         "characterSpriteLeft": "Characters/미나/당황",
-        "characterSpriteRight": "Characters/카스미/기본"
+        "characterSpriteRight": "Characters/카스미/기본",
+        "noFade": true
     },
     {
         "id": 37,
@@ -537,7 +548,8 @@
         "nextNodeId": 38,
         "characterSpriteCenter": "Characters/리나/기본",
         "characterSpriteLeft": "Characters/미나/기본",
-        "characterSpriteRight": "Characters/카스미/기본"
+        "characterSpriteRight": "Characters/카스미/기본",
+        "noFade": true
     },
     {
         "id": 38,
@@ -552,7 +564,8 @@
         "nextNodeId": 39,
         "characterSpriteCenter": "Characters/리나/기본",
         "characterSpriteLeft": "Characters/미나/당황",
-        "characterSpriteRight": "Characters/카스미/찡그림"
+        "characterSpriteRight": "Characters/카스미/찡그림",
+        "noFade": true
     },
     {
         "id": 39,
@@ -582,7 +595,8 @@
         "nextNodeId": 41,
         "characterSpriteCenter": "",
         "characterSpriteLeft": "Characters/세이카/기본",
-        "characterSpriteRight": "Characters/리나/기본"
+        "characterSpriteRight": "Characters/리나/기본",
+        "noFade": true
     },
     {
         "id": 41,
@@ -597,7 +611,8 @@
         "nextNodeId": 42,
         "characterSpriteCenter": "",
         "characterSpriteLeft": "Characters/세이카/기본",
-        "characterSpriteRight": "Characters/리나/웃음"
+        "characterSpriteRight": "Characters/리나/웃음",
+        "noFade": true
     },
     {
         "id": 42,
@@ -612,7 +627,8 @@
         "nextNodeId": 43,
         "characterSpriteCenter": "",
         "characterSpriteLeft": "Characters/세이카/기본",
-        "characterSpriteRight": "Characters/리나/기본"
+        "characterSpriteRight": "Characters/리나/기본",
+        "noFade": true
     },
     {
         "id": 43,
@@ -789,7 +805,8 @@
         "nextNodeId": 57,
         "characterSpriteCenter": "",
         "characterSpriteLeft": "Characters/리나/측은",
-        "characterSpriteRight": "Characters/카스미/미소"
+        "characterSpriteRight": "Characters/카스미/미소",
+        "noFade": true
     },
     {
         "id": 57,
@@ -897,7 +914,8 @@
         "nextNodeId": 65,
         "characterSpriteCenter": "",
         "characterSpriteLeft": "Characters/하루카/놀람",
-        "characterSpriteRight": "Characters/세이카/웃음"
+        "characterSpriteRight": "Characters/세이카/웃음",
+        "noFade": true
     },
     {
         "id": 65,

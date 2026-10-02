@@ -69,7 +69,7 @@
             "nextNodeId": 5,
             "command": "",
             "slideIn": false,
-            "noFade": false
+            "noFade": true
         },
         {
             "id": 5,
@@ -111,7 +111,7 @@
             "nextNodeId": 8,
             "command": "",
             "slideIn": false,
-            "noFade": false
+            "noFade": true
         },
         {
             "id": 8,
@@ -167,7 +167,7 @@
             "nextNodeId": 12,
             "command": "",
             "slideIn": false,
-            "noFade": false
+            "noFade": true
         },
         {
             "id": 12,
@@ -215,7 +215,8 @@
             "characterSpriteCenter": "",
             "characterSpriteRight": "Characters/카스미/기본",
             "command": "",
-            "nextNodeId": 10015
+            "nextNodeId": 10015,
+            "noFade": true
         },
         {
             "id": 10015,
@@ -225,7 +226,8 @@
             "characterSpriteCenter": "",
             "characterSpriteRight": "Characters/카스미/기본",
             "command": "",
-            "nextNodeId": 10016
+            "nextNodeId": 10016,
+            "noFade": true
         },
         {
             "id": 10016,
@@ -235,7 +237,8 @@
             "characterSpriteCenter": "",
             "characterSpriteRight": "Characters/카스미/시선회피",
             "command": "",
-            "nextNodeId": 10017
+            "nextNodeId": 10017,
+            "noFade": true
         },
         {
             "id": 10017,
@@ -245,7 +248,8 @@
             "characterSpriteCenter": "",
             "characterSpriteRight": "Characters/카스미/시선회피",
             "command": "",
-            "nextNodeId": 10018
+            "nextNodeId": 10018,
+            "noFade": true
         },
         {
             "id": 10018,
@@ -279,7 +283,8 @@
             "characterSpriteCenter": "",
             "characterSpriteRight": "Characters/카스미/찡그림",
             "command": "",
-            "nextNodeId": 15
+            "nextNodeId": 15,
+            "noFade": true
         },
         {
             "id": 15,
@@ -307,7 +312,7 @@
             "nextNodeId": 17,
             "command": "",
             "slideIn": false,
-            "noFade": false
+            "noFade": true
         },
         {
             "id": 17,
@@ -355,8 +360,8 @@
             "id": 10020,
             "speaker": "카스미",
             "text": "이상합니다. 건물은 10년 넘게 방치된 상태인데, 이 피아노만 먼지 하나 없이... 마치 누군가가 계속 관리하고 있었던 것처럼.",
-            "characterSpriteLeft": "Characters/카스미/당황2",
-            "characterSpriteCenter": "",
+            "characterSpriteLeft": "",
+            "characterSpriteCenter": "Characters/카스미/당황2",
             "characterSpriteRight": "",
             "command": "",
             "nextNodeId": 10021
@@ -434,7 +439,7 @@
             "choices": [],
             "nextNodeId": 25,
             "command": "",
-            "noFade": false,
+            "noFade": true,
             "slideIn": true
         },
         {
@@ -461,7 +466,8 @@
             "backgroundSprite": "",
             "choices": [],
             "nextNodeId": 26,
-            "command": ""
+            "command": "",
+            "noFade": true
         },
         {
             "id": 26,
@@ -481,9 +487,9 @@
             "id": 27,
             "speaker": "리리스",
             "text": "잭오 센서 이상 무... 이건... 실제로 건반이 눌리고 있음.",
-            "characterSpriteLeft": "Characters/리리스/놀람",
-            "characterSpriteCenter": "",
-            "characterSpriteRight": "Characters/카스미/당황2",
+            "characterSpriteLeft": "",
+            "characterSpriteCenter": "Characters/카스미/당황2",
+            "characterSpriteRight": "",
             "backgroundSprite": "",
             "choices": [],
             "nextNodeId": 28,

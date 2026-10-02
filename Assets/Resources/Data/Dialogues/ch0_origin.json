@@ -72,7 +72,8 @@
             "characterSpriteCenter": "Characters/세이카/기본",
             "characterSpriteRight": "",
             "command": "",
-            "nextNodeId": 6
+            "nextNodeId": 6,
+            "noFade": true
         },
         {
             "id": 5,
@@ -405,8 +406,8 @@
         {
             "speaker": "세이카",
             "text": "할로윈 장식? 반은 내 취향이지만, 나머지 반은 철저한 전략이야.",
-            "characterSpriteLeft": "Characters/세이카/기본",
-            "characterSpriteCenter": "",
+            "characterSpriteLeft": "",
+            "characterSpriteCenter": "Characters/세이카/기본",
             "characterSpriteRight": "",
             "backgroundSprite": "",
             "choices": [],
@@ -417,20 +418,21 @@
         {
             "speaker": "세이카",
             "text": "'기괴한 일' 겪은 사람이 각 잡힌 경찰서 가면 미친 사람 취급밖에 더 받겠어? 오히려 이런 분위기가 털어놓기 편하지.",
-            "characterSpriteLeft": "Characters/세이카/기본",
-            "characterSpriteCenter": "",
+            "characterSpriteLeft": "",
+            "characterSpriteCenter": "Characters/세이카/기본",
             "characterSpriteRight": "",
             "backgroundSprite": "",
             "choices": [],
             "command": "",
             "id": 32,
-            "nextNodeId": 33
+            "nextNodeId": 33,
+            "noFade": true
         },
         {
             "speaker": "세이카",
             "text": "하지만 애초에 이렇게 비현실적인 공간이라면... 비정상적인 이야기를 털어놓는 데 심리적인 문턱이 낮아지겠지.",
-            "characterSpriteLeft": "Characters/세이카/미소",
-            "characterSpriteCenter": "",
+            "characterSpriteLeft": "",
+            "characterSpriteCenter": "Characters/세이카/기본",
             "characterSpriteRight": "",
             "backgroundSprite": "",
             "choices": [],
@@ -443,19 +445,20 @@
             "speaker": "",
             "text": "하지만 사무소를 열고 6개월이 지나도록, 의뢰인도 동료도 오지 않았다.\n넓은 저택에서 혼자 와인을 마시며 실종자들의 흔적을 추적하는 나날이 이어졌다.",
             "characterSpriteLeft": "",
-            "characterSpriteCenter": "",
+            "characterSpriteCenter": "Characters/세이카/기본",
             "characterSpriteRight": "",
             "backgroundSprite": "",
             "choices": [],
             "nextNodeId": 35,
-            "command": ""
+            "command": "",
+            "noFade": true
         },
         {
             "id": 35,
             "speaker": "세이카",
             "text": "혼자서는 한계가 있어. 추리할 사람, 현장을 뛸 사람, 기술을 다룰 사람... 그래, 사람이 필요해.",
             "characterSpriteLeft": "",
-            "characterSpriteCenter": "Characters/세이카/측은",
+            "characterSpriteCenter": "Characters/세이카/미소",
             "characterSpriteRight": "",
             "backgroundSprite": "",
             "choices": [],

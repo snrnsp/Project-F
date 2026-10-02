@@ -26,7 +26,7 @@
             "choices": [],
             "nextNodeId": 2,
             "command": "",
-            "noFade": false,
+            "noFade": true,
             "slideIn": false
         },
         {

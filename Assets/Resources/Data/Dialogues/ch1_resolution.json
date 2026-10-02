@@ -47,7 +47,8 @@
             "characterSpriteLeft": "Characters/리나/기본",
             "characterSpriteCenter": "",
             "characterSpriteRight": "Characters/카스미/찡그림",
-            "choices": []
+            "choices": [],
+            "noFade": true
         },
         {
             "speaker": " ",
@@ -83,7 +84,8 @@
             "characterSpriteLeft": "Characters/리리스/기본",
             "characterSpriteCenter": "",
             "characterSpriteRight": "Characters/미나/기본",
-            "choices": []
+            "choices": [],
+            "noFade": true
         },
         {
             "speaker": "미나",
@@ -95,7 +97,8 @@
             "characterSpriteLeft": "Characters/리리스/기본",
             "characterSpriteCenter": "",
             "characterSpriteRight": "Characters/미나/기본",
-            "choices": []
+            "choices": [],
+            "noFade": true
         },
         {
             "speaker": " ",
@@ -131,7 +134,8 @@
             "characterSpriteLeft": "Characters/하루카/기본",
             "characterSpriteCenter": "",
             "characterSpriteRight": "Characters/미나/음침",
-            "choices": []
+            "choices": [],
+            "noFade": true
         },
         {
             "speaker": " ",
@@ -167,7 +171,8 @@
             "characterSpriteLeft": "Characters/하루카/기본",
             "characterSpriteCenter": "",
             "characterSpriteRight": "Characters/미나/기본",
-            "choices": []
+            "choices": [],
+            "noFade": true
         },
         {
             "speaker": "미나",
@@ -179,7 +184,8 @@
             "characterSpriteLeft": "Characters/하루카/기본",
             "characterSpriteCenter": "",
             "characterSpriteRight": "Characters/미나/측은",
-            "choices": []
+            "choices": [],
+            "noFade": true
         },
         {
             "speaker": "카스미",
@@ -203,7 +209,8 @@
             "characterSpriteLeft": "",
             "characterSpriteCenter": "Characters/카스미/기본",
             "characterSpriteRight": "",
-            "choices": []
+            "choices": [],
+            "noFade": true
         },
         {
             "speaker": "카스미",
@@ -215,7 +222,8 @@
             "characterSpriteLeft": "",
             "characterSpriteCenter": "Characters/카스미/기본",
             "characterSpriteRight": "",
-            "choices": []
+            "choices": [],
+            "noFade": true
         },
         {
             "id": 95,
@@ -281,8 +289,8 @@
             "speaker": "카스미",
             "text": "음의 길이가 패턴? 어떤 의미가 있는 건가요?",
             "command": "",
-            "characterSpriteLeft": "",
-            "characterSpriteCenter": "Characters/카스미/기본",
+            "characterSpriteLeft": "Characters/카스미/기본",
+            "characterSpriteCenter": "",
             "characterSpriteRight": "Characters/리나/기본",
             "backgroundSprite": "",
             "choices": [],
@@ -305,9 +313,9 @@
             "speaker": "리나",
             "text": "...거짓말. 음악으로... 말을 걸고 있는 거였어?",
             "command": "",
-            "characterSpriteLeft": "Characters/리리스/기본",
-            "characterSpriteCenter": "Characters/카스미/기본",
-            "characterSpriteRight": "Characters/리나/놀람",
+            "characterSpriteLeft": "Characters/카스미/기본",
+            "characterSpriteCenter": "",
+            "characterSpriteRight": "Characters/리나/기본",
             "backgroundSprite": "",
             "choices": [],
             "id": 23,
@@ -359,7 +367,8 @@
             "backgroundSprite": "",
             "choices": [],
             "id": 27,
-            "nextNodeId": 28
+            "nextNodeId": 28,
+            "noFade": true
         },
         {
             "speaker": "리리스",
@@ -371,7 +380,8 @@
             "backgroundSprite": "",
             "choices": [],
             "id": 28,
-            "nextNodeId": 29
+            "nextNodeId": 29,
+            "noFade": true
         },
         {
             "speaker": "세이카",
@@ -395,7 +405,8 @@
             "characterSpriteLeft": "Characters/세이카/기본",
             "characterSpriteCenter": "",
             "characterSpriteRight": "Characters/카스미/기본",
-            "choices": []
+            "choices": [],
+            "noFade": true
         },
         {
             "speaker": "세이카",
@@ -407,7 +418,8 @@
             "characterSpriteLeft": "Characters/세이카/음침",
             "characterSpriteCenter": "",
             "characterSpriteRight": "Characters/카스미/기본",
-            "choices": []
+            "choices": [],
+            "noFade": true
         },
         {
             "speaker": "세이카",
@@ -419,7 +431,8 @@
             "characterSpriteLeft": "Characters/세이카/기본",
             "characterSpriteCenter": "",
             "characterSpriteRight": "Characters/카스미/기본",
-            "choices": []
+            "choices": [],
+            "noFade": true
         },
         {
             "speaker": "세이카",
@@ -431,7 +444,8 @@
             "characterSpriteLeft": "Characters/세이카/기본",
             "characterSpriteCenter": "",
             "characterSpriteRight": "Characters/카스미/기본",
-            "choices": []
+            "choices": [],
+            "noFade": true
         },
         {
             "speaker": "카스미",
@@ -443,7 +457,8 @@
             "backgroundSprite": "",
             "choices": [],
             "id": 34,
-            "nextNodeId": 35
+            "nextNodeId": 35,
+            "noFade": true
         },
         {
             "speaker": "세이카",
@@ -455,7 +470,8 @@
             "backgroundSprite": "",
             "choices": [],
             "id": 35,
-            "nextNodeId": 36
+            "nextNodeId": 36,
+            "noFade": true
         },
         {
             "speaker": "세이카",
@@ -467,7 +483,8 @@
             "backgroundSprite": "",
             "choices": [],
             "id": 36,
-            "nextNodeId": 37
+            "nextNodeId": 37,
+            "noFade": true
         },
         {
             "speaker": "카스미",
@@ -479,7 +496,8 @@
             "characterSpriteLeft": "Characters/세이카/기본",
             "characterSpriteCenter": "",
             "characterSpriteRight": "Characters/카스미/기본",
-            "choices": []
+            "choices": [],
+            "noFade": true
         },
         {
             "id": 38,
@@ -503,7 +521,8 @@
             "characterSpriteLeft": "Characters/세이카/기본",
             "characterSpriteCenter": "",
             "characterSpriteRight": "Characters/리나/기본",
-            "choices": []
+            "choices": [],
+            "noFade": true
         },
         {
             "speaker": "리나",
@@ -515,7 +534,8 @@
             "characterSpriteLeft": "Characters/세이카/기본",
             "characterSpriteCenter": "",
             "characterSpriteRight": "Characters/리나/기본",
-            "choices": []
+            "choices": [],
+            "noFade": true
         },
         {
             "speaker": "미나",
@@ -539,7 +559,8 @@
             "characterSpriteLeft": "Characters/미나/음침",
             "characterSpriteCenter": "",
             "characterSpriteRight": "Characters/세이카/기본",
-            "choices": []
+            "choices": [],
+            "noFade": true
         },
         {
             "speaker": "미나",
@@ -551,7 +572,8 @@
             "characterSpriteLeft": "Characters/미나/기본",
             "characterSpriteCenter": "",
             "characterSpriteRight": "Characters/세이카/기본",
-            "choices": []
+            "choices": [],
+            "noFade": true
         },
         {
             "speaker": "미나",
@@ -563,7 +585,8 @@
             "characterSpriteLeft": "Characters/미나/기본",
             "characterSpriteCenter": "",
             "characterSpriteRight": "Characters/세이카/기본",
-            "choices": []
+            "choices": [],
+            "noFade": true
         },
         {
             "speaker": "하루카",
@@ -611,7 +634,8 @@
             "characterSpriteLeft": "Characters/하루카/당황",
             "characterSpriteCenter": "",
             "characterSpriteRight": "Characters/세이카/기본",
-            "choices": []
+            "choices": [],
+            "noFade": true
         },
         {
             "speaker": "세이카",
@@ -623,7 +647,8 @@
             "characterSpriteLeft": "Characters/하루카/기본",
             "characterSpriteCenter": "",
             "characterSpriteRight": "Characters/세이카/기본",
-            "choices": []
+            "choices": [],
+            "noFade": true
         },
         {
             "speaker": " ",
@@ -719,7 +744,8 @@
             "characterSpriteLeft": "",
             "characterSpriteCenter": "Characters/하루카/미소",
             "characterSpriteRight": "",
-            "choices": []
+            "choices": [],
+            "noFade": true
         },
         {
             "speaker": " ",
@@ -791,7 +817,8 @@
             "characterSpriteLeft": "Characters/리나/기본",
             "characterSpriteCenter": "",
             "characterSpriteRight": "Characters/카스미/기본",
-            "choices": []
+            "choices": [],
+            "noFade": true
         },
         {
             "speaker": " ",
@@ -887,7 +914,8 @@
             "characterSpriteLeft": "Characters/세이카/기본",
             "characterSpriteCenter": "",
             "characterSpriteRight": "Characters/미나/기본",
-            "choices": []
+            "choices": [],
+            "noFade": true
         },
         {
             "id": 72,
@@ -899,7 +927,8 @@
             "characterSpriteLeft": "Characters/세이카/기본",
             "characterSpriteCenter": "",
             "characterSpriteRight": "Characters/미나/놀람",
-            "choices": []
+            "choices": [],
+            "noFade": true
         },
         {
             "id": 73,
@@ -1139,7 +1168,8 @@
             "characterSpriteLeft": "",
             "characterSpriteCenter": "Characters/리리스/기본",
             "characterSpriteRight": "",
-            "choices": []
+            "choices": [],
+            "noFade": true
         },
         {
             "id": 94,
@@ -1391,7 +1421,8 @@
             "characterSpriteLeft": "",
             "characterSpriteCenter": "Characters/하루카/측은",
             "characterSpriteRight": "",
-            "choices": []
+            "choices": [],
+            "noFade": true
         },
         {
             "id": 115,
@@ -1739,7 +1770,8 @@
             "characterSpriteLeft": "",
             "characterSpriteCenter": "Characters/세이카/기본",
             "characterSpriteRight": "",
-            "choices": []
+            "choices": [],
+            "noFade": true
         },
         {
             "id": 144,
