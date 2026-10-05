@@ -296,6 +296,23 @@ namespace HalloweenVN.UI
 
         // --- Callbacks ---
 
+
+        private void OnBGMVolumeChanged(float value)
+        {
+            SettingsData.BGMVolume = value;
+            PlayerPrefs.SetFloat("HalloweenVN_BGMVolume", value);
+            PlayerPrefs.Save();
+            if (AudioManager.Instance != null) AudioManager.Instance.UpdateVolume();
+        }
+
+        private void OnSFXVolumeChanged(float value)
+        {
+            SettingsData.SFXVolume = value;
+            PlayerPrefs.SetFloat("HalloweenVN_SFXVolume", value);
+            PlayerPrefs.Save();
+            if (AudioManager.Instance != null) AudioManager.Instance.UpdateVolume();
+        }
+
         private void OnTextSpeedChanged(float val)
         {
             SettingsData.TextSpeed = SliderToSpeed(val);
