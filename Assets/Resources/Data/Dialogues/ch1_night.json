@@ -310,7 +310,7 @@
             "backgroundSprite": "",
             "choices": [],
             "nextNodeId": 17,
-            "command": "",
+            "command": "AUDIO:PLAY_SFX:sfx_heartbeat",
             "slideIn": false,
             "noFade": true
         },
@@ -479,7 +479,7 @@
             "backgroundSprite": "",
             "choices": [],
             "nextNodeId": 27,
-            "command": "",
+            "command": "AUDIO:PLAY_SFX:sfx_heartbeat",
             "slideIn": true,
             "noFade": false
         },
