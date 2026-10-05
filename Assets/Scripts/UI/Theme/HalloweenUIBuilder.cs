@@ -744,7 +744,7 @@ namespace HalloweenVN.UI.Theme
             if (outline != null) outline.effectDistance = new Vector2(HalloweenTheme.PanelBorderWidth, HalloweenTheme.PanelBorderWidth + 4f);
             RectTransform panelRt = panel.GetComponent<RectTransform>();
             UIHelper.SetAnchors(panelRt, new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f));
-            panelRt.sizeDelta = new Vector2(700, 650);
+            panelRt.sizeDelta = new Vector2(700, 850);
 
             // Title
             GameObject titleObj = UIHelper.CreateUIObject("Title", panel.transform);
@@ -755,6 +755,16 @@ namespace HalloweenVN.UI.Theme
             Text titleText = CreateLegacyText(titleObj, "환경 설정", HalloweenTheme.AccentOrange, 42, TextAnchor.UpperCenter);
 
             float yPos = -135;
+
+            // ─── BGM Volume ───
+            var bgmVolumeLabel = CreateSettingsLabel(panel.transform, "배경음악 (BGM) 음량", yPos);
+            Slider bgmVolumeSlider = CreateSettingsSlider(panel.transform, yPos - 45);
+            yPos -= 90;
+
+            // ─── SFX Volume ───
+            var sfxVolumeLabel = CreateSettingsLabel(panel.transform, "효과음 (SFX) 음량", yPos);
+            Slider sfxVolumeSlider = CreateSettingsSlider(panel.transform, yPos - 45);
+            yPos -= 90;
 
             // ─── 1. Text Speed ───
             var textSpeedLabel = CreateSettingsLabel(panel.transform, "\uD14D\uC2A4\uD2B8 \uC18D\uB3C4", yPos);
@@ -886,6 +896,10 @@ namespace HalloweenVN.UI.Theme
             if (globalMgrRef != null) globalMgrRef.Initialize(settingsRoot);
             UIHelper.SetField(settingsUi, "settingsPanel", settingsRoot);
             UIHelper.SetField(settingsUi, "titleTextLabel", titleText);
+            UIHelper.SetField(settingsUi, "bgmVolumeSlider", bgmVolumeSlider);
+            UIHelper.SetField(settingsUi, "bgmVolumeLabel", bgmVolumeLabel);
+            UIHelper.SetField(settingsUi, "sfxVolumeSlider", sfxVolumeSlider);
+            UIHelper.SetField(settingsUi, "sfxVolumeLabel", sfxVolumeLabel);
             UIHelper.SetField(settingsUi, "textSpeedSlider", textSpeedSlider);
             UIHelper.SetField(settingsUi, "textSpeedLabel", textSpeedLabel);
             UIHelper.SetField(settingsUi, "previewTextLabel", previewText);

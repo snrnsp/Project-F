@@ -52,9 +52,9 @@ namespace HalloweenVN.Core
         public void UpdateVolume()
         {
             if (bgmSource != null)
-                bgmSource.volume = SettingsData.BgmVolume * SettingsData.MasterVolume;
+                bgmSource.volume = SettingsData.BGMVolume;
             if (sfxSource != null)
-                sfxSource.volume = SettingsData.SfxVolume * SettingsData.MasterVolume;
+                sfxSource.volume = SettingsData.SFXVolume;
         }
 
         public void PlayBGM(string trackName, float fadeDuration = 1.0f)
@@ -79,7 +79,7 @@ namespace HalloweenVN.Core
             AudioClip clip = LoadSFX(sfxName);
             if (clip != null)
             {
-                sfxSource.PlayOneShot(clip, SettingsData.SfxVolume * SettingsData.MasterVolume);
+                sfxSource.PlayOneShot(clip, SettingsData.SFXVolume);
             }
         }
 
@@ -103,7 +103,7 @@ namespace HalloweenVN.Core
 
         private IEnumerator CrossfadeBGM(AudioClip newClip, float duration)
         {
-            float targetVolume = SettingsData.BgmVolume * SettingsData.MasterVolume;
+            float targetVolume = SettingsData.BGMVolume;
             
             // Fade out current if playing
             if (bgmSource.isPlaying)

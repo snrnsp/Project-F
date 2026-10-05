@@ -65,6 +65,16 @@ namespace HalloweenVN.UI
 
         private void OnEnable()
         {
+            if (bgmVolumeSlider != null)
+            {
+                bgmVolumeSlider.value = SettingsData.BGMVolume;
+                bgmVolumeSlider.onValueChanged.AddListener(OnBGMVolumeChanged);
+            }
+            if (sfxVolumeSlider != null)
+            {
+                sfxVolumeSlider.value = SettingsData.SFXVolume;
+                sfxVolumeSlider.onValueChanged.AddListener(OnSFXVolumeChanged);
+            }
             if (textSpeedSlider != null)
             {
                 textSpeedSlider.value = SpeedToSlider(SettingsData.TextSpeed);
@@ -147,6 +157,8 @@ namespace HalloweenVN.UI
 
         private void OnDisable()
         {
+            if (bgmVolumeSlider != null) bgmVolumeSlider.onValueChanged.RemoveListener(OnBGMVolumeChanged);
+            if (sfxVolumeSlider != null) sfxVolumeSlider.onValueChanged.RemoveListener(OnSFXVolumeChanged);
             if (textSpeedSlider != null) textSpeedSlider.onValueChanged.RemoveListener(OnTextSpeedChanged);
             if (autoPlaySlider != null) autoPlaySlider.onValueChanged.RemoveListener(OnAutoPlayChanged);
         if (autoPlayInputField != null) autoPlayInputField.onEndEdit.RemoveListener(OnAutoPlayInputEdit);
