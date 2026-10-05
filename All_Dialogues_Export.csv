@@ -1,5 +1,5 @@
 ﻿File,NodeID,Speaker,Text,Background,SpriteLeft,SpriteCenter,SpriteRight,Command,NextNodeId
-ch0_origin,0,,— 2025년 봄. (1년 반 전),Images/bg_memory,,,,,1
+ch0_origin,0,,— 2025년 봄. (1년 반 전),Images/bg_memory,,,,AUDIO:PLAY_BGM:bgm_office_night,1
 ch0_origin,1,,노을시 지방법원. 한 여자가 재판 기록 더미 앞에 앉아 있다.,,,,,,2
 ch0_origin,2,세이카,...이상하네. 노을시 구시가지 실종 사건... 5년 간격으로 사람이 증발했는데 전부 수사 중단이라고? 심지어 기록조차 거의 안 남아있잖아.,,,Characters/세이카/찡그림,,,3
 ch0_origin,3,세이카,마치 처음부터 존재하지 않았던 사람들처럼.,,,Characters/세이카/찡그림,,,4
@@ -42,7 +42,7 @@ ch0_origin,34,,"하지만 사무소를 열고 6개월이 지나도록, 의뢰인
 넓은 저택에서 혼자 와인을 마시며 실종자들의 흔적을 추적하는 나날이 이어졌다.",,,Characters/세이카/기본,,,35
 ch0_origin,35,세이카,"혼자서는 한계가 있어. 추리할 사람, 현장을 뛸 사람, 기술을 다룰 사람... 그래, 사람이 필요해.",,,Characters/세이카/미소,,,36
 ch0_origin,36,,,,,,,START_DIALOGUE:ch0_gathering,-1
-ch0_gathering,0,,부모님이 준 1년의 기한. 이미 6개월이 지났다. 남은 시간은 반 년.,Images/bg_memory,,,,,1
+ch0_gathering,0,,부모님이 준 1년의 기한. 이미 6개월이 지났다. 남은 시간은 반 년.,Images/bg_memory,,,,AUDIO:PLAY_BGM:bgm_office_night,1
 ch0_gathering,1,,그런데 구시가지에서 또다시 실종 의심 징후가 포착되었다. 5년 주기의 패턴. 다음 실종이 일어날 시기가 바로 올해였다.,,,,,,2
 ch0_gathering,2,세이카,"시작됐구나, 더 이상 지체할 시간이 없어.",,,Characters/세이카/찡그림,,,3
 ch0_gathering,3,,"실종 사건의 파장 속에서, 각자의 이유로 진실에 가까이 있던 사람들이 움직이기 시작했다.",,,,,,4
@@ -82,7 +82,7 @@ ch0_gathering,33,세이카,"어쩌면 모두들 이 저택이 부른 건지도 �
 ch0_gathering,34,,부모님이 준 1년의 기한. 그 마감 직전에 기적처럼 팀이 갖춰졌다. 경찰이 닫아버린 파일을 다시 여는 사람들. 세상이 외면한 것들을 마주하는 사람들.,,,,,,35
 ch0_gathering,35,,그리고 지금—,,,,,,36
 ch0_gathering,36,,,,,,,START_DIALOGUE:ch0_opening,-1
-ch0_opening,0,,2026년. 노을시(市).,Images/bg_city_night,,,,,1
+ch0_opening,0,,2026년. 노을시(市).,Images/bg_city_night,,,,AUDIO:PLAY_BGM:bgm_office_night,1
 ch0_opening,1,,"인구 80만의 항구도시. 낮에는 평범한 사람들이 평범한 하루를 보내고, 밤에는 바다에서 밀려온 안개가 구시가지의 좁은 골목을 채운다.",,,,,,2
 ch0_opening,2,,"이 도시에는 가끔, 설명하기 어려운 일들이 일어난다.",,,,,,3
 ch0_opening,3,,아무도 살지 않는 폐교에서 밤마다 울리는 피아노 소리.,,,,,,4
@@ -98,7 +98,7 @@ ch0_opening,12,,미제 사건 특화. 초자연 현상 환영.',,,,,,13
 ch0_opening,13,,"물론, 이 도시의 대부분의 사람들은 이곳을 그저 '유령의 집에서 장사하는 이상한 애들'이라고 부르지만.",,,,,,14
 ch0_opening,14,,"...오늘도 여느 때처럼, 저택의 문이 삐걱거리며 열린다.",,,,,,15
 ch0_opening,15,,,,,,,START_DIALOGUE:ch1_morning,-1
-ch1_morning,0, ,— 다음 날 아침.,Images/bg_office_morning,,,,,1
+ch1_morning,0, ,— 다음 날 아침.,Images/bg_office_morning,,,,AUDIO:PLAY_BGM:bgm_office_day,1
 ch1_morning,1, ,"호박 램프의 불빛이 은은하게 켜진 사무소 안. 벽난로에서 장작이 타닥거리고, 거미줄 장식 사이로 아침 햇살이 비친다.",,,,,,2
 ch1_morning,2, ,"한여름의 아침이지만, 이 저택 안에서는 언제나 할로윈이다.",,,,,,3
 ch1_morning,3,카스미,.......,,,Characters/카스미/기본,,,4
@@ -173,7 +173,7 @@ ch1_morning,71,세이카,네버모어의 이름에 걸고 — 이 소리의 정�
 ch1_morning,72, ,"이렇게, 「네버모어 오컬트 탐정 사무소」의 새로운 의뢰가 시작되었다.",,,,,,73
 ch1_morning,73, ,— 사건 파일1: 잊혀진 피아니스트 —,,,,,,74
 ch1_morning,74,,,,,,,START_DIALOGUE:ch1_night,-1
-ch1_night,0, ,노을시에 밤이 찾아왔다. 항구에서 밀려온 안개가 도시를 덮었다.,Images/bg_city_night,,,,,1
+ch1_night,0, ,노을시에 밤이 찾아왔다. 항구에서 밀려온 안개가 도시를 덮었다.,Images/bg_city_night,,,,AUDIO:PLAY_BGM:bgm_investigation,1
 ch1_night,1,세이카,"자, 다들 준비됐지? 오늘의 작전은 '유령 피아니스트'의 정체를 밝혀내는 거야.",,,Characters/세이카/기본,,,2
 ch1_night,2,리리스,잭오 스캔 중. 주변에 특이 사항 없음. 드론 시야 양호.,,Characters/리리스/기본,,Characters/세이카/기본,,3
 ch1_night,3,리나,와씨! 드디어 실전이네! 다 부수고 날려버리자고!,,Characters/리나/웃음,,Characters/카스미/기본,,4
@@ -196,7 +196,7 @@ ch1_night,10018, ,"리나가 부산스럽게 카스미에게서 손을 떼며 �
 ch1_night,14,리나,어? 바닥에 발자국이 있어. 먼지 위에 선명하게... 어디로 이어지는 거지?,,Characters/리나/기본,,Characters/카스미/기본,,10019
 ch1_night,10019,카스미,"잠깐... 이 발자국, 주변 먼지층의 퇴적 상태로 봐서 최근에 생긴 겁니다. 경찰이 수색했을 때는 없었을 거예요. 현상은 지금도 반복되고 있다는 뜻입니다.",,Characters/리나/놀람,,Characters/카스미/찡그림,,15
 ch1_night,15,미나,......,,,Characters/미나/기본,,,16
-ch1_night,16,미나,"(소곤) ...얘들아, 여기 좀 이상해. 나 지금 연기하는 거 아니야, 진짜 무서운데...",,,Characters/미나/공포,,,17
+ch1_night,16,미나,"(소곤) ...얘들아, 여기 좀 이상해. 나 지금 연기하는 거 아니야, 진짜 무서운데...",,,Characters/미나/공포,,"AUDIO:PLAY_SFX_FADEOUT:sfx_heartbeat,5.0,1.0",17
 ch1_night,17, ,일행은 마침내 메인 공연장에 다다랐다. 중앙에는 먼지 쌓인 천으로 덮인 그랜드 피아노가 덩그러니 놓여 있었다.,,,,,,18
 ch1_night,18,카스미,제가 확인해보겠습니다.,,,Characters/카스미/기본,,,19
 ch1_night,19, ,"카스미가 조심스럽게 천을 걷어내자, 그 아래에는 믿을 수 없을 정도로 깨끗한 피아노가 모습을 드러냈다.",,,,,,10020
@@ -209,14 +209,14 @@ ch1_night,23,하루카,"...이 곡... 흑, 너무 외롭고 슬픈 소리예요.
 ch1_night,24,하루카,으... 갑자기 엄청 추워졌어요...! 방금까지는 안 이랬는데...!,,,Characters/하루카/공포,,,25
 ch1_night,25,리리스,"...잭오 열화상 센서, 이상 반응. 피아노 주변 온도 급격히 하강 중.",,,Characters/리리스/놀람,,,33
 ch1_night,33,리리스,"건반 위, 사람 체온 아님. 영하 15도의 무언가가... 압력 가하는 중.",,,Characters/리리스/공포,,,26
-ch1_night,26,리나,"히익...?! 카, 카스미 언니... 이거 뭐야?!",,Characters/리나/공포,,Characters/카스미/당황2,,27
+ch1_night,26,리나,"히익...?! 카, 카스미 언니... 이거 뭐야?!",,Characters/리나/공포,,Characters/카스미/당황2,"AUDIO:PLAY_SFX_FADEOUT:sfx_heartbeat,5.0,1.0",27
 ch1_night,27,리리스,잭오 센서 이상 무... 이건... 실제로 건반이 눌리고 있음.,,Characters/리리스/놀람,,Characters/카스미/당황2,,28
 ch1_night,28,카스미,"...물리적으로 건반이 눌리고 있다면, 보이지 않는 누군가가 여기에 있다는 뜻입니다.",,Characters/리리스/놀람,,Characters/카스미/당황2,,29
 ch1_night,29,세이카,...찾았어. 이 사람이야. 잊혀진 피아니스트.,,,Characters/세이카/음침,,,30
 ch1_night,30, ,"선율이 멈췄다. 다시 무거운 침묵이 내려앉고, 먼지만이 공기 중을 부유했다.",,,,,,31
 ch1_night,31,세이카,조사를 시작해. 이 안에 단서가 있을 거야.,,,Characters/세이카/기본,,,32
 ch1_night,32,,,,,,,START_DIALOGUE:ch1_investigation_talk,-1
-ch1_investigation_talk,100, ,일행은 흩어져 공연장 구석구석을 뒤지기 시작했다.,Images/bg_mansion_night,,,,,101
+ch1_investigation_talk,100, ,일행은 흩어져 공연장 구석구석을 뒤지기 시작했다.,Images/bg_mansion_night,,,,AUDIO:PLAY_BGM:bgm_investigation,101
 ch1_investigation_talk,101, ,"악보대 위의 빛바랜 콩쿠르 프로그램, 바늘이 멈춘 채 부서진 메트로놈,
 무대 뒤편에 쌓여 있던 낡은 음악 잡지...",,,,,,102
 ch1_investigation_talk,102, ,그리고 피아노를 향해 이어지던 발자국은 — 무대 한가운데에서 거짓말처럼 뚝 끊겨 있었다.,,,,,,0
@@ -244,7 +244,7 @@ ch1_investigation_talk,18,세이카,"그냥 실종이 아니야. 경찰 기록�
 ch1_investigation_talk,19,세이카,이제 퍼즐 조각을 맞춰보자. 다섯 가지 단서가 무엇을 의미하는지.,,Characters/세이카/웃음,,Characters/카스미/기본,,20
 ch1_investigation_talk,20,,,,,,,START_DIALOGUE:ch1_result_perfect,-1
 ch1_result_perfect,0, ,"세이카가 단서를 하나씩 짚어 나가기 시작했다.
-흩어져 있던 조각들이 하나의 결론을 향해 모여들었다.",Images/bg_mansion_night,,,,,1
+흩어져 있던 조각들이 하나의 결론을 향해 모여들었다.",Images/bg_mansion_night,,,,AUDIO:PLAY_BGM:bgm_investigation,1
 ch1_result_perfect,1,세이카,먼지 하나 없는 건반. 존재가 지워져가면서도 오직 집념 하나로 건반을 누르고 있었다는 증거지. 눈에 보이지 않는 존재가 말이야.,,,Characters/세이카/기본,,,2
 ch1_result_perfect,2,세이카,그리고 이 빛바랜 콩쿠르 프로그램... 피아니스트가 이 음악실에 존재했다는 유일한 흔적이야.,,,Characters/세이카/측은,,,3
 ch1_result_perfect,3,세이카,결정적으로 비정상적인 음파 분석 데이터. 이건 자연적인 소리가 아니야. 존재가 잊혀지며 남긴 마지막 메아리지.,,,Characters/세이카/찡그림,,,4
@@ -260,7 +260,7 @@ ch1_result_perfect,13,리나,이런 거... 절대 용납 못 해! 우리가 반�
 ch1_result_perfect,14,세이카,5년 주기의 실종 사건들... 이 모든 게 연결되어 있어. 이것이 '그 현상'의 첫 번째 결정적 증거다.,,,Characters/세이카/기본,,,15
 ch1_result_perfect,15,세이카,이 사건은 끝이 아니야. 시작이야. 잊혀진 사람들을 — 우리가 찾아야 해.,,,Characters/세이카/웃음,,,16
 ch1_result_perfect,16,,,,,,,START_DIALOGUE:ch1_resolution,-1
-ch1_resolution,0, ,"세이카의 추리가 끝나자, 음악실 안의 공기가 변했다.",Images/bg_mansion_night,,,,,1
+ch1_resolution,0, ,"세이카의 추리가 끝나자, 음악실 안의 공기가 변했다.",Images/bg_mansion_night,,,,AUDIO:PLAY_BGM:bgm_investigation,1
 ch1_resolution,1, ,그리고 다시 — 피아노 건반이 움직이기 시작했다.,,,,,EFFECT:SHAKE,2
 ch1_resolution,2,리나,"와씨, 대박! 방금 건반 진짜 지 혼자 움직인 거 맞지?!",,Characters/리나/놀람,,Characters/카스미/기본,,3
 ch1_resolution,3,카스미,기다려요. 이번에는 아까와 다릅니다. 선율이...,,Characters/리나/기본,,Characters/카스미/찡그림,,4
@@ -357,7 +357,7 @@ ch1_resolution,94,세이카,온전한 이름을 찾았어. 다같이 부르자. 
 ch1_resolution,95, ,"여섯 명이 숨을 고르고, 한 목소리로 외쳤다.",,,,,,96
 ch1_resolution,96,세이카,서하유!!!,,,Characters/세이카/기본,,,97
 ch1_resolution,97, ,투명한 윤곽에 색이 번지기 시작했다—,,,,,,98
-ch1_resolution,98, ,그 순간. 건물 전체가 격렬하게 흔들렸다.,,,,,,99
+ch1_resolution,98, ,그 순간. 건물 전체가 격렬하게 흔들렸다.,,,,,AUDIO:PLAY_BGM:bgm_climax,99
 ch1_resolution,99, ,"피아노 건반이 불협화음을 내지르며 미친 듯이 튀었다. 창문이 깨지고, 악보가 회오리처럼 날렸다.",,,,,,100
 ch1_resolution,100,카스미,"뭐, 뭐야 이건...?!",,,Characters/카스미/기본,,,101
 ch1_resolution,101,리리스,잭오 센서 이상 반응... 현상이 저항하고 있음. 기억의 닻을 끊으려는 듯한 에너지 감지.,,,Characters/리리스/찡그림,,,102
@@ -382,7 +382,7 @@ ch1_resolution,119, ,그리고 어딘가에서 — 누군가가 그 데이터를
 ch1_resolution,120,리리스,"...외부 인식 유입 감지. 기억의 닻, 확산 시작.",,,Characters/리리스/기본,,,121
 ch1_resolution,121, ,세상이 서하유를 기억하기 시작했다.,,,,,,122
 ch1_resolution,122,리리스,전송 100%. 완료.,,,Characters/리리스/기본,,,123
-ch1_resolution,123, ,"불협화음이 멈추었다. 회오리가 가라앉았다. 먼지가 천천히, 빛처럼 내려앉았다.",,,,,,124
+ch1_resolution,123, ,"불협화음이 멈추었다. 회오리가 가라앉았다. 먼지가 천천히, 빛처럼 내려앉았다.",,,,,AUDIO:STOP_BGM,124
 ch1_resolution,124, ,"그리고 — 피아노 앞에, 한 소녀가 앉아 있었다. 더 이상 투명하지 않은, 온전한 사람이.",,,,,,125
 ch1_resolution,125,서하유,......,,,,,,126
 ch1_resolution,126,서하유,"...들려. 드디어... 내 소리가, 누군가한테 들리고 있어.",,,,,,127
@@ -393,7 +393,7 @@ ch1_resolution,130,서하유,"...포기할 뻔했어요. 여러 번. 건반을 �
 ch1_resolution,131,서하유,그래도 쳤어요. 멈추면 진짜 사라질 것 같아서.,,,,,,132
 ch1_resolution,132,하루카,(울면서) 들었어요. 우리가 전부 다 들었어요.,,,Characters/하루카/측은,,,133
 ch1_resolution,133,서하유,...고마워요. 찾아줘서. 기억해줘서. 싸워줘서.,,,,,,134
-ch1_resolution,134, ,"서하유가 건반 위에 손을 올렸다. 10년 만의, 누군가를 위한 연주.",,,,,,135
+ch1_resolution,134, ,"서하유가 건반 위에 손을 올렸다. 10년 만의, 누군가를 위한 연주.",,,,,AUDIO:PLAY_BGM:bgm_ending_piano,135
 ch1_resolution,135, ,"이번 선율은 달랐다. 외로움도, 절박함도, 두려움도 없었다. 그저 따뜻하고, 감사하고, 살아있다는 것이 기쁜 곡.",,,,,,136
 ch1_resolution,136,리나,......,,,Characters/리나/기본,,,137
 ch1_resolution,137,카스미,......,,,Characters/카스미/기본,,,138
@@ -405,7 +405,7 @@ ch1_resolution,142,세이카,"...약속을 지켰네. 잊혀진 사람을, 되�
 ch1_resolution,143,세이카,네버모어의 첫 번째 사건 — 해결.,,,Characters/세이카/기본,,,144
 ch1_resolution,144, ,...,,,,,,145
 ch1_resolution,145, ,,,,,,START_DIALOGUE:ch1_epilogue,-1
-ch1_epilogue,0, ,"다음 날 아침, 네버모어 오컬트 탐정 사무소.",Images/bg_office_morning,,,,,1
+ch1_epilogue,0, ,"다음 날 아침, 네버모어 오컬트 탐정 사무소.",Images/bg_office_morning,,,,AUDIO:PLAY_BGM:bgm_office_day,1
 ch1_epilogue,1, ,사무소 식탁에는 일곱 명분의 아침이 차려져 있었다.,,,,,,2
 ch1_epilogue,2,하루카,"서하유 씨, 단호박 수프 좀 더 드세요!
 10년 동안 못 드셨잖아요!",,Characters/하루카/미소,,Characters/리나/기본,,3
@@ -471,10 +471,10 @@ ch1_epilogue,47,서하유,"저... 부탁이 하나 있어요.
 그 음악실에서 한 번만 더 연주해도 될까요?",,,,,,48
 ch1_epilogue,48,서하유,이번에는... 듣는 사람이 있을 때 치고 싶어서요.,,,,,,49
 ch1_epilogue,49, ,"낡은 음악실. 하지만 더 이상 무섭지 않았다.
-잭오랜턴 조명이 따뜻한 빛을 비추고 있었다.",Images/bg_mansion_night,,,,,50
+잭오랜턴 조명이 따뜻한 빛을 비추고 있었다.",Images/bg_mansion_night,,,,AUDIO:STOP_BGM,50
 ch1_epilogue,50, ,"서하유가 건반 앞에 앉았다.
 여섯 명의 관객이 조용히 지켜보았다.",,,,,,51
-ch1_epilogue,51, ,연주가 시작되었다.,,,,,,52
+ch1_epilogue,51, ,연주가 시작되었다.,,,,,AUDIO:PLAY_BGM:bgm_ending_piano,52
 ch1_epilogue,52, ,"10년 동안 혼자 치던 곡이,
 누군가가 들어주는 것만으로 전혀 다른 곡이 되었다.",,,,,,53
 ch1_epilogue,53, ,"연주가 끝나고, 작은 박수가 울렸다.",,,,,,54

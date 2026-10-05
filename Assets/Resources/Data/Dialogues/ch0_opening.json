@@ -7,7 +7,7 @@
             "text": "2026년. 노을시(市).",
             "backgroundSprite": "Images/bg_city_night",
             "nextNodeId": 1,
-            "command": "AUDIO:PLAY_BGM:bgm_office_day"
+            "command": "AUDIO:PLAY_BGM:bgm_office_night"
         },
         {
             "id": 1,

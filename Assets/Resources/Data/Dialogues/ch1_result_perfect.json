@@ -11,7 +11,7 @@
             "backgroundSprite": "Images/bg_mansion_night",
             "choices": [],
             "nextNodeId": 1,
-            "command": "",
+            "command": "AUDIO:PLAY_BGM:bgm_investigation",
             "slideIn": false,
             "noFade": false
         },

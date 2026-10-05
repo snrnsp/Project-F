@@ -47,6 +47,9 @@ namespace HalloweenVN.UI
         [SerializeField] private Text bgmVolumeLabel;
         [SerializeField] private Slider sfxVolumeSlider;
         [SerializeField] private Text sfxVolumeLabel;
+        [SerializeField] private Text bgmVolumeValueText;
+        [SerializeField] private Text sfxVolumeValueText;
+        private float lastSfxPreviewTime = -1f;
         [SerializeField] private Toggle fullscreenToggle;
 
         private Coroutine typingCoroutine;
@@ -75,6 +78,7 @@ namespace HalloweenVN.UI
                 sfxVolumeSlider.value = SettingsData.SFXVolume;
                 sfxVolumeSlider.onValueChanged.AddListener(OnSFXVolumeChanged);
             }
+            UpdateVolumeTexts();
             if (textSpeedSlider != null)
             {
                 textSpeedSlider.value = SpeedToSlider(SettingsData.TextSpeed);
@@ -180,6 +184,8 @@ namespace HalloweenVN.UI
             switch (lang)
             {
                 case GameLanguage.Korean:
+                    SetText(bgmVolumeLabel, "배경음악 (BGM) 음량");
+                    SetText(sfxVolumeLabel, "효과음 (SFX) 음량");
                     SetText(titleTextLabel, "\uC124\uC815");
                     SetText(textSpeedLabel, "\uD14D\uC2A4\uD2B8 \uC18D\uB3C4");
                     SetText(autoPlayLabel, "\uC624\uD1A0 \uB300\uAE30 \uC2DC\uAC04");
@@ -190,6 +196,8 @@ namespace HalloweenVN.UI
                     SetText(skipHelpText, "\uC124\uC815\uD558\uC2E0 \uB2E8\uCD95\uD0A4\uB97C \uB204\uB974\uACE0 \uC788\uC73C\uBA74 \uB300\uC0AC\uB97C \uBE60\uB974\uAC8C \uB118\uAE38 \uC218 \uC788\uC2B5\uB2C8\uB2E4.");
                     break;
                 case GameLanguage.English:
+                    SetText(bgmVolumeLabel, "BGM Volume");
+                    SetText(sfxVolumeLabel, "SFX Volume");
                     SetText(titleTextLabel, "Settings");
                     SetText(textSpeedLabel, "Text Speed");
                     SetText(autoPlayLabel, "Auto-play Delay");
@@ -200,6 +208,8 @@ namespace HalloweenVN.UI
                     SetText(skipHelpText, "Hold the configured hotkey to fast-forward through the dialogue.");
                     break;
                 case GameLanguage.Japanese:
+                    SetText(bgmVolumeLabel, "BGM音量");
+                    SetText(sfxVolumeLabel, "効果音音量");
                     SetText(titleTextLabel, "\u8A2D\u5B9A");
                     SetText(textSpeedLabel, "\u30C6\u30AD\u30B9\u30C8\u901F\u5EA6");
                     SetText(autoPlayLabel, "\u30AA\u30FC\u30C8\u5F85\u6A5F\u6642\u9593");
@@ -210,6 +220,8 @@ namespace HalloweenVN.UI
                     SetText(skipHelpText, "\u8A2D\u5B9A\u3057\u305F\u30B7\u30E7\u30FC\u30C8\u30AB\u30C3\u30C8\u30AD\u30FC\u3092\u62BC\u3057\u7D9A\u3051\u308B\u3068\u3001\u30BB\u30EA\u30D5\u3092\u65E9\u9001\u308A\u3067\u304D\u307E\u3059\u3002");
                     break;
                 case GameLanguage.ChineseSimplified:
+                    SetText(bgmVolumeLabel, "背景音乐音量");
+                    SetText(sfxVolumeLabel, "音效音量");
                     SetText(titleTextLabel, "\u8BBE\u7F6E");
                     SetText(textSpeedLabel, "\u6587\u672C\u901F\u5EA6");
                     SetText(autoPlayLabel, "\u81EA\u52A8\u64AD\u653E\u5EF6\u8FDF");
@@ -220,6 +232,8 @@ namespace HalloweenVN.UI
                     SetText(skipHelpText, "\u6309\u4F4F\u8BBE\u7F6E\u7684\u5FEB\u6377\u952E\u53EF\u4EE5\u5FEB\u901F\u8DF3\u8FC7\u5BF9\u8BDD\u3002");
                     break;
                 case GameLanguage.ChineseTraditional:
+                    SetText(bgmVolumeLabel, "背景音樂音量");
+                    SetText(sfxVolumeLabel, "音效音量");
                     SetText(titleTextLabel, "\u8A2D\u5B9A");
                     SetText(textSpeedLabel, "\u6587\u672C\u901F\u5EA6");
                     SetText(autoPlayLabel, "\u81EA\u52D5\u64AD\u653E\u5EF6\u9072");
@@ -250,6 +264,10 @@ namespace HalloweenVN.UI
             }
 
             SetFont(titleTextLabel, 42, 32);
+            SetFont(bgmVolumeLabel, 28, 22);
+            SetFont(sfxVolumeLabel, 28, 22);
+            SetFont(bgmVolumeValueText, 20, 16);
+            SetFont(sfxVolumeValueText, 20, 16);
             SetFont(textSpeedLabel, 28, 22);
             SetFont(autoPlayLabel, 28, 22);
             
@@ -297,20 +315,35 @@ namespace HalloweenVN.UI
         // --- Callbacks ---
 
 
+        // Values are persisted by SettingsData.Save() in Hide(). Writing PlayerPrefs on every
+        // drag tick caused a storage write per frame (noticeable stutter on WebGL).
         private void OnBGMVolumeChanged(float value)
         {
             SettingsData.BGMVolume = value;
-            PlayerPrefs.SetFloat("HalloweenVN_BGMVolume", value);
-            PlayerPrefs.Save();
             if (AudioManager.Instance != null) AudioManager.Instance.UpdateVolume();
+            UpdateVolumeTexts();
         }
 
         private void OnSFXVolumeChanged(float value)
         {
             SettingsData.SFXVolume = value;
-            PlayerPrefs.SetFloat("HalloweenVN_SFXVolume", value);
-            PlayerPrefs.Save();
-            if (AudioManager.Instance != null) AudioManager.Instance.UpdateVolume();
+            if (AudioManager.Instance != null)
+            {
+                AudioManager.Instance.UpdateVolume();
+                // Audible preview so the player can hear the new SFX level while dragging.
+                if (Time.unscaledTime - lastSfxPreviewTime > 0.15f)
+                {
+                    lastSfxPreviewTime = Time.unscaledTime;
+                    AudioManager.Instance.PlaySFX("sfx_ui_click");
+                }
+            }
+            UpdateVolumeTexts();
+        }
+
+        private void UpdateVolumeTexts()
+        {
+            if (bgmVolumeValueText != null) bgmVolumeValueText.text = Mathf.RoundToInt(SettingsData.BGMVolume * 100f) + "%";
+            if (sfxVolumeValueText != null) sfxVolumeValueText.text = Mathf.RoundToInt(SettingsData.SFXVolume * 100f) + "%";
         }
 
         private void OnTextSpeedChanged(float val)

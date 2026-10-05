@@ -438,11 +438,11 @@ namespace HalloweenVN.UI.Theme
 
             // Wire up fullscreen click (Background + DialoguePanel itself)
             Button bgClick = bgImgObj.AddComponent<Button>();
-            bgImgObj.AddComponent<UIHoverSound>();
+            bgImgObj.AddComponent<UIHoverSound>().playHover = false; // full-screen click area: click only
             bgClick.targetGraphic = backgroundImage;
             bgClick.transition = Selectable.Transition.None;
             Button panelClick = dialoguePanel.AddComponent<Button>();
-            dialoguePanel.AddComponent<UIHoverSound>();
+            dialoguePanel.AddComponent<UIHoverSound>().playHover = false; // full-screen click area: click only
             Image panelImg = dialoguePanel.GetComponent<Image>();
             if (panelImg != null) panelClick.targetGraphic = panelImg;
             panelClick.transition = Selectable.Transition.None;
@@ -739,6 +739,7 @@ namespace HalloweenVN.UI.Theme
             UIHelper.StretchFull(bgBtnObj.GetComponent<RectTransform>());
             UIHelper.AddImage(bgBtnObj, new Color(0, 0, 0, 0.7f));
             UnityEngine.UI.Button bgBtn = bgBtnObj.AddComponent<UnityEngine.UI.Button>();
+            bgBtnObj.AddComponent<UIHoverSound>().playHover = false; // overlay: click only
             bgBtn.transition = UnityEngine.UI.Selectable.Transition.None;
 
             // Settings panel (taller to fit new options)
@@ -762,11 +763,13 @@ namespace HalloweenVN.UI.Theme
             // ─── BGM Volume ───
             var bgmVolumeLabel = CreateSettingsLabel(panel.transform, "배경음악 (BGM) 음량", yPos);
             Slider bgmVolumeSlider = CreateSettingsSlider(panel.transform, yPos - 45);
+            Text bgmVolumeValueText = CreateSettingsValueText(panel.transform, yPos - 45);
             yPos -= 90;
 
             // ─── SFX Volume ───
             var sfxVolumeLabel = CreateSettingsLabel(panel.transform, "효과음 (SFX) 음량", yPos);
             Slider sfxVolumeSlider = CreateSettingsSlider(panel.transform, yPos - 45);
+            Text sfxVolumeValueText = CreateSettingsValueText(panel.transform, yPos - 45);
             yPos -= 90;
 
             // ─── 1. Text Speed ───
@@ -904,10 +907,8 @@ namespace HalloweenVN.UI.Theme
             UIHelper.SetField(settingsUi, "bgmVolumeLabel", bgmVolumeLabel);
             UIHelper.SetField(settingsUi, "sfxVolumeSlider", sfxVolumeSlider);
             UIHelper.SetField(settingsUi, "sfxVolumeLabel", sfxVolumeLabel);
-            UIHelper.SetField(settingsUi, "bgmVolumeSlider", bgmVolumeSlider);
-            UIHelper.SetField(settingsUi, "bgmVolumeLabel", bgmVolumeLabel);
-            UIHelper.SetField(settingsUi, "sfxVolumeSlider", sfxVolumeSlider);
-            UIHelper.SetField(settingsUi, "sfxVolumeLabel", sfxVolumeLabel);
+            UIHelper.SetField(settingsUi, "bgmVolumeValueText", bgmVolumeValueText);
+            UIHelper.SetField(settingsUi, "sfxVolumeValueText", sfxVolumeValueText);
             UIHelper.SetField(settingsUi, "textSpeedSlider", textSpeedSlider);
             UIHelper.SetField(settingsUi, "textSpeedLabel", textSpeedLabel);
             UIHelper.SetField(settingsUi, "previewTextLabel", previewText);
@@ -949,6 +950,7 @@ namespace HalloweenVN.UI.Theme
             UIHelper.StretchFull(langBgBtnObj.GetComponent<RectTransform>());
             UIHelper.AddImage(langBgBtnObj, new Color(0, 0, 0, 0.7f));
             UnityEngine.UI.Button langBgBtn = langBgBtnObj.AddComponent<UnityEngine.UI.Button>();
+            langBgBtnObj.AddComponent<UIHoverSound>().playHover = false; // overlay: click only
             langBgBtn.transition = UnityEngine.UI.Selectable.Transition.None;
 
             // Language panel
@@ -1105,6 +1107,18 @@ namespace HalloweenVN.UI.Theme
             return CreateLegacyText(obj, text, HalloweenTheme.TextPrimary, 28, TextAnchor.MiddleCenter);
         }
 
+        private Text CreateSettingsValueText(Transform parent, float yPos)
+        {
+            GameObject obj = UIHelper.CreateUIObject("VolumeValue", parent);
+            RectTransform rt = obj.GetComponent<RectTransform>();
+            UIHelper.SetAnchors(rt, new Vector2(0.5f, 1), new Vector2(0.5f, 1), new Vector2(0.5f, 1));
+            rt.anchoredPosition = new Vector2(235, yPos);
+            rt.sizeDelta = new Vector2(90, 30);
+            Text t = CreateLegacyText(obj, "", HalloweenTheme.TextPrimary, 22, TextAnchor.MiddleCenter);
+            t.raycastTarget = false;
+            return t;
+        }
+
         private Slider CreateSettingsSlider(Transform parent, float yPos)
         {
             GameObject sliderObj = UIHelper.CreateUIObject("Slider", parent);
@@ -1255,7 +1269,7 @@ namespace HalloweenVN.UI.Theme
             UIHelper.StretchFull(extraBgBtnObj.GetComponent<RectTransform>());
             UIHelper.AddImage(extraBgBtnObj, new Color32(15, 8, 25, 200));
             UnityEngine.UI.Button extraBgBtn = extraBgBtnObj.AddComponent<UnityEngine.UI.Button>();
-            extraBgBtnObj.AddComponent<UIHoverSound>();
+            extraBgBtnObj.AddComponent<UIHoverSound>().playHover = false; // overlay: click only
             extraBgBtn.transition = UnityEngine.UI.Selectable.Transition.None;
 
             // ===== Back shadow box (simulates folder stack depth) =====
@@ -1271,7 +1285,6 @@ namespace HalloweenVN.UI.Theme
             
             // Add a dummy button to block clicks from passing through to the background
             UnityEngine.UI.Button shadowBtn = shadowBox.AddComponent<UnityEngine.UI.Button>();
-            shadowBox.AddComponent<UIHoverSound>();
             shadowBtn.transition = UnityEngine.UI.Selectable.Transition.None;
 
             // ===== Create 6 Folder objects =====
@@ -1318,7 +1331,6 @@ namespace HalloweenVN.UI.Theme
                 
                 // Add a dummy button to block clicks from passing through to the background
                 UnityEngine.UI.Button bodyBtn = bodyObj.AddComponent<UnityEngine.UI.Button>();
-                bodyObj.AddComponent<UIHoverSound>();
                 bodyBtn.transition = UnityEngine.UI.Selectable.Transition.None;
 
                 // ===== Tab (upper protruding part of the folder) =====

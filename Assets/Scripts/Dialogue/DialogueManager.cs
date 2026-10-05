@@ -166,12 +166,61 @@ namespace HalloweenVN.Dialogue
                 }
             }
             
+            // 3.5 Restore the BGM that was playing at the target point and silence leftover SFX
+            RestoreAudioForRewind(rewindHistory);
+
             // 4. Resume from target node
             currentNode = targetNode;
             IsPlaying = true;
             
             // Display it
             DisplayNode(currentNode.id);
+        }
+
+        /// <summary>
+        /// After a backlog rewind the music must match the target point
+        /// (e.g. rewinding from the ending piano back into the climax).
+        /// Finds the last BGM command before the target node; falls back to the dialogue's first node.
+        /// </summary>
+        private void RestoreAudioForRewind(System.Collections.Generic.List<HalloweenVN.UI.BacklogUI.BacklogEntry> rewindHistory)
+        {
+            var audio = HalloweenVN.Core.AudioManager.Instance;
+            if (audio == null) return;
+            audio.StopAllSFX();
+
+            string bgm = null;
+            bool found = false;
+            if (rewindHistory != null)
+            {
+                for (int i = rewindHistory.Count - 1; i >= 0 && !found; i--)
+                {
+                    var n = rewindHistory[i].node;
+                    if (n != null) found = TryGetBgmCommand(n.command, out bgm);
+                }
+            }
+            if (!found && currentDialogue != null && currentDialogue.nodes != null && currentDialogue.nodes.Count > 0)
+            {
+                found = TryGetBgmCommand(currentDialogue.nodes[0].command, out bgm);
+            }
+            if (!found) return;
+
+            if (string.IsNullOrEmpty(bgm)) audio.StopBGM(0.5f);
+            else audio.PlayBGM(bgm);
+        }
+
+        /// <summary>Returns true if the command string contains a BGM change. bgm is null for STOP_BGM.</summary>
+        private static bool TryGetBgmCommand(string command, out string bgm)
+        {
+            bgm = null;
+            if (string.IsNullOrEmpty(command)) return false;
+            bool found = false;
+            foreach (string raw in command.Split(';'))
+            {
+                string cmd = raw.Trim();
+                if (cmd.StartsWith("AUDIO:PLAY_BGM:")) { bgm = cmd.Substring("AUDIO:PLAY_BGM:".Length); found = true; }
+                else if (cmd == "AUDIO:STOP_BGM") { bgm = null; found = true; }
+            }
+            return found;
         }
 
         public void DisplayNode(int nodeId)
@@ -187,22 +236,35 @@ namespace HalloweenVN.Dialogue
 
             if (!string.IsNullOrEmpty(currentNode.command))
             {
-                if (currentNode.command.StartsWith("EFFECT:") || currentNode.command.StartsWith("AUDIO:"))
+                // A node may carry several commands separated by ';'
+                // (e.g. "AUDIO:PLAY_BGM:bgm_climax;EFFECT:SHAKE").
+                string flowCommand = null;
+                foreach (string raw in currentNode.command.Split(';'))
                 {
-                    // Effects and Audio trigger immediately with the text
-                    ExecuteCommand(currentNode.command);
+                    string cmd = raw.Trim();
+                    if (cmd.Length == 0) continue;
+                    if (cmd.StartsWith("EFFECT:") || cmd.StartsWith("AUDIO:"))
+                    {
+                        // Effects and Audio trigger immediately with the text
+                        ExecuteCommand(cmd);
+                    }
+                    else
+                    {
+                        flowCommand = cmd;
+                    }
                 }
-                else
+
+                if (flowCommand != null)
                 {
                     // Flow commands (CHANGE_PHASE, etc.) are deferred if there's text
                     bool hasText = !string.IsNullOrEmpty(currentNode.text);
                     if (hasText)
                     {
-                        pendingCommand = currentNode.command;
+                        pendingCommand = flowCommand;
                     }
                     else
                     {
-                        ExecuteCommand(currentNode.command);
+                        ExecuteCommand(flowCommand);
                         return;
                     }
                 }
@@ -229,6 +291,7 @@ namespace HalloweenVN.Dialogue
         {
             if (command.StartsWith("AUDIO:"))
             {
+                if (HalloweenVN.Core.AudioManager.Instance == null) return;
                 string audioCmd = command.Substring("AUDIO:".Length);
                 if (audioCmd.StartsWith("PLAY_BGM:"))
                 {

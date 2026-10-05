@@ -10,7 +10,7 @@
             "characterSpriteRight": "",
             "backgroundSprite": "Images/bg_mansion_night",
             "nextNodeId": 101,
-            "command": "",
+            "command": "AUDIO:PLAY_BGM:bgm_investigation",
             "choices": []
         },
         {
@@ -47,7 +47,7 @@
             "backgroundSprite": "Images/bg_mansion_night",
             "choices": [],
             "nextNodeId": 1,
-            "command": "AUDIO:PLAY_BGM:bgm_investigation",
+            "command": "",
             "noFade": false,
             "slideIn": true
         },
