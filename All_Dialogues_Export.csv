@@ -203,7 +203,7 @@ ch1_night,19, ,"카스미가 조심스럽게 천을 걷어내자, 그 아래에�
 ch1_night,10020,카스미,"이상합니다. 건물은 10년 넘게 방치된 상태인데, 이 피아노만 먼지 하나 없이... 마치 누군가가 계속 관리하고 있었던 것처럼.",,,Characters/카스미/당황2,,,10021
 ch1_night,10021,미나,"...그 자의 미련이니라. 잊혀져도, 연주만은 멈출 수 없었던 것...",,Characters/카스미/당황2,,Characters/미나/음침,,20
 ch1_night,20, ,건물 전체가 미세하게 떨리기 시작했다.,,,,,EFFECT:SHAKE,21
-ch1_night,21, ,그리고 피아노 건반이 스스로 움직이기 시작했다. 처연하고 아름다운 선율이 공연장을 가득 채웠다.,,,,,EFFECT:FLASH,22
+ch1_night,21, ,그리고 피아노 건반이 스스로 움직이기 시작했다. 처연하고 아름다운 선율이 공연장을 가득 채웠다.,,,,,EFFECT:FLASH;AUDIO:PLAY_BGM:bgm_ending_piano,22
 ch1_night,22, ,다들 공포에 얼어붙은 가운데 — 하루카만이 다른 표정을 하고 있었다.,,,,,,23
 ch1_night,23,하루카,"...이 곡... 흑, 너무 외롭고 슬픈 소리예요...",,,Characters/하루카/측은,,,24
 ch1_night,24,하루카,으... 갑자기 엄청 추워졌어요...! 방금까지는 안 이랬는데...!,,,Characters/하루카/공포,,,25
@@ -213,7 +213,7 @@ ch1_night,26,리나,"히익...?! 카, 카스미 언니... 이거 뭐야?!",,Char
 ch1_night,27,리리스,잭오 센서 이상 무... 이건... 실제로 건반이 눌리고 있음.,,Characters/리리스/놀람,,Characters/카스미/당황2,,28
 ch1_night,28,카스미,"...물리적으로 건반이 눌리고 있다면, 보이지 않는 누군가가 여기에 있다는 뜻입니다.",,Characters/리리스/놀람,,Characters/카스미/당황2,,29
 ch1_night,29,세이카,...찾았어. 이 사람이야. 잊혀진 피아니스트.,,,Characters/세이카/음침,,,30
-ch1_night,30, ,"선율이 멈췄다. 다시 무거운 침묵이 내려앉고, 먼지만이 공기 중을 부유했다.",,,,,,31
+ch1_night,30, ,"선율이 멈췄다. 다시 무거운 침묵이 내려앉고, 먼지만이 공기 중을 부유했다.",,,,,AUDIO:PLAY_BGM:bgm_investigation,31
 ch1_night,31,세이카,조사를 시작해. 이 안에 단서가 있을 거야.,,,Characters/세이카/기본,,,32
 ch1_night,32,,,,,,,START_DIALOGUE:ch1_investigation_talk,-1
 ch1_investigation_talk,100, ,일행은 흩어져 공연장 구석구석을 뒤지기 시작했다.,Images/bg_mansion_night,,,,AUDIO:PLAY_BGM:bgm_investigation,101
@@ -501,3 +501,9 @@ ch1_epilogue,66, ,"「네버모어 오컬트 탐정 사무소」의 첫 번째 �
 이렇게 끝났다.",,,,,,68
 ch1_epilogue,68, ,플레이해주셔서 감사합니다.,,,,,,69
 ch1_epilogue,69, ,,,,,,END,-1
+ch1_result_fail,0,카스미,"소장님, 추론의 일부가 맞지 않습니다. 증거와 결론 사이에 논리적 비약이 있어요.",Images/bg_mansion_night,,Characters/카스미/찡그림,,AUDIO:PLAY_BGM:bgm_investigation,1
+ch1_result_fail,1,카스미,"각 증거가 정확히 무엇을 증명하는지, 하나씩 다시 짚어볼 필요가 있습니다.",,,Characters/카스미/기본,,,2
+ch1_result_fail,2,세이카,...맞아. 서두르면 안 돼. 증거의 설명을 꼼꼼하게 읽어보자.,,Characters/세이카/당황,,Characters/카스미/기본,,3
+ch1_result_fail,3,리리스,힌트 제공. 증거 내 무관련 데이터 혼입 가능성 있음. 설명문 재확인 요망.,,Characters/리리스/기본,,Characters/세이카/기본,,4
+ch1_result_fail,4,미나,서두르지 마라... 진실은 언제나 증거 속에 숨어 있느니라.,,Characters/미나/기본,,Characters/세이카/기본,,5
+ch1_result_fail,5,,,,,,,CHANGE_PHASE:Deduction,-1
