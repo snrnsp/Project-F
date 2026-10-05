@@ -1172,6 +1172,7 @@ namespace HalloweenVN.UI
             {
                 int index = i;
                 GameObject btnObj = Instantiate(choiceButtonPrefab, choiceButtonContainer);
+                btnObj.AddComponent<UIHoverSound>();
                 btnObj.SetActive(true);
 
                 TextMeshProUGUI btnText = btnObj.GetComponentInChildren<TextMeshProUGUI>();

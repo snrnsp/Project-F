@@ -156,6 +156,7 @@ namespace HalloweenVN.UI.Theme
 
             Image img = AddImage(btnObj, HalloweenTheme.ButtonNormal);
             Button btn = btnObj.AddComponent<Button>();
+            btnObj.AddComponent<UIHoverSound>();
             btn.transition = Selectable.Transition.ColorTint;
             btn.colors = HalloweenTheme.GetButtonColors();
             btn.targetGraphic = img;
