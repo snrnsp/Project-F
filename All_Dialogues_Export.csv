@@ -213,8 +213,8 @@ ch1_night,26,리나,"히익...?! 카, 카스미 언니... 이거 뭐야?!",,Char
 ch1_night,27,리리스,잭오 센서 이상 무... 이건... 실제로 건반이 눌리고 있음.,,Characters/리리스/놀람,,Characters/카스미/당황2,,28
 ch1_night,28,카스미,"...물리적으로 건반이 눌리고 있다면, 보이지 않는 누군가가 여기에 있다는 뜻입니다.",,Characters/리리스/놀람,,Characters/카스미/당황2,,29
 ch1_night,29,세이카,...찾았어. 이 사람이야. 잊혀진 피아니스트.,,,Characters/세이카/음침,,,30
-ch1_night,30, ,"선율이 멈췄다. 다시 무거운 침묵이 내려앉고, 먼지만이 공기 중을 부유했다.",,,,,AUDIO:PLAY_BGM:bgm_investigation,31
-ch1_night,31,세이카,조사를 시작해. 이 안에 단서가 있을 거야.,,,Characters/세이카/기본,,,32
+ch1_night,30, ,"선율이 멈췄다. 다시 무거운 침묵이 내려앉고, 먼지만이 공기 중을 부유했다.",,,,,AUDIO:STOP_BGM,31
+ch1_night,31,세이카,조사를 시작해. 이 안에 단서가 있을 거야.,,,Characters/세이카/기본,,AUDIO:PLAY_BGM:bgm_investigation,32
 ch1_night,32,,,,,,,START_DIALOGUE:ch1_investigation_talk,-1
 ch1_investigation_talk,100, ,일행은 흩어져 공연장 구석구석을 뒤지기 시작했다.,Images/bg_mansion_night,,,,AUDIO:PLAY_BGM:bgm_investigation,101
 ch1_investigation_talk,101, ,"악보대 위의 빛바랜 콩쿠르 프로그램, 바늘이 멈춘 채 부서진 메트로놈,
@@ -466,7 +466,7 @@ ch1_epilogue,43, ,"수화기 너머로, 아버지의 길고 긴 침묵이 흘렀
 ch1_epilogue,44,세이카,(미소) ...네. 1년 더 해보겠습니다.,,Characters/세이카/기본,,Characters/리나/기본,,45
 ch1_epilogue,45, ,— 일주일 후.,,,,,,46
 ch1_epilogue,46, ,"소란이 조금 가라앉은 어느 저녁.
-서하유가 사무소에 찾아왔다.",Images/bg_office_night,,,,,47
+서하유가 사무소에 찾아왔다.",Images/bg_office_night,,,,AUDIO:PLAY_BGM:bgm_office_night,47
 ch1_epilogue,47,서하유,"저... 부탁이 하나 있어요.
 그 음악실에서 한 번만 더 연주해도 될까요?",,,,,,48
 ch1_epilogue,48,서하유,이번에는... 듣는 사람이 있을 때 치고 싶어서요.,,,,,,49

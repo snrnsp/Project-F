@@ -1,4 +1,4 @@
-{
+﻿{
     "dialogueId": "ch1_night",
     "nodes": [
         {
@@ -535,7 +535,7 @@
             "backgroundSprite": "",
             "choices": [],
             "nextNodeId": 31,
-            "command": "AUDIO:PLAY_BGM:bgm_investigation",
+            "command": "AUDIO:STOP_BGM",
             "slideIn": false,
             "noFade": false
         },
@@ -549,7 +549,7 @@
             "backgroundSprite": "",
             "choices": [],
             "nextNodeId": 32,
-            "command": "",
+            "command": "AUDIO:PLAY_BGM:bgm_investigation",
             "slideIn": false,
             "noFade": false
         },

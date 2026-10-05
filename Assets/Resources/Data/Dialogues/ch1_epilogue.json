@@ -573,7 +573,7 @@
             "id": 46,
             "speaker": " ",
             "backgroundSprite": "Images/bg_office_night",
-            "command": "",
+            "command": "AUDIO:PLAY_BGM:bgm_office_night",
             "choices": [],
             "nextNodeId": 47,
             "text": "소란이 조금 가라앉은 어느 저녁.\n서하유가 사무소에 찾아왔다.",
