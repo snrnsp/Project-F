@@ -31,6 +31,7 @@ namespace HalloweenVN.UI
 
         public void OnPointerEnter(PointerEventData eventData)
         {
+            if (HalloweenVN.Core.AudioManager.Instance != null) HalloweenVN.Core.AudioManager.Instance.PlaySFX("sfx_ui_hover");
             if (fadeCoroutine != null) StopCoroutine(fadeCoroutine);
             fadeCoroutine = StartCoroutine(FadeColors(hoverBgColor, hoverTextColor));
         }

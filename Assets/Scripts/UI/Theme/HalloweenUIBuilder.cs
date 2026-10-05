@@ -241,6 +241,7 @@ namespace HalloweenVN.UI.Theme
             Image img = UIHelper.AddImage(btnObj, bgColor);
 
             Button btn = btnObj.AddComponent<Button>();
+            btnObj.AddComponent<UIHoverSound>();
             btn.transition = Selectable.Transition.ColorTint;
             ColorBlock cb = ColorBlock.defaultColorBlock;
             cb.normalColor = bgColor;
@@ -437,9 +438,11 @@ namespace HalloweenVN.UI.Theme
 
             // Wire up fullscreen click (Background + DialoguePanel itself)
             Button bgClick = bgImgObj.AddComponent<Button>();
+            bgImgObj.AddComponent<UIHoverSound>();
             bgClick.targetGraphic = backgroundImage;
             bgClick.transition = Selectable.Transition.None;
             Button panelClick = dialoguePanel.AddComponent<Button>();
+            dialoguePanel.AddComponent<UIHoverSound>();
             Image panelImg = dialoguePanel.GetComponent<Image>();
             if (panelImg != null) panelClick.targetGraphic = panelImg;
             panelClick.transition = Selectable.Transition.None;
@@ -824,6 +827,7 @@ namespace HalloweenVN.UI.Theme
             skipHelpRt.sizeDelta = new Vector2(30, 30);
             UIHelper.AddImage(skipHelpBtnObj, new Color(0, 0, 0, 0)); // Invisible hit box
             Button skipHelpBtn = skipHelpBtnObj.AddComponent<Button>();
+            skipHelpBtnObj.AddComponent<UIHoverSound>();
             GameObject skipHelpBtnTextObj = UIHelper.CreateUIObject("Text", skipHelpBtnObj.transform);
             RectTransform shtRt = skipHelpBtnTextObj.GetComponent<RectTransform>();
             UIHelper.StretchFull(shtRt);
@@ -896,6 +900,10 @@ namespace HalloweenVN.UI.Theme
             if (globalMgrRef != null) globalMgrRef.Initialize(settingsRoot);
             UIHelper.SetField(settingsUi, "settingsPanel", settingsRoot);
             UIHelper.SetField(settingsUi, "titleTextLabel", titleText);
+            UIHelper.SetField(settingsUi, "bgmVolumeSlider", bgmVolumeSlider);
+            UIHelper.SetField(settingsUi, "bgmVolumeLabel", bgmVolumeLabel);
+            UIHelper.SetField(settingsUi, "sfxVolumeSlider", sfxVolumeSlider);
+            UIHelper.SetField(settingsUi, "sfxVolumeLabel", sfxVolumeLabel);
             UIHelper.SetField(settingsUi, "bgmVolumeSlider", bgmVolumeSlider);
             UIHelper.SetField(settingsUi, "bgmVolumeLabel", bgmVolumeLabel);
             UIHelper.SetField(settingsUi, "sfxVolumeSlider", sfxVolumeSlider);
@@ -1034,6 +1042,7 @@ namespace HalloweenVN.UI.Theme
             bgImg.raycastTarget = false;
 
             Button btn = btnObj.AddComponent<Button>();
+            btnObj.AddComponent<UIHoverSound>();
             btn.transition = Selectable.Transition.ColorTint;
             btn.colors = HalloweenTheme.GetButtonColors();
             btn.targetGraphic = bgImg; // Only tint the inner background!
@@ -1246,6 +1255,7 @@ namespace HalloweenVN.UI.Theme
             UIHelper.StretchFull(extraBgBtnObj.GetComponent<RectTransform>());
             UIHelper.AddImage(extraBgBtnObj, new Color32(15, 8, 25, 200));
             UnityEngine.UI.Button extraBgBtn = extraBgBtnObj.AddComponent<UnityEngine.UI.Button>();
+            extraBgBtnObj.AddComponent<UIHoverSound>();
             extraBgBtn.transition = UnityEngine.UI.Selectable.Transition.None;
 
             // ===== Back shadow box (simulates folder stack depth) =====
@@ -1261,6 +1271,7 @@ namespace HalloweenVN.UI.Theme
             
             // Add a dummy button to block clicks from passing through to the background
             UnityEngine.UI.Button shadowBtn = shadowBox.AddComponent<UnityEngine.UI.Button>();
+            shadowBox.AddComponent<UIHoverSound>();
             shadowBtn.transition = UnityEngine.UI.Selectable.Transition.None;
 
             // ===== Create 6 Folder objects =====
@@ -1307,6 +1318,7 @@ namespace HalloweenVN.UI.Theme
                 
                 // Add a dummy button to block clicks from passing through to the background
                 UnityEngine.UI.Button bodyBtn = bodyObj.AddComponent<UnityEngine.UI.Button>();
+                bodyObj.AddComponent<UIHoverSound>();
                 bodyBtn.transition = UnityEngine.UI.Selectable.Transition.None;
 
                 // ===== Tab (upper protruding part of the folder) =====
@@ -1372,6 +1384,7 @@ namespace HalloweenVN.UI.Theme
 
                 // Tab click handler goes on the Container
                 Button tabBtn = tabContainerObj.AddComponent<Button>();
+                tabContainerObj.AddComponent<UIHoverSound>();
                 tabBtn.transition = Selectable.Transition.None;
                 int capturedIndex = ci;
                 tabBtn.onClick.AddListener(() => { extraUi.SelectCharacter(capturedIndex); });
@@ -1485,6 +1498,7 @@ namespace HalloweenVN.UI.Theme
             closeBtnImg.sprite = UIHelper.CreateRoundedRectSprite(8, 2, new Color32(180, 50, 50, 255), new Color32(255, 120, 120, 255));
             closeBtnImg.type = Image.Type.Sliced;
             Button closeBtn = closeBtnObj.AddComponent<Button>();
+            closeBtnObj.AddComponent<UIHoverSound>();
 
             GameObject closeTextObj = UIHelper.CreateUIObject("Text", closeBtnObj.transform);
             RectTransform textRt = closeTextObj.GetComponent<RectTransform>();
@@ -1519,6 +1533,7 @@ namespace HalloweenVN.UI.Theme
             // Button styling (Invisible hit box)
             Image btnImg = UIHelper.AddImage(btnObj, new Color(0, 0, 0, 0));
             Button btn = btnObj.AddComponent<Button>();
+            btnObj.AddComponent<UIHoverSound>();
             btn.transition = Selectable.Transition.ColorTint;
             
             ColorBlock cb = ColorBlock.defaultColorBlock;
@@ -1596,7 +1611,6 @@ namespace HalloweenVN.UI.Theme
         }
     }
 }
-
 
 
 
