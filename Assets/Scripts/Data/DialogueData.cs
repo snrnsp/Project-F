@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 
 namespace HalloweenVN.Data
 {
@@ -6,6 +6,10 @@ namespace HalloweenVN.Data
     public class DialogueChoice
     {
         public string text;
+        public string text_en;
+        public string text_ja;
+        public string text_cn;
+        public string text_tw;
         public int nextNodeId;
     }
 
@@ -15,6 +19,10 @@ namespace HalloweenVN.Data
         public int id;
         public string speaker;
         public string text;
+        public string text_en;
+        public string text_ja;
+        public string text_cn;
+        public string text_tw;
         public string characterSprite; // Legacy / Default (maps to Center)
         public string characterSpriteLeft;
         public string characterSpriteCenter;

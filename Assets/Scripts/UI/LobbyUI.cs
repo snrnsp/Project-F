@@ -1,4 +1,4 @@
-﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿using System.Collections;
+﻿﻿﻿﻿﻿﻿﻿﻿﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -202,6 +202,9 @@ namespace HalloweenVN.UI
 
             if (phase == GamePhase.Lobby)
             {
+                if (AudioManager.Instance != null) AudioManager.Instance.PlayBGM("bgm_lobby");
+                // Returning to the lobby (e.g. after the ending) must re-enable "New Game".
+                isStartingGame = false;
                 lobbyPanel.SetActive(true);
                 UpdateContinueButton();
                 StopAllCoroutines();
@@ -593,6 +596,8 @@ void ShowPhotosensitivityWarning()
             
             // Wait for fade out to complete
             yield return new WaitUntil(() => fadeOutDone);
+            
+            if (AudioManager.Instance != null) AudioManager.Instance.StopBGM(0.5f);
             
             // Screen is completely black here
             if (popupOverlay != null) Destroy(popupOverlay);

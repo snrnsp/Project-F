@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using HalloweenVN.UI.Theme;
 
 namespace HalloweenVN.Core
@@ -18,6 +18,7 @@ namespace HalloweenVN.Core
 
             GameObject bootstrapObj = new GameObject("[HalloweenVN]");
             bootstrapObj.AddComponent<HalloweenUIBuilder>();
+            bootstrapObj.AddComponent<AudioManager>();
             Object.DontDestroyOnLoad(bootstrapObj);
 
             Debug.Log("🎃 Halloween VN — Auto-initialized!");

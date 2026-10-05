@@ -8,10 +8,10 @@
             "characterSpriteLeft": "",
             "characterSpriteCenter": "",
             "characterSpriteRight": "",
-            "backgroundSprite": "Images/bg_flashback",
+            "backgroundSprite": "Images/bg_memory",
             "choices": [],
             "nextNodeId": 1,
-            "command": ""
+            "command": "AUDIO:PLAY_BGM:bgm_office_night"
         },
         {
             "id": 1,
@@ -129,7 +129,7 @@
             "characterSpriteLeft": "",
             "characterSpriteCenter": "",
             "characterSpriteRight": "",
-            "backgroundSprite": "Images/bg_flashback",
+            "backgroundSprite": "Images/bg_memory",
             "choices": [],
             "nextNodeId": 9,
             "command": ""
@@ -417,7 +417,7 @@
         },
         {
             "speaker": "세이카",
-            "text": "'기괴한 일' 겪은 사람이 각 잡힌 경찰서 가면 미친 사람 취급밖에 더 받겠어? 오히려 이런 분위기가 털어놓기 편하지.",
+            "text": "기괴한 일' 겪은 사람이 각 잡힌 경찰서 가면 미친 사람 취급밖에 더 받겠어? 오히려 이런 분위기가 털어놓기 편하지.",
             "characterSpriteLeft": "",
             "characterSpriteCenter": "Characters/세이카/기본",
             "characterSpriteRight": "",

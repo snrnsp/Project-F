@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: b9749035ed3c42047827f58eed758b34
+guid: 87604a6a0958e8b4aab64eb9c49827c1
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8017313551801898886
-    second: bg_flashback_0
+      213: 9106787061126295695
+    second: bg_mansion_night_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: bg_flashback_0
+      name: bg_mansion_night_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 1
-        height: 1
+        width: 1376
+        height: 768
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 687d314a238334f60800000000000000
-      internalID: 8017313551801898886
+      spriteID: f807e8f059ec16e70800000000000000
+      internalID: 9106787061126295695
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      bg_flashback_0: 8017313551801898886
+      bg_mansion_night_0: 9106787061126295695
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

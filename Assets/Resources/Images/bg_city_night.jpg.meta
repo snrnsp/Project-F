@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: e1c0ef40082644d4c9744bd8f0ab3345
+guid: 1800136255af42a47b28a210c800665b
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 1474369009813022047
-    second: lobby_bg_0
+      213: -7624046998235864739
+    second: bg_city_night_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,7 +113,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: lobby_bg_0
+      name: bg_city_night_0
       rect:
         serializedVersion: 2
         x: 0
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: f55efb98dc2067410800000000000000
-      internalID: 1474369009813022047
+      spriteID: d51a44726a1f13690800000000000000
+      internalID: -7624046998235864739
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      lobby_bg_0: 1474369009813022047
+      bg_city_night_0: -7624046998235864739
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

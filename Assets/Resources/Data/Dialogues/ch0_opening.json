@@ -5,8 +5,9 @@
             "id": 0,
             "speaker": "",
             "text": "2026년. 노을시(市).",
-            "backgroundSprite": "Images/city_night",
-            "nextNodeId": 1
+            "backgroundSprite": "Images/bg_city_night",
+            "nextNodeId": 1,
+            "command": "AUDIO:PLAY_BGM:bgm_office_day"
         },
         {
             "id": 1,
@@ -54,7 +55,7 @@
             "id": 8,
             "speaker": "",
             "text": "구시가지의 가파른 언덕 꼭대기. 안개 너머로 오래된 저택의 실루엣이 떠오른다.",
-            "backgroundSprite": "Images/lobby_bg",
+            "backgroundSprite": "Images/bg_office_night",
             "nextNodeId": 9
         },
         {
@@ -79,7 +80,7 @@
         {
             "id": 12,
             "speaker": "",
-            "text": "'미제 사건 특화. 초자연 현상 환영.'",
+            "text": "미제 사건 특화. 초자연 현상 환영.'",
             "nextNodeId": 13
         },
         {

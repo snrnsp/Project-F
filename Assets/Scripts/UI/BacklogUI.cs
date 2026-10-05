@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System.Collections.Generic;
@@ -33,7 +33,15 @@ namespace HalloweenVN.UI
                 this.dialogueId = dialogueId;
                 this.node = node;
                 this.speaker = node.speaker;
-                this.text = node.text;
+                
+                var lang = HalloweenVN.Core.SettingsData.Language;
+                string fullText = node.text ?? "";
+                if (lang == HalloweenVN.Core.GameLanguage.English && !string.IsNullOrEmpty(node.text_en)) fullText = node.text_en;
+                else if (lang == HalloweenVN.Core.GameLanguage.Japanese && !string.IsNullOrEmpty(node.text_ja)) fullText = node.text_ja;
+                else if (lang == HalloweenVN.Core.GameLanguage.ChineseSimplified && !string.IsNullOrEmpty(node.text_cn)) fullText = node.text_cn;
+                else if (lang == HalloweenVN.Core.GameLanguage.ChineseTraditional && !string.IsNullOrEmpty(node.text_tw)) fullText = node.text_tw;
+                
+                this.text = fullText;
             }
         }
 
@@ -120,7 +128,14 @@ namespace HalloweenVN.UI
 
         private void RecordNode(DialogueNode node)
         {
-            if (node == null || string.IsNullOrEmpty(node.text)) return;
+            if (node == null) return;
+            string checkText = node.text;
+            var lang = HalloweenVN.Core.SettingsData.Language;
+            if (lang == HalloweenVN.Core.GameLanguage.English && !string.IsNullOrEmpty(node.text_en)) checkText = node.text_en;
+            else if (lang == HalloweenVN.Core.GameLanguage.Japanese && !string.IsNullOrEmpty(node.text_ja)) checkText = node.text_ja;
+            else if (lang == HalloweenVN.Core.GameLanguage.ChineseSimplified && !string.IsNullOrEmpty(node.text_cn)) checkText = node.text_cn;
+            else if (lang == HalloweenVN.Core.GameLanguage.ChineseTraditional && !string.IsNullOrEmpty(node.text_tw)) checkText = node.text_tw;
+            if (string.IsNullOrEmpty(checkText)) return;
             string currentDialogId = DialogueManager.Instance.CurrentDialogueId;
             history.Add(new BacklogEntry(currentDialogId, node));
             if (history.Count > 100)

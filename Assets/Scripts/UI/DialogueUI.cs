@@ -560,7 +560,12 @@ namespace HalloweenVN.UI
             UpdateVisualsOnly(node, false);
 
             // Typing & Formatting
+            var lang = HalloweenVN.Core.SettingsData.Language;
             fullText = node.text ?? "";
+            if (lang == HalloweenVN.Core.GameLanguage.English && !string.IsNullOrEmpty(node.text_en)) fullText = node.text_en;
+            else if (lang == HalloweenVN.Core.GameLanguage.Japanese && !string.IsNullOrEmpty(node.text_ja)) fullText = node.text_ja;
+            else if (lang == HalloweenVN.Core.GameLanguage.ChineseSimplified && !string.IsNullOrEmpty(node.text_cn)) fullText = node.text_cn;
+            else if (lang == HalloweenVN.Core.GameLanguage.ChineseTraditional && !string.IsNullOrEmpty(node.text_tw)) fullText = node.text_tw;
             bool isNarrator = string.IsNullOrEmpty(node.speaker);
             
             // Rule: Monologues with a background image use the dialogue panel.
@@ -1170,7 +1175,15 @@ namespace HalloweenVN.UI
                 btnObj.SetActive(true);
 
                 TextMeshProUGUI btnText = btnObj.GetComponentInChildren<TextMeshProUGUI>();
-                if (btnText != null) btnText.text = choices[i].text;
+                if (btnText != null) {
+                    var lang = HalloweenVN.Core.SettingsData.Language;
+                    string cText = choices[i].text;
+                    if (lang == HalloweenVN.Core.GameLanguage.English && !string.IsNullOrEmpty(choices[i].text_en)) cText = choices[i].text_en;
+                    else if (lang == HalloweenVN.Core.GameLanguage.Japanese && !string.IsNullOrEmpty(choices[i].text_ja)) cText = choices[i].text_ja;
+                    else if (lang == HalloweenVN.Core.GameLanguage.ChineseSimplified && !string.IsNullOrEmpty(choices[i].text_cn)) cText = choices[i].text_cn;
+                    else if (lang == HalloweenVN.Core.GameLanguage.ChineseTraditional && !string.IsNullOrEmpty(choices[i].text_tw)) cText = choices[i].text_tw;
+                    btnText.text = cText;
+                }
 
                 Button btn = btnObj.GetComponent<Button>();
                 if (btn != null)

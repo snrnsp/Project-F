@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 3e21c776a5f38a349849e2a71b574bec
+guid: 45a36aa9163c24f49b9b8d061d825adf
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 2028788564230233327
-    second: city_night_0
+      213: 9066741377472960088
+    second: bg_memory_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,7 +113,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: city_night_0
+      name: bg_memory_0
       rect:
         serializedVersion: 2
         x: 0
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: fec515f3374b72c10800000000000000
-      internalID: 2028788564230233327
+      spriteID: 8569c92ce3983dd70800000000000000
+      internalID: 9066741377472960088
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      city_night_0: 2028788564230233327
+      bg_memory_0: 9066741377472960088
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

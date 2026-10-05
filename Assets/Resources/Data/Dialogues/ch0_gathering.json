@@ -8,7 +8,7 @@
             "characterSpriteLeft": "",
             "characterSpriteCenter": "",
             "characterSpriteRight": "",
-            "backgroundSprite": "Images/bg_flashback",
+            "backgroundSprite": "Images/bg_memory",
             "choices": [],
             "nextNodeId": 1,
             "command": ""

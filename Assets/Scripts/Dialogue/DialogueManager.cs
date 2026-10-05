@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -187,9 +187,9 @@ namespace HalloweenVN.Dialogue
 
             if (!string.IsNullOrEmpty(currentNode.command))
             {
-                if (currentNode.command.StartsWith("EFFECT:"))
+                if (currentNode.command.StartsWith("EFFECT:") || currentNode.command.StartsWith("AUDIO:"))
                 {
-                    // Effects trigger immediately with the text
+                    // Effects and Audio trigger immediately with the text
                     ExecuteCommand(currentNode.command);
                 }
                 else
@@ -227,7 +227,23 @@ namespace HalloweenVN.Dialogue
         /// </summary>
         private void ExecuteCommand(string command)
         {
-            if (command.StartsWith("EFFECT:"))
+            if (command.StartsWith("AUDIO:"))
+            {
+                string audioCmd = command.Substring("AUDIO:".Length);
+                if (audioCmd.StartsWith("PLAY_BGM:"))
+                {
+                    HalloweenVN.Core.AudioManager.Instance.PlayBGM(audioCmd.Substring("PLAY_BGM:".Length));
+                }
+                else if (audioCmd == "STOP_BGM")
+                {
+                    HalloweenVN.Core.AudioManager.Instance.StopBGM();
+                }
+                else if (audioCmd.StartsWith("PLAY_SFX:"))
+                {
+                    HalloweenVN.Core.AudioManager.Instance.PlaySFX(audioCmd.Substring("PLAY_SFX:".Length));
+                }
+            }
+            else if (command.StartsWith("EFFECT:"))
             {
                 string effectType = command.Substring("EFFECT:".Length);
                 var fx = HalloweenVN.Effects.ScreenEffects.Instance;

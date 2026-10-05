@@ -1,4 +1,4 @@
-﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿using HalloweenVN.Core;
+﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿using HalloweenVN.Core;
 using HalloweenVN.Dialogue;
 using HalloweenVN.Investigation;
 using HalloweenVN.Deduction;
@@ -118,7 +118,7 @@ namespace HalloweenVN.UI.Theme
             // Background
             GameObject bgObj = UIHelper.CreateUIObject("Background", lobbyPanelRoot.transform);
             UIHelper.StretchFull(bgObj.GetComponent<RectTransform>());
-            Sprite bgSprite = Resources.Load<Sprite>("Images/lobby_bg");
+            Sprite bgSprite = Resources.Load<Sprite>("Images/bg_agency_exterior");
             Image bgImg = UIHelper.AddImage(bgObj, new Color(1f, 1f, 1f, 1f), bgSprite); // 100% opacity
             if (bgSprite == null)
             {
@@ -754,19 +754,19 @@ namespace HalloweenVN.UI.Theme
             titleRt.sizeDelta = new Vector2(400, 60);
             Text titleText = CreateLegacyText(titleObj, "환경 설정", HalloweenTheme.AccentOrange, 42, TextAnchor.UpperCenter);
 
-            float yPos = -120;
+            float yPos = -135;
 
             // ─── 1. Text Speed ───
             var textSpeedLabel = CreateSettingsLabel(panel.transform, "\uD14D\uC2A4\uD2B8 \uC18D\uB3C4", yPos);
             Slider textSpeedSlider = CreateSettingsSlider(panel.transform, yPos - 45);
 
             // Preview Text & Background (to see opacity)
-            yPos -= 105;
+            yPos -= 90;
             // The Text (No background needed anymore since Opacity setting is gone)
             GameObject previewTextObj = UIHelper.CreateUIObject("PreviewText", panel.transform);
             RectTransform ptextRt = previewTextObj.GetComponent<RectTransform>();
             UIHelper.SetAnchors(ptextRt, new Vector2(0.5f, 1), new Vector2(0.5f, 1), new Vector2(0.5f, 1));
-            ptextRt.anchoredPosition = new Vector2(0, yPos);
+            ptextRt.anchoredPosition = new Vector2(0, yPos + 10); // Moved slightly up
             ptextRt.sizeDelta = new Vector2(620, 60);
             Text previewText = CreateLegacyText(previewTextObj, "", HalloweenTheme.TextPrimary, 24, TextAnchor.MiddleCenter);
 
@@ -801,11 +801,16 @@ namespace HalloweenVN.UI.Theme
             // ─── 3. Skip Mode (Dropdown) ───
             yPos -= 105;
             var skipModeLabel = CreateSettingsLabel(panel.transform, "스킵 단축키", yPos);
+            skipModeLabel.horizontalOverflow = HorizontalWrapMode.Overflow;
+            // Add ContentSizeFitter to fit the text exactly so we can anchor the help button to its right
+            UnityEngine.UI.ContentSizeFitter labelFitter = skipModeLabel.gameObject.AddComponent<UnityEngine.UI.ContentSizeFitter>();
+            labelFitter.horizontalFit = UnityEngine.UI.ContentSizeFitter.FitMode.PreferredSize;
+
             // Help Button (?)
-            GameObject skipHelpBtnObj = UIHelper.CreateUIObject("HelpButton", panel.transform);
+            GameObject skipHelpBtnObj = UIHelper.CreateUIObject("HelpButton", skipModeLabel.transform);
             RectTransform skipHelpRt = skipHelpBtnObj.GetComponent<RectTransform>();
-            UIHelper.SetAnchors(skipHelpRt, new Vector2(0.5f, 1), new Vector2(0.5f, 1), new Vector2(0.5f, 0.5f));
-            skipHelpRt.anchoredPosition = new Vector2(60, yPos - 20);
+            UIHelper.SetAnchors(skipHelpRt, new Vector2(1, 0.5f), new Vector2(1, 0.5f), new Vector2(0, 0.5f));
+            skipHelpRt.anchoredPosition = new Vector2(-5, 0); // -5px offset to account for internal padding
             skipHelpRt.sizeDelta = new Vector2(30, 30);
             UIHelper.AddImage(skipHelpBtnObj, new Color(0, 0, 0, 0)); // Invisible hit box
             Button skipHelpBtn = skipHelpBtnObj.AddComponent<Button>();
@@ -819,8 +824,8 @@ namespace HalloweenVN.UI.Theme
             GameObject skipHelpPanelObj = UIHelper.CreateUIObject("SkipHelpPanel", panel.transform);
             RectTransform skipHelpPanelRt = skipHelpPanelObj.GetComponent<RectTransform>();
             UIHelper.SetAnchors(skipHelpPanelRt, new Vector2(0.5f, 1), new Vector2(0.5f, 1), new Vector2(0.5f, 0.5f));
-            skipHelpPanelRt.sizeDelta = new Vector2(340, 60);
-            skipHelpPanelRt.anchoredPosition = new Vector2(120, yPos + 25);
+            skipHelpPanelRt.sizeDelta = new Vector2(460, 60);
+            skipHelpPanelRt.anchoredPosition = new Vector2(0, yPos + 35);
             UIHelper.AddImage(skipHelpPanelObj, new Color32(40, 25, 60, 240));
             var skipHelpOutline = skipHelpPanelObj.AddComponent<Outline>();
             skipHelpOutline.effectColor = new Color32(90, 70, 120, 255);
@@ -831,7 +836,7 @@ namespace HalloweenVN.UI.Theme
             UIHelper.StretchFull(skipHtRt);
             skipHtRt.offsetMin = new Vector2(5, 5);
             skipHtRt.offsetMax = new Vector2(-5, -5);
-            CreateLegacyText(skipHelpTextObj, "설정하신 단축키를 누르고 있으면\n대사를 빠르게 넘길 수 있습니다.", Color.white, 16, TextAnchor.MiddleCenter);
+            Text skipHelpPanelText = CreateLegacyText(skipHelpTextObj, "설정하신 단축키를 누르고 있으면 대사를 빠르게 넘길 수 있습니다.", Color.white, 16, TextAnchor.MiddleCenter);
             skipHelpPanelObj.SetActive(false);
             var skipTuple = CreateLegacyButton(panel.transform, "Ctrl ▼", 220, 40, new Color32(60, 40, 80, 255));
             RectTransform skipRt = skipTuple.btn.GetComponent<RectTransform>();
@@ -891,6 +896,7 @@ namespace HalloweenVN.UI.Theme
             UIHelper.SetField(settingsUi, "skipModeLabel", skipModeLabel);
             UIHelper.SetField(settingsUi, "skipHelpButton", skipHelpBtn);
             UIHelper.SetField(settingsUi, "skipHelpPanel", skipHelpPanelObj);
+            UIHelper.SetField(settingsUi, "skipHelpText", skipHelpPanelText);
             UIHelper.SetField(settingsUi, "ctrlSkipValueText", skipTuple.text);
             UIHelper.SetField(settingsUi, "skipDropdownPanel", dropPanelObj);
             UIHelper.SetField(settingsUi, "skipOptCtrl", optCtrl.btn);

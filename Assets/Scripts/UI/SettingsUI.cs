@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using HalloweenVN.Core;
@@ -26,6 +26,7 @@ namespace HalloweenVN.UI
         [SerializeField] private Text skipModeLabel;
         [SerializeField] private Button skipHelpButton;
         [SerializeField] private GameObject skipHelpPanel;
+        [SerializeField] private Text skipHelpText;
         [SerializeField] private Text ctrlSkipValueText;
         [SerializeField] private GameObject skipDropdownPanel;
         [SerializeField] private Button skipOptCtrl;
@@ -174,15 +175,17 @@ namespace HalloweenVN.UI
                     SetText(skipModeLabel, "\uC2A4\uD0B5 \uBAA8\uB4DC");
                     SetText(fontStyleLabel, "\uAE00\uAF34");
                     previewMessage = "\uD14D\uC2A4\uD2B8 \uC18D\uB3C4\uAC00 \uC774 \uC815\uB3C4\uB85C \uCD9C\uB825\uB429\uB2C8\uB2E4. \uB208\uC73C\uB85C \uD655\uC778\uD574 \uBCF4\uC138\uC694!";
+                    SetText(skipHelpText, "\uC124\uC815\uD558\uC2E0 \uB2E8\uCD95\uD0A4\uB97C \uB204\uB974\uACE0 \uC788\uC73C\uBA74 \uB300\uC0AC\uB97C \uBE60\uB974\uAC8C \uB118\uAE38 \uC218 \uC788\uC2B5\uB2C8\uB2E4.");
                     break;
                 case GameLanguage.English:
                     SetText(titleTextLabel, "Settings");
                     SetText(textSpeedLabel, "Text Speed");
                     SetText(autoPlayLabel, "Auto-play Delay");
                     
-                    SetText(skipModeLabel, "Skip Hotkey  ");
+                    SetText(skipModeLabel, "Skip Hotkey");
                     SetText(fontStyleLabel, "Font");
                     previewMessage = "This is a text speed test. Please check it carefully!";
+                    SetText(skipHelpText, "Hold the configured hotkey to fast-forward through the dialogue.");
                     break;
                 case GameLanguage.Japanese:
                     SetText(titleTextLabel, "\u8A2D\u5B9A");
@@ -192,6 +195,7 @@ namespace HalloweenVN.UI
                     SetText(skipModeLabel, "\u30B9\u30AD\u30C3\u30D7\u30E2\u30FC\u30C9");
                     SetText(fontStyleLabel, "\u30D5\u30A9\u30F3\u30C8");
                     previewMessage = "\u30C6\u30AD\u30B9\u30C8\u901F\u5EA6\u306E\u30C6\u30B9\u30C8\u3067\u3059\u3002\u3054\u78BA\u8A8D\u304F\u3060\u3055\u3044\u3002";
+                    SetText(skipHelpText, "\u8A2D\u5B9A\u3057\u305F\u30B7\u30E7\u30FC\u30C8\u30AB\u30C3\u30C8\u30AD\u30FC\u3092\u62BC\u3057\u7D9A\u3051\u308B\u3068\u3001\u30BB\u30EA\u30D5\u3092\u65E9\u9001\u308A\u3067\u304D\u307E\u3059\u3002");
                     break;
                 case GameLanguage.ChineseSimplified:
                     SetText(titleTextLabel, "\u8BBE\u7F6E");
@@ -201,6 +205,7 @@ namespace HalloweenVN.UI
                     SetText(skipModeLabel, "\u8DF3\u8FC7\u6A21\u5F0F");
                     SetText(fontStyleLabel, "\u5B57\u4F53");
                     previewMessage = "\u8FD9\u662F\u6587\u672C\u901F\u5EA6\u6D4B\u8BD5\u3002\u8BF7\u4ED4\u7EC6\u68C0\u67E5\uFF01";
+                    SetText(skipHelpText, "\u6309\u4F4F\u8BBE\u7F6E\u7684\u5FEB\u6377\u952E\u53EF\u4EE5\u5FEB\u901F\u8DF3\u8FC7\u5BF9\u8BDD\u3002");
                     break;
                 case GameLanguage.ChineseTraditional:
                     SetText(titleTextLabel, "\u8A2D\u5B9A");
@@ -210,6 +215,7 @@ namespace HalloweenVN.UI
                     SetText(skipModeLabel, "\u8DF3\u904E\u6A21\u5F0F");
                     SetText(fontStyleLabel, "\u5B57\u9AD4");
                     previewMessage = "\u9019\u662F\u6587\u672C\u901F\u5EA6\u6E2C\u8A66\u3002\u8ACB\u4ED4\u7D30\u6AA2\u67E5\u3002";
+                    SetText(skipHelpText, "\u6309\u4F4F\u8A2D\u5B9A\u7684\u5FEB\u6377\u9375\u53EF\u4EE5\u5FEB\u901F\u8DF3\u904E\u5C0D\u8A71\u3002");
                     break;
             }
 

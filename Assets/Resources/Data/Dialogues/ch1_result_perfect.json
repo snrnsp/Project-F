@@ -4,11 +4,11 @@
         {
             "id": 0,
             "speaker": " ",
-            "text": "완벽한 추론이다. 다섯 개의 증거가 하나의 결론을 향해 모여들고 있었다.",
+            "text": "세이카가 단서를 하나씩 짚어 나가기 시작했다.\n흩어져 있던 조각들이 하나의 결론을 향해 모여들었다.",
             "characterSpriteLeft": "",
             "characterSpriteCenter": "",
             "characterSpriteRight": "",
-            "backgroundSprite": "Images/mansion_interior",
+            "backgroundSprite": "Images/bg_mansion_night",
             "choices": [],
             "nextNodeId": 1,
             "command": "",
@@ -150,24 +150,10 @@
             "characterSpriteRight": "Characters/세이카/기본",
             "backgroundSprite": "",
             "choices": [],
-            "nextNodeId": 11,
-            "command": "",
-            "slideIn": false,
-            "noFade": true
-        },
-        {
-            "id": 11,
-            "speaker": "",
-            "text": "",
-            "characterSpriteLeft": "",
-            "characterSpriteCenter": "",
-            "characterSpriteRight": "",
-            "backgroundSprite": "",
-            "choices": [],
             "nextNodeId": 12,
             "command": "EFFECT:FLASH",
             "slideIn": false,
-            "noFade": false
+            "noFade": true
         },
         {
             "id": 12,
