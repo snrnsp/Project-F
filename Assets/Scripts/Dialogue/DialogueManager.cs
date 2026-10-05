@@ -238,6 +238,14 @@ namespace HalloweenVN.Dialogue
                 {
                     HalloweenVN.Core.AudioManager.Instance.StopBGM();
                 }
+                else if (audioCmd.StartsWith("PLAY_SFX_FADEOUT:"))
+                {
+                    string[] parts = audioCmd.Substring("PLAY_SFX_FADEOUT:".Length).Split(',');
+                    if (parts.Length == 3)
+                    {
+                        HalloweenVN.Core.AudioManager.Instance.PlaySFX(parts[0], float.Parse(parts[1], System.Globalization.CultureInfo.InvariantCulture), float.Parse(parts[2], System.Globalization.CultureInfo.InvariantCulture));
+                    }
+                }
                 else if (audioCmd.StartsWith("PLAY_SFX:"))
                 {
                     HalloweenVN.Core.AudioManager.Instance.PlaySFX(audioCmd.Substring("PLAY_SFX:".Length));

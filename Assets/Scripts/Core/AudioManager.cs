@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -55,6 +55,11 @@ namespace HalloweenVN.Core
                 bgmSource.volume = SettingsData.BGMVolume;
             if (sfxSource != null)
                 sfxSource.volume = SettingsData.SFXVolume;
+            
+            foreach (var temp in tempSfxSources)
+            {
+                if (temp != null) temp.volume = SettingsData.SFXVolume;
+            }
         }
 
         public void PlayBGM(string trackName, float fadeDuration = 1.0f)
@@ -74,13 +79,49 @@ namespace HalloweenVN.Core
             fadeCoroutine = StartCoroutine(FadeOutBGM(fadeDuration));
         }
 
-        public void PlaySFX(string sfxName)
+        private List<AudioSource> tempSfxSources = new List<AudioSource>();
+
+        public void PlaySFX(string sfxName, float maxDuration = 0f, float fadeOutTime = 1f)
         {
             AudioClip clip = LoadSFX(sfxName);
             if (clip != null)
             {
-                sfxSource.PlayOneShot(clip, SettingsData.SFXVolume);
+                if (maxDuration > 0f)
+                {
+                    StartCoroutine(PlaySFXWithFadeOut(clip, maxDuration, fadeOutTime));
+                }
+                else
+                {
+                    sfxSource.PlayOneShot(clip, SettingsData.SFXVolume);
+                }
             }
+        }
+
+        private IEnumerator PlaySFXWithFadeOut(AudioClip clip, float maxDuration, float fadeOutTime)
+        {
+            AudioSource tempSource = gameObject.AddComponent<AudioSource>();
+            tempSource.clip = clip;
+            tempSource.volume = SettingsData.SFXVolume;
+            tempSource.spatialBlend = 0f;
+            tempSource.Play();
+            tempSfxSources.Add(tempSource);
+
+            float waitTime = maxDuration - fadeOutTime;
+            if (waitTime > 0)
+                yield return new WaitForSeconds(waitTime);
+
+            float startVolume = tempSource.volume;
+            float elapsed = 0f;
+            while (elapsed < fadeOutTime)
+            {
+                elapsed += Time.unscaledDeltaTime;
+                tempSource.volume = Mathf.Lerp(startVolume, 0f, elapsed / fadeOutTime);
+                yield return null;
+            }
+
+            tempSource.Stop();
+            tempSfxSources.Remove(tempSource);
+            Destroy(tempSource);
         }
 
         private AudioClip LoadBGM(string trackName)
