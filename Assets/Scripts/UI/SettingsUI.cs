@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using HalloweenVN.Core;
@@ -167,6 +167,10 @@ namespace HalloweenVN.UI
             {
                 closeButton.onClick.AddListener(Hide);
             }
+            if (returnToTitleButton != null)
+            {
+                returnToTitleButton.onClick.AddListener(OnReturnToTitleClicked);
+            }
 
             if (autoPlayInputField != null) autoPlayInputField.onEndEdit.AddListener(OnAutoPlayInputEdit);
         UpdateAllLabels();
@@ -184,6 +188,7 @@ namespace HalloweenVN.UI
 
             if (fontStyleButton != null) fontStyleButton.onClick.RemoveListener(OnFontStyleToggled);
             if (closeButton != null) closeButton.onClick.RemoveListener(Hide);
+            if (returnToTitleButton != null) returnToTitleButton.onClick.RemoveListener(OnReturnToTitleClicked);
         }
 
                 public void UpdateLanguage()
@@ -259,6 +264,12 @@ namespace HalloweenVN.UI
             if (EventSystem.current != null) EventSystem.current.SetSelectedGameObject(null);
             if (settingsPanel != null)
             {
+                if (returnToTitleButton != null && HalloweenVN.Core.GameManager.Instance != null)
+                {
+                    bool isLobby = HalloweenVN.Core.GameManager.Instance.CurrentPhase == HalloweenVN.Core.GamePhase.Lobby;
+                    returnToTitleButton.gameObject.SetActive(!isLobby);
+                    if (returnToTitleLabel != null) returnToTitleLabel.gameObject.SetActive(!isLobby);
+                }
                 settingsPanel.SetActive(true);
                 if (textSpeedSlider != null) textSpeedSlider.value = SpeedToSlider(SettingsData.TextSpeed);
                 if (autoPlaySlider != null) autoPlaySlider.value = SettingsData.AutoPlayDelay;
@@ -279,7 +290,16 @@ namespace HalloweenVN.UI
             }
         }
 
-        // --- Callbacks ---
+        private void OnReturnToTitleClicked()
+        {
+            Hide();
+            if (HalloweenVN.Dialogue.DialogueManager.Instance != null)
+                HalloweenVN.Dialogue.DialogueManager.Instance.EndDialogue();
+            if (HalloweenVN.Core.GameManager.Instance != null)
+                HalloweenVN.Core.GameManager.Instance.ChangePhase(HalloweenVN.Core.GamePhase.Lobby);
+            if (HalloweenVN.Core.AudioManager.Instance != null)
+                HalloweenVN.Core.AudioManager.Instance.StopBGM(0.5f);
+        } // --- Callbacks ---
         
         private void OnFlashEffectClicked()
         {
