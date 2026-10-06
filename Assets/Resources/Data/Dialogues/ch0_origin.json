@@ -8,7 +8,7 @@
             "characterSpriteLeft": "",
             "characterSpriteCenter": "",
             "characterSpriteRight": "",
-            "backgroundSprite": "Images/bg_basement_archive",
+            "backgroundSprite": "Images/bg_office_morning",
             "choices": [],
             "nextNodeId": 1,
             "command": "AUDIO:PLAY_BGM:bgm_office_night"
@@ -16,7 +16,7 @@
         {
             "id": 1,
             "speaker": "",
-            "text": "노을시 지방법원, 지하 기록 보관실.\n먼지 쌓인 서류 상자들이 천장까지 쌓여 있다.",
+            "text": "도심의 대형 로펌 사무실.\n책상 위에는 처리해야 할 재판 서류가 산처럼 쌓여 있다.",
             "characterSpriteLeft": "",
             "characterSpriteCenter": "",
             "characterSpriteRight": "",
