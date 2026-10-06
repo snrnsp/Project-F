@@ -1,622 +1,597 @@
-﻿Key,Category,Speaker,Context,Notes,KO,EN,JA,ZH-CN,ZH-TW
-speaker.세이카,Speaker,,Name plate above the dialogue box (first speaks in ch0_origin).,Character/speaker name - keep consistent everywhere.,세이카,,,,
-speaker.선임 변호사,Speaker,,Name plate above the dialogue box (first speaks in ch0_origin).,Character/speaker name - keep consistent everywhere.,선임 변호사,,,,
-speaker.동네 할머니,Speaker,,Name plate above the dialogue box (first speaks in ch0_origin).,Character/speaker name - keep consistent everywhere.,동네 할머니,,,,
-speaker.아버지,Speaker,,Name plate above the dialogue box (first speaks in ch0_origin).,Character/speaker name - keep consistent everywhere.,아버지,,,,
-speaker.카스미,Speaker,,Name plate above the dialogue box (first speaks in ch0_gathering).,Character/speaker name - keep consistent everywhere.,카스미,,,,
-speaker.리나,Speaker,,Name plate above the dialogue box (first speaks in ch0_gathering).,Character/speaker name - keep consistent everywhere.,리나,,,,
-speaker.리리스,Speaker,,Name plate above the dialogue box (first speaks in ch0_gathering).,Character/speaker name - keep consistent everywhere.,리리스,,,,
-speaker.하루카,Speaker,,Name plate above the dialogue box (first speaks in ch0_gathering).,Character/speaker name - keep consistent everywhere.,하루카,,,,
-speaker.미나,Speaker,,Name plate above the dialogue box (first speaks in ch0_gathering).,Character/speaker name - keep consistent everywhere.,미나,,,,
-speaker.서하유,Speaker,,Name plate above the dialogue box (first speaks in ch1_resolution).,Character/speaker name - keep consistent everywhere.,서하유,,,,
-ui.x,UI/Loc,,,Placeholders {0} must be kept.,남은 {0}개,,,,
-ui.backlog.empty,UI/BacklogUI,,Backlog panel when empty,,기록된 대화가 없습니다.,,,,
-ui.backlog.rewind_hint,UI/BacklogUI,,"Hover hint on a past backlog entry (top-right of entry, ~320px)",,◀ 이 장면으로 되감기,,,,
-ui.backlog.current,UI/BacklogUI,,"Tag on the current line in the backlog, very short",,현재,,,,
-ui.backlog.rewind_confirm,UI/BacklogUI,,"Backlog rewind confirmation popup, title line",,이 시점으로 되감기 하시겠습니까?,,,,
-ui.backlog.rewind_warning,UI/BacklogUI,,"Backlog rewind confirmation popup, small grey second line",,(이후의 진행 내역은 사라집니다),,,,
-ui.common.yes,UI/BacklogUI,,Confirmation popup button (200px wide),,예,,,,
-ui.common.no,UI/BacklogUI,,Confirmation popup button (200px wide),,아니오,,,,
-ui.deduction.result,UI/DeductionUI,,"Deduction result. {0}=correct answers, {1}=total questions. Keep {0} and {1}.",Placeholders {0} {1} must be kept.,결과: {0} / {1},,,,
-ui.deduction.perfect,UI/DeductionUI,,Shown under the deduction result when all answers are correct,,완벽한 추리!,,,,
-ui.dialogue.auto,UI/DialogueUI,,"Dialogue box AUTO button (off state), max ~6 chars",,오토,,,,
-ui.dialogue.auto_on,UI/DialogueUI,,"Dialogue box AUTO button while auto-play is active, max ~8 chars",,오토 중,,,,
-ui.dialogue.log,UI/DialogueUI,,"Dialogue box backlog button, max ~6 chars",,로그,,,,
-ui.extra.seika_age,UI/ExtraUI,,Extra > character profile: Seika age value (short),,25세,,,,
-ui.extra.seika_role,UI/ExtraUI,,Extra > character profile: Seika role/title (one line),,사무소 소장 / 경영·법무 담당,,,,
-ui.extra.seika_appearance,UI/ExtraUI,,"Extra > character profile: Seika appearance description (long, scrollable)",,"허리 아래까지 흘러내리는 짙은 남색 긴 머리카락에 금색 헤어핀. 맑고 차가운 파란 눈동자. 검은색 롱 스커트에 차콜 그레이 재킷, 검은 숄더백을 걸친 세련되고 도시적인 분위기.",,,,
-ui.extra.seika_personality,UI/ExtraUI,,"Extra > character profile: Seika personality description (long, scrollable)",,"「네버모어 오컬트 탐정 사무소」의 설립자이자 소장. 카리스마가 있고 결단력이 빠르며, 할로윈과 오컬트에 진심으로 열광한다.",,,,
-ui.extra.seika_speech,UI/ExtraUI,,"Extra > character profile: Seika speech style + sample quote, keep the \n line break and quotes",Contains manual line break(s) written as \n - keep the \n token (you may move it).,"반말 위주. 호탕하게 웃는 편.\n""후훗, 보기 좋잖아? 네버모어라는 이름에 딱 맞는 인테리어지.""",,,,
-ui.extra.seika_secret,UI/ExtraUI,,"Extra > character profile: Seika secret (long, scrollable)",,사무소를 차린 진짜 이유: 과거 자신이 경험한 설명할 수 없는 사건의 진상을 밝히기 위해.,,,,
-ui.extra.kasumi_age,UI/ExtraUI,,Extra > character profile: Kasumi age value (short),,23세,,,,
-ui.extra.kasumi_role,UI/ExtraUI,,Extra > character profile: Kasumi role/title (one line),,수석 탐정 / 현장 지휘,,,,
-ui.extra.kasumi_appearance,UI/ExtraUI,,"Extra > character profile: Kasumi appearance description (long, scrollable)",,은회색 단발머리. 날카로운 호박색 눈동자. 활동하기 편한 슬림핏 트렌치 코트. 단정하고 이성적인 분위기.,,,,
-ui.extra.kasumi_personality,UI/ExtraUI,,"Extra > character profile: Kasumi personality description (long, scrollable)",,철저한 이성주의자. 모든 현상에는 과학적 원인이 있다고 확신한다. 사건을 객관적이고 논리적으로 해결하려 한다.,,,,
-ui.extra.kasumi_speech,UI/ExtraUI,,"Extra > character profile: Kasumi speech style + sample quote, keep the \n line break and quotes",Contains manual line break(s) written as \n - keep the \n token (you may move it).,"존댓말 위주. 딱딱하고 사무적.\n""...전 유령 따위는 믿지 않습니다. 분명 트릭이 있을 겁니다.""",,,,
-ui.extra.kasumi_secret,UI/ExtraUI,,"Extra > character profile: Kasumi secret (long, scrollable)",,어릴 적 트라우마로 인해 사실 '귀신'을 극도로 무서워한다. 탐정이 된 이유도 그것.,,,,
-ui.extra.rina_age,UI/ExtraUI,,Extra > character profile: Rina age value (short),,21세,,,,
-ui.extra.rina_role,UI/ExtraUI,,Extra > character profile: Rina role/title (one line),,행동 대장 / 무력 담당,,,,
-ui.extra.rina_appearance,UI/ExtraUI,,"Extra > character profile: Rina appearance description (long, scrollable)",,밝은 분홍색 트윈테일. 스포티한 야구 점퍼와 숏팬츠. 활동적이고 톡톡 튀는 스타일.,,,,
-ui.extra.rina_personality,UI/ExtraUI,,"Extra > character profile: Rina personality description (long, scrollable)",,생각보다 몸이 먼저 나가는 행동파. 활기차고 용감하지만 지루한 것을 견디지 못한다. 사무소에 가만히 있는 것을 제일 싫어한다.,,,,
-ui.extra.rina_speech,UI/ExtraUI,,"Extra > character profile: Rina speech style + sample quote, keep the \n line break and quotes",Contains manual line break(s) written as \n - keep the \n token (you may move it).,"반말 위주. 목소리가 크다.\n""그냥 문 부수고 들어가면 안 돼?!""",,,,
-ui.extra.rina_secret,UI/ExtraUI,,"Extra > character profile: Rina secret (long, scrollable)",,"의외로 요리 실력이 뛰어나다. 단, 시각적으로는 매우 끔찍한 결과물을 만들어낸다.",,,,
-ui.extra.lilith_age,UI/ExtraUI,,Extra > character profile: Lilith age value (short),,20세,,,,
-ui.extra.lilith_role,UI/ExtraUI,,Extra > character profile: Lilith role/title (one line),,정보원 / 해커 & 발명가,,,,
-ui.extra.lilith_appearance,UI/ExtraUI,,"Extra > character profile: Lilith appearance description (long, scrollable)",,헝클어진 보라색 머리. 두꺼운 안경. 오버핏 후드티와 헤드폰. 항상 다크서클이 있다.,,,,
-ui.extra.lilith_personality,UI/ExtraUI,,"Extra > character profile: Lilith personality description (long, scrollable)",,귀차니스트 천재. 사람보다 기계와 대화하는 것을 더 편하게 생각한다. 기계에 '이름'을 붙여주는 취미가 있다.,,,,
-ui.extra.lilith_speech,UI/ExtraUI,,"Extra > character profile: Lilith speech style + sample quote, keep the \n line break and quotes",Contains manual line break(s) written as \n - keep the \n token (you may move it).,"작은 목소리. 단답형.\n""...해킹 완료. 3초 걸렸어.""",,,,
-ui.extra.lilith_secret,UI/ExtraUI,,"Extra > character profile: Lilith secret (long, scrollable)",,어떤 사람의 목소리든 완벽히 복제하는 AI를 발명했다. 자신이 대답하기 귀찮을 때 쓴다.,,,,
-ui.extra.mina_age,UI/ExtraUI,,Extra > character profile: Mina age value (short),,"1,000세(?)",,,,
-ui.extra.mina_role,UI/ExtraUI,,Extra > character profile: Mina role/title (one line),,오컬트 고문 / 자칭 흡혈귀,,,,
-ui.extra.mina_appearance,UI/ExtraUI,,"Extra > character profile: Mina appearance description (long, scrollable)",,창백한 피부에 은발. 고딕 로리타 풍의 드레스. 신비로운 붉은 눈동자.,,,,
-ui.extra.mina_personality,UI/ExtraUI,,"Extra > character profile: Mina personality description (long, scrollable)",,스스로를 1000살 먹은 흡혈귀라 칭하는 중2병 소녀. 평소엔 엉뚱하지만 오컬트 지식은 진짜다.,,,,
-ui.extra.mina_speech,UI/ExtraUI,,"Extra > character profile: Mina speech style + sample quote, keep the \n line break and quotes",Contains manual line break(s) written as \n - keep the \n token (you may move it).,"시대극 말투.\n""크큭... 어리석은 인간이여. 나의 피가 두려운가?""",,,,
-ui.extra.mina_secret,UI/ExtraUI,,"Extra > character profile: Mina secret (long, scrollable)",,햇빛 알레르기가 있어서 낮에 밖에 나가지 못할 뿐이다. 사실 마늘은 좋아한다(알리오 올리오 매니아).,,,,
-ui.extra.haruka_age,UI/ExtraUI,,Extra > character profile: Haruka age value (short),,19세(최연소),,,,
-ui.extra.haruka_role,UI/ExtraUI,,Extra > character profile: Haruka role/title (one line),,사무소 막내 / 메이드,,,,
-ui.extra.haruka_appearance,UI/ExtraUI,,"Extra > character profile: Haruka appearance description (long, scrollable)",,단정한 흑발 숏컷. 완벽하게 다림질된 메이드복. 상냥한 미소.,,,,
-ui.extra.haruka_personality,UI/ExtraUI,,"Extra > character profile: Haruka personality description (long, scrollable)",,항상 친절하고 성실하다. 청소와 홍차 내리기에 진심이다.,,,,
-ui.extra.haruka_speech,UI/ExtraUI,,"Extra > character profile: Haruka speech style + sample quote, keep the \n line break and quotes",Contains manual line break(s) written as \n - keep the \n token (you may move it).,"존댓말.\n""홍차 한 잔 다 드시면, 다음 사건 파일 가져다 드릴게요.""",,,,
-ui.extra.haruka_secret,UI/ExtraUI,,"Extra > character profile: Haruka secret (long, scrollable)",,화가 나면 아무도 말릴 수 없다. 카스미조차 하루카가 화내면 눈치를 본다.,,,,
-ui.extra.label_age,UI/ExtraUI,,"Extra > character profile field label, followed by ':' (very short, 1 word)",,나이,,,,
-ui.extra.label_role,UI/ExtraUI,,"Extra > character profile field label, followed by ':' (very short, 1 word)",,역할,,,,
-ui.extra.label_appearance,UI/ExtraUI,,"Extra > character profile field label, followed by ':' (very short, 1 word)",,외모,,,,
-ui.extra.label_personality,UI/ExtraUI,,"Extra > character profile field label, followed by ':' (very short, 1 word)",,성격,,,,
-ui.extra.label_speech,UI/ExtraUI,,"Extra > character profile field label, followed by ':' (very short, 1 word)",,말투,,,,
-ui.extra.label_secret,UI/ExtraUI,,"Extra > character profile field label, followed by ':' (very short, 1 word)",,비밀,,,,
-ui.investigation.evidence_count,UI/InvestigationUI,,"Investigation screen counter. {0}=collected, {1}=required. Keep {0}/{1}.",Placeholders {0} {1} must be kept.,수집한 증거: {0}/{1},,,,
-ui.language.title,UI/LanguageUI,,Language picker panel title (short),,언어 설정,,,,
-ui.language.close,UI/LanguageUI,,Language picker close button (very short),,닫기,,,,
-ui.lobby.subtitle,UI/LobbyUI,,"Lobby subtitle under the logo (brand name, keep as is). Code hides it in English. Currently not wired in the builder.",,OBLIVION,,,,
-ui.lobby.new_game,UI/LobbyUI+HalloweenUIBuilder,,"Lobby main menu button, max ~10 chars (260px button). Old builder placeholder variant: JA 初めから.",,새 게임,,,,
-ui.lobby.characters,UI/LobbyUI+HalloweenUIBuilder,,"Lobby main menu button opening character profiles, max ~10 chars. Old builder placeholder variant: ZH-CN 角色档案 / ZH-TW 角色檔案.",,캐릭터,,,,
-ui.lobby.settings,UI/LobbyUI+HalloweenUIBuilder,,"Lobby main menu button opening settings, max ~10 chars. Old builder placeholder variant: ZH-TW 設置.",,환경 설정,,,,
-ui.lobby.language,UI/LobbyUI+HalloweenUIBuilder,,Lobby main menu button opening language select. Intentionally 'Language' in English for every language so players can always find it.,,Language,,,,
-ui.lobby.version,UI/LobbyUI,,"Lobby version label; {0} = version number (e.g. 1.0.2), keep {0}. Currently not wired in the builder.",Placeholders {0} must be kept.,버전 {0},,,,
-ui.lobby.prealpha.title,UI/LobbyUI,,"Title of the Pre-Alpha notice popup shown after pressing New Game, max ~25 chars.",,Pre-Alpha 안내,,,,
-ui.lobby.prealpha.message,UI/LobbyUI,,"Body of the Pre-Alpha notice popup (760x250 box, auto-sized). Keep <color=#80C0FF>...</color> tags; \n = line break. 오블리비언 = game title OBLIVION.",Contains manual line break(s) written as \n - keep the \n token (you may move it). Contains rich-text tags <...> - keep tags unchanged.,현재 오블리비언은 '<color=#80C0FF>프리 알파</color>(소프트웨어나 게임 개발 과정에서 정식 알파 테스트 이전의 초기 제작 및 설계 단계)'에 있습니다!\n\n게임의 품질이 낮을 수 있는 점 양해 바랍니다!\n\n일부 백그라운드 배경은 임시로 AI를 사용했음을 알려드립니다.,,,,
-ui.lobby.ok,UI/LobbyUI,,"OK/Confirm button on the Pre-Alpha and photosensitivity popups, max ~8 chars.",,확인,,,,
-ui.lobby.photosensitivity.title,UI/LobbyUI,,"Title of the photosensitive seizure warning popup (next to a warning icon), max ~25 chars. Legally important text.",,광과민성 발작 경고,,,,
-ui.lobby.photosensitivity.message,UI/LobbyUI,,"Photosensitive seizure warning body (popup ~730x290, auto-sized). Keep <b><color=#FFD080>...</color></b> emphasis tags. Legally important text - translate faithfully.",Contains rich-text tags <...> - keep tags unchanged.,"극소수의 사람들은 비디오 게임에 등장하는 <b><color=#FFD080>번쩍이는 빛</color></b>이나 <b><color=#FFD080>특정 패턴</color></b>과 같은 시각적 이미지에 노출될 때 <b><color=#FFD080>광과민성 발작</color></b>을 일으킬 수 있습니다. 과거에 발작 병력이 없었더라도 게임을 하는 동안 이러한 증상을 유발할 수 있는 미확인 상태일 수 있습니다. 게임 중 <b><color=#FFD080>현기증</color></b>, <b><color=#FFD080>시력 이상</color></b>, <b><color=#FFD080>눈이나 얼굴의 경련</color></b>, <b><color=#FFD080>팔다리의 떨림</color></b>, <b><color=#FFD080>방향 감각 상실</color></b>, <b><color=#FFD080>혼란</color></b>, 또는 <b><color=#FFD080>일시적인 의식 상실</color></b> 등의 증상을 겪는다면 <b><color=#FFD080>즉시 게임을 중단</color></b>하고 의사와 상담하십시오.",,,,
-ui.settings.bgm_volume,UI/SettingsUI+HalloweenUIBuilder,,"Settings row label: BGM volume slider (short; legacy row, may be hidden)",,배경음악 (BGM) 음량,,,,
-ui.settings.sfx_volume,UI/SettingsUI+HalloweenUIBuilder,,"Settings row label: SFX volume slider (short; legacy row, may be hidden)",,효과음 (SFX) 음량,,,,
-ui.settings.title,UI/SettingsUI,,"Settings panel title (short, large font)",,설정,,,,
-ui.settings.text_speed,UI/SettingsUI+HalloweenUIBuilder,,"Settings row label: text speed slider (short, ~15 chars)",,텍스트 속도,,,,
-ui.settings.auto_play_delay,UI/SettingsUI+HalloweenUIBuilder,,"Settings row label: auto-play wait time between lines (short, ~15 chars)",,오토 대기 시간,,,,
-ui.settings.skip_mode,UI/SettingsUI,,"Settings row label: skip hotkey selector (short, ~15 chars)",,스킵 모드,,,,
-ui.settings.font,UI/SettingsUI+HalloweenUIBuilder,,Settings row label: font style toggle (short),,글꼴,,,,
-ui.settings.return_to_title,UI/SettingsUI+HalloweenUIBuilder,,Button: return to title screen (short),,타이틀로 돌아가기,,,,
-ui.settings.preview_message,UI/SettingsUI,,Sample sentence typed out letter by letter to preview the text speed setting (one line),,텍스트 속도가 이 정도로 출력됩니다. 눈으로 확인해 보세요!,,,,
-ui.settings.skip_help,UI/SettingsUI+HalloweenUIBuilder,,Tooltip shown when hovering the skip-mode help (?) button,,설정하신 단축키를 누르고 있으면 대사를 빠르게 넘길 수 있습니다.,,,,
-ui.settings.flash_effect,UI/SettingsUI+HalloweenUIBuilder,,"Settings row label: screen flash/shake toggle (photosensitivity option, ~22 chars)",,화면 번쩍임·흔들림,,,,
-ui.settings.flash_on,UI/SettingsUI+HalloweenUIBuilder,,"Toggle value shown when flash/shake effects are enabled (very short, button)",,켜짐,,,,
-ui.settings.flash_off,UI/SettingsUI,,"Toggle value shown when flash/shake effects are disabled (very short, button)",,꺼짐,,,,
-ui.settings.font_handwriting,UI/SettingsUI+HalloweenUIBuilder,,"Font style toggle value: handwriting font (very short, button)",,손글씨,,,,
-ui.settings.font_gothic,UI/SettingsUI,,"Font style toggle value: plain sans-serif (gothic) font (very short, button)",,고딕,,,,
-ui.builder.dialogue.auto,UI/HalloweenUIBuilder,,"Dialogue AUTO button initial label (DialogueUI replaces it at runtime with ui.dialogue.auto), max ~6 chars.",,AUTO,,,,
-ui.builder.dialogue.log,UI/HalloweenUIBuilder,,"Dialogue LOG (backlog) button initial label (DialogueUI may replace it at runtime), max ~6 chars.",,LOG,,,,
-ui.builder.investigation.collected_evidence,UI/HalloweenUIBuilder,,"Investigation screen: title of the collected-evidence side panel, max ~15 chars.",,수집한 증거,,,,
-ui.builder.investigation.start_deduction,UI/HalloweenUIBuilder,,"Investigation screen: button to proceed to deduction, max ~12 chars (300px button).",,추리 시작,,,,
-ui.builder.close,UI/HalloweenUIBuilder,,"Close button on evidence detail, language select and backlog panels (initial label; Language/Backlog UIs may overwrite), max ~8 chars.",,닫기,,,,
-ui.builder.deduction.evidence_list,UI/HalloweenUIBuilder,,"Deduction screen: header above the evidence inventory, max ~15 chars.",,증거 목록,,,,
-ui.builder.deduction.submit,UI/HalloweenUIBuilder,,"Deduction screen: submit-answer button, max ~12 chars (250px button).",,추리 제출,,,,
-ui.builder.deduction.continue,UI/HalloweenUIBuilder,,"Deduction result popup: continue button, max ~10 chars.",,계속,,,,
-ui.builder.settings.title,UI/HalloweenUIBuilder,,"Settings panel title initial text (SettingsUI overwrites it with ui.settings.title), max ~12 chars.",,환경 설정,,,,
-ui.builder.settings.skip_key,UI/HalloweenUIBuilder,,"Settings: skip-hotkey label initial text (SettingsUI overwrites it with ui.settings.skip_mode), max ~15 chars.",,스킵 단축키,,,,
-ui.builder.language.title,UI/HalloweenUIBuilder,,"Language select panel title initial text (LanguageUI may overwrite), max ~12 chars.",,언어 설정,,,,
-ui.builder.backlog.title,UI/HalloweenUIBuilder,,"Backlog (dialogue history) screen title, max ~12 chars.",,대화 기록,,,,
-ui.builder.extra.title,UI/HalloweenUIBuilder,,"Character profiles (Extra) screen title, handwriting font, max ~12 chars (ExtraUI may overwrite).",,캐릭터 설정집,,,,
-evidence.dustless_keys.name,Evidence,,Evidence item name (list / drag item / slot).,Short title.,먼지 없는 건반,,,,
-evidence.dustless_keys.desc,Evidence,,Evidence description shown in the detail popup (먼지 없는 건반).,,"폐쇄된 지 수년이 지난 건물인데, 피아노 건반 위에만 먼지가 없다. 누군가, 혹은 무언가가 최근까지 이 피아노를 연주했다는 물리적 증거.",,,,
-evidence.faded_program.name,Evidence,,Evidence item name (list / drag item / slot).,Short title.,빛바랜 콩쿠르 프로그램,,,,
-evidence.faded_program.desc,Evidence,,Evidence description shown in the detail popup (빛바랜 콩쿠르 프로그램).,,"보면대 위에서 발견된 낡은 콩쿠르 프로그램. 출연자 명단에 한 사람의 이름만 잉크가 번져 거의 읽을 수 없다. 시간에 의한 훼손이 아닌, 존재 자체가 지워지는 것 같은 비정상적인 소실.",,,,
-evidence.sound_analysis.name,Evidence,,Evidence item name (list / drag item / slot).,Short title.,음파 분석 데이터,,,,
-evidence.sound_analysis.desc,Evidence,,Evidence description shown in the detail popup (음파 분석 데이터).,,"잭오 드론이 기록한 피아노 음파. 건반 주파수와 일치하지만, 일반 피아노에서는 절대 나올 수 없는 이상 주파수 대역이 섞여 있다. 디코딩하면 일정한 패턴이 반복된다.",,,,
-evidence.dusty_footprints.name,Evidence,,Evidence item name (list / drag item / slot).,Short title.,사라지는 발자국,,,,
-evidence.dusty_footprints.desc,Evidence,,Evidence description shown in the detail popup (사라지는 발자국).,,음악실 바닥의 먼지 위에 피아노를 향해 걸어간 발자국이 찍혀 있다. 그런데 피아노에서 약 2미터 전에서 발자국이 갑자기 끊긴다. 마치 걸어가던 존재가 중간에 사라진 것처럼.,,,,
-evidence.temperature_anomaly.name,Evidence,,Evidence item name (list / drag item / slot).,Short title.,국소 온도 하강 기록,,,,
-evidence.temperature_anomaly.desc,Evidence,,Evidence description shown in the detail popup (국소 온도 하강 기록).,,잭오의 열화상 센서가 기록한 데이터. 피아노 연주가 시작되자 피아노 반경 1미터 내의 기온만 5.3도 급격히 하강했다. 연주가 끝나자 정상 온도로 복구. 자연현상으로는 설명 불가능.,,,,
-evidence.broken_metronome.name,Evidence,,Evidence item name (list / drag item / slot).,Short title.,부서진 메트로놈,,,,
-evidence.broken_metronome.desc,Evidence,,Evidence description shown in the detail popup (부서진 메트로놈).,,"피아노 옆 선반에서 발견된 기계식 메트로놈. 태엽이 끊어져 작동하지 않지만, 추가 멈춘 위치가 분당 66회를 가리키고 있다. 이는 연주되던 곡의 정확한 템포와 일치하며, 연주자가 사라진 뒤에도 그 사람의 박자를 기억하고 있는 듯하다.",,,,
-evidence.old_music_magazine.name,Evidence,,Evidence item name (list / drag item / slot).,Short title.,낡은 음악 잡지,,,,
-evidence.old_music_magazine.desc,Evidence,,Evidence description shown in the detail popup (낡은 음악 잡지).,,선반 뒤편에서 발견된 1990년대 음악 전문 잡지. 이 건물이 과거에 음악 학원으로 사용되었음을 보여준다. 특정 인물에 대한 기사는 포함되어 있지 않다.,,,,
-case.ch1_case.name,Case,,Case title on the deduction screen.,,잊혀진 피아니스트,,,,
-case.ch1_case.q0,Case,,Deduction question 1; the answer is an evidence item.,,누군가가 최근까지 이 피아노를 연주했다는 물리적 증거는?,,,,
-case.ch1_case.q1,Case,,Deduction question 2; the answer is an evidence item.,,피아니스트가 이 음악실에 존재했다는 유일한 기록은?,,,,
-case.ch1_case.q2,Case,,Deduction question 3; the answer is an evidence item.,,연주된 소리가 일반적인 피아노 음향이 아니라는 결정적 단서는?,,,,
-case.ch1_case.q3,Case,,Deduction question 4; the answer is an evidence item.,,피아노 주변에서 존재의 이동 흔적을 보여주는 단서는?,,,,
-case.ch1_case.q4,Case,,Deduction question 5; the answer is an evidence item.,,'현상'이 온도나 기류 등 주변 환경에 미치는 영향의 단서는?,,,,
-dlg.ch0_origin.0,Dialogue/ch0_origin,(Narration),No characters on screen,,— 2025년 봄. (1년 반 전),,,,
-dlg.ch0_origin.1,Dialogue/ch0_origin,(Narration),No characters on screen,Contains manual line break(s) written as \n - keep the \n token (you may move it).,도심의 대형 로펌 사무실.\n책상 위에는 처리해야 할 재판 서류가 산처럼 쌓여 있다.,,,,
-dlg.ch0_origin.2,Dialogue/ch0_origin,(Narration),No characters on screen,,"로펌 2년 차 변호사 세이카는, 선임을 도와 오래된 재판 기록을 분류하고 있었다.",,,,
-dlg.ch0_origin.3,Dialogue/ch0_origin,세이카,On screen: 세이카(C),,...하. 음주 뺑소니로 사람을 다치게 해놓고 집행유예? 피해자는 아직도 재활 중이라는데.,,,,
-dlg.ch0_origin.4,Dialogue/ch0_origin,세이카,On screen: 세이카(C),,"이쪽은 임금 체불 사장이 증거 불충분으로 무죄... 진짜, 다들 잘하는 짓이야.",,,,
-dlg.ch0_origin.5,Dialogue/ch0_origin,선임 변호사,On screen: 세이카(C),,"세이카 씨, 또 구시렁대네. 우린 분류만 하면 돼. 판결 평가는 우리 일이 아니야.",,,,
-dlg.ch0_origin.6,Dialogue/ch0_origin,세이카,On screen: 세이카(C),,"알아요, 안다고요. 그래도 나쁜 짓 한 사람이 웃으면서 법원을 걸어 나가는 건... 볼 때마다 속이 뒤집혀서요.",,,,
-dlg.ch0_origin.7,Dialogue/ch0_origin,선임 변호사,On screen: 세이카(C),,그 성격으로 변호사 오래 하겠어? 손이나 움직여.,,,,
-dlg.ch0_origin.8,Dialogue/ch0_origin,(Narration),On screen: 세이카(C),Contains manual line break(s) written as \n - keep the \n token (you may move it).,"정리하던 손이, 보관실 가장 안쪽 선반에서 멈췄다.\n빨간 테이프로 봉인된 상자 하나. 라벨은 반쯤 긁혀 지워져 있었다.",,,,
-dlg.ch0_origin.9,Dialogue/ch0_origin,세이카,On screen: 세이카(C),,...이건 분류 목록에도 없는데.,,,,
-dlg.ch0_origin.10,Dialogue/ch0_origin,선임 변호사,On screen: 세이카(C),,그건 손대지 마.,,,,
-dlg.ch0_origin.11,Dialogue/ch0_origin,(Narration),On screen: 세이카(C),,"평소 느긋하던 선임의 목소리가, 처음 듣는 만큼 날카로웠다.",,,,
-dlg.ch0_origin.12,Dialogue/ch0_origin,선임 변호사,On screen: 세이카(C),,경찰 쪽이랑 얽힌 기록이야. 우리 로펌 주요 고객 중에 노을시 경찰청 관계자가 있는 거 알지? 그건 그냥 원래 자리에 둬.,,,,
-dlg.ch0_origin.13,Dialogue/ch0_origin,세이카,On screen: 세이카(C),,...네.,,,,
-dlg.ch0_origin.14,Dialogue/ch0_origin,(Narration),On screen: 세이카(C),Contains manual line break(s) written as \n - keep the \n token (you may move it).,"세이카는 상자를 선반에 되돌려 놓았다.\n하지만 지워진 라벨 아래, 희미하게 남은 몇 글자가 눈에 걸렸다.",,,,
-dlg.ch0_origin.15,Dialogue/ch0_origin,(Narration),On screen: 세이카(C),,「구시가지」.,,,,
-dlg.ch0_origin.16,Dialogue/ch0_origin,세이카,On screen: 세이카(C),,(손대지 말라고 하면... 더 궁금해지는 게 사람 마음이지.),,,,
-dlg.ch0_origin.17,Dialogue/ch0_origin,(Narration),On screen: 세이카(C),,"— 며칠 뒤, 늦은 밤. 아무도 남지 않은 기록 보관실.",,,,
-dlg.ch0_origin.18,Dialogue/ch0_origin,(Narration),On screen: 세이카(C),Contains manual line break(s) written as \n - keep the \n token (you may move it).,"세이카는 봉인된 상자를 다시 열었다.\n안에 든 것은 재판 기록 몇 건과, 첨부 자료가 전부 빠져나간 빈 파일철뿐이었다.",,,,
-dlg.ch0_origin.19,Dialogue/ch0_origin,세이카,On screen: 세이카(C),,"실종 신고... 2001년, 구시가지. 2006년, 구시가지. 2011년... 또 구시가지?",,,,
-dlg.ch0_origin.20,Dialogue/ch0_origin,세이카,On screen: 세이카(C),,정확히 5년 간격이야. 그런데 전부 '수사 중단'. 첨부된 수사 자료는... 한 장도 없어.,,,,
-dlg.ch0_origin.21,Dialogue/ch0_origin,(Narration),On screen: 세이카(C),Contains manual line break(s) written as \n - keep the \n token (you may move it).,"사진도, 진술서도, 실종자의 얼굴조차 남아 있지 않았다.\n누군가 빼돌린 것인지, 처음부터 없었던 것인지조차 알 수 없었다.",,,,
-dlg.ch0_origin.22,Dialogue/ch0_origin,세이카,On screen: 세이카(C),,마치... 처음부터 존재하지 않았던 사람들처럼.,,,,
-dlg.ch0_origin.23,Dialogue/ch0_origin,(Narration),On screen: 세이카(C),Contains manual line break(s) written as \n - keep the \n token (you may move it).,"법이 진실을 지켜줄 거라고 믿었다.\n하지만 법은 때때로, 진실을 묻는 도구로도 쓰인다.",,,,
-dlg.ch0_origin.24,Dialogue/ch0_origin,세이카,On screen: 세이카(C),,"사라진 사람들, 기록에서 지워진 사람들. 이걸 그냥 덮어두면... 나도 공범이 되는 거야.",,,,
-dlg.ch0_origin.25,Dialogue/ch0_origin,(Narration),No characters on screen,,— 그해 여름. 세이카는 퇴근할 때마다 구시가지를 찾았다.,,,,
-dlg.ch0_origin.26,Dialogue/ch0_origin,(Narration),No characters on screen,Contains manual line break(s) written as \n - keep the \n token (you may move it).,"기록에 남은 유일한 단서, 실종자들의 마지막 주소.\n그녀는 그 주소들을 하나씩 찾아가 보았다.",,,,
-dlg.ch0_origin.27,Dialogue/ch0_origin,동네 할머니,On screen: 세이카(C),,"2006년에 여기 살던 사람? 아이고, 그 집은 내가 이 동네 산 30년 내내 비어 있었어.",,,,
-dlg.ch0_origin.28,Dialogue/ch0_origin,세이카,On screen: 세이카(C),,"...신고 기록에는 분명히, 이 집에 살던 사람이 실종됐다고 되어 있는데요.",,,,
-dlg.ch0_origin.29,Dialogue/ch0_origin,동네 할머니,On screen: 세이카(C),,"그럴 리가. 이 골목에서 사람이 없어졌으면 내가 모를 리가 없지. ...근데 아가씨, 누구 얘기를 한다고 했더라?",,,,
-dlg.ch0_origin.30,Dialogue/ch0_origin,(Narration),On screen: 세이카(C),,"방금 들려준 이름을, 할머니는 벌써 잊어버린 얼굴이었다.",,,,
-dlg.ch0_origin.31,Dialogue/ch0_origin,(Narration),On screen: 세이카(C),Contains manual line break(s) written as \n - keep the \n token (you may move it).,"다른 주소도 마찬가지였다.\n가족이 살았다던 집은 오래된 공실이었고, 다녔다던 학교에는 학적이 없었다.",,,,
-dlg.ch0_origin.32,Dialogue/ch0_origin,(Narration),On screen: 세이카(C),,"사람들은 잠시 고개를 갸웃하다가, 금세 아무 일 없었다는 듯 화제를 돌렸다.",,,,
-dlg.ch0_origin.33,Dialogue/ch0_origin,세이카,On screen: 세이카(C),,숨기는 게 아니야. 정말로... 아무도 기억하지 못하고 있어.,,,,
-dlg.ch0_origin.34,Dialogue/ch0_origin,세이카,On screen: 세이카(C),,"이건 은폐 정도가 아니야. 사람이, 세상에서 지워지고 있는 거야.",,,,
-dlg.ch0_origin.35,Dialogue/ch0_origin,(Narration),On screen: 세이카(C),,"그날 밤, 세이카는 지도 위에 실종자들의 마지막 주소를 하나씩 표시해 보았다.",,,,
-dlg.ch0_origin.36,Dialogue/ch0_origin,(Narration),On screen: 세이카(C),Contains manual line break(s) written as \n - keep the \n token (you may move it).,"흩어져 있는 줄 알았던 점들이,\n구시가지의 한 블록을 둘러싸듯 원을 그리고 있었다.",,,,
-dlg.ch0_origin.37,Dialogue/ch0_origin,세이카,On screen: 세이카(C),,"...중심에, 뭔가 있어.",,,,
-dlg.ch0_origin.38,Dialogue/ch0_origin,(Narration),On screen: 세이카(C),,"— 2025년 10월 31일, 할로윈 밤. (1년 전)",,,,
-dlg.ch0_origin.39,Dialogue/ch0_origin,(Narration),On screen: 세이카(C),Contains manual line break(s) written as \n - keep the \n token (you may move it).,"원의 중심에 있던 것은, 간판도 없는 낡은 3층짜리 상가 건물이었다.\n1층은 오래전 문을 닫은 세탁소. 누구도 눈여겨보지 않을, 존재감 없는 건물.",,,,
-dlg.ch0_origin.40,Dialogue/ch0_origin,세이카,On screen: 세이카(C),,할로윈 밤에 이런 데를 혼자 뒤지다니... 무슨 공포 게임 주인공도 아니고.,,,,
-dlg.ch0_origin.41,Dialogue/ch0_origin,(Narration),On screen: 세이카(C),Contains manual line break(s) written as \n - keep the \n token (you may move it).,"건물 뒤편, 녹슨 철문 아래로 좁은 계단이 이어져 있었다.\n건축물대장 어디에도 없는 지하실이었다.",,,,
-dlg.ch0_origin.42,Dialogue/ch0_origin,(Narration),No characters on screen,,"손전등 불빛을 따라, 계단을 끝까지 내려간 순간—",,,,
-dlg.ch0_origin.43,Dialogue/ch0_origin,(Narration),No characters on screen,Contains manual line break(s) written as \n - keep the \n token (you may move it).,"숨이 막힐 듯 탁한 공기 속에,\n천장까지 닿는 책장들이 끝도 없이 늘어서 있었다.",,,,
-dlg.ch0_origin.44,Dialogue/ch0_origin,세이카,On screen: 세이카(C),,...지하 서고?,,,,
-dlg.ch0_origin.45,Dialogue/ch0_origin,(Narration),On screen: 세이카(C),Contains manual line break(s) written as \n - keep the \n token (you may move it).,"세이카는 가까운 책 한 권을 꺼내 들었다. 추리소설이었다.\n옆의 책도, 그 옆의 책도.",,,,
-dlg.ch0_origin.46,Dialogue/ch0_origin,(Narration),On screen: 세이카(C),Contains manual line break(s) written as \n - keep the \n token (you may move it).,"『사라진 소녀』, 『안개 속의 실종』, 『돌아오지 않는 밤』...\n서고를 가득 채운 수천 권의 책은 전부, 실종 사건을 다룬 추리소설이었다.",,,,
-dlg.ch0_origin.47,Dialogue/ch0_origin,세이카,On screen: 세이카(C),,"전부 실종 사건이야... 그런데, 뭔가 이상해.",,,,
-dlg.ch0_origin.48,Dialogue/ch0_origin,(Narration),On screen: 세이카(C),Contains manual line break(s) written as \n - keep the \n token (you may move it).,"책장을 넘기던 손이 멈췄다.\n어느 책이든 마지막 장, 탐정이 진실을 밝히는 해결편만이 하얗게 비어 있었다.",,,,
-dlg.ch0_origin.49,Dialogue/ch0_origin,세이카,On screen: 세이카(C),,"사건은 있는데, 해결이 없어. 사라진 사람은 있는데... 찾아낸 사람이 없어.",,,,
-dlg.ch0_origin.50,Dialogue/ch0_origin,(Narration),On screen: 세이카(C),,"그때, 텅 빈 서고 어딘가에서 책 한 권이 툭, 바닥으로 떨어졌다.",,,,
-dlg.ch0_origin.51,Dialogue/ch0_origin,(Narration),On screen: 세이카(C),Contains manual line break(s) written as \n - keep the \n token (you may move it).,책이 빠져나간 자리. 책장 안쪽 나무판에 무언가가 희미하게 새겨져 있었다.\n손톱으로 수없이 긁어 쓴 듯한 글자.,,,,
-dlg.ch0_origin.52,Dialogue/ch0_origin,(Narration),On screen: 세이카(C),,「우리를 찾아줘.」,,,,
-dlg.ch0_origin.53,Dialogue/ch0_origin,세이카,On screen: 세이카(C),,...우리?,,,,
-dlg.ch0_origin.54,Dialogue/ch0_origin,세이카,On screen: 세이카(C),,"기록에서도, 사람들의 기억에서도 지워진 사람들. 해결편이 사라진 이 책들처럼... 아무도 끝까지 찾아주지 않은 사람들.",,,,
-dlg.ch0_origin.55,Dialogue/ch0_origin,세이카,On screen: 세이카(C),,...'잊혀진 이들'. 너희가 그 사람들이구나.,,,,
-dlg.ch0_origin.56,Dialogue/ch0_origin,(Narration),On screen: 세이카(C),Contains manual line break(s) written as \n - keep the \n token (you may move it).,"다음 날, 세이카는 경찰에 신고했다.\n하지만 경찰이 도착했을 때, 지하실 입구는 녹슨 철판으로 막혀 있었다.",,,,
-dlg.ch0_origin.57,Dialogue/ch0_origin,(Narration),On screen: 세이카(C),Contains manual line break(s) written as \n - keep the \n token (you may move it).,건물주조차 '이 건물에 지하실 같은 건 없다'고 했다.\n사건은 단순 무단침입으로 처리되었다.,,,,
-dlg.ch0_origin.58,Dialogue/ch0_origin,세이카,On screen: 세이카(C),,"법으로는 안 돼, 경찰도 안 돼. 그렇다면 내가 직접 찾아낼 수밖에 없지.",,,,
-dlg.ch0_origin.59,Dialogue/ch0_origin,(Narration),On screen: 세이카(C),Contains manual line break(s) written as \n - keep the \n token (you may move it).,"세이카는 로펌에 사표를 냈다.\n부모님은 크게 반대했지만, 끝내 한 가지 조건을 내걸었다.",,,,
-dlg.ch0_origin.60,Dialogue/ch0_origin,아버지,No characters on screen,,"...1년이다. 1년 안에 성과를 보여라. 아무것도 없으면, 그때는 돌아와서 원래 길을 가거라.",,,,
-dlg.ch0_origin.61,Dialogue/ch0_origin,(Narration),No characters on screen,Contains manual line break(s) written as \n - keep the \n token (you may move it).,"전 재산과 가족 자금을 털어, 세이카는 구시가지를 내려다보는 언덕 위의 낡은 저택을 사들였다.\n'유령의 집'이라 불리며 수십 년째 팔리지 않던 곳이었다.",,,,
-dlg.ch0_origin.62,Dialogue/ch0_origin,세이카,On screen: 세이카(C),,유령의 집이라 싸게 나왔다니. 오컬트 탐정 사무소한테는 오히려 최고의 조건이잖아?,,,,
-dlg.ch0_origin.63,Dialogue/ch0_origin,(Narration),On screen: 세이카(C),,"수개월에 걸친 리모델링 끝에, 현관에 새로운 간판이 걸렸다.",,,,
-dlg.ch0_origin.64,Dialogue/ch0_origin,(Narration),On screen: 세이카(C),,「네버모어 오컬트 탐정 사무소」,,,,
-dlg.ch0_origin.65,Dialogue/ch0_origin,(Narration),On screen: 세이카(C),,간판만큼이나 이질적인 것은 저택의 외관과 내부였다.,,,,
-dlg.ch0_origin.66,Dialogue/ch0_origin,(Narration),On screen: 세이카(C),Contains manual line break(s) written as \n - keep the \n token (you may move it).,"현관에는 사시사철 불이 꺼지지 않는 거대한 잭오랜턴이 놓여 있었고,\n복도와 응접실 곳곳에는 거미줄과 호박 모양의 장식들이 가득했다.",,,,
-dlg.ch0_origin.67,Dialogue/ch0_origin,(Narration),On screen: 세이카(C),,"1년 내내 할로윈 파티가 열리는 듯한, 기괴하면서도 동화 같은 비현실적인 풍경.",,,,
-dlg.ch0_origin.68,Dialogue/ch0_origin,세이카,On screen: 세이카(C),,"할로윈 장식? 반은 내 취향이지만, 나머지 반은 철저한 전략이야.",,,,
-dlg.ch0_origin.69,Dialogue/ch0_origin,세이카,On screen: 세이카(C),,'기괴한 일' 겪은 사람이 각 잡힌 경찰서 가면 미친 사람 취급밖에 더 받겠어? 오히려 이런 분위기가 털어놓기 편하지.,,,,
-dlg.ch0_origin.70,Dialogue/ch0_origin,(Narration),On screen: 세이카(C),Contains manual line break(s) written as \n - keep the \n token (you may move it).,"하지만 실종자 기록을 쫓고, 현장을 뛰고, 사무소까지 꾸려가는 일을 혼자 해내기는 무리였다.\n개업 한 달 만에, 세이카는 한계를 깨달았다.",,,,
-dlg.ch0_origin.71,Dialogue/ch0_origin,세이카,On screen: 세이카(C),,"혼자서는 한계가 있어. 추리할 사람, 현장을 뛸 사람, 기술을 다룰 사람... 그래, 사람이 필요해.",,,,
-dlg.ch0_gathering.0,Dialogue/ch0_gathering,(Narration),No characters on screen,,"2026년. 5년 주기의 패턴대로라면, 다음 실종이 일어날 해가 바로 올해였다.",,,,
-dlg.ch0_gathering.1,Dialogue/ch0_gathering,세이카,On screen: 세이카(C),,"시간이 없어. 다음 사람이 사라지기 전에, 팀을 꾸려야 해.",,,,
-dlg.ch0_gathering.2,Dialogue/ch0_gathering,(Narration),On screen: 세이카(C),Contains manual line break(s) written as \n - keep the \n token (you may move it).,"세이카는 사람을 찾아 나섰다.\n그리고 실종 사건의 파장 속에서, 각자의 이유로 진실 가까이에 있던 사람들이 하나둘 저택의 문을 두드리기 시작했다.",,,,
-dlg.ch0_gathering.3,Dialogue/ch0_gathering,(Narration),On screen: 세이카(C),,"— 개업 한 달 후, 카스미 합류.",,,,
-dlg.ch0_gathering.4,Dialogue/ch0_gathering,(Narration),On screen: 세이카(C),Contains manual line break(s) written as \n - keep the \n token (you may move it).,"전(前) 경찰청 과학수사대 인턴.\n어린 시절 사라진 언니를 찾기 위해 수사의 길을 택했지만, '설명할 수 없는 현장'을 무조건 덮는 관행에 지쳐 있었다.",,,,
-dlg.ch0_gathering.5,Dialogue/ch0_gathering,세이카,On screen: 세이카(C),,한 장의 사진을 보여줄게. 네 언니가 실종된 현장에서 발견된 건데... 경찰 보고서에는 없는 증거물이야.,,,,
-dlg.ch0_gathering.6,Dialogue/ch0_gathering,카스미,"On screen: 세이카(L), 카스미(R)",,...이걸 어디서 구하셨습니까.,,,,
-dlg.ch0_gathering.7,Dialogue/ch0_gathering,카스미,"On screen: 세이카(L), 카스미(R)",,"...좋습니다. 다만 한 가지, 유령 운운하는 소리는 하지 마십시오.",,,,
-dlg.ch0_gathering.8,Dialogue/ch0_gathering,(Narration),"On screen: 세이카(L), 카스미(R)",,"— 2주 후, 리나 합류.",,,,
-dlg.ch0_gathering.9,Dialogue/ch0_gathering,(Narration),"On screen: 세이카(L), 카스미(R)",,"구시가지의 위험한 뒷골목에서, 실종된 후배를 찾으러 혼자 뛰어든 여자와 마주쳤다.",,,,
-dlg.ch0_gathering.10,Dialogue/ch0_gathering,리나,On screen: 리나(C),,"경찰이 안 움직이면 내가 직접 찾으면 되잖아! 뭐, 뭘 그렇게 쳐다봐?!",,,,
-dlg.ch0_gathering.11,Dialogue/ch0_gathering,카스미,"On screen: 카스미(L), 리나(C), 세이카(R)",,"...저 무식한 인간, 놀랍게도 쓸모가 있습니다.",,,,
-dlg.ch0_gathering.12,Dialogue/ch0_gathering,리나,"On screen: 카스미(L), 리나(C), 세이카(R)",,"어차피 딱히 하는 것도 없었고, 여기 일 재밌잖아. 그리고 밥도 주고.",,,,
-dlg.ch0_gathering.13,Dialogue/ch0_gathering,(Narration),"On screen: 카스미(L), 리나(C), 세이카(R)",,"— 1달 후, 리리스 합류.",,,,
-dlg.ch0_gathering.14,Dialogue/ch0_gathering,(Narration),"On screen: 카스미(L), 리나(C), 세이카(R)",Contains manual line break(s) written as \n - keep the \n token (you may move it).,"온라인에서 「유령 드론(GhostDrone)」이라는 이름으로 활동하던 프리랜서 해커.\n자작 드론으로 구시가지를 촬영하다가, 30년간 비어있는 폐건물에서 있을 수 없는 열원을 포착했다.",,,,
-dlg.ch0_gathering.15,Dialogue/ch0_gathering,세이카,"On screen: 리리스(L), 세이카(R)",,"그 드론 영상, 결정적인 증거였어. 훗, 우리랑 같이 일해볼 생각 없어?",,,,
-dlg.ch0_gathering.16,Dialogue/ch0_gathering,리리스,"On screen: 리리스(L), 세이카(R)",,"...작업실 필요. 3층 빈 방, 사용 가능?",,,,
-dlg.ch0_gathering.17,Dialogue/ch0_gathering,(Narration),"On screen: 리리스(L), 세이카(R)",Contains manual line break(s) written as \n - keep the \n token (you may move it).,이후 3층 다락방을 자신의 작업실로 개조하여 입주.\n정찰 드론 「잭오(Jack-O)」가 만들어진 것도 이 시기였다.,,,,
-dlg.ch0_gathering.18,Dialogue/ch0_gathering,(Narration),"On screen: 리리스(L), 세이카(R)",,"— 3주 후, 하루카 합류.",,,,
-dlg.ch0_gathering.19,Dialogue/ch0_gathering,(Narration),"On screen: 리리스(L), 세이카(R)",Contains manual line break(s) written as \n - keep the \n token (you may move it).,"구시가지의 작은 카페에서 아르바이트를 하던 19세 소녀.\n학교에서 심한 따돌림을 당해 자퇴한 뒤, 아르바이트로 혼자 생계를 유지하고 있었다.",,,,
-dlg.ch0_gathering.20,Dialogue/ch0_gathering,리나,"On screen: 리나(L), 하루카(R)",,넌 사람을 잘 보는 눈이 있네. 우리 사무소에 올래? 밥도 나오고 방도 줄 수 있어.,,,,
-dlg.ch0_gathering.21,Dialogue/ch0_gathering,하루카,"On screen: 리나(L), 하루카(R)",,여기... 진짜 무섭긴 한데... 되게 따뜻해요.,,,,
-dlg.ch0_gathering.22,Dialogue/ch0_gathering,(Narration),"On screen: 리나(L), 하루카(R)",,하루카가 오고 나서 저택에는 항상 호박으로 만든 무언가의 냄새가 풍기게 되었다.,,,,
-dlg.ch0_gathering.23,Dialogue/ch0_gathering,(Narration),"On screen: 리나(L), 하루카(R)",,"— 그리고 2주 후. 마지막 합류자, 미나.",,,,
-dlg.ch0_gathering.24,Dialogue/ch0_gathering,(Narration),"On screen: 리나(L), 하루카(R)",Contains manual line break(s) written as \n - keep the \n token (you may move it).,"가장 미스터리한 합류. 비가 추적추적 내리는 새벽, 저택 현관 앞에 쓰러져 있는 채로 발견되었다.\n신원 불명. 이름이 '미나'라는 것 외에는 아무것도 기억나지 않는다고 한다.",,,,
-dlg.ch0_gathering.25,Dialogue/ch0_gathering,미나,On screen: 미나(C),,"크큭... 미나라고 하느니라. 그렇다, 천 년을 묵은 원혼이 인간의 몸을 빌려 이곳에 강림한 것이니라...",,,,
-dlg.ch0_gathering.26,Dialogue/ch0_gathering,카스미,"On screen: 카스미(L), 미나(C), 세이카(R)",,...기억상실 환자의 과대망상이네요. 병원 응급실로 인계해야 할 것 같습니다.,,,,
-dlg.ch0_gathering.27,Dialogue/ch0_gathering,(Narration),"On screen: 카스미(L), 미나(C), 세이카(R)",Contains manual line break(s) written as \n - keep the \n token (you may move it).,"하지만 미나에게는 설명할 수 없는 능력이 있었다.\n한 번도 가보지 않은 폐건물의 구조를 알고, 사건의 결말을 예언하듯 중얼거리면, 그것이 맞았다.",,,,
-dlg.ch0_gathering.28,Dialogue/ch0_gathering,(Narration),"On screen: 카스미(L), 미나(C), 세이카(R)",Contains manual line break(s) written as \n - keep the \n token (you may move it).,"카스미가 경찰에 신원 조회를 맡겼지만, 일치하는 실종 신고는 단 한 건도 없었다.\n미나를 찾는 사람은, 세상 어디에도 없었다.",,,,
-dlg.ch0_gathering.29,Dialogue/ch0_gathering,세이카,"On screen: 카스미(L), 미나(C), 세이카(R)",,"...그럼 여기 있어. 네 이름을 기억해 줄 사람이 생길 때까지. 아니, 이제 여기 다섯 명이나 있네.",,,,
-dlg.ch0_gathering.30,Dialogue/ch0_gathering,미나,"On screen: 카스미(L), 미나(C), 세이카(R)",,"...크, 크큭... 그, 그렇다면 이 몸이 특별히 머물러 주겠느니라.",,,,
-dlg.ch0_gathering.31,Dialogue/ch0_gathering,(Narration),"On screen: 카스미(L), 미나(C), 세이카(R)",Contains manual line break(s) written as \n - keep the \n token (you may move it).,"불과 3개월 남짓한 시간 동안, 다섯 명이 연달아 합류했다.\n실종 사건이라는 파장이 각자의 삶에 금을 내면서, 갈 곳 없는 사람들이 같은 장소로 흘러들어온 것이다.",,,,
-dlg.ch0_gathering.32,Dialogue/ch0_gathering,세이카,On screen: 세이카(C),,"...그러고 보니, 전부 여자네. 아, 일부러 그런 건 아니야. 그냥 결과적으로 이렇게 된 거지.",,,,
-dlg.ch0_gathering.33,Dialogue/ch0_gathering,세이카,On screen: 세이카(C),,시스템 밖으로 밀려난 사람들. 기존 질서에서 제 자리를 찾지 못한 사람들. 그런 사람들이 이 으스스한 저택에 모인 거야.,,,,
-dlg.ch0_gathering.34,Dialogue/ch0_gathering,세이카,On screen: 세이카(C),,"어쩌면 단순한 우연은 아닐지도 몰라. 모두 한 번쯤은 잊힌 적이 있으니, '잊혀진 이들'도 잘 찾을 수 있지 않겠어?",,,,
-dlg.ch0_gathering.35,Dialogue/ch0_gathering,(Narration),On screen: 세이카(C),Contains manual line break(s) written as \n - keep the \n token (you may move it).,"부모님이 준 1년의 기한. 그 절반이 지날 무렵, 마침내 팀이 갖춰졌다.\n경찰이 닫아버린 파일을 다시 여는 사람들. 세상이 외면한 것들을 마주하는 사람들.",,,,
-dlg.ch0_gathering.36,Dialogue/ch0_gathering,(Narration),On screen: 세이카(C),,그리고 지금—,,,,
-dlg.ch0_opening.0,Dialogue/ch0_opening,(Narration),No characters on screen,,2026년. 노을시(市).,,,,
-dlg.ch0_opening.1,Dialogue/ch0_opening,(Narration),No characters on screen,,"인구 80만의 항구도시. 낮에는 평범한 사람들이 평범한 하루를 보내고, 밤에는 바다에서 밀려온 안개가 구시가지의 좁은 골목을 채운다.",,,,
-dlg.ch0_opening.2,Dialogue/ch0_opening,(Narration),No characters on screen,,"이 도시에는 가끔, 설명하기 어려운 일들이 일어난다.",,,,
-dlg.ch0_opening.3,Dialogue/ch0_opening,(Narration),No characters on screen,,아무도 살지 않는 폐교에서 밤마다 울리는 피아노 소리.,,,,
-dlg.ch0_opening.4,Dialogue/ch0_opening,(Narration),No characters on screen,,특정 골목을 지나면 반드시 길을 잃는 사람들.,,,,
-dlg.ch0_opening.5,Dialogue/ch0_opening,(Narration),No characters on screen,,철거된 건물의 창문에서 보이는 사람 그림자.,,,,
-dlg.ch0_opening.6,Dialogue/ch0_opening,(Narration),No characters on screen,,"경찰은 그것을 '소음 민원', '방향감각 상실', '빛의 착시'라고 처리한다. 대부분의 시민들도 도시전설 정도로 여기고 넘긴다.",,,,
-dlg.ch0_opening.7,Dialogue/ch0_opening,(Narration),No characters on screen,,하지만 여기 — 경찰이 닫아버린 파일을 다시 여는 사람들이 있다.,,,,
-dlg.ch0_opening.8,Dialogue/ch0_opening,(Narration),No characters on screen,,구시가지의 가파른 언덕 꼭대기. 안개 너머로 오래된 저택의 실루엣이 떠오른다.,,,,
-dlg.ch0_opening.9,Dialogue/ch0_opening,(Narration),No characters on screen,,현관 계단을 따라 늘어선 잭오랜턴들. 처마에 걸린 거미줄 장식. 벽을 타고 오른 덩굴 사이로 깜빡이는 주황빛.,,,,
-dlg.ch0_opening.10,Dialogue/ch0_opening,(Narration),No characters on screen,,낡은 간판에는 이렇게 적혀 있다:,,,,
-dlg.ch0_opening.11,Dialogue/ch0_opening,(Narration),No characters on screen,,「네버모어 오컬트 탐정 사무소」,,,,
-dlg.ch0_opening.12,Dialogue/ch0_opening,(Narration),No characters on screen,,미제 사건 특화. 초자연 현상 환영.',,,,
-dlg.ch0_opening.13,Dialogue/ch0_opening,(Narration),No characters on screen,,"물론, 이 도시의 대부분의 사람들은 이곳을 그저 '유령의 집에서 장사하는 이상한 애들'이라고 부르지만.",,,,
-dlg.ch0_opening.14,Dialogue/ch0_opening,(Narration),No characters on screen,,"...오늘도 여느 때처럼, 저택의 문이 삐걱거리며 열린다.",,,,
-dlg.ch1_morning.0,Dialogue/ch1_morning,(Narration),No characters on screen,,— 다음 날 아침.,,,,
-dlg.ch1_morning.1,Dialogue/ch1_morning,(Narration),No characters on screen,,"호박 램프의 불빛이 은은하게 켜진 사무소 안. 벽난로에서 장작이 타닥거리고, 거미줄 장식 사이로 아침 햇살이 비친다.",,,,
-dlg.ch1_morning.2,Dialogue/ch1_morning,(Narration),No characters on screen,,"한여름의 아침이지만, 이 저택 안에서는 언제나 할로윈이다.",,,,
-dlg.ch1_morning.3,Dialogue/ch1_morning,카스미,On screen: 카스미(C),,.......,,,,
-dlg.ch1_morning.4,Dialogue/ch1_morning,카스미,On screen: 카스미(C),,(서류를 넘기며) 전날의 의뢰 보고서를 정리합시다. '구시가지 3번 골목에서 들리는 신음 소리' 건은 결국 배관 노후화로 결론.,,,,
-dlg.ch1_morning.5,Dialogue/ch1_morning,카스미,On screen: 카스미(C),,역시 유령 따위는 없었어요. 애초에 존재할 리가 없지만요.,,,,
-dlg.ch1_morning.6,Dialogue/ch1_morning,하루카,"On screen: 카스미(L), 하루카(R)",,와아~ 카스미 언니! 좋은 아침이에요오! 방금 갓 만든 호박 라떼 대령이요~!,,,,
-dlg.ch1_morning.7,Dialogue/ch1_morning,카스미,"On screen: 카스미(L), 하루카(R)",,...또 호박입니까.,,,,
-dlg.ch1_morning.8,Dialogue/ch1_morning,하루카,"On screen: 카스미(L), 하루카(R)",,시나몬도 넣었어요! 가을 느낌 나게요!,,,,
-dlg.ch1_morning.9,Dialogue/ch1_morning,카스미,"On screen: 카스미(L), 하루카(R)",,"지금 8월입니다, 하루카.",,,,
-dlg.ch1_morning.10,Dialogue/ch1_morning,하루카,"On screen: 카스미(L), 하루카(R)",,이 사무소에선 항상 가을이잖아요! 세이카 언니도 그렇게 말했어요~,,,,
-dlg.ch1_morning.11,Dialogue/ch1_morning,카스미,"On screen: 카스미(L), 하루카(R)",,...감사합니다. (한 모금 마시며) ......의외로 맛있군요.,,,,
-dlg.ch1_morning.12,Dialogue/ch1_morning,(Narration),"On screen: 카스미(L), 하루카(R)",,쾅! — 현관문이 거칠게 열리는 소리.,,,,
-dlg.ch1_morning.13,Dialogue/ch1_morning,리나,"On screen: 카스미(L), 리나(C), 하루카(R)",,"와씨, 더워 죽을 뻔! 다녀왔어! 야, 에어컨 어케 된 거야, 쪄 죽으라고?!",,,,
-dlg.ch1_morning.14,Dialogue/ch1_morning,카스미,"On screen: 카스미(L), 리나(C), 하루카(R)",,문을 좀 조용히 여닫으십시오. 경첩 또 빠집니다.,,,,
-dlg.ch1_morning.15,Dialogue/ch1_morning,리나,"On screen: 카스미(L), 리나(C), 하루카(R)",,"새벽부터 구시가지 순찰 돌고 온 사람한테 그게 첫마디야? 뭐, 별일은 없었는데.",,,,
-dlg.ch1_morning.16,Dialogue/ch1_morning,하루카,"On screen: 카스미(L), 리나(C), 하루카(R)",,리나 언니! 호박 빙수 먹을래요? 방금 만들어뒀어요!,,,,
-dlg.ch1_morning.17,Dialogue/ch1_morning,리나,"On screen: 카스미(L), 리나(C), 하루카(R)",,"와씨 대박!! 무조건 먹어!! ...근데 잠깐, 설마 또 호박이야?",,,,
-dlg.ch1_morning.18,Dialogue/ch1_morning,리리스,"On screen: 리리스(L), 리나(C), 하루카(R)",,...시끄러움.,,,,
-dlg.ch1_morning.19,Dialogue/ch1_morning,(Narration),"On screen: 리리스(L), 리나(C), 하루카(R)",,"3층 계단에서 리리스가 내려온다. 한 손에는 반쯤 분해된 드론, 다른 손에는 납땜 인두를 들고 있다.",,,,
-dlg.ch1_morning.20,Dialogue/ch1_morning,리리스,"On screen: 리리스(L), 리나(C), 하루카(R)",,잭오 야간 비행 로그 디코딩 중. 기체 진동으로 납땜 오차. ...짜증.,,,,
-dlg.ch1_morning.21,Dialogue/ch1_morning,리나,"On screen: 리리스(L), 리나(R)",,아 미안미안. 그니까 넌 맨날 그 드론만 만지작거리냐? 밖에 좀 나가라니까.,,,,
-dlg.ch1_morning.22,Dialogue/ch1_morning,리리스,"On screen: 리리스(L), 리나(R)",,잭오가 내 발. 직접 갈 필요 없음.,,,,
-dlg.ch1_morning.23,Dialogue/ch1_morning,리나,"On screen: 리리스(L), 리나(R)",,비타민D 결핍으로 쓰러져도 내가 안 업어다 줄 거야.,,,,
-dlg.ch1_morning.24,Dialogue/ch1_morning,리리스,"On screen: 리리스(L), 리나(R)",,노상관.,,,,
-dlg.ch1_morning.25,Dialogue/ch1_morning,미나,"On screen: 리리스(L), 미나(C), 리나(R)",,"크흐흐... 아침부터 시끄럽구나, 인간들이여...",,,,
-dlg.ch1_morning.26,Dialogue/ch1_morning,(Narration),"On screen: 리리스(L), 미나(C), 리나(R)",,"어디선가 미나가 나타났다. 아무도 들어오는 걸 보지 못했는데, 어느새 소파 구석에 앉아 있다.",,,,
-dlg.ch1_morning.27,Dialogue/ch1_morning,리나,"On screen: 리리스(L), 미나(C), 리나(R)",,"읏?! 야, 언제 온 거야! 놀랬잖아!!",,,,
-dlg.ch1_morning.28,Dialogue/ch1_morning,미나,"On screen: 리리스(L), 미나(C), 리나(R)",,"후후... 천 년을 묵은 이 몸은 바람처럼 나타나고, 안개처럼 사라지느니라...",,,,
-dlg.ch1_morning.29,Dialogue/ch1_morning,카스미,"On screen: 카스미(L), 미나(R)",,뒷문으로 들어온 겁니다. CCTV에 찍혀 있었어요.,,,,
-dlg.ch1_morning.30,Dialogue/ch1_morning,미나,"On screen: 카스미(L), 미나(R)",,"(소곤) 카, 카스미... 그, 그냥 분위기 좀 맞춰 주면 안 돼...?",,,,
-dlg.ch1_morning.31,Dialogue/ch1_morning,(Narration),No characters on screen,,또각또각 — 우아한 발소리가 복도에서 들려온다.,,,,
-dlg.ch1_morning.32,Dialogue/ch1_morning,세이카,On screen: 세이카(C),,"좋은 아침, 여러분. 오늘도 사이좋게 떠들고 있네.",,,,
-dlg.ch1_morning.33,Dialogue/ch1_morning,(Narration),On screen: 세이카(C),,"「네버모어 오컬트 탐정 사무소」의 소장, 세이카가 느긋하게 차 한 잔을 들고 등장한다.",,,,
-dlg.ch1_morning.34,Dialogue/ch1_morning,세이카,On screen: 세이카(C),,"리나, 순찰 수고했어. 리리스, 잭오 상태는?",,,,
-dlg.ch1_morning.35,Dialogue/ch1_morning,리리스,"On screen: 세이카(L), 리리스(R)",,야간 정찰 모드 정상 작동. 특이사항... 하나 있음.,,,,
-dlg.ch1_morning.36,Dialogue/ch1_morning,세이카,"On screen: 세이카(L), 리리스(R)",,흥미롭네. 뭔데?,,,,
-dlg.ch1_morning.37,Dialogue/ch1_morning,리리스,"On screen: 세이카(L), 리리스(R)",,"구시가지 동쪽 폐쇄 음악실. 어젯밤 03시 17분, 내부 음파 반응 감지. 주파수 대역, 피아노 건반과 100% 일치.",,,,
-dlg.ch1_morning.38,Dialogue/ch1_morning,카스미,"On screen: 세이카(L), 카스미(C), 리리스(R)",,...폐쇄된 음악실에서 피아노 소리?,,,,
-dlg.ch1_morning.39,Dialogue/ch1_morning,미나,"On screen: 카스미(L), 미나(R)",,크큭... 미련이 남은 자의 잔향이로다. 음악에 집착하던 영혼이 아직도 그곳에 묶여?,,,,
-dlg.ch1_morning.40,Dialogue/ch1_morning,카스미,"On screen: 카스미(L), 미나(R)",,"미나. 좀 더 과학적으로 접근하죠. 건물 진동에 의한 단순 공명 현상이거나, 노숙자의 무단 침입일 확률이 높아요.",,,,
-dlg.ch1_morning.41,Dialogue/ch1_morning,하루카,"On screen: 카스미(L), 하루카(C), 미나(R)",,"저, 저기... 사실 그 음악실 건이요, 오늘 아침에 의뢰가 들어왔어요.",,,,
-dlg.ch1_morning.42,Dialogue/ch1_morning,세이카,"On screen: 세이카(L), 하루카(R)",,"역시. 하루카, 내용 읽어줄래?",,,,
-dlg.ch1_morning.43,Dialogue/ch1_morning,하루카,"On screen: 세이카(L), 하루카(R)",,"(종이를 펼치며) '매일 밤 3시경, 폐쇄된 음악실에서 피아노 소리가 들립니다. 경찰에 신고했지만, 건물 내부에 아무도 없었다고 합니다.'",,,,
-dlg.ch1_morning.44,Dialogue/ch1_morning,하루카,"On screen: 세이카(L), 하루카(R)",,저는 그 건물 옆에 사는 주민입니다. 일주일째 잠을 이루지 못하고 있습니다. 제발 도와주세요.',,,,
-dlg.ch1_morning.45,Dialogue/ch1_morning,(Narration),"On screen: 세이카(L), 하루카(R)",,하루카가 종이를 접으며 잠시 멈칫했다.,,,,
-dlg.ch1_morning.46,Dialogue/ch1_morning,하루카,"On screen: 세이카(L), 하루카(R)",,...피아노 소리가 들리는데 아무도 없다니... 왠지 마음이 아프네요.,,,,
-dlg.ch1_morning.47,Dialogue/ch1_morning,리나,"On screen: 리나(L), 하루카(R)",,마음이 아프다고? 무섭다가 아니고?,,,,
-dlg.ch1_morning.48,Dialogue/ch1_morning,하루카,"On screen: 리나(L), 하루카(R)",,"...아무도 없는 곳에서, 매일 밤 혼자서... 외롭지 않았을까요.",,,,
-dlg.ch1_morning.49,Dialogue/ch1_morning,(Narration),"On screen: 리나(L), 하루카(R)",,"하루카가 말끝을 흐렸다. 평소의 밝은 표정이 잠깐 어두워졌다가, 이내 다시 미소를 지었다.",,,,
-dlg.ch1_morning.50,Dialogue/ch1_morning,하루카,"On screen: 리나(L), 하루카(R)",,"아, 아무것도 아니에요! 그냥 좀 생각이 나서요!",,,,
-dlg.ch1_morning.51,Dialogue/ch1_morning,리나,"On screen: 리나(L), 세이카(C), 하루카(R)",,밤마다 3시에 피아노? 무단 침입이면 그냥 현장에서 잡으면 되는 거 아냐?,,,,
-dlg.ch1_morning.52,Dialogue/ch1_morning,카스미,"On screen: 리나(L), 카스미(R)",,경찰이 수색했을 때 내부에 아무도 없었다는 게 문제입니다. 출입구도 전부 잠겨 있었고요.,,,,
-dlg.ch1_morning.53,Dialogue/ch1_morning,미나,"On screen: 리나(L), 미나(C), 카스미(R)",,"크큭... 그 음악실, 예전에 한 피아니스트가 콩쿠르 직전에 어둠 속으로 사라진 곳이니라...",,,,
-dlg.ch1_morning.54,Dialogue/ch1_morning,카스미,"On screen: 미나(L), 카스미(R)",,...사라졌다? 실종 사건입니까?,,,,
-dlg.ch1_morning.55,Dialogue/ch1_morning,미나,"On screen: 미나(L), 카스미(R)",,"아니, 더 기괴하지. 실종 신고 기록도, 그 자가 존재했다는 흔적조차... 전부 지워진 것이니라.",,,,
-dlg.ch1_morning.56,Dialogue/ch1_morning,(Narration),No characters on screen,,"잠깐, 사무소 안의 공기가 달라졌다. 세이카의 눈빛이 날카로워진다.",,,,
-dlg.ch1_morning.57,Dialogue/ch1_morning,세이카,On screen: 세이카(C),,...기록이 없다?,,,,
-dlg.ch1_morning.58,Dialogue/ch1_morning,(Narration),On screen: 세이카(C),,세이카가 찻잔을 내려놓는다. 평소의 여유로운 미소가 사라졌다.,,,,
-dlg.ch1_morning.59,Dialogue/ch1_morning,세이카,On screen: 세이카(C),,"이 의뢰, 받는다.",,,,
-dlg.ch1_morning.60,Dialogue/ch1_morning,리나,"On screen: 리나(L), 세이카(R)",,오? 소장님이 직접 결정하시네. 보수 확인도 안 하고?,,,,
-dlg.ch1_morning.61,Dialogue/ch1_morning,세이카,"On screen: 리나(L), 세이카(R)",,...이건 보수 따위가 중요한 문제가 아니야.,,,,
-dlg.ch1_morning.62,Dialogue/ch1_morning,카스미,"On screen: 리나(L), 카스미(C), 세이카(R)",,"(세이카의 표정을 보며) ...알겠습니다. 오늘 밤, 현장 조사를 실시하겠습니다.",,,,
-dlg.ch1_morning.63,Dialogue/ch1_morning,카스미,"On screen: 리나(L), 카스미(C), 세이카(R)",,"리나, 현장 선행 정찰. 리리스, 잭오를 음악실 주변에 배치해 주십시오. 미나, 그 피아니스트에 대해 아는 것을 전부 정리해 주세요.",,,,
-dlg.ch1_morning.64,Dialogue/ch1_morning,리나,"On screen: 리나(L), 카스미(C), 세이카(R)",,오케이~ 드디어 몸 좀 쓰겠다!,,,,
-dlg.ch1_morning.65,Dialogue/ch1_morning,리리스,"On screen: 리나(L), 카스미(C), 리리스(R)",,"잭오, 야간 정찰 모드 대기. 일몰 후 자동 배치.",,,,
-dlg.ch1_morning.66,Dialogue/ch1_morning,미나,"On screen: 리나(L), 미나(C), 리리스(R)",,후후... 잊혀진 자의 노래... 흥미로운 의뢰로구나...,,,,
-dlg.ch1_morning.67,Dialogue/ch1_morning,하루카,"On screen: 하루카(L), 미나(C), 리리스(R)",,"저, 저도 뭔가 도울 수 있을까요...?",,,,
-dlg.ch1_morning.68,Dialogue/ch1_morning,카스미,"On screen: 하루카(L), 카스미(R)",,"하루카는 의뢰인에게 연락해서 상세 내용을 확인해 주세요. 언제부터 시작됐는지, 소리의 정확한 위치 등.",,,,
-dlg.ch1_morning.69,Dialogue/ch1_morning,하루카,"On screen: 하루카(L), 카스미(R)",,네! 맡겨주세요!,,,,
-dlg.ch1_morning.70,Dialogue/ch1_morning,세이카,"On screen: 하루카(L), 세이카(C), 카스미(R)",,"훗, 좋아. 그럼 오늘 밤, 전원 출동이야.",,,,
-dlg.ch1_morning.71,Dialogue/ch1_morning,세이카,"On screen: 하루카(L), 세이카(C), 카스미(R)",,네버모어의 이름에 걸고 — 이 소리의 정체를 밝혀내자.,,,,
-dlg.ch1_morning.72,Dialogue/ch1_morning,(Narration),No characters on screen,,"이렇게, 「네버모어 오컬트 탐정 사무소」의 새로운 의뢰가 시작되었다.",,,,
-dlg.ch1_morning.73,Dialogue/ch1_morning,(Narration),No characters on screen,,— 사건 파일1: 잊혀진 피아니스트 —,,,,
-dlg.ch1_night.0,Dialogue/ch1_night,(Narration),No characters on screen,,노을시에 밤이 찾아왔다. 항구에서 밀려온 안개가 도시를 덮었다.,,,,
-dlg.ch1_night.1,Dialogue/ch1_night,세이카,On screen: 세이카(C),,"자, 다들 준비됐지? 오늘의 작전은 '유령 피아니스트'의 정체를 밝혀내는 거야.",,,,
-dlg.ch1_night.2,Dialogue/ch1_night,리리스,"On screen: 리리스(L), 세이카(R)",,잭오 스캔 중. 주변에 특이 사항 없음. 드론 시야 양호.,,,,
-dlg.ch1_night.3,Dialogue/ch1_night,리나,"On screen: 리나(L), 카스미(R)",,와씨! 드디어 실전이네! 다 부수고 날려버리자고!,,,,
-dlg.ch1_night.4,Dialogue/ch1_night,카스미,"On screen: 리나(L), 카스미(R)",,"진정하세요, 리나. 우린 기물을 파손하러 가는 게 아니라 진상을 규명하러 가는 겁니다.",,,,
-dlg.ch1_night.5,Dialogue/ch1_night,미나,On screen: 미나(C),,"크큭... 밤의 장막이 드리우고 심연의 문이 열렸도다... 이 공기, 피의 냄새가...",,,,
-dlg.ch1_night.6,Dialogue/ch1_night,하루카,"On screen: 하루카(L), 카스미(R)",,"저기, 다들 추우실까봐 단호박 수프를 조금 끓여왔어요~ 보온병에 담았으니까 나중에 드세요~",,,,
-dlg.ch1_night.7,Dialogue/ch1_night,카스미,"On screen: 하루카(L), 카스미(R)",,하아... 소풍 나온 게 아니라고 몇 번이나 말씀드렸잖습니까.,,,,
-dlg.ch1_night.8,Dialogue/ch1_night,(Narration),No characters on screen,,"일행은 노을시 외곽의 버려진 건물에 도착했다. 오래된 덩굴이 외벽을 감싸고 있고, 깨진 창문 틈으로 차가운 바람이 새어나왔다.",,,,
-dlg.ch1_night.9,Dialogue/ch1_night,리리스,On screen: 리리스(C),,잭오 열화상 스캔 완료. 내부 생체 반응 0%. 하지만... 음향 센서에 미세 노이즈 감지.,,,,
-dlg.ch1_night.10,Dialogue/ch1_night,리나,"On screen: 리나(L), 카스미(R)",,"...뭐야, 이 기분 나쁜 공기는. 빨리 끝내고 가자. 문 부수러...",,,,
-dlg.ch1_night.11,Dialogue/ch1_night,카스미,"On screen: 리나(L), 카스미(R)",,안 됩니다. 현장을 보존해야 해요. 조용히 들어갈 방법을 찾아보죠.,,,,
-dlg.ch1_night.12,Dialogue/ch1_night,리리스,On screen: 리리스(C),,측면 비상구 개방 상태. 이쪽으로 진입.,,,,
-dlg.ch1_night.13,Dialogue/ch1_night,(Narration),On screen: 리리스(C),,"안으로 들어서자 짙은 먼지 냄새가 코를 찔렀다. 낡은 연습실들이 늘어서 있고, 바닥에는 악보들이 어지럽게 흩어져 있었다.",,,,
-dlg.ch1_night.10013,Dialogue/ch1_night,(Narration),"On screen: 리나(L), 카스미(R)",,"칠흑 같은 어둠 속, 평소 앞장서던 리나가 흠칫하며 무의식적으로 카스미의 옷소매를 꽉 쥐었다.",,,,
-dlg.ch1_night.10014,Dialogue/ch1_night,카스미,"On screen: 리나(L), 카스미(R)",,...리나? 지금 제 옷은 왜 잡고 계십니까?,,,,
-dlg.ch1_night.10015,Dialogue/ch1_night,리나,"On screen: 리나(L), 카스미(R)",,"어, 엉? 아, 아니야! 그냥 네 옷에 먼지가 묻어서... 털어주려고 한 거거든?!",,,,
-dlg.ch1_night.10016,Dialogue/ch1_night,카스미,"On screen: 리나(L), 카스미(R)",,하아... 꽉 쥐어서 구김이 다 갔습니다만. 어둠이 무서우면 그냥 제 뒤로 오시죠.,,,,
-dlg.ch1_night.10017,Dialogue/ch1_night,리나,"On screen: 리나(L), 카스미(R)",,"안 무섭거든?! ...진, 진짜 안 무서워!",,,,
-dlg.ch1_night.10018,Dialogue/ch1_night,(Narration),"On screen: 리나(L), 카스미(R)",,"리나가 부산스럽게 카스미에게서 손을 떼며 앞으로 나아갔다. 그때, 바닥의 무언가가 눈에 들어왔다.",,,,
-dlg.ch1_night.14,Dialogue/ch1_night,리나,"On screen: 리나(L), 카스미(R)",,어? 바닥에 발자국이 있어. 먼지 위에 선명하게... 어디로 이어지는 거지?,,,,
-dlg.ch1_night.10019,Dialogue/ch1_night,카스미,"On screen: 리나(L), 카스미(R)",,"잠깐... 이 발자국, 주변 먼지층의 퇴적 상태로 봐서 최근에 생긴 겁니다. 경찰이 수색했을 때는 없었을 거예요. 현상은 지금도 반복되고 있다는 뜻입니다.",,,,
-dlg.ch1_night.15,Dialogue/ch1_night,미나,On screen: 미나(C),,......,,,,
-dlg.ch1_night.16,Dialogue/ch1_night,미나,On screen: 미나(C),,"(소곤) ...얘들아, 여기 좀 이상해. 나 지금 연기하는 거 아니야, 진짜 무서운데...",,,,
-dlg.ch1_night.17,Dialogue/ch1_night,(Narration),On screen: 미나(C),,일행은 마침내 메인 공연장에 다다랐다. 중앙에는 먼지 쌓인 천으로 덮인 그랜드 피아노가 덩그러니 놓여 있었다.,,,,
-dlg.ch1_night.18,Dialogue/ch1_night,카스미,On screen: 카스미(C),,제가 확인해보겠습니다.,,,,
-dlg.ch1_night.19,Dialogue/ch1_night,(Narration),On screen: 카스미(C),,"카스미가 조심스럽게 천을 걷어내자, 그 아래에는 믿을 수 없을 정도로 깨끗한 피아노가 모습을 드러냈다.",,,,
-dlg.ch1_night.10020,Dialogue/ch1_night,카스미,On screen: 카스미(C),,"이상합니다. 건물은 10년 넘게 방치된 상태인데, 이 피아노만 먼지 하나 없이... 마치 누군가가 계속 관리하고 있었던 것처럼.",,,,
-dlg.ch1_night.10021,Dialogue/ch1_night,미나,"On screen: 카스미(L), 미나(R)",,"...그 자의 미련이니라. 잊혀져도, 연주만은 멈출 수 없었던 것...",,,,
-dlg.ch1_night.20,Dialogue/ch1_night,(Narration),"On screen: 카스미(L), 미나(R)",,건물 전체가 미세하게 떨리기 시작했다.,,,,
-dlg.ch1_night.21,Dialogue/ch1_night,(Narration),"On screen: 카스미(L), 미나(R)",,그리고 피아노 건반이 스스로 움직이기 시작했다. 처연하고 아름다운 선율이 공연장을 가득 채웠다.,,,,
-dlg.ch1_night.22,Dialogue/ch1_night,(Narration),"On screen: 카스미(L), 미나(R)",,다들 공포에 얼어붙은 가운데 — 하루카만이 다른 표정을 하고 있었다.,,,,
-dlg.ch1_night.23,Dialogue/ch1_night,하루카,On screen: 하루카(C),,"...이 곡... 흑, 너무 외롭고 슬픈 소리예요...",,,,
-dlg.ch1_night.24,Dialogue/ch1_night,하루카,On screen: 하루카(C),,으... 갑자기 엄청 추워졌어요...! 방금까지는 안 이랬는데...!,,,,
-dlg.ch1_night.25,Dialogue/ch1_night,리리스,On screen: 리리스(C),,"...잭오 열화상 센서, 이상 반응. 피아노 주변 온도 급격히 하강 중.",,,,
-dlg.ch1_night.33,Dialogue/ch1_night,리리스,On screen: 리리스(C),,"건반 위, 사람 체온 아님. 영하 15도의 무언가가... 압력 가하는 중.",,,,
-dlg.ch1_night.26,Dialogue/ch1_night,리나,"On screen: 리나(L), 카스미(R)",,"히익...?! 카, 카스미 언니... 이거 뭐야?!",,,,
-dlg.ch1_night.27,Dialogue/ch1_night,리리스,"On screen: 리리스(L), 카스미(R)",,잭오 센서 이상 무... 이건... 실제로 건반이 눌리고 있음.,,,,
-dlg.ch1_night.28,Dialogue/ch1_night,카스미,"On screen: 리리스(L), 카스미(R)",,"...물리적으로 건반이 눌리고 있다면, 보이지 않는 누군가가 여기에 있다는 뜻입니다.",,,,
-dlg.ch1_night.29,Dialogue/ch1_night,세이카,On screen: 세이카(C),,...찾았어. 이 사람이야. 잊혀진 피아니스트.,,,,
-dlg.ch1_night.30,Dialogue/ch1_night,(Narration),On screen: 세이카(C),,"선율이 멈췄다. 다시 무거운 침묵이 내려앉고, 먼지만이 공기 중을 부유했다.",,,,
-dlg.ch1_night.31,Dialogue/ch1_night,세이카,On screen: 세이카(C),,조사를 시작해. 이 안에 단서가 있을 거야.,,,,
-dlg.ch1_investigation_talk.100,Dialogue/ch1_investigation_talk,(Narration),No characters on screen,,일행은 흩어져 공연장 구석구석을 뒤지기 시작했다.,,,,
-dlg.ch1_investigation_talk.101,Dialogue/ch1_investigation_talk,(Narration),No characters on screen,Contains manual line break(s) written as \n - keep the \n token (you may move it).,"악보대 위의 빛바랜 콩쿠르 프로그램, 바늘이 멈춘 채 부서진 메트로놈,\n무대 뒤편에 쌓여 있던 낡은 음악 잡지...",,,,
-dlg.ch1_investigation_talk.102,Dialogue/ch1_investigation_talk,(Narration),No characters on screen,,그리고 피아노를 향해 이어지던 발자국은 — 무대 한가운데에서 거짓말처럼 뚝 끊겨 있었다.,,,,
-dlg.ch1_investigation_talk.0,Dialogue/ch1_investigation_talk,리나,"On screen: 리나(L), 카스미(R)",,"수색은 이쯤 하면 된 것 같은데! 카스미, 단서들 좀 정리해줄래?",,,,
-dlg.ch1_investigation_talk.1,Dialogue/ch1_investigation_talk,카스미,"On screen: 리나(L), 카스미(R)",,...네. 수집된 단서를 바탕으로 현재 상황을 종합해보겠습니다.,,,,
-dlg.ch1_investigation_talk.2,Dialogue/ch1_investigation_talk,카스미,"On screen: 리나(L), 카스미(R)",,"첫 번째, '먼지 없는 건반'. 건반에는 물리적인 압력이 가해진 흔적이 있지만, 기계 장치 같은 건 전혀 발견되지 않았습니다.",,,,
-dlg.ch1_investigation_talk.3,Dialogue/ch1_investigation_talk,카스미,"On screen: 리나(L), 카스미(R)",,"즉, 눈에 보이지 않는 무언가가 피아노를 쳤다는 결론밖에 나오지 않습니다.",,,,
-dlg.ch1_investigation_talk.4,Dialogue/ch1_investigation_talk,리나,"On screen: 리나(L), 카스미(R)",,"야, 그리고 바닥에 발자국도 있었잖아! 피아노 쪽으로 가다가 도중에 뚝 끊기는 거 진짜 소름이었어.",,,,
-dlg.ch1_investigation_talk.5,Dialogue/ch1_investigation_talk,카스미,"On screen: 리나(L), 카스미(R)",,물리적으로 말이 안 됩니다. 발자국이 허공에서 갑자기 끊어지다니요. 누군가 증거를 훼손한 게 아니라면...,,,,
-dlg.ch1_investigation_talk.6,Dialogue/ch1_investigation_talk,리리스,"On screen: 리리스(L), 카스미(R)",,음파 분석 데이터 산출. 피아노 주파수에 물리 법칙을 무시하는 비정상 노이즈 대역 혼입.,,,,
-dlg.ch1_investigation_talk.7,Dialogue/ch1_investigation_talk,리리스,"On screen: 리리스(L), 카스미(R)",,추가 데이터. 연주 시작 시 피아노 주변 온도 영하권 급강하. 종료 직후 원상 복구.,,,,
-dlg.ch1_investigation_talk.8,Dialogue/ch1_investigation_talk,카스미,"On screen: 리리스(L), 카스미(R)",,"국소적 온도 하강이라... 말도 안 돼. 아무리 그래도... 아니, 잭오의 교차 검증 데이터를 부정할 수는 없군요.",,,,
-dlg.ch1_investigation_talk.9,Dialogue/ch1_investigation_talk,하루카,"On screen: 하루카(L), 카스미(R)",,"저, 저기... 악보대에 있던 '빛바랜 콩쿠르 프로그램'은요...? 한 사람의 이름만 지워져 있었어요...",,,,
-dlg.ch1_investigation_talk.10,Dialogue/ch1_investigation_talk,카스미,"On screen: 하루카(L), 카스미(R)",,그렇습니다. 잉크가 번진 흔적을 보면 단순한 시간의 흐름에 의한 훼손이 아닙니다. 누군가 고의로... 혹은 알 수 없는 현상에 의해 그 사람의 존재 자체가 지워진 것처럼 보입니다.,,,,
-dlg.ch1_investigation_talk.11,Dialogue/ch1_investigation_talk,카스미,"On screen: 하루카(L), 카스미(R)",,부서진 메트로놈과 낡은 음악 잡지도 챙겨 뒀습니다. 다만 이 두 가지가 사건과 관련이 있는지는 아직 단정할 수 없어요.,,,,
-dlg.ch1_investigation_talk.12,Dialogue/ch1_investigation_talk,미나,"On screen: 미나(L), 카스미(R)",,이건... 내가 알고 있는 것과 일치하는구나.,,,,
-dlg.ch1_investigation_talk.13,Dialogue/ch1_investigation_talk,카스미,"On screen: 미나(L), 카스미(R)",,네? 방금 그 말은...,,,,
-dlg.ch1_investigation_talk.14,Dialogue/ch1_investigation_talk,미나,"On screen: 미나(L), 카스미(R)",,잊혀지는 현상'... 인간의 존재 자체가 이 세상에서 지워지는 것이니라. 기록에서도... 그리고 어리석은 자들의 기억 속에서도...,,,,
-dlg.ch1_investigation_talk.15,Dialogue/ch1_investigation_talk,카스미,"On screen: 미나(L), 카스미(R)",,존재 자체가 지워진다고요? 증명 불가능한 비약적 가설이네요. 좀 더 합리적인 추론이 필요해요.,,,,
-dlg.ch1_investigation_talk.16,Dialogue/ch1_investigation_talk,세이카,"On screen: 세이카(L), 카스미(R)",,"아니, 카스미. 미나의 말이 맞을지도 몰라.",,,,
-dlg.ch1_investigation_talk.17,Dialogue/ch1_investigation_talk,세이카,"On screen: 세이카(L), 카스미(R)",,"내가 예전에 조사했던 자료 중에, 5년 주기로 발생하는 기묘한 실종 사건 패턴이 있었거든.",,,,
-dlg.ch1_investigation_talk.18,Dialogue/ch1_investigation_talk,세이카,"On screen: 세이카(L), 카스미(R)",,"그냥 실종이 아니야. 경찰 기록이 증발하고, 결국 가족들 기억 속에서도 흔적 없이 지워져 버렸어.",,,,
-dlg.ch1_investigation_talk.19,Dialogue/ch1_investigation_talk,세이카,"On screen: 세이카(L), 카스미(R)",,이제 퍼즐 조각을 맞춰보자. 다섯 가지 단서가 무엇을 의미하는지.,,,,
-dlg.ch1_result_perfect.0,Dialogue/ch1_result_perfect,(Narration),No characters on screen,Contains manual line break(s) written as \n - keep the \n token (you may move it).,세이카가 단서를 하나씩 짚어 나가기 시작했다.\n흩어져 있던 조각들이 하나의 결론을 향해 모여들었다.,,,,
-dlg.ch1_result_perfect.1,Dialogue/ch1_result_perfect,세이카,On screen: 세이카(C),,먼지 하나 없는 건반. 존재가 지워져가면서도 오직 집념 하나로 건반을 누르고 있었다는 증거지. 눈에 보이지 않는 존재가 말이야.,,,,
-dlg.ch1_result_perfect.2,Dialogue/ch1_result_perfect,세이카,On screen: 세이카(C),,그리고 이 빛바랜 콩쿠르 프로그램... 피아니스트가 이 음악실에 존재했다는 유일한 흔적이야.,,,,
-dlg.ch1_result_perfect.3,Dialogue/ch1_result_perfect,세이카,On screen: 세이카(C),,결정적으로 비정상적인 음파 분석 데이터. 이건 자연적인 소리가 아니야. 존재가 잊혀지며 남긴 마지막 메아리지.,,,,
-dlg.ch1_result_perfect.4,Dialogue/ch1_result_perfect,세이카,On screen: 세이카(C),,바닥의 발자국은 피아노를 향해 걸어갔지만 도중에 사라졌어. 걸어가던 존재가 소멸한 거야. 물리적으로 이 공간에 있었다가 사라졌다는 움직일 수 없는 증거지.,,,,
-dlg.ch1_result_perfect.5,Dialogue/ch1_result_perfect,세이카,On screen: 세이카(C),,그리고 연주 중 피아노 주변의 온도만 급격히 떨어졌다가 연주가 끝나자 회복됐어. '현상'은 물리 법칙까지 왜곡하고 있어.,,,,
-dlg.ch1_result_perfect.6,Dialogue/ch1_result_perfect,세이카,On screen: 세이카(C),,이 피아니스트는 죽은 게 아니야. '잊혀진' 거야. 세상에서 그 사람의 존재 자체가 지워지고 있어.,,,,
-dlg.ch1_result_perfect.7,Dialogue/ch1_result_perfect,미나,"On screen: 미나(L), 세이카(R)",,크읏... 심연의 고문서에 기록된 바와 같군. 존재뿐만 아니라 기억과 기록마저 서서히 부식시키는 '그 현상'...,,,,
-dlg.ch1_result_perfect.8,Dialogue/ch1_result_perfect,카스미,"On screen: 카스미(L), 세이카(R)",,...과학적으로 말이 안 됩니다. 하지만... 증거가 그렇게 가리키고 있으니 인정할 수밖에 없군요.,,,,
-dlg.ch1_result_perfect.9,Dialogue/ch1_result_perfect,리리스,"On screen: 리리스(L), 세이카(R)",,잭오가 한 가지 더 기록. 멜로디가 연주되는 동안... 비정상적인 주파수가 일정한 패턴을 형성.,,,,
-dlg.ch1_result_perfect.10,Dialogue/ch1_result_perfect,리리스,"On screen: 리리스(L), 세이카(R)",,디코딩 결과... 하나의 메시지. '나를 찾아줘'.,,,,
-dlg.ch1_result_perfect.12,Dialogue/ch1_result_perfect,하루카,"On screen: 하루카(L), 리나(R)",,흐윽... 얼마나 무섭고 외로웠을까요... 아무도 자신을 기억해주지 않는 세계에서...,,,,
-dlg.ch1_result_perfect.13,Dialogue/ch1_result_perfect,리나,"On screen: 하루카(L), 리나(R)",,이런 거... 절대 용납 못 해! 우리가 반드시 찾아서 구해줘야 해!,,,,
-dlg.ch1_result_perfect.14,Dialogue/ch1_result_perfect,세이카,On screen: 세이카(C),,5년 주기의 실종 사건들... 이 모든 게 연결되어 있어. 이것이 '그 현상'의 첫 번째 결정적 증거다.,,,,
-dlg.ch1_result_perfect.15,Dialogue/ch1_result_perfect,세이카,On screen: 세이카(C),,이 사건은 끝이 아니야. 시작이야. 잊혀진 사람들을 — 우리가 찾아야 해.,,,,
-dlg.ch1_resolution.0,Dialogue/ch1_resolution,(Narration),No characters on screen,,"세이카의 추리가 끝나자, 음악실 안의 공기가 변했다.",,,,
-dlg.ch1_resolution.1,Dialogue/ch1_resolution,(Narration),No characters on screen,,그리고 다시 — 피아노 건반이 움직이기 시작했다.,,,,
-dlg.ch1_resolution.2,Dialogue/ch1_resolution,리나,"On screen: 리나(L), 카스미(R)",,"와씨, 대박! 방금 건반 진짜 지 혼자 움직인 거 맞지?!",,,,
-dlg.ch1_resolution.3,Dialogue/ch1_resolution,카스미,"On screen: 리나(L), 카스미(R)",,기다려요. 이번에는 아까와 다릅니다. 선율이...,,,,
-dlg.ch1_resolution.4,Dialogue/ch1_resolution,(Narration),"On screen: 리나(L), 카스미(R)",,"이번 선율은 아까처럼 처연하고 슬프지 않았다. 마치 무언가를 '전하려는' 듯, 또박또박 음을 짚어가는 연주였다.",,,,
-dlg.ch1_resolution.5,Dialogue/ch1_resolution,리리스,"On screen: 리리스(L), 미나(R)",,잭오 음향 센서 액티브. 주파수 패턴 변동. 아까보다 훨씬 복잡한 구조.,,,,
-dlg.ch1_resolution.6,Dialogue/ch1_resolution,리리스,"On screen: 리리스(L), 미나(R)",,단순 멜로디 아님. 이건... 반복 구조 존재. 마치 언어.,,,,
-dlg.ch1_resolution.7,Dialogue/ch1_resolution,미나,"On screen: 리리스(L), 미나(R)",,.......,,,,
-dlg.ch1_resolution.8,Dialogue/ch1_resolution,(Narration),"On screen: 리리스(L), 미나(R)",,미나가 갑자기 눈을 감았다. 양손이 미세하게 떨리고 있었다.,,,,
-dlg.ch1_resolution.9,Dialogue/ch1_resolution,하루카,"On screen: 하루카(L), 미나(R)",,"미, 미나 언니? 괜찮아요?",,,,
-dlg.ch1_resolution.10,Dialogue/ch1_resolution,미나,"On screen: 하루카(L), 미나(R)",,...보여. 누군가가 보여.,,,,
-dlg.ch1_resolution.11,Dialogue/ch1_resolution,(Narration),"On screen: 하루카(L), 미나(R)",,"미나의 목소리에서 평소의 중2병 연기는 완전히 사라져 있었다. 그 자리에는 무언가에 홀린 듯한, 투명한 목소리만 남아 있었다.",,,,
-dlg.ch1_resolution.12,Dialogue/ch1_resolution,미나,"On screen: 하루카(L), 미나(R)",,...윤곽이 흐려... 하지만 손가락이 길어. 피아니스트의 손이야.,,,,
-dlg.ch1_resolution.13,Dialogue/ch1_resolution,미나,"On screen: 하루카(L), 미나(R)",,...매일 밤 이곳에서... 혼자서 연주하고 있어. 아무도 없는 텅 빈 건물에서.,,,,
-dlg.ch1_resolution.14,Dialogue/ch1_resolution,미나,"On screen: 하루카(L), 미나(R)",,...건반이 붉어. 손가락이 찢어지는데도 멈추지 않아. 잊혀지기 싫어서... 제발 자기를 봐달라고...,,,,
-dlg.ch1_resolution.15,Dialogue/ch1_resolution,카스미,On screen: 카스미(C),,"아까 수거한 낡은 음악 잡지를 보십시오. 사진과 이름은 부식되어 판독 불가하지만, '올해의 유망주가 전국 콩쿠르를 앞두고 있다'는 기사 내용은 남아 있습니다. 미나가 본 환영의 정체와 일치합니다.",,,,
-dlg.ch1_resolution.16,Dialogue/ch1_resolution,카스미,On screen: 카스미(C),,...빛바랜 콩쿠르 프로그램. 참가자 목록에서 이름이 지워진 사람.,,,,
-dlg.ch1_resolution.17,Dialogue/ch1_resolution,카스미,On screen: 카스미(C),,미나의 증언과 일치합니다. 하지만 이름은... 잉크가 번져서 판독이 불가능합니다.,,,,
-dlg.ch1_resolution.18,Dialogue/ch1_resolution,리리스,"On screen: 리리스(L), 카스미(C), 리나(R)",,잠깐. 지금 연주되고 있는 음파 패턴을 디코딩하면...,,,,
-dlg.ch1_resolution.19,Dialogue/ch1_resolution,(Narration),"On screen: 리리스(L), 카스미(C), 리나(R)",,"리리스의 손가락이 노트북 위에서 빠르게 움직였다. 음파의 반복 구조를 분석하자, 화면에 문자 하나하나가 떠올랐다.",,,,
-dlg.ch1_resolution.20,Dialogue/ch1_resolution,리리스,"On screen: 리리스(L), 카스미(C), 리나(R)",,"단순 즉흥 연주 아님. 음 길이, 일정 패턴 반복. 인위적 신호.",,,,
-dlg.ch1_resolution.21,Dialogue/ch1_resolution,카스미,"On screen: 리리스(L), 카스미(C), 리나(R)",,음의 길이가 패턴? 어떤 의미가 있는 건가요?,,,,
-dlg.ch1_resolution.22,Dialogue/ch1_resolution,리리스,"On screen: 리리스(L), 카스미(C), 리나(R)",,짧은 음과 긴 음이 번갈아 나옴. 이건... 모스 부호.,,,,
-dlg.ch1_resolution.23,Dialogue/ch1_resolution,리나,"On screen: 리리스(L), 카스미(C), 리나(R)",,...거짓말. 음악으로... 말을 걸고 있는 거였어?,,,,
-dlg.ch1_resolution.24,Dialogue/ch1_resolution,리리스,"On screen: 리리스(L), 카스미(C), 리나(R)",,피아니스트니까. 음의 장단으로 메시지를 전하는 건 오히려 자연스러움.,,,,
-dlg.ch1_resolution.25,Dialogue/ch1_resolution,(Narration),"On screen: 리리스(L), 카스미(C), 리나(R)",,화면의 점과 선들이 이내 몇 개의 글자로 변환되었다.,,,,
-dlg.ch1_resolution.26,Dialogue/ch1_resolution,리리스,"On screen: 리리스(L), 하루카(R)",,"디코딩 결과... ㅎ, ㅏ, ㅇ, ㅠ. 하유.",,,,
-dlg.ch1_resolution.27,Dialogue/ch1_resolution,하루카,"On screen: 리리스(L), 하루카(R)",,하유... 이름인가요?,,,,
-dlg.ch1_resolution.28,Dialogue/ch1_resolution,리리스,"On screen: 리리스(L), 하루카(R)",,뒷부분은 노이즈에 묻혀서 복원이 안 됨. 이름의 일부만 남음.,,,,
-dlg.ch1_resolution.29,Dialogue/ch1_resolution,세이카,"On screen: 세이카(L), 카스미(R)",,이름조차 온전히 남기지 못했다는 거야. '잊혀지는 현상'이 그 사람의 이름까지 지우고 있어.,,,,
-dlg.ch1_resolution.30,Dialogue/ch1_resolution,세이카,"On screen: 세이카(L), 카스미(R)",,정리하자. 내가 5년 전부터 추적해온 자료와 종합하면...,,,,
-dlg.ch1_resolution.31,Dialogue/ch1_resolution,세이카,"On screen: 세이카(L), 카스미(R)",,"2001년, 2006년, 2011년, 2016년, 2021년. 5년 간격으로 노을시 구시가지에서 한 명씩 사라졌어.",,,,
-dlg.ch1_resolution.32,Dialogue/ch1_resolution,세이카,"On screen: 세이카(L), 카스미(R)",,"단순한 실종이 아니야. 실종 신고 기록이 사라지고, 주변 사람들의 기억에서도 서서히 지워졌지.",,,,
-dlg.ch1_resolution.33,Dialogue/ch1_resolution,세이카,"On screen: 세이카(L), 카스미(R)",,이 피아니스트는 2016년 주기의 피해자일 가능성이 높아.,,,,
-dlg.ch1_resolution.34,Dialogue/ch1_resolution,카스미,"On screen: 세이카(L), 카스미(R)",,하지만 의문입니다. 10년 전에 사라진 사람의 연주가 왜 하필 최근 일주일 전부터 들리기 시작한 걸까요?,,,,
-dlg.ch1_resolution.35,Dialogue/ch1_resolution,세이카,"On screen: 세이카(L), 카스미(R)",,"완전히 지워지기 직전이니까. 존재가 소멸하는 마지막 단계에서 경계가 얇아지면서, 현실로 소리가 새어나오기 시작한 거야.",,,,
-dlg.ch1_resolution.36,Dialogue/ch1_resolution,세이카,"On screen: 세이카(L), 카스미(R)",,"역설적이지만... 이 소리가 들린다는 건, 이 사람에게 남은 시간이 얼마 없다는 뜻이야.",,,,
-dlg.ch1_resolution.37,Dialogue/ch1_resolution,카스미,"On screen: 세이카(L), 카스미(R)",,"그렇다면 다음 주기는... 2021년. 그리고 그 다음은 올해, 2026년.",,,,
-dlg.ch1_resolution.38,Dialogue/ch1_resolution,세이카,"On screen: 세이카(L), 리나(R)",,"안타깝게도 2021년의 피해자는 아직 단서조차 찾지 못했어. 하지만 올해, 2026년의 희생자만큼은 반드시 막아야 해.",,,,
-dlg.ch1_resolution.39,Dialogue/ch1_resolution,리나,"On screen: 세이카(L), 리나(R)",,...그러니까 올해 안에 또 한 명이 사라질 수도 있다는 거잖아.,,,,
-dlg.ch1_resolution.40,Dialogue/ch1_resolution,리나,"On screen: 세이카(L), 리나(R)",,"헐, 그럼 이 미친 짓이 아직 안 끝났다는 거잖아! 지금 이 순간에도 누구 하나 지워지고 있을 수 있단 거 아냐?!",,,,
-dlg.ch1_resolution.41,Dialogue/ch1_resolution,미나,"On screen: 세이카(L), 미나(R)",,현상'은 사람을 죽이는 게 아니야. 존재 자체를 지우는 것이다.,,,,
-dlg.ch1_resolution.42,Dialogue/ch1_resolution,미나,"On screen: 세이카(L), 미나(R)",,"기록이 서서히 부식되고, 기억이 흐려지고, 이름이 사라지고... 마지막에는 육체마저 투명해져.",,,,
-dlg.ch1_resolution.43,Dialogue/ch1_resolution,미나,"On screen: 세이카(L), 미나(R)",,하지만 이 피아니스트는... 아직 완전히 지워지지 않았어.,,,,
-dlg.ch1_resolution.44,Dialogue/ch1_resolution,미나,"On screen: 세이카(L), 미나(R)",,"음악이 남아 있으니까. 이 건물에 새겨진 음악이, 마지막 실 한 가닥처럼 이 사람을 세상에 붙들어 두고 있는 거야.",,,,
-dlg.ch1_resolution.45,Dialogue/ch1_resolution,하루카,"On screen: 세이카(L), 하루카(R)",,"...그러면 우리가 여기 온 게, 의미가 있었던 건가요?",,,,
-dlg.ch1_resolution.46,Dialogue/ch1_resolution,(Narration),"On screen: 세이카(L), 하루카(R)",,"세이카가 하루카를 바라보았다. 오늘 밤 내내, 다른 누구보다 이 피아니스트의 고독을 이해하고 있었던 건 하루카였다.",,,,
-dlg.ch1_resolution.47,Dialogue/ch1_resolution,세이카,"On screen: 세이카(L), 하루카(R)",,"...하루카, 피아노 앞에 가볼래?",,,,
-dlg.ch1_resolution.48,Dialogue/ch1_resolution,하루카,"On screen: 세이카(L), 하루카(R)",,"헉... 네...?! 저, 저요?!",,,,
-dlg.ch1_resolution.49,Dialogue/ch1_resolution,세이카,"On screen: 세이카(L), 하루카(R)",,그냥 손을 올려놓기만 해도 돼. 괜찮아.,,,,
-dlg.ch1_resolution.50,Dialogue/ch1_resolution,(Narration),"On screen: 세이카(L), 하루카(R)",,"하루카가 조심스럽게 피아노 앞에 섰다. 떨리는 손을 천천히 뻗어, 건반 위에 살며시 올려놓았다.",,,,
-dlg.ch1_resolution.51,Dialogue/ch1_resolution,(Narration),"On screen: 세이카(L), 하루카(R)",,.......,,,,
-dlg.ch1_resolution.52,Dialogue/ch1_resolution,(Narration),"On screen: 세이카(L), 하루카(R)",,"하루카는 알고 있었다. 투명인간 취급을 받으며, 아무도 자신을 봐주지 않는 교실에서 혼자 도시락을 먹던 그 끔찍한 추위를.",,,,
-dlg.ch1_resolution.53,Dialogue/ch1_resolution,하루카,On screen: 하루카(C),,...저도 알아요. 교실에 나 혼자만 투명인간이 된 것 같은 추위. 그러니까... 이제 혼자 연주하지 마세요오...,,,,
-dlg.ch1_resolution.54,Dialogue/ch1_resolution,(Narration),On screen: 하루카(C),,하루카의 눈에서 눈물이 떨어져 건반 위로 번졌다.,,,,
-dlg.ch1_resolution.55,Dialogue/ch1_resolution,(Narration),On screen: 하루카(C),,"그 순간 — 얼음장 같던 건반 아래에서, 희미한 온기가 배어 나왔다.",,,,
-dlg.ch1_resolution.56,Dialogue/ch1_resolution,하루카,On screen: 하루카(C),,...따뜻해요. 건반이... 따뜻해요. 울고 있어요... 이 사람...,,,,
-dlg.ch1_resolution.57,Dialogue/ch1_resolution,하루카,On screen: 하루카(C),,이 사람이... 여기 있어요. 지금도.,,,,
-dlg.ch1_resolution.58,Dialogue/ch1_resolution,(Narration),On screen: 하루카(C),,단 하나의 음이 울렸다. 하루카가 누른 것이 아니었다. 건반이 스스로 내려갔다.,,,,
-dlg.ch1_resolution.59,Dialogue/ch1_resolution,(Narration),On screen: 하루카(C),,"그 음을 시작으로, 피아노가 다시 연주를 시작했다.",,,,
-dlg.ch1_resolution.60,Dialogue/ch1_resolution,(Narration),On screen: 하루카(C),,"이번 선율은 달랐다. 처음 들었던 처연한 곡도, 메시지를 전하려던 또박또박한 음도 아니었다.",,,,
-dlg.ch1_resolution.61,Dialogue/ch1_resolution,(Narration),On screen: 하루카(C),,"따뜻하고, 부드럽고, 어딘가 고마운 마음이 담긴 선율이었다.",,,,
-dlg.ch1_resolution.62,Dialogue/ch1_resolution,리나,"On screen: 리나(L), 카스미(R)",,.......,,,,
-dlg.ch1_resolution.63,Dialogue/ch1_resolution,카스미,"On screen: 리나(L), 카스미(R)",,.......,,,,
-dlg.ch1_resolution.64,Dialogue/ch1_resolution,(Narration),"On screen: 리나(L), 카스미(R)",,"아무도 말하지 않았다. 그저 그 보이지 않는 연주자의 곁에, 조용히 서 있어 주었다.",,,,
-dlg.ch1_resolution.65,Dialogue/ch1_resolution,(Narration),"On screen: 리나(L), 카스미(R)",,"카스미가 안경을 벗었다. 렌즈에 맺힌 것이 김인지 눈물인지, 그녀 자신도 모르는 것 같았다.",,,,
-dlg.ch1_resolution.66,Dialogue/ch1_resolution,카스미,"On screen: 리나(L), 카스미(R)",,...이런 비과학적인 현상을... 언니도 어딘가에서 겪고 있었던 걸까요.,,,,
-dlg.ch1_resolution.67,Dialogue/ch1_resolution,(Narration),"On screen: 리나(L), 카스미(R)",,"리리스가 노트북을 닫고, 처음으로 맨눈으로 피아노를 바라보았다.",,,,
-dlg.ch1_resolution.68,Dialogue/ch1_resolution,(Narration),On screen: 미나(C),,"...평소처럼 가식적인 대사를 덧붙이지 않았다. 그저 조용히 눈을 감고, 고개를 살짝 숙였다.",,,,
-dlg.ch1_resolution.69,Dialogue/ch1_resolution,(Narration),On screen: 미나(C),,연주가 끝났다. 먼지가 천천히 가라앉았다. 창밖에서 첫 번째 새가 울기 시작했다.,,,,
-dlg.ch1_resolution.70,Dialogue/ch1_resolution,세이카,"On screen: 세이카(L), 미나(R)",,"...잠깐. 미나, 아까 말했지? 음악이 이 사람을 세상에 붙들어 두고 있다고.",,,,
-dlg.ch1_resolution.71,Dialogue/ch1_resolution,미나,"On screen: 세이카(L), 미나(R)",,그래... 마지막 실 한 가닥으로.,,,,
-dlg.ch1_resolution.72,Dialogue/ch1_resolution,세이카,"On screen: 세이카(L), 미나(R)",,만약 우리가 그 실을 잡아당기면? 여섯 명이 동시에 이 사람의 이름을 기억하고 부르면?,,,,
-dlg.ch1_resolution.73,Dialogue/ch1_resolution,카스미,On screen: 카스미(C),,...기억이 현상에 대항하는 힘이 된다는 건가요?,,,,
-dlg.ch1_resolution.74,Dialogue/ch1_resolution,세이카,On screen: 세이카(C),,해보자. 우리가 알아낸 이름을 부르는 거야. 다같이.,,,,
-dlg.ch1_resolution.75,Dialogue/ch1_resolution,(Narration),On screen: 세이카(C),,여섯 명이 피아노를 둘러쌌다. 새벽빛이 먼지 사이로 스며들고 있었다.,,,,
-dlg.ch1_resolution.76,Dialogue/ch1_resolution,세이카,On screen: 세이카(C),,하유.,,,,
-dlg.ch1_resolution.77,Dialogue/ch1_resolution,하루카,On screen: 하루카(C),,...하유 씨.,,,,
-dlg.ch1_resolution.78,Dialogue/ch1_resolution,리나,On screen: 리나(C),,하유!,,,,
-dlg.ch1_resolution.79,Dialogue/ch1_resolution,카스미,On screen: 카스미(C),,...하유.,,,,
-dlg.ch1_resolution.80,Dialogue/ch1_resolution,리리스,On screen: 리리스(C),,...하유.,,,,
-dlg.ch1_resolution.81,Dialogue/ch1_resolution,미나,On screen: 미나(C),,...하유.,,,,
-dlg.ch1_resolution.83,Dialogue/ch1_resolution,(Narration),On screen: 미나(C),,그 순간 — 피아노 앞의 공기가 흔들렸다.,,,,
-dlg.ch1_resolution.84,Dialogue/ch1_resolution,(Narration),On screen: 미나(C),,"투명한 윤곽이, 건반 위에 손을 올린 채 서서히 나타났다.",,,,
-dlg.ch1_resolution.85,Dialogue/ch1_resolution,하루카,On screen: 하루카(C),,"보, 보여요...! 이 사람이...!",,,,
-dlg.ch1_resolution.86,Dialogue/ch1_resolution,(Narration),On screen: 하루카(C),,긴 머리카락. 가녀린 손가락. 미나가 묘사한 것과 똑같은 모습이었다. 하지만 유리처럼 투명했다.,,,,
-dlg.ch1_resolution.87,Dialogue/ch1_resolution,(Narration),On screen: 하루카(C),,소녀가 고개를 돌렸다. 여섯 명을 바라보았다. 그리고 — 미소 지었다.,,,,
-dlg.ch1_resolution.89,Dialogue/ch1_resolution,(Narration),On screen: 하루카(C),,형체가 희미해지며 다시 흐려지기 시작했다. 하지만 아까와는 달랐다. 완전히 사라지지 않았다.,,,,
-dlg.ch1_resolution.90,Dialogue/ch1_resolution,리리스,On screen: 리리스(L),,"잭오 센서, 양자 패턴 기록 완료. 존재 흔적 역추적 가능.",,,,
-dlg.ch1_resolution.91,Dialogue/ch1_resolution,세이카,"On screen: 리리스(L), 세이카(C)",,온전한 이름을 찾을 수 있어?,,,,
-dlg.ch1_resolution.92,Dialogue/ch1_resolution,리리스,"On screen: 리리스(L), 세이카(C)",,(노트북을 두드리며) 시도 중... 2016년 콩쿠르 수상자 명단 잔존 데이터 교차 대조...,,,,
-dlg.ch1_resolution.93,Dialogue/ch1_resolution,리리스,"On screen: 리리스(L), 세이카(C)",,...이름 식별 완료. 서하유.,,,,
-dlg.ch1_resolution.94,Dialogue/ch1_resolution,세이카,"On screen: 리리스(L), 세이카(C)",,온전한 이름을 찾았어. 다같이 부르자. 이번에는 완전한 이름으로!,,,,
-dlg.ch1_resolution.95,Dialogue/ch1_resolution,(Narration),"On screen: 리리스(L), 세이카(C)",,"여섯 명이 숨을 고르고, 한 목소리로 외쳤다.",,,,
-dlg.ch1_resolution.96,Dialogue/ch1_resolution,세이카,"On screen: 리리스(L), 세이카(C)",,서하유!!!,,,,
-dlg.ch1_resolution.97,Dialogue/ch1_resolution,(Narration),"On screen: 리리스(L), 세이카(C)",,투명한 윤곽에 색이 번지기 시작했다—,,,,
-dlg.ch1_resolution.98,Dialogue/ch1_resolution,(Narration),"On screen: 리리스(L), 세이카(C)",,그 순간. 건물 전체가 격렬하게 흔들렸다.,,,,
-dlg.ch1_resolution.99,Dialogue/ch1_resolution,(Narration),"On screen: 리리스(L), 세이카(C)",,"피아노 건반이 불협화음을 내지르며 미친 듯이 튀었다. 창문이 깨지고, 악보가 회오리처럼 날렸다.",,,,
-dlg.ch1_resolution.100,Dialogue/ch1_resolution,카스미,"On screen: 리리스(L), 세이카(C), 카스미(R)",,"뭐, 뭐야 이건...?!",,,,
-dlg.ch1_resolution.101,Dialogue/ch1_resolution,리리스,"On screen: 리리스(L), 세이카(C), 카스미(R)",,잭오 센서 이상 반응... 현상이 저항하고 있음. 기억의 닻을 끊으려는 듯한 에너지 감지.,,,,
-dlg.ch1_resolution.102,Dialogue/ch1_resolution,세이카,"On screen: 리리스(L), 세이카(C), 카스미(R)",,현상이 되찾기를 거부하고 있어...!,,,,
-dlg.ch1_resolution.103,Dialogue/ch1_resolution,(Narration),"On screen: 리리스(L), 세이카(C), 카스미(R)",,서하유의 형체가 다시 흐려지기 시작했다. 마치 보이지 않는 손이 그녀를 다시 끌어당기는 것처럼.,,,,
-dlg.ch1_resolution.104,Dialogue/ch1_resolution,서하유,"On screen: 리리스(L), 세이카(C), 카스미(R)",,(희미한 목소리) ...안 돼... 또 사라지는 거야...? 또 혼자가 되는 거야...?,,,,
-dlg.ch1_resolution.105,Dialogue/ch1_resolution,하루카,"On screen: 하루카(L), 세이카(C), 카스미(R)",,"안 돼요!! 잡아요, 다들!!",,,,
-dlg.ch1_resolution.106,Dialogue/ch1_resolution,리나,"On screen: 리나(L), 세이카(C), 카스미(R)",,(피아노 앞을 막아서며) 안 보내! 절대 안 보낸다!! 눈앞에서 사람이 사라지는 꼴은 절대 못 봐!!,,,,
-dlg.ch1_resolution.107,Dialogue/ch1_resolution,(Narration),"On screen: 리나(L), 세이카(C), 카스미(R)",,리나가 피아노를 두 팔로 껴안았다. 이 안에 있는 사람을 놓치지 않겠다는 듯.,,,,
-dlg.ch1_resolution.108,Dialogue/ch1_resolution,카스미,"On screen: 리나(L), 세이카(C), 카스미(R)",,(떨리는 손으로 수첩을 펼치며) 서하유. 2016년 전국 피아노 콩쿠르 수상자. 노을시 출신. 이 기록은 제가 지킵니다. 과학자의 기록은 지워지지 않아요.,,,,
-dlg.ch1_resolution.109,Dialogue/ch1_resolution,리리스,"On screen: 리리스(L), 세이카(C), 카스미(R)",,"잭오, 풀파워. 서하유 존재 데이터, 실시간 전 세계 서버 동시 전송 개시. ...지워볼 테면 지워봐. 인터넷 전체를 상대로.",,,,
-dlg.ch1_resolution.110,Dialogue/ch1_resolution,미나,"On screen: 미나(L), 세이카(C), 카스미(R)",,"(눈을 감고) ...이 몸의 힘이 진짜인지 가짜인지, 오늘 확인해보겠다.",,,,
-dlg.ch1_resolution.111,Dialogue/ch1_resolution,(Narration),"On screen: 미나(L), 세이카(C), 카스미(R)",,"미나의 주변에 희미한 빛이 감돌았다. 중2병 연기인지 진짜 능력인지, 이 순간만큼은 아무도 구분할 수 없었다.",,,,
-dlg.ch1_resolution.112,Dialogue/ch1_resolution,세이카,"On screen: 미나(L), 세이카(C), 카스미(R)",,"(수첩에 적으며) 서하유. 이 이름은 내가 기억한다. 이 수첩이 불에 타도, 내 머릿속에서 지워지지 않아.",,,,
-dlg.ch1_resolution.113,Dialogue/ch1_resolution,하루카,"On screen: 하루카(L), 세이카(C), 카스미(R)",,(건반 위에 두 손을 올리며) 하유 씨... 저도 혼자였어요. 아무도 안 봐주는 게 얼마나 무서운 건지 알아요.,,,,
-dlg.ch1_resolution.114,Dialogue/ch1_resolution,하루카,"On screen: 하루카(L), 세이카(C), 카스미(R)",,그러니까 이제... 혼자 두지 않을게요.,,,,
-dlg.ch1_resolution.115,Dialogue/ch1_resolution,(Narration),"On screen: 하루카(L), 세이카(C), 카스미(R)",,"건물이 흔들리고, 먼지가 소용돌이쳤다. 서하유의 형체가 희미해졌다가 다시 선명해졌다가를 반복했다.",,,,
-dlg.ch1_resolution.116,Dialogue/ch1_resolution,리리스,"On screen: 리리스(L), 세이카(C), 카스미(R)",,전송률 47%... 62%... 데이터 분산 중...,,,,
-dlg.ch1_resolution.117,Dialogue/ch1_resolution,(Narration),"On screen: 리리스(L), 세이카(C), 카스미(R)",,잭오가 음악실 상공을 선회하며 서하유의 존재 데이터를 세계 각지로 쏘아보내고 있었다.,,,,
-dlg.ch1_resolution.118,Dialogue/ch1_resolution,리리스,"On screen: 리리스(L), 세이카(C), 카스미(R)",,78%... 91%...,,,,
-dlg.ch1_resolution.119,Dialogue/ch1_resolution,(Narration),"On screen: 리리스(L), 세이카(C), 카스미(R)",,그리고 어딘가에서 — 누군가가 그 데이터를 읽었다. 조회수 1. 2. 5. 12. 31.,,,,
-dlg.ch1_resolution.120,Dialogue/ch1_resolution,리리스,"On screen: 리리스(L), 세이카(C), 카스미(R)",,"...외부 인식 유입 감지. 기억의 닻, 확산 시작.",,,,
-dlg.ch1_resolution.121,Dialogue/ch1_resolution,(Narration),"On screen: 리리스(L), 세이카(C), 카스미(R)",,세상이 서하유를 기억하기 시작했다.,,,,
-dlg.ch1_resolution.122,Dialogue/ch1_resolution,리리스,"On screen: 리리스(L), 세이카(C), 카스미(R)",,전송 100%. 완료.,,,,
-dlg.ch1_resolution.123,Dialogue/ch1_resolution,(Narration),"On screen: 리리스(L), 세이카(C), 카스미(R)",,"불협화음이 멈추었다. 회오리가 가라앉았다. 먼지가 천천히, 빛처럼 내려앉았다.",,,,
-dlg.ch1_resolution.124,Dialogue/ch1_resolution,(Narration),"On screen: 리리스(L), 세이카(C), 카스미(R)",,"그리고 — 피아노 앞에, 한 소녀가 앉아 있었다. 더 이상 투명하지 않은, 온전한 사람이.",,,,
-dlg.ch1_resolution.125,Dialogue/ch1_resolution,서하유,"On screen: 리리스(L), 세이카(C), 카스미(R)",,......,,,,
-dlg.ch1_resolution.126,Dialogue/ch1_resolution,서하유,"On screen: 리리스(L), 세이카(C), 카스미(R)",,"...들려. 드디어... 내 소리가, 누군가한테 들리고 있어.",,,,
-dlg.ch1_resolution.127,Dialogue/ch1_resolution,(Narration),"On screen: 리리스(L), 세이카(C), 카스미(R)",,서하유의 눈에서 눈물이 흘러내렸다. 10년 동안 흘리지 못했던 눈물이었다.,,,,
-dlg.ch1_resolution.128,Dialogue/ch1_resolution,서하유,"On screen: 리리스(L), 세이카(C), 카스미(R)",,"매일 밤 쳤어요. 매일 밤, 매일 밤... 누군가 들어주길 바라면서. 한 명이라도 기억해주길 바라면서.",,,,
-dlg.ch1_resolution.129,Dialogue/ch1_resolution,서하유,"On screen: 리리스(L), 세이카(C), 카스미(R)",,"그런데 아무도... 아무도 오지 않았어요. 내 이름을 부르는 사람도, 내 연주를 듣는 사람도...",,,,
-dlg.ch1_resolution.130,Dialogue/ch1_resolution,서하유,"On screen: 리리스(L), 세이카(C), 카스미(R)",,"...포기할 뻔했어요. 여러 번. 건반을 치는 손이 닳아서, 소리가 안 나는 날도 있었어요.",,,,
-dlg.ch1_resolution.131,Dialogue/ch1_resolution,서하유,"On screen: 리리스(L), 세이카(C), 카스미(R)",,그래도 쳤어요. 멈추면 진짜 사라질 것 같아서.,,,,
-dlg.ch1_resolution.132,Dialogue/ch1_resolution,하루카,"On screen: 하루카(L), 세이카(C), 카스미(R)",,(울면서) 들었어요. 우리가 전부 다 들었어요.,,,,
-dlg.ch1_resolution.133,Dialogue/ch1_resolution,서하유,"On screen: 하루카(L), 세이카(C), 카스미(R)",,...고마워요. 찾아줘서. 기억해줘서. 싸워줘서.,,,,
-dlg.ch1_resolution.134,Dialogue/ch1_resolution,(Narration),"On screen: 하루카(L), 세이카(C), 카스미(R)",,"서하유가 건반 위에 손을 올렸다. 10년 만의, 누군가를 위한 연주.",,,,
-dlg.ch1_resolution.135,Dialogue/ch1_resolution,(Narration),"On screen: 하루카(L), 세이카(C), 카스미(R)",,"이번 선율은 달랐다. 외로움도, 절박함도, 두려움도 없었다. 그저 따뜻하고, 감사하고, 살아있다는 것이 기쁜 곡.",,,,
-dlg.ch1_resolution.136,Dialogue/ch1_resolution,리나,"On screen: 리나(L), 세이카(C), 카스미(R)",,......,,,,
-dlg.ch1_resolution.137,Dialogue/ch1_resolution,카스미,"On screen: 리나(L), 세이카(C), 카스미(R)",,......,,,,
-dlg.ch1_resolution.138,Dialogue/ch1_resolution,(Narration),"On screen: 리나(L), 세이카(C), 카스미(R)",,아무도 말하지 않았다. 그저 들었다.,,,,
-dlg.ch1_resolution.139,Dialogue/ch1_resolution,(Narration),"On screen: 리나(L), 세이카(C), 카스미(R)",,연주가 끝났다. 창밖에서 새가 울기 시작했다.,,,,
-dlg.ch1_resolution.140,Dialogue/ch1_resolution,서하유,"On screen: 리나(L), 세이카(C), 카스미(R)",,(미소) 처음이에요. 연주가 끝나고 박수 대신 울음소리가 들리는 건.,,,,
-dlg.ch1_resolution.141,Dialogue/ch1_resolution,리나,"On screen: 리나(L), 세이카(C), 카스미(R)",,"(코를 훌쩍이며) 누, 누가 울어!! 먼지가 들어간 거라고!!",,,,
-dlg.ch1_resolution.142,Dialogue/ch1_resolution,세이카,"On screen: 리나(L), 세이카(C), 카스미(R)",,"...약속을 지켰네. 잊혀진 사람을, 되찾았어.",,,,
-dlg.ch1_resolution.143,Dialogue/ch1_resolution,세이카,"On screen: 리나(L), 세이카(C), 카스미(R)",,네버모어의 첫 번째 사건 — 해결.,,,,
-dlg.ch1_resolution.144,Dialogue/ch1_resolution,(Narration),"On screen: 리나(L), 세이카(C), 카스미(R)",,...,,,,
-dlg.ch1_epilogue.0,Dialogue/ch1_epilogue,(Narration),No characters on screen,,"다음 날 아침, 네버모어 오컬트 탐정 사무소.",,,,
-dlg.ch1_epilogue.1,Dialogue/ch1_epilogue,(Narration),No characters on screen,,사무소 식탁에는 일곱 명분의 아침이 차려져 있었다.,,,,
-dlg.ch1_epilogue.2,Dialogue/ch1_epilogue,하루카,On screen: 하루카(L),,"서하유 씨, 단호박 수프 좀 더 드세요! 10년 동안 못 드셨잖아요!",,,,
-dlg.ch1_epilogue.3,Dialogue/ch1_epilogue,서하유,On screen: 하루카(L),,에... 이게 뭔가요? 호박인데... 왜 이렇게 맛있어요...?,,,,
-dlg.ch1_epilogue.4,Dialogue/ch1_epilogue,하루카,On screen: 하루카(L),,"(눈 빛나며) 그, 그렇죠?! 제 특제 레시피예요!",,,,
-dlg.ch1_epilogue.5,Dialogue/ch1_epilogue,리나,"On screen: 하루카(L), 리나(C), 리리스(R)",,"야, 하루카 음식 칭찬하면 끝도 없이 만들어오니까 적당히 해. 어제 호박 라떼, 호박 빙수, 호박 쿠키에 이번엔 호박 수프까지. 호박밖에 없냐!",,,,
-dlg.ch1_epilogue.6,Dialogue/ch1_epilogue,하루카,"On screen: 하루카(L), 리나(C), 리리스(R)",,호박은 만능이에요!,,,,
-dlg.ch1_epilogue.7,Dialogue/ch1_epilogue,리리스,"On screen: 하루카(L), 리나(C), 리리스(R)",,"잭오 데이터 전 세계 서버 분산 백업 완료. 서하유 존재 기록, 다시는 지워지지 않음.",,,,
-dlg.ch1_epilogue.8,Dialogue/ch1_epilogue,서하유,"On screen: 하루카(L), 리나(C), 리리스(R)",,"...제 이름이 기록에 남아있다는 게, 이렇게 안심되는 일인 줄 몰랐어요.",,,,
-dlg.ch1_epilogue.9,Dialogue/ch1_epilogue,카스미,"On screen: 카스미(L), 리나(C), 리리스(R)",,"(서류를 내밀며) 서하유 씨, 가족 연락처를 찾았습니다. 부모님이 아직 노을시에 계시네요.",,,,
-dlg.ch1_epilogue.10,Dialogue/ch1_epilogue,서하유,"On screen: 카스미(L), 리나(C), 리리스(R)",,"...엄마, 아빠가...? 아직...?",,,,
-dlg.ch1_epilogue.11,Dialogue/ch1_epilogue,카스미,"On screen: 카스미(L), 리나(C), 리리스(R)",,네. 기록이 복원되면서 기억도 함께 돌아오고 있는 것 같습니다.,,,,
-dlg.ch1_epilogue.12,Dialogue/ch1_epilogue,서하유,"On screen: 카스미(L), 리나(C), 리리스(R)",,......,,,,
-dlg.ch1_epilogue.13,Dialogue/ch1_epilogue,(Narration),"On screen: 카스미(L), 리나(C), 리리스(R)",Contains manual line break(s) written as \n - keep the \n token (you may move it).,서하유가 식탁 위에 얼굴을 묻고 울기 시작했다.\n하루카가 조용히 등을 쓰다듬어 주었다.,,,,
-dlg.ch1_epilogue.14,Dialogue/ch1_epilogue,미나,"On screen: 미나(L), 리나(C), 리리스(R)",,"...오늘은, 한 사람을 되찾은 날이야. 연기가 아니라 진심으로.",,,,
-dlg.ch1_epilogue.15,Dialogue/ch1_epilogue,(Narration),"On screen: 미나(L), 리나(C), 리리스(R)",,— 3일 후.,,,,
-dlg.ch1_epilogue.16,Dialogue/ch1_epilogue,(Narration),"On screen: 미나(L), 리나(C), 리리스(R)",,네버모어 오컬트 탐정 사무소는 전국적인 화제의 중심이 되었다.,,,,
-dlg.ch1_epilogue.17,Dialogue/ch1_epilogue,리리스,"On screen: 미나(L), 리나(C), 리리스(R)",,"뉴스 속보 읽음. ""노을시의 오컬트 탐정 사무소, 10년 전 실종된 피아니스트를 기적적으로 발견."" ...매체 23개 보도 완료.",,,,
-dlg.ch1_epilogue.18,Dialogue/ch1_epilogue,리나,"On screen: 미나(L), 리나(C), 리리스(R)",,와씨 대박! 우리 뉴스에 나왔어!!,,,,
-dlg.ch1_epilogue.19,Dialogue/ch1_epilogue,세이카,"On screen: 세이카(L), 리나(C), 리리스(R)",,...그런데 문제가 생겼어.,,,,
-dlg.ch1_epilogue.20,Dialogue/ch1_epilogue,카스미,"On screen: 카스미(L), 리나(C), 리리스(R)",,"의뢰 메일이... 현재 1,247건입니다.",,,,
-dlg.ch1_epilogue.21,Dialogue/ch1_epilogue,리나,"On screen: 카스미(L), 리나(C), 리리스(R)",,뭐?!,,,,
-dlg.ch1_epilogue.22,Dialogue/ch1_epilogue,카스미,"On screen: 카스미(L), 리나(C), 리리스(R)",,그리고 아직 늘어나고 있어요.,,,,
-dlg.ch1_epilogue.23,Dialogue/ch1_epilogue,리리스,"On screen: 카스미(L), 리나(C), 리리스(R)",,서버 과부하 경고. 메일함 용량 99.7%.,,,,
-dlg.ch1_epilogue.24,Dialogue/ch1_epilogue,(Narration),"On screen: 카스미(L), 리나(C), 리리스(R)",,현관 밖에는 기자들과 방송국 카메라가 진을 치고 있었다.,,,,
-dlg.ch1_epilogue.25,Dialogue/ch1_epilogue,미나,"On screen: 미나(L), 리나(C), 리리스(R)",,크큭... 천 년 전부터 예언되어 있던 일이니라...,,,,
-dlg.ch1_epilogue.26,Dialogue/ch1_epilogue,카스미,"On screen: 카스미(L), 리나(C), 리리스(R)",,"아뇨, 3일 전부터입니다.",,,,
-dlg.ch1_epilogue.27,Dialogue/ch1_epilogue,리나,"On screen: 카스미(L), 리나(C), 리리스(R)",,"(현관을 열며) 저기요~ 네버모어 사무소는 지금 인터뷰 안 받습니— 야, 밀지 마!! 밀지 말라고!!",,,,
-dlg.ch1_epilogue.28,Dialogue/ch1_epilogue,리나,"On screen: 카스미(L), 리나(C), 리리스(R)",,(문을 쾅 닫으며) ...인간의 바다야 밖에.,,,,
-dlg.ch1_epilogue.29,Dialogue/ch1_epilogue,하루카,"On screen: 하루카(L), 리나(C), 리리스(R)",,어머... 저기 TV 트럭까지 와 있어요...,,,,
-dlg.ch1_epilogue.30,Dialogue/ch1_epilogue,세이카,"On screen: 세이카(L), 리나(C), 리리스(R)",,"(한숨) ...의뢰인이 올까봐 걱정이었는데, 이제는 의뢰인을 못 막는 게 걱정이네.",,,,
-dlg.ch1_epilogue.31,Dialogue/ch1_epilogue,리리스,"On screen: 세이카(L), 리나(C), 리리스(R)",,"추가 보고. 해외 매체에서도 문의. CNN: ""Supernatural Detective Agency?"" NHK: ""オカルト探偵事務所とは？"" ...번역 봇 풀가동 중.",,,,
-dlg.ch1_epilogue.32,Dialogue/ch1_epilogue,리나,"On screen: 세이카(L), 리나(C), 리리스(R)",,"세계적?! 야, 우리 영어 되는 사람 있어?!",,,,
-dlg.ch1_epilogue.33,Dialogue/ch1_epilogue,카스미,"On screen: 카스미(L), 리나(C), 리리스(R)",,...제가 논문은 영어로 읽습니다만.,,,,
-dlg.ch1_epilogue.34,Dialogue/ch1_epilogue,리리스,"On screen: 카스미(L), 리나(C), 리리스(R)",,번역은 잭오가 담당 가능.,,,,
-dlg.ch1_epilogue.35,Dialogue/ch1_epilogue,미나,"On screen: 미나(L), 리나(C), 리리스(R)",,"(갑자기 유창한 영어로) ""Welcome to Nevermore...""",,,,
-dlg.ch1_epilogue.36,Dialogue/ch1_epilogue,리나,"On screen: 미나(L), 리나(C), 리리스(R)",,???,,,,
-dlg.ch1_epilogue.37,Dialogue/ch1_epilogue,미나,"On screen: 미나(L), 리나(C), 리리스(R)",,"(순간 당황하며) ...아, 그, 그건 전생의 기억이니라!",,,,
-dlg.ch1_epilogue.38,Dialogue/ch1_epilogue,카스미,"On screen: 카스미(L), 리나(C), 리리스(R)",,...중2병이 영어까지 되는 줄은 몰랐네요.,,,,
-dlg.ch1_epilogue.39,Dialogue/ch1_epilogue,세이카,"On screen: 세이카(L), 리나(C), 리리스(R)",,"(웃으며) 좋아, 이왕 이렇게 된 거...",,,,
-dlg.ch1_epilogue.40,Dialogue/ch1_epilogue,세이카,"On screen: 세이카(L), 리나(C), 리리스(R)",,"부모님한테 전화해야겠다. ""성과를 보여드리겠습니다"" 하고.",,,,
-dlg.ch1_epilogue.41,Dialogue/ch1_epilogue,리나,"On screen: 세이카(L), 리나(C), 리리스(R)",,"소장님, 그건 성과 정도가 아니라 대폭발이야!",,,,
-dlg.ch1_epilogue.42,Dialogue/ch1_epilogue,세이카,"On screen: 세이카(L), 리나(C), 리리스(R)",,"(수화기를 들며) ...여보세요, 아버지? 네, 세이카입니다. 뉴스 보셨어요...? 네, 그게 저희 사무소예요.",,,,
-dlg.ch1_epilogue.43,Dialogue/ch1_epilogue,(Narration),"On screen: 세이카(L), 리나(C), 리리스(R)",,"수화기 너머로, 아버지의 길고 긴 침묵이 흘렀다.",,,,
-dlg.ch1_epilogue.44,Dialogue/ch1_epilogue,세이카,"On screen: 세이카(L), 리나(C), 리리스(R)",,(미소) ...네. 1년 더 해보겠습니다.,,,,
-dlg.ch1_epilogue.45,Dialogue/ch1_epilogue,(Narration),"On screen: 세이카(L), 리나(C), 리리스(R)",,— 일주일 후.,,,,
-dlg.ch1_epilogue.46,Dialogue/ch1_epilogue,(Narration),"On screen: 세이카(L), 리나(C), 리리스(R)",Contains manual line break(s) written as \n - keep the \n token (you may move it).,소란이 조금 가라앉은 어느 저녁.\n서하유가 사무소에 찾아왔다.,,,,
-dlg.ch1_epilogue.47,Dialogue/ch1_epilogue,서하유,"On screen: 세이카(L), 리나(C), 리리스(R)",,저... 부탁이 하나 있어요. 그 음악실에서 한 번만 더 연주해도 될까요?,,,,
-dlg.ch1_epilogue.48,Dialogue/ch1_epilogue,서하유,"On screen: 세이카(L), 리나(C), 리리스(R)",,이번에는... 듣는 사람이 있을 때 치고 싶어서요.,,,,
-dlg.ch1_epilogue.49,Dialogue/ch1_epilogue,(Narration),"On screen: 세이카(L), 리나(C), 리리스(R)",Contains manual line break(s) written as \n - keep the \n token (you may move it).,낡은 음악실. 하지만 더 이상 무섭지 않았다.\n잭오랜턴 조명이 따뜻한 빛을 비추고 있었다.,,,,
-dlg.ch1_epilogue.50,Dialogue/ch1_epilogue,(Narration),"On screen: 세이카(L), 리나(C), 리리스(R)",Contains manual line break(s) written as \n - keep the \n token (you may move it).,서하유가 건반 앞에 앉았다.\n여섯 명의 관객이 조용히 지켜보았다.,,,,
-dlg.ch1_epilogue.51,Dialogue/ch1_epilogue,(Narration),"On screen: 세이카(L), 리나(C), 리리스(R)",,연주가 시작되었다.,,,,
-dlg.ch1_epilogue.52,Dialogue/ch1_epilogue,(Narration),"On screen: 세이카(L), 리나(C), 리리스(R)",Contains manual line break(s) written as \n - keep the \n token (you may move it).,"10년 동안 혼자 치던 곡이,\n누군가가 들어주는 것만으로 전혀 다른 곡이 되었다.",,,,
-dlg.ch1_epilogue.53,Dialogue/ch1_epilogue,(Narration),"On screen: 세이카(L), 리나(C), 리리스(R)",,"연주가 끝나고, 작은 박수가 울렸다.",,,,
-dlg.ch1_epilogue.54,Dialogue/ch1_epilogue,서하유,"On screen: 세이카(L), 리나(C), 리리스(R)",,"10년 동안 혼자 연주했는데, 누군가 들어주니까... 전혀 다른 곡이 되네요.",,,,
-dlg.ch1_epilogue.55,Dialogue/ch1_epilogue,리나,"On screen: 세이카(L), 리나(C), 리리스(R)",,"(소곤) 아오, 진짜 눈물 안 난다니까...",,,,
-dlg.ch1_epilogue.56,Dialogue/ch1_epilogue,카스미,"On screen: 카스미(L), 리나(C), 리리스(R)",,(안경을 닦으며) ...김이 서린 겁니다.,,,,
-dlg.ch1_epilogue.57,Dialogue/ch1_epilogue,하루카,"On screen: 하루카(L), 리나(C), 리리스(R)",,서하유 씨! 이거 드세요! 오늘은 특별히 호박 마들렌이에요!,,,,
-dlg.ch1_epilogue.58,Dialogue/ch1_epilogue,서하유,"On screen: 하루카(L), 리나(C), 리리스(R)",,"(웃으며) 고마워요, 하루카. ...나중에 나도 뭔가 만들어 올게요.",,,,
-dlg.ch1_epilogue.59,Dialogue/ch1_epilogue,세이카,"On screen: 세이카(L), 리나(C), 리리스(R)",,언제든 와. 여기는 네 자리니까.,,,,
-dlg.ch1_epilogue.60,Dialogue/ch1_epilogue,서하유,"On screen: 세이카(L), 리나(C), 리리스(R)",,"(문 앞에서 돌아보며) ...세이카 씨가 처음 봤다던, 그 지하 서고의 글씨. 「우리를 찾아줘.」",,,,
-dlg.ch1_epilogue.61,Dialogue/ch1_epilogue,서하유,"On screen: 세이카(L), 리나(C), 리리스(R)",,"그거, 우리 모두의 목소리였어요. ...찾아줘서, 고마워요.",,,,
-dlg.ch1_epilogue.62,Dialogue/ch1_epilogue,(Narration),"On screen: 세이카(L), 리나(C), 리리스(R)",Contains manual line break(s) written as \n - keep the \n token (you may move it).,"서하유가 떠난 뒤, 피아노 위에 놓인\n호박 마들렌 하나가 사라져 있었다.",,,,
-dlg.ch1_epilogue.63,Dialogue/ch1_epilogue,하루카,"On screen: 하루카(L), 리나(C), 리리스(R)",,...어? 분명 여섯 개 놓았는데...,,,,
-dlg.ch1_epilogue.64,Dialogue/ch1_epilogue,세이카,"On screen: 세이카(L), 리나(C), 리리스(R)",,(미소) 아마 한 명 더 먹은 거겠지. 보이지 않는 관객이.,,,,
-dlg.ch1_epilogue.65,Dialogue/ch1_epilogue,(Narration),"On screen: 세이카(L), 리나(C), 리리스(R)",,사라진 마들렌 하나. 그리고 돌아온 사람 하나.,,,,
-dlg.ch1_epilogue.66,Dialogue/ch1_epilogue,(Narration),"On screen: 세이카(L), 리나(C), 리리스(R)",Contains manual line break(s) written as \n - keep the \n token (you may move it).,"「네버모어 오컬트 탐정 사무소」의 첫 번째 이야기가,\n이렇게 끝났다.",,,,
-dlg.ch1_epilogue.68,Dialogue/ch1_epilogue,(Narration),"On screen: 세이카(L), 리나(C), 리리스(R)",,플레이해주셔서 감사합니다.,,,,
-dlg.ch1_result_fail.0,Dialogue/ch1_result_fail,카스미,On screen: 카스미(C),,"소장님, 추론의 일부가 맞지 않습니다. 증거와 결론 사이에 논리적 비약이 있어요.",,,,
-dlg.ch1_result_fail.1,Dialogue/ch1_result_fail,카스미,On screen: 카스미(C),,"각 증거가 정확히 무엇을 증명하는지, 하나씩 다시 짚어볼 필요가 있습니다.",,,,
-dlg.ch1_result_fail.2,Dialogue/ch1_result_fail,세이카,"On screen: 세이카(L), 카스미(R)",,...맞아. 서두르면 안 돼. 증거의 설명을 꼼꼼하게 읽어보자.,,,,
-dlg.ch1_result_fail.3,Dialogue/ch1_result_fail,리리스,"On screen: 세이카(L), 리리스(R)",,힌트 제공. 증거 내 무관련 데이터 혼입 가능성 있음. 설명문 재확인 요망.,,,,
-dlg.ch1_result_fail.4,Dialogue/ch1_result_fail,미나,"On screen: 세이카(L), 미나(R)",,서두르지 마라... 진실은 언제나 증거 속에 숨어 있느니라.,,,,
+﻿"Key","Category","Speaker","Context","Notes","KO","EN","JA","ZH-CN","ZH-TW"
+"speaker.세이카","Speaker","","Name plate above the dialogue box (first speaks in ch0_origin).","Character/speaker name - keep consistent everywhere.","세이카","","","",""
+"speaker.선임 변호사","Speaker","","Name plate above the dialogue box (first speaks in ch0_origin).","Character/speaker name - keep consistent everywhere.","선임 변호사","","","",""
+"speaker.동네 할머니","Speaker","","Name plate above the dialogue box (first speaks in ch0_origin).","Character/speaker name - keep consistent everywhere.","동네 할머니","","","",""
+"speaker.아버지","Speaker","","Name plate above the dialogue box (first speaks in ch0_origin).","Character/speaker name - keep consistent everywhere.","아버지","","","",""
+"speaker.카스미","Speaker","","Name plate above the dialogue box (first speaks in ch0_gathering).","Character/speaker name - keep consistent everywhere.","카스미","","","",""
+"speaker.리나","Speaker","","Name plate above the dialogue box (first speaks in ch0_gathering).","Character/speaker name - keep consistent everywhere.","리나","","","",""
+"speaker.리리스","Speaker","","Name plate above the dialogue box (first speaks in ch0_gathering).","Character/speaker name - keep consistent everywhere.","리리스","","","",""
+"speaker.하루카","Speaker","","Name plate above the dialogue box (first speaks in ch0_gathering).","Character/speaker name - keep consistent everywhere.","하루카","","","",""
+"speaker.미나","Speaker","","Name plate above the dialogue box (first speaks in ch0_gathering).","Character/speaker name - keep consistent everywhere.","미나","","","",""
+"speaker.서하유","Speaker","","Name plate above the dialogue box (first speaks in ch1_resolution).","Character/speaker name - keep consistent everywhere.","서하유","","","",""
+"ui.x","UI/Loc","","","Placeholders {0} must be kept.","남은 {0}개","","","",""
+"ui.backlog.empty","UI/BacklogUI","","","","기록된 대화가 없습니다.","","","",""
+"ui.backlog.rewind_hint","UI/BacklogUI","","","","◀ 이 장면으로 되감기","","","",""
+"ui.backlog.current","UI/BacklogUI","","","","현재","","","",""
+"ui.backlog.rewind_confirm","UI/BacklogUI","","","","이 시점으로 되감기 하시겠습니까?","","","",""
+"ui.backlog.rewind_warning","UI/BacklogUI","","","","(이후의 진행 내역은 사라집니다)","","","",""
+"ui.common.yes","UI/BacklogUI","","","","예","","","",""
+"ui.common.no","UI/BacklogUI","","","","아니오","","","",""
+"ui.deduction.result","UI/DeductionUI","","","Placeholders {0} {1} must be kept.","결과: {0} / {1}","","","",""
+"ui.deduction.perfect","UI/DeductionUI","","","","완벽한 추리!","","","",""
+"ui.dialogue.auto","UI/DialogueUI","","","","오토","","","",""
+"ui.dialogue.auto_on","UI/DialogueUI","","","","오토 중","","","",""
+"ui.dialogue.log","UI/DialogueUI","","","","로그","","","",""
+"ui.extra.seika_age","UI/ExtraUI","","","","25세","","","",""
+"ui.extra.seika_role","UI/ExtraUI","","","","사무소 소장 / 경영·법무 담당","","","",""
+"ui.extra.seika_appearance","UI/ExtraUI","","","","허리 아래까지 흘러내리는 짙은 남색 긴 머리카락에 금색 헤어핀. 맑고 차가운 파란 눈동자. 검은색 롱 스커트에 차콜 그레이 재킷, 검은 숄더백을 걸친 세련되고 도시적인 분위기.","","","",""
+"ui.extra.seika_personality","UI/ExtraUI","","","","「네버모어 오컬트 탐정 사무소」의 설립자이자 소장. 카리스마가 있고 결단력이 빠르며, 할로윈과 오컬트에 진심으로 열광한다.","","","",""
+"ui.extra.seika_speech","UI/ExtraUI","","","Contains manual line break(s) written as \n - keep the \n token (you may move it).","반말 위주. 호탕하게 웃는 편.\n""후훗, 보기 좋잖아? 네버모어라는 이름에 딱 맞는 인테리어지.""","","","",""
+"ui.extra.seika_secret","UI/ExtraUI","","","","사무소를 차린 진짜 이유: 과거 자신이 경험한 설명할 수 없는 사건의 진상을 밝히기 위해.","","","",""
+"ui.extra.kasumi_age","UI/ExtraUI","","","","23세","","","",""
+"ui.extra.kasumi_role","UI/ExtraUI","","","","수석 탐정 / 현장 지휘","","","",""
+"ui.extra.kasumi_appearance","UI/ExtraUI","","","","은회색 단발머리. 날카로운 호박색 눈동자. 활동하기 편한 슬림핏 트렌치 코트. 단정하고 이성적인 분위기.","","","",""
+"ui.extra.kasumi_personality","UI/ExtraUI","","","","철저한 이성주의자. 모든 현상에는 과학적 원인이 있다고 확신한다. 사건을 객관적이고 논리적으로 해결하려 한다.","","","",""
+"ui.extra.kasumi_speech","UI/ExtraUI","","","Contains manual line break(s) written as \n - keep the \n token (you may move it).","존댓말 위주. 딱딱하고 사무적.\n""...전 유령 따위는 믿지 않습니다. 분명 트릭이 있을 겁니다.""","","","",""
+"ui.extra.kasumi_secret","UI/ExtraUI","","","","어릴 적 트라우마로 인해 사실 '귀신'을 극도로 무서워한다. 탐정이 된 이유도 그것.","","","",""
+"ui.extra.rina_age","UI/ExtraUI","","","","21세","","","",""
+"ui.extra.rina_role","UI/ExtraUI","","","","행동 대장 / 무력 담당","","","",""
+"ui.extra.rina_appearance","UI/ExtraUI","","","","밝은 분홍색 트윈테일. 스포티한 야구 점퍼와 숏팬츠. 활동적이고 톡톡 튀는 스타일.","","","",""
+"ui.extra.rina_personality","UI/ExtraUI","","","","생각보다 몸이 먼저 나가는 행동파. 활기차고 용감하지만 지루한 것을 견디지 못한다. 사무소에 가만히 있는 것을 제일 싫어한다.","","","",""
+"ui.extra.rina_speech","UI/ExtraUI","","","Contains manual line break(s) written as \n - keep the \n token (you may move it).","반말 위주. 목소리가 크다.\n""그냥 문 부수고 들어가면 안 돼?!""","","","",""
+"ui.extra.rina_secret","UI/ExtraUI","","","","의외로 요리 실력이 뛰어나다. 단, 시각적으로는 매우 끔찍한 결과물을 만들어낸다.","","","",""
+"ui.extra.lilith_age","UI/ExtraUI","","","","20세","","","",""
+"ui.extra.lilith_role","UI/ExtraUI","","","","정보원 / 해커 & 발명가","","","",""
+"ui.extra.lilith_appearance","UI/ExtraUI","","","","헝클어진 보라색 머리. 두꺼운 안경. 오버핏 후드티와 헤드폰. 항상 다크서클이 있다.","","","",""
+"ui.extra.lilith_personality","UI/ExtraUI","","","","귀차니스트 천재. 사람보다 기계와 대화하는 것을 더 편하게 생각한다. 기계에 '이름'을 붙여주는 취미가 있다.","","","",""
+"ui.extra.lilith_speech","UI/ExtraUI","","","Contains manual line break(s) written as \n - keep the \n token (you may move it).","작은 목소리. 단답형.\n""...해킹 완료. 3초 걸렸어.""","","","",""
+"ui.extra.lilith_secret","UI/ExtraUI","","","","어떤 사람의 목소리든 완벽히 복제하는 AI를 발명했다. 자신이 대답하기 귀찮을 때 쓴다.","","","",""
+"ui.extra.mina_age","UI/ExtraUI","","","","1,000세(?)","","","",""
+"ui.extra.mina_role","UI/ExtraUI","","","","오컬트 고문 / 자칭 흡혈귀","","","",""
+"ui.extra.mina_appearance","UI/ExtraUI","","","","창백한 피부에 은발. 고딕 로리타 풍의 드레스. 신비로운 붉은 눈동자.","","","",""
+"ui.extra.mina_personality","UI/ExtraUI","","","","스스로를 1000살 먹은 흡혈귀라 칭하는 중2병 소녀. 평소엔 엉뚱하지만 오컬트 지식은 진짜다.","","","",""
+"ui.extra.mina_speech","UI/ExtraUI","","","Contains manual line break(s) written as \n - keep the \n token (you may move it).","시대극 말투.\n""크큭... 어리석은 인간이여. 나의 피가 두려운가?""","","","",""
+"ui.extra.mina_secret","UI/ExtraUI","","","","햇빛 알레르기가 있어서 낮에 밖에 나가지 못할 뿐이다. 사실 마늘은 좋아한다(알리오 올리오 매니아).","","","",""
+"ui.extra.haruka_age","UI/ExtraUI","","","","19세(최연소)","","","",""
+"ui.extra.haruka_role","UI/ExtraUI","","","","사무소 막내 / 메이드","","","",""
+"ui.extra.haruka_appearance","UI/ExtraUI","","","","단정한 흑발 숏컷. 완벽하게 다림질된 메이드복. 상냥한 미소.","","","",""
+"ui.extra.haruka_personality","UI/ExtraUI","","","","항상 친절하고 성실하다. 청소와 홍차 내리기에 진심이다.","","","",""
+"ui.extra.haruka_speech","UI/ExtraUI","","","Contains manual line break(s) written as \n - keep the \n token (you may move it).","존댓말.\n""홍차 한 잔 다 드시면, 다음 사건 파일 가져다 드릴게요.""","","","",""
+"ui.extra.haruka_secret","UI/ExtraUI","","","","화가 나면 아무도 말릴 수 없다. 카스미조차 하루카가 화내면 눈치를 본다.","","","",""
+"ui.extra.label_age","UI/ExtraUI","","","","나이","","","",""
+"ui.extra.label_role","UI/ExtraUI","","","","역할","","","",""
+"ui.extra.label_appearance","UI/ExtraUI","","","","외모","","","",""
+"ui.extra.label_personality","UI/ExtraUI","","","","성격","","","",""
+"ui.extra.label_speech","UI/ExtraUI","","","","말투","","","",""
+"ui.extra.label_secret","UI/ExtraUI","","","","비밀","","","",""
+"ui.investigation.evidence_count","UI/InvestigationUI","","","Placeholders {0} {1} must be kept.","수집한 증거: {0}/{1}","","","",""
+"ui.language.title","UI/LanguageUI","","","","언어 설정","","","",""
+"ui.language.close","UI/LanguageUI","","","","닫기","","","",""
+"ui.lobby.subtitle","UI/LobbyUI","","","","OBLIVION","","","",""
+"ui.lobby.new_game","UI/LobbyUI+HalloweenUIBuilder","","","","새 게임","","","",""
+"ui.lobby.characters","UI/LobbyUI+HalloweenUIBuilder","","","","캐릭터","","","",""
+"ui.lobby.settings","UI/LobbyUI+HalloweenUIBuilder","","","","환경 설정","","","",""
+"ui.lobby.language","UI/LobbyUI+HalloweenUIBuilder","","","","Language","","","",""
+"ui.lobby.version","UI/LobbyUI","","","Placeholders {0} must be kept.","버전 {0}","","","",""
+"ui.lobby.prealpha.title","UI/LobbyUI","","","","Pre-Alpha 안내","","","",""
+"ui.lobby.prealpha.message","UI/LobbyUI","","","Contains manual line break(s) written as \n - keep the \n token (you may move it). Contains rich-text tags <...> - keep tags unchanged.","현재 오블리비언은 '<color=#80C0FF>프리 알파</color>(소프트웨어나 게임 개발 과정에서 정식 알파 테스트 이전의 초기 제작 및 설계 단계)'에 있습니다!\n\n게임의 품질이 낮을 수 있는 점 양해 바랍니다!\n\n일부 백그라운드 배경은 임시로 AI를 사용했음을 알려드립니다.","","","",""
+"ui.lobby.ok","UI/LobbyUI","","","","확인","","","",""
+"ui.lobby.photosensitivity.title","UI/LobbyUI","","","","광과민성 발작 경고","","","",""
+"ui.lobby.photosensitivity.message","UI/LobbyUI","","","Contains rich-text tags <...> - keep tags unchanged.","극소수의 사람들은 비디오 게임에 등장하는 <b><color=#FFD080>번쩍이는 빛</color></b>이나 <b><color=#FFD080>특정 패턴</color></b>과 같은 시각적 이미지에 노출될 때 <b><color=#FFD080>광과민성 발작</color></b>을 일으킬 수 있습니다. 과거에 발작 병력이 없었더라도 게임을 하는 동안 이러한 증상을 유발할 수 있는 미확인 상태일 수 있습니다. 게임 중 <b><color=#FFD080>현기증</color></b>, <b><color=#FFD080>시력 이상</color></b>, <b><color=#FFD080>눈이나 얼굴의 경련</color></b>, <b><color=#FFD080>팔다리의 떨림</color></b>, <b><color=#FFD080>방향 감각 상실</color></b>, <b><color=#FFD080>혼란</color></b>, 또는 <b><color=#FFD080>일시적인 의식 상실</color></b> 등의 증상을 겪는다면 <b><color=#FFD080>즉시 게임을 중단</color></b>하고 의사와 상담하십시오.","","","",""
+"ui.settings.bgm_volume","UI/SettingsUI+HalloweenUIBuilder","","","","배경음악 (BGM) 음량","","","",""
+"ui.settings.sfx_volume","UI/SettingsUI+HalloweenUIBuilder","","","","효과음 (SFX) 음량","","","",""
+"ui.settings.title","UI/SettingsUI","","","","설정","","","",""
+"ui.settings.text_speed","UI/SettingsUI+HalloweenUIBuilder","","","","텍스트 속도","","","",""
+"ui.settings.auto_play_delay","UI/SettingsUI+HalloweenUIBuilder","","","","오토 대기 시간","","","",""
+"ui.settings.skip_mode","UI/SettingsUI","","","","스킵 모드","","","",""
+"ui.settings.font","UI/SettingsUI+HalloweenUIBuilder","","","","글꼴","","","",""
+"ui.settings.return_to_title","UI/SettingsUI+HalloweenUIBuilder","","","","타이틀로 돌아가기","","","",""
+"ui.settings.preview_message","UI/SettingsUI","","","","텍스트 속도가 이 정도로 출력됩니다. 눈으로 확인해 보세요!","","","",""
+"ui.settings.skip_help","UI/SettingsUI+HalloweenUIBuilder","","","","설정하신 단축키를 누르고 있으면 대사를 빠르게 넘길 수 있습니다.","","","",""
+"ui.settings.flash_effect","UI/SettingsUI+HalloweenUIBuilder","","","","화면 번쩍임·흔들림","","","",""
+"ui.settings.flash_on","UI/SettingsUI+HalloweenUIBuilder","","","","켜짐","","","",""
+"ui.settings.flash_off","UI/SettingsUI","","","","꺼짐","","","",""
+"ui.settings.font_handwriting","UI/SettingsUI+HalloweenUIBuilder","","","","손글씨","","","",""
+"ui.settings.font_gothic","UI/SettingsUI","","","","고딕","","","",""
+"ui.builder.dialogue.auto","UI/HalloweenUIBuilder","","","","AUTO","","","",""
+"ui.builder.dialogue.log","UI/HalloweenUIBuilder","","","","LOG","","","",""
+"ui.builder.investigation.collected_evidence","UI/HalloweenUIBuilder","","","","수집한 증거","","","",""
+"ui.builder.investigation.start_deduction","UI/HalloweenUIBuilder","","","","추리 시작","","","",""
+"ui.builder.close","UI/HalloweenUIBuilder","","","","닫기","","","",""
+"ui.builder.deduction.evidence_list","UI/HalloweenUIBuilder","","","","증거 목록","","","",""
+"ui.builder.deduction.submit","UI/HalloweenUIBuilder","","","","추리 제출","","","",""
+"ui.builder.deduction.continue","UI/HalloweenUIBuilder","","","","계속","","","",""
+"ui.builder.settings.title","UI/HalloweenUIBuilder","","","","환경 설정","","","",""
+"ui.builder.settings.skip_key","UI/HalloweenUIBuilder","","","","스킵 단축키","","","",""
+"ui.builder.language.title","UI/HalloweenUIBuilder","","","","언어 설정","","","",""
+"ui.builder.backlog.title","UI/HalloweenUIBuilder","","","","대화 기록","","","",""
+"ui.builder.extra.title","UI/HalloweenUIBuilder","","","","캐릭터 설정집","","","",""
+"dlg.ch0_origin.0","Dialogue/ch0_origin","(Narration)","No characters on screen","","— 2025년 봄. (1년 반 전)","","","",""
+"dlg.ch0_origin.1","Dialogue/ch0_origin","(Narration)","No characters on screen","Contains manual line break(s) written as \n - keep the \n token (you may move it).","도심의 대형 로펌 사무실.\n책상 위에는 처리해야 할 재판 서류가 산처럼 쌓여 있다.","","","",""
+"dlg.ch0_origin.2","Dialogue/ch0_origin","(Narration)","No characters on screen","","로펌 2년 차 변호사 세이카는, 선임을 도와 오래된 재판 기록을 분류하고 있었다.","","","",""
+"dlg.ch0_origin.3","Dialogue/ch0_origin","세이카","On screen: 세이카(C)","","...하. 음주 뺑소니로 사람을 다치게 해놓고 집행유예? 피해자는 아직도 재활 중이라는데.","","","",""
+"dlg.ch0_origin.4","Dialogue/ch0_origin","세이카","On screen: 세이카(C)","","이쪽은 임금 체불 사장이 증거 불충분으로 무죄... 진짜, 다들 잘하는 짓이야.","","","",""
+"dlg.ch0_origin.5","Dialogue/ch0_origin","선임 변호사","On screen: 세이카(C)","","세이카 씨, 또 구시렁대네. 우린 분류만 하면 돼. 판결 평가는 우리 일이 아니야.","","","",""
+"dlg.ch0_origin.6","Dialogue/ch0_origin","세이카","On screen: 세이카(C)","","알아요, 안다고요. 그래도 나쁜 짓 한 사람이 웃으면서 법원을 걸어 나가는 건... 볼 때마다 속이 뒤집혀서요.","","","",""
+"dlg.ch0_origin.7","Dialogue/ch0_origin","선임 변호사","On screen: 세이카(C)","","그 성격으로 변호사 오래 하겠어? 손이나 움직여.","","","",""
+"dlg.ch0_origin.8","Dialogue/ch0_origin","(Narration)","On screen: 세이카(C)","Contains manual line break(s) written as \n - keep the \n token (you may move it).","정리하던 손이, 보관실 가장 안쪽 선반에서 멈췄다.\n빨간 테이프로 봉인된 상자 하나. 라벨은 반쯤 긁혀 지워져 있었다.","","","",""
+"dlg.ch0_origin.9","Dialogue/ch0_origin","세이카","On screen: 세이카(C)","","...이건 분류 목록에도 없는데.","","","",""
+"dlg.ch0_origin.10","Dialogue/ch0_origin","선임 변호사","On screen: 세이카(C)","","그건 손대지 마.","","","",""
+"dlg.ch0_origin.11","Dialogue/ch0_origin","(Narration)","On screen: 세이카(C)","","평소 느긋하던 선임의 목소리가, 처음 듣는 만큼 날카로웠다.","","","",""
+"dlg.ch0_origin.12","Dialogue/ch0_origin","선임 변호사","On screen: 세이카(C)","","경찰 쪽이랑 얽힌 기록이야. 우리 로펌 주요 고객 중에 노을시 경찰청 관계자가 있는 거 알지? 그건 그냥 원래 자리에 둬.","","","",""
+"dlg.ch0_origin.13","Dialogue/ch0_origin","세이카","On screen: 세이카(C)","","...네.","","","",""
+"dlg.ch0_origin.14","Dialogue/ch0_origin","(Narration)","On screen: 세이카(C)","Contains manual line break(s) written as \n - keep the \n token (you may move it).","세이카는 상자를 선반에 되돌려 놓았다.\n하지만 지워진 라벨 아래, 희미하게 남은 몇 글자가 눈에 걸렸다.","","","",""
+"dlg.ch0_origin.15","Dialogue/ch0_origin","(Narration)","On screen: 세이카(C)","","「구시가지」.","","","",""
+"dlg.ch0_origin.16","Dialogue/ch0_origin","세이카","On screen: 세이카(C)","","(손대지 말라고 하면... 더 궁금해지는 게 사람 마음이지.)","","","",""
+"dlg.ch0_origin.17","Dialogue/ch0_origin","(Narration)","On screen: 세이카(C)","","— 며칠 뒤, 늦은 밤. 아무도 남지 않은 기록 보관실.","","","",""
+"dlg.ch0_origin.18","Dialogue/ch0_origin","(Narration)","On screen: 세이카(C)","Contains manual line break(s) written as \n - keep the \n token (you may move it).","세이카는 봉인된 상자를 다시 열었다.\n안에 든 것은 재판 기록 몇 건과, 첨부 자료가 전부 빠져나간 빈 파일철뿐이었다.","","","",""
+"dlg.ch0_origin.19","Dialogue/ch0_origin","세이카","On screen: 세이카(C)","","실종 신고... 2001년, 구시가지. 2006년, 구시가지. 2011년... 또 구시가지?","","","",""
+"dlg.ch0_origin.20","Dialogue/ch0_origin","세이카","On screen: 세이카(C)","","정확히 5년 간격이야. 그런데 전부 '수사 중단'. 첨부된 수사 자료는... 한 장도 없어.","","","",""
+"dlg.ch0_origin.21","Dialogue/ch0_origin","(Narration)","On screen: 세이카(C)","Contains manual line break(s) written as \n - keep the \n token (you may move it).","사진도, 진술서도, 실종자의 얼굴조차 남아 있지 않았다.\n누군가 빼돌린 것인지, 처음부터 없었던 것인지조차 알 수 없었다.","","","",""
+"dlg.ch0_origin.22","Dialogue/ch0_origin","세이카","On screen: 세이카(C)","","마치... 처음부터 존재하지 않았던 사람들처럼.","","","",""
+"dlg.ch0_origin.23","Dialogue/ch0_origin","(Narration)","On screen: 세이카(C)","Contains manual line break(s) written as \n - keep the \n token (you may move it).","법이 진실을 지켜줄 거라고 믿었다.\n하지만 법은 때때로, 진실을 묻는 도구로도 쓰인다.","","","",""
+"dlg.ch0_origin.24","Dialogue/ch0_origin","세이카","On screen: 세이카(C)","","사라진 사람들, 기록에서 지워진 사람들. 이걸 그냥 덮어두면... 나도 공범이 되는 거야.","","","",""
+"dlg.ch0_origin.25","Dialogue/ch0_origin","(Narration)","No characters on screen","","— 그해 여름. 세이카는 퇴근할 때마다 구시가지를 찾았다.","","","",""
+"dlg.ch0_origin.26","Dialogue/ch0_origin","(Narration)","No characters on screen","Contains manual line break(s) written as \n - keep the \n token (you may move it).","기록에 남은 유일한 단서, 실종자들의 마지막 주소.\n그녀는 그 주소들을 하나씩 찾아가 보았다.","","","",""
+"dlg.ch0_origin.27","Dialogue/ch0_origin","동네 할머니","On screen: 세이카(C)","","2006년에 여기 살던 사람? 아이고, 그 집은 내가 이 동네 산 30년 내내 비어 있었어.","","","",""
+"dlg.ch0_origin.28","Dialogue/ch0_origin","세이카","On screen: 세이카(C)","","...신고 기록에는 분명히, 이 집에 살던 사람이 실종됐다고 되어 있는데요.","","","",""
+"dlg.ch0_origin.29","Dialogue/ch0_origin","동네 할머니","On screen: 세이카(C)","","그럴 리가. 이 골목에서 사람이 없어졌으면 내가 모를 리가 없지. ...근데 아가씨, 누구 얘기를 한다고 했더라?","","","",""
+"dlg.ch0_origin.30","Dialogue/ch0_origin","(Narration)","On screen: 세이카(C)","","방금 들려준 이름을, 할머니는 벌써 잊어버린 얼굴이었다.","","","",""
+"dlg.ch0_origin.31","Dialogue/ch0_origin","(Narration)","On screen: 세이카(C)","Contains manual line break(s) written as \n - keep the \n token (you may move it).","다른 주소도 마찬가지였다.\n가족이 살았다던 집은 오래된 공실이었고, 다녔다던 학교에는 학적이 없었다.","","","",""
+"dlg.ch0_origin.32","Dialogue/ch0_origin","(Narration)","On screen: 세이카(C)","","사람들은 잠시 고개를 갸웃하다가, 금세 아무 일 없었다는 듯 화제를 돌렸다.","","","",""
+"dlg.ch0_origin.33","Dialogue/ch0_origin","세이카","On screen: 세이카(C)","","숨기는 게 아니야. 정말로... 아무도 기억하지 못하고 있어.","","","",""
+"dlg.ch0_origin.34","Dialogue/ch0_origin","세이카","On screen: 세이카(C)","","이건 은폐 정도가 아니야. 사람이, 세상에서 지워지고 있는 거야.","","","",""
+"dlg.ch0_origin.35","Dialogue/ch0_origin","(Narration)","On screen: 세이카(C)","","그날 밤, 세이카는 지도 위에 실종자들의 마지막 주소를 하나씩 표시해 보았다.","","","",""
+"dlg.ch0_origin.36","Dialogue/ch0_origin","(Narration)","On screen: 세이카(C)","Contains manual line break(s) written as \n - keep the \n token (you may move it).","흩어져 있는 줄 알았던 점들이,\n구시가지의 한 블록을 둘러싸듯 원을 그리고 있었다.","","","",""
+"dlg.ch0_origin.37","Dialogue/ch0_origin","세이카","On screen: 세이카(C)","","...중심에, 뭔가 있어.","","","",""
+"dlg.ch0_origin.38","Dialogue/ch0_origin","(Narration)","On screen: 세이카(C)","","— 2025년 10월 31일, 할로윈 밤. (1년 전)","","","",""
+"dlg.ch0_origin.39","Dialogue/ch0_origin","(Narration)","On screen: 세이카(C)","Contains manual line break(s) written as \n - keep the \n token (you may move it).","원의 중심에 있던 것은, 간판도 없는 낡은 3층짜리 상가 건물이었다.\n1층은 오래전 문을 닫은 세탁소. 누구도 눈여겨보지 않을, 존재감 없는 건물.","","","",""
+"dlg.ch0_origin.40","Dialogue/ch0_origin","세이카","On screen: 세이카(C)","","할로윈 밤에 이런 데를 혼자 뒤지다니... 무슨 공포 게임 주인공도 아니고.","","","",""
+"dlg.ch0_origin.41","Dialogue/ch0_origin","(Narration)","On screen: 세이카(C)","Contains manual line break(s) written as \n - keep the \n token (you may move it).","건물 뒤편, 녹슨 철문 아래로 좁은 계단이 이어져 있었다.\n건축물대장 어디에도 없는 지하실이었다.","","","",""
+"dlg.ch0_origin.42","Dialogue/ch0_origin","(Narration)","No characters on screen","","손전등 불빛을 따라, 계단을 끝까지 내려간 순간—","","","",""
+"dlg.ch0_origin.43","Dialogue/ch0_origin","(Narration)","No characters on screen","Contains manual line break(s) written as \n - keep the \n token (you may move it).","숨이 막힐 듯 탁한 공기 속에,\n천장까지 닿는 책장들이 끝도 없이 늘어서 있었다.","","","",""
+"dlg.ch0_origin.44","Dialogue/ch0_origin","세이카","On screen: 세이카(C)","","...지하 서고?","","","",""
+"dlg.ch0_origin.45","Dialogue/ch0_origin","(Narration)","On screen: 세이카(C)","Contains manual line break(s) written as \n - keep the \n token (you may move it).","세이카는 가까운 책 한 권을 꺼내 들었다. 추리소설이었다.\n옆의 책도, 그 옆의 책도.","","","",""
+"dlg.ch0_origin.46","Dialogue/ch0_origin","(Narration)","On screen: 세이카(C)","Contains manual line break(s) written as \n - keep the \n token (you may move it).","『사라진 소녀』, 『안개 속의 실종』, 『돌아오지 않는 밤』...\n서고를 가득 채운 수천 권의 책은 전부, 실종 사건을 다룬 추리소설이었다.","","","",""
+"dlg.ch0_origin.47","Dialogue/ch0_origin","세이카","On screen: 세이카(C)","","전부 실종 사건이야... 그런데, 뭔가 이상해.","","","",""
+"dlg.ch0_origin.48","Dialogue/ch0_origin","(Narration)","On screen: 세이카(C)","Contains manual line break(s) written as \n - keep the \n token (you may move it).","책장을 넘기던 손이 멈췄다.\n어느 책이든 마지막 장, 탐정이 진실을 밝히는 해결편만이 하얗게 비어 있었다.","","","",""
+"dlg.ch0_origin.49","Dialogue/ch0_origin","세이카","On screen: 세이카(C)","","사건은 있는데, 해결이 없어. 사라진 사람은 있는데... 찾아낸 사람이 없어.","","","",""
+"dlg.ch0_origin.50","Dialogue/ch0_origin","(Narration)","On screen: 세이카(C)","","그때, 텅 빈 서고 어딘가에서 책 한 권이 툭, 바닥으로 떨어졌다.","","","",""
+"dlg.ch0_origin.51","Dialogue/ch0_origin","(Narration)","On screen: 세이카(C)","Contains manual line break(s) written as \n - keep the \n token (you may move it).","책이 빠져나간 자리. 책장 안쪽 나무판에 무언가가 희미하게 새겨져 있었다.\n손톱으로 수없이 긁어 쓴 듯한 글자.","","","",""
+"dlg.ch0_origin.52","Dialogue/ch0_origin","(Narration)","On screen: 세이카(C)","","「우리를 찾아줘.」","","","",""
+"dlg.ch0_origin.53","Dialogue/ch0_origin","세이카","On screen: 세이카(C)","","...우리?","","","",""
+"dlg.ch0_origin.54","Dialogue/ch0_origin","세이카","On screen: 세이카(C)","","기록에서도, 사람들의 기억에서도 지워진 사람들. 해결편이 사라진 이 책들처럼... 아무도 끝까지 찾아주지 않은 사람들.","","","",""
+"dlg.ch0_origin.55","Dialogue/ch0_origin","세이카","On screen: 세이카(C)","","...'잊혀진 이들'. 너희가 그 사람들이구나.","","","",""
+"dlg.ch0_origin.56","Dialogue/ch0_origin","(Narration)","On screen: 세이카(C)","Contains manual line break(s) written as \n - keep the \n token (you may move it).","다음 날, 세이카는 경찰에 신고했다.\n하지만 경찰이 도착했을 때, 지하실 입구는 녹슨 철판으로 막혀 있었다.","","","",""
+"dlg.ch0_origin.57","Dialogue/ch0_origin","(Narration)","On screen: 세이카(C)","Contains manual line break(s) written as \n - keep the \n token (you may move it).","건물주조차 '이 건물에 지하실 같은 건 없다'고 했다.\n사건은 단순 무단침입으로 처리되었다.","","","",""
+"dlg.ch0_origin.58","Dialogue/ch0_origin","세이카","On screen: 세이카(C)","","법으로는 안 돼, 경찰도 안 돼. 그렇다면 내가 직접 찾아낼 수밖에 없지.","","","",""
+"dlg.ch0_origin.59","Dialogue/ch0_origin","(Narration)","On screen: 세이카(C)","Contains manual line break(s) written as \n - keep the \n token (you may move it).","세이카는 로펌에 사표를 냈다.\n부모님은 크게 반대했지만, 끝내 한 가지 조건을 내걸었다.","","","",""
+"dlg.ch0_origin.60","Dialogue/ch0_origin","아버지","No characters on screen","","...1년이다. 1년 안에 성과를 보여라. 아무것도 없으면, 그때는 돌아와서 원래 길을 가거라.","","","",""
+"dlg.ch0_origin.61","Dialogue/ch0_origin","(Narration)","No characters on screen","Contains manual line break(s) written as \n - keep the \n token (you may move it).","전 재산과 가족 자금을 털어, 세이카는 구시가지를 내려다보는 언덕 위의 낡은 저택을 사들였다.\n'유령의 집'이라 불리며 수십 년째 팔리지 않던 곳이었다.","","","",""
+"dlg.ch0_origin.62","Dialogue/ch0_origin","세이카","On screen: 세이카(C)","","유령의 집이라 싸게 나왔다니. 오컬트 탐정 사무소한테는 오히려 최고의 조건이잖아?","","","",""
+"dlg.ch0_origin.63","Dialogue/ch0_origin","(Narration)","On screen: 세이카(C)","","수개월에 걸친 리모델링 끝에, 현관에 새로운 간판이 걸렸다.","","","",""
+"dlg.ch0_origin.64","Dialogue/ch0_origin","(Narration)","On screen: 세이카(C)","","「네버모어 오컬트 탐정 사무소」","","","",""
+"dlg.ch0_origin.65","Dialogue/ch0_origin","(Narration)","On screen: 세이카(C)","","간판만큼이나 이질적인 것은 저택의 외관과 내부였다.","","","",""
+"dlg.ch0_origin.66","Dialogue/ch0_origin","(Narration)","On screen: 세이카(C)","Contains manual line break(s) written as \n - keep the \n token (you may move it).","현관에는 사시사철 불이 꺼지지 않는 거대한 잭오랜턴이 놓여 있었고,\n복도와 응접실 곳곳에는 거미줄과 호박 모양의 장식들이 가득했다.","","","",""
+"dlg.ch0_origin.67","Dialogue/ch0_origin","(Narration)","On screen: 세이카(C)","","1년 내내 할로윈 파티가 열리는 듯한, 기괴하면서도 동화 같은 비현실적인 풍경.","","","",""
+"dlg.ch0_origin.68","Dialogue/ch0_origin","세이카","On screen: 세이카(C)","","할로윈 장식? 반은 내 취향이지만, 나머지 반은 철저한 전략이야.","","","",""
+"dlg.ch0_origin.69","Dialogue/ch0_origin","세이카","On screen: 세이카(C)","","'기괴한 일' 겪은 사람이 각 잡힌 경찰서 가면 미친 사람 취급밖에 더 받겠어? 오히려 이런 분위기가 털어놓기 편하지.","","","",""
+"dlg.ch0_origin.70","Dialogue/ch0_origin","(Narration)","On screen: 세이카(C)","Contains manual line break(s) written as \n - keep the \n token (you may move it).","하지만 실종자 기록을 쫓고, 현장을 뛰고, 사무소까지 꾸려가는 일을 혼자 해내기는 무리였다.\n개업 한 달 만에, 세이카는 한계를 깨달았다.","","","",""
+"dlg.ch0_origin.71","Dialogue/ch0_origin","세이카","On screen: 세이카(C)","","혼자서는 한계가 있어. 추리할 사람, 현장을 뛸 사람, 기술을 다룰 사람... 그래, 사람이 필요해.","","","",""
+"dlg.ch0_gathering.0","Dialogue/ch0_gathering","(Narration)","No characters on screen","","2026년. 5년 주기의 패턴대로라면, 다음 실종이 일어날 해가 바로 올해였다.","","","",""
+"dlg.ch0_gathering.1","Dialogue/ch0_gathering","세이카","On screen: 세이카(C)","","시간이 없어. 다음 사람이 사라지기 전에, 팀을 꾸려야 해.","","","",""
+"dlg.ch0_gathering.2","Dialogue/ch0_gathering","(Narration)","On screen: 세이카(C)","Contains manual line break(s) written as \n - keep the \n token (you may move it).","세이카는 사람을 찾아 나섰다.\n그리고 실종 사건의 파장 속에서, 각자의 이유로 진실 가까이에 있던 사람들이 하나둘 저택의 문을 두드리기 시작했다.","","","",""
+"dlg.ch0_gathering.3","Dialogue/ch0_gathering","(Narration)","On screen: 세이카(C)","","— 개업 한 달 후, 카스미 합류.","","","",""
+"dlg.ch0_gathering.4","Dialogue/ch0_gathering","(Narration)","On screen: 세이카(C)","Contains manual line break(s) written as \n - keep the \n token (you may move it).","전(前) 경찰청 과학수사대 인턴.\n어린 시절 사라진 언니를 찾기 위해 수사의 길을 택했지만, '설명할 수 없는 현장'을 무조건 덮는 관행에 지쳐 있었다.","","","",""
+"dlg.ch0_gathering.5","Dialogue/ch0_gathering","세이카","On screen: 세이카(C)","","한 장의 사진을 보여줄게. 네 언니가 실종된 현장에서 발견된 건데... 경찰 보고서에는 없는 증거물이야.","","","",""
+"dlg.ch0_gathering.6","Dialogue/ch0_gathering","카스미","On screen: 세이카(L), 카스미(R)","","...이걸 어디서 구하셨습니까.","","","",""
+"dlg.ch0_gathering.7","Dialogue/ch0_gathering","카스미","On screen: 세이카(L), 카스미(R)","","...좋습니다. 다만 한 가지, 유령 운운하는 소리는 하지 마십시오.","","","",""
+"dlg.ch0_gathering.8","Dialogue/ch0_gathering","(Narration)","On screen: 세이카(L), 카스미(R)","","— 2주 후, 리나 합류.","","","",""
+"dlg.ch0_gathering.9","Dialogue/ch0_gathering","(Narration)","On screen: 세이카(L), 카스미(R)","","구시가지의 위험한 뒷골목에서, 실종된 후배를 찾으러 혼자 뛰어든 여자와 마주쳤다.","","","",""
+"dlg.ch0_gathering.10","Dialogue/ch0_gathering","리나","On screen: 리나(C)","","경찰이 안 움직이면 내가 직접 찾으면 되잖아! 뭐, 뭘 그렇게 쳐다봐?!","","","",""
+"dlg.ch0_gathering.11","Dialogue/ch0_gathering","카스미","On screen: 카스미(L), 리나(C), 세이카(R)","","...저 무식한 인간, 놀랍게도 쓸모가 있습니다.","","","",""
+"dlg.ch0_gathering.12","Dialogue/ch0_gathering","리나","On screen: 카스미(L), 리나(C), 세이카(R)","","어차피 딱히 하는 것도 없었고, 여기 일 재밌잖아. 그리고 밥도 주고.","","","",""
+"dlg.ch0_gathering.13","Dialogue/ch0_gathering","(Narration)","On screen: 카스미(L), 리나(C), 세이카(R)","","— 1달 후, 리리스 합류.","","","",""
+"dlg.ch0_gathering.14","Dialogue/ch0_gathering","(Narration)","On screen: 카스미(L), 리나(C), 세이카(R)","Contains manual line break(s) written as \n - keep the \n token (you may move it).","온라인에서 「유령 드론(GhostDrone)」이라는 이름으로 활동하던 프리랜서 해커.\n자작 드론으로 구시가지를 촬영하다가, 30년간 비어있는 폐건물에서 있을 수 없는 열원을 포착했다.","","","",""
+"dlg.ch0_gathering.15","Dialogue/ch0_gathering","세이카","On screen: 리리스(L), 세이카(R)","","그 드론 영상, 결정적인 증거였어. 훗, 우리랑 같이 일해볼 생각 없어?","","","",""
+"dlg.ch0_gathering.16","Dialogue/ch0_gathering","리리스","On screen: 리리스(L), 세이카(R)","","...작업실 필요. 3층 빈 방, 사용 가능?","","","",""
+"dlg.ch0_gathering.17","Dialogue/ch0_gathering","(Narration)","On screen: 리리스(L), 세이카(R)","Contains manual line break(s) written as \n - keep the \n token (you may move it).","이후 3층 다락방을 자신의 작업실로 개조하여 입주.\n정찰 드론 「잭오(Jack-O)」가 만들어진 것도 이 시기였다.","","","",""
+"dlg.ch0_gathering.18","Dialogue/ch0_gathering","(Narration)","On screen: 리리스(L), 세이카(R)","","— 3주 후, 하루카 합류.","","","",""
+"dlg.ch0_gathering.19","Dialogue/ch0_gathering","(Narration)","On screen: 리리스(L), 세이카(R)","Contains manual line break(s) written as \n - keep the \n token (you may move it).","구시가지의 작은 카페에서 아르바이트를 하던 19세 소녀.\n학교에서 심한 따돌림을 당해 자퇴한 뒤, 아르바이트로 혼자 생계를 유지하고 있었다.","","","",""
+"dlg.ch0_gathering.20","Dialogue/ch0_gathering","리나","On screen: 리나(L), 하루카(R)","","넌 사람을 잘 보는 눈이 있네. 우리 사무소에 올래? 밥도 나오고 방도 줄 수 있어.","","","",""
+"dlg.ch0_gathering.21","Dialogue/ch0_gathering","하루카","On screen: 리나(L), 하루카(R)","","여기... 진짜 무섭긴 한데... 되게 따뜻해요.","","","",""
+"dlg.ch0_gathering.22","Dialogue/ch0_gathering","(Narration)","On screen: 리나(L), 하루카(R)","","하루카가 오고 나서 저택에는 항상 호박으로 만든 무언가의 냄새가 풍기게 되었다.","","","",""
+"dlg.ch0_gathering.23","Dialogue/ch0_gathering","(Narration)","On screen: 리나(L), 하루카(R)","","— 그리고 2주 후. 마지막 합류자, 미나.","","","",""
+"dlg.ch0_gathering.24","Dialogue/ch0_gathering","(Narration)","On screen: 리나(L), 하루카(R)","Contains manual line break(s) written as \n - keep the \n token (you may move it).","가장 미스터리한 합류. 비가 추적추적 내리는 새벽, 저택 현관 앞에 쓰러져 있는 채로 발견되었다.\n신원 불명. 이름이 '미나'라는 것 외에는 아무것도 기억나지 않는다고 한다.","","","",""
+"dlg.ch0_gathering.25","Dialogue/ch0_gathering","미나","On screen: 미나(C)","","크큭... 미나라고 하느니라. 그렇다, 천 년을 묵은 원혼이 인간의 몸을 빌려 이곳에 강림한 것이니라...","","","",""
+"dlg.ch0_gathering.26","Dialogue/ch0_gathering","카스미","On screen: 카스미(L), 미나(C), 세이카(R)","","...기억상실 환자의 과대망상이네요. 병원 응급실로 인계해야 할 것 같습니다.","","","",""
+"dlg.ch0_gathering.27","Dialogue/ch0_gathering","(Narration)","On screen: 카스미(L), 미나(C), 세이카(R)","Contains manual line break(s) written as \n - keep the \n token (you may move it).","하지만 미나에게는 설명할 수 없는 능력이 있었다.\n한 번도 가보지 않은 폐건물의 구조를 알고, 사건의 결말을 예언하듯 중얼거리면, 그것이 맞았다.","","","",""
+"dlg.ch0_gathering.28","Dialogue/ch0_gathering","(Narration)","On screen: 카스미(L), 미나(C), 세이카(R)","Contains manual line break(s) written as \n - keep the \n token (you may move it).","카스미가 경찰에 신원 조회를 맡겼지만, 일치하는 실종 신고는 단 한 건도 없었다.\n미나를 찾는 사람은, 세상 어디에도 없었다.","","","",""
+"dlg.ch0_gathering.29","Dialogue/ch0_gathering","세이카","On screen: 카스미(L), 미나(C), 세이카(R)","","...그럼 여기 있어. 네 이름을 기억해 줄 사람이 생길 때까지. 아니, 이제 여기 다섯 명이나 있네.","","","",""
+"dlg.ch0_gathering.30","Dialogue/ch0_gathering","미나","On screen: 카스미(L), 미나(C), 세이카(R)","","...크, 크큭... 그, 그렇다면 이 몸이 특별히 머물러 주겠느니라.","","","",""
+"dlg.ch0_gathering.31","Dialogue/ch0_gathering","(Narration)","On screen: 카스미(L), 미나(C), 세이카(R)","Contains manual line break(s) written as \n - keep the \n token (you may move it).","불과 3개월 남짓한 시간 동안, 다섯 명이 연달아 합류했다.\n실종 사건이라는 파장이 각자의 삶에 금을 내면서, 갈 곳 없는 사람들이 같은 장소로 흘러들어온 것이다.","","","",""
+"dlg.ch0_gathering.32","Dialogue/ch0_gathering","세이카","On screen: 세이카(C)","","...그러고 보니, 전부 여자네. 아, 일부러 그런 건 아니야. 그냥 결과적으로 이렇게 된 거지.","","","",""
+"dlg.ch0_gathering.33","Dialogue/ch0_gathering","세이카","On screen: 세이카(C)","","시스템 밖으로 밀려난 사람들. 기존 질서에서 제 자리를 찾지 못한 사람들. 그런 사람들이 이 으스스한 저택에 모인 거야.","","","",""
+"dlg.ch0_gathering.34","Dialogue/ch0_gathering","세이카","On screen: 세이카(C)","","어쩌면 단순한 우연은 아닐지도 몰라. 모두 한 번쯤은 잊힌 적이 있으니, '잊혀진 이들'도 잘 찾을 수 있지 않겠어?","","","",""
+"dlg.ch0_gathering.35","Dialogue/ch0_gathering","(Narration)","On screen: 세이카(C)","Contains manual line break(s) written as \n - keep the \n token (you may move it).","부모님이 준 1년의 기한. 그 절반이 지날 무렵, 마침내 팀이 갖춰졌다.\n경찰이 닫아버린 파일을 다시 여는 사람들. 세상이 외면한 것들을 마주하는 사람들.","","","",""
+"dlg.ch0_gathering.36","Dialogue/ch0_gathering","(Narration)","On screen: 세이카(C)","","그리고 지금—","","","",""
+"dlg.ch0_opening.0","Dialogue/ch0_opening","(Narration)","No characters on screen","","2026년. 노을시(市).","","","",""
+"dlg.ch0_opening.1","Dialogue/ch0_opening","(Narration)","No characters on screen","","인구 80만의 항구도시. 낮에는 평범한 사람들이 평범한 하루를 보내고, 밤에는 바다에서 밀려온 안개가 구시가지의 좁은 골목을 채운다.","","","",""
+"dlg.ch0_opening.2","Dialogue/ch0_opening","(Narration)","No characters on screen","","이 도시에는 가끔, 설명하기 어려운 일들이 일어난다.","","","",""
+"dlg.ch0_opening.3","Dialogue/ch0_opening","(Narration)","No characters on screen","","아무도 살지 않는 폐교에서 밤마다 울리는 피아노 소리.","","","",""
+"dlg.ch0_opening.4","Dialogue/ch0_opening","(Narration)","No characters on screen","","특정 골목을 지나면 반드시 길을 잃는 사람들.","","","",""
+"dlg.ch0_opening.5","Dialogue/ch0_opening","(Narration)","No characters on screen","","철거된 건물의 창문에서 보이는 사람 그림자.","","","",""
+"dlg.ch0_opening.6","Dialogue/ch0_opening","(Narration)","No characters on screen","","경찰은 그것을 '소음 민원', '방향감각 상실', '빛의 착시'라고 처리한다. 대부분의 시민들도 도시전설 정도로 여기고 넘긴다.","","","",""
+"dlg.ch0_opening.7","Dialogue/ch0_opening","(Narration)","No characters on screen","","하지만 여기 — 경찰이 닫아버린 파일을 다시 여는 사람들이 있다.","","","",""
+"dlg.ch0_opening.8","Dialogue/ch0_opening","(Narration)","No characters on screen","","구시가지의 가파른 언덕 꼭대기. 안개 너머로 오래된 저택의 실루엣이 떠오른다.","","","",""
+"dlg.ch0_opening.9","Dialogue/ch0_opening","(Narration)","No characters on screen","","현관 계단을 따라 늘어선 잭오랜턴들. 처마에 걸린 거미줄 장식. 벽을 타고 오른 덩굴 사이로 깜빡이는 주황빛.","","","",""
+"dlg.ch0_opening.10","Dialogue/ch0_opening","(Narration)","No characters on screen","","낡은 간판에는 이렇게 적혀 있다:","","","",""
+"dlg.ch0_opening.11","Dialogue/ch0_opening","(Narration)","No characters on screen","","「네버모어 오컬트 탐정 사무소」","","","",""
+"dlg.ch0_opening.12","Dialogue/ch0_opening","(Narration)","No characters on screen","","미제 사건 특화. 초자연 현상 환영.'","","","",""
+"dlg.ch0_opening.13","Dialogue/ch0_opening","(Narration)","No characters on screen","","물론, 이 도시의 대부분의 사람들은 이곳을 그저 '유령의 집에서 장사하는 이상한 애들'이라고 부르지만.","","","",""
+"dlg.ch0_opening.14","Dialogue/ch0_opening","(Narration)","No characters on screen","","...오늘도 여느 때처럼, 저택의 문이 삐걱거리며 열린다.","","","",""
+"dlg.ch1_morning.0","Dialogue/ch1_morning","(Narration)","No characters on screen","","— 다음 날 아침.","","","",""
+"dlg.ch1_morning.1","Dialogue/ch1_morning","(Narration)","No characters on screen","","호박 램프의 불빛이 은은하게 켜진 사무소 안. 벽난로에서 장작이 타닥거리고, 거미줄 장식 사이로 아침 햇살이 비친다.","","","",""
+"dlg.ch1_morning.2","Dialogue/ch1_morning","(Narration)","No characters on screen","","한여름의 아침이지만, 이 저택 안에서는 언제나 할로윈이다.","","","",""
+"dlg.ch1_morning.3","Dialogue/ch1_morning","카스미","On screen: 카스미(C)","",".......","","","",""
+"dlg.ch1_morning.4","Dialogue/ch1_morning","카스미","On screen: 카스미(C)","","(서류를 넘기며) 전날의 의뢰 보고서를 정리합시다. '구시가지 3번 골목에서 들리는 신음 소리' 건은 결국 배관 노후화로 결론.","","","",""
+"dlg.ch1_morning.5","Dialogue/ch1_morning","카스미","On screen: 카스미(C)","","역시 유령 따위는 없었어요. 애초에 존재할 리가 없지만요.","","","",""
+"dlg.ch1_morning.6","Dialogue/ch1_morning","하루카","On screen: 카스미(L), 하루카(R)","","와아~ 카스미 언니! 좋은 아침이에요오! 방금 갓 만든 호박 라떼 대령이요~!","","","",""
+"dlg.ch1_morning.7","Dialogue/ch1_morning","카스미","On screen: 카스미(L), 하루카(R)","","...또 호박입니까.","","","",""
+"dlg.ch1_morning.8","Dialogue/ch1_morning","하루카","On screen: 카스미(L), 하루카(R)","","시나몬도 넣었어요! 가을 느낌 나게요!","","","",""
+"dlg.ch1_morning.9","Dialogue/ch1_morning","카스미","On screen: 카스미(L), 하루카(R)","","지금 8월입니다, 하루카.","","","",""
+"dlg.ch1_morning.10","Dialogue/ch1_morning","하루카","On screen: 카스미(L), 하루카(R)","","이 사무소에선 항상 가을이잖아요! 세이카 언니도 그렇게 말했어요~","","","",""
+"dlg.ch1_morning.11","Dialogue/ch1_morning","카스미","On screen: 카스미(L), 하루카(R)","","...감사합니다. (한 모금 마시며) ......의외로 맛있군요.","","","",""
+"dlg.ch1_morning.12","Dialogue/ch1_morning","(Narration)","On screen: 카스미(L), 하루카(R)","","쾅! — 현관문이 거칠게 열리는 소리.","","","",""
+"dlg.ch1_morning.13","Dialogue/ch1_morning","리나","On screen: 카스미(L), 리나(C), 하루카(R)","","와씨, 더워 죽을 뻔! 다녀왔어! 야, 에어컨 어케 된 거야, 쪄 죽으라고?!","","","",""
+"dlg.ch1_morning.14","Dialogue/ch1_morning","카스미","On screen: 카스미(L), 리나(C), 하루카(R)","","문을 좀 조용히 여닫으십시오. 경첩 또 빠집니다.","","","",""
+"dlg.ch1_morning.15","Dialogue/ch1_morning","리나","On screen: 카스미(L), 리나(C), 하루카(R)","","새벽부터 구시가지 순찰 돌고 온 사람한테 그게 첫마디야? 뭐, 별일은 없었는데.","","","",""
+"dlg.ch1_morning.16","Dialogue/ch1_morning","하루카","On screen: 카스미(L), 리나(C), 하루카(R)","","리나 언니! 호박 빙수 먹을래요? 방금 만들어뒀어요!","","","",""
+"dlg.ch1_morning.17","Dialogue/ch1_morning","리나","On screen: 카스미(L), 리나(C), 하루카(R)","","와씨 대박!! 무조건 먹어!! ...근데 잠깐, 설마 또 호박이야?","","","",""
+"dlg.ch1_morning.18","Dialogue/ch1_morning","리리스","On screen: 리리스(L), 리나(C), 하루카(R)","","...시끄러움.","","","",""
+"dlg.ch1_morning.19","Dialogue/ch1_morning","(Narration)","On screen: 리리스(L), 리나(C), 하루카(R)","","3층 계단에서 리리스가 내려온다. 한 손에는 반쯤 분해된 드론, 다른 손에는 납땜 인두를 들고 있다.","","","",""
+"dlg.ch1_morning.20","Dialogue/ch1_morning","리리스","On screen: 리리스(L), 리나(C), 하루카(R)","","잭오 야간 비행 로그 디코딩 중. 기체 진동으로 납땜 오차. ...짜증.","","","",""
+"dlg.ch1_morning.21","Dialogue/ch1_morning","리나","On screen: 리리스(L), 리나(R)","","아 미안미안. 그니까 넌 맨날 그 드론만 만지작거리냐? 밖에 좀 나가라니까.","","","",""
+"dlg.ch1_morning.22","Dialogue/ch1_morning","리리스","On screen: 리리스(L), 리나(R)","","잭오가 내 발. 직접 갈 필요 없음.","","","",""
+"dlg.ch1_morning.23","Dialogue/ch1_morning","리나","On screen: 리리스(L), 리나(R)","","비타민D 결핍으로 쓰러져도 내가 안 업어다 줄 거야.","","","",""
+"dlg.ch1_morning.24","Dialogue/ch1_morning","리리스","On screen: 리리스(L), 리나(R)","","노상관.","","","",""
+"dlg.ch1_morning.25","Dialogue/ch1_morning","미나","On screen: 리리스(L), 미나(C), 리나(R)","","크흐흐... 아침부터 시끄럽구나, 인간들이여...","","","",""
+"dlg.ch1_morning.26","Dialogue/ch1_morning","(Narration)","On screen: 리리스(L), 미나(C), 리나(R)","","어디선가 미나가 나타났다. 아무도 들어오는 걸 보지 못했는데, 어느새 소파 구석에 앉아 있다.","","","",""
+"dlg.ch1_morning.27","Dialogue/ch1_morning","리나","On screen: 리리스(L), 미나(C), 리나(R)","","읏?! 야, 언제 온 거야! 놀랬잖아!!","","","",""
+"dlg.ch1_morning.28","Dialogue/ch1_morning","미나","On screen: 리리스(L), 미나(C), 리나(R)","","후후... 천 년을 묵은 이 몸은 바람처럼 나타나고, 안개처럼 사라지느니라...","","","",""
+"dlg.ch1_morning.29","Dialogue/ch1_morning","카스미","On screen: 카스미(L), 미나(R)","","뒷문으로 들어온 겁니다. CCTV에 찍혀 있었어요.","","","",""
+"dlg.ch1_morning.30","Dialogue/ch1_morning","미나","On screen: 카스미(L), 미나(R)","","(소곤) 카, 카스미... 그, 그냥 분위기 좀 맞춰 주면 안 돼...?","","","",""
+"dlg.ch1_morning.31","Dialogue/ch1_morning","(Narration)","No characters on screen","","또각또각 — 우아한 발소리가 복도에서 들려온다.","","","",""
+"dlg.ch1_morning.32","Dialogue/ch1_morning","세이카","On screen: 세이카(C)","","좋은 아침, 여러분. 오늘도 사이좋게 떠들고 있네.","","","",""
+"dlg.ch1_morning.33","Dialogue/ch1_morning","(Narration)","On screen: 세이카(C)","","「네버모어 오컬트 탐정 사무소」의 소장, 세이카가 느긋하게 차 한 잔을 들고 등장한다.","","","",""
+"dlg.ch1_morning.34","Dialogue/ch1_morning","세이카","On screen: 세이카(C)","","리나, 순찰 수고했어. 리리스, 잭오 상태는?","","","",""
+"dlg.ch1_morning.35","Dialogue/ch1_morning","리리스","On screen: 세이카(L), 리리스(R)","","야간 정찰 모드 정상 작동. 특이사항... 하나 있음.","","","",""
+"dlg.ch1_morning.36","Dialogue/ch1_morning","세이카","On screen: 세이카(L), 리리스(R)","","흥미롭네. 뭔데?","","","",""
+"dlg.ch1_morning.37","Dialogue/ch1_morning","리리스","On screen: 세이카(L), 리리스(R)","","구시가지 동쪽 폐쇄 음악실. 어젯밤 03시 17분, 내부 음파 반응 감지. 주파수 대역, 피아노 건반과 100% 일치.","","","",""
+"dlg.ch1_morning.38","Dialogue/ch1_morning","카스미","On screen: 세이카(L), 카스미(C), 리리스(R)","","...폐쇄된 음악실에서 피아노 소리?","","","",""
+"dlg.ch1_morning.39","Dialogue/ch1_morning","미나","On screen: 카스미(L), 미나(R)","","크큭... 미련이 남은 자의 잔향이로다. 음악에 집착하던 영혼이 아직도 그곳에 묶여?","","","",""
+"dlg.ch1_morning.40","Dialogue/ch1_morning","카스미","On screen: 카스미(L), 미나(R)","","미나. 좀 더 과학적으로 접근하죠. 건물 진동에 의한 단순 공명 현상이거나, 노숙자의 무단 침입일 확률이 높아요.","","","",""
+"dlg.ch1_morning.41","Dialogue/ch1_morning","하루카","On screen: 카스미(L), 하루카(C), 미나(R)","","저, 저기... 사실 그 음악실 건이요, 오늘 아침에 의뢰가 들어왔어요.","","","",""
+"dlg.ch1_morning.42","Dialogue/ch1_morning","세이카","On screen: 세이카(L), 하루카(R)","","역시. 하루카, 내용 읽어줄래?","","","",""
+"dlg.ch1_morning.43","Dialogue/ch1_morning","하루카","On screen: 세이카(L), 하루카(R)","","(종이를 펼치며) '매일 밤 3시경, 폐쇄된 음악실에서 피아노 소리가 들립니다. 경찰에 신고했지만, 건물 내부에 아무도 없었다고 합니다.'","","","",""
+"dlg.ch1_morning.44","Dialogue/ch1_morning","하루카","On screen: 세이카(L), 하루카(R)","","저는 그 건물 옆에 사는 주민입니다. 일주일째 잠을 이루지 못하고 있습니다. 제발 도와주세요.'","","","",""
+"dlg.ch1_morning.45","Dialogue/ch1_morning","(Narration)","On screen: 세이카(L), 하루카(R)","","하루카가 종이를 접으며 잠시 멈칫했다.","","","",""
+"dlg.ch1_morning.46","Dialogue/ch1_morning","하루카","On screen: 세이카(L), 하루카(R)","","...피아노 소리가 들리는데 아무도 없다니... 왠지 마음이 아프네요.","","","",""
+"dlg.ch1_morning.47","Dialogue/ch1_morning","리나","On screen: 리나(L), 하루카(R)","","마음이 아프다고? 무섭다가 아니고?","","","",""
+"dlg.ch1_morning.48","Dialogue/ch1_morning","하루카","On screen: 리나(L), 하루카(R)","","...아무도 없는 곳에서, 매일 밤 혼자서... 외롭지 않았을까요.","","","",""
+"dlg.ch1_morning.49","Dialogue/ch1_morning","(Narration)","On screen: 리나(L), 하루카(R)","","하루카가 말끝을 흐렸다. 평소의 밝은 표정이 잠깐 어두워졌다가, 이내 다시 미소를 지었다.","","","",""
+"dlg.ch1_morning.50","Dialogue/ch1_morning","하루카","On screen: 리나(L), 하루카(R)","","아, 아무것도 아니에요! 그냥 좀 생각이 나서요!","","","",""
+"dlg.ch1_morning.51","Dialogue/ch1_morning","리나","On screen: 리나(L), 세이카(C), 하루카(R)","","밤마다 3시에 피아노? 무단 침입이면 그냥 현장에서 잡으면 되는 거 아냐?","","","",""
+"dlg.ch1_morning.52","Dialogue/ch1_morning","카스미","On screen: 리나(L), 카스미(R)","","경찰이 수색했을 때 내부에 아무도 없었다는 게 문제입니다. 출입구도 전부 잠겨 있었고요.","","","",""
+"dlg.ch1_morning.53","Dialogue/ch1_morning","미나","On screen: 리나(L), 미나(C), 카스미(R)","","크큭... 그 음악실, 예전에 한 피아니스트가 콩쿠르 직전에 어둠 속으로 사라진 곳이니라...","","","",""
+"dlg.ch1_morning.54","Dialogue/ch1_morning","카스미","On screen: 미나(L), 카스미(R)","","...사라졌다? 실종 사건입니까?","","","",""
+"dlg.ch1_morning.55","Dialogue/ch1_morning","미나","On screen: 미나(L), 카스미(R)","","아니, 더 기괴하지. 실종 신고 기록도, 그 자가 존재했다는 흔적조차... 전부 지워진 것이니라.","","","",""
+"dlg.ch1_morning.56","Dialogue/ch1_morning","(Narration)","No characters on screen","","잠깐, 사무소 안의 공기가 달라졌다. 세이카의 눈빛이 날카로워진다.","","","",""
+"dlg.ch1_morning.57","Dialogue/ch1_morning","세이카","On screen: 세이카(C)","","...기록이 없다?","","","",""
+"dlg.ch1_morning.58","Dialogue/ch1_morning","(Narration)","On screen: 세이카(C)","","세이카가 찻잔을 내려놓는다. 평소의 여유로운 미소가 사라졌다.","","","",""
+"dlg.ch1_morning.59","Dialogue/ch1_morning","세이카","On screen: 세이카(C)","","이 의뢰, 받는다.","","","",""
+"dlg.ch1_morning.60","Dialogue/ch1_morning","리나","On screen: 리나(L), 세이카(R)","","오? 소장님이 직접 결정하시네. 보수 확인도 안 하고?","","","",""
+"dlg.ch1_morning.61","Dialogue/ch1_morning","세이카","On screen: 리나(L), 세이카(R)","","...이건 보수 따위가 중요한 문제가 아니야.","","","",""
+"dlg.ch1_morning.62","Dialogue/ch1_morning","카스미","On screen: 리나(L), 카스미(C), 세이카(R)","","(세이카의 표정을 보며) ...알겠습니다. 오늘 밤, 현장 조사를 실시하겠습니다.","","","",""
+"dlg.ch1_morning.63","Dialogue/ch1_morning","카스미","On screen: 리나(L), 카스미(C), 세이카(R)","","리나, 현장 선행 정찰. 리리스, 잭오를 음악실 주변에 배치해 주십시오. 미나, 그 피아니스트에 대해 아는 것을 전부 정리해 주세요.","","","",""
+"dlg.ch1_morning.64","Dialogue/ch1_morning","리나","On screen: 리나(L), 카스미(C), 세이카(R)","","오케이~ 드디어 몸 좀 쓰겠다!","","","",""
+"dlg.ch1_morning.65","Dialogue/ch1_morning","리리스","On screen: 리나(L), 카스미(C), 리리스(R)","","잭오, 야간 정찰 모드 대기. 일몰 후 자동 배치.","","","",""
+"dlg.ch1_morning.66","Dialogue/ch1_morning","미나","On screen: 리나(L), 미나(C), 리리스(R)","","후후... 잊혀진 자의 노래... 흥미로운 의뢰로구나...","","","",""
+"dlg.ch1_morning.67","Dialogue/ch1_morning","하루카","On screen: 하루카(L), 미나(C), 리리스(R)","","저, 저도 뭔가 도울 수 있을까요...?","","","",""
+"dlg.ch1_morning.68","Dialogue/ch1_morning","카스미","On screen: 하루카(L), 카스미(R)","","하루카는 의뢰인에게 연락해서 상세 내용을 확인해 주세요. 언제부터 시작됐는지, 소리의 정확한 위치 등.","","","",""
+"dlg.ch1_morning.69","Dialogue/ch1_morning","하루카","On screen: 하루카(L), 카스미(R)","","네! 맡겨주세요!","","","",""
+"dlg.ch1_morning.70","Dialogue/ch1_morning","세이카","On screen: 하루카(L), 세이카(C), 카스미(R)","","훗, 좋아. 그럼 오늘 밤, 전원 출동이야.","","","",""
+"dlg.ch1_morning.71","Dialogue/ch1_morning","세이카","On screen: 하루카(L), 세이카(C), 카스미(R)","","네버모어의 이름에 걸고 — 이 소리의 정체를 밝혀내자.","","","",""
+"dlg.ch1_morning.72","Dialogue/ch1_morning","(Narration)","No characters on screen","","이렇게, 「네버모어 오컬트 탐정 사무소」의 새로운 의뢰가 시작되었다.","","","",""
+"dlg.ch1_morning.73","Dialogue/ch1_morning","(Narration)","No characters on screen","","— 사건 파일1: 잊혀진 피아니스트 —","","","",""
+"dlg.ch1_night.0","Dialogue/ch1_night","(Narration)","No characters on screen","","노을시에 밤이 찾아왔다. 항구에서 밀려온 안개가 도시를 덮었다.","","","",""
+"dlg.ch1_night.1","Dialogue/ch1_night","세이카","On screen: 세이카(C)","","자, 다들 준비됐지? 오늘의 작전은 '유령 피아니스트'의 정체를 밝혀내는 거야.","","","",""
+"dlg.ch1_night.2","Dialogue/ch1_night","리리스","On screen: 리리스(L), 세이카(R)","","잭오 스캔 중. 주변에 특이 사항 없음. 드론 시야 양호.","","","",""
+"dlg.ch1_night.3","Dialogue/ch1_night","리나","On screen: 리나(L), 카스미(R)","","와씨! 드디어 실전이네! 다 부수고 날려버리자고!","","","",""
+"dlg.ch1_night.4","Dialogue/ch1_night","카스미","On screen: 리나(L), 카스미(R)","","진정하세요, 리나. 우린 기물을 파손하러 가는 게 아니라 진상을 규명하러 가는 겁니다.","","","",""
+"dlg.ch1_night.5","Dialogue/ch1_night","미나","On screen: 미나(C)","","크큭... 밤의 장막이 드리우고 심연의 문이 열렸도다... 이 공기, 피의 냄새가...","","","",""
+"dlg.ch1_night.6","Dialogue/ch1_night","하루카","On screen: 하루카(L), 카스미(R)","","저기, 다들 추우실까봐 단호박 수프를 조금 끓여왔어요~ 보온병에 담았으니까 나중에 드세요~","","","",""
+"dlg.ch1_night.7","Dialogue/ch1_night","카스미","On screen: 하루카(L), 카스미(R)","","하아... 소풍 나온 게 아니라고 몇 번이나 말씀드렸잖습니까.","","","",""
+"dlg.ch1_night.8","Dialogue/ch1_night","(Narration)","No characters on screen","","일행은 노을시 외곽의 버려진 건물에 도착했다. 오래된 덩굴이 외벽을 감싸고 있고, 깨진 창문 틈으로 차가운 바람이 새어나왔다.","","","",""
+"dlg.ch1_night.9","Dialogue/ch1_night","리리스","On screen: 리리스(C)","","잭오 열화상 스캔 완료. 내부 생체 반응 0%. 하지만... 음향 센서에 미세 노이즈 감지.","","","",""
+"dlg.ch1_night.10","Dialogue/ch1_night","리나","On screen: 리나(L), 카스미(R)","","...뭐야, 이 기분 나쁜 공기는. 빨리 끝내고 가자. 문 부수러...","","","",""
+"dlg.ch1_night.11","Dialogue/ch1_night","카스미","On screen: 리나(L), 카스미(R)","","안 됩니다. 현장을 보존해야 해요. 조용히 들어갈 방법을 찾아보죠.","","","",""
+"dlg.ch1_night.12","Dialogue/ch1_night","리리스","On screen: 리리스(C)","","측면 비상구 개방 상태. 이쪽으로 진입.","","","",""
+"dlg.ch1_night.13","Dialogue/ch1_night","(Narration)","On screen: 리리스(C)","","안으로 들어서자 짙은 먼지 냄새가 코를 찔렀다. 낡은 연습실들이 늘어서 있고, 바닥에는 악보들이 어지럽게 흩어져 있었다.","","","",""
+"dlg.ch1_night.10013","Dialogue/ch1_night","(Narration)","On screen: 리나(L), 카스미(R)","","칠흑 같은 어둠 속, 평소 앞장서던 리나가 흠칫하며 무의식적으로 카스미의 옷소매를 꽉 쥐었다.","","","",""
+"dlg.ch1_night.10014","Dialogue/ch1_night","카스미","On screen: 리나(L), 카스미(R)","","...리나? 지금 제 옷은 왜 잡고 계십니까?","","","",""
+"dlg.ch1_night.10015","Dialogue/ch1_night","리나","On screen: 리나(L), 카스미(R)","","어, 엉? 아, 아니야! 그냥 네 옷에 먼지가 묻어서... 털어주려고 한 거거든?!","","","",""
+"dlg.ch1_night.10016","Dialogue/ch1_night","카스미","On screen: 리나(L), 카스미(R)","","하아... 꽉 쥐어서 구김이 다 갔습니다만. 어둠이 무서우면 그냥 제 뒤로 오시죠.","","","",""
+"dlg.ch1_night.10017","Dialogue/ch1_night","리나","On screen: 리나(L), 카스미(R)","","안 무섭거든?! ...진, 진짜 안 무서워!","","","",""
+"dlg.ch1_night.10018","Dialogue/ch1_night","(Narration)","On screen: 리나(L), 카스미(R)","","리나가 부산스럽게 카스미에게서 손을 떼며 앞으로 나아갔다. 그때, 바닥의 무언가가 눈에 들어왔다.","","","",""
+"dlg.ch1_night.14","Dialogue/ch1_night","리나","On screen: 리나(L), 카스미(R)","","어? 바닥에 발자국이 있어. 먼지 위에 선명하게... 어디로 이어지는 거지?","","","",""
+"dlg.ch1_night.10019","Dialogue/ch1_night","카스미","On screen: 리나(L), 카스미(R)","","잠깐... 이 발자국, 주변 먼지층의 퇴적 상태로 봐서 최근에 생긴 겁니다. 경찰이 수색했을 때는 없었을 거예요. 현상은 지금도 반복되고 있다는 뜻입니다.","","","",""
+"dlg.ch1_night.15","Dialogue/ch1_night","미나","On screen: 미나(C)","","......","","","",""
+"dlg.ch1_night.16","Dialogue/ch1_night","미나","On screen: 미나(C)","","(소곤) ...얘들아, 여기 좀 이상해. 나 지금 연기하는 거 아니야, 진짜 무서운데...","","","",""
+"dlg.ch1_night.17","Dialogue/ch1_night","(Narration)","On screen: 미나(C)","","일행은 마침내 메인 공연장에 다다랐다. 중앙에는 먼지 쌓인 천으로 덮인 그랜드 피아노가 덩그러니 놓여 있었다.","","","",""
+"dlg.ch1_night.18","Dialogue/ch1_night","카스미","On screen: 카스미(C)","","제가 확인해보겠습니다.","","","",""
+"dlg.ch1_night.19","Dialogue/ch1_night","(Narration)","On screen: 카스미(C)","","카스미가 조심스럽게 천을 걷어내자, 그 아래에는 믿을 수 없을 정도로 깨끗한 피아노가 모습을 드러냈다.","","","",""
+"dlg.ch1_night.10020","Dialogue/ch1_night","카스미","On screen: 카스미(C)","","이상합니다. 건물은 10년 넘게 방치된 상태인데, 이 피아노만 먼지 하나 없이... 마치 누군가가 계속 관리하고 있었던 것처럼.","","","",""
+"dlg.ch1_night.10021","Dialogue/ch1_night","미나","On screen: 카스미(L), 미나(R)","","...그 자의 미련이니라. 잊혀져도, 연주만은 멈출 수 없었던 것...","","","",""
+"dlg.ch1_night.20","Dialogue/ch1_night","(Narration)","On screen: 카스미(L), 미나(R)","","건물 전체가 미세하게 떨리기 시작했다.","","","",""
+"dlg.ch1_night.21","Dialogue/ch1_night","(Narration)","On screen: 카스미(L), 미나(R)","","그리고 피아노 건반이 스스로 움직이기 시작했다. 처연하고 아름다운 선율이 공연장을 가득 채웠다.","","","",""
+"dlg.ch1_night.22","Dialogue/ch1_night","(Narration)","On screen: 카스미(L), 미나(R)","","다들 공포에 얼어붙은 가운데 — 하루카만이 다른 표정을 하고 있었다.","","","",""
+"dlg.ch1_night.23","Dialogue/ch1_night","하루카","On screen: 하루카(C)","","...이 곡... 흑, 너무 외롭고 슬픈 소리예요...","","","",""
+"dlg.ch1_night.24","Dialogue/ch1_night","하루카","On screen: 하루카(C)","","으... 갑자기 엄청 추워졌어요...! 방금까지는 안 이랬는데...!","","","",""
+"dlg.ch1_night.25","Dialogue/ch1_night","리리스","On screen: 리리스(C)","","...잭오 열화상 센서, 이상 반응. 피아노 주변 온도 급격히 하강 중.","","","",""
+"dlg.ch1_night.33","Dialogue/ch1_night","리리스","On screen: 리리스(C)","","건반 위, 사람 체온 아님. 영하 15도의 무언가가... 압력 가하는 중.","","","",""
+"dlg.ch1_night.26","Dialogue/ch1_night","리나","On screen: 리나(L), 카스미(R)","","히익...?! 카, 카스미 언니... 이거 뭐야?!","","","",""
+"dlg.ch1_night.27","Dialogue/ch1_night","리리스","On screen: 리리스(L), 카스미(R)","","잭오 센서 이상 무... 이건... 실제로 건반이 눌리고 있음.","","","",""
+"dlg.ch1_night.28","Dialogue/ch1_night","카스미","On screen: 리리스(L), 카스미(R)","","...물리적으로 건반이 눌리고 있다면, 보이지 않는 누군가가 여기에 있다는 뜻입니다.","","","",""
+"dlg.ch1_night.29","Dialogue/ch1_night","세이카","On screen: 세이카(C)","","...찾았어. 이 사람이야. 잊혀진 피아니스트.","","","",""
+"dlg.ch1_night.30","Dialogue/ch1_night","(Narration)","On screen: 세이카(C)","","선율이 멈췄다. 다시 무거운 침묵이 내려앉고, 먼지만이 공기 중을 부유했다.","","","",""
+"dlg.ch1_night.31","Dialogue/ch1_night","세이카","On screen: 세이카(C)","","조사를 시작해. 이 안에 단서가 있을 거야.","","","",""
+"dlg.ch1_investigation_talk.100","Dialogue/ch1_investigation_talk","(Narration)","No characters on screen","","일행은 흩어져 공연장 구석구석을 뒤지기 시작했다.","","","",""
+"dlg.ch1_investigation_talk.101","Dialogue/ch1_investigation_talk","(Narration)","No characters on screen","Contains manual line break(s) written as \n - keep the \n token (you may move it).","악보대 위의 빛바랜 콩쿠르 프로그램, 바늘이 멈춘 채 부서진 메트로놈,\n무대 뒤편에 쌓여 있던 낡은 음악 잡지...","","","",""
+"dlg.ch1_investigation_talk.102","Dialogue/ch1_investigation_talk","(Narration)","No characters on screen","","그리고 피아노를 향해 이어지던 발자국은 — 무대 한가운데에서 거짓말처럼 뚝 끊겨 있었다.","","","",""
+"dlg.ch1_investigation_talk.0","Dialogue/ch1_investigation_talk","리나","On screen: 리나(L), 카스미(R)","","수색은 이쯤 하면 된 것 같은데! 카스미, 단서들 좀 정리해줄래?","","","",""
+"dlg.ch1_investigation_talk.1","Dialogue/ch1_investigation_talk","카스미","On screen: 리나(L), 카스미(R)","","...네. 수집된 단서를 바탕으로 현재 상황을 종합해보겠습니다.","","","",""
+"dlg.ch1_investigation_talk.2","Dialogue/ch1_investigation_talk","카스미","On screen: 리나(L), 카스미(R)","","첫 번째, '먼지 없는 건반'. 건반에는 물리적인 압력이 가해진 흔적이 있지만, 기계 장치 같은 건 전혀 발견되지 않았습니다.","","","",""
+"dlg.ch1_investigation_talk.3","Dialogue/ch1_investigation_talk","카스미","On screen: 리나(L), 카스미(R)","","즉, 눈에 보이지 않는 무언가가 피아노를 쳤다는 결론밖에 나오지 않습니다.","","","",""
+"dlg.ch1_investigation_talk.4","Dialogue/ch1_investigation_talk","리나","On screen: 리나(L), 카스미(R)","","야, 그리고 바닥에 발자국도 있었잖아! 피아노 쪽으로 가다가 도중에 뚝 끊기는 거 진짜 소름이었어.","","","",""
+"dlg.ch1_investigation_talk.5","Dialogue/ch1_investigation_talk","카스미","On screen: 리나(L), 카스미(R)","","물리적으로 말이 안 됩니다. 발자국이 허공에서 갑자기 끊어지다니요. 누군가 증거를 훼손한 게 아니라면...","","","",""
+"dlg.ch1_investigation_talk.6","Dialogue/ch1_investigation_talk","리리스","On screen: 리리스(L), 카스미(R)","","음파 분석 데이터 산출. 피아노 주파수에 물리 법칙을 무시하는 비정상 노이즈 대역 혼입.","","","",""
+"dlg.ch1_investigation_talk.7","Dialogue/ch1_investigation_talk","리리스","On screen: 리리스(L), 카스미(R)","","추가 데이터. 연주 시작 시 피아노 주변 온도 영하권 급강하. 종료 직후 원상 복구.","","","",""
+"dlg.ch1_investigation_talk.8","Dialogue/ch1_investigation_talk","카스미","On screen: 리리스(L), 카스미(R)","","국소적 온도 하강이라... 말도 안 돼. 아무리 그래도... 아니, 잭오의 교차 검증 데이터를 부정할 수는 없군요.","","","",""
+"dlg.ch1_investigation_talk.9","Dialogue/ch1_investigation_talk","하루카","On screen: 하루카(L), 카스미(R)","","저, 저기... 악보대에 있던 '빛바랜 콩쿠르 프로그램'은요...? 한 사람의 이름만 지워져 있었어요...","","","",""
+"dlg.ch1_investigation_talk.10","Dialogue/ch1_investigation_talk","카스미","On screen: 하루카(L), 카스미(R)","","그렇습니다. 잉크가 번진 흔적을 보면 단순한 시간의 흐름에 의한 훼손이 아닙니다. 누군가 고의로... 혹은 알 수 없는 현상에 의해 그 사람의 존재 자체가 지워진 것처럼 보입니다.","","","",""
+"dlg.ch1_investigation_talk.11","Dialogue/ch1_investigation_talk","카스미","On screen: 하루카(L), 카스미(R)","","부서진 메트로놈과 낡은 음악 잡지도 챙겨 뒀습니다. 다만 이 두 가지가 사건과 관련이 있는지는 아직 단정할 수 없어요.","","","",""
+"dlg.ch1_investigation_talk.12","Dialogue/ch1_investigation_talk","미나","On screen: 미나(L), 카스미(R)","","이건... 내가 알고 있는 것과 일치하는구나.","","","",""
+"dlg.ch1_investigation_talk.13","Dialogue/ch1_investigation_talk","카스미","On screen: 미나(L), 카스미(R)","","네? 방금 그 말은...","","","",""
+"dlg.ch1_investigation_talk.14","Dialogue/ch1_investigation_talk","미나","On screen: 미나(L), 카스미(R)","","잊혀지는 현상'... 인간의 존재 자체가 이 세상에서 지워지는 것이니라. 기록에서도... 그리고 어리석은 자들의 기억 속에서도...","","","",""
+"dlg.ch1_investigation_talk.15","Dialogue/ch1_investigation_talk","카스미","On screen: 미나(L), 카스미(R)","","존재 자체가 지워진다고요? 증명 불가능한 비약적 가설이네요. 좀 더 합리적인 추론이 필요해요.","","","",""
+"dlg.ch1_investigation_talk.16","Dialogue/ch1_investigation_talk","세이카","On screen: 세이카(L), 카스미(R)","","아니, 카스미. 미나의 말이 맞을지도 몰라.","","","",""
+"dlg.ch1_investigation_talk.17","Dialogue/ch1_investigation_talk","세이카","On screen: 세이카(L), 카스미(R)","","내가 예전에 조사했던 자료 중에, 5년 주기로 발생하는 기묘한 실종 사건 패턴이 있었거든.","","","",""
+"dlg.ch1_investigation_talk.18","Dialogue/ch1_investigation_talk","세이카","On screen: 세이카(L), 카스미(R)","","그냥 실종이 아니야. 경찰 기록이 증발하고, 결국 가족들 기억 속에서도 흔적 없이 지워져 버렸어.","","","",""
+"dlg.ch1_investigation_talk.19","Dialogue/ch1_investigation_talk","세이카","On screen: 세이카(L), 카스미(R)","","이제 퍼즐 조각을 맞춰보자. 다섯 가지 단서가 무엇을 의미하는지.","","","",""
+"dlg.ch1_result_perfect.0","Dialogue/ch1_result_perfect","(Narration)","No characters on screen","Contains manual line break(s) written as \n - keep the \n token (you may move it).","세이카가 단서를 하나씩 짚어 나가기 시작했다.\n흩어져 있던 조각들이 하나의 결론을 향해 모여들었다.","","","",""
+"dlg.ch1_result_perfect.1","Dialogue/ch1_result_perfect","세이카","On screen: 세이카(C)","","먼지 하나 없는 건반. 존재가 지워져가면서도 오직 집념 하나로 건반을 누르고 있었다는 증거지. 눈에 보이지 않는 존재가 말이야.","","","",""
+"dlg.ch1_result_perfect.2","Dialogue/ch1_result_perfect","세이카","On screen: 세이카(C)","","그리고 이 빛바랜 콩쿠르 프로그램... 피아니스트가 이 음악실에 존재했다는 유일한 흔적이야.","","","",""
+"dlg.ch1_result_perfect.3","Dialogue/ch1_result_perfect","세이카","On screen: 세이카(C)","","결정적으로 비정상적인 음파 분석 데이터. 이건 자연적인 소리가 아니야. 존재가 잊혀지며 남긴 마지막 메아리지.","","","",""
+"dlg.ch1_result_perfect.4","Dialogue/ch1_result_perfect","세이카","On screen: 세이카(C)","","바닥의 발자국은 피아노를 향해 걸어갔지만 도중에 사라졌어. 걸어가던 존재가 소멸한 거야. 물리적으로 이 공간에 있었다가 사라졌다는 움직일 수 없는 증거지.","","","",""
+"dlg.ch1_result_perfect.5","Dialogue/ch1_result_perfect","세이카","On screen: 세이카(C)","","그리고 연주 중 피아노 주변의 온도만 급격히 떨어졌다가 연주가 끝나자 회복됐어. '현상'은 물리 법칙까지 왜곡하고 있어.","","","",""
+"dlg.ch1_result_perfect.6","Dialogue/ch1_result_perfect","세이카","On screen: 세이카(C)","","이 피아니스트는 죽은 게 아니야. '잊혀진' 거야. 세상에서 그 사람의 존재 자체가 지워지고 있어.","","","",""
+"dlg.ch1_result_perfect.7","Dialogue/ch1_result_perfect","미나","On screen: 미나(L), 세이카(R)","","크읏... 심연의 고문서에 기록된 바와 같군. 존재뿐만 아니라 기억과 기록마저 서서히 부식시키는 '그 현상'...","","","",""
+"dlg.ch1_result_perfect.8","Dialogue/ch1_result_perfect","카스미","On screen: 카스미(L), 세이카(R)","","...과학적으로 말이 안 됩니다. 하지만... 증거가 그렇게 가리키고 있으니 인정할 수밖에 없군요.","","","",""
+"dlg.ch1_result_perfect.9","Dialogue/ch1_result_perfect","리리스","On screen: 리리스(L), 세이카(R)","","잭오가 한 가지 더 기록. 멜로디가 연주되는 동안... 비정상적인 주파수가 일정한 패턴을 형성.","","","",""
+"dlg.ch1_result_perfect.10","Dialogue/ch1_result_perfect","리리스","On screen: 리리스(L), 세이카(R)","","디코딩 결과... 하나의 메시지. '나를 찾아줘'.","","","",""
+"dlg.ch1_result_perfect.12","Dialogue/ch1_result_perfect","하루카","On screen: 하루카(L), 리나(R)","","흐윽... 얼마나 무섭고 외로웠을까요... 아무도 자신을 기억해주지 않는 세계에서...","","","",""
+"dlg.ch1_result_perfect.13","Dialogue/ch1_result_perfect","리나","On screen: 하루카(L), 리나(R)","","이런 거... 절대 용납 못 해! 우리가 반드시 찾아서 구해줘야 해!","","","",""
+"dlg.ch1_result_perfect.14","Dialogue/ch1_result_perfect","세이카","On screen: 세이카(C)","","5년 주기의 실종 사건들... 이 모든 게 연결되어 있어. 이것이 '그 현상'의 첫 번째 결정적 증거다.","","","",""
+"dlg.ch1_result_perfect.15","Dialogue/ch1_result_perfect","세이카","On screen: 세이카(C)","","이 사건은 끝이 아니야. 시작이야. 잊혀진 사람들을 — 우리가 찾아야 해.","","","",""
+"dlg.ch1_resolution.0","Dialogue/ch1_resolution","(Narration)","No characters on screen","","세이카의 추리가 끝나자, 음악실 안의 공기가 변했다.","","","",""
+"dlg.ch1_resolution.1","Dialogue/ch1_resolution","(Narration)","No characters on screen","","그리고 다시 — 피아노 건반이 움직이기 시작했다.","","","",""
+"dlg.ch1_resolution.2","Dialogue/ch1_resolution","리나","On screen: 리나(L), 카스미(R)","","와씨, 대박! 방금 건반 진짜 지 혼자 움직인 거 맞지?!","","","",""
+"dlg.ch1_resolution.3","Dialogue/ch1_resolution","카스미","On screen: 리나(L), 카스미(R)","","기다려요. 이번에는 아까와 다릅니다. 선율이...","","","",""
+"dlg.ch1_resolution.4","Dialogue/ch1_resolution","(Narration)","On screen: 리나(L), 카스미(R)","","이번 선율은 아까처럼 처연하고 슬프지 않았다. 마치 무언가를 '전하려는' 듯, 또박또박 음을 짚어가는 연주였다.","","","",""
+"dlg.ch1_resolution.5","Dialogue/ch1_resolution","리리스","On screen: 리리스(L), 미나(R)","","잭오 음향 센서 액티브. 주파수 패턴 변동. 아까보다 훨씬 복잡한 구조.","","","",""
+"dlg.ch1_resolution.6","Dialogue/ch1_resolution","리리스","On screen: 리리스(L), 미나(R)","","단순 멜로디 아님. 이건... 반복 구조 존재. 마치 언어.","","","",""
+"dlg.ch1_resolution.7","Dialogue/ch1_resolution","미나","On screen: 리리스(L), 미나(R)","",".......","","","",""
+"dlg.ch1_resolution.8","Dialogue/ch1_resolution","(Narration)","On screen: 리리스(L), 미나(R)","","미나가 갑자기 눈을 감았다. 양손이 미세하게 떨리고 있었다.","","","",""
+"dlg.ch1_resolution.9","Dialogue/ch1_resolution","하루카","On screen: 하루카(L), 미나(R)","","미, 미나 언니? 괜찮아요?","","","",""
+"dlg.ch1_resolution.10","Dialogue/ch1_resolution","미나","On screen: 하루카(L), 미나(R)","","...보여. 누군가가 보여.","","","",""
+"dlg.ch1_resolution.11","Dialogue/ch1_resolution","(Narration)","On screen: 하루카(L), 미나(R)","","미나의 목소리에서 평소의 중2병 연기는 완전히 사라져 있었다. 그 자리에는 무언가에 홀린 듯한, 투명한 목소리만 남아 있었다.","","","",""
+"dlg.ch1_resolution.12","Dialogue/ch1_resolution","미나","On screen: 하루카(L), 미나(R)","","...윤곽이 흐려... 하지만 손가락이 길어. 피아니스트의 손이야.","","","",""
+"dlg.ch1_resolution.13","Dialogue/ch1_resolution","미나","On screen: 하루카(L), 미나(R)","","...매일 밤 이곳에서... 혼자서 연주하고 있어. 아무도 없는 텅 빈 건물에서.","","","",""
+"dlg.ch1_resolution.14","Dialogue/ch1_resolution","미나","On screen: 하루카(L), 미나(R)","","...건반이 붉어. 손가락이 찢어지는데도 멈추지 않아. 잊혀지기 싫어서... 제발 자기를 봐달라고...","","","",""
+"dlg.ch1_resolution.15","Dialogue/ch1_resolution","카스미","On screen: 카스미(C)","","아까 수거한 낡은 음악 잡지를 보십시오. 사진과 이름은 부식되어 판독 불가하지만, '올해의 유망주가 전국 콩쿠르를 앞두고 있다'는 기사 내용은 남아 있습니다. 미나가 본 환영의 정체와 일치합니다.","","","",""
+"dlg.ch1_resolution.16","Dialogue/ch1_resolution","카스미","On screen: 카스미(C)","","...빛바랜 콩쿠르 프로그램. 참가자 목록에서 이름이 지워진 사람.","","","",""
+"dlg.ch1_resolution.17","Dialogue/ch1_resolution","카스미","On screen: 카스미(C)","","미나의 증언과 일치합니다. 하지만 이름은... 잉크가 번져서 판독이 불가능합니다.","","","",""
+"dlg.ch1_resolution.18","Dialogue/ch1_resolution","리리스","On screen: 리리스(L), 카스미(C), 리나(R)","","잠깐. 지금 연주되고 있는 음파 패턴을 디코딩하면...","","","",""
+"dlg.ch1_resolution.19","Dialogue/ch1_resolution","(Narration)","On screen: 리리스(L), 카스미(C), 리나(R)","","리리스의 손가락이 노트북 위에서 빠르게 움직였다. 음파의 반복 구조를 분석하자, 화면에 문자 하나하나가 떠올랐다.","","","",""
+"dlg.ch1_resolution.20","Dialogue/ch1_resolution","리리스","On screen: 리리스(L), 카스미(C), 리나(R)","","단순 즉흥 연주 아님. 음 길이, 일정 패턴 반복. 인위적 신호.","","","",""
+"dlg.ch1_resolution.21","Dialogue/ch1_resolution","카스미","On screen: 리리스(L), 카스미(C), 리나(R)","","음의 길이가 패턴? 어떤 의미가 있는 건가요?","","","",""
+"dlg.ch1_resolution.22","Dialogue/ch1_resolution","리리스","On screen: 리리스(L), 카스미(C), 리나(R)","","짧은 음과 긴 음이 번갈아 나옴. 이건... 모스 부호.","","","",""
+"dlg.ch1_resolution.23","Dialogue/ch1_resolution","리나","On screen: 리리스(L), 카스미(C), 리나(R)","","...거짓말. 음악으로... 말을 걸고 있는 거였어?","","","",""
+"dlg.ch1_resolution.24","Dialogue/ch1_resolution","리리스","On screen: 리리스(L), 카스미(C), 리나(R)","","피아니스트니까. 음의 장단으로 메시지를 전하는 건 오히려 자연스러움.","","","",""
+"dlg.ch1_resolution.25","Dialogue/ch1_resolution","(Narration)","On screen: 리리스(L), 카스미(C), 리나(R)","","화면의 점과 선들이 이내 몇 개의 글자로 변환되었다.","","","",""
+"dlg.ch1_resolution.26","Dialogue/ch1_resolution","리리스","On screen: 리리스(L), 하루카(R)","","디코딩 결과... ㅎ, ㅏ, ㅇ, ㅠ. 하유.","","","",""
+"dlg.ch1_resolution.27","Dialogue/ch1_resolution","하루카","On screen: 리리스(L), 하루카(R)","","하유... 이름인가요?","","","",""
+"dlg.ch1_resolution.28","Dialogue/ch1_resolution","리리스","On screen: 리리스(L), 하루카(R)","","뒷부분은 노이즈에 묻혀서 복원이 안 됨. 이름의 일부만 남음.","","","",""
+"dlg.ch1_resolution.29","Dialogue/ch1_resolution","세이카","On screen: 세이카(L), 카스미(R)","","이름조차 온전히 남기지 못했다는 거야. '잊혀지는 현상'이 그 사람의 이름까지 지우고 있어.","","","",""
+"dlg.ch1_resolution.30","Dialogue/ch1_resolution","세이카","On screen: 세이카(L), 카스미(R)","","정리하자. 내가 5년 전부터 추적해온 자료와 종합하면...","","","",""
+"dlg.ch1_resolution.31","Dialogue/ch1_resolution","세이카","On screen: 세이카(L), 카스미(R)","","2001년, 2006년, 2011년, 2016년, 2021년. 5년 간격으로 노을시 구시가지에서 한 명씩 사라졌어.","","","",""
+"dlg.ch1_resolution.32","Dialogue/ch1_resolution","세이카","On screen: 세이카(L), 카스미(R)","","단순한 실종이 아니야. 실종 신고 기록이 사라지고, 주변 사람들의 기억에서도 서서히 지워졌지.","","","",""
+"dlg.ch1_resolution.33","Dialogue/ch1_resolution","세이카","On screen: 세이카(L), 카스미(R)","","이 피아니스트는 2016년 주기의 피해자일 가능성이 높아.","","","",""
+"dlg.ch1_resolution.34","Dialogue/ch1_resolution","카스미","On screen: 세이카(L), 카스미(R)","","하지만 의문입니다. 10년 전에 사라진 사람의 연주가 왜 하필 최근 일주일 전부터 들리기 시작한 걸까요?","","","",""
+"dlg.ch1_resolution.35","Dialogue/ch1_resolution","세이카","On screen: 세이카(L), 카스미(R)","","완전히 지워지기 직전이니까. 존재가 소멸하는 마지막 단계에서 경계가 얇아지면서, 현실로 소리가 새어나오기 시작한 거야.","","","",""
+"dlg.ch1_resolution.36","Dialogue/ch1_resolution","세이카","On screen: 세이카(L), 카스미(R)","","역설적이지만... 이 소리가 들린다는 건, 이 사람에게 남은 시간이 얼마 없다는 뜻이야.","","","",""
+"dlg.ch1_resolution.37","Dialogue/ch1_resolution","카스미","On screen: 세이카(L), 카스미(R)","","그렇다면 다음 주기는... 2021년. 그리고 그 다음은 올해, 2026년.","","","",""
+"dlg.ch1_resolution.38","Dialogue/ch1_resolution","세이카","On screen: 세이카(L), 리나(R)","","안타깝게도 2021년의 피해자는 아직 단서조차 찾지 못했어. 하지만 올해, 2026년의 희생자만큼은 반드시 막아야 해.","","","",""
+"dlg.ch1_resolution.39","Dialogue/ch1_resolution","리나","On screen: 세이카(L), 리나(R)","","...그러니까 올해 안에 또 한 명이 사라질 수도 있다는 거잖아.","","","",""
+"dlg.ch1_resolution.40","Dialogue/ch1_resolution","리나","On screen: 세이카(L), 리나(R)","","헐, 그럼 이 미친 짓이 아직 안 끝났다는 거잖아! 지금 이 순간에도 누구 하나 지워지고 있을 수 있단 거 아냐?!","","","",""
+"dlg.ch1_resolution.41","Dialogue/ch1_resolution","미나","On screen: 세이카(L), 미나(R)","","현상'은 사람을 죽이는 게 아니야. 존재 자체를 지우는 것이다.","","","",""
+"dlg.ch1_resolution.42","Dialogue/ch1_resolution","미나","On screen: 세이카(L), 미나(R)","","기록이 서서히 부식되고, 기억이 흐려지고, 이름이 사라지고... 마지막에는 육체마저 투명해져.","","","",""
+"dlg.ch1_resolution.43","Dialogue/ch1_resolution","미나","On screen: 세이카(L), 미나(R)","","하지만 이 피아니스트는... 아직 완전히 지워지지 않았어.","","","",""
+"dlg.ch1_resolution.44","Dialogue/ch1_resolution","미나","On screen: 세이카(L), 미나(R)","","음악이 남아 있으니까. 이 건물에 새겨진 음악이, 마지막 실 한 가닥처럼 이 사람을 세상에 붙들어 두고 있는 거야.","","","",""
+"dlg.ch1_resolution.45","Dialogue/ch1_resolution","하루카","On screen: 세이카(L), 하루카(R)","","...그러면 우리가 여기 온 게, 의미가 있었던 건가요?","","","",""
+"dlg.ch1_resolution.46","Dialogue/ch1_resolution","(Narration)","On screen: 세이카(L), 하루카(R)","","세이카가 하루카를 바라보았다. 오늘 밤 내내, 다른 누구보다 이 피아니스트의 고독을 이해하고 있었던 건 하루카였다.","","","",""
+"dlg.ch1_resolution.47","Dialogue/ch1_resolution","세이카","On screen: 세이카(L), 하루카(R)","","...하루카, 피아노 앞에 가볼래?","","","",""
+"dlg.ch1_resolution.48","Dialogue/ch1_resolution","하루카","On screen: 세이카(L), 하루카(R)","","헉... 네...?! 저, 저요?!","","","",""
+"dlg.ch1_resolution.49","Dialogue/ch1_resolution","세이카","On screen: 세이카(L), 하루카(R)","","그냥 손을 올려놓기만 해도 돼. 괜찮아.","","","",""
+"dlg.ch1_resolution.50","Dialogue/ch1_resolution","(Narration)","On screen: 세이카(L), 하루카(R)","","하루카가 조심스럽게 피아노 앞에 섰다. 떨리는 손을 천천히 뻗어, 건반 위에 살며시 올려놓았다.","","","",""
+"dlg.ch1_resolution.51","Dialogue/ch1_resolution","(Narration)","On screen: 세이카(L), 하루카(R)","",".......","","","",""
+"dlg.ch1_resolution.52","Dialogue/ch1_resolution","(Narration)","On screen: 세이카(L), 하루카(R)","","하루카는 알고 있었다. 투명인간 취급을 받으며, 아무도 자신을 봐주지 않는 교실에서 혼자 도시락을 먹던 그 끔찍한 추위를.","","","",""
+"dlg.ch1_resolution.53","Dialogue/ch1_resolution","하루카","On screen: 하루카(C)","","...저도 알아요. 교실에 나 혼자만 투명인간이 된 것 같은 추위. 그러니까... 이제 혼자 연주하지 마세요오...","","","",""
+"dlg.ch1_resolution.54","Dialogue/ch1_resolution","(Narration)","On screen: 하루카(C)","","하루카의 눈에서 눈물이 떨어져 건반 위로 번졌다.","","","",""
+"dlg.ch1_resolution.55","Dialogue/ch1_resolution","(Narration)","On screen: 하루카(C)","","그 순간 — 얼음장 같던 건반 아래에서, 희미한 온기가 배어 나왔다.","","","",""
+"dlg.ch1_resolution.56","Dialogue/ch1_resolution","하루카","On screen: 하루카(C)","","...따뜻해요. 건반이... 따뜻해요. 울고 있어요... 이 사람...","","","",""
+"dlg.ch1_resolution.57","Dialogue/ch1_resolution","하루카","On screen: 하루카(C)","","이 사람이... 여기 있어요. 지금도.","","","",""
+"dlg.ch1_resolution.58","Dialogue/ch1_resolution","(Narration)","On screen: 하루카(C)","","단 하나의 음이 울렸다. 하루카가 누른 것이 아니었다. 건반이 스스로 내려갔다.","","","",""
+"dlg.ch1_resolution.59","Dialogue/ch1_resolution","(Narration)","On screen: 하루카(C)","","그 음을 시작으로, 피아노가 다시 연주를 시작했다.","","","",""
+"dlg.ch1_resolution.60","Dialogue/ch1_resolution","(Narration)","On screen: 하루카(C)","","이번 선율은 달랐다. 처음 들었던 처연한 곡도, 메시지를 전하려던 또박또박한 음도 아니었다.","","","",""
+"dlg.ch1_resolution.61","Dialogue/ch1_resolution","(Narration)","On screen: 하루카(C)","","따뜻하고, 부드럽고, 어딘가 고마운 마음이 담긴 선율이었다.","","","",""
+"dlg.ch1_resolution.62","Dialogue/ch1_resolution","리나","On screen: 리나(L), 카스미(R)","",".......","","","",""
+"dlg.ch1_resolution.63","Dialogue/ch1_resolution","카스미","On screen: 리나(L), 카스미(R)","",".......","","","",""
+"dlg.ch1_resolution.64","Dialogue/ch1_resolution","(Narration)","On screen: 리나(L), 카스미(R)","","아무도 말하지 않았다. 그저 그 보이지 않는 연주자의 곁에, 조용히 서 있어 주었다.","","","",""
+"dlg.ch1_resolution.65","Dialogue/ch1_resolution","(Narration)","On screen: 리나(L), 카스미(R)","","카스미가 안경을 벗었다. 렌즈에 맺힌 것이 김인지 눈물인지, 그녀 자신도 모르는 것 같았다.","","","",""
+"dlg.ch1_resolution.66","Dialogue/ch1_resolution","카스미","On screen: 리나(L), 카스미(R)","","...이런 비과학적인 현상을... 언니도 어딘가에서 겪고 있었던 걸까요.","","","",""
+"dlg.ch1_resolution.67","Dialogue/ch1_resolution","(Narration)","On screen: 리나(L), 카스미(R)","","리리스가 노트북을 닫고, 처음으로 맨눈으로 피아노를 바라보았다.","","","",""
+"dlg.ch1_resolution.68","Dialogue/ch1_resolution","(Narration)","On screen: 미나(C)","","...평소처럼 가식적인 대사를 덧붙이지 않았다. 그저 조용히 눈을 감고, 고개를 살짝 숙였다.","","","",""
+"dlg.ch1_resolution.69","Dialogue/ch1_resolution","(Narration)","On screen: 미나(C)","","연주가 끝났다. 먼지가 천천히 가라앉았다. 창밖에서 첫 번째 새가 울기 시작했다.","","","",""
+"dlg.ch1_resolution.70","Dialogue/ch1_resolution","세이카","On screen: 세이카(L), 미나(R)","","...잠깐. 미나, 아까 말했지? 음악이 이 사람을 세상에 붙들어 두고 있다고.","","","",""
+"dlg.ch1_resolution.71","Dialogue/ch1_resolution","미나","On screen: 세이카(L), 미나(R)","","그래... 마지막 실 한 가닥으로.","","","",""
+"dlg.ch1_resolution.72","Dialogue/ch1_resolution","세이카","On screen: 세이카(L), 미나(R)","","만약 우리가 그 실을 잡아당기면? 여섯 명이 동시에 이 사람의 이름을 기억하고 부르면?","","","",""
+"dlg.ch1_resolution.73","Dialogue/ch1_resolution","카스미","On screen: 카스미(C)","","...기억이 현상에 대항하는 힘이 된다는 건가요?","","","",""
+"dlg.ch1_resolution.74","Dialogue/ch1_resolution","세이카","On screen: 세이카(C)","","해보자. 우리가 알아낸 이름을 부르는 거야. 다같이.","","","",""
+"dlg.ch1_resolution.75","Dialogue/ch1_resolution","(Narration)","On screen: 세이카(C)","","여섯 명이 피아노를 둘러쌌다. 새벽빛이 먼지 사이로 스며들고 있었다.","","","",""
+"dlg.ch1_resolution.76","Dialogue/ch1_resolution","세이카","On screen: 세이카(C)","","하유.","","","",""
+"dlg.ch1_resolution.77","Dialogue/ch1_resolution","하루카","On screen: 하루카(C)","","...하유 씨.","","","",""
+"dlg.ch1_resolution.78","Dialogue/ch1_resolution","리나","On screen: 리나(C)","","하유!","","","",""
+"dlg.ch1_resolution.79","Dialogue/ch1_resolution","카스미","On screen: 카스미(C)","","...하유.","","","",""
+"dlg.ch1_resolution.80","Dialogue/ch1_resolution","리리스","On screen: 리리스(C)","","...하유.","","","",""
+"dlg.ch1_resolution.81","Dialogue/ch1_resolution","미나","On screen: 미나(C)","","...하유.","","","",""
+"dlg.ch1_resolution.83","Dialogue/ch1_resolution","(Narration)","On screen: 미나(C)","","그 순간 — 피아노 앞의 공기가 흔들렸다.","","","",""
+"dlg.ch1_resolution.84","Dialogue/ch1_resolution","(Narration)","On screen: 미나(C)","","투명한 윤곽이, 건반 위에 손을 올린 채 서서히 나타났다.","","","",""
+"dlg.ch1_resolution.85","Dialogue/ch1_resolution","하루카","On screen: 하루카(C)","","보, 보여요...! 이 사람이...!","","","",""
+"dlg.ch1_resolution.86","Dialogue/ch1_resolution","(Narration)","On screen: 하루카(C)","","긴 머리카락. 가녀린 손가락. 미나가 묘사한 것과 똑같은 모습이었다. 하지만 유리처럼 투명했다.","","","",""
+"dlg.ch1_resolution.87","Dialogue/ch1_resolution","(Narration)","On screen: 하루카(C)","","소녀가 고개를 돌렸다. 여섯 명을 바라보았다. 그리고 — 미소 지었다.","","","",""
+"dlg.ch1_resolution.89","Dialogue/ch1_resolution","(Narration)","On screen: 하루카(C)","","형체가 희미해지며 다시 흐려지기 시작했다. 하지만 아까와는 달랐다. 완전히 사라지지 않았다.","","","",""
+"dlg.ch1_resolution.90","Dialogue/ch1_resolution","리리스","On screen: 리리스(L)","","잭오 센서, 양자 패턴 기록 완료. 존재 흔적 역추적 가능.","","","",""
+"dlg.ch1_resolution.91","Dialogue/ch1_resolution","세이카","On screen: 리리스(L), 세이카(C)","","온전한 이름을 찾을 수 있어?","","","",""
+"dlg.ch1_resolution.92","Dialogue/ch1_resolution","리리스","On screen: 리리스(L), 세이카(C)","","(노트북을 두드리며) 시도 중... 2016년 콩쿠르 수상자 명단 잔존 데이터 교차 대조...","","","",""
+"dlg.ch1_resolution.93","Dialogue/ch1_resolution","리리스","On screen: 리리스(L), 세이카(C)","","...이름 식별 완료. 서하유.","","","",""
+"dlg.ch1_resolution.94","Dialogue/ch1_resolution","세이카","On screen: 리리스(L), 세이카(C)","","온전한 이름을 찾았어. 다같이 부르자. 이번에는 완전한 이름으로!","","","",""
+"dlg.ch1_resolution.95","Dialogue/ch1_resolution","(Narration)","On screen: 리리스(L), 세이카(C)","","여섯 명이 숨을 고르고, 한 목소리로 외쳤다.","","","",""
+"dlg.ch1_resolution.96","Dialogue/ch1_resolution","세이카","On screen: 리리스(L), 세이카(C)","","서하유!!!","","","",""
+"dlg.ch1_resolution.97","Dialogue/ch1_resolution","(Narration)","On screen: 리리스(L), 세이카(C)","","투명한 윤곽에 색이 번지기 시작했다—","","","",""
+"dlg.ch1_resolution.98","Dialogue/ch1_resolution","(Narration)","On screen: 리리스(L), 세이카(C)","","그 순간. 건물 전체가 격렬하게 흔들렸다.","","","",""
+"dlg.ch1_resolution.99","Dialogue/ch1_resolution","(Narration)","On screen: 리리스(L), 세이카(C)","","피아노 건반이 불협화음을 내지르며 미친 듯이 튀었다. 창문이 깨지고, 악보가 회오리처럼 날렸다.","","","",""
+"dlg.ch1_resolution.100","Dialogue/ch1_resolution","카스미","On screen: 리리스(L), 세이카(C), 카스미(R)","","뭐, 뭐야 이건...?!","","","",""
+"dlg.ch1_resolution.101","Dialogue/ch1_resolution","리리스","On screen: 리리스(L), 세이카(C), 카스미(R)","","잭오 센서 이상 반응... 현상이 저항하고 있음. 기억의 닻을 끊으려는 듯한 에너지 감지.","","","",""
+"dlg.ch1_resolution.102","Dialogue/ch1_resolution","세이카","On screen: 리리스(L), 세이카(C), 카스미(R)","","현상이 되찾기를 거부하고 있어...!","","","",""
+"dlg.ch1_resolution.103","Dialogue/ch1_resolution","(Narration)","On screen: 리리스(L), 세이카(C), 카스미(R)","","서하유의 형체가 다시 흐려지기 시작했다. 마치 보이지 않는 손이 그녀를 다시 끌어당기는 것처럼.","","","",""
+"dlg.ch1_resolution.104","Dialogue/ch1_resolution","서하유","On screen: 리리스(L), 세이카(C), 카스미(R)","","(희미한 목소리) ...안 돼... 또 사라지는 거야...? 또 혼자가 되는 거야...?","","","",""
+"dlg.ch1_resolution.105","Dialogue/ch1_resolution","하루카","On screen: 하루카(L), 세이카(C), 카스미(R)","","안 돼요!! 잡아요, 다들!!","","","",""
+"dlg.ch1_resolution.106","Dialogue/ch1_resolution","리나","On screen: 리나(L), 세이카(C), 카스미(R)","","(피아노 앞을 막아서며) 안 보내! 절대 안 보낸다!! 눈앞에서 사람이 사라지는 꼴은 절대 못 봐!!","","","",""
+"dlg.ch1_resolution.107","Dialogue/ch1_resolution","(Narration)","On screen: 리나(L), 세이카(C), 카스미(R)","","리나가 피아노를 두 팔로 껴안았다. 이 안에 있는 사람을 놓치지 않겠다는 듯.","","","",""
+"dlg.ch1_resolution.108","Dialogue/ch1_resolution","카스미","On screen: 리나(L), 세이카(C), 카스미(R)","","(떨리는 손으로 수첩을 펼치며) 서하유. 2016년 전국 피아노 콩쿠르 수상자. 노을시 출신. 이 기록은 제가 지킵니다. 과학자의 기록은 지워지지 않아요.","","","",""
+"dlg.ch1_resolution.109","Dialogue/ch1_resolution","리리스","On screen: 리리스(L), 세이카(C), 카스미(R)","","잭오, 풀파워. 서하유 존재 데이터, 실시간 전 세계 서버 동시 전송 개시. ...지워볼 테면 지워봐. 인터넷 전체를 상대로.","","","",""
+"dlg.ch1_resolution.110","Dialogue/ch1_resolution","미나","On screen: 미나(L), 세이카(C), 카스미(R)","","(눈을 감고) ...이 몸의 힘이 진짜인지 가짜인지, 오늘 확인해보겠다.","","","",""
+"dlg.ch1_resolution.111","Dialogue/ch1_resolution","(Narration)","On screen: 미나(L), 세이카(C), 카스미(R)","","미나의 주변에 희미한 빛이 감돌았다. 중2병 연기인지 진짜 능력인지, 이 순간만큼은 아무도 구분할 수 없었다.","","","",""
+"dlg.ch1_resolution.112","Dialogue/ch1_resolution","세이카","On screen: 미나(L), 세이카(C), 카스미(R)","","(수첩에 적으며) 서하유. 이 이름은 내가 기억한다. 이 수첩이 불에 타도, 내 머릿속에서 지워지지 않아.","","","",""
+"dlg.ch1_resolution.113","Dialogue/ch1_resolution","하루카","On screen: 하루카(L), 세이카(C), 카스미(R)","","(건반 위에 두 손을 올리며) 하유 씨... 저도 혼자였어요. 아무도 안 봐주는 게 얼마나 무서운 건지 알아요.","","","",""
+"dlg.ch1_resolution.114","Dialogue/ch1_resolution","하루카","On screen: 하루카(L), 세이카(C), 카스미(R)","","그러니까 이제... 혼자 두지 않을게요.","","","",""
+"dlg.ch1_resolution.115","Dialogue/ch1_resolution","(Narration)","On screen: 하루카(L), 세이카(C), 카스미(R)","","건물이 흔들리고, 먼지가 소용돌이쳤다. 서하유의 형체가 희미해졌다가 다시 선명해졌다가를 반복했다.","","","",""
+"dlg.ch1_resolution.116","Dialogue/ch1_resolution","리리스","On screen: 리리스(L), 세이카(C), 카스미(R)","","전송률 47%... 62%... 데이터 분산 중...","","","",""
+"dlg.ch1_resolution.117","Dialogue/ch1_resolution","(Narration)","On screen: 리리스(L), 세이카(C), 카스미(R)","","잭오가 음악실 상공을 선회하며 서하유의 존재 데이터를 세계 각지로 쏘아보내고 있었다.","","","",""
+"dlg.ch1_resolution.118","Dialogue/ch1_resolution","리리스","On screen: 리리스(L), 세이카(C), 카스미(R)","","78%... 91%...","","","",""
+"dlg.ch1_resolution.119","Dialogue/ch1_resolution","(Narration)","On screen: 리리스(L), 세이카(C), 카스미(R)","","그리고 어딘가에서 — 누군가가 그 데이터를 읽었다. 조회수 1. 2. 5. 12. 31.","","","",""
+"dlg.ch1_resolution.120","Dialogue/ch1_resolution","리리스","On screen: 리리스(L), 세이카(C), 카스미(R)","","...외부 인식 유입 감지. 기억의 닻, 확산 시작.","","","",""
+"dlg.ch1_resolution.121","Dialogue/ch1_resolution","(Narration)","On screen: 리리스(L), 세이카(C), 카스미(R)","","세상이 서하유를 기억하기 시작했다.","","","",""
+"dlg.ch1_resolution.122","Dialogue/ch1_resolution","리리스","On screen: 리리스(L), 세이카(C), 카스미(R)","","전송 100%. 완료.","","","",""
+"dlg.ch1_resolution.123","Dialogue/ch1_resolution","(Narration)","On screen: 리리스(L), 세이카(C), 카스미(R)","","불협화음이 멈추었다. 회오리가 가라앉았다. 먼지가 천천히, 빛처럼 내려앉았다.","","","",""
+"dlg.ch1_resolution.124","Dialogue/ch1_resolution","(Narration)","On screen: 리리스(L), 세이카(C), 카스미(R)","","그리고 — 피아노 앞에, 한 소녀가 앉아 있었다. 더 이상 투명하지 않은, 온전한 사람이.","","","",""
+"dlg.ch1_resolution.125","Dialogue/ch1_resolution","서하유","On screen: 리리스(L), 세이카(C), 카스미(R)","","......","","","",""
+"dlg.ch1_resolution.126","Dialogue/ch1_resolution","서하유","On screen: 리리스(L), 세이카(C), 카스미(R)","","...들려. 드디어... 내 소리가, 누군가한테 들리고 있어.","","","",""
+"dlg.ch1_resolution.127","Dialogue/ch1_resolution","(Narration)","On screen: 리리스(L), 세이카(C), 카스미(R)","","서하유의 눈에서 눈물이 흘러내렸다. 10년 동안 흘리지 못했던 눈물이었다.","","","",""
+"dlg.ch1_resolution.128","Dialogue/ch1_resolution","서하유","On screen: 리리스(L), 세이카(C), 카스미(R)","","매일 밤 쳤어요. 매일 밤, 매일 밤... 누군가 들어주길 바라면서. 한 명이라도 기억해주길 바라면서.","","","",""
+"dlg.ch1_resolution.129","Dialogue/ch1_resolution","서하유","On screen: 리리스(L), 세이카(C), 카스미(R)","","그런데 아무도... 아무도 오지 않았어요. 내 이름을 부르는 사람도, 내 연주를 듣는 사람도...","","","",""
+"dlg.ch1_resolution.130","Dialogue/ch1_resolution","서하유","On screen: 리리스(L), 세이카(C), 카스미(R)","","...포기할 뻔했어요. 여러 번. 건반을 치는 손이 닳아서, 소리가 안 나는 날도 있었어요.","","","",""
+"dlg.ch1_resolution.131","Dialogue/ch1_resolution","서하유","On screen: 리리스(L), 세이카(C), 카스미(R)","","그래도 쳤어요. 멈추면 진짜 사라질 것 같아서.","","","",""
+"dlg.ch1_resolution.132","Dialogue/ch1_resolution","하루카","On screen: 하루카(L), 세이카(C), 카스미(R)","","(울면서) 들었어요. 우리가 전부 다 들었어요.","","","",""
+"dlg.ch1_resolution.133","Dialogue/ch1_resolution","서하유","On screen: 하루카(L), 세이카(C), 카스미(R)","","...고마워요. 찾아줘서. 기억해줘서. 싸워줘서.","","","",""
+"dlg.ch1_resolution.134","Dialogue/ch1_resolution","(Narration)","On screen: 하루카(L), 세이카(C), 카스미(R)","","서하유가 건반 위에 손을 올렸다. 10년 만의, 누군가를 위한 연주.","","","",""
+"dlg.ch1_resolution.135","Dialogue/ch1_resolution","(Narration)","On screen: 하루카(L), 세이카(C), 카스미(R)","","이번 선율은 달랐다. 외로움도, 절박함도, 두려움도 없었다. 그저 따뜻하고, 감사하고, 살아있다는 것이 기쁜 곡.","","","",""
+"dlg.ch1_resolution.136","Dialogue/ch1_resolution","리나","On screen: 리나(L), 세이카(C), 카스미(R)","","......","","","",""
+"dlg.ch1_resolution.137","Dialogue/ch1_resolution","카스미","On screen: 리나(L), 세이카(C), 카스미(R)","","......","","","",""
+"dlg.ch1_resolution.138","Dialogue/ch1_resolution","(Narration)","On screen: 리나(L), 세이카(C), 카스미(R)","","아무도 말하지 않았다. 그저 들었다.","","","",""
+"dlg.ch1_resolution.139","Dialogue/ch1_resolution","(Narration)","On screen: 리나(L), 세이카(C), 카스미(R)","","연주가 끝났다. 창밖에서 새가 울기 시작했다.","","","",""
+"dlg.ch1_resolution.140","Dialogue/ch1_resolution","서하유","On screen: 리나(L), 세이카(C), 카스미(R)","","(미소) 처음이에요. 연주가 끝나고 박수 대신 울음소리가 들리는 건.","","","",""
+"dlg.ch1_resolution.141","Dialogue/ch1_resolution","리나","On screen: 리나(L), 세이카(C), 카스미(R)","","(코를 훌쩍이며) 누, 누가 울어!! 먼지가 들어간 거라고!!","","","",""
+"dlg.ch1_resolution.142","Dialogue/ch1_resolution","세이카","On screen: 리나(L), 세이카(C), 카스미(R)","","...약속을 지켰네. 잊혀진 사람을, 되찾았어.","","","",""
+"dlg.ch1_resolution.143","Dialogue/ch1_resolution","세이카","On screen: 리나(L), 세이카(C), 카스미(R)","","네버모어의 첫 번째 사건 — 해결.","","","",""
+"dlg.ch1_resolution.144","Dialogue/ch1_resolution","(Narration)","On screen: 리나(L), 세이카(C), 카스미(R)","","...","","","",""
+"dlg.ch1_epilogue.0","Dialogue/ch1_epilogue","(Narration)","No characters on screen","","다음 날 아침, 네버모어 오컬트 탐정 사무소.","","","",""
+"dlg.ch1_epilogue.1","Dialogue/ch1_epilogue","(Narration)","No characters on screen","","사무소 식탁에는 일곱 명분의 아침이 차려져 있었다.","","","",""
+"dlg.ch1_epilogue.2","Dialogue/ch1_epilogue","하루카","On screen: 하루카(L)","","서하유 씨, 단호박 수프 좀 더 드세요! 10년 동안 못 드셨잖아요!","","","",""
+"dlg.ch1_epilogue.3","Dialogue/ch1_epilogue","서하유","On screen: 하루카(L)","","에... 이게 뭔가요? 호박인데... 왜 이렇게 맛있어요...?","","","",""
+"dlg.ch1_epilogue.4","Dialogue/ch1_epilogue","하루카","On screen: 하루카(L)","","(눈 빛나며) 그, 그렇죠?! 제 특제 레시피예요!","","","",""
+"dlg.ch1_epilogue.5","Dialogue/ch1_epilogue","리나","On screen: 하루카(L), 리나(C), 리리스(R)","","야, 하루카 음식 칭찬하면 끝도 없이 만들어오니까 적당히 해. 어제 호박 라떼, 호박 빙수, 호박 쿠키에 이번엔 호박 수프까지. 호박밖에 없냐!","","","",""
+"dlg.ch1_epilogue.6","Dialogue/ch1_epilogue","하루카","On screen: 하루카(L), 리나(C), 리리스(R)","","호박은 만능이에요!","","","",""
+"dlg.ch1_epilogue.7","Dialogue/ch1_epilogue","리리스","On screen: 하루카(L), 리나(C), 리리스(R)","","잭오 데이터 전 세계 서버 분산 백업 완료. 서하유 존재 기록, 다시는 지워지지 않음.","","","",""
+"dlg.ch1_epilogue.8","Dialogue/ch1_epilogue","서하유","On screen: 하루카(L), 리나(C), 리리스(R)","","...제 이름이 기록에 남아있다는 게, 이렇게 안심되는 일인 줄 몰랐어요.","","","",""
+"dlg.ch1_epilogue.9","Dialogue/ch1_epilogue","카스미","On screen: 카스미(L), 리나(C), 리리스(R)","","(서류를 내밀며) 서하유 씨, 가족 연락처를 찾았습니다. 부모님이 아직 노을시에 계시네요.","","","",""
+"dlg.ch1_epilogue.10","Dialogue/ch1_epilogue","서하유","On screen: 카스미(L), 리나(C), 리리스(R)","","...엄마, 아빠가...? 아직...?","","","",""
+"dlg.ch1_epilogue.11","Dialogue/ch1_epilogue","카스미","On screen: 카스미(L), 리나(C), 리리스(R)","","네. 기록이 복원되면서 기억도 함께 돌아오고 있는 것 같습니다.","","","",""
+"dlg.ch1_epilogue.12","Dialogue/ch1_epilogue","서하유","On screen: 카스미(L), 리나(C), 리리스(R)","","......","","","",""
+"dlg.ch1_epilogue.13","Dialogue/ch1_epilogue","(Narration)","On screen: 카스미(L), 리나(C), 리리스(R)","Contains manual line break(s) written as \n - keep the \n token (you may move it).","서하유가 식탁 위에 얼굴을 묻고 울기 시작했다.\n하루카가 조용히 등을 쓰다듬어 주었다.","","","",""
+"dlg.ch1_epilogue.14","Dialogue/ch1_epilogue","미나","On screen: 미나(L), 리나(C), 리리스(R)","","...오늘은, 한 사람을 되찾은 날이야. 연기가 아니라 진심으로.","","","",""
+"dlg.ch1_epilogue.15","Dialogue/ch1_epilogue","(Narration)","On screen: 미나(L), 리나(C), 리리스(R)","","— 3일 후.","","","",""
+"dlg.ch1_epilogue.16","Dialogue/ch1_epilogue","(Narration)","On screen: 미나(L), 리나(C), 리리스(R)","","네버모어 오컬트 탐정 사무소는 전국적인 화제의 중심이 되었다.","","","",""
+"dlg.ch1_epilogue.17","Dialogue/ch1_epilogue","리리스","On screen: 미나(L), 리나(C), 리리스(R)","","뉴스 속보 읽음. ""노을시의 오컬트 탐정 사무소, 10년 전 실종된 피아니스트를 기적적으로 발견."" ...매체 23개 보도 완료.","","","",""
+"dlg.ch1_epilogue.18","Dialogue/ch1_epilogue","리나","On screen: 미나(L), 리나(C), 리리스(R)","","와씨 대박! 우리 뉴스에 나왔어!!","","","",""
+"dlg.ch1_epilogue.19","Dialogue/ch1_epilogue","세이카","On screen: 세이카(L), 리나(C), 리리스(R)","","...그런데 문제가 생겼어.","","","",""
+"dlg.ch1_epilogue.20","Dialogue/ch1_epilogue","카스미","On screen: 카스미(L), 리나(C), 리리스(R)","","의뢰 메일이... 현재 1,247건입니다.","","","",""
+"dlg.ch1_epilogue.21","Dialogue/ch1_epilogue","리나","On screen: 카스미(L), 리나(C), 리리스(R)","","뭐?!","","","",""
+"dlg.ch1_epilogue.22","Dialogue/ch1_epilogue","카스미","On screen: 카스미(L), 리나(C), 리리스(R)","","그리고 아직 늘어나고 있어요.","","","",""
+"dlg.ch1_epilogue.23","Dialogue/ch1_epilogue","리리스","On screen: 카스미(L), 리나(C), 리리스(R)","","서버 과부하 경고. 메일함 용량 99.7%.","","","",""
+"dlg.ch1_epilogue.24","Dialogue/ch1_epilogue","(Narration)","On screen: 카스미(L), 리나(C), 리리스(R)","","현관 밖에는 기자들과 방송국 카메라가 진을 치고 있었다.","","","",""
+"dlg.ch1_epilogue.25","Dialogue/ch1_epilogue","미나","On screen: 미나(L), 리나(C), 리리스(R)","","크큭... 천 년 전부터 예언되어 있던 일이니라...","","","",""
+"dlg.ch1_epilogue.26","Dialogue/ch1_epilogue","카스미","On screen: 카스미(L), 리나(C), 리리스(R)","","아뇨, 3일 전부터입니다.","","","",""
+"dlg.ch1_epilogue.27","Dialogue/ch1_epilogue","리나","On screen: 카스미(L), 리나(C), 리리스(R)","","(현관을 열며) 저기요~ 네버모어 사무소는 지금 인터뷰 안 받습니— 야, 밀지 마!! 밀지 말라고!!","","","",""
+"dlg.ch1_epilogue.28","Dialogue/ch1_epilogue","리나","On screen: 카스미(L), 리나(C), 리리스(R)","","(문을 쾅 닫으며) ...인간의 바다야 밖에.","","","",""
+"dlg.ch1_epilogue.29","Dialogue/ch1_epilogue","하루카","On screen: 하루카(L), 리나(C), 리리스(R)","","어머... 저기 TV 트럭까지 와 있어요...","","","",""
+"dlg.ch1_epilogue.30","Dialogue/ch1_epilogue","세이카","On screen: 세이카(L), 리나(C), 리리스(R)","","(한숨) ...의뢰인이 올까봐 걱정이었는데, 이제는 의뢰인을 못 막는 게 걱정이네.","","","",""
+"dlg.ch1_epilogue.31","Dialogue/ch1_epilogue","리리스","On screen: 세이카(L), 리나(C), 리리스(R)","","추가 보고. 해외 매체에서도 문의. CNN: ""Supernatural Detective Agency?"" NHK: ""オカルト探偵事務所とは？"" ...번역 봇 풀가동 중.","","","",""
+"dlg.ch1_epilogue.32","Dialogue/ch1_epilogue","리나","On screen: 세이카(L), 리나(C), 리리스(R)","","세계적?! 야, 우리 영어 되는 사람 있어?!","","","",""
+"dlg.ch1_epilogue.33","Dialogue/ch1_epilogue","카스미","On screen: 카스미(L), 리나(C), 리리스(R)","","...제가 논문은 영어로 읽습니다만.","","","",""
+"dlg.ch1_epilogue.34","Dialogue/ch1_epilogue","리리스","On screen: 카스미(L), 리나(C), 리리스(R)","","번역은 잭오가 담당 가능.","","","",""
+"dlg.ch1_epilogue.35","Dialogue/ch1_epilogue","미나","On screen: 미나(L), 리나(C), 리리스(R)","","(갑자기 유창한 영어로) ""Welcome to Nevermore...""","","","",""
+"dlg.ch1_epilogue.36","Dialogue/ch1_epilogue","리나","On screen: 미나(L), 리나(C), 리리스(R)","","???","","","",""
+"dlg.ch1_epilogue.37","Dialogue/ch1_epilogue","미나","On screen: 미나(L), 리나(C), 리리스(R)","","(순간 당황하며) ...아, 그, 그건 전생의 기억이니라!","","","",""
+"dlg.ch1_epilogue.38","Dialogue/ch1_epilogue","카스미","On screen: 카스미(L), 리나(C), 리리스(R)","","...중2병이 영어까지 되는 줄은 몰랐네요.","","","",""
+"dlg.ch1_epilogue.39","Dialogue/ch1_epilogue","세이카","On screen: 세이카(L), 리나(C), 리리스(R)","","(웃으며) 좋아, 이왕 이렇게 된 거...","","","",""
+"dlg.ch1_epilogue.40","Dialogue/ch1_epilogue","세이카","On screen: 세이카(L), 리나(C), 리리스(R)","","부모님한테 전화해야겠다. ""성과를 보여드리겠습니다"" 하고.","","","",""
+"dlg.ch1_epilogue.41","Dialogue/ch1_epilogue","리나","On screen: 세이카(L), 리나(C), 리리스(R)","","소장님, 그건 성과 정도가 아니라 대폭발이야!","","","",""
+"dlg.ch1_epilogue.42","Dialogue/ch1_epilogue","세이카","On screen: 세이카(L), 리나(C), 리리스(R)","","(수화기를 들며) ...여보세요, 아버지? 네, 세이카입니다. 뉴스 보셨어요...? 네, 그게 저희 사무소예요.","","","",""
+"dlg.ch1_epilogue.43","Dialogue/ch1_epilogue","(Narration)","On screen: 세이카(L), 리나(C), 리리스(R)","","수화기 너머로, 아버지의 길고 긴 침묵이 흘렀다.","","","",""
+"dlg.ch1_epilogue.44","Dialogue/ch1_epilogue","세이카","On screen: 세이카(L), 리나(C), 리리스(R)","","(미소) ...네. 1년 더 해보겠습니다.","","","",""
+"dlg.ch1_epilogue.45","Dialogue/ch1_epilogue","(Narration)","On screen: 세이카(L), 리나(C), 리리스(R)","","— 일주일 후.","","","",""
+"dlg.ch1_epilogue.46","Dialogue/ch1_epilogue","(Narration)","On screen: 세이카(L), 리나(C), 리리스(R)","Contains manual line break(s) written as \n - keep the \n token (you may move it).","소란이 조금 가라앉은 어느 저녁.\n서하유가 사무소에 찾아왔다.","","","",""
+"dlg.ch1_epilogue.47","Dialogue/ch1_epilogue","서하유","On screen: 세이카(L), 리나(C), 리리스(R)","","저... 부탁이 하나 있어요. 그 음악실에서 한 번만 더 연주해도 될까요?","","","",""
+"dlg.ch1_epilogue.48","Dialogue/ch1_epilogue","서하유","On screen: 세이카(L), 리나(C), 리리스(R)","","이번에는... 듣는 사람이 있을 때 치고 싶어서요.","","","",""
+"dlg.ch1_epilogue.49","Dialogue/ch1_epilogue","(Narration)","On screen: 세이카(L), 리나(C), 리리스(R)","Contains manual line break(s) written as \n - keep the \n token (you may move it).","낡은 음악실. 하지만 더 이상 무섭지 않았다.\n잭오랜턴 조명이 따뜻한 빛을 비추고 있었다.","","","",""
+"dlg.ch1_epilogue.50","Dialogue/ch1_epilogue","(Narration)","On screen: 세이카(L), 리나(C), 리리스(R)","Contains manual line break(s) written as \n - keep the \n token (you may move it).","서하유가 건반 앞에 앉았다.\n여섯 명의 관객이 조용히 지켜보았다.","","","",""
+"dlg.ch1_epilogue.51","Dialogue/ch1_epilogue","(Narration)","On screen: 세이카(L), 리나(C), 리리스(R)","","연주가 시작되었다.","","","",""
+"dlg.ch1_epilogue.52","Dialogue/ch1_epilogue","(Narration)","On screen: 세이카(L), 리나(C), 리리스(R)","Contains manual line break(s) written as \n - keep the \n token (you may move it).","10년 동안 혼자 치던 곡이,\n누군가가 들어주는 것만으로 전혀 다른 곡이 되었다.","","","",""
+"dlg.ch1_epilogue.53","Dialogue/ch1_epilogue","(Narration)","On screen: 세이카(L), 리나(C), 리리스(R)","","연주가 끝나고, 작은 박수가 울렸다.","","","",""
+"dlg.ch1_epilogue.54","Dialogue/ch1_epilogue","서하유","On screen: 세이카(L), 리나(C), 리리스(R)","","10년 동안 혼자 연주했는데, 누군가 들어주니까... 전혀 다른 곡이 되네요.","","","",""
+"dlg.ch1_epilogue.55","Dialogue/ch1_epilogue","리나","On screen: 세이카(L), 리나(C), 리리스(R)","","(소곤) 아오, 진짜 눈물 안 난다니까...","","","",""
+"dlg.ch1_epilogue.56","Dialogue/ch1_epilogue","카스미","On screen: 카스미(L), 리나(C), 리리스(R)","","(안경을 닦으며) ...김이 서린 겁니다.","","","",""
+"dlg.ch1_epilogue.57","Dialogue/ch1_epilogue","하루카","On screen: 하루카(L), 리나(C), 리리스(R)","","서하유 씨! 이거 드세요! 오늘은 특별히 호박 마들렌이에요!","","","",""
+"dlg.ch1_epilogue.58","Dialogue/ch1_epilogue","서하유","On screen: 하루카(L), 리나(C), 리리스(R)","","(웃으며) 고마워요, 하루카. ...나중에 나도 뭔가 만들어 올게요.","","","",""
+"dlg.ch1_epilogue.59","Dialogue/ch1_epilogue","세이카","On screen: 세이카(L), 리나(C), 리리스(R)","","언제든 와. 여기는 네 자리니까.","","","",""
+"dlg.ch1_epilogue.60","Dialogue/ch1_epilogue","서하유","On screen: 세이카(L), 리나(C), 리리스(R)","","(문 앞에서 돌아보며) ...세이카 씨가 처음 봤다던, 그 지하 서고의 글씨. 「우리를 찾아줘.」","","","",""
+"dlg.ch1_epilogue.61","Dialogue/ch1_epilogue","서하유","On screen: 세이카(L), 리나(C), 리리스(R)","","그거, 우리 모두의 목소리였어요. ...찾아줘서, 고마워요.","","","",""
+"dlg.ch1_epilogue.62","Dialogue/ch1_epilogue","(Narration)","On screen: 세이카(L), 리나(C), 리리스(R)","Contains manual line break(s) written as \n - keep the \n token (you may move it).","서하유가 떠난 뒤, 피아노 위에 놓인\n호박 마들렌 하나가 사라져 있었다.","","","",""
+"dlg.ch1_epilogue.63","Dialogue/ch1_epilogue","하루카","On screen: 하루카(L), 리나(C), 리리스(R)","","...어? 분명 여섯 개 놓았는데...","","","",""
+"dlg.ch1_epilogue.64","Dialogue/ch1_epilogue","세이카","On screen: 세이카(L), 리나(C), 리리스(R)","","(미소) 아마 한 명 더 먹은 거겠지. 보이지 않는 관객이.","","","",""
+"dlg.ch1_epilogue.65","Dialogue/ch1_epilogue","(Narration)","On screen: 세이카(L), 리나(C), 리리스(R)","","사라진 마들렌 하나. 그리고 돌아온 사람 하나.","","","",""
+"dlg.ch1_epilogue.66","Dialogue/ch1_epilogue","(Narration)","On screen: 세이카(L), 리나(C), 리리스(R)","Contains manual line break(s) written as \n - keep the \n token (you may move it).","「네버모어 오컬트 탐정 사무소」의 첫 번째 이야기가,\n이렇게 끝났다.","","","",""
+"dlg.ch1_epilogue.68","Dialogue/ch1_epilogue","(Narration)","On screen: 세이카(L), 리나(C), 리리스(R)","","플레이해주셔서 감사합니다.","","","",""
