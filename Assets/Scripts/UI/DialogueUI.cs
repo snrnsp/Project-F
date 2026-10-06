@@ -472,7 +472,7 @@ namespace HalloweenVN.UI
             for (int s = 0; s < 3; s++) if (owner[s] != null) used.Add(s);
             float[] xs;
             if (used.Count == 1) xs = new[] { 0.5f };
-            else if (used.Count == 2) xs = new[] { 0.25f, 0.75f };
+            else if (used.Count == 2) xs = new[] { 0.33f, 0.67f };
             else xs = new[] { 0.20f, 0.50f, 0.80f };
             for (int i = 0; i < used.Count; i++) result[used[i]] = xs[i];
             return result;
