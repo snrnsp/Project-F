@@ -30,7 +30,7 @@ namespace HalloweenVN.UI
 
         [SerializeField] private Text autoButtonText;
         [SerializeField] private Text backlogButtonText;
-// ═══════════ Typing & Auto ═══════════
+// ?�═?�═?�═?�═?�═??Typing & Auto ?�═?�═?�═?�═?�═??
         private BacklogUI _cachedBacklogUI;
         private SettingsUI _cachedSettingsUI;
         private WaitForSeconds _cachedNewlineDelay = new WaitForSeconds(0.15f);
@@ -60,10 +60,10 @@ namespace HalloweenVN.UI
         private float ctrlSkipTimer = 0f;
         private string fullText;
 
-        // ═══════════ Character Position System (ported from old project) ═══════════
+        // ?�═?�═?�═?�═?�═??Character Position System (ported from old project) ?�═?�═?�═?�═?�═??
         private static readonly Color DIM_COLOR = new Color(0.3f, 0.3f, 0.3f, 1f);
         private static readonly Color ACTIVE_COLOR = Color.white;
-        private const float DEFAULT_FADE_SPEED = 0.15f;
+        private const float DEFAULT_FADE_SPEED = 0.08f;
         private const float MOVE_DURATION = 0.25f;
 
         private Coroutine[] _moveCoroutines = new Coroutine[3];
@@ -73,7 +73,7 @@ namespace HalloweenVN.UI
         private List<string> _speakerOrder = new List<string>();
         private List<CharacterPosition> _tempPositionList = new List<CharacterPosition>();
 
-        // ═══════════ Narrator ═══════════
+        // ?�═?�═?�═?�═?�═??Narrator ?�═?�═?�═?�═?�═??
         private TextMeshProUGUI narratorText;
 
         /// <summary>
@@ -148,7 +148,7 @@ namespace HalloweenVN.UI
             narratorObj.SetActive(false);
         }
 
-        // ═══════════ Events ═══════════
+        // ?�═?�═?�═?�═?�═??Events ?�═?�═?�═?�═?�═??
         
         
         public void ClearAll()
@@ -170,7 +170,7 @@ namespace HalloweenVN.UI
             if (backlogButtonText != null) backlogButtonText.resizeTextForBestFit = false;
             if (autoButtonText != null) autoButtonText.resizeTextForBestFit = false;
             
-            // Gothic font renders visually larger than handwriting — reduce sizes
+            // Gothic font renders visually larger than handwriting ??reduce sizes
             bool isGothic = !HalloweenVN.Core.SettingsData.UseHandwritingFont;
             int btnSize = isGothic ? 24 : 32;
             float dialogueSize = isGothic ? 26f : 36f;
@@ -196,7 +196,7 @@ namespace HalloweenVN.UI
             
             if (lang == HalloweenVN.Core.GameLanguage.Korean)
             {
-                autoOff = "오토"; autoOn = "오토 중";
+                autoOff = "?�토"; autoOn = "?�토 �?;
                 backlogButtonText.text = "로그";
             }
             else if (lang == HalloweenVN.Core.GameLanguage.English)
@@ -206,18 +206,18 @@ namespace HalloweenVN.UI
             }
             else if (lang == HalloweenVN.Core.GameLanguage.Japanese)
             {
-                autoOff = "オート"; autoOn = "オート中";
-                backlogButtonText.text = "ログ";
+                autoOff = "?�ー??; autoOn = "?�ー?�中";
+                backlogButtonText.text = "??��";
             }
             else if (lang == HalloweenVN.Core.GameLanguage.ChineseSimplified)
             {
-                autoOff = "自动"; autoOn = "自动中";
+                autoOff = "?�动"; autoOn = "?�动�?;
                 backlogButtonText.text = "记录";
             }
             else if (lang == HalloweenVN.Core.GameLanguage.ChineseTraditional)
             {
-                autoOff = "自動"; autoOn = "自動中";
-                backlogButtonText.text = "紀錄";
+                autoOff = "?�動"; autoOn = "?�動�?;
+                backlogButtonText.text = "紀??;
             }
             
             if (autoButtonText != null)
@@ -257,7 +257,7 @@ namespace HalloweenVN.UI
             CancelSceneTransition();
         }
 
-        // ═══════════ Panel Show/Hide ═══════════
+        // ?�═?�═?�═?�═?�═??Panel Show/Hide ?�═?�═?�═?�═?�═??
         public void ShowDialoguePanel()
         {
             if (dialoguePanel != null)
@@ -279,7 +279,7 @@ namespace HalloweenVN.UI
             HideAllCharacters();
         }
 
-        // ═══════════ Display Node ═══════════
+        // ?�═?�═?�═?�═?�═??Display Node ?�═?�═?�═?�═?�═??
 
 
         private Color GetSpeakerColor(string speaker)
@@ -287,12 +287,12 @@ namespace HalloweenVN.UI
             if (string.IsNullOrWhiteSpace(speaker)) return HalloweenVN.UI.Theme.HalloweenTheme.TextSpeaker;
             switch (speaker.Trim())
             {
-                case "세이카": return new Color32(100, 140, 255, 255); // Royal Blue (짙은 파란 머리 + 파란 눈)
-                case "카스미": return new Color32(120, 200, 200, 255); // Teal (짙은 남보라 머리 + 청록색 눈동자)
-                case "리나": return new Color32(110, 170, 255, 255); // Sky Blue (파란 눈 + 은색 X헤어핀)
-                case "미나": return new Color32(170, 170, 255, 255); // Lavender Blue (연보라~은빛 머리 + 흰 드레스)
-                case "리리스": return new Color32(180, 230, 240, 255); // Ice Cyan (은백~하늘색 숏컷 + 흰 테크웨어)
-                case "하루카": return new Color32(240, 180, 210, 255); // Soft Pink (연핑크 재킷 + 흰 원피스)
+                case "?�이�?: return new Color32(100, 140, 255, 255); // Royal Blue (짙�? ?��? 머리 + ?��? ??
+                case "카스�?: return new Color32(120, 200, 200, 255); // Teal (짙�? ?�보??머리 + �?��???�동??
+                case "리나": return new Color32(110, 170, 255, 255); // Sky Blue (?��? ??+ ?�??X?�어?�)
+                case "미나": return new Color32(170, 170, 255, 255); // Lavender Blue (?�보???��?머리 + ???�레??
+                case "리리??: return new Color32(180, 230, 240, 255); // Ice Cyan (?��??�늘???�컷 + ???�크?�어)
+                case "?�루�?: return new Color32(240, 180, 210, 255); // Soft Pink (?�핑???�킷 + ???�피??
                 case "???": return new Color32(180, 180, 180, 255); // Grey
                 default: return HalloweenVN.UI.Theme.HalloweenTheme.TextSpeaker;
             }
@@ -316,14 +316,14 @@ namespace HalloweenVN.UI
             Image[] imgs = { characterImageLeft, characterImageCenter, characterImageRight };
             bool immediate = instant || node.noFade;
 
-            // 1. Requested sprites per slot (legacy single-sprite → center)
+            // 1. Requested sprites per slot (legacy single-sprite ??center)
             string[] requested = { node.characterSpriteLeft, node.characterSpriteCenter, node.characterSpriteRight };
             if (!string.IsNullOrEmpty(node.characterSprite))
             {
                 requested[0] = null; requested[1] = node.characterSprite; requested[2] = null;
             }
 
-            // 2. New owner per slot (same character listed twice → keep the first slot only)
+            // 2. New owner per slot (same character listed twice ??keep the first slot only)
             string[] newOwner = new string[3];
             HashSet<string> newNames = new HashSet<string>();
             for (int s = 0; s < 3; s++)
@@ -363,7 +363,7 @@ namespace HalloweenVN.UI
 
             float[] targetX = ComputeLayoutTargets(newOwner);
 
-            // 4. Apply per slot — each slot image gets exactly one action, so characters
+            // 4. Apply per slot ??each slot image gets exactly one action, so characters
             //    swapping/moving slots can no longer cancel each other's fades.
             _activeSpeakerPositions.Clear();
             _speakerOrder.Clear();
@@ -374,7 +374,7 @@ namespace HalloweenVN.UI
                 string name = newOwner[s];
                 string old = prevOwner[s];
 
-                // Previous occupant leaves the screen entirely → fade out a ghost copy
+                // Previous occupant leaves the screen entirely ??fade out a ghost copy
                 if (old != null && old != name && !newNames.Contains(old))
                 {
                     if (!immediate) SpawnGhostFadeOut(img);
@@ -458,7 +458,7 @@ namespace HalloweenVN.UI
 
         /// <summary>
         /// Screen X (anchor center) per slot. Positions depend only on how many characters are shown
-        /// and their left-to-right slot order: 1 → 50%, 2 → 25/75%, 3 → 20/50/80%.
+        /// and their left-to-right slot order: 1 ??50%, 2 ??25/75%, 3 ??20/50/80%.
         /// </summary>
         private static float[] ComputeLayoutTargets(string[] owner)
         {
@@ -539,7 +539,7 @@ namespace HalloweenVN.UI
             _ghostImages.Clear();
         }
 
-        // ═══════════ Scene (background) transition: whole screen → black → new scene ═══════════
+        // ?�═?�═?�═?�═?�═??Scene (background) transition: whole screen ??black ??new scene ?�═?�═?�═?�═?�═??
         private bool _isTransitioningScene = false;
         private bool _sceneTransitionPastMidpoint = false;
         private bool _freshDialogue = false;
@@ -601,7 +601,7 @@ namespace HalloweenVN.UI
             }
             ov.color = Color.black;
 
-            // Swap scene while fully black — characters placed instantly so they're already there on reveal
+            // Swap scene while fully black ??characters placed instantly so they're already there on reveal
             _sceneTransitionPastMidpoint = true;
             DialogueNode node = _pendingTransitionNode;
             _pendingTransitionNode = null;
@@ -738,7 +738,7 @@ namespace HalloweenVN.UI
             ClearChoices();
         }
 
-        // ═══════════ Character Image Helpers ═══════════
+        // ?�═?�═?�═?�═?�═??Character Image Helpers ?�═?�═?�═?�═?�═??
         private Image GetCharacterImage(CharacterPosition pos)
         {
             switch (pos)
@@ -752,7 +752,7 @@ namespace HalloweenVN.UI
 
         private CharacterPosition FindFreeSlot()
         {
-            // Priority: Center → Left → Right (1명일 때 중앙부터)
+            // Priority: Center ??Left ??Right (1명일 ??중앙부??
             if (!_activeSpeakerPositions.ContainsValue(CharacterPosition.Center)) return CharacterPosition.Center;
             if (!_activeSpeakerPositions.ContainsValue(CharacterPosition.Left)) return CharacterPosition.Left;
             if (!_activeSpeakerPositions.ContainsValue(CharacterPosition.Right)) return CharacterPosition.Right;
@@ -761,14 +761,14 @@ namespace HalloweenVN.UI
 
         private string ExtractBaseName(string spritePath)
         {
-            // "Characters/카스미/기본" → "카스미"
+            // "Characters/카스�?기본" ??"카스�?
             if (string.IsNullOrEmpty(spritePath)) return "";
             string[] parts = spritePath.Split('/');
             if (parts.Length >= 2) return parts[parts.Length - 2];
             return spritePath;
         }
 
-        // ═══════════ Layout Calculation & Smooth Movement ═══════════
+        // ?�═?�═?�═?�═?�═??Layout Calculation & Smooth Movement ?�═?�═?�═?�═?�═??
         private void UpdateCharacterLayout()
         {
             if (_activeSpeakerPositions.Count == 0) return;
@@ -831,7 +831,7 @@ namespace HalloweenVN.UI
             rt.offsetMax = Vector2.zero;
         }
 
-        // ═══════════ Character FadeIn / FadeOut ═══════════
+        // ?�═?�═?�═?�═?�═??Character FadeIn / FadeOut ?�═?�═?�═?�═?�═??
         private void StartFadeIn(Image img, float startAlpha = 0f)
         {
             if (img == null) return;
@@ -920,12 +920,12 @@ namespace HalloweenVN.UI
             _speakerOrder.Clear();
         }
 
-        // ═══════════ Speaker Highlight / Dim ═══════════
+        // ?�═?�═?�═?�═?�═??Speaker Highlight / Dim ?�═?�═?�═?�═?�═??
         private void UpdateSpeakerHighlight(string speaker, bool instant = false)
         {
             if (string.IsNullOrWhiteSpace(speaker))
             {
-                // Narrator — all active characters stay bright
+                // Narrator ??all active characters stay bright
                 foreach (var kvp in _activeSpeakerPositions)
                 {
                     DimCharacterImage(GetCharacterImage(kvp.Value), true, instant);
@@ -988,7 +988,7 @@ namespace HalloweenVN.UI
             image.color = finalC;
         }
 
-        // ═══════════ Sprite Loading ═══════════
+        // ?�═?�═?�═?�═?�═??Sprite Loading ?�═?�═?�═?�═?�═??
         private static Dictionary<string, Sprite> _spriteCache = new Dictionary<string, Sprite>();
 
         private void LoadSpriteToImage(Image img, string spritePath)
@@ -998,7 +998,7 @@ namespace HalloweenVN.UI
             Sprite sprite = LoadSpriteCached(spritePath);
             if (sprite == null)
             {
-                // Missing expression → fall back to the same character's default sprite instead of
+                // Missing expression ??fall back to the same character's default sprite instead of
                 // leaving the slot's previous sprite (which may belong to a different character).
                 string fallback = null;
                 int slash = spritePath.LastIndexOf('/');
@@ -1041,7 +1041,7 @@ namespace HalloweenVN.UI
             return sprite;
         }
 
-        // ═══════════ Background ═══════════
+        // ?�═?�═?�═?�═?�═??Background ?�═?�═?�═?�═?�═??
         private string _currentBgPath;
 
         private System.Collections.IEnumerator CrossfadePanels(bool toDialogue)
@@ -1109,7 +1109,7 @@ namespace HalloweenVN.UI
             }
         }
 
-        // ═══════════ Typing ═══════════
+        // ?�═?�═?�═?�═?�═??Typing ?�═?�═?�═?�═?�═??
         private IEnumerator TypeText(TextMeshProUGUI target, string text)
         {
             Debug.Log($"[DialogueUI] TypeText started for: {text}");
@@ -1118,19 +1118,19 @@ namespace HalloweenVN.UI
             if (target != null)
             {
                 target.text = text;
-                target.maxVisibleCharacters = 0; // 플리커링 방지를 위해 미리 0으로 설정
+                target.maxVisibleCharacters = 0; // ?�리커링 방�?�??�해 미리 0?�로 ?�정
             }
 
-            // Canvas Layout이 반영될 수 있도록 1프레임 대기
+            // Canvas Layout??반영?????�도�?1?�레???��?
             yield return null;
-            // 배경 전환(암전) 중에는 화면이 다시 밝아진 뒤부터 타이핑 시작
+            // 배경 ?�환(?�전) 중에???�면???�시 밝아�??��????�?�핑 ?�작
             while (_isTransitioningScene) yield return null;
 
             if (target != null)
             {
                 target.ForceMeshUpdate(true);
                 
-                // === 내레이션 텍스트 세로 밀림 현상 방지 ===
+                // === ?�레?�션 ?�스???�로 밀�??�상 방�? ===
                 if (target == narratorText)
                 {
                     float prefH = target.preferredHeight;
@@ -1141,7 +1141,7 @@ namespace HalloweenVN.UI
                     target.alignment = TextAlignmentOptions.Top;
                 }
 
-                target.maxVisibleCharacters = 0; // 혹시 몰라 다시 0으로 설정
+                target.maxVisibleCharacters = 0; // ?�시 몰라 ?�시 0?�로 ?�정
                 Debug.Log($"[DialogueUI] TMPro rect size: {target.rectTransform.rect.size}, Active: {target.gameObject.activeInHierarchy}");
             }
 
@@ -1157,7 +1157,7 @@ namespace HalloweenVN.UI
             {
                 target.maxVisibleCharacters = visibleCount;
                 
-                // 줄바꿈(\n) 문자가 출력되었을 때 0.7초 대기 (유저 요청)
+                // 줄바�?\n) 문자가 출력?�었????0.7�??��?(?��? ?�청)
                 if (visibleCount > 0 && visibleCount <= target.textInfo.characterCount)
                 {
                     char c = target.textInfo.characterInfo[visibleCount - 1].character;
@@ -1206,7 +1206,7 @@ namespace HalloweenVN.UI
             return false;
         }
 
-        // ═══════════ Click / Input ═══════════
+        // ?�═?�═?�═?�═?�═??Click / Input ?�═?�═?�═?�═?�═??
         public void SkipTyping()
         {
             Debug.Log($"[DialogueUI] SkipTyping called.");
@@ -1332,7 +1332,7 @@ namespace HalloweenVN.UI
             }
         }
 
-        // ═══════════ Choices ═══════════
+        // ?�═?�═?�═?�═?�═??Choices ?�═?�═?�═?�═?�═??
         public void ShowChoices(List<DialogueChoice> choices)
         {
             ClearChoices();
@@ -1381,7 +1381,7 @@ namespace HalloweenVN.UI
             }
         }
 
-        // ═══════════ Auto / Skip ═══════════
+        // ?�═?�═?�═?�═?�═??Auto / Skip ?�═?�═?�═?�═?�═??
         public void ToggleAutoPlay()
         {
             isAutoPlay = !isAutoPlay;
