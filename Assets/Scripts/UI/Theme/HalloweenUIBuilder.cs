@@ -118,7 +118,15 @@ namespace HalloweenVN.UI.Theme
             // Background
             GameObject bgObj = UIHelper.CreateUIObject("Background", lobbyPanelRoot.transform);
             UIHelper.StretchFull(bgObj.GetComponent<RectTransform>());
-            Sprite bgSprite = Resources.Load<Sprite>("Images/bg_agency_exterior");
+            Sprite bgSprite = Resources.Load<Sprite>("Images/bg_lobby");
+            if (bgSprite == null)
+            {
+                Texture2D tex = Resources.Load<Texture2D>("Images/bg_lobby");
+                if (tex != null)
+                {
+                    bgSprite = Sprite.Create(tex, new Rect(0, 0, tex.width, tex.height), new Vector2(0.5f, 0.5f));
+                }
+            }
             Image bgImg = UIHelper.AddImage(bgObj, new Color(1f, 1f, 1f, 1f), bgSprite); // 100% opacity
             if (bgSprite == null)
             {
