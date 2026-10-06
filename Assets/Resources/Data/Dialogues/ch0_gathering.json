@@ -8,7 +8,7 @@
             "characterSpriteLeft": "",
             "characterSpriteCenter": "",
             "characterSpriteRight": "",
-            "backgroundSprite": "Images/bg_mansion_night",
+            "backgroundSprite": "Images/bg_agency_interior_night",
             "choices": [],
             "nextNodeId": 1,
             "command": "AUDIO:PLAY_BGM:bgm_office_night"
@@ -105,7 +105,7 @@
             "characterSpriteLeft": "Characters/세이카/웃음",
             "characterSpriteCenter": "",
             "characterSpriteRight": "Characters/카스미/기본",
-            "backgroundSprite": "",
+            "backgroundSprite": "Images/bg_city_night",
             "choices": [],
             "nextNodeId": 9,
             "command": ""
@@ -113,7 +113,7 @@
         {
             "id": 9,
             "speaker": "",
-            "text": "첫 번째 의뢰 현장에서, 실종된 후배를 찾으러 혼자 뛰어든 여자와 마주쳤다.",
+            "text": "구시가지의 위험한 뒷골목에서, 실종된 후배를 찾으러 혼자 뛰어든 여자와 마주쳤다.",
             "characterSpriteLeft": "Characters/세이카/웃음",
             "characterSpriteCenter": "",
             "characterSpriteRight": "Characters/카스미/기본",
@@ -168,7 +168,7 @@
             "characterSpriteLeft": "Characters/카스미/찡그림",
             "characterSpriteCenter": "Characters/리나/웃음",
             "characterSpriteRight": "Characters/세이카/웃음",
-            "backgroundSprite": "",
+            "backgroundSprite": "Images/bg_agency_interior_morning",
             "choices": [],
             "nextNodeId": 14,
             "command": ""
@@ -229,7 +229,7 @@
             "characterSpriteLeft": "Characters/리리스/기본",
             "characterSpriteCenter": "",
             "characterSpriteRight": "Characters/세이카/기본",
-            "backgroundSprite": "",
+            "backgroundSprite": "Images/bg_agency_interior_morning",
             "choices": [],
             "nextNodeId": 19,
             "command": ""
@@ -292,7 +292,7 @@
             "characterSpriteLeft": "Characters/리나/기본",
             "characterSpriteCenter": "",
             "characterSpriteRight": "Characters/하루카/홍조",
-            "backgroundSprite": "",
+            "backgroundSprite": "Images/bg_mansion_night",
             "choices": [],
             "nextNodeId": 24,
             "command": ""
@@ -389,7 +389,7 @@
             "characterSpriteLeft": "Characters/세이카/웃음",
             "characterSpriteCenter": "",
             "characterSpriteRight": "Characters/미나/홍조",
-            "backgroundSprite": "",
+            "backgroundSprite": "Images/bg_agency_interior_night",
             "choices": [],
             "nextNodeId": 32,
             "command": ""
