@@ -34,7 +34,7 @@
             "nextNodeId": 3,
             "characterSpriteLeft": "Characters/리나/놀람",
             "characterSpriteCenter": "",
-            "characterSpriteRight": "Characters/카스미/기본",
+            "characterSpriteRight": "Characters/카스미/찡그림",
             "choices": []
         },
         {
@@ -44,7 +44,7 @@
             "command": "",
             "id": 3,
             "nextNodeId": 4,
-            "characterSpriteLeft": "Characters/리나/기본",
+            "characterSpriteLeft": "Characters/리나/놀람",
             "characterSpriteCenter": "",
             "characterSpriteRight": "Characters/카스미/찡그림",
             "choices": [],
@@ -57,7 +57,7 @@
             "command": "",
             "id": 4,
             "nextNodeId": 5,
-            "characterSpriteLeft": "Characters/리나/기본",
+            "characterSpriteLeft": "Characters/리나/놀람",
             "characterSpriteCenter": "",
             "characterSpriteRight": "Characters/카스미/찡그림",
             "choices": []
@@ -96,7 +96,7 @@
             "nextNodeId": 8,
             "characterSpriteLeft": "Characters/리리스/기본",
             "characterSpriteCenter": "",
-            "characterSpriteRight": "Characters/미나/기본",
+            "characterSpriteRight": "Characters/미나/음침",
             "choices": [],
             "noFade": true
         },
@@ -109,7 +109,7 @@
             "nextNodeId": 9,
             "characterSpriteLeft": "Characters/리리스/기본",
             "characterSpriteCenter": "",
-            "characterSpriteRight": "Characters/미나/기본",
+            "characterSpriteRight": "Characters/미나/음침",
             "choices": []
         },
         {
@@ -119,9 +119,9 @@
             "command": "",
             "id": 9,
             "nextNodeId": 10,
-            "characterSpriteLeft": "Characters/하루카/기본",
+            "characterSpriteLeft": "Characters/하루카/공포",
             "characterSpriteCenter": "",
-            "characterSpriteRight": "Characters/미나/기본",
+            "characterSpriteRight": "Characters/미나/음침",
             "choices": []
         },
         {
@@ -131,7 +131,7 @@
             "command": "",
             "id": 10,
             "nextNodeId": 11,
-            "characterSpriteLeft": "Characters/하루카/기본",
+            "characterSpriteLeft": "Characters/하루카/공포",
             "characterSpriteCenter": "",
             "characterSpriteRight": "Characters/미나/음침",
             "choices": [],
@@ -144,7 +144,7 @@
             "command": "",
             "id": 11,
             "nextNodeId": 12,
-            "characterSpriteLeft": "Characters/하루카/기본",
+            "characterSpriteLeft": "Characters/하루카/공포",
             "characterSpriteCenter": "",
             "characterSpriteRight": "Characters/미나/음침",
             "choices": []
@@ -156,7 +156,7 @@
             "command": "",
             "id": 12,
             "nextNodeId": 13,
-            "characterSpriteLeft": "Characters/하루카/기본",
+            "characterSpriteLeft": "Characters/하루카/공포",
             "characterSpriteCenter": "",
             "characterSpriteRight": "Characters/미나/음침",
             "choices": []
@@ -168,9 +168,9 @@
             "command": "",
             "id": 13,
             "nextNodeId": 14,
-            "characterSpriteLeft": "Characters/하루카/기본",
+            "characterSpriteLeft": "Characters/하루카/측은",
             "characterSpriteCenter": "",
-            "characterSpriteRight": "Characters/미나/기본",
+            "characterSpriteRight": "Characters/미나/음침",
             "choices": [],
             "noFade": true
         },
@@ -181,7 +181,7 @@
             "command": "",
             "id": 14,
             "nextNodeId": 15,
-            "characterSpriteLeft": "Characters/하루카/기본",
+            "characterSpriteLeft": "Characters/하루카/측은",
             "characterSpriteCenter": "",
             "characterSpriteRight": "Characters/미나/음침",
             "choices": [],
@@ -220,7 +220,7 @@
             "id": 17,
             "nextNodeId": 18,
             "characterSpriteLeft": "",
-            "characterSpriteCenter": "Characters/카스미/기본",
+            "characterSpriteCenter": "Characters/카스미/찡그림",
             "characterSpriteRight": "",
             "choices": [],
             "noFade": true
@@ -266,7 +266,7 @@
             "text": "음의 길이가 패턴? 어떤 의미가 있는 건가요?",
             "command": "",
             "characterSpriteLeft": "Characters/리리스/기본",
-            "characterSpriteCenter": "Characters/카스미/기본",
+            "characterSpriteCenter": "Characters/카스미/찡그림",
             "characterSpriteRight": "Characters/리나/기본",
             "backgroundSprite": "",
             "choices": [],
@@ -278,7 +278,7 @@
             "text": "짧은 음과 긴 음이 번갈아 나옴. 이건... 모스 부호.",
             "command": "",
             "characterSpriteLeft": "Characters/리리스/기본",
-            "characterSpriteCenter": "Characters/카스미/기본",
+            "characterSpriteCenter": "Characters/카스미/찡그림",
             "characterSpriteRight": "Characters/리나/기본",
             "backgroundSprite": "",
             "choices": [],
@@ -290,8 +290,8 @@
             "text": "...거짓말. 음악으로... 말을 걸고 있는 거였어?",
             "command": "",
             "characterSpriteLeft": "Characters/리리스/기본",
-            "characterSpriteCenter": "Characters/카스미/기본",
-            "characterSpriteRight": "Characters/리나/기본",
+            "characterSpriteCenter": "Characters/카스미/찡그림",
+            "characterSpriteRight": "Characters/리나/놀람",
             "backgroundSprite": "",
             "choices": [],
             "id": 23,
@@ -302,8 +302,8 @@
             "text": "피아니스트니까. 음의 장단으로 메시지를 전하는 건 오히려 자연스러움.",
             "command": "",
             "characterSpriteLeft": "Characters/리리스/기본",
-            "characterSpriteCenter": "Characters/카스미/기본",
-            "characterSpriteRight": "Characters/리나/기본",
+            "characterSpriteCenter": "Characters/카스미/찡그림",
+            "characterSpriteRight": "Characters/리나/놀람",
             "backgroundSprite": "",
             "choices": [],
             "id": 24,
@@ -314,8 +314,8 @@
             "text": "화면의 점과 선들이 이내 몇 개의 글자로 변환되었다.",
             "command": "",
             "characterSpriteLeft": "Characters/리리스/기본",
-            "characterSpriteCenter": "Characters/카스미/기본",
-            "characterSpriteRight": "Characters/리나/기본",
+            "characterSpriteCenter": "Characters/카스미/찡그림",
+            "characterSpriteRight": "Characters/리나/놀람",
             "backgroundSprite": "",
             "choices": [],
             "id": 25,
@@ -339,7 +339,7 @@
             "command": "",
             "characterSpriteLeft": "Characters/리리스/기본",
             "characterSpriteCenter": "",
-            "characterSpriteRight": "Characters/하루카/기본",
+            "characterSpriteRight": "Characters/하루카/놀람",
             "backgroundSprite": "",
             "choices": [],
             "id": 27,
@@ -350,9 +350,9 @@
             "speaker": "리리스",
             "text": "뒷부분은 노이즈에 묻혀서 복원이 안 됨. 이름의 일부만 남음.",
             "command": "",
-            "characterSpriteLeft": "Characters/리리스/기본",
+            "characterSpriteLeft": "Characters/리리스/찡그림",
             "characterSpriteCenter": "",
-            "characterSpriteRight": "Characters/하루카/기본",
+            "characterSpriteRight": "Characters/하루카/측은",
             "backgroundSprite": "",
             "choices": [],
             "id": 28,
@@ -366,9 +366,9 @@
             "command": "",
             "id": 29,
             "nextNodeId": 30,
-            "characterSpriteLeft": "Characters/세이카/기본",
+            "characterSpriteLeft": "Characters/세이카/찡그림",
             "characterSpriteCenter": "",
-            "characterSpriteRight": "Characters/카스미/기본",
+            "characterSpriteRight": "Characters/카스미/찡그림",
             "choices": []
         },
         {
@@ -404,7 +404,7 @@
             "command": "",
             "id": 32,
             "nextNodeId": 33,
-            "characterSpriteLeft": "Characters/세이카/기본",
+            "characterSpriteLeft": "Characters/세이카/찡그림",
             "characterSpriteCenter": "",
             "characterSpriteRight": "Characters/카스미/기본",
             "choices": [],
@@ -417,7 +417,7 @@
             "command": "",
             "id": 33,
             "nextNodeId": 34,
-            "characterSpriteLeft": "Characters/세이카/기본",
+            "characterSpriteLeft": "Characters/세이카/찡그림",
             "characterSpriteCenter": "",
             "characterSpriteRight": "Characters/카스미/기본",
             "choices": [],
@@ -440,9 +440,9 @@
             "speaker": "세이카",
             "text": "완전히 지워지기 직전이니까. 존재가 소멸하는 마지막 단계에서 경계가 얇아지면서, 현실로 소리가 새어나오기 시작한 거야.",
             "command": "",
-            "characterSpriteLeft": "Characters/세이카/기본",
+            "characterSpriteLeft": "Characters/세이카/찡그림",
             "characterSpriteCenter": "",
-            "characterSpriteRight": "Characters/카스미/기본",
+            "characterSpriteRight": "Characters/카스미/찡그림",
             "backgroundSprite": "",
             "choices": [],
             "id": 35,
@@ -453,9 +453,9 @@
             "speaker": "세이카",
             "text": "역설적이지만... 이 소리가 들린다는 건, 이 사람에게 남은 시간이 얼마 없다는 뜻이야.",
             "command": "",
-            "characterSpriteLeft": "Characters/세이카/기본",
+            "characterSpriteLeft": "Characters/세이카/측은",
             "characterSpriteCenter": "",
-            "characterSpriteRight": "Characters/카스미/기본",
+            "characterSpriteRight": "Characters/카스미/찡그림",
             "backgroundSprite": "",
             "choices": [],
             "id": 36,
@@ -469,9 +469,9 @@
             "command": "",
             "id": 37,
             "nextNodeId": 38,
-            "characterSpriteLeft": "Characters/세이카/기본",
+            "characterSpriteLeft": "Characters/세이카/찡그림",
             "characterSpriteCenter": "",
-            "characterSpriteRight": "Characters/카스미/기본",
+            "characterSpriteRight": "Characters/카스미/찡그림",
             "choices": [],
             "noFade": true
         },
@@ -479,7 +479,7 @@
             "id": 38,
             "speaker": "세이카",
             "text": "안타깝게도 2021년의 피해자는 아직 단서조차 찾지 못했어. 하지만 올해, 2026년의 희생자만큼은 반드시 막아야 해.",
-            "characterSpriteLeft": "Characters/세이카/기본",
+            "characterSpriteLeft": "Characters/세이카/찡그림",
             "characterSpriteCenter": "",
             "characterSpriteRight": "Characters/리나/기본",
             "backgroundSprite": "",
@@ -494,9 +494,9 @@
             "command": "",
             "id": 39,
             "nextNodeId": 40,
-            "characterSpriteLeft": "Characters/세이카/기본",
+            "characterSpriteLeft": "Characters/세이카/찡그림",
             "characterSpriteCenter": "",
-            "characterSpriteRight": "Characters/리나/기본",
+            "characterSpriteRight": "Characters/리나/공포",
             "choices": [],
             "noFade": true
         },
@@ -507,9 +507,9 @@
             "command": "",
             "id": 40,
             "nextNodeId": 41,
-            "characterSpriteLeft": "Characters/세이카/기본",
+            "characterSpriteLeft": "Characters/세이카/찡그림",
             "characterSpriteCenter": "",
-            "characterSpriteRight": "Characters/리나/기본",
+            "characterSpriteRight": "Characters/리나/찡그림",
             "choices": [],
             "noFade": true
         },
@@ -520,7 +520,7 @@
             "command": "",
             "id": 41,
             "nextNodeId": 42,
-            "characterSpriteLeft": "Characters/세이카/기본",
+            "characterSpriteLeft": "Characters/세이카/찡그림",
             "characterSpriteCenter": "",
             "characterSpriteRight": "Characters/미나/음침",
             "choices": []
@@ -532,7 +532,7 @@
             "command": "",
             "id": 42,
             "nextNodeId": 43,
-            "characterSpriteLeft": "Characters/세이카/기본",
+            "characterSpriteLeft": "Characters/세이카/찡그림",
             "characterSpriteCenter": "",
             "characterSpriteRight": "Characters/미나/음침",
             "choices": [],
@@ -580,7 +580,7 @@
             "speaker": " ",
             "text": "세이카가 하루카를 바라보았다. 오늘 밤 내내, 다른 누구보다 이 피아니스트의 고독을 이해하고 있었던 건 하루카였다.",
             "command": "",
-            "characterSpriteLeft": "Characters/세이카/기본",
+            "characterSpriteLeft": "Characters/세이카/측은",
             "characterSpriteCenter": "",
             "characterSpriteRight": "Characters/하루카/측은",
             "backgroundSprite": "",
@@ -597,7 +597,7 @@
             "nextNodeId": 48,
             "characterSpriteLeft": "Characters/세이카/기본",
             "characterSpriteCenter": "",
-            "characterSpriteRight": "Characters/하루카/기본",
+            "characterSpriteRight": "Characters/하루카/측은",
             "choices": []
         },
         {
@@ -622,7 +622,7 @@
             "nextNodeId": 50,
             "characterSpriteLeft": "Characters/세이카/기본",
             "characterSpriteCenter": "",
-            "characterSpriteRight": "Characters/하루카/기본",
+            "characterSpriteRight": "Characters/하루카/공포",
             "choices": [],
             "noFade": true
         },
@@ -635,7 +635,7 @@
             "nextNodeId": 51,
             "characterSpriteLeft": "Characters/세이카/기본",
             "characterSpriteCenter": "",
-            "characterSpriteRight": "Characters/하루카/기본",
+            "characterSpriteRight": "Characters/하루카/공포",
             "choices": []
         },
         {
@@ -647,16 +647,16 @@
             "nextNodeId": 52,
             "characterSpriteLeft": "Characters/세이카/기본",
             "characterSpriteCenter": "",
-            "characterSpriteRight": "Characters/하루카/기본",
+            "characterSpriteRight": "Characters/하루카/측은",
             "choices": []
         },
         {
             "speaker": " ",
             "text": "하루카는 알고 있었다. 투명인간 취급을 받으며, 아무도 자신을 봐주지 않는 교실에서 혼자 도시락을 먹던 그 끔찍한 추위를.",
             "command": "",
-            "characterSpriteLeft": "Characters/세이카/기본",
+            "characterSpriteLeft": "Characters/세이카/측은",
             "characterSpriteCenter": "",
-            "characterSpriteRight": "Characters/하루카/기본",
+            "characterSpriteRight": "Characters/하루카/측은",
             "backgroundSprite": "",
             "choices": [],
             "id": 52,
@@ -778,7 +778,7 @@
             "command": "",
             "id": 62,
             "nextNodeId": 63,
-            "characterSpriteLeft": "Characters/리나/기본",
+            "characterSpriteLeft": "Characters/리나/측은",
             "characterSpriteCenter": "",
             "characterSpriteRight": "Characters/카스미/기본",
             "choices": []
@@ -790,9 +790,9 @@
             "command": "",
             "id": 63,
             "nextNodeId": 64,
-            "characterSpriteLeft": "Characters/리나/기본",
+            "characterSpriteLeft": "Characters/리나/측은",
             "characterSpriteCenter": "",
-            "characterSpriteRight": "Characters/카스미/기본",
+            "characterSpriteRight": "Characters/카스미/측은",
             "choices": [],
             "noFade": true
         },
@@ -803,18 +803,18 @@
             "command": "",
             "id": 64,
             "nextNodeId": 65,
-            "characterSpriteLeft": "Characters/리나/기본",
+            "characterSpriteLeft": "Characters/리나/측은",
             "characterSpriteCenter": "",
-            "characterSpriteRight": "Characters/카스미/기본",
+            "characterSpriteRight": "Characters/카스미/측은",
             "choices": []
         },
         {
             "speaker": " ",
             "text": "카스미가 안경을 벗었다. 렌즈에 맺힌 것이 김인지 눈물인지, 그녀 자신도 모르는 것 같았다.",
             "command": "",
-            "characterSpriteLeft": "Characters/리나/기본",
+            "characterSpriteLeft": "Characters/리나/측은",
             "characterSpriteCenter": "",
-            "characterSpriteRight": "Characters/카스미/기본",
+            "characterSpriteRight": "Characters/카스미/측은",
             "backgroundSprite": "",
             "choices": [],
             "id": 65,
@@ -824,7 +824,7 @@
             "speaker": "카스미",
             "text": "...이런 비과학적인 현상을... 언니도 어딘가에서 겪고 있었던 걸까요.",
             "command": "",
-            "characterSpriteLeft": "Characters/리나/기본",
+            "characterSpriteLeft": "Characters/리나/측은",
             "characterSpriteCenter": "",
             "characterSpriteRight": "Characters/카스미/측은",
             "backgroundSprite": "",
@@ -836,7 +836,7 @@
             "speaker": " ",
             "text": "리리스가 노트북을 닫고, 처음으로 맨눈으로 피아노를 바라보았다.",
             "command": "",
-            "characterSpriteLeft": "Characters/리나/기본",
+            "characterSpriteLeft": "Characters/리나/측은",
             "characterSpriteCenter": "",
             "characterSpriteRight": "Characters/카스미/측은",
             "backgroundSprite": "",
@@ -875,9 +875,9 @@
             "nextNodeId": 71,
             "command": "",
             "backgroundSprite": "",
-            "characterSpriteLeft": "Characters/세이카/기본",
+            "characterSpriteLeft": "Characters/세이카/놀람",
             "characterSpriteCenter": "",
-            "characterSpriteRight": "Characters/미나/기본",
+            "characterSpriteRight": "Characters/미나/의아",
             "choices": []
         },
         {
@@ -986,7 +986,7 @@
             "command": "",
             "backgroundSprite": "",
             "characterSpriteLeft": "",
-            "characterSpriteCenter": "Characters/카스미/기본",
+            "characterSpriteCenter": "Characters/카스미/측은",
             "characterSpriteRight": "",
             "choices": []
         },
@@ -1034,7 +1034,7 @@
             "command": "",
             "backgroundSprite": "",
             "characterSpriteLeft": "",
-            "characterSpriteCenter": "Characters/미나/기본",
+            "characterSpriteCenter": "Characters/미나/놀람",
             "characterSpriteRight": "",
             "choices": []
         },
@@ -1046,7 +1046,7 @@
             "command": "EFFECT:SHAKE",
             "backgroundSprite": "",
             "characterSpriteLeft": "",
-            "characterSpriteCenter": "Characters/미나/기본",
+            "characterSpriteCenter": "Characters/미나/놀람",
             "characterSpriteRight": "",
             "choices": []
         },
@@ -1079,7 +1079,7 @@
             "speaker": " ",
             "text": "소녀가 고개를 돌렸다. 여섯 명을 바라보았다. 그리고 — 미소 지었다.",
             "characterSpriteLeft": "",
-            "characterSpriteCenter": "Characters/하루카/놀람",
+            "characterSpriteCenter": "Characters/하루카/미소",
             "characterSpriteRight": "",
             "backgroundSprite": "",
             "choices": [],
@@ -1094,7 +1094,7 @@
             "command": "",
             "backgroundSprite": "",
             "characterSpriteLeft": "",
-            "characterSpriteCenter": "Characters/하루카/놀람",
+            "characterSpriteCenter": "Characters/하루카/측은",
             "characterSpriteRight": "",
             "choices": []
         },
@@ -1118,7 +1118,7 @@
             "command": "",
             "backgroundSprite": "",
             "characterSpriteLeft": "Characters/리리스/기본",
-            "characterSpriteCenter": "Characters/세이카/기본",
+            "characterSpriteCenter": "Characters/세이카/찡그림",
             "characterSpriteRight": "",
             "choices": []
         },
@@ -1130,7 +1130,7 @@
             "command": "",
             "backgroundSprite": "",
             "characterSpriteLeft": "Characters/리리스/기본",
-            "characterSpriteCenter": "Characters/세이카/기본",
+            "characterSpriteCenter": "Characters/세이카/찡그림",
             "characterSpriteRight": "",
             "choices": []
         },
@@ -1142,7 +1142,7 @@
             "command": "",
             "backgroundSprite": "",
             "characterSpriteLeft": "Characters/리리스/기본",
-            "characterSpriteCenter": "Characters/세이카/기본",
+            "characterSpriteCenter": "Characters/세이카/놀람",
             "characterSpriteRight": "",
             "choices": [],
             "noFade": true
@@ -1155,7 +1155,7 @@
             "command": "",
             "backgroundSprite": "",
             "characterSpriteLeft": "Characters/리리스/기본",
-            "characterSpriteCenter": "Characters/세이카/기본",
+            "characterSpriteCenter": "Characters/세이카/웃음",
             "characterSpriteRight": "",
             "choices": []
         },
@@ -1191,7 +1191,7 @@
             "command": "",
             "backgroundSprite": "",
             "characterSpriteLeft": "Characters/리리스/기본",
-            "characterSpriteCenter": "Characters/세이카/기본",
+            "characterSpriteCenter": "Characters/세이카/놀람",
             "characterSpriteRight": "",
             "choices": []
         },
@@ -1202,8 +1202,8 @@
             "nextNodeId": 99,
             "command": "AUDIO:PLAY_BGM:bgm_climax",
             "backgroundSprite": "",
-            "characterSpriteLeft": "Characters/리리스/기본",
-            "characterSpriteCenter": "Characters/세이카/기본",
+            "characterSpriteLeft": "Characters/리리스/놀람",
+            "characterSpriteCenter": "Characters/세이카/놀람",
             "characterSpriteRight": "",
             "choices": []
         },
@@ -1214,8 +1214,8 @@
             "nextNodeId": 100,
             "command": "",
             "backgroundSprite": "",
-            "characterSpriteLeft": "Characters/리리스/기본",
-            "characterSpriteCenter": "Characters/세이카/기본",
+            "characterSpriteLeft": "Characters/리리스/놀람",
+            "characterSpriteCenter": "Characters/세이카/찡그림",
             "characterSpriteRight": "",
             "choices": []
         },
@@ -1226,9 +1226,9 @@
             "nextNodeId": 101,
             "command": "",
             "backgroundSprite": "Images/bg_abandoned_practice_room",
-            "characterSpriteLeft": "Characters/리리스/기본",
-            "characterSpriteCenter": "Characters/세이카/기본",
-            "characterSpriteRight": "Characters/카스미/기본",
+            "characterSpriteLeft": "Characters/리리스/찡그림",
+            "characterSpriteCenter": "Characters/세이카/찡그림",
+            "characterSpriteRight": "Characters/카스미/당황2",
             "choices": []
         },
         {
@@ -1239,8 +1239,8 @@
             "command": "",
             "backgroundSprite": "",
             "characterSpriteLeft": "Characters/리리스/찡그림",
-            "characterSpriteCenter": "Characters/세이카/기본",
-            "characterSpriteRight": "Characters/카스미/기본",
+            "characterSpriteCenter": "Characters/세이카/찡그림",
+            "characterSpriteRight": "Characters/카스미/당황2",
             "choices": []
         },
         {
@@ -1251,8 +1251,8 @@
             "command": "",
             "backgroundSprite": "",
             "characterSpriteLeft": "Characters/리리스/찡그림",
-            "characterSpriteCenter": "Characters/세이카/기본",
-            "characterSpriteRight": "Characters/카스미/기본",
+            "characterSpriteCenter": "Characters/세이카/찡그림",
+            "characterSpriteRight": "Characters/카스미/찡그림",
             "choices": []
         },
         {
@@ -1263,8 +1263,8 @@
             "command": "",
             "backgroundSprite": "",
             "characterSpriteLeft": "Characters/리리스/찡그림",
-            "characterSpriteCenter": "Characters/세이카/기본",
-            "characterSpriteRight": "Characters/카스미/기본",
+            "characterSpriteCenter": "Characters/세이카/찡그림",
+            "characterSpriteRight": "Characters/카스미/찡그림",
             "choices": []
         },
         {
@@ -1275,8 +1275,8 @@
             "command": "",
             "backgroundSprite": "",
             "characterSpriteLeft": "Characters/리리스/찡그림",
-            "characterSpriteCenter": "Characters/세이카/기본",
-            "characterSpriteRight": "Characters/카스미/기본",
+            "characterSpriteCenter": "Characters/세이카/측은",
+            "characterSpriteRight": "Characters/카스미/측은",
             "choices": []
         },
         {
@@ -1286,9 +1286,9 @@
             "nextNodeId": 106,
             "command": "",
             "backgroundSprite": "",
-            "characterSpriteLeft": "Characters/하루카/홍조",
-            "characterSpriteCenter": "Characters/세이카/기본",
-            "characterSpriteRight": "Characters/카스미/기본",
+            "characterSpriteLeft": "Characters/하루카/놀람",
+            "characterSpriteCenter": "Characters/세이카/찡그림",
+            "characterSpriteRight": "Characters/카스미/찡그림",
             "choices": []
         },
         {
@@ -1299,8 +1299,8 @@
             "command": "",
             "backgroundSprite": "",
             "characterSpriteLeft": "Characters/리나/찡그림",
-            "characterSpriteCenter": "Characters/세이카/기본",
-            "characterSpriteRight": "Characters/카스미/기본",
+            "characterSpriteCenter": "Characters/세이카/찡그림",
+            "characterSpriteRight": "Characters/카스미/찡그림",
             "choices": []
         },
         {
@@ -1311,8 +1311,8 @@
             "command": "",
             "backgroundSprite": "",
             "characterSpriteLeft": "Characters/리나/찡그림",
-            "characterSpriteCenter": "Characters/세이카/기본",
-            "characterSpriteRight": "Characters/카스미/기본",
+            "characterSpriteCenter": "Characters/세이카/찡그림",
+            "characterSpriteRight": "Characters/카스미/찡그림",
             "choices": []
         },
         {
@@ -1323,8 +1323,8 @@
             "command": "",
             "backgroundSprite": "",
             "characterSpriteLeft": "Characters/리나/찡그림",
-            "characterSpriteCenter": "Characters/세이카/기본",
-            "characterSpriteRight": "Characters/카스미/기본",
+            "characterSpriteCenter": "Characters/세이카/찡그림",
+            "characterSpriteRight": "Characters/카스미/찡그림",
             "choices": []
         },
         {
@@ -1334,9 +1334,9 @@
             "nextNodeId": 110,
             "command": "",
             "backgroundSprite": "",
-            "characterSpriteLeft": "Characters/리리스/찡그림",
-            "characterSpriteCenter": "Characters/세이카/기본",
-            "characterSpriteRight": "Characters/카스미/기본",
+            "characterSpriteLeft": "Characters/리리스/경멸",
+            "characterSpriteCenter": "Characters/세이카/찡그림",
+            "characterSpriteRight": "Characters/카스미/찡그림",
             "choices": []
         },
         {
@@ -1347,8 +1347,8 @@
             "command": "",
             "backgroundSprite": "",
             "characterSpriteLeft": "Characters/미나/음침",
-            "characterSpriteCenter": "Characters/세이카/기본",
-            "characterSpriteRight": "Characters/카스미/기본",
+            "characterSpriteCenter": "Characters/세이카/찡그림",
+            "characterSpriteRight": "Characters/카스미/찡그림",
             "choices": []
         },
         {
@@ -1359,8 +1359,8 @@
             "command": "",
             "backgroundSprite": "",
             "characterSpriteLeft": "Characters/미나/음침",
-            "characterSpriteCenter": "Characters/세이카/기본",
-            "characterSpriteRight": "Characters/카스미/기본",
+            "characterSpriteCenter": "Characters/세이카/찡그림",
+            "characterSpriteRight": "Characters/카스미/찡그림",
             "choices": []
         },
         {
@@ -1371,8 +1371,8 @@
             "command": "",
             "backgroundSprite": "",
             "characterSpriteLeft": "Characters/미나/음침",
-            "characterSpriteCenter": "Characters/세이카/기본",
-            "characterSpriteRight": "Characters/카스미/기본",
+            "characterSpriteCenter": "Characters/세이카/찡그림",
+            "characterSpriteRight": "Characters/카스미/찡그림",
             "choices": []
         },
         {
@@ -1383,8 +1383,8 @@
             "command": "",
             "backgroundSprite": "",
             "characterSpriteLeft": "Characters/하루카/측은",
-            "characterSpriteCenter": "Characters/세이카/기본",
-            "characterSpriteRight": "Characters/카스미/기본",
+            "characterSpriteCenter": "Characters/세이카/측은",
+            "characterSpriteRight": "Characters/카스미/측은",
             "choices": []
         },
         {
@@ -1395,8 +1395,8 @@
             "command": "",
             "backgroundSprite": "",
             "characterSpriteLeft": "Characters/하루카/측은",
-            "characterSpriteCenter": "Characters/세이카/기본",
-            "characterSpriteRight": "Characters/카스미/기본",
+            "characterSpriteCenter": "Characters/세이카/측은",
+            "characterSpriteRight": "Characters/카스미/측은",
             "choices": [],
             "noFade": true
         },
@@ -1408,8 +1408,8 @@
             "command": "",
             "backgroundSprite": "",
             "characterSpriteLeft": "Characters/하루카/측은",
-            "characterSpriteCenter": "Characters/세이카/기본",
-            "characterSpriteRight": "Characters/카스미/기본",
+            "characterSpriteCenter": "Characters/세이카/찡그림",
+            "characterSpriteRight": "Characters/카스미/찡그림",
             "choices": []
         },
         {
@@ -1419,9 +1419,9 @@
             "nextNodeId": 117,
             "command": "",
             "backgroundSprite": "",
-            "characterSpriteLeft": "Characters/리리스/기본",
-            "characterSpriteCenter": "Characters/세이카/기본",
-            "characterSpriteRight": "Characters/카스미/기본",
+            "characterSpriteLeft": "Characters/리리스/찡그림",
+            "characterSpriteCenter": "Characters/세이카/찡그림",
+            "characterSpriteRight": "Characters/카스미/찡그림",
             "choices": []
         },
         {
@@ -1431,9 +1431,9 @@
             "nextNodeId": 118,
             "command": "",
             "backgroundSprite": "",
-            "characterSpriteLeft": "Characters/리리스/기본",
-            "characterSpriteCenter": "Characters/세이카/기본",
-            "characterSpriteRight": "Characters/카스미/기본",
+            "characterSpriteLeft": "Characters/리리스/찡그림",
+            "characterSpriteCenter": "Characters/세이카/찡그림",
+            "characterSpriteRight": "Characters/카스미/찡그림",
             "choices": []
         },
         {
@@ -1443,9 +1443,9 @@
             "nextNodeId": 119,
             "command": "",
             "backgroundSprite": "",
-            "characterSpriteLeft": "Characters/리리스/기본",
-            "characterSpriteCenter": "Characters/세이카/기본",
-            "characterSpriteRight": "Characters/카스미/기본",
+            "characterSpriteLeft": "Characters/리리스/찡그림",
+            "characterSpriteCenter": "Characters/세이카/찡그림",
+            "characterSpriteRight": "Characters/카스미/찡그림",
             "choices": []
         },
         {
@@ -1455,9 +1455,9 @@
             "nextNodeId": 120,
             "command": "",
             "backgroundSprite": "",
-            "characterSpriteLeft": "Characters/리리스/기본",
-            "characterSpriteCenter": "Characters/세이카/기본",
-            "characterSpriteRight": "Characters/카스미/기본",
+            "characterSpriteLeft": "Characters/리리스/찡그림",
+            "characterSpriteCenter": "Characters/세이카/찡그림",
+            "characterSpriteRight": "Characters/카스미/찡그림",
             "choices": []
         },
         {
@@ -1468,7 +1468,7 @@
             "command": "",
             "backgroundSprite": "",
             "characterSpriteLeft": "Characters/리리스/기본",
-            "characterSpriteCenter": "Characters/세이카/기본",
+            "characterSpriteCenter": "Characters/세이카/놀람",
             "characterSpriteRight": "Characters/카스미/기본",
             "choices": []
         },
@@ -1480,7 +1480,7 @@
             "command": "",
             "backgroundSprite": "",
             "characterSpriteLeft": "Characters/리리스/기본",
-            "characterSpriteCenter": "Characters/세이카/기본",
+            "characterSpriteCenter": "Characters/세이카/놀람",
             "characterSpriteRight": "Characters/카스미/기본",
             "choices": []
         },
@@ -1491,7 +1491,7 @@
             "nextNodeId": 123,
             "command": "",
             "backgroundSprite": "",
-            "characterSpriteLeft": "Characters/리리스/기본",
+            "characterSpriteLeft": "Characters/리리스/눈 감음",
             "characterSpriteCenter": "Characters/세이카/기본",
             "characterSpriteRight": "Characters/카스미/기본",
             "choices": []
@@ -1503,7 +1503,7 @@
             "nextNodeId": 124,
             "command": "AUDIO:STOP_BGM",
             "backgroundSprite": "",
-            "characterSpriteLeft": "Characters/리리스/기본",
+            "characterSpriteLeft": "Characters/리리스/눈 감음",
             "characterSpriteCenter": "Characters/세이카/기본",
             "characterSpriteRight": "Characters/카스미/기본",
             "choices": []
@@ -1515,9 +1515,9 @@
             "nextNodeId": 125,
             "command": "",
             "backgroundSprite": "",
-            "characterSpriteLeft": "Characters/리리스/기본",
-            "characterSpriteCenter": "Characters/세이카/기본",
-            "characterSpriteRight": "Characters/카스미/기본",
+            "characterSpriteLeft": "Characters/리리스/놀람",
+            "characterSpriteCenter": "Characters/세이카/놀람",
+            "characterSpriteRight": "Characters/카스미/당황2",
             "choices": []
         },
         {
@@ -1528,8 +1528,8 @@
             "command": "",
             "backgroundSprite": "",
             "characterSpriteLeft": "Characters/리리스/기본",
-            "characterSpriteCenter": "Characters/세이카/기본",
-            "characterSpriteRight": "Characters/카스미/기본",
+            "characterSpriteCenter": "Characters/세이카/놀람",
+            "characterSpriteRight": "Characters/카스미/당황2",
             "choices": []
         },
         {
@@ -1540,8 +1540,8 @@
             "command": "",
             "backgroundSprite": "",
             "characterSpriteLeft": "Characters/리리스/기본",
-            "characterSpriteCenter": "Characters/세이카/기본",
-            "characterSpriteRight": "Characters/카스미/기본",
+            "characterSpriteCenter": "Characters/세이카/측은",
+            "characterSpriteRight": "Characters/카스미/측은",
             "choices": []
         },
         {
@@ -1552,8 +1552,8 @@
             "command": "",
             "backgroundSprite": "",
             "characterSpriteLeft": "Characters/리리스/기본",
-            "characterSpriteCenter": "Characters/세이카/기본",
-            "characterSpriteRight": "Characters/카스미/기본",
+            "characterSpriteCenter": "Characters/세이카/측은",
+            "characterSpriteRight": "Characters/카스미/측은",
             "choices": []
         },
         {
@@ -1564,8 +1564,8 @@
             "command": "",
             "backgroundSprite": "",
             "characterSpriteLeft": "Characters/리리스/기본",
-            "characterSpriteCenter": "Characters/세이카/기본",
-            "characterSpriteRight": "Characters/카스미/기본",
+            "characterSpriteCenter": "Characters/세이카/측은",
+            "characterSpriteRight": "Characters/카스미/측은",
             "choices": []
         },
         {
@@ -1575,9 +1575,9 @@
             "nextNodeId": 130,
             "command": "",
             "backgroundSprite": "",
-            "characterSpriteLeft": "Characters/리리스/기본",
-            "characterSpriteCenter": "Characters/세이카/기본",
-            "characterSpriteRight": "Characters/카스미/기본",
+            "characterSpriteLeft": "Characters/리리스/측은",
+            "characterSpriteCenter": "Characters/세이카/측은",
+            "characterSpriteRight": "Characters/카스미/측은",
             "choices": []
         },
         {
@@ -1587,9 +1587,9 @@
             "nextNodeId": 131,
             "command": "",
             "backgroundSprite": "",
-            "characterSpriteLeft": "Characters/리리스/기본",
-            "characterSpriteCenter": "Characters/세이카/기본",
-            "characterSpriteRight": "Characters/카스미/기본",
+            "characterSpriteLeft": "Characters/리리스/측은",
+            "characterSpriteCenter": "Characters/세이카/측은",
+            "characterSpriteRight": "Characters/카스미/측은",
             "choices": []
         },
         {
@@ -1599,9 +1599,9 @@
             "nextNodeId": 132,
             "command": "",
             "backgroundSprite": "",
-            "characterSpriteLeft": "Characters/리리스/기본",
-            "characterSpriteCenter": "Characters/세이카/기본",
-            "characterSpriteRight": "Characters/카스미/기본",
+            "characterSpriteLeft": "Characters/리리스/측은",
+            "characterSpriteCenter": "Characters/세이카/측은",
+            "characterSpriteRight": "Characters/카스미/측은",
             "choices": []
         },
         {
@@ -1612,8 +1612,8 @@
             "command": "",
             "backgroundSprite": "",
             "characterSpriteLeft": "Characters/하루카/측은",
-            "characterSpriteCenter": "Characters/세이카/기본",
-            "characterSpriteRight": "Characters/카스미/기본",
+            "characterSpriteCenter": "Characters/세이카/측은",
+            "characterSpriteRight": "Characters/카스미/측은",
             "choices": []
         },
         {
@@ -1623,9 +1623,9 @@
             "nextNodeId": 134,
             "command": "",
             "backgroundSprite": "",
-            "characterSpriteLeft": "Characters/하루카/측은",
-            "characterSpriteCenter": "Characters/세이카/기본",
-            "characterSpriteRight": "Characters/카스미/기본",
+            "characterSpriteLeft": "Characters/하루카/미소",
+            "characterSpriteCenter": "Characters/세이카/측은",
+            "characterSpriteRight": "Characters/카스미/측은",
             "choices": []
         },
         {
@@ -1635,9 +1635,9 @@
             "nextNodeId": 135,
             "command": "AUDIO:PLAY_BGM:bgm_ending_piano",
             "backgroundSprite": "",
-            "characterSpriteLeft": "Characters/하루카/측은",
-            "characterSpriteCenter": "Characters/세이카/기본",
-            "characterSpriteRight": "Characters/카스미/기본",
+            "characterSpriteLeft": "Characters/하루카/미소",
+            "characterSpriteCenter": "Characters/세이카/측은",
+            "characterSpriteRight": "Characters/카스미/측은",
             "choices": []
         },
         {
@@ -1647,9 +1647,9 @@
             "nextNodeId": 136,
             "command": "",
             "backgroundSprite": "",
-            "characterSpriteLeft": "Characters/하루카/측은",
-            "characterSpriteCenter": "Characters/세이카/기본",
-            "characterSpriteRight": "Characters/카스미/기본",
+            "characterSpriteLeft": "Characters/하루카/미소",
+            "characterSpriteCenter": "Characters/세이카/측은",
+            "characterSpriteRight": "Characters/카스미/측은",
             "choices": []
         },
         {
@@ -1659,9 +1659,9 @@
             "nextNodeId": 137,
             "command": "",
             "backgroundSprite": "",
-            "characterSpriteLeft": "Characters/리나/기본",
-            "characterSpriteCenter": "Characters/세이카/기본",
-            "characterSpriteRight": "Characters/카스미/기본",
+            "characterSpriteLeft": "Characters/리나/측은",
+            "characterSpriteCenter": "Characters/세이카/측은",
+            "characterSpriteRight": "Characters/카스미/측은",
             "choices": []
         },
         {
@@ -1671,9 +1671,9 @@
             "nextNodeId": 138,
             "command": "",
             "backgroundSprite": "",
-            "characterSpriteLeft": "Characters/리나/기본",
-            "characterSpriteCenter": "Characters/세이카/기본",
-            "characterSpriteRight": "Characters/카스미/기본",
+            "characterSpriteLeft": "Characters/리나/측은",
+            "characterSpriteCenter": "Characters/세이카/측은",
+            "characterSpriteRight": "Characters/카스미/측은",
             "choices": []
         },
         {
@@ -1683,9 +1683,9 @@
             "nextNodeId": 139,
             "command": "",
             "backgroundSprite": "",
-            "characterSpriteLeft": "Characters/리나/기본",
-            "characterSpriteCenter": "Characters/세이카/기본",
-            "characterSpriteRight": "Characters/카스미/기본",
+            "characterSpriteLeft": "Characters/리나/측은",
+            "characterSpriteCenter": "Characters/세이카/측은",
+            "characterSpriteRight": "Characters/카스미/측은",
             "choices": []
         },
         {
@@ -1695,9 +1695,9 @@
             "nextNodeId": 140,
             "command": "",
             "backgroundSprite": "",
-            "characterSpriteLeft": "Characters/리나/기본",
-            "characterSpriteCenter": "Characters/세이카/기본",
-            "characterSpriteRight": "Characters/카스미/기본",
+            "characterSpriteLeft": "Characters/리나/측은",
+            "characterSpriteCenter": "Characters/세이카/측은",
+            "characterSpriteRight": "Characters/카스미/측은",
             "choices": []
         },
         {
@@ -1707,9 +1707,9 @@
             "nextNodeId": 141,
             "command": "",
             "backgroundSprite": "",
-            "characterSpriteLeft": "Characters/리나/기본",
-            "characterSpriteCenter": "Characters/세이카/기본",
-            "characterSpriteRight": "Characters/카스미/기본",
+            "characterSpriteLeft": "Characters/리나/측은",
+            "characterSpriteCenter": "Characters/세이카/측은",
+            "characterSpriteRight": "Characters/카스미/미소",
             "choices": []
         },
         {
@@ -1719,9 +1719,9 @@
             "nextNodeId": 142,
             "command": "",
             "backgroundSprite": "",
-            "characterSpriteLeft": "Characters/리나/찡그림",
-            "characterSpriteCenter": "Characters/세이카/기본",
-            "characterSpriteRight": "Characters/카스미/기본",
+            "characterSpriteLeft": "Characters/리나/홍조",
+            "characterSpriteCenter": "Characters/세이카/웃음",
+            "characterSpriteRight": "Characters/카스미/미소",
             "choices": []
         },
         {
@@ -1731,9 +1731,9 @@
             "nextNodeId": 143,
             "command": "",
             "backgroundSprite": "",
-            "characterSpriteLeft": "Characters/리나/찡그림",
-            "characterSpriteCenter": "Characters/세이카/기본",
-            "characterSpriteRight": "Characters/카스미/기본",
+            "characterSpriteLeft": "Characters/리나/홍조",
+            "characterSpriteCenter": "Characters/세이카/측은",
+            "characterSpriteRight": "Characters/카스미/미소",
             "choices": []
         },
         {
@@ -1743,9 +1743,9 @@
             "nextNodeId": 144,
             "command": "",
             "backgroundSprite": "",
-            "characterSpriteLeft": "Characters/리나/찡그림",
-            "characterSpriteCenter": "Characters/세이카/기본",
-            "characterSpriteRight": "Characters/카스미/기본",
+            "characterSpriteLeft": "Characters/리나/웃음",
+            "characterSpriteCenter": "Characters/세이카/웃음",
+            "characterSpriteRight": "Characters/카스미/미소",
             "choices": [],
             "noFade": true
         },
@@ -1756,9 +1756,9 @@
             "nextNodeId": 145,
             "command": "",
             "backgroundSprite": "",
-            "characterSpriteLeft": "Characters/리나/찡그림",
-            "characterSpriteCenter": "Characters/세이카/기본",
-            "characterSpriteRight": "Characters/카스미/기본",
+            "characterSpriteLeft": "Characters/리나/웃음",
+            "characterSpriteCenter": "Characters/세이카/웃음",
+            "characterSpriteRight": "Characters/카스미/미소",
             "choices": []
         },
         {
@@ -1768,9 +1768,9 @@
             "nextNodeId": -1,
             "command": "START_DIALOGUE:ch1_epilogue",
             "backgroundSprite": "",
-            "characterSpriteLeft": "Characters/리나/찡그림",
-            "characterSpriteCenter": "Characters/세이카/기본",
-            "characterSpriteRight": "Characters/카스미/기본",
+            "characterSpriteLeft": "Characters/리나/웃음",
+            "characterSpriteCenter": "Characters/세이카/웃음",
+            "characterSpriteRight": "Characters/카스미/미소",
             "choices": []
         }
     ]
