@@ -1,4 +1,4 @@
-using HalloweenVN.Core;
+﻿using HalloweenVN.Core;
 using HalloweenVN.Dialogue;
 using HalloweenVN.Investigation;
 using HalloweenVN.Deduction;
@@ -127,7 +127,7 @@ namespace HalloweenVN.UI.Theme
                     bgSprite = Sprite.Create(tex, new Rect(0, 0, tex.width, tex.height), new Vector2(0.5f, 0.5f));
                 }
             }
-            Image bgImg = UIHelper.AddImage(bgObj, new Color(1f, 1f, 1f, 1f), bgSprite); // 100% opacity
+            Image bgImg = UIHelper.AddImage(bgObj, new Color(0.35f, 0.35f, 0.35f, 1f), bgSprite); // Darkened background
             if (bgSprite == null)
             {
                 bgImg.color = new Color32(15, 8, 25, 255);
@@ -153,7 +153,7 @@ namespace HalloweenVN.UI.Theme
 //             subOutline.effectColor = new Color32(0, 0, 0, 255);
 //             subOutline.effectDistance = new Vector2(2, -2);
             // Buttons (Left side, Halloween, 100% Opacity)
-            Color32 btnBg = new Color32(230, 100, 20, 255); // Pumpkin orange
+            Color32 btnBg = new Color32(110, 40, 10, 255); // Dark burnt orange
             
             float startY = 120f; // Center adjusted for 4 buttons
             float spacing = 80f;
