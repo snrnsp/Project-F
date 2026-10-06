@@ -1,4 +1,4 @@
-﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿using HalloweenVN.Core;
+﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿using HalloweenVN.Core;
 using HalloweenVN.Dialogue;
 using HalloweenVN.Investigation;
 using HalloweenVN.Deduction;
@@ -898,9 +898,9 @@ namespace HalloweenVN.UI.Theme
 
                         // 🔹 Return to Title Button 🔹
             var titleTuple = CreateLegacyButton(panel.transform, "타이틀로 돌아가기", 220, 44, new Color32(180, 50, 50, 255));
-            RectTransform titleRt = titleTuple.btn.GetComponent<RectTransform>();
-            UIHelper.SetAnchors(titleRt, new Vector2(0.5f, 0), new Vector2(0.5f, 0), new Vector2(0.5f, 0));
-            titleRt.anchoredPosition = new Vector2(0, 50);
+            RectTransform titleBtnRt = titleTuple.btn.GetComponent<RectTransform>();
+            UIHelper.SetAnchors(titleBtnRt, new Vector2(0.5f, 0), new Vector2(0.5f, 0), new Vector2(0.5f, 0));
+            titleBtnRt.anchoredPosition = new Vector2(0, 50);
 
             // Attach SettingsUI
             SettingsUI settingsUi = settingsRoot.AddComponent<SettingsUI>();

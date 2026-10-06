@@ -35,7 +35,7 @@
             "characterSpriteCenter": "",
             "characterSpriteLeft": "Characters/하루카/미소",
             "characterSpriteRight": "",
-            "text": "서하유 씨, 단호박 수프 좀 더 드세요!\n10년 동안 못 드셨잖아요!"
+            "text": "서하유 씨, 단호박 수프 좀 더 드세요! 10년 동안 못 드셨잖아요!"
         },
         {
             "id": 3,
@@ -72,7 +72,7 @@
             "characterSpriteLeft": "Characters/하루카/웃음",
             "characterSpriteRight": "",
             "noFade": true,
-            "text": "야, 하루카 음식 칭찬하면 끝도 없이 만들어오니까 적당히 해.\n어제 호박 라떼, 호박 빙수, 호박 쿠키에 이번엔 호박 수프까지. 호박밖에 없냐!"
+            "text": "야, 하루카 음식 칭찬하면 끝도 없이 만들어오니까 적당히 해. 어제 호박 라떼, 호박 빙수, 호박 쿠키에 이번엔 호박 수프까지. 호박밖에 없냐!"
         },
         {
             "id": 6,
@@ -97,7 +97,7 @@
             "characterSpriteCenter": "Characters/리나/찡그림",
             "characterSpriteLeft": "Characters/하루카/삐짐",
             "characterSpriteRight": "Characters/리리스/기본",
-            "text": "잭오 데이터 전 세계 서버 분산 백업 완료.\n서하유 존재 기록, 다시는 지워지지 않음."
+            "text": "잭오 데이터 전 세계 서버 분산 백업 완료. 서하유 존재 기록, 다시는 지워지지 않음."
         },
         {
             "id": 8,
@@ -106,7 +106,7 @@
             "command": "",
             "choices": [],
             "nextNodeId": 9,
-            "text": "...제 이름이 기록에 남아있다는 게,\n이렇게 안심되는 일인 줄 몰랐어요.",
+            "text": "...제 이름이 기록에 남아있다는 게, 이렇게 안심되는 일인 줄 몰랐어요.",
             "characterSpriteLeft": "Characters/하루카/삐짐",
             "characterSpriteCenter": "Characters/리나/찡그림",
             "characterSpriteRight": "Characters/리리스/기본"
@@ -121,7 +121,7 @@
             "characterSpriteCenter": "Characters/리나/찡그림",
             "characterSpriteLeft": "Characters/카스미/미소",
             "characterSpriteRight": "Characters/리리스/기본",
-            "text": "(서류를 내밀며) 서하유 씨, 가족 연락처를 찾았습니다.\n부모님이 아직 노을시에 계시네요."
+            "text": "(서류를 내밀며) 서하유 씨, 가족 연락처를 찾았습니다. 부모님이 아직 노을시에 계시네요."
         },
         {
             "id": 10,
@@ -217,7 +217,7 @@
             "characterSpriteCenter": "Characters/리나/찡그림",
             "characterSpriteLeft": "Characters/미나/기본",
             "characterSpriteRight": "Characters/리리스/기본",
-            "text": "뉴스 속보 읽음. \"노을시의 오컬트 탐정 사무소, 10년 전 실종된 피아니스트를 기적적으로 발견.\"\n...매체 23개 보도 완료."
+            "text": "뉴스 속보 읽음. \"노을시의 오컬트 탐정 사무소, 10년 전 실종된 피아니스트를 기적적으로 발견.\" ...매체 23개 보도 완료."
         },
         {
             "id": 18,
@@ -378,7 +378,7 @@
             "characterSpriteCenter": "Characters/리나/기본",
             "characterSpriteLeft": "Characters/세이카/당황",
             "characterSpriteRight": "Characters/리리스/기본",
-            "text": "(한숨) ...의뢰인이 올까봐 걱정이었는데,\n이제는 의뢰인을 못 막는 게 걱정이네."
+            "text": "(한숨) ...의뢰인이 올까봐 걱정이었는데, 이제는 의뢰인을 못 막는 게 걱정이네."
         },
         {
             "id": 31,
@@ -390,7 +390,7 @@
             "characterSpriteCenter": "Characters/리나/기본",
             "characterSpriteLeft": "Characters/세이카/당황",
             "characterSpriteRight": "Characters/리리스/기본",
-            "text": "추가 보고. 해외 매체에서도 문의.\nCNN: \"Supernatural Detective Agency?\"\nNHK: \"オカルト探偵事務所とは？\"\n...번역 봇 풀가동 중."
+            "text": "추가 보고. 해외 매체에서도 문의. CNN: \"Supernatural Detective Agency?\" NHK: \"オカルト探偵事務所とは？\" ...번역 봇 풀가동 중."
         },
         {
             "id": 32,
@@ -505,7 +505,7 @@
             "characterSpriteLeft": "Characters/세이카/기본",
             "characterSpriteRight": "Characters/리리스/기본",
             "noFade": true,
-            "text": "부모님한테 전화해야겠다.\n\"성과를 보여드리겠습니다\" 하고."
+            "text": "부모님한테 전화해야겠다. \"성과를 보여드리겠습니다\" 하고."
         },
         {
             "id": 41,
@@ -531,7 +531,7 @@
             "characterSpriteLeft": "Characters/세이카/기본",
             "characterSpriteRight": "Characters/리리스/기본",
             "noFade": true,
-            "text": "(수화기를 들며) ...여보세요, 아버지?\n네, 세이카입니다. 뉴스 보셨어요...?\n네, 그게 저희 사무소예요."
+            "text": "(수화기를 들며) ...여보세요, 아버지? 네, 세이카입니다. 뉴스 보셨어요...? 네, 그게 저희 사무소예요."
         },
         {
             "id": 43,
@@ -588,7 +588,7 @@
             "command": "",
             "choices": [],
             "nextNodeId": 48,
-            "text": "저... 부탁이 하나 있어요.\n그 음악실에서 한 번만 더 연주해도 될까요?",
+            "text": "저... 부탁이 하나 있어요. 그 음악실에서 한 번만 더 연주해도 될까요?",
             "characterSpriteLeft": "Characters/세이카/기본",
             "characterSpriteCenter": "Characters/리나/웃음",
             "characterSpriteRight": "Characters/리리스/기본"
@@ -672,7 +672,7 @@
             "command": "",
             "choices": [],
             "nextNodeId": 55,
-            "text": "10년 동안 혼자 연주했는데,\n누군가 들어주니까... 전혀 다른 곡이 되네요.",
+            "text": "10년 동안 혼자 연주했는데, 누군가 들어주니까... 전혀 다른 곡이 되네요.",
             "characterSpriteLeft": "Characters/세이카/기본",
             "characterSpriteCenter": "Characters/리나/웃음",
             "characterSpriteRight": "Characters/리리스/기본"
@@ -712,7 +712,7 @@
             "characterSpriteCenter": "Characters/리나/측은",
             "characterSpriteLeft": "Characters/하루카/웃음",
             "characterSpriteRight": "Characters/리리스/기본",
-            "text": "서하유 씨! 이거 드세요!\n오늘은 특별히 호박 마들렌이에요!"
+            "text": "서하유 씨! 이거 드세요! 오늘은 특별히 호박 마들렌이에요!"
         },
         {
             "id": 58,
@@ -721,7 +721,7 @@
             "command": "",
             "choices": [],
             "nextNodeId": 59,
-            "text": "(웃으며) 고마워요, 하루카.\n...나중에 나도 뭔가 만들어 올게요.",
+            "text": "(웃으며) 고마워요, 하루카. ...나중에 나도 뭔가 만들어 올게요.",
             "characterSpriteLeft": "Characters/하루카/웃음",
             "characterSpriteCenter": "Characters/리나/측은",
             "characterSpriteRight": "Characters/리리스/기본"
@@ -745,7 +745,7 @@
             "command": "",
             "choices": [],
             "nextNodeId": 61,
-            "text": "(문 앞에서 돌아보며)\n...세이카 씨가 처음 봤다던, 그 지하 서고의 글씨.\n「우리를 찾아줘.」",
+            "text": "(문 앞에서 돌아보며) ...세이카 씨가 처음 봤다던, 그 지하 서고의 글씨. 「우리를 찾아줘.」",
             "characterSpriteLeft": "Characters/세이카/웃음",
             "characterSpriteCenter": "Characters/리나/측은",
             "characterSpriteRight": "Characters/리리스/기본"
@@ -757,7 +757,7 @@
             "command": "",
             "choices": [],
             "nextNodeId": 62,
-            "text": "그거, 우리 모두의 목소리였어요.\n...찾아줘서, 고마워요.",
+            "text": "그거, 우리 모두의 목소리였어요. ...찾아줘서, 고마워요.",
             "characterSpriteLeft": "Characters/세이카/웃음",
             "characterSpriteCenter": "Characters/리나/측은",
             "characterSpriteRight": "Characters/리리스/기본"
@@ -797,7 +797,7 @@
             "characterSpriteLeft": "Characters/세이카/웃음",
             "characterSpriteRight": "Characters/리리스/기본",
             "noFade": true,
-            "text": "(미소) 아마 한 명 더 먹은 거겠지.\n보이지 않는 관객이."
+            "text": "(미소) 아마 한 명 더 먹은 거겠지. 보이지 않는 관객이."
         },
         {
             "id": 65,

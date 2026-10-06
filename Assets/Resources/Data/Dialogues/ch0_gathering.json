@@ -64,7 +64,7 @@
         {
             "id": 5,
             "speaker": "세이카",
-            "text": "한 장의 사진을 보여줄게. 네 언니가 실종된 현장에서 발견된 건데...\n경찰 보고서에는 없는 증거물이야.",
+            "text": "한 장의 사진을 보여줄게. 네 언니가 실종된 현장에서 발견된 건데... 경찰 보고서에는 없는 증거물이야.",
             "characterSpriteLeft": "",
             "characterSpriteCenter": "Characters/세이카/기본",
             "characterSpriteRight": "",
@@ -249,7 +249,7 @@
         {
             "id": 20,
             "speaker": "리나",
-            "text": "넌 사람을 잘 보는 눈이 있네. 우리 사무소에 올래?\n밥도 나오고 방도 줄 수 있어.",
+            "text": "넌 사람을 잘 보는 눈이 있네. 우리 사무소에 올래? 밥도 나오고 방도 줄 수 있어.",
             "characterSpriteLeft": "Characters/리나/기본",
             "characterSpriteCenter": "",
             "characterSpriteRight": "Characters/하루카/기본",
@@ -312,7 +312,7 @@
         {
             "id": 25,
             "speaker": "미나",
-            "text": "크큭... 미나라고 하느니라.\n그렇다, 천 년을 묵은 원혼이 인간의 몸을 빌려 이곳에 강림한 것이니라...",
+            "text": "크큭... 미나라고 하느니라. 그렇다, 천 년을 묵은 원혼이 인간의 몸을 빌려 이곳에 강림한 것이니라...",
             "characterSpriteLeft": "",
             "characterSpriteCenter": "Characters/미나/기본",
             "characterSpriteRight": "",
@@ -324,7 +324,7 @@
         {
             "id": 26,
             "speaker": "카스미",
-            "text": "...기억상실 환자의 과대망상이네요.\n병원 응급실로 인계해야 할 것 같습니다.",
+            "text": "...기억상실 환자의 과대망상이네요. 병원 응급실로 인계해야 할 것 같습니다.",
             "characterSpriteLeft": "Characters/카스미/찡그림",
             "characterSpriteCenter": "",
             "characterSpriteRight": "Characters/미나/기본",
@@ -360,7 +360,7 @@
         {
             "id": 29,
             "speaker": "세이카",
-            "text": "...그럼 여기 있어.\n네 이름을 기억해 줄 사람이 생길 때까지. 아니, 이제 여기 다섯 명이나 있네.",
+            "text": "...그럼 여기 있어. 네 이름을 기억해 줄 사람이 생길 때까지. 아니, 이제 여기 다섯 명이나 있네.",
             "characterSpriteLeft": "Characters/세이카/측은",
             "characterSpriteCenter": "",
             "characterSpriteRight": "Characters/미나/의아",
@@ -372,7 +372,7 @@
         {
             "id": 30,
             "speaker": "미나",
-            "text": "...크, 크큭...\n그, 그렇다면 이 몸이 특별히 머물러 주겠느니라.",
+            "text": "...크, 크큭... 그, 그렇다면 이 몸이 특별히 머물러 주겠느니라.",
             "characterSpriteLeft": "Characters/세이카/웃음",
             "characterSpriteCenter": "",
             "characterSpriteRight": "Characters/미나/홍조",
@@ -397,7 +397,7 @@
         {
             "id": 32,
             "speaker": "세이카",
-            "text": "...그러고 보니, 전부 여자네.\n아, 일부러 그런 건 아니야. 그냥 결과적으로 이렇게 된 거지.",
+            "text": "...그러고 보니, 전부 여자네. 아, 일부러 그런 건 아니야. 그냥 결과적으로 이렇게 된 거지.",
             "characterSpriteLeft": "",
             "characterSpriteCenter": "Characters/세이카/웃음",
             "characterSpriteRight": "",
@@ -409,7 +409,7 @@
         {
             "id": 33,
             "speaker": "세이카",
-            "text": "시스템 밖으로 밀려난 사람들. 기존 질서에서 제 자리를 찾지 못한 사람들.\n그런 사람들이 이 으스스한 저택에 모인 거야.",
+            "text": "시스템 밖으로 밀려난 사람들. 기존 질서에서 제 자리를 찾지 못한 사람들. 그런 사람들이 이 으스스한 저택에 모인 거야.",
             "characterSpriteLeft": "",
             "characterSpriteCenter": "Characters/세이카/기본",
             "characterSpriteRight": "",
@@ -422,7 +422,7 @@
         {
             "id": 34,
             "speaker": "세이카",
-            "text": "어쩌면 단순한 우연은 아닐지도 몰라.\n모두 한 번쯤은 잊힌 적이 있으니, '잊혀진 이들'도 잘 찾을 수 있지 않겠어?",
+            "text": "어쩌면 단순한 우연은 아닐지도 몰라. 모두 한 번쯤은 잊힌 적이 있으니, '잊혀진 이들'도 잘 찾을 수 있지 않겠어?",
             "characterSpriteLeft": "",
             "characterSpriteCenter": "Characters/세이카/웃음",
             "characterSpriteRight": "",

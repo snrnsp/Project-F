@@ -157,10 +157,12 @@ namespace HalloweenVN.Core
                 }
             }
             
-            if (HalloweenVN.Investigation.InvestigationManager.Instance != null)
+            if (HalloweenVN.Investigation.EvidenceInventory.Instance != null)
             {
-                data.currentCaseId = HalloweenVN.Investigation.InvestigationManager.Instance.CurrentCaseId;
-                data.collectedEvidenceIds = new List<string>(HalloweenVN.Investigation.InvestigationManager.Instance.CollectedEvidenceIds);
+                data.collectedEvidenceIds = new List<string>();
+                foreach (var ev in HalloweenVN.Investigation.EvidenceInventory.Instance.GetAllEvidence()) {
+                    data.collectedEvidenceIds.Add(ev.id);
+                }
             }
             
             data.saveTimestamp = DateTime.UtcNow.ToString("o");
