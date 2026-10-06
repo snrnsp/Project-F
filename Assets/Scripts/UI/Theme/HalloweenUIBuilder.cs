@@ -896,6 +896,12 @@ namespace HalloweenVN.UI.Theme
             closeTuple.text.fontSize = 26;
             closeTuple.text.fontStyle = FontStyle.Bold;
 
+                        // 🔹 Return to Title Button 🔹
+            var titleTuple = CreateLegacyButton(panel.transform, "타이틀로 돌아가기", 220, 44, new Color32(180, 50, 50, 255));
+            RectTransform titleRt = titleTuple.btn.GetComponent<RectTransform>();
+            UIHelper.SetAnchors(titleRt, new Vector2(0.5f, 0), new Vector2(0.5f, 0), new Vector2(0.5f, 0));
+            titleRt.anchoredPosition = new Vector2(0, 50);
+
             // Attach SettingsUI
             SettingsUI settingsUi = settingsRoot.AddComponent<SettingsUI>();
             settingsUiRef = settingsUi;
@@ -929,6 +935,8 @@ namespace HalloweenVN.UI.Theme
             UIHelper.SetField(settingsUi, "fontStyleLabel", fontStyleLabel);
             UIHelper.SetField(settingsUi, "fontStyleValueText", fontTuple.text);
             UIHelper.SetField(settingsUi, "closeButton", closeTuple.btn);
+            UIHelper.SetField(settingsUi, "returnToTitleButton", titleTuple.btn);
+            UIHelper.SetField(settingsUi, "returnToTitleLabel", titleTuple.text);
 
             settingsRoot.SetActive(false);
 

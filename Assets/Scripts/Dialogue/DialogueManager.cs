@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -24,6 +24,7 @@ namespace HalloweenVN.Dialogue
         private DialogueContainer currentDialogue;
         public string CurrentDialogueId => currentDialogue?.dialogueId;
         private DialogueNode currentNode;
+        public DialogueNode CurrentNode => currentNode;
         private string pendingCommand;
         private bool isTyping;
         private Coroutine typingCoroutine;
@@ -177,6 +178,60 @@ namespace HalloweenVN.Dialogue
             DisplayNode(currentNode.id);
         }
 
+        public void ResumeDialogue(string dialogueId, int nodeId)
+        {
+            if (typingCoroutine != null) StopCoroutine(typingCoroutine);
+            
+            if (!dialogueCache.TryGetValue(dialogueId, out currentDialogue))
+            {
+                currentDialogue = HalloweenVN.Data.DataLoader.LoadDialogue(dialogueId);
+                if (currentDialogue != null)
+                {
+                    dialogueCache[dialogueId] = currentDialogue;
+                }
+            }
+            if (currentDialogue == null) return;
+            BuildNodeLookup();
+            
+            var ui = UnityEngine.Object.FindAnyObjectByType<HalloweenVN.UI.DialogueUI>();
+            if (ui != null)
+            {
+                ui.ClearAll();
+            }
+
+            string bgm = null;
+            if (ui != null && currentDialogue.nodes != null)
+            {
+                // To restore state, we simulate the visual/audio progression up to the target node
+                foreach (var n in currentDialogue.nodes)
+                {
+                    if (n.id > nodeId) break;
+                    
+                    ui.UpdateVisualsOnly(n, true);
+                    
+                    if (!string.IsNullOrEmpty(n.command))
+                    {
+                        if (n.command.StartsWith("AUDIO:PLAY_BGM:")) bgm = n.command.Substring("AUDIO:PLAY_BGM:".Length);
+                        else if (n.command == "AUDIO:STOP_BGM") bgm = null;
+                    }
+                }
+            }
+            
+            var audio = HalloweenVN.Core.AudioManager.Instance;
+            if (audio != null)
+            {
+                audio.StopAllSFX();
+                if (bgm != null) audio.PlayBGM(bgm);
+                else audio.StopBGM();
+            }
+
+            currentNode = FindNode(nodeId);
+            if (currentNode == null && currentDialogue.nodes.Count > 0) currentNode = currentDialogue.nodes[0];
+            
+            IsPlaying = true;
+            if (currentNode != null) DisplayNode(currentNode.id);
+        }
+
         /// <summary>
         /// After a backlog rewind the music must match the target point
         /// (e.g. rewinding from the ending piano back into the climax).
@@ -277,6 +332,12 @@ namespace HalloweenVN.Dialogue
             }
 
             OnNodeDisplayed?.Invoke(currentNode);
+            
+            // Auto Save
+            if (GameManager.Instance != null && GameManager.Instance.CurrentPhase != GamePhase.Lobby)
+            {
+                SaveManager.Save(SaveManager.CreateFromCurrentState(0), 0);
+            }
 
             if (currentNode.choices != null && currentNode.choices.Count > 0)
             {

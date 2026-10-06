@@ -32,6 +32,7 @@ namespace HalloweenVN.UI
         [SerializeField] private Text backlogButtonText;
 // ═══════════ Typing & Auto ═══════════
         private BacklogUI _cachedBacklogUI;
+        private SettingsUI _cachedSettingsUI;
         private WaitForSeconds _cachedNewlineDelay = new WaitForSeconds(0.15f);
         private WaitForSeconds _cachedTextDelay;
         private float _lastTextSpeed = -1f;
@@ -62,7 +63,7 @@ namespace HalloweenVN.UI
         // ═══════════ Character Position System (ported from old project) ═══════════
         private static readonly Color DIM_COLOR = new Color(0.3f, 0.3f, 0.3f, 1f);
         private static readonly Color ACTIVE_COLOR = Color.white;
-        private const float DEFAULT_FADE_SPEED = 0.35f;
+        private const float DEFAULT_FADE_SPEED = 0.15f;
         private const float MOVE_DURATION = 0.25f;
 
         private Coroutine[] _moveCoroutines = new Coroutine[3];
@@ -152,6 +153,7 @@ namespace HalloweenVN.UI
         
         public void ClearAll()
         {
+            StopAutoPlay();
             CancelSceneTransition();
             if (backgroundImage != null) backgroundImage.enabled = false;
             _currentBgPath = null;
@@ -302,6 +304,15 @@ namespace HalloweenVN.UI
 
         public void UpdateVisualsOnly(DialogueNode node, bool instant)
         {
+            bool wasNarrator = !_currentlyInDialoguePanel;
+            bool isNarratorNow = string.IsNullOrEmpty(node.speaker);
+            bool usePanelNow = !isNarratorNow;
+
+            if (wasNarrator && usePanelNow)
+            {
+                instant = true;
+            }
+
             Image[] imgs = { characterImageLeft, characterImageCenter, characterImageRight };
             bool immediate = instant || node.noFade;
 
@@ -440,9 +451,6 @@ namespace HalloweenVN.UI
             }
 
             // Dim/Highlight based on speaker
-            bool wasNarrator = !_currentlyInDialoguePanel;
-            bool isNarratorNow = string.IsNullOrEmpty(node.speaker);
-            bool usePanelNow = !isNarratorNow;
             bool instantHighlight = instant || (wasNarrator && usePanelNow);
             UpdateSpeakerHighlight(node.speaker, instantHighlight);
             UpdateBackground(node.backgroundSprite);
@@ -714,6 +722,7 @@ namespace HalloweenVN.UI
             TextMeshProUGUI activeText = usePanel ? dialogueText : narratorText;
 
             if (typingCoroutine != null) StopCoroutine(typingCoroutine);
+            CancelAutoPlayTimer();
 
             if (gameObject.activeInHierarchy)
             {
@@ -1001,6 +1010,7 @@ namespace HalloweenVN.UI
             if (sprite != null)
             {
                 img.sprite = sprite;
+                img.SetNativeSize();
                 img.enabled = true;
             }
         }
@@ -1179,11 +1189,21 @@ namespace HalloweenVN.UI
         private IEnumerator AutoAdvanceAfterDelay()
         {
             yield return new WaitForSeconds(SettingsData.AutoPlayDelay);
-            while (_isTransitioningScene) yield return null;
+            while (_isTransitioningScene || IsModalOpen()) yield return null;
             if (isAutoPlay && DialogueManager.Instance != null)
             {
                 DialogueManager.Instance.AdvanceDialogue();
             }
+        }
+
+        private bool IsModalOpen()
+        {
+            if (_cachedBacklogUI == null) _cachedBacklogUI = Object.FindFirstObjectByType<BacklogUI>(UnityEngine.FindObjectsInactive.Include);
+            if (_cachedSettingsUI == null) _cachedSettingsUI = Object.FindFirstObjectByType<SettingsUI>(UnityEngine.FindObjectsInactive.Include);
+            
+            if (_cachedBacklogUI != null && _cachedBacklogUI.IsOpen) return true;
+            if (_cachedSettingsUI != null && _cachedSettingsUI.gameObject.activeInHierarchy) return true;
+            return false;
         }
 
         // ═══════════ Click / Input ═══════════
@@ -1195,6 +1215,12 @@ namespace HalloweenVN.UI
             if (narratorText != null) narratorText.maxVisibleCharacters = 99999;
             isTyping = false;
             _typingEndTime = Time.unscaledTime;
+
+            CancelAutoPlayTimer();
+            if (isAutoPlay)
+            {
+                autoPlayCoroutine = StartCoroutine(AutoAdvanceAfterDelay());
+            }
         }
 
         
@@ -1206,6 +1232,7 @@ namespace HalloweenVN.UI
         {
             if (GameManager.Instance != null && GameManager.Instance.CurrentPhase != GamePhase.Dialogue) return;
             if (choicePanel != null && choicePanel.activeSelf) return;
+            if (IsModalOpen()) return;
 
             // 1. Right click to toggle UI visibility (to see CG/Backgrounds)
             if (Mouse.current != null && Mouse.current.rightButton.wasPressedThisFrame)
@@ -1279,6 +1306,7 @@ namespace HalloweenVN.UI
         private float _typingEndTime = -1f;
 
         public void OnClick() { 
+            if (IsModalOpen()) return;
             if (_isTransitioningScene) return; // Prevent double-trigger from UI Event System + Input System
             if (Time.unscaledTime - _lastClickTime < 0.05f) return; // Prevent double-trigger from UI Event System + Input System
             _lastClickTime = Time.unscaledTime;
@@ -1362,24 +1390,27 @@ namespace HalloweenVN.UI
                 UpdateLanguage();
             }
 
+            CancelAutoPlayTimer();
             if (isAutoPlay && !isTyping && DialogueManager.Instance != null && DialogueManager.Instance.IsPlaying)
             {
                 autoPlayCoroutine = StartCoroutine(AutoAdvanceAfterDelay());
             }
         }
 
-        
-
-        
-        private void StopAutoPlay()
+        private void CancelAutoPlayTimer()
         {
-            isAutoPlay = false;
-            if (autoButtonText != null) UpdateLanguage();
             if (autoPlayCoroutine != null)
             {
                 StopCoroutine(autoPlayCoroutine);
                 autoPlayCoroutine = null;
             }
+        }
+        
+        private void StopAutoPlay()
+        {
+            isAutoPlay = false;
+            if (autoButtonText != null) UpdateLanguage();
+            CancelAutoPlayTimer();
         }
 
         public void ApplyOpacity(float opacity)

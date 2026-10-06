@@ -626,7 +626,7 @@ void ShowPhotosensitivityWarning()
                 }
                 if (!string.IsNullOrEmpty(data.currentDialogueId) && DialogueManager.Instance != null)
                 {
-                    DialogueManager.Instance.StartDialogue(data.currentDialogueId);
+                    DialogueManager.Instance.ResumeDialogue(data.currentDialogueId, data.currentNodeIndex);
                 }
             }
         }

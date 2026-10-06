@@ -34,7 +34,7 @@
             "nextNodeId": 3,
             "characterSpriteCenter": "",
             "characterSpriteLeft": "Characters/하루카/미소",
-            "characterSpriteRight": "Characters/리나/기본",
+            "characterSpriteRight": "",
             "text": "서하유 씨, 단호박 수프 좀 더 드세요!\n10년 동안 못 드셨잖아요!"
         },
         {
@@ -45,7 +45,7 @@
             "choices": [],
             "nextNodeId": 4,
             "text": "에... 이게 뭔가요? 호박인데... 왜 이렇게 맛있어요...?",
-            "characterSpriteLeft": "",
+            "characterSpriteLeft": "Characters/하루카/미소",
             "characterSpriteCenter": "",
             "characterSpriteRight": ""
         },
@@ -58,7 +58,7 @@
             "nextNodeId": 5,
             "characterSpriteCenter": "",
             "characterSpriteLeft": "Characters/하루카/웃음",
-            "characterSpriteRight": "Characters/리나/기본",
+            "characterSpriteRight": "",
             "text": "(눈 빛나며) 그, 그렇죠?! 제 특제 레시피예요!"
         },
         {
@@ -68,9 +68,9 @@
             "command": "",
             "choices": [],
             "nextNodeId": 6,
-            "characterSpriteCenter": "",
-            "characterSpriteLeft": "Characters/하루카/기본",
-            "characterSpriteRight": "Characters/리나/찡그림",
+            "characterSpriteCenter": "Characters/리나/찡그림",
+            "characterSpriteLeft": "Characters/하루카/웃음",
+            "characterSpriteRight": "",
             "noFade": true,
             "text": "야, 하루카 음식 칭찬하면 끝도 없이 만들어오니까 적당히 해.\n어제 호박 라떼, 호박 빙수, 호박 쿠키에 이번엔 호박 수프까지. 호박밖에 없냐!"
         },
@@ -81,9 +81,9 @@
             "command": "",
             "choices": [],
             "nextNodeId": 7,
-            "characterSpriteCenter": "",
+            "characterSpriteCenter": "Characters/리나/찡그림",
             "characterSpriteLeft": "Characters/하루카/삐짐",
-            "characterSpriteRight": "Characters/리나/기본",
+            "characterSpriteRight": "",
             "noFade": true,
             "text": "호박은 만능이에요!"
         },
@@ -94,9 +94,9 @@
             "command": "",
             "choices": [],
             "nextNodeId": 8,
-            "characterSpriteCenter": "Characters/리리스/기본",
-            "characterSpriteLeft": "",
-            "characterSpriteRight": "",
+            "characterSpriteCenter": "Characters/리나/찡그림",
+            "characterSpriteLeft": "Characters/하루카/삐짐",
+            "characterSpriteRight": "Characters/리리스/기본",
             "text": "잭오 데이터 전 세계 서버 분산 백업 완료.\n서하유 존재 기록, 다시는 지워지지 않음."
         },
         {
@@ -107,9 +107,9 @@
             "choices": [],
             "nextNodeId": 9,
             "text": "...제 이름이 기록에 남아있다는 게,\n이렇게 안심되는 일인 줄 몰랐어요.",
-            "characterSpriteLeft": "",
-            "characterSpriteCenter": "",
-            "characterSpriteRight": ""
+            "characterSpriteLeft": "Characters/하루카/삐짐",
+            "characterSpriteCenter": "Characters/리나/찡그림",
+            "characterSpriteRight": "Characters/리리스/기본"
         },
         {
             "id": 9,
@@ -118,9 +118,9 @@
             "command": "",
             "choices": [],
             "nextNodeId": 10,
-            "characterSpriteCenter": "Characters/카스미/미소",
-            "characterSpriteLeft": "",
-            "characterSpriteRight": "",
+            "characterSpriteCenter": "Characters/리나/찡그림",
+            "characterSpriteLeft": "Characters/카스미/미소",
+            "characterSpriteRight": "Characters/리리스/기본",
             "text": "(서류를 내밀며) 서하유 씨, 가족 연락처를 찾았습니다.\n부모님이 아직 노을시에 계시네요."
         },
         {
@@ -131,9 +131,9 @@
             "choices": [],
             "nextNodeId": 11,
             "text": "...엄마, 아빠가...? 아직...?",
-            "characterSpriteLeft": "",
-            "characterSpriteCenter": "",
-            "characterSpriteRight": ""
+            "characterSpriteLeft": "Characters/카스미/미소",
+            "characterSpriteCenter": "Characters/리나/찡그림",
+            "characterSpriteRight": "Characters/리리스/기본"
         },
         {
             "id": 11,
@@ -142,9 +142,9 @@
             "command": "",
             "choices": [],
             "nextNodeId": 12,
-            "characterSpriteCenter": "Characters/카스미/기본",
-            "characterSpriteLeft": "",
-            "characterSpriteRight": "",
+            "characterSpriteCenter": "Characters/리나/찡그림",
+            "characterSpriteLeft": "Characters/카스미/기본",
+            "characterSpriteRight": "Characters/리리스/기본",
             "text": "네. 기록이 복원되면서 기억도 함께 돌아오고 있는 것 같습니다."
         },
         {
@@ -155,9 +155,9 @@
             "choices": [],
             "nextNodeId": 13,
             "text": "......",
-            "characterSpriteLeft": "",
-            "characterSpriteCenter": "",
-            "characterSpriteRight": ""
+            "characterSpriteLeft": "Characters/카스미/기본",
+            "characterSpriteCenter": "Characters/리나/찡그림",
+            "characterSpriteRight": "Characters/리리스/기본"
         },
         {
             "id": 13,
@@ -167,9 +167,9 @@
             "choices": [],
             "nextNodeId": 14,
             "text": "서하유가 식탁 위에 얼굴을 묻고 울기 시작했다.\n하루카가 조용히 등을 쓰다듬어 주었다.",
-            "characterSpriteLeft": "",
-            "characterSpriteCenter": "",
-            "characterSpriteRight": ""
+            "characterSpriteLeft": "Characters/카스미/기본",
+            "characterSpriteCenter": "Characters/리나/찡그림",
+            "characterSpriteRight": "Characters/리리스/기본"
         },
         {
             "id": 14,
@@ -178,9 +178,9 @@
             "command": "",
             "choices": [],
             "nextNodeId": 15,
-            "characterSpriteCenter": "Characters/미나/기본",
-            "characterSpriteLeft": "",
-            "characterSpriteRight": "",
+            "characterSpriteCenter": "Characters/리나/찡그림",
+            "characterSpriteLeft": "Characters/미나/기본",
+            "characterSpriteRight": "Characters/리리스/기본",
             "text": "...오늘은, 한 사람을 되찾은 날이야. 연기가 아니라 진심으로."
         },
         {
@@ -191,9 +191,9 @@
             "choices": [],
             "nextNodeId": 16,
             "text": "— 3일 후.",
-            "characterSpriteLeft": "",
-            "characterSpriteCenter": "",
-            "characterSpriteRight": ""
+            "characterSpriteLeft": "Characters/미나/기본",
+            "characterSpriteCenter": "Characters/리나/찡그림",
+            "characterSpriteRight": "Characters/리리스/기본"
         },
         {
             "id": 16,
@@ -203,9 +203,9 @@
             "choices": [],
             "nextNodeId": 17,
             "text": "네버모어 오컬트 탐정 사무소는 전국적인 화제의 중심이 되었다.",
-            "characterSpriteLeft": "",
-            "characterSpriteCenter": "",
-            "characterSpriteRight": ""
+            "characterSpriteLeft": "Characters/미나/기본",
+            "characterSpriteCenter": "Characters/리나/찡그림",
+            "characterSpriteRight": "Characters/리리스/기본"
         },
         {
             "id": 17,
@@ -214,9 +214,9 @@
             "command": "",
             "choices": [],
             "nextNodeId": 18,
-            "characterSpriteCenter": "",
-            "characterSpriteLeft": "Characters/리리스/기본",
-            "characterSpriteRight": "Characters/리나/기본",
+            "characterSpriteCenter": "Characters/리나/찡그림",
+            "characterSpriteLeft": "Characters/미나/기본",
+            "characterSpriteRight": "Characters/리리스/기본",
             "text": "뉴스 속보 읽음. \"노을시의 오컬트 탐정 사무소, 10년 전 실종된 피아니스트를 기적적으로 발견.\"\n...매체 23개 보도 완료."
         },
         {
@@ -226,9 +226,9 @@
             "command": "",
             "choices": [],
             "nextNodeId": 19,
-            "characterSpriteCenter": "",
-            "characterSpriteLeft": "Characters/리리스/기본",
-            "characterSpriteRight": "Characters/리나/웃음",
+            "characterSpriteCenter": "Characters/리나/웃음",
+            "characterSpriteLeft": "Characters/미나/기본",
+            "characterSpriteRight": "Characters/리리스/기본",
             "noFade": true,
             "text": "와씨 대박! 우리 뉴스에 나왔어!!"
         },
@@ -239,9 +239,9 @@
             "command": "",
             "choices": [],
             "nextNodeId": 20,
-            "characterSpriteCenter": "",
+            "characterSpriteCenter": "Characters/리나/웃음",
             "characterSpriteLeft": "Characters/세이카/찡그림",
-            "characterSpriteRight": "Characters/카스미/기본",
+            "characterSpriteRight": "Characters/리리스/기본",
             "text": "...그런데 문제가 생겼어."
         },
         {
@@ -251,9 +251,9 @@
             "command": "",
             "choices": [],
             "nextNodeId": 21,
-            "characterSpriteCenter": "",
-            "characterSpriteLeft": "Characters/세이카/기본",
-            "characterSpriteRight": "Characters/카스미/기본",
+            "characterSpriteCenter": "Characters/리나/웃음",
+            "characterSpriteLeft": "Characters/카스미/기본",
+            "characterSpriteRight": "Characters/리리스/기본",
             "noFade": true,
             "text": "의뢰 메일이... 현재 1,247건입니다."
         },
@@ -264,9 +264,9 @@
             "command": "",
             "choices": [],
             "nextNodeId": 22,
-            "characterSpriteCenter": "",
-            "characterSpriteLeft": "Characters/세이카/기본",
-            "characterSpriteRight": "Characters/리나/놀람",
+            "characterSpriteCenter": "Characters/리나/놀람",
+            "characterSpriteLeft": "Characters/카스미/기본",
+            "characterSpriteRight": "Characters/리리스/기본",
             "text": "뭐?!"
         },
         {
@@ -276,9 +276,9 @@
             "command": "",
             "choices": [],
             "nextNodeId": 23,
-            "characterSpriteCenter": "",
-            "characterSpriteLeft": "Characters/세이카/기본",
-            "characterSpriteRight": "Characters/카스미/기본",
+            "characterSpriteCenter": "Characters/리나/놀람",
+            "characterSpriteLeft": "Characters/카스미/기본",
+            "characterSpriteRight": "Characters/리리스/기본",
             "text": "그리고 아직 늘어나고 있어요."
         },
         {
@@ -288,9 +288,9 @@
             "command": "",
             "choices": [],
             "nextNodeId": 24,
-            "characterSpriteCenter": "",
-            "characterSpriteLeft": "Characters/리리스/기본",
-            "characterSpriteRight": "Characters/카스미/기본",
+            "characterSpriteCenter": "Characters/리나/놀람",
+            "characterSpriteLeft": "Characters/카스미/기본",
+            "characterSpriteRight": "Characters/리리스/기본",
             "text": "서버 과부하 경고. 메일함 용량 99.7%."
         },
         {
@@ -301,9 +301,9 @@
             "choices": [],
             "nextNodeId": 25,
             "text": "현관 밖에는 기자들과 방송국 카메라가 진을 치고 있었다.",
-            "characterSpriteLeft": "",
-            "characterSpriteCenter": "",
-            "characterSpriteRight": ""
+            "characterSpriteLeft": "Characters/카스미/기본",
+            "characterSpriteCenter": "Characters/리나/놀람",
+            "characterSpriteRight": "Characters/리리스/기본"
         },
         {
             "id": 25,
@@ -312,9 +312,9 @@
             "command": "",
             "choices": [],
             "nextNodeId": 26,
-            "characterSpriteCenter": "",
+            "characterSpriteCenter": "Characters/리나/놀람",
             "characterSpriteLeft": "Characters/미나/음침",
-            "characterSpriteRight": "Characters/카스미/기본",
+            "characterSpriteRight": "Characters/리리스/기본",
             "text": "크큭... 천 년 전부터 예언되어 있던 일이니라..."
         },
         {
@@ -324,9 +324,9 @@
             "command": "",
             "choices": [],
             "nextNodeId": 27,
-            "characterSpriteCenter": "",
-            "characterSpriteLeft": "Characters/미나/기본",
-            "characterSpriteRight": "Characters/카스미/기본",
+            "characterSpriteCenter": "Characters/리나/놀람",
+            "characterSpriteLeft": "Characters/카스미/기본",
+            "characterSpriteRight": "Characters/리리스/기본",
             "noFade": true,
             "text": "아뇨, 3일 전부터입니다."
         },
@@ -337,9 +337,9 @@
             "command": "",
             "choices": [],
             "nextNodeId": 28,
-            "characterSpriteCenter": "",
-            "characterSpriteLeft": "Characters/리나/기본",
-            "characterSpriteRight": "Characters/하루카/놀람",
+            "characterSpriteCenter": "Characters/리나/기본",
+            "characterSpriteLeft": "Characters/카스미/기본",
+            "characterSpriteRight": "Characters/리리스/기본",
             "text": "(현관을 열며) 저기요~ 네버모어 사무소는 지금 인터뷰 안 받습니— 야, 밀지 마!! 밀지 말라고!!"
         },
         {
@@ -349,9 +349,9 @@
             "command": "",
             "choices": [],
             "nextNodeId": 29,
-            "characterSpriteCenter": "",
-            "characterSpriteLeft": "Characters/리나/기본",
-            "characterSpriteRight": "Characters/하루카/놀람",
+            "characterSpriteCenter": "Characters/리나/기본",
+            "characterSpriteLeft": "Characters/카스미/기본",
+            "characterSpriteRight": "Characters/리리스/기본",
             "noFade": true,
             "text": "(문을 쾅 닫으며) ...인간의 바다야 밖에."
         },
@@ -362,9 +362,9 @@
             "command": "",
             "choices": [],
             "nextNodeId": 30,
-            "characterSpriteCenter": "",
-            "characterSpriteLeft": "Characters/리나/찡그림",
-            "characterSpriteRight": "Characters/하루카/놀람",
+            "characterSpriteCenter": "Characters/리나/기본",
+            "characterSpriteLeft": "Characters/하루카/놀람",
+            "characterSpriteRight": "Characters/리리스/기본",
             "noFade": true,
             "text": "어머... 저기 TV 트럭까지 와 있어요..."
         },
@@ -375,9 +375,9 @@
             "command": "",
             "choices": [],
             "nextNodeId": 31,
-            "characterSpriteCenter": "",
-            "characterSpriteLeft": "Characters/리나/기본",
-            "characterSpriteRight": "Characters/세이카/당황",
+            "characterSpriteCenter": "Characters/리나/기본",
+            "characterSpriteLeft": "Characters/세이카/당황",
+            "characterSpriteRight": "Characters/리리스/기본",
             "text": "(한숨) ...의뢰인이 올까봐 걱정이었는데,\n이제는 의뢰인을 못 막는 게 걱정이네."
         },
         {
@@ -388,8 +388,8 @@
             "choices": [],
             "nextNodeId": 32,
             "characterSpriteCenter": "Characters/리나/기본",
-            "characterSpriteLeft": "Characters/리리스/기본",
-            "characterSpriteRight": "Characters/카스미/기본",
+            "characterSpriteLeft": "Characters/세이카/당황",
+            "characterSpriteRight": "Characters/리리스/기본",
             "text": "추가 보고. 해외 매체에서도 문의.\nCNN: \"Supernatural Detective Agency?\"\nNHK: \"オカルト探偵事務所とは？\"\n...번역 봇 풀가동 중."
         },
         {
@@ -400,8 +400,8 @@
             "choices": [],
             "nextNodeId": 33,
             "characterSpriteCenter": "Characters/리나/놀람",
-            "characterSpriteLeft": "Characters/리리스/기본",
-            "characterSpriteRight": "Characters/카스미/기본",
+            "characterSpriteLeft": "Characters/세이카/당황",
+            "characterSpriteRight": "Characters/리리스/기본",
             "noFade": true,
             "text": "세계적?! 야, 우리 영어 되는 사람 있어?!"
         },
@@ -412,9 +412,9 @@
             "command": "",
             "choices": [],
             "nextNodeId": 34,
-            "characterSpriteCenter": "Characters/리나/기본",
-            "characterSpriteLeft": "Characters/리리스/기본",
-            "characterSpriteRight": "Characters/카스미/기본",
+            "characterSpriteCenter": "Characters/리나/놀람",
+            "characterSpriteLeft": "Characters/카스미/기본",
+            "characterSpriteRight": "Characters/리리스/기본",
             "noFade": true,
             "text": "...제가 논문은 영어로 읽습니다만."
         },
@@ -425,9 +425,9 @@
             "command": "",
             "choices": [],
             "nextNodeId": 35,
-            "characterSpriteCenter": "Characters/리나/기본",
-            "characterSpriteLeft": "Characters/리리스/기본",
-            "characterSpriteRight": "Characters/카스미/기본",
+            "characterSpriteCenter": "Characters/리나/놀람",
+            "characterSpriteLeft": "Characters/카스미/기본",
+            "characterSpriteRight": "Characters/리리스/기본",
             "noFade": true,
             "text": "번역은 잭오가 담당 가능."
         },
@@ -438,9 +438,9 @@
             "command": "",
             "choices": [],
             "nextNodeId": 36,
-            "characterSpriteCenter": "Characters/리나/기본",
+            "characterSpriteCenter": "Characters/리나/놀람",
             "characterSpriteLeft": "Characters/미나/기본",
-            "characterSpriteRight": "Characters/카스미/기본",
+            "characterSpriteRight": "Characters/리리스/기본",
             "text": "(갑자기 유창한 영어로) \"Welcome to Nevermore...\""
         },
         {
@@ -451,8 +451,8 @@
             "choices": [],
             "nextNodeId": 37,
             "characterSpriteCenter": "Characters/리나/놀람",
-            "characterSpriteLeft": "Characters/미나/당황",
-            "characterSpriteRight": "Characters/카스미/기본",
+            "characterSpriteLeft": "Characters/미나/기본",
+            "characterSpriteRight": "Characters/리리스/기본",
             "noFade": true,
             "text": "???"
         },
@@ -463,9 +463,9 @@
             "command": "",
             "choices": [],
             "nextNodeId": 38,
-            "characterSpriteCenter": "Characters/리나/기본",
+            "characterSpriteCenter": "Characters/리나/놀람",
             "characterSpriteLeft": "Characters/미나/기본",
-            "characterSpriteRight": "Characters/카스미/기본",
+            "characterSpriteRight": "Characters/리리스/기본",
             "noFade": true,
             "text": "(순간 당황하며) ...아, 그, 그건 전생의 기억이니라!"
         },
@@ -476,9 +476,9 @@
             "command": "",
             "choices": [],
             "nextNodeId": 39,
-            "characterSpriteCenter": "Characters/리나/기본",
-            "characterSpriteLeft": "Characters/미나/당황",
-            "characterSpriteRight": "Characters/카스미/찡그림",
+            "characterSpriteCenter": "Characters/리나/놀람",
+            "characterSpriteLeft": "Characters/카스미/찡그림",
+            "characterSpriteRight": "Characters/리리스/기본",
             "noFade": true,
             "text": "...중2병이 영어까지 되는 줄은 몰랐네요."
         },
@@ -489,9 +489,9 @@
             "command": "",
             "choices": [],
             "nextNodeId": 40,
-            "characterSpriteCenter": "",
+            "characterSpriteCenter": "Characters/리나/놀람",
             "characterSpriteLeft": "Characters/세이카/기본",
-            "characterSpriteRight": "Characters/리나/기본",
+            "characterSpriteRight": "Characters/리리스/기본",
             "text": "(웃으며) 좋아, 이왕 이렇게 된 거..."
         },
         {
@@ -501,9 +501,9 @@
             "command": "",
             "choices": [],
             "nextNodeId": 41,
-            "characterSpriteCenter": "",
+            "characterSpriteCenter": "Characters/리나/놀람",
             "characterSpriteLeft": "Characters/세이카/기본",
-            "characterSpriteRight": "Characters/리나/기본",
+            "characterSpriteRight": "Characters/리리스/기본",
             "noFade": true,
             "text": "부모님한테 전화해야겠다.\n\"성과를 보여드리겠습니다\" 하고."
         },
@@ -514,9 +514,9 @@
             "command": "",
             "choices": [],
             "nextNodeId": 42,
-            "characterSpriteCenter": "",
+            "characterSpriteCenter": "Characters/리나/웃음",
             "characterSpriteLeft": "Characters/세이카/기본",
-            "characterSpriteRight": "Characters/리나/웃음",
+            "characterSpriteRight": "Characters/리리스/기본",
             "noFade": true,
             "text": "소장님, 그건 성과 정도가 아니라 대폭발이야!"
         },
@@ -527,9 +527,9 @@
             "command": "",
             "choices": [],
             "nextNodeId": 43,
-            "characterSpriteCenter": "",
+            "characterSpriteCenter": "Characters/리나/웃음",
             "characterSpriteLeft": "Characters/세이카/기본",
-            "characterSpriteRight": "Characters/리나/기본",
+            "characterSpriteRight": "Characters/리리스/기본",
             "noFade": true,
             "text": "(수화기를 들며) ...여보세요, 아버지?\n네, 세이카입니다. 뉴스 보셨어요...?\n네, 그게 저희 사무소예요."
         },
@@ -541,9 +541,9 @@
             "choices": [],
             "nextNodeId": 44,
             "text": "수화기 너머로, 아버지의 길고 긴 침묵이 흘렀다.",
-            "characterSpriteLeft": "",
-            "characterSpriteCenter": "",
-            "characterSpriteRight": ""
+            "characterSpriteLeft": "Characters/세이카/기본",
+            "characterSpriteCenter": "Characters/리나/웃음",
+            "characterSpriteRight": "Characters/리리스/기본"
         },
         {
             "id": 44,
@@ -552,9 +552,9 @@
             "command": "",
             "choices": [],
             "nextNodeId": 45,
-            "characterSpriteCenter": "",
+            "characterSpriteCenter": "Characters/리나/웃음",
             "characterSpriteLeft": "Characters/세이카/기본",
-            "characterSpriteRight": "Characters/리나/기본",
+            "characterSpriteRight": "Characters/리리스/기본",
             "text": "(미소) ...네. 1년 더 해보겠습니다."
         },
         {
@@ -565,9 +565,9 @@
             "choices": [],
             "nextNodeId": 46,
             "text": "— 일주일 후.",
-            "characterSpriteLeft": "",
-            "characterSpriteCenter": "",
-            "characterSpriteRight": ""
+            "characterSpriteLeft": "Characters/세이카/기본",
+            "characterSpriteCenter": "Characters/리나/웃음",
+            "characterSpriteRight": "Characters/리리스/기본"
         },
         {
             "id": 46,
@@ -577,9 +577,9 @@
             "choices": [],
             "nextNodeId": 47,
             "text": "소란이 조금 가라앉은 어느 저녁.\n서하유가 사무소에 찾아왔다.",
-            "characterSpriteLeft": "",
-            "characterSpriteCenter": "",
-            "characterSpriteRight": ""
+            "characterSpriteLeft": "Characters/세이카/기본",
+            "characterSpriteCenter": "Characters/리나/웃음",
+            "characterSpriteRight": "Characters/리리스/기본"
         },
         {
             "id": 47,
@@ -589,9 +589,9 @@
             "choices": [],
             "nextNodeId": 48,
             "text": "저... 부탁이 하나 있어요.\n그 음악실에서 한 번만 더 연주해도 될까요?",
-            "characterSpriteLeft": "",
-            "characterSpriteCenter": "",
-            "characterSpriteRight": ""
+            "characterSpriteLeft": "Characters/세이카/기본",
+            "characterSpriteCenter": "Characters/리나/웃음",
+            "characterSpriteRight": "Characters/리리스/기본"
         },
         {
             "id": 48,
@@ -601,9 +601,9 @@
             "choices": [],
             "nextNodeId": 49,
             "text": "이번에는... 듣는 사람이 있을 때 치고 싶어서요.",
-            "characterSpriteLeft": "",
-            "characterSpriteCenter": "",
-            "characterSpriteRight": ""
+            "characterSpriteLeft": "Characters/세이카/기본",
+            "characterSpriteCenter": "Characters/리나/웃음",
+            "characterSpriteRight": "Characters/리리스/기본"
         },
         {
             "id": 49,
@@ -613,9 +613,9 @@
             "choices": [],
             "nextNodeId": 50,
             "text": "낡은 음악실. 하지만 더 이상 무섭지 않았다.\n잭오랜턴 조명이 따뜻한 빛을 비추고 있었다.",
-            "characterSpriteLeft": "",
-            "characterSpriteCenter": "",
-            "characterSpriteRight": ""
+            "characterSpriteLeft": "Characters/세이카/기본",
+            "characterSpriteCenter": "Characters/리나/웃음",
+            "characterSpriteRight": "Characters/리리스/기본"
         },
         {
             "id": 50,
@@ -625,9 +625,9 @@
             "choices": [],
             "nextNodeId": 51,
             "text": "서하유가 건반 앞에 앉았다.\n여섯 명의 관객이 조용히 지켜보았다.",
-            "characterSpriteLeft": "",
-            "characterSpriteCenter": "",
-            "characterSpriteRight": ""
+            "characterSpriteLeft": "Characters/세이카/기본",
+            "characterSpriteCenter": "Characters/리나/웃음",
+            "characterSpriteRight": "Characters/리리스/기본"
         },
         {
             "id": 51,
@@ -637,9 +637,9 @@
             "choices": [],
             "nextNodeId": 52,
             "text": "연주가 시작되었다.",
-            "characterSpriteLeft": "",
-            "characterSpriteCenter": "",
-            "characterSpriteRight": ""
+            "characterSpriteLeft": "Characters/세이카/기본",
+            "characterSpriteCenter": "Characters/리나/웃음",
+            "characterSpriteRight": "Characters/리리스/기본"
         },
         {
             "id": 52,
@@ -649,9 +649,9 @@
             "choices": [],
             "nextNodeId": 53,
             "text": "10년 동안 혼자 치던 곡이,\n누군가가 들어주는 것만으로 전혀 다른 곡이 되었다.",
-            "characterSpriteLeft": "",
-            "characterSpriteCenter": "",
-            "characterSpriteRight": ""
+            "characterSpriteLeft": "Characters/세이카/기본",
+            "characterSpriteCenter": "Characters/리나/웃음",
+            "characterSpriteRight": "Characters/리리스/기본"
         },
         {
             "id": 53,
@@ -661,9 +661,9 @@
             "choices": [],
             "nextNodeId": 54,
             "text": "연주가 끝나고, 작은 박수가 울렸다.",
-            "characterSpriteLeft": "",
-            "characterSpriteCenter": "",
-            "characterSpriteRight": ""
+            "characterSpriteLeft": "Characters/세이카/기본",
+            "characterSpriteCenter": "Characters/리나/웃음",
+            "characterSpriteRight": "Characters/리리스/기본"
         },
         {
             "id": 54,
@@ -673,9 +673,9 @@
             "choices": [],
             "nextNodeId": 55,
             "text": "10년 동안 혼자 연주했는데,\n누군가 들어주니까... 전혀 다른 곡이 되네요.",
-            "characterSpriteLeft": "",
-            "characterSpriteCenter": "",
-            "characterSpriteRight": ""
+            "characterSpriteLeft": "Characters/세이카/기본",
+            "characterSpriteCenter": "Characters/리나/웃음",
+            "characterSpriteRight": "Characters/리리스/기본"
         },
         {
             "id": 55,
@@ -684,9 +684,9 @@
             "command": "",
             "choices": [],
             "nextNodeId": 56,
-            "characterSpriteCenter": "",
-            "characterSpriteLeft": "Characters/리나/측은",
-            "characterSpriteRight": "Characters/카스미/기본",
+            "characterSpriteCenter": "Characters/리나/측은",
+            "characterSpriteLeft": "Characters/세이카/기본",
+            "characterSpriteRight": "Characters/리리스/기본",
             "text": "(소곤) 아오, 진짜 눈물 안 난다니까..."
         },
         {
@@ -696,9 +696,9 @@
             "command": "",
             "choices": [],
             "nextNodeId": 57,
-            "characterSpriteCenter": "",
-            "characterSpriteLeft": "Characters/리나/측은",
-            "characterSpriteRight": "Characters/카스미/미소",
+            "characterSpriteCenter": "Characters/리나/측은",
+            "characterSpriteLeft": "Characters/카스미/미소",
+            "characterSpriteRight": "Characters/리리스/기본",
             "noFade": true,
             "text": "(안경을 닦으며) ...김이 서린 겁니다."
         },
@@ -709,9 +709,9 @@
             "command": "",
             "choices": [],
             "nextNodeId": 58,
-            "characterSpriteCenter": "Characters/하루카/웃음",
-            "characterSpriteLeft": "",
-            "characterSpriteRight": "",
+            "characterSpriteCenter": "Characters/리나/측은",
+            "characterSpriteLeft": "Characters/하루카/웃음",
+            "characterSpriteRight": "Characters/리리스/기본",
             "text": "서하유 씨! 이거 드세요!\n오늘은 특별히 호박 마들렌이에요!"
         },
         {
@@ -722,9 +722,9 @@
             "choices": [],
             "nextNodeId": 59,
             "text": "(웃으며) 고마워요, 하루카.\n...나중에 나도 뭔가 만들어 올게요.",
-            "characterSpriteLeft": "",
-            "characterSpriteCenter": "",
-            "characterSpriteRight": ""
+            "characterSpriteLeft": "Characters/하루카/웃음",
+            "characterSpriteCenter": "Characters/리나/측은",
+            "characterSpriteRight": "Characters/리리스/기본"
         },
         {
             "id": 59,
@@ -733,9 +733,9 @@
             "command": "",
             "choices": [],
             "nextNodeId": 60,
-            "characterSpriteCenter": "Characters/세이카/웃음",
-            "characterSpriteLeft": "",
-            "characterSpriteRight": "",
+            "characterSpriteCenter": "Characters/리나/측은",
+            "characterSpriteLeft": "Characters/세이카/웃음",
+            "characterSpriteRight": "Characters/리리스/기본",
             "text": "언제든 와. 여기는 네 자리니까."
         },
         {
@@ -746,9 +746,9 @@
             "choices": [],
             "nextNodeId": 61,
             "text": "(문 앞에서 돌아보며)\n...세이카 씨가 처음 봤다던, 그 지하 서고의 글씨.\n「우리를 찾아줘.」",
-            "characterSpriteLeft": "",
-            "characterSpriteCenter": "",
-            "characterSpriteRight": ""
+            "characterSpriteLeft": "Characters/세이카/웃음",
+            "characterSpriteCenter": "Characters/리나/측은",
+            "characterSpriteRight": "Characters/리리스/기본"
         },
         {
             "id": 61,
@@ -758,9 +758,9 @@
             "choices": [],
             "nextNodeId": 62,
             "text": "그거, 우리 모두의 목소리였어요.\n...찾아줘서, 고마워요.",
-            "characterSpriteLeft": "",
-            "characterSpriteCenter": "",
-            "characterSpriteRight": ""
+            "characterSpriteLeft": "Characters/세이카/웃음",
+            "characterSpriteCenter": "Characters/리나/측은",
+            "characterSpriteRight": "Characters/리리스/기본"
         },
         {
             "id": 62,
@@ -770,9 +770,9 @@
             "choices": [],
             "nextNodeId": 63,
             "text": "서하유가 떠난 뒤, 피아노 위에 놓인\n호박 마들렌 하나가 사라져 있었다.",
-            "characterSpriteLeft": "",
-            "characterSpriteCenter": "",
-            "characterSpriteRight": ""
+            "characterSpriteLeft": "Characters/세이카/웃음",
+            "characterSpriteCenter": "Characters/리나/측은",
+            "characterSpriteRight": "Characters/리리스/기본"
         },
         {
             "id": 63,
@@ -781,9 +781,9 @@
             "command": "",
             "choices": [],
             "nextNodeId": 64,
-            "characterSpriteCenter": "",
+            "characterSpriteCenter": "Characters/리나/측은",
             "characterSpriteLeft": "Characters/하루카/놀람",
-            "characterSpriteRight": "Characters/세이카/웃음",
+            "characterSpriteRight": "Characters/리리스/기본",
             "text": "...어? 분명 여섯 개 놓았는데..."
         },
         {
@@ -793,9 +793,9 @@
             "command": "",
             "choices": [],
             "nextNodeId": 65,
-            "characterSpriteCenter": "",
-            "characterSpriteLeft": "Characters/하루카/놀람",
-            "characterSpriteRight": "Characters/세이카/웃음",
+            "characterSpriteCenter": "Characters/리나/측은",
+            "characterSpriteLeft": "Characters/세이카/웃음",
+            "characterSpriteRight": "Characters/리리스/기본",
             "noFade": true,
             "text": "(미소) 아마 한 명 더 먹은 거겠지.\n보이지 않는 관객이."
         },
@@ -807,9 +807,9 @@
             "choices": [],
             "nextNodeId": 66,
             "text": "사라진 마들렌 하나. 그리고 돌아온 사람 하나.",
-            "characterSpriteLeft": "",
-            "characterSpriteCenter": "",
-            "characterSpriteRight": ""
+            "characterSpriteLeft": "Characters/세이카/웃음",
+            "characterSpriteCenter": "Characters/리나/측은",
+            "characterSpriteRight": "Characters/리리스/기본"
         },
         {
             "id": 66,
@@ -819,9 +819,9 @@
             "choices": [],
             "nextNodeId": 68,
             "text": "「네버모어 오컬트 탐정 사무소」의 첫 번째 이야기가,\n이렇게 끝났다.",
-            "characterSpriteLeft": "",
-            "characterSpriteCenter": "",
-            "characterSpriteRight": ""
+            "characterSpriteLeft": "Characters/세이카/웃음",
+            "characterSpriteCenter": "Characters/리나/측은",
+            "characterSpriteRight": "Characters/리리스/기본"
         },
         {
             "id": 68,
@@ -831,9 +831,9 @@
             "choices": [],
             "nextNodeId": 69,
             "text": "플레이해주셔서 감사합니다.",
-            "characterSpriteLeft": "",
-            "characterSpriteCenter": "",
-            "characterSpriteRight": ""
+            "characterSpriteLeft": "Characters/세이카/웃음",
+            "characterSpriteCenter": "Characters/리나/측은",
+            "characterSpriteRight": "Characters/리리스/기본"
         },
         {
             "id": 69,
@@ -843,9 +843,9 @@
             "choices": [],
             "nextNodeId": -1,
             "text": "",
-            "characterSpriteLeft": "",
-            "characterSpriteCenter": "",
-            "characterSpriteRight": ""
+            "characterSpriteLeft": "Characters/세이카/웃음",
+            "characterSpriteCenter": "Characters/리나/측은",
+            "characterSpriteRight": "Characters/리리스/기본"
         }
     ]
 }

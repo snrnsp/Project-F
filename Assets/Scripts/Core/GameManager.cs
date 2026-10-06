@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System;
 
 namespace HalloweenVN.Core
@@ -38,6 +38,27 @@ namespace HalloweenVN.Core
         {
             CurrentPhase = newPhase;
             OnPhaseChanged?.Invoke(CurrentPhase);
+            
+            if (CurrentPhase != GamePhase.Lobby)
+            {
+                SaveManager.Save(SaveManager.CreateFromCurrentState(0), 0);
+            }
+        }
+        
+        private void OnApplicationQuit()
+        {
+            if (CurrentPhase != GamePhase.Lobby)
+            {
+                SaveManager.Save(SaveManager.CreateFromCurrentState(0), 0);
+            }
+        }
+
+        private void OnApplicationPause(bool pauseStatus)
+        {
+            if (pauseStatus && CurrentPhase != GamePhase.Lobby)
+            {
+                SaveManager.Save(SaveManager.CreateFromCurrentState(0), 0);
+            }
         }
     }
 }

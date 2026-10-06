@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using UnityEngine;
 using System;
 
@@ -146,6 +146,21 @@ namespace HalloweenVN.Core
             if (GameManager.Instance != null)
             {
                 data.currentPhase = GameManager.Instance.CurrentPhase.ToString();
+            }
+            
+            if (HalloweenVN.Dialogue.DialogueManager.Instance != null)
+            {
+                data.currentDialogueId = HalloweenVN.Dialogue.DialogueManager.Instance.CurrentDialogueId;
+                if (HalloweenVN.Dialogue.DialogueManager.Instance.CurrentNode != null)
+                {
+                    data.currentNodeIndex = HalloweenVN.Dialogue.DialogueManager.Instance.CurrentNode.id;
+                }
+            }
+            
+            if (HalloweenVN.Investigation.InvestigationManager.Instance != null)
+            {
+                data.currentCaseId = HalloweenVN.Investigation.InvestigationManager.Instance.CurrentCaseId;
+                data.collectedEvidenceIds = new List<string>(HalloweenVN.Investigation.InvestigationManager.Instance.CollectedEvidenceIds);
             }
             
             data.saveTimestamp = DateTime.UtcNow.ToString("o");

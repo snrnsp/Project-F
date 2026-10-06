@@ -41,6 +41,8 @@ namespace HalloweenVN.UI
         // Title / Close
         [SerializeField] private Text titleTextLabel;
         [SerializeField] private Button closeButton;
+        [SerializeField] private Button returnToTitleButton;
+        [SerializeField] private Text returnToTitleLabel;
 
         // Legacy compat (unused but kept for SetField safety)
         [SerializeField] private Slider bgmVolumeSlider;
@@ -171,11 +173,12 @@ namespace HalloweenVN.UI
             if (closeButton != null) closeButton.onClick.RemoveListener(Hide);
         }
 
-        public void UpdateLanguage()
+                public void UpdateLanguage()
         {
             GameLanguage lang = SettingsData.Language;
             string fontName = FontHelper.GetFontNameForLanguage(lang);
             Font f = GetLegacyFont(fontName);
+
             if (f != null)
             {
                 ApplyFontToAll(f);
@@ -184,14 +187,14 @@ namespace HalloweenVN.UI
             switch (lang)
             {
                 case GameLanguage.Korean:
-                    SetText(bgmVolumeLabel, "배경음악 (BGM) 음량");
-                    SetText(sfxVolumeLabel, "효과음 (SFX) 음량");
+                    SetText(bgmVolumeLabel, "\uBC30\uACBD\uC74C\uC545 (BGM) \uC74C\uB7C9");
+                    SetText(sfxVolumeLabel, "\uD6A8\uACFC\uC74C (SFX) \uC74C\uB7C9");
                     SetText(titleTextLabel, "\uC124\uC815");
                     SetText(textSpeedLabel, "\uD14D\uC2A4\uD2B8 \uC18D\uB3C4");
                     SetText(autoPlayLabel, "\uC624\uD1A0 \uB300\uAE30 \uC2DC\uAC04");
-                    
                     SetText(skipModeLabel, "\uC2A4\uD0B5 \uBAA8\uB4DC");
                     SetText(fontStyleLabel, "\uAE00\uAF34");
+                    SetText(returnToTitleLabel, "\uD0C0\uC774\uD2C0\uB85C \uB3CC\uC544\uAC00\uAE30");
                     previewMessage = "\uD14D\uC2A4\uD2B8 \uC18D\uB3C4\uAC00 \uC774 \uC815\uB3C4\uB85C \uCD9C\uB825\uB429\uB2C8\uB2E4. \uB208\uC73C\uB85C \uD655\uC778\uD574 \uBCF4\uC138\uC694!";
                     SetText(skipHelpText, "\uC124\uC815\uD558\uC2E0 \uB2E8\uCD95\uD0A4\uB97C \uB204\uB974\uACE0 \uC788\uC73C\uBA74 \uB300\uC0AC\uB97C \uBE60\uB974\uAC8C \uB118\uAE38 \uC218 \uC788\uC2B5\uB2C8\uB2E4.");
                     break;
@@ -201,45 +204,45 @@ namespace HalloweenVN.UI
                     SetText(titleTextLabel, "Settings");
                     SetText(textSpeedLabel, "Text Speed");
                     SetText(autoPlayLabel, "Auto-play Delay");
-                    
                     SetText(skipModeLabel, "Skip Hotkey");
                     SetText(fontStyleLabel, "Font");
+                    SetText(returnToTitleLabel, "Return to Title");
                     previewMessage = "This is a text speed test. Please check it carefully!";
                     SetText(skipHelpText, "Hold the configured hotkey to fast-forward through the dialogue.");
                     break;
                 case GameLanguage.Japanese:
-                    SetText(bgmVolumeLabel, "BGM音量");
-                    SetText(sfxVolumeLabel, "効果音音量");
+                    SetText(bgmVolumeLabel, "BGM\u97F3\u91CF");
+                    SetText(sfxVolumeLabel, "\u52B9\u679C\u97F3\u97F3\u91CF");
                     SetText(titleTextLabel, "\u8A2D\u5B9A");
                     SetText(textSpeedLabel, "\u30C6\u30AD\u30B9\u30C8\u901F\u5EA6");
                     SetText(autoPlayLabel, "\u30AA\u30FC\u30C8\u5F85\u6A5F\u6642\u9593");
-                    
                     SetText(skipModeLabel, "\u30B9\u30AD\u30C3\u30D7\u30E2\u30FC\u30C9");
                     SetText(fontStyleLabel, "\u30D5\u30A9\u30F3\u30C8");
+                    SetText(returnToTitleLabel, "\u30BF\u30A4\u30C8\u30EB\u306B\u623B\u308B");
                     previewMessage = "\u30C6\u30AD\u30B9\u30C8\u901F\u5EA6\u306E\u30C6\u30B9\u30C8\u3067\u3059\u3002\u3054\u78BA\u8A8D\u304F\u3060\u3055\u3044\u3002";
                     SetText(skipHelpText, "\u8A2D\u5B9A\u3057\u305F\u30B7\u30E7\u30FC\u30C8\u30AB\u30C3\u30C8\u30AD\u30FC\u3092\u62BC\u3057\u7D9A\u3051\u308B\u3068\u3001\u30BB\u30EA\u30D5\u3092\u65E9\u9001\u308A\u3067\u304D\u307E\u3059\u3002");
                     break;
                 case GameLanguage.ChineseSimplified:
-                    SetText(bgmVolumeLabel, "背景音乐音量");
-                    SetText(sfxVolumeLabel, "音效音量");
+                    SetText(bgmVolumeLabel, "\u97F3\u4E50\u97F3\u91CF");
+                    SetText(sfxVolumeLabel, "\u97F3\u6548\u97F3\u91CF");
                     SetText(titleTextLabel, "\u8BBE\u7F6E");
                     SetText(textSpeedLabel, "\u6587\u672C\u901F\u5EA6");
                     SetText(autoPlayLabel, "\u81EA\u52A8\u64AD\u653E\u5EF6\u8FDF");
-                    
                     SetText(skipModeLabel, "\u8DF3\u8FC7\u6A21\u5F0F");
                     SetText(fontStyleLabel, "\u5B57\u4F53");
+                    SetText(returnToTitleLabel, "\u8FD4\u56DE\u6807\u9898");
                     previewMessage = "\u8FD9\u662F\u6587\u672C\u901F\u5EA6\u6D4B\u8BD5\u3002\u8BF7\u4ED4\u7EC6\u68C0\u67E5\uFF01";
                     SetText(skipHelpText, "\u6309\u4F4F\u8BBE\u7F6E\u7684\u5FEB\u6377\u952E\u53EF\u4EE5\u5FEB\u901F\u8DF3\u8FC7\u5BF9\u8BDD\u3002");
                     break;
                 case GameLanguage.ChineseTraditional:
-                    SetText(bgmVolumeLabel, "背景音樂音量");
-                    SetText(sfxVolumeLabel, "音效音量");
+                    SetText(bgmVolumeLabel, "\u97F3\u6A02\u97F3\u91CF");
+                    SetText(sfxVolumeLabel, "\u97F3\u6548\u97F3\u91CF");
                     SetText(titleTextLabel, "\u8A2D\u5B9A");
                     SetText(textSpeedLabel, "\u6587\u672C\u901F\u5EA6");
                     SetText(autoPlayLabel, "\u81EA\u52D5\u64AD\u653E\u5EF6\u9072");
-                    
                     SetText(skipModeLabel, "\u8DF3\u904E\u6A21\u5F0F");
                     SetText(fontStyleLabel, "\u5B57\u9AD4");
+                    SetText(returnToTitleLabel, "\u8FD4\u56DE\u6A19\u984C");
                     previewMessage = "\u9019\u662F\u6587\u672C\u901F\u5EA6\u6E2C\u8A66\u3002\u8ACB\u4ED4\u7D30\u6AA2\u67E5\u3002";
                     SetText(skipHelpText, "\u6309\u4F4F\u8A2D\u5B9A\u7684\u5FEB\u6377\u9375\u53EF\u4EE5\u5FEB\u901F\u8DF3\u904E\u5C0D\u8A71\u3002");
                     break;
