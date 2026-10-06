@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -282,7 +282,7 @@ namespace HalloweenVN.UI
         // ═══════════ Display Node ═══════════
 
 
-        private Color GetSpeakerColor(string speaker)
+        internal static Color GetSpeakerColor(string speaker)
         {
             if (string.IsNullOrWhiteSpace(speaker)) return HalloweenVN.UI.Theme.HalloweenTheme.TextSpeaker;
             switch (speaker.Trim())

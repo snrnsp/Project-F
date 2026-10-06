@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System.Collections.Generic;
@@ -229,7 +229,7 @@ namespace HalloweenVN.UI
                 GameObject emptyMsg = new GameObject("EmptyMsg");
                 emptyMsg.transform.SetParent(contentContainer, false);
                 var text = emptyMsg.AddComponent<TextMeshProUGUI>();
-                text.text = "기록된 대화가 없습니다.";
+                text.text = L("기록된 대화가 없습니다.", "No dialogue recorded yet.", "記録された会話はありません。", "暂无对话记录。", "暫無對話記錄。");
                 text.color = HalloweenTheme.TextPrimary;
                 text.alignment = TextAlignmentOptions.Center;
                 
@@ -239,48 +239,40 @@ namespace HalloweenVN.UI
                 return;
             }
 
-            // Pre-compute font and color strings once outside the loop
+            // Pre-compute font and strings once outside the loop
             string globalFontName = HalloweenVN.UI.FontHelper.GetFontNameForLanguage(SettingsData.Language);
             var cachedFont = HalloweenVN.UI.FontHelper.GetTMPFont(globalFontName);
-            string speakerColorHex = ColorUtility.ToHtmlStringRGB(HalloweenTheme.TextSpeaker);
-            string textColorHex = ColorUtility.ToHtmlStringRGB(HalloweenTheme.TextPrimary);
+            string hintLabel = L("◀ 이 장면으로 되감기", "◀ Rewind to here", "◀ ここまで戻る", "◀ 回到此处", "◀ 回到此處");
+            string currentLabel = L("현재", "Now", "現在", "当前", "目前");
+
+            Color boxBg = HalloweenTheme.PanelBackground;
+            Color boxBgHover = new Color(boxBg.r * 1.6f, boxBg.g * 1.6f, boxBg.b * 1.6f, Mathf.Min(1f, boxBg.a + 0.1f));
+            Color narrationBg = new Color(boxBg.r * 0.6f, boxBg.g * 0.6f, boxBg.b * 0.6f, boxBg.a);
+            Color dimBorder = new Color(HalloweenTheme.PanelBorder.r, HalloweenTheme.PanelBorder.g, HalloweenTheme.PanelBorder.b, 0.45f);
 
             for (int i = 0; i < history.Count; i++)
             {
                 var entry = history[i];
                 int entryIndex = i; // capture for closure
+                bool isLastEntry = (i == history.Count - 1);
+                bool isNarration = string.IsNullOrWhiteSpace(entry.speaker);
+                string bodyText = ResolveText(entry);
                 
                 GameObject entryObj = new GameObject($"BacklogEntry_{i}");
                 entryObj.transform.SetParent(contentContainer, false);
                 
-                var btn = entryObj.AddComponent<Button>();
+                // ── Box (mirrors the in-game dialogue panel) ──
                 var img = entryObj.AddComponent<Image>();
-                btn.targetGraphic = img;
+                var outline = entryObj.AddComponent<Outline>();
+                outline.effectDistance = new Vector2(3f, 3f);
                 
-                bool isLastEntry = (i == history.Count - 1);
-                
-                if (isLastEntry)
-                {
-                    // Current dialogue — no click, subtle highlight
-                    img.color = new Color32(35, 25, 45, 220);
-                    btn.interactable = false;
-                }
-                else
-                {
-                    // Past dialogue — clickable with hover
-                    img.color = new Color32(20, 15, 25, 200);
-                    var colors = btn.colors;
-                    colors.normalColor = Color.white;
-                    colors.highlightedColor = new Color32(200, 200, 200, 255);
-                    colors.pressedColor = new Color32(150, 150, 150, 255);
-                    btn.colors = colors;
-                }
-                
-                btn.onClick.AddListener(() => OnEntryClicked(entryIndex));
+                Color normalBg = isNarration ? narrationBg : boxBg;
+                img.color = normalBg;
+                outline.effectColor = isLastEntry ? HalloweenTheme.AccentOrange : dimBorder;
                 
                 var layout = entryObj.AddComponent<VerticalLayoutGroup>();
-                layout.padding = new RectOffset(30, 30, 20, 20);
-                layout.spacing = 15;
+                layout.padding = new RectOffset(32, 32, 18, 22);
+                layout.spacing = 8;
                 layout.childControlHeight = true;
                 layout.childControlWidth = true;
                 layout.childForceExpandHeight = false;
@@ -289,24 +281,107 @@ namespace HalloweenVN.UI
                 var entryCsf = entryObj.AddComponent<ContentSizeFitter>();
                 entryCsf.verticalFit = ContentSizeFitter.FitMode.PreferredSize;
                 
-                // Add Speaker Text if exists
-                if (!string.IsNullOrEmpty(entry.speaker))
+                // ── Speaker name (same per-character color as the dialogue box) ──
+                if (!isNarration)
                 {
                     GameObject speakerObj = new GameObject("Speaker");
                     speakerObj.transform.SetParent(entryObj.transform, false);
                     var speakerTxt = speakerObj.AddComponent<TextMeshProUGUI>();
-                    speakerTxt.text = $"<color=#{speakerColorHex}>{entry.speaker}</color>";
-                    speakerTxt.fontSize = 32;
+                    speakerTxt.text = entry.speaker;
+                    speakerTxt.color = DialogueUI.GetSpeakerColor(entry.speaker);
+                    speakerTxt.fontStyle = FontStyles.Bold;
+                    speakerTxt.fontSize = 30;
+                    speakerTxt.raycastTarget = false;
                     if (cachedFont != null) speakerTxt.font = cachedFont;
                 }
                 
-                // Add Dialogue Text
+                // ── Dialogue / narration text ──
                 GameObject textObj = new GameObject("Text");
                 textObj.transform.SetParent(entryObj.transform, false);
                 var dialogueTxt = textObj.AddComponent<TextMeshProUGUI>();
-                dialogueTxt.text = $"<color=#{textColorHex}>{entry.text}</color>";
-                dialogueTxt.fontSize = 30;
+                dialogueTxt.text = bodyText;
+                dialogueTxt.fontSize = 28;
+                dialogueTxt.raycastTarget = false;
+                if (isNarration)
+                {
+                    dialogueTxt.fontStyle = FontStyles.Italic;
+                    dialogueTxt.color = new Color(HalloweenTheme.TextPrimary.r, HalloweenTheme.TextPrimary.g, HalloweenTheme.TextPrimary.b, 0.75f);
+                }
+                else
+                {
+                    dialogueTxt.color = HalloweenTheme.TextPrimary;
+                }
                 if (cachedFont != null) dialogueTxt.font = cachedFont;
+                
+                // ── Top-right tag: "현재" on the current line, rewind hint on hover for past lines ──
+                GameObject tagObj = new GameObject("Tag");
+                tagObj.transform.SetParent(entryObj.transform, false);
+                var tagLe = tagObj.AddComponent<LayoutElement>();
+                tagLe.ignoreLayout = true;
+                var tagRt = tagObj.GetComponent<RectTransform>();
+                if (tagRt == null) tagRt = tagObj.AddComponent<RectTransform>();
+                tagRt.anchorMin = new Vector2(1, 1);
+                tagRt.anchorMax = new Vector2(1, 1);
+                tagRt.pivot = new Vector2(1, 1);
+                tagRt.anchoredPosition = new Vector2(-20, -14);
+                tagRt.sizeDelta = new Vector2(320, 36);
+                var tagTxt = tagObj.AddComponent<TextMeshProUGUI>();
+                tagTxt.alignment = TextAlignmentOptions.TopRight;
+                tagTxt.fontSize = 22;
+                tagTxt.raycastTarget = false;
+                if (cachedFont != null) tagTxt.font = cachedFont;
+                
+                if (isLastEntry)
+                {
+                    // Current line — not clickable
+                    tagTxt.text = currentLabel;
+                    tagTxt.color = HalloweenTheme.AccentOrange;
+                }
+                else
+                {
+                    tagTxt.text = hintLabel;
+                    tagTxt.color = HalloweenTheme.AccentOrange;
+                    tagObj.SetActive(false);
+                    
+                    var btn = entryObj.AddComponent<Button>();
+                    btn.targetGraphic = img;
+                    btn.transition = Selectable.Transition.None; // visuals handled by BacklogEntryHover
+                    btn.onClick.AddListener(() => OnEntryClicked(entryIndex));
+                    
+                    var hover = entryObj.AddComponent<BacklogEntryHover>();
+                    hover.background = img;
+                    hover.outline = outline;
+                    hover.hint = tagObj;
+                    hover.normalBg = normalBg;
+                    hover.hoverBg = boxBgHover;
+                    hover.normalBorder = dimBorder;
+                    hover.hoverBorder = HalloweenTheme.AccentOrange;
+                }
+            }
+        }
+        
+        /// <summary>Text for an entry in the CURRENT language (so a mid-game language switch updates past lines too).</summary>
+        private static string ResolveText(BacklogEntry entry)
+        {
+            var node = entry.node;
+            if (node == null) return entry.text;
+            var lang = SettingsData.Language;
+            if (lang == GameLanguage.English && !string.IsNullOrEmpty(node.text_en)) return node.text_en;
+            if (lang == GameLanguage.Japanese && !string.IsNullOrEmpty(node.text_ja)) return node.text_ja;
+            if (lang == GameLanguage.ChineseSimplified && !string.IsNullOrEmpty(node.text_cn)) return node.text_cn;
+            if (lang == GameLanguage.ChineseTraditional && !string.IsNullOrEmpty(node.text_tw)) return node.text_tw;
+            return node.text ?? entry.text;
+        }
+        
+        private static string L(string ko, string en, string ja, string cn, string tw)
+        {
+            switch (SettingsData.Language)
+            {
+                case GameLanguage.English: return en;
+                case GameLanguage.Japanese: return ja;
+                case GameLanguage.ChineseSimplified: return cn;
+                case GameLanguage.ChineseTraditional: return tw;
+                default: return ko;
             }
         }
         
@@ -366,7 +441,10 @@ namespace HalloweenVN.UI
             textRt.offsetMax = new Vector2(-20, -20);
             
             TextMeshProUGUI tmp = textObj.AddComponent<TextMeshProUGUI>();
-            tmp.text = "이 시점으로 되감기 하시겠습니까?\n<size=24><color=#aaaaaa>(이후의 진행 내역은 사라집니다)</color></size>";
+            tmp.text = L("이 시점으로 되감기 하시겠습니까?", "Rewind to this point?", "この時点まで戻りますか？", "要回到这个时间点吗？", "要回到這個時間點嗎？")
+                + "\n<size=24><color=#aaaaaa>"
+                + L("(이후의 진행 내역은 사라집니다)", "(Progress after this point will be lost)", "（これ以降の進行は失われます）", "（此后的进度将会丢失）", "（此後的進度將會遺失）")
+                + "</color></size>";
             tmp.alignment = TextAlignmentOptions.Center;
             tmp.fontSize = 36;
             string fontName = HalloweenVN.UI.FontHelper.GetFontNameForLanguage(SettingsData.Language);
@@ -374,8 +452,8 @@ namespace HalloweenVN.UI
             if (tmpFont != null) tmp.font = tmpFont;
             
             // Buttons
-            var yesBtnTup = UIHelper.CreateButton(panel.transform, "예", 200, 80);
-            var noBtnTup = UIHelper.CreateButton(panel.transform, "아니오", 200, 80);
+            var yesBtnTup = UIHelper.CreateButton(panel.transform, L("예", "Yes", "はい", "是", "是"), 200, 80);
+            var noBtnTup = UIHelper.CreateButton(panel.transform, L("아니오", "No", "いいえ", "否", "否"), 200, 80);
             
             yesBtnTup.btnText.fontSize = 32;
             noBtnTup.btnText.fontSize = 32;

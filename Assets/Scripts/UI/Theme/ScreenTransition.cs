@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 using System;
@@ -109,6 +109,7 @@ namespace HalloweenVN.UI.Theme
         /// <param name="duration">Total duration of the flash.</param>
         public void FlashRed(float duration = 0.3f)
         {
+            if (!HalloweenVN.Core.SettingsData.EnableFlashingEffects) return;
             if (transitionCoroutine != null) StopCoroutine(transitionCoroutine);
             transitionCoroutine = StartCoroutine(FullTransitionCoroutine(duration, Color.red, null));
         }
@@ -119,6 +120,7 @@ namespace HalloweenVN.UI.Theme
         /// <param name="duration">Total duration of the flash.</param>
         public void FlashWhite(float duration = 0.3f)
         {
+            if (!HalloweenVN.Core.SettingsData.EnableFlashingEffects) return;
             if (transitionCoroutine != null) StopCoroutine(transitionCoroutine);
             transitionCoroutine = StartCoroutine(FullTransitionCoroutine(duration, Color.white, null));
         }

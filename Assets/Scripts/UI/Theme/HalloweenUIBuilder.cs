@@ -1,4 +1,4 @@
-﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿using HalloweenVN.Core;
+﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿using HalloweenVN.Core;
 using HalloweenVN.Dialogue;
 using HalloweenVN.Investigation;
 using HalloweenVN.Deduction;
@@ -748,7 +748,7 @@ namespace HalloweenVN.UI.Theme
             if (outline != null) outline.effectDistance = new Vector2(HalloweenTheme.PanelBorderWidth, HalloweenTheme.PanelBorderWidth + 4f);
             RectTransform panelRt = panel.GetComponent<RectTransform>();
             UIHelper.SetAnchors(panelRt, new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f));
-            panelRt.sizeDelta = new Vector2(700, 850);
+            panelRt.sizeDelta = new Vector2(700, 970);
 
             // Title
             GameObject titleObj = UIHelper.CreateUIObject("Title", panel.transform);
@@ -888,6 +888,15 @@ namespace HalloweenVN.UI.Theme
             fontRt.anchoredPosition = new Vector2(0, yPos - 45);
             fontTuple.text.fontSize = 22;
 
+            // ─── 5. Flash / Shake Effects (photosensitivity toggle) ───
+            yPos -= 105;
+            var flashLabel = CreateSettingsLabel(panel.transform, "화면 번쩍임·흔들림", yPos);
+            var flashTuple = CreateLegacyButton(panel.transform, "켜짐", 220, 40, new Color32(60, 40, 80, 255));
+            RectTransform flashRt = flashTuple.btn.GetComponent<RectTransform>();
+            UIHelper.SetAnchors(flashRt, new Vector2(0.5f, 1), new Vector2(0.5f, 1), new Vector2(0.5f, 1));
+            flashRt.anchoredPosition = new Vector2(0, yPos - 45);
+            flashTuple.text.fontSize = 22;
+
             // ─── Close Button ───
             var closeTuple = CreateLegacyButton(panel.transform, "X", 44, 44, new Color32(180, 50, 50, 255));
             RectTransform closeRt = closeTuple.btn.GetComponent<RectTransform>();
@@ -934,6 +943,9 @@ namespace HalloweenVN.UI.Theme
             UIHelper.SetField(settingsUi, "fontStyleButton", fontTuple.btn);
             UIHelper.SetField(settingsUi, "fontStyleLabel", fontStyleLabel);
             UIHelper.SetField(settingsUi, "fontStyleValueText", fontTuple.text);
+            UIHelper.SetField(settingsUi, "flashEffectButton", flashTuple.btn);
+            UIHelper.SetField(settingsUi, "flashEffectLabel", flashLabel);
+            UIHelper.SetField(settingsUi, "flashEffectValueText", flashTuple.text);
             UIHelper.SetField(settingsUi, "closeButton", closeTuple.btn);
             UIHelper.SetField(settingsUi, "returnToTitleButton", titleTuple.btn);
             UIHelper.SetField(settingsUi, "returnToTitleLabel", titleTuple.text);

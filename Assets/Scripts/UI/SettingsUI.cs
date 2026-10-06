@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using HalloweenVN.Core;
@@ -54,6 +54,11 @@ namespace HalloweenVN.UI
         private float lastSfxPreviewTime = -1f;
         [SerializeField] private Toggle fullscreenToggle;
 
+        // Flash / Shake effect toggle (photosensitivity)
+        [SerializeField] private Button flashEffectButton;
+        [SerializeField] private Text flashEffectLabel;
+        [SerializeField] private Text flashEffectValueText;
+
         private Coroutine typingCoroutine;
         private string previewMessage = "\uD14D\uC2A4\uD2B8 \uC18D\uB3C4\uAC00 \uC774 \uC815\uB3C4\uB85C \uCD9C\uB825\uB429\uB2C8\uB2E4. \uB208\uC73C\uB85C \uD655\uC778\uD574 \uBCF4\uC138\uC694!";
 
@@ -94,10 +99,10 @@ namespace HalloweenVN.UI
                 autoPlaySlider.onValueChanged.AddListener(OnAutoPlayChanged);
             }
 
-            if (fullscreenToggle != null)
+            if (flashEffectButton != null)
             {
-                fullscreenToggle.isOn = SettingsData.EnableFlashingEffects;
-                fullscreenToggle.onValueChanged.AddListener(OnEpilepsyToggled);
+                flashEffectButton.onClick.RemoveListener(OnFlashEffectClicked);
+                flashEffectButton.onClick.AddListener(OnFlashEffectClicked);
             }
             if (skipHelpButton != null && skipHelpPanel != null)
             {
@@ -173,7 +178,7 @@ namespace HalloweenVN.UI
             if (sfxVolumeSlider != null) sfxVolumeSlider.onValueChanged.RemoveListener(OnSFXVolumeChanged);
             if (textSpeedSlider != null) textSpeedSlider.onValueChanged.RemoveListener(OnTextSpeedChanged);
             if (autoPlaySlider != null) autoPlaySlider.onValueChanged.RemoveListener(OnAutoPlayChanged);
-            if (fullscreenToggle != null) fullscreenToggle.onValueChanged.RemoveListener(OnEpilepsyToggled);
+            if (flashEffectButton != null) flashEffectButton.onClick.RemoveListener(OnFlashEffectClicked);
         if (autoPlayInputField != null) autoPlayInputField.onEndEdit.RemoveListener(OnAutoPlayInputEdit);
 
             if (fontStyleButton != null) fontStyleButton.onClick.RemoveListener(OnFontStyleToggled);
@@ -255,6 +260,15 @@ namespace HalloweenVN.UI
                     break;
             }
 
+            switch (lang)
+            {
+                case GameLanguage.Korean: SetText(flashEffectLabel, "화면 번쩍임·흔들림"); break;
+                case GameLanguage.Japanese: SetText(flashEffectLabel, "フラッシュ・揺れ演出"); break;
+                case GameLanguage.ChineseSimplified: SetText(flashEffectLabel, "闪光与震动效果"); break;
+                case GameLanguage.ChineseTraditional: SetText(flashEffectLabel, "閃光與震動效果"); break;
+                default: SetText(flashEffectLabel, "Flash & Shake Effects"); break;
+            }
+
             UpdateAllLabels();
             PlayPreviewText();
         }
@@ -283,9 +297,11 @@ namespace HalloweenVN.UI
             
             SetFont(skipModeLabel, 28, 22);
             SetFont(fontStyleLabel, 28, 22);
+            SetFont(flashEffectLabel, 28, 22);
             
             SetFont(ctrlSkipValueText, 20, 16);
             SetFont(fontStyleValueText, 20, 16);
+            SetFont(flashEffectValueText, 20, 16);
             SetFont(previewTextLabel, 24, 20);
 
             if (autoPlayInputField != null) {
@@ -324,9 +340,9 @@ namespace HalloweenVN.UI
 
         // --- Callbacks ---
         
-        private void OnEpilepsyToggled(bool value)
+        private void OnFlashEffectClicked()
         {
-            SettingsData.EnableFlashingEffects = value;
+            SettingsData.EnableFlashingEffects = !SettingsData.EnableFlashingEffects;
             SettingsData.Save();
             UpdateAllLabels();
         }
@@ -455,13 +471,16 @@ namespace HalloweenVN.UI
             GameLanguage lang = SettingsData.Language;
 
             if (autoPlayInputField != null) autoPlayInputField.text = SettingsData.AutoPlayDelay.ToString("0.0");
-            if (fullscreenToggle != null)
+            if (flashEffectValueText != null)
             {
-                Text t = fullscreenToggle.GetComponentInChildren<Text>();
-                if (t != null)
+                bool on = SettingsData.EnableFlashingEffects;
+                switch (lang)
                 {
-                    if (lang == GameLanguage.Korean) t.text = "광과민성 이펙트 허용";
-                    else t.text = "Allow Flashing Effects";
+                    case GameLanguage.Korean: flashEffectValueText.text = on ? "켜짐" : "꺼짐"; break;
+                    case GameLanguage.Japanese: flashEffectValueText.text = on ? "オン" : "オフ"; break;
+                    case GameLanguage.ChineseSimplified: flashEffectValueText.text = on ? "开" : "关"; break;
+                    case GameLanguage.ChineseTraditional: flashEffectValueText.text = on ? "開" : "關"; break;
+                    default: flashEffectValueText.text = on ? "ON" : "OFF"; break;
                 }
             }
             if (ctrlSkipValueText != null)
