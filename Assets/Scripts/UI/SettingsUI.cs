@@ -93,6 +93,12 @@ namespace HalloweenVN.UI
                 autoPlaySlider.value = SettingsData.AutoPlayDelay;
                 autoPlaySlider.onValueChanged.AddListener(OnAutoPlayChanged);
             }
+
+            if (fullscreenToggle != null)
+            {
+                fullscreenToggle.isOn = SettingsData.EnableFlashingEffects;
+                fullscreenToggle.onValueChanged.AddListener(OnEpilepsyToggled);
+            }
             if (skipHelpButton != null && skipHelpPanel != null)
             {
                 EventTrigger trigger = skipHelpButton.gameObject.AddComponent<EventTrigger>();
@@ -167,6 +173,7 @@ namespace HalloweenVN.UI
             if (sfxVolumeSlider != null) sfxVolumeSlider.onValueChanged.RemoveListener(OnSFXVolumeChanged);
             if (textSpeedSlider != null) textSpeedSlider.onValueChanged.RemoveListener(OnTextSpeedChanged);
             if (autoPlaySlider != null) autoPlaySlider.onValueChanged.RemoveListener(OnAutoPlayChanged);
+            if (fullscreenToggle != null) fullscreenToggle.onValueChanged.RemoveListener(OnEpilepsyToggled);
         if (autoPlayInputField != null) autoPlayInputField.onEndEdit.RemoveListener(OnAutoPlayInputEdit);
 
             if (fontStyleButton != null) fontStyleButton.onClick.RemoveListener(OnFontStyleToggled);
@@ -316,6 +323,13 @@ namespace HalloweenVN.UI
         }
 
         // --- Callbacks ---
+        
+        private void OnEpilepsyToggled(bool value)
+        {
+            SettingsData.EnableFlashingEffects = value;
+            SettingsData.Save();
+            UpdateAllLabels();
+        }
 
 
         // Values are persisted by SettingsData.Save() in Hide(). Writing PlayerPrefs on every
@@ -441,6 +455,15 @@ namespace HalloweenVN.UI
             GameLanguage lang = SettingsData.Language;
 
             if (autoPlayInputField != null) autoPlayInputField.text = SettingsData.AutoPlayDelay.ToString("0.0");
+            if (fullscreenToggle != null)
+            {
+                Text t = fullscreenToggle.GetComponentInChildren<Text>();
+                if (t != null)
+                {
+                    if (lang == GameLanguage.Korean) t.text = "광과민성 이펙트 허용";
+                    else t.text = "Allow Flashing Effects";
+                }
+            }
             if (ctrlSkipValueText != null)
             {
                 string keyName = "Ctrl ▼";

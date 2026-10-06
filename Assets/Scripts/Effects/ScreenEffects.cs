@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 
@@ -79,6 +79,7 @@ namespace HalloweenVN.Effects
         // ═══════════ Camera Shake ═══════════
         public Coroutine ShakeCamera(float duration = 0.5f, float magnitude = 10f)
         {
+            if (!HalloweenVN.Core.SettingsData.EnableFlashingEffects) return null;
             if (_mainCam == null) _mainCam = Camera.main;
             if (_mainCam == null) return null;
 
@@ -117,6 +118,7 @@ namespace HalloweenVN.Effects
         // ═══════════ Screen Flash ═══════════
         public Coroutine FlashScreen(Color color, float duration = 0.5f)
         {
+            if (!HalloweenVN.Core.SettingsData.EnableFlashingEffects) return null;
             if (_activeFlashCoroutine != null) StopCoroutine(_activeFlashCoroutine);
             _activeFlashCoroutine = StartCoroutine(FlashScreenCoroutine(color, duration));
             return _activeFlashCoroutine;

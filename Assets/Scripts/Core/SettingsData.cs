@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace HalloweenVN.Core
 {
@@ -23,6 +23,7 @@ namespace HalloweenVN.Core
         public static bool UseHandwritingFont { get; set; } = true;
         public static int PerformanceMode { get; set; } = 1; // 0: Power Saving, 1: High Quality
         public static GameLanguage Language { get; set; } = GameLanguage.Korean;
+        public static bool EnableFlashingEffects { get; set; } = true;
 
         private const string Prefix = "HalloweenVN_";
 
@@ -43,6 +44,7 @@ namespace HalloweenVN.Core
             UseHandwritingFont = PlayerPrefs.GetInt(Prefix + "UseHandwritingFont", 1) == 1;
             PerformanceMode = PlayerPrefs.GetInt(Prefix + "PerformanceMode", 1);
             Language = (GameLanguage)PlayerPrefs.GetInt(Prefix + "Language", 0);
+            EnableFlashingEffects = PlayerPrefs.GetInt(Prefix + "EnableFlashingEffects", 1) == 1;
         }
 
         public static void Save()
@@ -56,6 +58,7 @@ namespace HalloweenVN.Core
             PlayerPrefs.SetInt(Prefix + "UseHandwritingFont", UseHandwritingFont ? 1 : 0);
             PlayerPrefs.SetInt(Prefix + "PerformanceMode", PerformanceMode);
             PlayerPrefs.SetInt(Prefix + "Language", (int)Language);
+            PlayerPrefs.SetInt(Prefix + "EnableFlashingEffects", EnableFlashingEffects ? 1 : 0);
             PlayerPrefs.Save();
             ApplyPerformanceMode();
         }
@@ -90,6 +93,7 @@ namespace HalloweenVN.Core
             SkipKey = SkipKeyOption.Ctrl;
             UseHandwritingFont = true;
             PerformanceMode = 1;
+            EnableFlashingEffects = true;
             Save();
         }
     }
