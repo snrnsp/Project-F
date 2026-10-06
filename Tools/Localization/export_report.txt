@@ -1,0 +1,22 @@
+Output: F:\Project-F\Assets\Resources\Localization\game_text.csv
+Total rows: 621  (Korean characters: 22547)
+  Speaker: 10
+  UI: 97
+  Evidence: 14
+  Case: 6
+  Dialogue: 494
+Dialogue rows per file:
+  ch0_origin: 72
+  ch0_gathering: 37
+  ch0_opening: 15
+  ch1_morning: 74
+  ch1_night: 42
+  ch1_investigation_talk: 23
+  ch1_result_perfect: 15
+  ch1_resolution: 143
+  ch1_epilogue: 68
+  ch1_result_fail: 5
+Translations kept from existing CSV: 0 cells, imported from seeds: 323 cells
+Rows flagged KO-changed: 0
+Keys in old CSV that no longer exist (dropped): 0
+Warnings: 0

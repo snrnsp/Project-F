@@ -34,14 +34,7 @@ namespace HalloweenVN.UI
                 this.node = node;
                 this.speaker = node.speaker;
                 
-                var lang = HalloweenVN.Core.SettingsData.Language;
-                string fullText = node.text ?? "";
-                if (lang == HalloweenVN.Core.GameLanguage.English && !string.IsNullOrEmpty(node.text_en)) fullText = node.text_en;
-                else if (lang == HalloweenVN.Core.GameLanguage.Japanese && !string.IsNullOrEmpty(node.text_ja)) fullText = node.text_ja;
-                else if (lang == HalloweenVN.Core.GameLanguage.ChineseSimplified && !string.IsNullOrEmpty(node.text_cn)) fullText = node.text_cn;
-                else if (lang == HalloweenVN.Core.GameLanguage.ChineseTraditional && !string.IsNullOrEmpty(node.text_tw)) fullText = node.text_tw;
-                
-                this.text = fullText;
+                this.text = HalloweenVN.Core.Loc.NodeText(dialogueId, node);
             }
         }
 
@@ -129,12 +122,7 @@ namespace HalloweenVN.UI
         private void RecordNode(DialogueNode node)
         {
             if (node == null) return;
-            string checkText = node.text;
-            var lang = HalloweenVN.Core.SettingsData.Language;
-            if (lang == HalloweenVN.Core.GameLanguage.English && !string.IsNullOrEmpty(node.text_en)) checkText = node.text_en;
-            else if (lang == HalloweenVN.Core.GameLanguage.Japanese && !string.IsNullOrEmpty(node.text_ja)) checkText = node.text_ja;
-            else if (lang == HalloweenVN.Core.GameLanguage.ChineseSimplified && !string.IsNullOrEmpty(node.text_cn)) checkText = node.text_cn;
-            else if (lang == HalloweenVN.Core.GameLanguage.ChineseTraditional && !string.IsNullOrEmpty(node.text_tw)) checkText = node.text_tw;
+            string checkText = HalloweenVN.Core.Loc.NodeText(DialogueManager.Instance?.CurrentDialogueId, node);
             if (string.IsNullOrEmpty(checkText)) return;
             string currentDialogId = DialogueManager.Instance.CurrentDialogueId;
             history.Add(new BacklogEntry(currentDialogId, node));
@@ -229,7 +217,7 @@ namespace HalloweenVN.UI
                 GameObject emptyMsg = new GameObject("EmptyMsg");
                 emptyMsg.transform.SetParent(contentContainer, false);
                 var text = emptyMsg.AddComponent<TextMeshProUGUI>();
-                text.text = L("기록된 대화가 없습니다.", "No dialogue recorded yet.", "記録された会話はありません。", "暂无对话记录。", "暫無對話記錄。");
+                text.text = HalloweenVN.Core.Loc.Get("ui.backlog.empty", "기록된 대화가 없습니다.");
                 text.color = HalloweenTheme.TextPrimary;
                 text.alignment = TextAlignmentOptions.Center;
                 
@@ -242,8 +230,8 @@ namespace HalloweenVN.UI
             // Pre-compute font and strings once outside the loop
             string globalFontName = HalloweenVN.UI.FontHelper.GetFontNameForLanguage(SettingsData.Language);
             var cachedFont = HalloweenVN.UI.FontHelper.GetTMPFont(globalFontName);
-            string hintLabel = L("◀ 이 장면으로 되감기", "◀ Rewind to here", "◀ ここまで戻る", "◀ 回到此处", "◀ 回到此處");
-            string currentLabel = L("현재", "Now", "現在", "当前", "目前");
+            string hintLabel = HalloweenVN.Core.Loc.Get("ui.backlog.rewind_hint", "◀ 이 장면으로 되감기");
+            string currentLabel = HalloweenVN.Core.Loc.Get("ui.backlog.current", "현재");
 
             Color boxBg = HalloweenTheme.PanelBackground;
             Color boxBgHover = new Color(boxBg.r * 1.6f, boxBg.g * 1.6f, boxBg.b * 1.6f, Mathf.Min(1f, boxBg.a + 0.1f));
@@ -287,7 +275,7 @@ namespace HalloweenVN.UI
                     GameObject speakerObj = new GameObject("Speaker");
                     speakerObj.transform.SetParent(entryObj.transform, false);
                     var speakerTxt = speakerObj.AddComponent<TextMeshProUGUI>();
-                    speakerTxt.text = entry.speaker;
+                    speakerTxt.text = HalloweenVN.Core.Loc.Speaker(entry.speaker);
                     speakerTxt.color = DialogueUI.GetSpeakerColor(entry.speaker);
                     speakerTxt.fontStyle = FontStyles.Bold;
                     speakerTxt.fontSize = 30;
@@ -363,26 +351,8 @@ namespace HalloweenVN.UI
         /// <summary>Text for an entry in the CURRENT language (so a mid-game language switch updates past lines too).</summary>
         private static string ResolveText(BacklogEntry entry)
         {
-            var node = entry.node;
-            if (node == null) return entry.text;
-            var lang = SettingsData.Language;
-            if (lang == GameLanguage.English && !string.IsNullOrEmpty(node.text_en)) return node.text_en;
-            if (lang == GameLanguage.Japanese && !string.IsNullOrEmpty(node.text_ja)) return node.text_ja;
-            if (lang == GameLanguage.ChineseSimplified && !string.IsNullOrEmpty(node.text_cn)) return node.text_cn;
-            if (lang == GameLanguage.ChineseTraditional && !string.IsNullOrEmpty(node.text_tw)) return node.text_tw;
-            return node.text ?? entry.text;
-        }
-        
-        private static string L(string ko, string en, string ja, string cn, string tw)
-        {
-            switch (SettingsData.Language)
-            {
-                case GameLanguage.English: return en;
-                case GameLanguage.Japanese: return ja;
-                case GameLanguage.ChineseSimplified: return cn;
-                case GameLanguage.ChineseTraditional: return tw;
-                default: return ko;
-            }
+            if (entry.node == null) return entry.text;
+            return HalloweenVN.Core.Loc.NodeText(entry.dialogueId, entry.node);
         }
         
         private void OnEntryClicked(int historyIndex)
@@ -441,9 +411,9 @@ namespace HalloweenVN.UI
             textRt.offsetMax = new Vector2(-20, -20);
             
             TextMeshProUGUI tmp = textObj.AddComponent<TextMeshProUGUI>();
-            tmp.text = L("이 시점으로 되감기 하시겠습니까?", "Rewind to this point?", "この時点まで戻りますか？", "要回到这个时间点吗？", "要回到這個時間點嗎？")
+            tmp.text = HalloweenVN.Core.Loc.Get("ui.backlog.rewind_confirm", "이 시점으로 되감기 하시겠습니까?")
                 + "\n<size=24><color=#aaaaaa>"
-                + L("(이후의 진행 내역은 사라집니다)", "(Progress after this point will be lost)", "（これ以降の進行は失われます）", "（此后的进度将会丢失）", "（此後的進度將會遺失）")
+                + HalloweenVN.Core.Loc.Get("ui.backlog.rewind_warning", "(이후의 진행 내역은 사라집니다)")
                 + "</color></size>";
             tmp.alignment = TextAlignmentOptions.Center;
             tmp.fontSize = 36;
@@ -452,8 +422,8 @@ namespace HalloweenVN.UI
             if (tmpFont != null) tmp.font = tmpFont;
             
             // Buttons
-            var yesBtnTup = UIHelper.CreateButton(panel.transform, L("예", "Yes", "はい", "是", "是"), 200, 80);
-            var noBtnTup = UIHelper.CreateButton(panel.transform, L("아니오", "No", "いいえ", "否", "否"), 200, 80);
+            var yesBtnTup = UIHelper.CreateButton(panel.transform, HalloweenVN.Core.Loc.Get("ui.common.yes", "예"), 200, 80);
+            var noBtnTup = UIHelper.CreateButton(panel.transform, HalloweenVN.Core.Loc.Get("ui.common.no", "아니오"), 200, 80);
             
             yesBtnTup.btnText.fontSize = 32;
             noBtnTup.btnText.fontSize = 32;

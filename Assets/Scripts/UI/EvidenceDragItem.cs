@@ -1,4 +1,4 @@
-﻿using HalloweenVN.Data;
+using HalloweenVN.Data;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -41,7 +41,7 @@ namespace HalloweenVN.UI
             evidenceInfo = evidence;
             if (nameText != null)
             {
-                nameText.text = evidence.evidenceName;
+                nameText.text = HalloweenVN.Core.Loc.EvidenceName(evidence);
             }
             if (iconImage != null && !string.IsNullOrEmpty(evidence.iconPath))
             {

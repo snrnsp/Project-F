@@ -191,34 +191,9 @@ namespace HalloweenVN.UI
                 if (speakerNameText != null) speakerNameText.font = font;
                 if (narratorText != null) narratorText.font = font;
             }
-            string autoOff = "AUTO";
-            string autoOn = "AUTO ON";
-            
-            if (lang == HalloweenVN.Core.GameLanguage.Korean)
-            {
-                autoOff = "오토"; autoOn = "오토 중";
-                backlogButtonText.text = "로그";
-            }
-            else if (lang == HalloweenVN.Core.GameLanguage.English)
-            {
-                autoOff = "AUTO"; autoOn = "AUTO ON";
-                backlogButtonText.text = "LOG";
-            }
-            else if (lang == HalloweenVN.Core.GameLanguage.Japanese)
-            {
-                autoOff = "オート"; autoOn = "オート中";
-                backlogButtonText.text = "ログ";
-            }
-            else if (lang == HalloweenVN.Core.GameLanguage.ChineseSimplified)
-            {
-                autoOff = "自动"; autoOn = "自动中";
-                backlogButtonText.text = "记录";
-            }
-            else if (lang == HalloweenVN.Core.GameLanguage.ChineseTraditional)
-            {
-                autoOff = "自動"; autoOn = "自動中";
-                backlogButtonText.text = "紀錄";
-            }
+            string autoOff = HalloweenVN.Core.Loc.Get("ui.dialogue.auto", "오토");
+            string autoOn = HalloweenVN.Core.Loc.Get("ui.dialogue.auto_on", "오토 중");
+            if (backlogButtonText != null) backlogButtonText.text = HalloweenVN.Core.Loc.Get("ui.dialogue.log", "로그");
             
             if (autoButtonText != null)
             {
@@ -704,7 +679,7 @@ namespace HalloweenVN.UI
         {
             if (speakerNameText != null) 
             { 
-                speakerNameText.text = node.speaker; 
+                speakerNameText.text = HalloweenVN.Core.Loc.Speaker(node.speaker); 
                 speakerNameText.color = GetSpeakerColor(node.speaker); 
                 
                 // Hide the speaker box entirely if it's a monologue (empty or just spaces)
@@ -717,13 +692,9 @@ namespace HalloweenVN.UI
             // Determine which character sprites are requested
             UpdateVisualsOnly(node, instantVisuals);
 
-            // Typing & Formatting
-            var lang = HalloweenVN.Core.SettingsData.Language;
-            fullText = node.text ?? "";
-            if (lang == HalloweenVN.Core.GameLanguage.English && !string.IsNullOrEmpty(node.text_en)) fullText = node.text_en;
-            else if (lang == HalloweenVN.Core.GameLanguage.Japanese && !string.IsNullOrEmpty(node.text_ja)) fullText = node.text_ja;
-            else if (lang == HalloweenVN.Core.GameLanguage.ChineseSimplified && !string.IsNullOrEmpty(node.text_cn)) fullText = node.text_cn;
-            else if (lang == HalloweenVN.Core.GameLanguage.ChineseTraditional && !string.IsNullOrEmpty(node.text_tw)) fullText = node.text_tw;
+            // Typing & Formatting (translation table → legacy per-node translation → Korean)
+            string dlgId = DialogueManager.Instance != null ? DialogueManager.Instance.CurrentDialogueId : null;
+            fullText = HalloweenVN.Core.Loc.NodeText(dlgId, node);
             bool isNarrator = string.IsNullOrEmpty(node.speaker);
             
             // Rule: Monologues with a background image use the dialogue panel.
@@ -1382,13 +1353,8 @@ namespace HalloweenVN.UI
 
                 TextMeshProUGUI btnText = btnObj.GetComponentInChildren<TextMeshProUGUI>();
                 if (btnText != null) {
-                    var lang = HalloweenVN.Core.SettingsData.Language;
-                    string cText = choices[i].text;
-                    if (lang == HalloweenVN.Core.GameLanguage.English && !string.IsNullOrEmpty(choices[i].text_en)) cText = choices[i].text_en;
-                    else if (lang == HalloweenVN.Core.GameLanguage.Japanese && !string.IsNullOrEmpty(choices[i].text_ja)) cText = choices[i].text_ja;
-                    else if (lang == HalloweenVN.Core.GameLanguage.ChineseSimplified && !string.IsNullOrEmpty(choices[i].text_cn)) cText = choices[i].text_cn;
-                    else if (lang == HalloweenVN.Core.GameLanguage.ChineseTraditional && !string.IsNullOrEmpty(choices[i].text_tw)) cText = choices[i].text_tw;
-                    btnText.text = cText;
+                    var dm = DialogueManager.Instance;
+                    btnText.text = HalloweenVN.Core.Loc.ChoiceText(dm?.CurrentDialogueId, dm?.CurrentNode != null ? dm.CurrentNode.id : -1, i, choices[i]);
                 }
 
                 Button btn = btnObj.GetComponent<Button>();

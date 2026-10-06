@@ -1,4 +1,4 @@
-﻿using HalloweenVN.Investigation;
+using HalloweenVN.Investigation;
 using HalloweenVN.Data;
 using TMPro;
 using UnityEngine;
@@ -107,7 +107,7 @@ namespace HalloweenVN.UI
             TextMeshProUGUI itemText = itemObj.GetComponentInChildren<TextMeshProUGUI>();
             if (itemText != null)
             {
-                itemText.text = evidence.evidenceName;
+                itemText.text = HalloweenVN.Core.Loc.EvidenceName(evidence);
             }
             
             Button itemBtn = itemObj.GetComponent<Button>();
@@ -124,8 +124,8 @@ namespace HalloweenVN.UI
         public void ShowEvidenceDetail(EvidenceInfo evidence)
         {
             if (evidenceDetailPanel != null) evidenceDetailPanel.SetActive(true);
-            if (evidenceDetailName != null) evidenceDetailName.text = evidence.evidenceName;
-            if (evidenceDetailDescription != null) evidenceDetailDescription.text = evidence.description;
+            if (evidenceDetailName != null) evidenceDetailName.text = HalloweenVN.Core.Loc.EvidenceName(evidence);
+            if (evidenceDetailDescription != null) evidenceDetailDescription.text = HalloweenVN.Core.Loc.EvidenceDescription(evidence);
             if (evidenceDetailIcon != null && !string.IsNullOrEmpty(evidence.iconPath))
             {
                 Sprite icon = Resources.Load<Sprite>(evidence.iconPath);
@@ -153,7 +153,7 @@ namespace HalloweenVN.UI
         {
             if (evidenceCountText != null)
             {
-                evidenceCountText.text = $"수집한 증거: {current}/{required}";
+                evidenceCountText.text = HalloweenVN.Core.Loc.Format("ui.investigation.evidence_count", "수집한 증거: {0}/{1}", current, required);
             }
         }
 

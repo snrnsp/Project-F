@@ -1,4 +1,4 @@
-﻿using HalloweenVN.Deduction;
+using HalloweenVN.Deduction;
 using HalloweenVN.Data;
 using HalloweenVN.Investigation;
 using TMPro;
@@ -78,7 +78,7 @@ namespace HalloweenVN.UI
             
             if (caseNameText != null)
             {
-                caseNameText.text = caseData.caseName;
+                caseNameText.text = HalloweenVN.Core.Loc.CaseName(caseData);
             }
             
             // Build question slots
@@ -88,7 +88,7 @@ namespace HalloweenVN.UI
                 EvidenceSlot slot = slotObj.GetComponent<EvidenceSlot>();
                 if (slot != null)
                 {
-                    slot.Initialize(i, caseData.questions[i].questionText, deductionManager);
+                    slot.Initialize(i, HalloweenVN.Core.Loc.CaseQuestion(caseData, i), deductionManager);
                     currentSlots.Add(slot);
                 }
             }
@@ -153,10 +153,10 @@ namespace HalloweenVN.UI
             }
             if (resultText != null)
             {
-                resultText.text = $"결과: {result.correctAnswers} / {result.totalQuestions}";
+                resultText.text = HalloweenVN.Core.Loc.Format("ui.deduction.result", "결과: {0} / {1}", result.correctAnswers, result.totalQuestions);
                 if (result.isPerfect)
                 {
-                    resultText.text += "\n완벽한 추리!";
+                    resultText.text += "\n" + HalloweenVN.Core.Loc.Get("ui.deduction.perfect", "완벽한 추리!");
                 }
             }
         }

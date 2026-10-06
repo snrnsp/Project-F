@@ -1,4 +1,4 @@
-﻿﻿﻿﻿﻿﻿﻿﻿﻿using System.Collections;
+﻿﻿﻿﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -84,56 +84,14 @@ namespace HalloweenVN.UI
                 }
             }
 
-            // Korean (Default)
-            if (lang == GameLanguage.Korean)
-            {
-                                if (lobbySubtitleText != null) lobbySubtitleText.text = "OBLIVION";
-                if (newGameText != null) newGameText.text = "새 게임";
-                if (extraText != null) extraText.text = "캐릭터";
-                if (settingsText != null) settingsText.text = "환경 설정";
-                if (languageBtnText != null) languageBtnText.text = "Language";
-                if (versionText != null) versionText.text = "버전 1.0.2";
-            }
-            // English
-            else if (lang == GameLanguage.English)
-            {
-                                if (lobbySubtitleText != null) lobbySubtitleText.text = "";
-                if (newGameText != null) newGameText.text = "New Game";
-                if (extraText != null) extraText.text = "Characters";
-                if (settingsText != null) settingsText.text = "Settings";
-                if (languageBtnText != null) languageBtnText.text = "Language";
-                if (versionText != null) versionText.text = "Ver 1.0.2";
-            }
-            // Japanese
-            else if (lang == GameLanguage.Japanese)
-            {
-                                if (lobbySubtitleText != null) lobbySubtitleText.text = "OBLIVION";
-                if (newGameText != null) newGameText.text = "はじめから";
-                if (extraText != null) extraText.text = "キャラクター";
-                if (settingsText != null) settingsText.text = "設定";
-                if (languageBtnText != null) languageBtnText.text = "Language";
-                if (versionText != null) versionText.text = "バージョン 1.0.2";
-            }
-            // Simplified Chinese
-            else if (lang == GameLanguage.ChineseSimplified)
-            {
-                                if (lobbySubtitleText != null) lobbySubtitleText.text = "OBLIVION";
-                if (newGameText != null) newGameText.text = "新游戏";
-                if (extraText != null) extraText.text = "角色";
-                if (settingsText != null) settingsText.text = "设置";
-                if (languageBtnText != null) languageBtnText.text = "Language";
-                if (versionText != null) versionText.text = "版本 1.0.2";
-            }
-            // Traditional Chinese
-            else if (lang == GameLanguage.ChineseTraditional)
-            {
-                                if (lobbySubtitleText != null) lobbySubtitleText.text = "OBLIVION";
-                if (newGameText != null) newGameText.text = "新遊戲";
-                if (extraText != null) extraText.text = "角色";
-                if (settingsText != null) settingsText.text = "設定";
-                if (languageBtnText != null) languageBtnText.text = "Language";
-                if (versionText != null) versionText.text = "版本 1.0.2";
-            }
+            // Per-language texts come from the Loc table (Korean default inline; other languages in game_text.csv).
+            // The subtitle stays hidden in English (original behaviour) — layout logic, not text.
+            if (lobbySubtitleText != null) lobbySubtitleText.text = lang == GameLanguage.English ? "" : Loc.Get("ui.lobby.subtitle", "OBLIVION");
+            if (newGameText != null) newGameText.text = Loc.Get("ui.lobby.new_game", "새 게임");
+            if (extraText != null) extraText.text = Loc.Get("ui.lobby.characters", "캐릭터");
+            if (settingsText != null) settingsText.text = Loc.Get("ui.lobby.settings", "환경 설정");
+            if (languageBtnText != null) languageBtnText.text = Loc.Get("ui.lobby.language", "Language");
+            if (versionText != null) versionText.text = Loc.Format("ui.lobby.version", "버전 {0}", "1.0.2");
         }
 
         private void Start()
@@ -305,7 +263,7 @@ namespace HalloweenVN.UI
             iconRt.anchorMax = new Vector2(0.5f, 1f);
             iconRt.anchoredPosition = new Vector2(0, titleY);
             iconRt.sizeDelta = new Vector2( 600, 50);
-            TextMeshProUGUI iconText = Theme.UIHelper.AddText(iconObj, "Pre-Alpha 안내", new Color32(150, 200, 255, 255),  SettingsData.UseHandwritingFont ? 36 : 30, TextAlignmentOptions.Center);
+            TextMeshProUGUI iconText = Theme.UIHelper.AddText(iconObj, Loc.Get("ui.lobby.prealpha.title", "Pre-Alpha 안내"), new Color32(150, 200, 255, 255),  SettingsData.UseHandwritingFont ? 36 : 30, TextAlignmentOptions.Center);
             iconText.fontStyle = FontStyles.Bold;
             iconText.enableAutoSizing = true;
             iconText.fontSizeMin = 24f;
@@ -319,7 +277,7 @@ namespace HalloweenVN.UI
             msgRt.anchoredPosition = new Vector2(0, -210);
             msgRt.sizeDelta = new Vector2( 760, 250);
             
-            string preAlphaMsg = "현재 오블리비언은 '<color=#80C0FF>프리 알파</color>(소프트웨어나 게임 개발 과정에서 정식 알파 테스트 이전의 초기 제작 및 설계 단계)'에 있습니다!\n\n게임의 품질이 낮을 수 있는 점 양해 바랍니다!\n\n일부 백그라운드 배경은 임시로 AI를 사용했음을 알려드립니다.";
+            string preAlphaMsg = Loc.Get("ui.lobby.prealpha.message", "현재 오블리비언은 '<color=#80C0FF>프리 알파</color>(소프트웨어나 게임 개발 과정에서 정식 알파 테스트 이전의 초기 제작 및 설계 단계)'에 있습니다!\n\n게임의 품질이 낮을 수 있는 점 양해 바랍니다!\n\n일부 백그라운드 배경은 임시로 AI를 사용했음을 알려드립니다.");
             
             TextMeshProUGUI msgText = Theme.UIHelper.AddText(msgObj, preAlphaMsg, new Color32(230, 230, 230, 255),  SettingsData.UseHandwritingFont ? 28 : 22, TextAlignmentOptions.Center);
             msgText.lineSpacing =  5f;
@@ -354,7 +312,7 @@ namespace HalloweenVN.UI
             btnTextRt.anchorMax = Vector2.one;
             btnTextRt.offsetMin = Vector2.zero;
             btnTextRt.offsetMax = Vector2.zero;
-            TextMeshProUGUI btnText = Theme.UIHelper.AddText(btnTextObj, "확인", new Color32(255, 255, 255, 255), SettingsData.UseHandwritingFont ? 28 : 22, TextAlignmentOptions.Center);
+            TextMeshProUGUI btnText = Theme.UIHelper.AddText(btnTextObj, Loc.Get("ui.lobby.ok", "확인"), new Color32(255, 255, 255, 255), SettingsData.UseHandwritingFont ? 28 : 22, TextAlignmentOptions.Center);
             btnText.fontStyle = FontStyles.Bold;
 
             btn.onClick.AddListener(() =>
@@ -466,15 +424,14 @@ void ShowPhotosensitivityWarning()
             iconRt.anchorMax = new Vector2(0.5f, 1f);
             iconRt.anchoredPosition = new Vector2(15, titleY);
             iconRt.sizeDelta = new Vector2( 600, 50);
-            TextMeshProUGUI iconText = Theme.UIHelper.AddText(iconObj, "광과민성 발작 경고", new Color32(255, 180, 80, 255),  SettingsData.UseHandwritingFont ? 36 : 30, TextAlignmentOptions.Center);
+            TextMeshProUGUI iconText = Theme.UIHelper.AddText(iconObj, Loc.Get("ui.lobby.photosensitivity.title", "광과민성 발작 경고"), new Color32(255, 180, 80, 255),  SettingsData.UseHandwritingFont ? 36 : 30, TextAlignmentOptions.Center);
             iconText.fontStyle = FontStyles.Bold;
             iconText.enableAutoSizing = true;
             iconText.fontSizeMin = 24f;
             iconText.fontSizeMax =  SettingsData.UseHandwritingFont ? 36f : 30f;
 
             // Warning message — use color tags for stronger emphasis
-            string warn = "<color=#FFD080>";
-            string warnEnd = "</color>";
+            // (the <b><color=#FFD080>…</color></b> tags are inlined in the Loc default so translators keep them)
             GameObject msgObj = new GameObject("WarningMessage");
             msgObj.transform.SetParent(panel.transform, false);
             RectTransform msgRt = msgObj.AddComponent<RectTransform>();
@@ -483,18 +440,7 @@ void ShowPhotosensitivityWarning()
             msgRt.offsetMin = new Vector2(45, 0);
             msgRt.offsetMax = new Vector2(-45, 0);
             TextMeshProUGUI msgText = Theme.UIHelper.AddText(msgObj,
-                "극소수의 사람들은 비디오 게임에 등장하는 " +
-                $"<b>{warn}번쩍이는 빛{warnEnd}</b>이나 " +
-                $"<b>{warn}특정 패턴{warnEnd}</b>과 같은 시각적 이미지에 노출될 때 " +
-                $"<b>{warn}광과민성 발작{warnEnd}</b>을 일으킬 수 있습니다. " +
-                "과거에 발작 병력이 없었더라도 게임을 하는 동안 " +
-                "이러한 증상을 유발할 수 있는 미확인 상태일 수 있습니다. " +
-                $"게임 중 <b>{warn}현기증{warnEnd}</b>, <b>{warn}시력 이상{warnEnd}</b>, " +
-                $"<b>{warn}눈이나 얼굴의 경련{warnEnd}</b>, " +
-                $"<b>{warn}팔다리의 떨림{warnEnd}</b>, <b>{warn}방향 감각 상실{warnEnd}</b>, " +
-                $"<b>{warn}혼란{warnEnd}</b>, " +
-                $"또는 <b>{warn}일시적인 의식 상실{warnEnd}</b> 등의 증상을 겪는다면 " +
-                $"<b>{warn}즉시 게임을 중단{warnEnd}</b>하고 의사와 상담하십시오.",
+                Loc.Get("ui.lobby.photosensitivity.message", "극소수의 사람들은 비디오 게임에 등장하는 <b><color=#FFD080>번쩍이는 빛</color></b>이나 <b><color=#FFD080>특정 패턴</color></b>과 같은 시각적 이미지에 노출될 때 <b><color=#FFD080>광과민성 발작</color></b>을 일으킬 수 있습니다. 과거에 발작 병력이 없었더라도 게임을 하는 동안 이러한 증상을 유발할 수 있는 미확인 상태일 수 있습니다. 게임 중 <b><color=#FFD080>현기증</color></b>, <b><color=#FFD080>시력 이상</color></b>, <b><color=#FFD080>눈이나 얼굴의 경련</color></b>, <b><color=#FFD080>팔다리의 떨림</color></b>, <b><color=#FFD080>방향 감각 상실</color></b>, <b><color=#FFD080>혼란</color></b>, 또는 <b><color=#FFD080>일시적인 의식 상실</color></b> 등의 증상을 겪는다면 <b><color=#FFD080>즉시 게임을 중단</color></b>하고 의사와 상담하십시오."),
                 new Color32(200, 195, 210, 255),  SettingsData.UseHandwritingFont ? 28 : 22, TextAlignmentOptions.Center);
             msgText.textWrappingMode = TextWrappingModes.Normal;
             msgText.lineSpacing =  3f;
@@ -551,7 +497,7 @@ void ShowPhotosensitivityWarning()
             btnTextRt.anchorMax = Vector2.one;
             btnTextRt.offsetMin = Vector2.zero;
             btnTextRt.offsetMax = Vector2.zero;
-            TextMeshProUGUI btnText = Theme.UIHelper.AddText(btnTextObj, "확인", new Color32(255, 255, 255, 255), SettingsData.UseHandwritingFont ? 28 : 22, TextAlignmentOptions.Center);
+            TextMeshProUGUI btnText = Theme.UIHelper.AddText(btnTextObj, Loc.Get("ui.lobby.ok", "확인"), new Color32(255, 255, 255, 255), SettingsData.UseHandwritingFont ? 28 : 22, TextAlignmentOptions.Center);
             btnText.fontStyle = FontStyles.Bold;
 
             btn.onClick.AddListener(() =>

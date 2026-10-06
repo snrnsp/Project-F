@@ -1,4 +1,4 @@
-﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿using HalloweenVN.Core;
+using HalloweenVN.Core;
 using HalloweenVN.Dialogue;
 using HalloweenVN.Investigation;
 using HalloweenVN.Deduction;
@@ -151,26 +151,11 @@ namespace HalloweenVN.UI.Theme
             float spacing = 80f;
             int i = 0;
 
-            string t_newgame = "새 게임";
-            string t_extra = "캐릭터";
-            string t_lang = "Language";
-            string t_settings = "환경 설정";
-
-            switch (SettingsData.Language)
-            {
-                case GameLanguage.English:
-                    t_newgame = "New Game"; t_extra = "Characters"; t_settings = "Settings";
-                    break;
-                case GameLanguage.Japanese:
-                    t_newgame = "初めから"; t_extra = "キャラクター"; t_settings = "設定";
-                    break;
-                case GameLanguage.ChineseSimplified:
-                    t_newgame = "新游戏"; t_extra = "角色档案"; t_settings = "设置";
-                    break;
-                case GameLanguage.ChineseTraditional:
-                    t_newgame = "新遊戲"; t_extra = "角色檔案"; t_settings = "設置";
-                    break;
-            }
+            // Same keys as LobbyUI.UpdateLanguage (which refreshes these on language change).
+            string t_newgame = Loc.Get("ui.lobby.new_game", "새 게임");
+            string t_extra = Loc.Get("ui.lobby.characters", "캐릭터");
+            string t_lang = Loc.Get("ui.lobby.language", "Language");
+            string t_settings = Loc.Get("ui.lobby.settings", "환경 설정");
 
             var startTuple = CreateLegacyButton(lobbyPanelRoot.transform, t_newgame, 260, 55, btnBg);
             UIHelper.SetAnchors(startTuple.btn.GetComponent<RectTransform>(), new Vector2(0, 0.5f), new Vector2(0, 0.5f), new Vector2(0, 0.5f));
@@ -405,7 +390,7 @@ namespace HalloweenVN.UI.Theme
             float btnW = 140, btnH = 50, btnSpacing = 10;
             Color32 softIndigo = new Color32(90, 70, 120, 255);
 
-            var autoTuple = CreateLegacyButton(dialoguePanel.transform, "AUTO", btnW, btnH, new Color32(40, 25, 60, 255), softIndigo, true);
+            var autoTuple = CreateLegacyButton(dialoguePanel.transform, Loc.Get("ui.builder.dialogue.auto", "AUTO"), btnW, btnH, new Color32(40, 25, 60, 255), softIndigo, true);
             RectTransform autoRt = autoTuple.btn.GetComponent<RectTransform>();
             UIHelper.SetAnchors(autoRt, new Vector2(1, 1), new Vector2(1, 1), new Vector2(1, 1));
             // pivot is 1, 1. Placed above the panel (Y=56) to sit on top of the 6px outline.
@@ -413,7 +398,7 @@ namespace HalloweenVN.UI.Theme
             Text autoText = autoTuple.text;
             autoText.fontSize = 32;
 
-            var logTuple = CreateLegacyButton(dialoguePanel.transform, "LOG", btnW, btnH, new Color32(40, 25, 60, 255), softIndigo, true);
+            var logTuple = CreateLegacyButton(dialoguePanel.transform, Loc.Get("ui.builder.dialogue.log", "LOG"), btnW, btnH, new Color32(40, 25, 60, 255), softIndigo, true);
             RectTransform logRt = logTuple.btn.GetComponent<RectTransform>();
             UIHelper.SetAnchors(logRt, new Vector2(1, 1), new Vector2(1, 1), new Vector2(1, 1));
             logRt.anchoredPosition = new Vector2(-10, 56);
@@ -476,7 +461,7 @@ namespace HalloweenVN.UI.Theme
             UIHelper.SetAnchors(titleRt, new Vector2(0, 1), new Vector2(1, 1), new Vector2(0.5f, 1));
         titleRt.anchoredPosition = new Vector2(0, 230);
         titleRt.sizeDelta = new Vector2(750, 312);
-            UIHelper.AddText(titleObj, "\uc218\uc9d1\ud55c \uc99d\uac70", HalloweenTheme.AccentOrange, 28, TextAlignmentOptions.Center);
+            UIHelper.AddText(titleObj, Loc.Get("ui.builder.investigation.collected_evidence", "수집한 증거"), HalloweenTheme.AccentOrange, 28, TextAlignmentOptions.Center);
 
             GameObject countObj = UIHelper.CreateUIObject("EvidenceCountText", listPanel.transform);
             RectTransform countRt = countObj.GetComponent<RectTransform>();
@@ -492,7 +477,7 @@ namespace HalloweenVN.UI.Theme
             scrollRt.offsetMax = new Vector2(-10, -110);
             Transform evidenceListContainer = scrollTuple.content;
 
-            var proceedTuple = UIHelper.CreateButton(listPanel.transform, "추리 시작", 300, 60);
+            var proceedTuple = UIHelper.CreateButton(listPanel.transform, Loc.Get("ui.builder.investigation.start_deduction", "추리 시작"), 300, 60);
             Button proceedBtn = proceedTuple.btn;
             proceedBtn.interactable = false;
             RectTransform proceedRt = proceedBtn.GetComponent<RectTransform>();
@@ -530,7 +515,7 @@ namespace HalloweenVN.UI.Theme
             descRt.sizeDelta = new Vector2(0, 150);
             TextMeshProUGUI detailDesc = UIHelper.AddText(descObj, "Description", HalloweenTheme.TextPrimary, HalloweenTheme.BodyFontSize, TextAlignmentOptions.Center);
 
-            var closeTuple = CreateLegacyButton(detailPanel.transform, "닫기", 200, 50, HalloweenTheme.ButtonNormal);
+            var closeTuple = CreateLegacyButton(detailPanel.transform, Loc.Get("ui.builder.close", "닫기"), 200, 50, HalloweenTheme.ButtonNormal);
             Button closeBtn = closeTuple.btn;
             RectTransform closeRt = closeBtn.GetComponent<RectTransform>();
             UIHelper.SetAnchors(closeRt, new Vector2(0.5f, 0), new Vector2(0.5f, 0), new Vector2(0.5f, 0));
@@ -605,7 +590,7 @@ namespace HalloweenVN.UI.Theme
             UIHelper.SetAnchors(evTitleRt, new Vector2(0, 1), new Vector2(1, 1), new Vector2(0.5f, 1));
             evTitleRt.anchoredPosition = new Vector2(0, -10);
             evTitleRt.sizeDelta = new Vector2(0, 40);
-            UIHelper.AddText(evTitleObj, "증거 목록", HalloweenTheme.TextPrimary, HalloweenTheme.HeaderFontSize, TextAlignmentOptions.Center);
+            UIHelper.AddText(evTitleObj, Loc.Get("ui.builder.deduction.evidence_list", "증거 목록"), HalloweenTheme.TextPrimary, HalloweenTheme.HeaderFontSize, TextAlignmentOptions.Center);
 
             GameObject evContainer = UIHelper.CreateUIObject("EvidenceInventoryContainer", evArea.transform);
             RectTransform evContRt = evContainer.GetComponent<RectTransform>();
@@ -619,7 +604,7 @@ namespace HalloweenVN.UI.Theme
             glg.constraintCount = 1;
 
             // Submit Button
-            var submitTuple = UIHelper.CreateButton(deductionPanel.transform, "추리 제출", 250, 60);
+            var submitTuple = UIHelper.CreateButton(deductionPanel.transform, Loc.Get("ui.builder.deduction.submit", "추리 제출"), 250, 60);
             Button submitBtn = submitTuple.btn;
             RectTransform submitRt = submitBtn.GetComponent<RectTransform>();
             UIHelper.SetAnchors(submitRt, new Vector2(0.5f, 0), new Vector2(0.5f, 0), new Vector2(0.5f, 0));
@@ -643,7 +628,7 @@ namespace HalloweenVN.UI.Theme
             TextMeshProUGUI resultText = UIHelper.AddText(resTextObj, "", HalloweenTheme.TextPrimary, HalloweenTheme.HeaderFontSize, TextAlignmentOptions.Center);
 
             // Proceed button inside result panel
-            var resBtnTuple = UIHelper.CreateButton(resBg.transform, "\uacc4\uc18d", 250, 55);
+            var resBtnTuple = UIHelper.CreateButton(resBg.transform, Loc.Get("ui.builder.deduction.continue", "계속"), 250, 55);
             RectTransform resBtnRt = resBtnTuple.btn.GetComponent<RectTransform>();
             UIHelper.SetAnchors(resBtnRt, new Vector2(0.5f, 0), new Vector2(0.5f, 0), new Vector2(0.5f, 0));
             resBtnRt.anchoredPosition = new Vector2(0, 40);
@@ -756,24 +741,24 @@ namespace HalloweenVN.UI.Theme
             UIHelper.SetAnchors(titleRt, new Vector2(0.5f, 1), new Vector2(0.5f, 1), new Vector2(0.5f, 1));
             titleRt.anchoredPosition = new Vector2(0, -60);
             titleRt.sizeDelta = new Vector2(400, 60);
-            Text titleText = CreateLegacyText(titleObj, "환경 설정", HalloweenTheme.AccentOrange, 42, TextAnchor.UpperCenter);
+            Text titleText = CreateLegacyText(titleObj, Loc.Get("ui.builder.settings.title", "환경 설정"), HalloweenTheme.AccentOrange, 42, TextAnchor.UpperCenter);
 
             float yPos = -135;
 
             // ─── BGM Volume ───
-            var bgmVolumeLabel = CreateSettingsLabel(panel.transform, "배경음악 (BGM) 음량", yPos);
+            var bgmVolumeLabel = CreateSettingsLabel(panel.transform, Loc.Get("ui.settings.bgm_volume", "배경음악 (BGM) 음량"), yPos);
             Slider bgmVolumeSlider = CreateSettingsSlider(panel.transform, yPos - 45);
             Text bgmVolumeValueText = CreateSettingsValueText(panel.transform, yPos - 45);
             yPos -= 90;
 
             // ─── SFX Volume ───
-            var sfxVolumeLabel = CreateSettingsLabel(panel.transform, "효과음 (SFX) 음량", yPos);
+            var sfxVolumeLabel = CreateSettingsLabel(panel.transform, Loc.Get("ui.settings.sfx_volume", "효과음 (SFX) 음량"), yPos);
             Slider sfxVolumeSlider = CreateSettingsSlider(panel.transform, yPos - 45);
             Text sfxVolumeValueText = CreateSettingsValueText(panel.transform, yPos - 45);
             yPos -= 90;
 
             // ─── 1. Text Speed ───
-            var textSpeedLabel = CreateSettingsLabel(panel.transform, "\uD14D\uC2A4\uD2B8 \uC18D\uB3C4", yPos);
+            var textSpeedLabel = CreateSettingsLabel(panel.transform, Loc.Get("ui.settings.text_speed", "텍스트 속도"), yPos);
             Slider textSpeedSlider = CreateSettingsSlider(panel.transform, yPos - 45);
 
             // Preview Text & Background (to see opacity)
@@ -788,7 +773,7 @@ namespace HalloweenVN.UI.Theme
 
             // ─── 2. Auto-play Delay ───
             yPos -= 95;
-            var autoPlayLabel = CreateSettingsLabel(panel.transform, "\uC624\uD1A0 \uB300\uAE30 \uC2DC\uAC04", yPos);
+            var autoPlayLabel = CreateSettingsLabel(panel.transform, Loc.Get("ui.settings.auto_play_delay", "오토 대기 시간"), yPos);
             Slider autoPlaySlider = CreateSettingsSlider(panel.transform, yPos - 45);
 
             // Value InputField (right side of slider)
@@ -816,7 +801,7 @@ namespace HalloweenVN.UI.Theme
             autoPlayInputField.textComponent = autoPlayValueText;
             // ─── 3. Skip Mode (Dropdown) ───
             yPos -= 105;
-            var skipModeLabel = CreateSettingsLabel(panel.transform, "스킵 단축키", yPos);
+            var skipModeLabel = CreateSettingsLabel(panel.transform, Loc.Get("ui.builder.settings.skip_key", "스킵 단축키"), yPos);
             skipModeLabel.horizontalOverflow = HorizontalWrapMode.Overflow;
             // Add ContentSizeFitter to fit the text exactly so we can anchor the help button to its right
             UnityEngine.UI.ContentSizeFitter labelFitter = skipModeLabel.gameObject.AddComponent<UnityEngine.UI.ContentSizeFitter>();
@@ -853,7 +838,7 @@ namespace HalloweenVN.UI.Theme
             UIHelper.StretchFull(skipHtRt);
             skipHtRt.offsetMin = new Vector2(5, 5);
             skipHtRt.offsetMax = new Vector2(-5, -5);
-            Text skipHelpPanelText = CreateLegacyText(skipHelpTextObj, "설정하신 단축키를 누르고 있으면 대사를 빠르게 넘길 수 있습니다.", Color.white, 16, TextAnchor.MiddleCenter);
+            Text skipHelpPanelText = CreateLegacyText(skipHelpTextObj, Loc.Get("ui.settings.skip_help", "설정하신 단축키를 누르고 있으면 대사를 빠르게 넘길 수 있습니다."), Color.white, 16, TextAnchor.MiddleCenter);
             skipHelpPanelObj.SetActive(false);
             var skipTuple = CreateLegacyButton(panel.transform, "Ctrl ▼", 220, 40, new Color32(60, 40, 80, 255));
             RectTransform skipRt = skipTuple.btn.GetComponent<RectTransform>();
@@ -881,8 +866,8 @@ namespace HalloweenVN.UI.Theme
 
             // ─── 4. Font Style (toggle button) ───
             yPos -= 105;
-            var fontStyleLabel = CreateSettingsLabel(panel.transform, "\uAE00\uAF34", yPos);
-            var fontTuple = CreateLegacyButton(panel.transform, "\uC190\uAE00\uC528", 220, 40, new Color32(60, 40, 80, 255));
+            var fontStyleLabel = CreateSettingsLabel(panel.transform, Loc.Get("ui.settings.font", "글꼴"), yPos);
+            var fontTuple = CreateLegacyButton(panel.transform, Loc.Get("ui.settings.font_handwriting", "손글씨"), 220, 40, new Color32(60, 40, 80, 255));
             RectTransform fontRt = fontTuple.btn.GetComponent<RectTransform>();
             UIHelper.SetAnchors(fontRt, new Vector2(0.5f, 1), new Vector2(0.5f, 1), new Vector2(0.5f, 1));
             fontRt.anchoredPosition = new Vector2(0, yPos - 45);
@@ -890,8 +875,8 @@ namespace HalloweenVN.UI.Theme
 
             // ─── 5. Flash / Shake Effects (photosensitivity toggle) ───
             yPos -= 105;
-            var flashLabel = CreateSettingsLabel(panel.transform, "화면 번쩍임·흔들림", yPos);
-            var flashTuple = CreateLegacyButton(panel.transform, "켜짐", 220, 40, new Color32(60, 40, 80, 255));
+            var flashLabel = CreateSettingsLabel(panel.transform, Loc.Get("ui.settings.flash_effect", "화면 번쩍임·흔들림"), yPos);
+            var flashTuple = CreateLegacyButton(panel.transform, Loc.Get("ui.settings.flash_on", "켜짐"), 220, 40, new Color32(60, 40, 80, 255));
             RectTransform flashRt = flashTuple.btn.GetComponent<RectTransform>();
             UIHelper.SetAnchors(flashRt, new Vector2(0.5f, 1), new Vector2(0.5f, 1), new Vector2(0.5f, 1));
             flashRt.anchoredPosition = new Vector2(0, yPos - 45);
@@ -906,7 +891,7 @@ namespace HalloweenVN.UI.Theme
             closeTuple.text.fontStyle = FontStyle.Bold;
 
                         // 🔹 Return to Title Button 🔹
-            var titleTuple = CreateLegacyButton(panel.transform, "타이틀로 돌아가기", 220, 44, new Color32(180, 50, 50, 255));
+            var titleTuple = CreateLegacyButton(panel.transform, Loc.Get("ui.settings.return_to_title", "타이틀로 돌아가기"), 220, 44, new Color32(180, 50, 50, 255));
             RectTransform titleBtnRt = titleTuple.btn.GetComponent<RectTransform>();
             UIHelper.SetAnchors(titleBtnRt, new Vector2(0.5f, 0), new Vector2(0.5f, 0), new Vector2(0.5f, 0));
             titleBtnRt.anchoredPosition = new Vector2(0, 50);
@@ -985,7 +970,7 @@ namespace HalloweenVN.UI.Theme
             UIHelper.SetAnchors(titleRt, new Vector2(0.5f, 1), new Vector2(0.5f, 1), new Vector2(0.5f, 1));
             titleRt.anchoredPosition = new Vector2(0, -40);
             titleRt.sizeDelta = new Vector2(400, 60);
-            Text titleText = CreateLegacyText(titleObj, "\uc5b8\uc5b4 \uc124\uc815", HalloweenTheme.AccentOrange, 28, TextAnchor.UpperCenter);
+            Text titleText = CreateLegacyText(titleObj, Loc.Get("ui.builder.language.title", "언어 설정"), HalloweenTheme.AccentOrange, 28, TextAnchor.UpperCenter);
 
             // Buttons Container
             GameObject langContainer = UIHelper.CreateUIObject("LanguageContainer", panel.transform);
@@ -1013,7 +998,7 @@ namespace HalloweenVN.UI.Theme
             }
 
             // Close Button
-            var closeTuple = CreateLegacyButton(panel.transform, "닫기", 200, 50, HalloweenTheme.ButtonNormal);
+            var closeTuple = CreateLegacyButton(panel.transform, Loc.Get("ui.builder.close", "닫기"), 200, 50, HalloweenTheme.ButtonNormal);
             RectTransform closeRt = closeTuple.btn.GetComponent<RectTransform>();
             UIHelper.SetAnchors(closeRt, new Vector2(0.5f, 0), new Vector2(0.5f, 0), new Vector2(0.5f, 0));
             closeRt.anchoredPosition = new Vector2(0, 40);
@@ -1229,10 +1214,10 @@ namespace HalloweenVN.UI.Theme
             UIHelper.SetAnchors(titleRt, new Vector2(0.5f, 1), new Vector2(0.5f, 1), new Vector2(0.5f, 1));
         titleRt.anchoredPosition = new Vector2(0, 230);
         titleRt.sizeDelta = new Vector2(750, 312);
-            UIHelper.AddText(titleObj, "\ub300\ud654 \uae30\ub85d", HalloweenTheme.AccentOrange, 28, TextAlignmentOptions.Center);
+            UIHelper.AddText(titleObj, Loc.Get("ui.builder.backlog.title", "대화 기록"), HalloweenTheme.AccentOrange, 28, TextAlignmentOptions.Center);
 
             // Close button
-            var closeTuple = CreateLegacyButton(backlogPanel.transform, "닫기", 200, 50, HalloweenTheme.ButtonNormal);
+            var closeTuple = CreateLegacyButton(backlogPanel.transform, Loc.Get("ui.builder.close", "닫기"), 200, 50, HalloweenTheme.ButtonNormal);
             RectTransform closeRt = closeTuple.btn.GetComponent<RectTransform>();
             UIHelper.SetAnchors(closeRt, new Vector2(0.5f, 0), new Vector2(0.5f, 0), new Vector2(0.5f, 0));
             closeRt.anchoredPosition = new Vector2(0, 30);
@@ -1309,6 +1294,15 @@ namespace HalloweenVN.UI.Theme
 
             // ===== Create 6 Folder objects =====
             string[] charNames = { "\uc138\uc774\uce74", "\uce74\uc2a4\ubbf8", "\ub9ac\ub098", "\ub9ac\ub9ac\uc2a4", "\ubbf8\ub098", "\ud558\ub8e8\uce74" };
+            // Player-facing tab labels (charNames above stay as internal identifiers for GameObject names)
+            string[] charDisplayNames = {
+                Loc.Get("speaker.세이카", "세이카"),
+                Loc.Get("speaker.카스미", "카스미"),
+                Loc.Get("speaker.리나", "리나"),
+                Loc.Get("speaker.리리스", "리리스"),
+                Loc.Get("speaker.미나", "미나"),
+                Loc.Get("speaker.하루카", "하루카")
+            };
             int folderCount = charNames.Length;
 
             // Folder colors
@@ -1410,7 +1404,7 @@ namespace HalloweenVN.UI.Theme
                 // Shift text down slightly to the dead center (removed previous +5 upward bias)
                 tabTextRt.offsetMin = new Vector2(xOffset, -10);
                 tabTextRt.offsetMax = new Vector2(xOffset, -10);
-                TextMeshProUGUI tabText = UIHelper.AddText(tabTextObj, charNames[ci], Color.black, 45, TextAlignmentOptions.Center);
+                TextMeshProUGUI tabText = UIHelper.AddText(tabTextObj, charDisplayNames[ci], Color.black, 45, TextAlignmentOptions.Center);
                 if (hwFontAsset != null) tabText.font = hwFontAsset;
                 tabText.fontStyle = FontStyles.Bold;
 
@@ -1512,7 +1506,7 @@ namespace HalloweenVN.UI.Theme
         UIHelper.SetAnchors(titleRt, new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f));
         titleRt.anchoredPosition = Vector2.zero;
         titleRt.sizeDelta = new Vector2(400, 60);
-            var extraTitleText = UIHelper.AddText(titleObj, "\uce90\ub9ad\ud130 \uc124\uc815\uc9d1", new Color32(210, 185, 140, 255), 36, TextAlignmentOptions.Center);
+            var extraTitleText = UIHelper.AddText(titleObj, Loc.Get("ui.builder.extra.title", "캐릭터 설정집"), new Color32(210, 185, 140, 255), 36, TextAlignmentOptions.Center);
             if (hwFontAsset != null) {
                 extraTitleText.font = hwFontAsset;
             }

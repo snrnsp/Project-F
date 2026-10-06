@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using HalloweenVN.Core;
 using UnityEngine.UI;
@@ -19,10 +19,9 @@ namespace HalloweenVN.UI {
 
         private static TMP_FontAsset GetKoreanFallback() {
             if (_tmpFontCache.ContainsKey("KoreanFallback")) return _tmpFontCache["KoreanFallback"];
-
             TMP_FontAsset prebakedSdf = Resources.Load<TMP_FontAsset>("Fonts/MalgunGothic SDF");
             if (prebakedSdf != null) {
-                // To fix missing characters (□), create a lightweight dynamic fallback using the original TTF
+                // Fix missing characters by creating a lightweight dynamic fallback using the original TTF
                 if (prebakedSdf.fallbackFontAssetTable == null)
                     prebakedSdf.fallbackFontAssetTable = new System.Collections.Generic.List<TMP_FontAsset>();
                     
@@ -30,20 +29,19 @@ namespace HalloweenVN.UI {
                 if (fallbackRawFont != null) {
                     bool hasDynamic = false;
                     foreach (var fb in prebakedSdf.fallbackFontAssetTable) {
-                        if (fb != null && fb.name == "KoreanFallback Dynamic Addition") hasDynamic = true;
+                        if (fb != null && fb.name == "KoreanFallback Dynamic Addition") { hasDynamic = true; break; }
                     }
-                    
                     if (!hasDynamic) {
                         TMP_FontAsset dynamicFallback = TMP_FontAsset.CreateFontAsset(fallbackRawFont);
                         dynamicFallback.name = "KoreanFallback Dynamic Addition";
                         prebakedSdf.fallbackFontAssetTable.Add(dynamicFallback);
                     }
                 }
-                
                 _tmpFontCache["KoreanFallback"] = prebakedSdf;
                 return prebakedSdf;
             }
-
+            
+            // If SDF is missing entirely
             Font rawFont = GetFont("MalgunGothic");
             if (rawFont != null) {
                 TMP_FontAsset dynamicFallback = TMP_FontAsset.CreateFontAsset(rawFont);

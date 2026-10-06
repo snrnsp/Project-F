@@ -140,22 +140,14 @@ if (panelRoot != null)
                 if (SettingsData.Language == GameLanguage.Korean) titleText.fontSize = isGothic ? 24 : 32;
                 else titleText.fontSize = isGothic ? 22 : 28;
                 
-                if (SettingsData.Language == GameLanguage.English) titleText.text = "Language Settings";
-                else if (SettingsData.Language == GameLanguage.Japanese) titleText.text = "\u8A00\u8A9E\u8A2D\u5B9A";
-                else if (SettingsData.Language == GameLanguage.ChineseSimplified) titleText.text = "\u8BED\u8A00\u8BBE\u7F6E";
-                else if (SettingsData.Language == GameLanguage.ChineseTraditional) titleText.text = "\u8A9E\u8A00\u8A2D\u5B9A";
-                else titleText.text = "\uC5B8\uC5B4 \uC124\uC815";
+                titleText.text = Loc.Get("ui.language.title", "언어 설정");
             }
             if (closeText != null)
             {
                 bool isGothic = !SettingsData.UseHandwritingFont;
                 closeText.fontSize = isGothic ? 22 : 28;
 
-                if (SettingsData.Language == GameLanguage.English) closeText.text = "Close";
-                else if (SettingsData.Language == GameLanguage.Japanese) closeText.text = "\u9589\u3058\u308B";
-                else if (SettingsData.Language == GameLanguage.ChineseSimplified) closeText.text = "\u5173\u95ED";
-                else if (SettingsData.Language == GameLanguage.ChineseTraditional) closeText.text = "\u95DC\u9589";
-                else closeText.text = "\uB2EB\uAE30";
+                closeText.text = Loc.Get("ui.language.close", "닫기");
             }
 
             if (languageButtons == null) return;

@@ -1,4 +1,4 @@
-﻿using HalloweenVN.Deduction;
+using HalloweenVN.Deduction;
 using HalloweenVN.Data;
 using TMPro;
 using UnityEngine;
@@ -80,7 +80,7 @@ namespace HalloweenVN.UI
                         
                         if (assignedEvidenceText != null)
                         {
-                            assignedEvidenceText.text = evidence.evidenceName;
+                            assignedEvidenceText.text = HalloweenVN.Core.Loc.EvidenceName(evidence);
                         }
                     }
                 }
