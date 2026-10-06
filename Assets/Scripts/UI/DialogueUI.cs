@@ -1,4 +1,4 @@
-﻿﻿﻿﻿﻿﻿﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -152,13 +152,10 @@ namespace HalloweenVN.UI
         
         public void ClearAll()
         {
+            CancelSceneTransition();
             if (backgroundImage != null) backgroundImage.enabled = false;
-            if (characterImageLeft != null) characterImageLeft.gameObject.SetActive(false);
-            if (characterImageCenter != null) characterImageCenter.gameObject.SetActive(false);
-            if (characterImageRight != null) characterImageRight.gameObject.SetActive(false);
-            
-            _activeSpeakerPositions.Clear();
-            _speakerOrder.Clear();
+            _currentBgPath = null;
+            HideAllCharacters();
             _tempPositionList.Clear();
             
             if (dialoguePanel != null) dialoguePanel.SetActive(false);
@@ -255,6 +252,7 @@ namespace HalloweenVN.UI
             }
             if (autoButton != null) autoButton.onClick.RemoveListener(ToggleAutoPlay);
             StopAutoPlay();
+            CancelSceneTransition();
         }
 
         // ═══════════ Panel Show/Hide ═══════════
@@ -263,9 +261,10 @@ namespace HalloweenVN.UI
             if (dialoguePanel != null)
                 dialoguePanel.SetActive(true);
             ClearChoices();
-            // Reset character tracking on new dialogue
-            _activeSpeakerPositions.Clear();
-            _speakerOrder.Clear();
+            // NOTE: character tracking is NOT cleared here. Clearing it while sprites were still
+            // visible left "orphan" characters on screen that no node could remove.
+            // HideDialoguePanel (on dialogue end) hides and clears everything instead.
+            _freshDialogue = true;
         }
 
         public void HideDialoguePanel()
@@ -274,6 +273,7 @@ namespace HalloweenVN.UI
                 dialoguePanel.SetActive(false);
             ClearChoices();
             StopAutoPlay();
+            CancelSceneTransition();
             HideAllCharacters();
         }
 
@@ -297,252 +297,375 @@ namespace HalloweenVN.UI
         }
 
         
+        // Ghost copies used to fade out characters that leave while their slot image is reused
+        private readonly List<GameObject> _ghostImages = new List<GameObject>();
+
         public void UpdateVisualsOnly(DialogueNode node, bool instant)
         {
-            // Determine which character sprites are requested
+            Image[] imgs = { characterImageLeft, characterImageCenter, characterImageRight };
+            bool immediate = instant || node.noFade;
 
-            string spriteLeft = node.characterSpriteLeft;
-            string spriteCenter = node.characterSpriteCenter;
-            string spriteRight = node.characterSpriteRight;
-
-            // Legacy single-sprite support
+            // 1. Requested sprites per slot (legacy single-sprite → center)
+            string[] requested = { node.characterSpriteLeft, node.characterSpriteCenter, node.characterSpriteRight };
             if (!string.IsNullOrEmpty(node.characterSprite))
             {
-                spriteLeft = "";
-                spriteCenter = node.characterSprite;
-                spriteRight = "";
+                requested[0] = null; requested[1] = node.characterSprite; requested[2] = null;
             }
 
-            // Collect all requested characters for this node with their explicit positions
-            List<(string path, string baseName, CharacterPosition? explicitPos)> requestedChars = new List<(string, string, CharacterPosition?)>();
-            if (!string.IsNullOrEmpty(spriteLeft)) requestedChars.Add((spriteLeft, ExtractBaseName(spriteLeft), CharacterPosition.Left));
-            if (!string.IsNullOrEmpty(spriteCenter)) requestedChars.Add((spriteCenter, ExtractBaseName(spriteCenter), CharacterPosition.Center));
-            if (!string.IsNullOrEmpty(spriteRight)) requestedChars.Add((spriteRight, ExtractBaseName(spriteRight), CharacterPosition.Right));
+            // 2. New owner per slot (same character listed twice → keep the first slot only)
+            string[] newOwner = new string[3];
+            HashSet<string> newNames = new HashSet<string>();
+            for (int s = 0; s < 3; s++)
+            {
+                if (string.IsNullOrEmpty(requested[s])) continue;
+                string name = ExtractBaseName(requested[s]);
+                if (newNames.Contains(name)) { requested[s] = null; continue; }
+                newOwner[s] = name;
+                newNames.Add(name);
+            }
 
-            // Remove characters that are no longer in this node FIRST
-            List<string> toRemove = new List<string>();
+            // 3. Snapshot the previous on-screen state BEFORE touching any image.
+            //    A character only counts as "on screen" if its slot image is actually active
+            //    (fixes characters never re-appearing after HideAllCharacters left stale tracking).
+            string[] prevOwner = new string[3];
+            Dictionary<string, int> prevSlotOf = new Dictionary<string, int>();
             foreach (var kvp in _activeSpeakerPositions)
             {
-                bool found = false;
-                foreach (var (path, baseName, explicitPos) in requestedChars)
-                {
-                    if (baseName == kvp.Key) { found = true; break; }
-                }
-                if (!found) toRemove.Add(kvp.Key);
+                int s = (int)kvp.Value;
+                Image img = imgs[s];
+                if (img == null || !img.gameObject.activeSelf) continue;
+                prevOwner[s] = kvp.Key;
+                prevSlotOf[kvp.Key] = s;
             }
-            foreach (string name in toRemove)
+            float[] snapX = new float[3];
+            Color[] snapColor = new Color[3];
+            for (int s = 0; s < 3; s++)
             {
-                if (node.noFade || instant)
+                if (imgs[s] == null) continue;
+                RectTransform rt = imgs[s].rectTransform;
+                snapX[s] = (rt.anchorMin.x + rt.anchorMax.x) / 2f;
+                snapColor[s] = imgs[s].color;
+            }
+
+            bool anyoneStaying = false;
+            foreach (var kvp in prevSlotOf) if (newNames.Contains(kvp.Key)) { anyoneStaying = true; break; }
+
+            float[] targetX = ComputeLayoutTargets(newOwner);
+
+            // 4. Apply per slot — each slot image gets exactly one action, so characters
+            //    swapping/moving slots can no longer cancel each other's fades.
+            _activeSpeakerPositions.Clear();
+            _speakerOrder.Clear();
+            for (int s = 0; s < 3; s++)
+            {
+                Image img = imgs[s];
+                if (img == null) continue;
+                string name = newOwner[s];
+                string old = prevOwner[s];
+
+                // Previous occupant leaves the screen entirely → fade out a ghost copy
+                if (old != null && old != name && !newNames.Contains(old))
                 {
-                    // Instant hide
-                    Image hideImg = GetCharacterImage(_activeSpeakerPositions[name]);
-                    if (hideImg != null) 
+                    if (!immediate) SpawnGhostFadeOut(img);
+                }
+
+                if (name == null)
+                {
+                    if (old != null)
                     {
-                        if (_fadeCoroutines.ContainsKey(hideImg) && _fadeCoroutines[hideImg] != null) StopCoroutine(_fadeCoroutines[hideImg]);
-                        hideImg.gameObject.SetActive(false);
+                        StopSlotCoroutines(s);
+                        HideSlotImage(img);
+                    }
+                    continue;
+                }
+
+                _activeSpeakerPositions[name] = (CharacterPosition)s;
+                _speakerOrder.Add(name);
+
+                if (prevSlotOf.TryGetValue(name, out int from))
+                {
+                    // Character already on screen
+                    if (from != s)
+                    {
+                        // Moved to a different slot: hand over the visual state and slide (no blink)
+                        StopSlotCoroutines(s);
+                        LoadSpriteToImage(img, requested[s]);
+                        img.gameObject.SetActive(true);
+                        SetCharacterAnchorX(img.rectTransform, snapX[from]);
+                        img.color = snapColor[from];
+                        if (snapColor[from].a < 0.999f && !immediate) StartFadeIn(img, snapColor[from].a);
+                    }
+                    else
+                    {
+                        // Same slot: expression change only
+                        LoadSpriteToImage(img, requested[s]);
+                    }
+
+                    if (immediate)
+                    {
+                        StopMove(s);
+                        SetCharacterAnchorX(img.rectTransform, targetX[s]);
+                        ForceOpaque(img);
+                    }
+                    else
+                    {
+                        MoveCharacterTo((CharacterPosition)s, targetX[s]);
                     }
                 }
                 else
                 {
-                    FadeOutCharacter(_activeSpeakerPositions[name]);
-                }
-                _activeSpeakerPositions.Remove(name);
-                _speakerOrder.Remove(name);
-            }
+                    // Newly entering character
+                    StopSlotCoroutines(s);
+                    LoadSpriteToImage(img, requested[s]);
 
-            // Calculate target layout positions BEFORE placing characters
-            int totalChars = requestedChars.Count;
-            Dictionary<CharacterPosition, float> layoutTargets = new Dictionary<CharacterPosition, float>();
-            if (totalChars == 1)
-            {
-                CharacterPosition? pos = requestedChars[0].explicitPos;
-                layoutTargets[pos ?? CharacterPosition.Center] = 0.5f;
-            }
-            else if (totalChars == 2)
-            {
-                var sorted = new List<CharacterPosition?>();
-                foreach (var rc in requestedChars) sorted.Add(rc.explicitPos);
-                sorted.Sort((a, b) => (a ?? CharacterPosition.Center).CompareTo(b ?? CharacterPosition.Center));
-                layoutTargets[sorted[0] ?? CharacterPosition.Left] = 0.25f;
-                layoutTargets[sorted[1] ?? CharacterPosition.Right] = 0.75f;
-            }
-            else if (totalChars >= 3)
-            {
-                var sorted = new List<CharacterPosition?>();
-                foreach (var rc in requestedChars) sorted.Add(rc.explicitPos);
-                sorted.Sort((a, b) => (a ?? CharacterPosition.Center).CompareTo(b ?? CharacterPosition.Center));
-                layoutTargets[sorted[0] ?? CharacterPosition.Left] = 0.20f;
-                layoutTargets[sorted[1] ?? CharacterPosition.Center] = 0.50f;
-                layoutTargets[sorted[2] ?? CharacterPosition.Right] = 0.80f;
-            }
-
-            // Now assign positions and place characters
-            bool anyNewCharacter = false;
-            foreach (var (path, baseName, explicitPos) in requestedChars)
-            {
-                CharacterPosition assignedPos = explicitPos ?? CharacterPosition.Center;
-
-                if (!_activeSpeakerPositions.ContainsKey(baseName))
-                {
-                    anyNewCharacter = true;
-                    // New character — place directly at final layout position
-                    if (_activeSpeakerPositions.Count >= 3)
+                    float startX = targetX[s];
+                    if (!immediate && (node.slideIn || node.slideFromRight || anyoneStaying))
                     {
-                        // Evict oldest character
-                        string oldest = _speakerOrder[0];
-                        CharacterPosition oldPos = _activeSpeakerPositions[oldest];
-                        if (node.noFade || instant)
-                        {
-                            Image hideImg = GetCharacterImage(oldPos);
-                            if (hideImg != null) hideImg.gameObject.SetActive(false);
-                        }
-                        else
-                        {
-                            FadeOutCharacter(oldPos);
-                        }
-                        _activeSpeakerPositions.Remove(oldest);
-                        _speakerOrder.RemoveAt(0);
+                        if (node.slideFromRight) startX = 1.5f;
+                        else startX = targetX[s] > 0.5f ? 1.5f : -0.5f;
                     }
+                    SetCharacterAnchorX(img.rectTransform, startX);
 
-                    _activeSpeakerPositions[baseName] = assignedPos;
-                    _speakerOrder.Add(baseName);
-
-                    // Load sprite & place at final position immediately
-                    Image img = GetCharacterImage(assignedPos);
-                    LoadSpriteToImage(img, path);
-
-                    // Set initial position
-                    if (layoutTargets.ContainsKey(assignedPos))
+                    if (immediate)
                     {
-                        RectTransform rt = img.rectTransform;
-                        float targetX = layoutTargets[assignedPos];
-                        
-                        bool isFirst = _activeSpeakerPositions.Count == 1;
-                        if (node.slideIn || !isFirst)
-                        {
-                            // Start from off-screen (left or right depending on target position)
-                            float offScreenX = (targetX < 0.5f) ? -0.5f : (targetX > 0.5f ? 1.5f : -0.5f);
-                            
-                            // 명시적으로 slideFromRight가 true이면 중앙 캐릭터라도 오른쪽에서 등장
-                            if (node.slideFromRight) offScreenX = 1.5f;
-
-                            SetCharacterAnchorX(rt, offScreenX);
-                            MoveCharacterTo(assignedPos, targetX);
-                        }
-                        else
-                        {
-                            SetCharacterAnchorX(rt, targetX);
-                        }
-                    }
-
-                    if (node.noFade || instant)
-                    {
-                        if (_fadeCoroutines.ContainsKey(img) && _fadeCoroutines[img] != null) StopCoroutine(_fadeCoroutines[img]);
                         img.gameObject.SetActive(true);
-                        Color c = img.color;
-                        c.a = 1f;
-                        img.color = c;
+                        ForceOpaque(img);
                     }
                     else
                     {
                         StartFadeIn(img);
+                        if (Mathf.Abs(startX - targetX[s]) > 0.01f) MoveCharacterTo((CharacterPosition)s, targetX[s]);
                     }
                 }
-                else
-                {
-                    // Existing character — update sprite if changed, refresh order
-                    _speakerOrder.Remove(baseName);
-                    _speakerOrder.Add(baseName);
-
-                    CharacterPosition oldPos = _activeSpeakerPositions[baseName];
-
-                    // Check if position changed (e.g. Center → Left)
-                    if (oldPos != assignedPos)
-                    {
-                        // Fade out old slot
-                        Image oldImg = GetCharacterImage(oldPos);
-                        if (oldImg != null && oldImg.gameObject.activeSelf)
-                        {
-                            if (node.noFade || instant)
-                            {
-                                if (_fadeCoroutines.ContainsKey(oldImg) && _fadeCoroutines[oldImg] != null) StopCoroutine(_fadeCoroutines[oldImg]);
-                                oldImg.gameObject.SetActive(false);
-                            }
-                            else
-                            {
-                                FadeOutCharacter(oldPos);
-                            }
-                        }
-
-                        // Update position mapping
-                        _activeSpeakerPositions[baseName] = assignedPos;
-
-                        // Load sprite into new slot
-                        Image newImg = GetCharacterImage(assignedPos);
-                        LoadSpriteToImage(newImg, path);
-
-                        // Set position and fade in
-                        if (layoutTargets.ContainsKey(assignedPos))
-                        {
-                            SetCharacterAnchorX(newImg.rectTransform, layoutTargets[assignedPos]);
-                        }
-
-                        if (node.noFade || instant)
-                        {
-                            if (_fadeCoroutines.ContainsKey(newImg) && _fadeCoroutines[newImg] != null) StopCoroutine(_fadeCoroutines[newImg]);
-                            newImg.gameObject.SetActive(true);
-                            Color c = newImg.color; c.a = 1f; newImg.color = c;
-                        }
-                        else
-                        {
-                            StartFadeIn(newImg);
-                        }
-                    }
-                    else
-                    {
-                        // Same position — just update sprite
-                        Image img = GetCharacterImage(oldPos);
-                        LoadSpriteToImage(img, path);
-                    }
-                }
-            }
-
-            // Recalculate layout positions for existing characters that need to shift
-            if (anyNewCharacter)
-            {
-                foreach (var kvp in _activeSpeakerPositions)
-                {
-                    if (layoutTargets.ContainsKey(kvp.Value))
-                    {
-                        Image img = GetCharacterImage(kvp.Value);
-                        if (img != null && img.gameObject.activeSelf)
-                        {
-                            RectTransform rt = img.rectTransform;
-                            float currentX = (rt.anchorMin.x + rt.anchorMax.x) / 2f;
-                            float targetX = layoutTargets[kvp.Value];
-                            if (Mathf.Abs(currentX - targetX) > 0.01f)
-                            {
-                                MoveCharacterTo(kvp.Value, targetX);
-                            }
-                        }
-                    }
-                }
-            }
-            else
-            {
-                UpdateCharacterLayout();
             }
 
             // Dim/Highlight based on speaker
             bool wasNarrator = !_currentlyInDialoguePanel;
             bool isNarratorNow = string.IsNullOrEmpty(node.speaker);
             bool usePanelNow = !isNarratorNow;
-                        bool instantHighlight = instant || (wasNarrator && usePanelNow);
+            bool instantHighlight = instant || (wasNarrator && usePanelNow);
             UpdateSpeakerHighlight(node.speaker, instantHighlight);
             UpdateBackground(node.backgroundSprite);
         }
 
+        /// <summary>
+        /// Screen X (anchor center) per slot. Positions depend only on how many characters are shown
+        /// and their left-to-right slot order: 1 → 50%, 2 → 25/75%, 3 → 20/50/80%.
+        /// </summary>
+        private static float[] ComputeLayoutTargets(string[] owner)
+        {
+            float[] result = { 0.25f, 0.5f, 0.75f };
+            List<int> used = new List<int>();
+            for (int s = 0; s < 3; s++) if (owner[s] != null) used.Add(s);
+            float[] xs;
+            if (used.Count == 1) xs = new[] { 0.5f };
+            else if (used.Count == 2) xs = new[] { 0.25f, 0.75f };
+            else xs = new[] { 0.20f, 0.50f, 0.80f };
+            for (int i = 0; i < used.Count; i++) result[used[i]] = xs[i];
+            return result;
+        }
+
+        private void StopMove(int slot)
+        {
+            if (_moveCoroutines[slot] != null)
+            {
+                StopCoroutine(_moveCoroutines[slot]);
+                _moveCoroutines[slot] = null;
+            }
+        }
+
+        private void StopSlotCoroutines(int slot)
+        {
+            StopMove(slot);
+            Image img = GetCharacterImage((CharacterPosition)slot);
+            if (img == null) return;
+            if (_fadeCoroutines.TryGetValue(img, out var fc) && fc != null) StopCoroutine(fc);
+            _fadeCoroutines[img] = null;
+            if (_highlightCoroutines.TryGetValue(img, out var hc) && hc != null) StopCoroutine(hc);
+            _highlightCoroutines[img] = null;
+        }
+
+        private static void ForceOpaque(Image img)
+        {
+            Color c = img.color; c.a = 1f; img.color = c;
+        }
+
+        private static void HideSlotImage(Image img)
+        {
+            img.gameObject.SetActive(false);
+            img.color = ACTIVE_COLOR;
+        }
+
+        private void SpawnGhostFadeOut(Image source)
+        {
+            if (source == null || !source.gameObject.activeSelf || source.sprite == null) return;
+            GameObject ghost = Instantiate(source.gameObject, source.transform.parent);
+            ghost.name = source.gameObject.name + "_Ghost";
+            ghost.transform.SetSiblingIndex(source.transform.GetSiblingIndex());
+            Image gImg = ghost.GetComponent<Image>();
+            if (gImg == null) { Destroy(ghost); return; }
+            gImg.raycastTarget = false;
+            _ghostImages.Add(ghost);
+            StartCoroutine(GhostFadeOutRoutine(ghost, gImg));
+        }
+
+        private IEnumerator GhostFadeOutRoutine(GameObject ghost, Image img)
+        {
+            Color c = img.color;
+            float startAlpha = c.a;
+            float elapsed = 0f;
+            while (elapsed < DEFAULT_FADE_SPEED && ghost != null)
+            {
+                elapsed += Time.deltaTime * (IsFastForwarding ? 10f : 1f);
+                c.a = Mathf.Lerp(startAlpha, 0f, Mathf.SmoothStep(0f, 1f, elapsed / DEFAULT_FADE_SPEED));
+                img.color = c;
+                yield return null;
+            }
+            _ghostImages.Remove(ghost);
+            if (ghost != null) Destroy(ghost);
+        }
+
+        private void DestroyGhosts()
+        {
+            foreach (var g in _ghostImages) if (g != null) Destroy(g);
+            _ghostImages.Clear();
+        }
+
+        // ═══════════ Scene (background) transition: whole screen → black → new scene ═══════════
+        private bool _isTransitioningScene = false;
+        private bool _sceneTransitionPastMidpoint = false;
+        private bool _freshDialogue = false;
+        private DialogueNode _pendingTransitionNode;
+        private Coroutine _sceneTransitionCoroutine;
+        private Image _sceneFadeOverlay;
+        private const float SCENE_FADE_HALF = 0.4f;
+        private const float SCENE_BLACK_HOLD = 0.15f;
+
         public void DisplayNode(DialogueNode node)
+        {
+            // First node of a dialogue file: chapter transitions/lobby already fade through black.
+            if (_freshDialogue)
+            {
+                _freshDialogue = false;
+                ApplyNodeVisuals(node, false);
+                return;
+            }
+
+            // A transition is fading out: just swap which node gets revealed at the midpoint
+            if (_sceneTransitionCoroutine != null && !_sceneTransitionPastMidpoint)
+            {
+                _pendingTransitionNode = node;
+                return;
+            }
+
+            bool bgChanging = !string.IsNullOrEmpty(node.backgroundSprite)
+                              && backgroundImage != null && backgroundImage.enabled
+                              && !string.IsNullOrEmpty(_currentBgPath)
+                              && node.backgroundSprite != _currentBgPath
+                              && gameObject.activeInHierarchy;
+
+            if (bgChanging)
+            {
+                if (_sceneTransitionCoroutine != null) StopCoroutine(_sceneTransitionCoroutine);
+                _pendingTransitionNode = node;
+                _sceneTransitionCoroutine = StartCoroutine(SceneTransitionRoutine());
+                return;
+            }
+
+            ApplyNodeVisuals(node, false);
+        }
+
+        private IEnumerator SceneTransitionRoutine()
+        {
+            _isTransitioningScene = true;
+            _sceneTransitionPastMidpoint = false;
+            Image ov = EnsureSceneFadeOverlay();
+            ov.gameObject.SetActive(true);
+            ov.transform.SetAsLastSibling();
+
+            // Fade out whole screen (continues from current alpha if a transition was interrupted)
+            float a = ov.color.a;
+            while (a < 1f)
+            {
+                a += Time.unscaledDeltaTime * (IsFastForwarding ? 10f : 1f) / SCENE_FADE_HALF;
+                ov.color = new Color(0f, 0f, 0f, Mathf.SmoothStep(0f, 1f, Mathf.Clamp01(a)));
+                yield return null;
+            }
+            ov.color = Color.black;
+
+            // Swap scene while fully black — characters placed instantly so they're already there on reveal
+            _sceneTransitionPastMidpoint = true;
+            DialogueNode node = _pendingTransitionNode;
+            _pendingTransitionNode = null;
+            if (node != null) ApplyNodeVisuals(node, true);
+
+            float hold = 0f;
+            while (hold < SCENE_BLACK_HOLD)
+            {
+                hold += Time.unscaledDeltaTime * (IsFastForwarding ? 10f : 1f);
+                yield return null;
+            }
+
+            // Fade back in
+            a = 1f;
+            while (a > 0f)
+            {
+                a -= Time.unscaledDeltaTime * (IsFastForwarding ? 10f : 1f) / SCENE_FADE_HALF;
+                ov.color = new Color(0f, 0f, 0f, Mathf.SmoothStep(0f, 1f, Mathf.Clamp01(a)));
+                yield return null;
+            }
+            ov.color = new Color(0f, 0f, 0f, 0f);
+            ov.gameObject.SetActive(false);
+
+            _isTransitioningScene = false;
+            _sceneTransitionPastMidpoint = false;
+            _sceneTransitionCoroutine = null;
+        }
+
+        private void CancelSceneTransition()
+        {
+            if (_sceneTransitionCoroutine != null) StopCoroutine(_sceneTransitionCoroutine);
+            _sceneTransitionCoroutine = null;
+            _pendingTransitionNode = null;
+            _isTransitioningScene = false;
+            _sceneTransitionPastMidpoint = false;
+            if (_sceneFadeOverlay != null)
+            {
+                _sceneFadeOverlay.color = new Color(0f, 0f, 0f, 0f);
+                _sceneFadeOverlay.gameObject.SetActive(false);
+            }
+        }
+
+        private Image EnsureSceneFadeOverlay()
+        {
+            if (_sceneFadeOverlay != null) return _sceneFadeOverlay;
+
+            Canvas parentCanvas = GetComponentInParent<Canvas>();
+            Transform parent = parentCanvas != null ? parentCanvas.rootCanvas.transform : transform;
+
+            GameObject go = new GameObject("SceneFadeOverlay", typeof(RectTransform));
+            go.layer = LayerMask.NameToLayer("UI");
+            go.transform.SetParent(parent, false);
+            RectTransform rt = go.GetComponent<RectTransform>();
+            rt.anchorMin = Vector2.zero;
+            rt.anchorMax = Vector2.one;
+            rt.offsetMin = Vector2.zero;
+            rt.offsetMax = Vector2.zero;
+
+            // Own sorting so it covers dialogue box, buttons and characters (ScreenTransition stays above at 999)
+            Canvas c = go.AddComponent<Canvas>();
+            c.overrideSorting = true;
+            c.sortingOrder = 900;
+            go.AddComponent<GraphicRaycaster>(); // blocks clicks on AUTO/LOG etc. during the fade
+
+            _sceneFadeOverlay = go.AddComponent<Image>();
+            _sceneFadeOverlay.color = new Color(0f, 0f, 0f, 0f);
+            _sceneFadeOverlay.raycastTarget = true;
+            go.SetActive(false);
+            return _sceneFadeOverlay;
+        }
+
+        private void ApplyNodeVisuals(DialogueNode node, bool instantVisuals)
         {
             if (speakerNameText != null) 
             { 
@@ -557,7 +680,7 @@ namespace HalloweenVN.UI
             }
 
             // Determine which character sprites are requested
-            UpdateVisualsOnly(node, false);
+            UpdateVisualsOnly(node, instantVisuals);
 
             // Typing & Formatting
             var lang = HalloweenVN.Core.SettingsData.Language;
@@ -700,32 +823,34 @@ namespace HalloweenVN.UI
         }
 
         // ═══════════ Character FadeIn / FadeOut ═══════════
-        private void StartFadeIn(Image img)
+        private void StartFadeIn(Image img, float startAlpha = 0f)
         {
             if (img == null) return;
             if (_fadeCoroutines.ContainsKey(img) && _fadeCoroutines[img] != null) StopCoroutine(_fadeCoroutines[img]);
-            _fadeCoroutines[img] = StartCoroutine(FadeInCharacter(img));
+            _fadeCoroutines[img] = StartCoroutine(FadeInCharacter(img, startAlpha));
         }
 
-        private IEnumerator FadeInCharacter(Image img)
+        private IEnumerator FadeInCharacter(Image img, float startAlpha = 0f)
         {
             if (img == null) yield break;
 
             img.gameObject.SetActive(true);
             Color c = img.color;
-            c.a = 0f;
+            c.a = startAlpha;
             img.color = c;
 
             yield return null; // 1 frame wait for layout
 
-            float elapsed = 0f;
+            float elapsed = startAlpha * DEFAULT_FADE_SPEED;
             while (elapsed < DEFAULT_FADE_SPEED)
             {
                 elapsed += Time.deltaTime * (IsFastForwarding ? 10f : 1f);
+                c = img.color; // keep dim/highlight RGB from highlight coroutine
                 c.a = Mathf.SmoothStep(0f, 1f, elapsed / DEFAULT_FADE_SPEED);
                 img.color = c;
                 yield return null;
             }
+            c = img.color;
             c.a = 1f;
             img.color = c;
         }
@@ -770,6 +895,9 @@ namespace HalloweenVN.UI
 
         private void HideAllCharacters()
         {
+            for (int s = 0; s < 3; s++) StopSlotCoroutines(s);
+            DestroyGhosts();
+
             Image[] chars = { characterImageLeft, characterImageCenter, characterImageRight };
             foreach (var img in chars)
             {
@@ -779,6 +907,8 @@ namespace HalloweenVN.UI
                     img.color = ACTIVE_COLOR;
                 }
             }
+            _activeSpeakerPositions.Clear();
+            _speakerOrder.Clear();
         }
 
         // ═══════════ Speaker Highlight / Dim ═══════════
@@ -794,9 +924,10 @@ namespace HalloweenVN.UI
                 return;
             }
 
+            string trimmed = speaker.Trim();
             foreach (var kvp in _activeSpeakerPositions)
             {
-                bool isSpeaking = kvp.Key == speaker;
+                bool isSpeaking = kvp.Key == trimmed;
                 DimCharacterImage(GetCharacterImage(kvp.Value), isSpeaking, instant);
             }
         }
@@ -855,12 +986,29 @@ namespace HalloweenVN.UI
         {
             if (img == null || string.IsNullOrEmpty(spritePath)) return;
 
-            if (_spriteCache.TryGetValue(spritePath, out Sprite cachedSprite))
+            Sprite sprite = LoadSpriteCached(spritePath);
+            if (sprite == null)
             {
-                img.sprite = cachedSprite;
-                img.enabled = true;
-                return;
+                // Missing expression → fall back to the same character's default sprite instead of
+                // leaving the slot's previous sprite (which may belong to a different character).
+                string fallback = null;
+                int slash = spritePath.LastIndexOf('/');
+                if (slash > 0) fallback = spritePath.Substring(0, slash) + "/기본";
+                if (fallback != null && fallback != spritePath) sprite = LoadSpriteCached(fallback);
+                Debug.LogWarning($"[DialogueUI] Missing character sprite '{spritePath}'" + (sprite != null ? $", using '{fallback}'" : ""));
             }
+
+            if (sprite != null)
+            {
+                img.sprite = sprite;
+                img.enabled = true;
+            }
+        }
+
+        private static Sprite LoadSpriteCached(string spritePath)
+        {
+            if (_spriteCache.TryGetValue(spritePath, out Sprite cachedSprite) && cachedSprite != null)
+                return cachedSprite;
 
             Sprite sprite = Resources.Load<Sprite>(spritePath);
 
@@ -879,15 +1027,13 @@ namespace HalloweenVN.UI
                 }
             }
 
-            if (sprite != null)
-            {
-                _spriteCache[spritePath] = sprite;
-                img.sprite = sprite;
-                img.enabled = true;
-            }
+            if (sprite != null) _spriteCache[spritePath] = sprite;
+            return sprite;
         }
 
         // ═══════════ Background ═══════════
+        private string _currentBgPath;
+
         private System.Collections.IEnumerator CrossfadePanels(bool toDialogue)
         {
             GameObject narratorParent = narratorText != null ? narratorText.transform.parent.gameObject : null;
@@ -940,25 +1086,16 @@ namespace HalloweenVN.UI
         public void UpdateBackground(string spritePath)
         {
             if (backgroundImage == null) return;
-            if (!string.IsNullOrEmpty(spritePath))
+            if (string.IsNullOrEmpty(spritePath)) return; // empty = keep previous background
+            if (spritePath == _currentBgPath && backgroundImage.enabled && backgroundImage.sprite != null) return;
+
+            Sprite sprite = LoadSpriteCached(spritePath);
+            if (sprite != null)
             {
-                Sprite sprite = Resources.Load<Sprite>(spritePath);
-
-                if (sprite == null)
-                {
-                    Texture2D tex = Resources.Load<Texture2D>(spritePath);
-                    if (tex != null)
-                    {
-                        sprite = Sprite.Create(tex, new Rect(0, 0, tex.width, tex.height), new Vector2(0.5f, 0.5f));
-                    }
-                }
-
-                if (sprite != null)
-                {
-                    backgroundImage.sprite = sprite;
-                    backgroundImage.color = Color.white; // Ensure alpha is 1
-                    backgroundImage.enabled = true;
-                }
+                backgroundImage.sprite = sprite;
+                backgroundImage.color = Color.white; // Ensure alpha is 1
+                backgroundImage.enabled = true;
+                _currentBgPath = spritePath;
             }
         }
 
@@ -976,6 +1113,8 @@ namespace HalloweenVN.UI
 
             // Canvas Layout이 반영될 수 있도록 1프레임 대기
             yield return null;
+            // 배경 전환(암전) 중에는 화면이 다시 밝아진 뒤부터 타이핑 시작
+            while (_isTransitioningScene) yield return null;
 
             if (target != null)
             {
@@ -1040,6 +1179,7 @@ namespace HalloweenVN.UI
         private IEnumerator AutoAdvanceAfterDelay()
         {
             yield return new WaitForSeconds(SettingsData.AutoPlayDelay);
+            while (_isTransitioningScene) yield return null;
             if (isAutoPlay && DialogueManager.Instance != null)
             {
                 DialogueManager.Instance.AdvanceDialogue();
@@ -1104,7 +1244,7 @@ namespace HalloweenVN.UI
                     if (ctrlSkipTimer >= 0.05f)
                     {
                         ctrlSkipTimer = 0f;
-                        if (!isTyping) DialogueManager.Instance.AdvanceDialogue();
+                        if (!isTyping && !_isTransitioningScene) DialogueManager.Instance.AdvanceDialogue();
                     }
                 }
             }
@@ -1138,7 +1278,9 @@ namespace HalloweenVN.UI
         private float _lastClickTime = 0f;
         private float _typingEndTime = -1f;
 
-        public void OnClick() { if (Time.unscaledTime - _lastClickTime < 0.05f) return; // Prevent double-trigger from UI Event System + Input System
+        public void OnClick() { 
+            if (_isTransitioningScene) return; // Prevent double-trigger from UI Event System + Input System
+            if (Time.unscaledTime - _lastClickTime < 0.05f) return; // Prevent double-trigger from UI Event System + Input System
             _lastClickTime = Time.unscaledTime;
 
             Debug.Log($"[DialogueUI] OnClick triggered. isTyping={isTyping}");

@@ -183,7 +183,7 @@
             "nextNodeId": 15,
             "characterSpriteLeft": "Characters/하루카/기본",
             "characterSpriteCenter": "",
-            "characterSpriteRight": "Characters/미나/측은",
+            "characterSpriteRight": "Characters/미나/음침",
             "choices": [],
             "noFade": true
         },
@@ -520,9 +520,9 @@
             "command": "",
             "id": 41,
             "nextNodeId": 42,
-            "characterSpriteLeft": "Characters/미나/음침",
+            "characterSpriteLeft": "Characters/세이카/기본",
             "characterSpriteCenter": "",
-            "characterSpriteRight": "Characters/세이카/기본",
+            "characterSpriteRight": "Characters/미나/음침",
             "choices": []
         },
         {
@@ -532,9 +532,9 @@
             "command": "",
             "id": 42,
             "nextNodeId": 43,
-            "characterSpriteLeft": "Characters/미나/음침",
+            "characterSpriteLeft": "Characters/세이카/기본",
             "characterSpriteCenter": "",
-            "characterSpriteRight": "Characters/세이카/기본",
+            "characterSpriteRight": "Characters/미나/음침",
             "choices": [],
             "noFade": true
         },
@@ -545,9 +545,9 @@
             "command": "",
             "id": 43,
             "nextNodeId": 44,
-            "characterSpriteLeft": "Characters/미나/기본",
+            "characterSpriteLeft": "Characters/세이카/기본",
             "characterSpriteCenter": "",
-            "characterSpriteRight": "Characters/세이카/기본",
+            "characterSpriteRight": "Characters/미나/기본",
             "choices": [],
             "noFade": true
         },
@@ -558,9 +558,9 @@
             "command": "",
             "id": 44,
             "nextNodeId": 45,
-            "characterSpriteLeft": "Characters/미나/기본",
+            "characterSpriteLeft": "Characters/세이카/기본",
             "characterSpriteCenter": "",
-            "characterSpriteRight": "Characters/세이카/기본",
+            "characterSpriteRight": "Characters/미나/기본",
             "choices": [],
             "noFade": true
         },
@@ -571,9 +571,9 @@
             "command": "",
             "id": 45,
             "nextNodeId": 46,
-            "characterSpriteLeft": "Characters/하루카/측은",
+            "characterSpriteLeft": "Characters/세이카/기본",
             "characterSpriteCenter": "",
-            "characterSpriteRight": "Characters/세이카/기본",
+            "characterSpriteRight": "Characters/하루카/측은",
             "choices": []
         },
         {
@@ -607,7 +607,7 @@
             "command": "",
             "id": 48,
             "nextNodeId": 49,
-            "characterSpriteLeft": "Characters/하루카/당황",
+            "characterSpriteLeft": "Characters/하루카/놀람",
             "characterSpriteCenter": "",
             "characterSpriteRight": "Characters/세이카/기본",
             "choices": [],
