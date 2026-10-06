@@ -409,7 +409,12 @@ namespace HalloweenVN.UI
                     else
                     {
                         // Same slot: expression change only
+                        StopSlotCoroutines(s);
                         LoadSpriteToImage(img, requested[s]);
+                        img.gameObject.SetActive(true);
+                        
+                        // Force snap to prevent lingering slides from previous nodes
+                        SetCharacterAnchorX(img.rectTransform, targetX[s]);
                     }
 
                     if (immediate)
@@ -794,6 +799,14 @@ namespace HalloweenVN.UI
             {
                 StopCoroutine(_moveCoroutines[idx]);
             }
+            
+            float startX = (img.rectTransform.anchorMin.x + img.rectTransform.anchorMax.x) / 2f;
+            if (Mathf.Abs(startX - targetX) < 0.01f)
+            {
+                SetCharacterAnchorX(img.rectTransform, targetX);
+                return;
+            }
+            
             _moveCoroutines[idx] = StartCoroutine(SmoothMoveCharacter(img, targetX));
         }
 
