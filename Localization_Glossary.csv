@@ -7,7 +7,6 @@ Character Name,리리스,Lilith,リリス,莉莉丝,莉莉絲,"Tech/hacker. Age 
 Character Name,하루카,Haruka,ハルカ,遥,遙,"Receptionist/admin. Age 19 (youngest). Female. Bright, polite speech."
 Character Name,서하유,Seo Hayu,ソ・ハユ,徐夏悠,徐夏悠,The Forgotten Pianist (Ch.1). Full name. 2016 national competition grand prize winner.
 Character Name,하유,Hayu,ハユ,夏悠,夏悠,Fragment of Seo Hayu's name. Decoded from Morse code in piano frequencies.
-Character Name,이케다,Ikeda,イケダ,池田,池田,Japanese businessman who built the mansion in the 1920s. Does not appear directly.
 Character Name,사차지,Sachaji,サチャジ,萨查基,薩查基,Game creator. Appears in ending credits.
 Honorific/Title,소장님,Director,所長,所长,所長,Formal title members use for Seika.
 Honorific/Title,~언니,(name),〜さん / 〜先輩,~姐,~姐,Used by Haruka/Rina when addressing senior members.
@@ -22,8 +21,8 @@ Organization,대형 로펌,Major Law Firm,大手法律事務所,大型律师事�
 Location,노을시,Noeul City,ノウル市,落霞市,落霞市,"Main setting. Fictional Korean port city. Pop. ~800,000."
 Location,구시가지,Old Town,旧市街,旧城区,舊城區,District with colonial-era buildings. Epicenter of incidents.
 Location,신시가지,New Town,新市街,新城区,新城區,Modern urban district.
-Location,이케다 저택,Ikeda Mansion,イケダ邸,池田宅邸,池田宅邸,Nevermore HQ. 3-story Victorian mansion atop Old Town hill.
-Location,3층 서재,Third Floor Study,三階書斎,三楼书房,三樓書房,Where Seika witnessed the paranormal event.
+Location,언덕 위의 저택,The Hilltop Mansion,丘の上の屋敷,山丘上的宅邸,山丘上的宅邸,"Nevermore HQ. Old mansion overlooking Old Town, long unsold and nicknamed 'the haunted house' (유령의 집)."
+Location,지하 서고,Basement Archive,地下書庫,地下书库,地下書庫,"Hidden basement library beneath a nondescript building in Old Town, filled with disappearance mystery novels. Where Seika found the message."
 Location,폐쇄 음악실,Abandoned Music Hall,閉鎖された音楽室,废弃音乐教室,廢棄音樂教室,Ch.1 crime scene. Former music academy.
 Location,메인 공연장,Main Concert Hall,メインホール,主演奏厅,主演奏廳,Interior of the Abandoned Music Hall. Contains the grand piano.
 Location,구시가지 3번 골목,Old Town Alley No. 3,旧市街三番路地,旧城区3号巷,舊城區3號巷,Previous day's noise complaint location.
@@ -54,7 +53,7 @@ Case/Event,사건 파일 1: 잊혀진 피아니스트,Case File 1: The Forgotten
 Case/Event,제17회 전국 피아노 콩쿠르,17th National Piano Competition,第17回全国ピアノコンクール,第17届全国钢琴大赛,第17屆全國鋼琴大賽,2016 competition where Seo Hayu won the grand prize.
 Case/Event,구시가지 미로 골목 실종 사건,Old Town Labyrinth Alley Disappearance,旧市街迷路路地失踪事件,旧城区迷宫巷失踪事件,舊城區迷宮巷失蹤事件,Nevermore's first case. Trigger for Rina's recruitment.
 Case/Event,1년의 기한,One-Year Deadline,一年の期限,一年期限,一年期限,Ultimatum set by Seika's father.
-Key Message,"찾아줘, 잊혀진 우리를.","Find us, the forgotten ones.",見つけて、忘れられた私たちを。,找到我们，那些被遗忘的人。,找到我們，那些被遺忘的人。,Cryptic message formed from book titles in the study.
+Key Message,우리를 찾아줘.,Find us.,私たちを見つけて。,找到我们。,找到我們。,Message scratched into the back panel of a bookshelf in the Basement Archive. Echoed by '나를 찾아줘' in Ch.1 and recalled in the epilogue.
 Key Message,나를 찾아줘,Find me,私を見つけて,找到我,找到我,First decoded message from the piano's frequencies.
 Key Message,"...고, 마워...",...tha...nks...,…あり…がと…,…谢…谢…,…謝…謝…,Seo Hayu's fragmented final thank-you in the epilogue.
 Key Message,미제 사건 특화. 초자연 현상 환영.,Specializing in cold cases. Supernatural welcome.,未解決事件専門。超常現象歓迎。,专攻悬案。超自然现象来者不拒。,專攻懸案。超自然現象來者不拒。,Agency's signboard slogan.

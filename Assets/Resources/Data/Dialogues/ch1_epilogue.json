@@ -745,7 +745,7 @@
             "command": "",
             "choices": [],
             "nextNodeId": 61,
-            "text": "(문 앞에서 돌아보며)\n...그 책장에 적혀 있었죠.\n「찾아줘, 잊혀진 우리를.」",
+            "text": "(문 앞에서 돌아보며)\n...세이카 씨가 처음 봤다던, 그 지하 서고의 글씨.\n「우리를 찾아줘.」",
             "characterSpriteLeft": "",
             "characterSpriteCenter": "",
             "characterSpriteRight": ""
@@ -757,7 +757,7 @@
             "command": "",
             "choices": [],
             "nextNodeId": 62,
-            "text": "찾아줘서, 고마워요.",
+            "text": "그거, 우리 모두의 목소리였어요.\n...찾아줘서, 고마워요.",
             "characterSpriteLeft": "",
             "characterSpriteCenter": "",
             "characterSpriteRight": ""
