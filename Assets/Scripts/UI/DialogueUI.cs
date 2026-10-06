@@ -302,6 +302,9 @@ namespace HalloweenVN.UI
         // Ghost copies used to fade out characters that leave while their slot image is reused
         private readonly List<GameObject> _ghostImages = new List<GameObject>();
 
+        // Last layout target assigned to each slot (-1 = empty). Used to detect interrupted slides.
+        private readonly float[] _lastTargetX = { -1f, -1f, -1f };
+
         public void UpdateVisualsOnly(DialogueNode node, bool instant)
         {
             bool wasNarrator = !_currentlyInDialoguePanel;
@@ -409,12 +412,15 @@ namespace HalloweenVN.UI
                     else
                     {
                         // Same slot: expression change only
+                        float curX = (img.rectTransform.anchorMin.x + img.rectTransform.anchorMax.x) / 2f;
+                        bool wasMidSlide = _lastTargetX[s] >= 0f && Mathf.Abs(curX - _lastTargetX[s]) > 0.01f;
                         StopSlotCoroutines(s);
                         LoadSpriteToImage(img, requested[s]);
                         img.gameObject.SetActive(true);
                         
-                        // Force snap to prevent lingering slides from previous nodes
-                        SetCharacterAnchorX(img.rectTransform, targetX[s]);
+                        // Interrupted mid-slide (e.g. fast-clicking during an entrance): snap so it
+                        // doesn't keep drifting. Settled characters glide normally via MoveCharacterTo.
+                        if (wasMidSlide) SetCharacterAnchorX(img.rectTransform, targetX[s]);
                     }
 
                     if (immediate)
@@ -454,6 +460,8 @@ namespace HalloweenVN.UI
                     }
                 }
             }
+
+            for (int s = 0; s < 3; s++) _lastTargetX[s] = newOwner[s] != null ? targetX[s] : -1f;
 
             // Dim/Highlight based on speaker
             bool instantHighlight = instant || (wasNarrator && usePanelNow);

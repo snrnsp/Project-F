@@ -114,8 +114,8 @@
             "text": "와씨, 더워 죽을 뻔! 다녀왔어! 야, 에어컨 어케 된 거야, 쪄 죽으라고?!",
             "characterSpriteCenter": "Characters/리나/웃음",
             "nextNodeId": 14,
-            "characterSpriteLeft": "",
-            "characterSpriteRight": "",
+            "characterSpriteLeft": "Characters/카스미/당황2",
+            "characterSpriteRight": "Characters/하루카/놀람",
             "slideIn": true
         },
         {
@@ -123,18 +123,18 @@
             "speaker": "카스미",
             "text": "문을 좀 조용히 여닫으십시오. 경첩 또 빠집니다.",
             "characterSpriteLeft": "Characters/카스미/찡그림",
-            "characterSpriteRight": "Characters/리나/웃음",
+            "characterSpriteRight": "Characters/하루카/기본",
             "nextNodeId": 15,
-            "characterSpriteCenter": ""
+            "characterSpriteCenter": "Characters/리나/웃음"
         },
         {
             "id": 15,
             "speaker": "리나",
             "text": "새벽부터 구시가지 순찰 돌고 온 사람한테 그게 첫마디야? 뭐, 별일은 없었는데.",
             "characterSpriteLeft": "Characters/카스미/찡그림",
-            "characterSpriteRight": "Characters/리나/기본",
+            "characterSpriteRight": "Characters/하루카/기본",
             "nextNodeId": 16,
-            "characterSpriteCenter": "",
+            "characterSpriteCenter": "Characters/리나/기본",
             "noFade": true
         },
         {
@@ -145,7 +145,7 @@
             "nextNodeId": 17,
             "characterSpriteLeft": "Characters/카스미/찡그림",
             "characterSpriteRight": "Characters/하루카/웃음",
-            "slideIn": true,
+            "slideIn": false,
             "slideFromRight": true
         },
         {

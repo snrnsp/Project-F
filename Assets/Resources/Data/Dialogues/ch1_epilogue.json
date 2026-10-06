@@ -70,8 +70,8 @@
             "nextNodeId": 6,
             "characterSpriteCenter": "Characters/리나/찡그림",
             "characterSpriteLeft": "Characters/하루카/웃음",
-            "characterSpriteRight": "",
-            "noFade": true,
+            "characterSpriteRight": "Characters/리리스/기본",
+            "noFade": false,
             "text": "야, 하루카 음식 칭찬하면 끝도 없이 만들어오니까 적당히 해. 어제 호박 라떼, 호박 빙수, 호박 쿠키에 이번엔 호박 수프까지. 호박밖에 없냐!"
         },
         {
@@ -83,7 +83,7 @@
             "nextNodeId": 7,
             "characterSpriteCenter": "Characters/리나/찡그림",
             "characterSpriteLeft": "Characters/하루카/삐짐",
-            "characterSpriteRight": "",
+            "characterSpriteRight": "Characters/리리스/기본",
             "noFade": true,
             "text": "호박은 만능이에요!"
         },
