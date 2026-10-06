@@ -716,7 +716,7 @@
             "characterSpriteLeft": "",
             "characterSpriteCenter": "Characters/세이카/기본",
             "characterSpriteRight": "",
-            "backgroundSprite": "",
+            "backgroundSprite": "Images/bg_black",
             "choices": [],
             "nextNodeId": 59,
             "command": ""
@@ -728,7 +728,7 @@
             "characterSpriteLeft": "",
             "characterSpriteCenter": "Characters/세이카/기본",
             "characterSpriteRight": "",
-            "backgroundSprite": "",
+            "backgroundSprite": "Images/bg_black",
             "choices": [],
             "nextNodeId": 60,
             "command": ""
@@ -740,7 +740,7 @@
             "characterSpriteLeft": "",
             "characterSpriteCenter": "",
             "characterSpriteRight": "",
-            "backgroundSprite": "",
+            "backgroundSprite": "Images/bg_black",
             "choices": [],
             "nextNodeId": 61,
             "command": ""
