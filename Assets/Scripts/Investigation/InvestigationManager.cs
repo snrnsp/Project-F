@@ -1,4 +1,4 @@
-using HalloweenVN.Core;
+﻿using HalloweenVN.Core;
 using HalloweenVN.Data;
 using System;
 using System.Collections.Generic;
@@ -8,7 +8,6 @@ namespace HalloweenVN.Investigation
 {
     public class InvestigationManager : MonoBehaviour
     {
-        [SerializeField] private string evidenceDatabaseName = "ch1_evidence";
         [SerializeField] private List<string> requiredEvidenceIds = new List<string>();
         [SerializeField] private GameObject investigationUI;
         [SerializeField] private InvestigationObject[] investigationObjects;

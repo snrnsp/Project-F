@@ -1,4 +1,4 @@
-using HalloweenVN.Core;
+﻿using HalloweenVN.Core;
 using HalloweenVN.Data;
 using HalloweenVN.Investigation;
 using HalloweenVN.Dialogue;
@@ -22,7 +22,6 @@ namespace HalloweenVN.Deduction
     /// </summary>
     public class DeductionManager : MonoBehaviour
     {
-        [SerializeField] private string currentCaseId = "ch1_case";
         
         private CaseContainer currentCase;
         private Dictionary<int, string> slotAssignments = new Dictionary<int, string>();
