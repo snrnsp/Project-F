@@ -292,7 +292,7 @@
             "characterSpriteLeft": "Characters/리나/기본",
             "characterSpriteCenter": "",
             "characterSpriteRight": "Characters/하루카/홍조",
-            "backgroundSprite": "Images/bg_mansion_night",
+            "backgroundSprite": "Images/bg_agency_interior_night",
             "choices": [],
             "nextNodeId": 24,
             "command": ""
