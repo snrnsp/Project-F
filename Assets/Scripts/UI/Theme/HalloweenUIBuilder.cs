@@ -57,8 +57,6 @@ namespace HalloweenVN.UI.Theme
 
             CreateBackground();
             CreateDialogueUI();
-            CreateInvestigationUI();
-            CreateDeductionUI();
             CreateLobbyUI();
             CreateGlobalUI();
             CreateSettingsUI();
@@ -127,7 +125,7 @@ namespace HalloweenVN.UI.Theme
                     bgSprite = Sprite.Create(tex, new Rect(0, 0, tex.width, tex.height), new Vector2(0.5f, 0.5f));
                 }
             }
-            Image bgImg = UIHelper.AddImage(bgObj, new Color(0.35f, 0.35f, 0.35f, 1f), bgSprite); // Darkened background
+            Image bgImg = UIHelper.AddImage(bgObj, new Color(0.55f, 0.55f, 0.55f, 1f), bgSprite); // Darkened background
             if (bgSprite == null)
             {
                 bgImg.color = new Color32(15, 8, 25, 255);
@@ -280,10 +278,7 @@ namespace HalloweenVN.UI.Theme
         {
             CreateManagerIfNotExists<GameManager>("GameManager");
             CreateManagerIfNotExists<DialogueManager>("DialogueManager");
-            CreateManagerIfNotExists<EvidenceInventory>("EvidenceInventory");
-            CreateManagerIfNotExists<InvestigationManager>("InvestigationManager");
-            CreateManagerIfNotExists<DeductionManager>("DeductionManager");
-        }
+            }
 
         private void CreateManagerIfNotExists<T>(string name) where T : MonoBehaviour
         {
