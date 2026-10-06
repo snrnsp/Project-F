@@ -28,6 +28,21 @@ namespace HalloweenVN.UI
         [SerializeField] private Text lobbySubtitleText;
         [SerializeField] private Text languageBtnText;
         private bool isStartingGame = false;
+        private bool IsFastForwarding
+        {
+            get
+            {
+                if (UnityEngine.InputSystem.Keyboard.current == null) return false;
+                if (HalloweenVN.Core.SettingsData.SkipKey == HalloweenVN.Core.SettingsData.SkipKeyOption.Ctrl)
+                    return UnityEngine.InputSystem.Keyboard.current.leftCtrlKey.isPressed || UnityEngine.InputSystem.Keyboard.current.rightCtrlKey.isPressed;
+                if (HalloweenVN.Core.SettingsData.SkipKey == HalloweenVN.Core.SettingsData.SkipKeyOption.Shift)
+                    return UnityEngine.InputSystem.Keyboard.current.leftShiftKey.isPressed || UnityEngine.InputSystem.Keyboard.current.rightShiftKey.isPressed;
+                if (HalloweenVN.Core.SettingsData.SkipKey == HalloweenVN.Core.SettingsData.SkipKeyOption.Space)
+                    return UnityEngine.InputSystem.Keyboard.current.spaceKey.isPressed;
+                return false;
+            }
+        }
+
 
         private void OnEnable()
         {
@@ -550,7 +565,12 @@ void ShowPhotosensitivityWarning()
             if (GameManager.Instance != null) GameManager.Instance.ChangePhase(GamePhase.Dialogue);
             
             // Wait 2 seconds in darkness
-            yield return new WaitForSeconds(waitTime);
+            float w = 0f;
+            while (w < waitTime)
+            {
+                w += Time.unscaledDeltaTime * (IsFastForwarding ? 10f : 1f);
+                yield return null;
+            }
             
             // Start the story and fade back in using the same fadeTime
             if (DialogueManager.Instance != null) DialogueManager.Instance.StartDialogue("ch0_origin");

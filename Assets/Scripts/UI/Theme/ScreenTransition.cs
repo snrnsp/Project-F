@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 using System;
@@ -15,6 +15,21 @@ namespace HalloweenVN.UI.Theme
         private bool isTransitioning;
         private Coroutine transitionCoroutine;
         private GameManager gameManager;
+        private bool IsFastForwarding
+        {
+            get
+            {
+                if (UnityEngine.InputSystem.Keyboard.current == null) return false;
+                if (HalloweenVN.Core.SettingsData.SkipKey == HalloweenVN.Core.SettingsData.SkipKeyOption.Ctrl)
+                    return UnityEngine.InputSystem.Keyboard.current.leftCtrlKey.isPressed || UnityEngine.InputSystem.Keyboard.current.rightCtrlKey.isPressed;
+                if (HalloweenVN.Core.SettingsData.SkipKey == HalloweenVN.Core.SettingsData.SkipKeyOption.Shift)
+                    return UnityEngine.InputSystem.Keyboard.current.leftShiftKey.isPressed || UnityEngine.InputSystem.Keyboard.current.rightShiftKey.isPressed;
+                if (HalloweenVN.Core.SettingsData.SkipKey == HalloweenVN.Core.SettingsData.SkipKeyOption.Space)
+                    return UnityEngine.InputSystem.Keyboard.current.spaceKey.isPressed;
+                return false;
+            }
+        }
+
         
         private void Awake()
         {
@@ -137,7 +152,7 @@ namespace HalloweenVN.UI.Theme
             float time = 0f;
             while (time < duration)
             {
-                time += Time.deltaTime;
+                time += Time.unscaledDeltaTime * (IsFastForwarding ? 10f : 1f);
                 float t = Mathf.Clamp01(time / duration);
                 float smoothT = Mathf.SmoothStep(0f, 1f, t);
                 
@@ -171,7 +186,7 @@ namespace HalloweenVN.UI.Theme
             float time = 0f;
             while (time < halfDuration)
             {
-                time += Time.deltaTime;
+                time += Time.unscaledDeltaTime * (IsFastForwarding ? 10f : 1f);
                 float t = Mathf.Clamp01(time / halfDuration);
                 color.a = Mathf.SmoothStep(0f, 1f, t);
                 overlayImage.color = color;
@@ -186,7 +201,7 @@ namespace HalloweenVN.UI.Theme
             time = 0f;
             while (time < halfDuration)
             {
-                time += Time.deltaTime;
+                time += Time.unscaledDeltaTime * (IsFastForwarding ? 10f : 1f);
                 float t = Mathf.Clamp01(time / halfDuration);
                 color.a = Mathf.Lerp(1f, 0f, Mathf.SmoothStep(0f, 1f, t));
                 overlayImage.color = color;

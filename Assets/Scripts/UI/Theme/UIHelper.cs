@@ -154,7 +154,7 @@ namespace HalloweenVN.UI.Theme
             RectTransform rt = btnObj.GetComponent<RectTransform>();
             rt.sizeDelta = new Vector2(width, height);
 
-            Image img = AddImage(btnObj, HalloweenTheme.ButtonNormal);
+            Image img = AddImage(btnObj, Color.white);
             Button btn = btnObj.AddComponent<Button>();
             btnObj.AddComponent<UIHoverSound>();
             btn.transition = Selectable.Transition.ColorTint;

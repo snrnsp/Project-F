@@ -237,9 +237,7 @@ namespace HalloweenVN.UI.Theme
             btn.colors = cb;
             btn.targetGraphic = img;
 
-            // Hover animation if present
-            if (System.Type.GetType("HalloweenVN.UI.LobbyButtonHover") != null)
-                btnObj.AddComponent<LobbyButtonHover>();
+            // Using standard Unity Selectable ColorTint instead of LobbyButtonHover for consistent coloring
 
             GameObject textObj = UIHelper.CreateUIObject("Text", btnObj.transform);
             UIHelper.StretchFull(textObj.GetComponent<RectTransform>());
@@ -1045,13 +1043,18 @@ namespace HalloweenVN.UI.Theme
             float bottomBorder = hideBottomBorder ? 0 : HalloweenTheme.PanelBorderWidth;
             bgRt.offsetMin = new Vector2(HalloweenTheme.PanelBorderWidth, bottomBorder);
             bgRt.offsetMax = new Vector2(-HalloweenTheme.PanelBorderWidth, -HalloweenTheme.PanelBorderWidth);
-            Image bgImg = UIHelper.AddImage(bgObj, btnBg);
+            Image bgImg = UIHelper.AddImage(bgObj, Color.white);
             bgImg.raycastTarget = false;
 
             Button btn = btnObj.AddComponent<Button>();
             btnObj.AddComponent<UIHoverSound>();
             btn.transition = Selectable.Transition.ColorTint;
-            btn.colors = HalloweenTheme.GetButtonColors();
+            
+            ColorBlock cb = HalloweenTheme.GetButtonColors();
+            cb.normalColor = btnBg;
+            Color.RGBToHSV(btnBg, out float h, out float s, out float v);
+            cb.highlightedColor = Color.HSVToRGB(h, Mathf.Clamp01(s - 0.2f), Mathf.Clamp01(v + 0.3f));
+            btn.colors = cb;
             btn.targetGraphic = bgImg; // Only tint the inner background!
 
             GameObject textObj = UIHelper.CreateUIObject("Text", btnObj.transform);
