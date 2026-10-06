@@ -716,7 +716,7 @@
             "characterSpriteLeft": "",
             "characterSpriteCenter": "Characters/세이카/기본",
             "characterSpriteRight": "",
-            "backgroundSprite": "Images/bg_black",
+            "backgroundSprite": "Images/bg_law_firm_morning",
             "choices": [],
             "nextNodeId": 59,
             "command": ""
