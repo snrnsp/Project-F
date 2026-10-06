@@ -1,4 +1,4 @@
-﻿using HalloweenVN.Core;
+using HalloweenVN.Core;
 using HalloweenVN.Data;
 using HalloweenVN.Investigation;
 using HalloweenVN.Dialogue;
@@ -55,10 +55,7 @@ namespace HalloweenVN.Deduction
 
         private void HandlePhaseChanged(GamePhase phase)
         {
-            if (phase == GamePhase.Deduction)
-            {
-                LoadCase(currentCaseId);
-            }
+            // Deduction system removed by request
         }
 
         /// <summary>
