@@ -194,12 +194,12 @@ namespace HalloweenVN.UI.Theme
             // Bottom text removed per user request
 
             // Version Text (Bottom Left)
-            GameObject verObj = UIHelper.CreateUIObject("VersionText", lobbyPanelRoot.transform);
-            RectTransform verRt = verObj.GetComponent<RectTransform>();
-            UIHelper.SetAnchors(verRt, new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0));
-            verRt.anchoredPosition = new Vector2(20, 20);
-            verRt.sizeDelta = new Vector2(300, 30);
-            Text versionText = CreateLegacyText(verObj, "버전 1.0.2", new Color32(80, 80, 80, 255), 14, TextAnchor.MiddleCenter);
+            // GameObject verObj = UIHelper.CreateUIObject("VersionText", lobbyPanelRoot.transform);
+            // RectTransform verRt = verObj.GetComponent<RectTransform>();
+            // UIHelper.SetAnchors(verRt, new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0));
+            // verRt.anchoredPosition = new Vector2(20, 20);
+            // verRt.sizeDelta = new Vector2(300, 30);
+            // Text versionText = CreateLegacyText(verObj, "버전 1.0.2", new Color32(80, 80, 80, 255), 14, TextAnchor.MiddleCenter);
 
             // Events
             Button newGameBtn = startTuple.btn;
@@ -220,7 +220,7 @@ namespace HalloweenVN.UI.Theme
             UIHelper.SetField(lobbyUi, "languageBtnText", langTuple.text);
             UIHelper.SetField(lobbyUi, "logoImage", lobbyTitleLogo);
 //             UIHelper.SetField(lobbyUi, "lobbySubtitleText", lobbySubtitleText);
-            UIHelper.SetField(lobbyUi, "versionText", versionText);
+            // UIHelper.SetField(lobbyUi, "versionText", versionText);
 
             settingsButtonRef = settingsBtn; // for CreateSettingsUI to attach
 
