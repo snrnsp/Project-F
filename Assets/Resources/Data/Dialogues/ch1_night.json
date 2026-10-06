@@ -120,7 +120,7 @@
             "characterSpriteLeft": "",
             "characterSpriteCenter": "",
             "characterSpriteRight": "",
-            "backgroundSprite": "Images/bg_mansion_night",
+            "backgroundSprite": "Images/bg_abandoned_practice_room",
             "choices": [],
             "nextNodeId": 9,
             "command": "",

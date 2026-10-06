@@ -4,7 +4,7 @@
         {
             "speaker": " ",
             "text": "세이카의 추리가 끝나자, 음악실 안의 공기가 변했다.",
-            "backgroundSprite": "Images/bg_mansion_night",
+            "backgroundSprite": "Images/bg_abandoned_practice_room",
             "command": "AUDIO:PLAY_BGM:bgm_investigation",
             "id": 0,
             "nextNodeId": 1,
@@ -1225,7 +1225,7 @@
             "text": "뭐, 뭐야 이건...?!",
             "nextNodeId": 101,
             "command": "",
-            "backgroundSprite": "",
+            "backgroundSprite": "Images/bg_abandoned_practice_room",
             "characterSpriteLeft": "Characters/리리스/기본",
             "characterSpriteCenter": "Characters/세이카/기본",
             "characterSpriteRight": "Characters/카스미/기본",

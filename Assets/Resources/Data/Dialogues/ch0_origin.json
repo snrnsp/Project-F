@@ -8,7 +8,7 @@
             "characterSpriteLeft": "",
             "characterSpriteCenter": "",
             "characterSpriteRight": "",
-            "backgroundSprite": "Images/bg_memory",
+            "backgroundSprite": "Images/bg_basement_archive",
             "choices": [],
             "nextNodeId": 1,
             "command": "AUDIO:PLAY_BGM:bgm_office_night"
@@ -522,7 +522,7 @@
             "characterSpriteLeft": "",
             "characterSpriteCenter": "",
             "characterSpriteRight": "",
-            "backgroundSprite": "Images/bg_memory",
+            "backgroundSprite": "Images/bg_basement_archive",
             "choices": [],
             "nextNodeId": 43,
             "command": "EFFECT:SHAKE"
@@ -692,7 +692,7 @@
             "characterSpriteLeft": "",
             "characterSpriteCenter": "Characters/세이카/기본",
             "characterSpriteRight": "",
-            "backgroundSprite": "Images/bg_memory",
+            "backgroundSprite": "Images/bg_city_night",
             "choices": [],
             "nextNodeId": 57,
             "command": "AUDIO:PLAY_BGM:bgm_office_night"
@@ -752,7 +752,7 @@
             "characterSpriteLeft": "",
             "characterSpriteCenter": "",
             "characterSpriteRight": "",
-            "backgroundSprite": "",
+            "backgroundSprite": "Images/bg_mansion_night",
             "choices": [],
             "nextNodeId": 62,
             "command": ""

@@ -8,7 +8,7 @@
             "characterSpriteLeft": "",
             "characterSpriteCenter": "",
             "characterSpriteRight": "",
-            "backgroundSprite": "Images/bg_memory",
+            "backgroundSprite": "Images/bg_mansion_night",
             "choices": [],
             "nextNodeId": 1,
             "command": "AUDIO:PLAY_BGM:bgm_office_night"

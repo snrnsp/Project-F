@@ -8,7 +8,7 @@
             "characterSpriteLeft": "",
             "characterSpriteCenter": "Characters/카스미/찡그림",
             "characterSpriteRight": "",
-            "backgroundSprite": "Images/bg_mansion_night",
+            "backgroundSprite": "Images/bg_abandoned_practice_room",
             "choices": [],
             "nextNodeId": 1,
             "command": "AUDIO:PLAY_BGM:bgm_investigation",

@@ -4,7 +4,7 @@
         {
             "id": 0,
             "speaker": " ",
-            "backgroundSprite": "Images/bg_office_morning",
+            "backgroundSprite": "Images/bg_agency_interior_morning",
             "command": "AUDIO:PLAY_BGM:bgm_office_day",
             "choices": [],
             "nextNodeId": 1,
@@ -186,7 +186,7 @@
         {
             "id": 15,
             "speaker": " ",
-            "backgroundSprite": "Images/bg_office_morning",
+            "backgroundSprite": "Images/bg_agency_interior_morning",
             "command": "",
             "choices": [],
             "nextNodeId": 16,
@@ -572,7 +572,7 @@
         {
             "id": 46,
             "speaker": " ",
-            "backgroundSprite": "Images/bg_office_night",
+            "backgroundSprite": "Images/bg_agency_interior_night",
             "command": "AUDIO:PLAY_BGM:bgm_office_night",
             "choices": [],
             "nextNodeId": 47,
@@ -608,7 +608,7 @@
         {
             "id": 49,
             "speaker": " ",
-            "backgroundSprite": "Images/bg_mansion_night",
+            "backgroundSprite": "Images/bg_abandoned_practice_room",
             "command": "AUDIO:STOP_BGM",
             "choices": [],
             "nextNodeId": 50,

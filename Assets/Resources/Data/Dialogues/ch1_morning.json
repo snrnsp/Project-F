@@ -5,7 +5,7 @@
             "id": 0,
             "speaker": " ",
             "text": "— 다음 날 아침.",
-            "backgroundSprite": "Images/bg_office_morning",
+            "backgroundSprite": "Images/bg_agency_interior_morning",
             "nextNodeId": 1,
             "command": "AUDIO:PLAY_BGM:bgm_office_day"
         },
