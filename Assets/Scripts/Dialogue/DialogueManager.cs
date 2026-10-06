@@ -155,6 +155,21 @@ namespace HalloweenVN.Dialogue
                 ui.ClearAll();
             }
             
+            // 2.5 Scan full dialogue array for the last background up to target node
+            string lastBg = "";
+            if (currentDialogue != null && currentDialogue.nodes != null)
+            {
+                foreach (var n in currentDialogue.nodes)
+                {
+                    if (n.id == targetNode.id) break;
+                    if (!string.IsNullOrEmpty(n.backgroundSprite)) lastBg = n.backgroundSprite;
+                }
+            }
+            if (!string.IsNullOrEmpty(lastBg) && ui != null)
+            {
+                ui.UpdateBackground(lastBg);
+            }
+
             // 3. Replay history to recreate visual state
             if (ui != null)
             {

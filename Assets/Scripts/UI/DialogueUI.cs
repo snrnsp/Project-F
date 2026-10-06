@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -1209,6 +1209,13 @@ namespace HalloweenVN.UI
             
             if (_cachedBacklogUI != null && _cachedBacklogUI.IsOpen) return true;
             if (_cachedSettingsUI != null && _cachedSettingsUI.gameObject.activeInHierarchy) return true;
+
+            var langUi = Object.FindFirstObjectByType<LanguageUI>(UnityEngine.FindObjectsInactive.Include);
+            if (langUi != null && langUi.gameObject.activeInHierarchy) return true;
+
+            var extraUi = Object.FindFirstObjectByType<ExtraUI>(UnityEngine.FindObjectsInactive.Include);
+            if (extraUi != null && extraUi.gameObject.activeInHierarchy) return true;
+
             return false;
         }
 
@@ -1316,6 +1323,7 @@ namespace HalloweenVN.UI
             if (_isTransitioningScene) return; // Prevent double-trigger from UI Event System + Input System
             if (Time.unscaledTime - _lastClickTime < 0.05f) return; // Prevent double-trigger from UI Event System + Input System
             _lastClickTime = Time.unscaledTime;
+            CancelAutoPlayTimer();
 
             Debug.Log($"[DialogueUI] OnClick triggered. isTyping={isTyping}");
             if (isTyping)
