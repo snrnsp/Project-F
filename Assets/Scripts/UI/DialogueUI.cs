@@ -947,7 +947,7 @@ namespace HalloweenVN.UI
             if (!image.gameObject.activeSelf) return;
 
             Color targetColor = isActive ? ACTIVE_COLOR : DIM_COLOR;
-            float duration = instant ? 0f : 0.1f;
+            float duration = instant ? 0f : 0.04f;
 
             if (_highlightCoroutines.ContainsKey(image) && _highlightCoroutines[image] != null)
             {
