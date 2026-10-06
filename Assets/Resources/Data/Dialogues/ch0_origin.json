@@ -218,7 +218,7 @@
             "characterSpriteLeft": "",
             "characterSpriteCenter": "Characters/세이카/찡그림",
             "characterSpriteRight": "",
-            "backgroundSprite": "",
+            "backgroundSprite": "Images/bg_law_firm_archive_night",
             "choices": [],
             "nextNodeId": 18,
             "command": ""
