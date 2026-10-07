@@ -456,12 +456,12 @@ void ShowPhotosensitivityWarning()
             msgRt.offsetMax = new Vector2(-45, 0);
             TextMeshProUGUI msgText = Theme.UIHelper.AddText(msgObj,
                 Loc.Get("ui.lobby.photosensitivity.message", "극소수의 사람들은 비디오 게임에 등장하는 <b><color=#FFD080>번쩍이는 빛</color></b>이나 <b><color=#FFD080>특정 패턴</color></b>과 같은 시각적 이미지에 노출될 때 <b><color=#FFD080>광과민성 발작</color></b>을 일으킬 수 있습니다. 과거에 발작 병력이 없었더라도 게임을 하는 동안 이러한 증상을 유발할 수 있는 미확인 상태일 수 있습니다. 게임 중 <b><color=#FFD080>현기증</color></b>, <b><color=#FFD080>시력 이상</color></b>, <b><color=#FFD080>눈이나 얼굴의 경련</color></b>, <b><color=#FFD080>팔다리의 떨림</color></b>, <b><color=#FFD080>방향 감각 상실</color></b>, <b><color=#FFD080>혼란</color></b>, 또는 <b><color=#FFD080>일시적인 의식 상실</color></b> 등의 증상을 겪는다면 <b><color=#FFD080>즉시 게임을 중단</color></b>하고 의사와 상담하십시오.\n(※ <b><color=#FFD080>환경 설정</color></b>에서 화면 번쩍임 및 흔들림 효과를 끌 수 있습니다.)"),
-                new Color32(200, 195, 210, 255),  SettingsData.UseHandwritingFont ? 28 : 22, TextAlignmentOptions.Center);
+                new Color32(200, 195, 210, 255),  SettingsData.UseHandwritingFont ? 26 : 20, TextAlignmentOptions.Center);
             msgText.textWrappingMode = TextWrappingModes.Normal;
             msgText.lineSpacing =  3f;
             msgText.enableAutoSizing = true;
             msgText.fontSizeMin = 18f;
-            msgText.fontSizeMax = SettingsData.UseHandwritingFont ? 28f : 22f;
+            msgText.fontSizeMax = SettingsData.UseHandwritingFont ? 26f : 20f;
             msgText.richText = true;
 
             // OK button
