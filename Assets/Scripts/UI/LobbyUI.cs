@@ -292,13 +292,13 @@ namespace HalloweenVN.UI
             msgRt.anchoredPosition = new Vector2(0, -210);
             msgRt.sizeDelta = new Vector2( 760, 250);
             
-            string preAlphaMsg = Loc.Get("ui.lobby.prealpha.message", "현재 오블리비언은 '<color=#80C0FF>프리 알파</color>(소프트웨어나 게임 개발 과정에서 정식 알파 테스트 이전의 초기 제작 및 설계 단계)'에 있습니다!\n\n게임의 품질이 낮을 수 있는 점 양해 바랍니다!\n\n일부 백그라운드 배경은 임시로 AI를 사용했음을 알려드립니다.");
+            string preAlphaMsg = Loc.Get("ui.lobby.prealpha.message", "현재 오블리비언은 '<color=#80C0FF>프리 알파</color>'\n(소프트웨어나 게임 개발 과정에서 정식 알파 테스트 이전의 초기 제작 및 설계 단계)에 있습니다!\n\n게임의 품질이 낮을 수 있는 점 양해 바랍니다!\n\n일부 백그라운드 배경은 임시로 AI를 사용했음을 알려드립니다.");
             
-            TextMeshProUGUI msgText = Theme.UIHelper.AddText(msgObj, preAlphaMsg, new Color32(230, 230, 230, 255),  SettingsData.UseHandwritingFont ? 28 : 22, TextAlignmentOptions.Center);
+            TextMeshProUGUI msgText = Theme.UIHelper.AddText(msgObj, preAlphaMsg, new Color32(230, 230, 230, 255),  SettingsData.UseHandwritingFont ? 26 : 20, TextAlignmentOptions.Center);
             msgText.lineSpacing =  5f;
             msgText.enableAutoSizing = true;
             msgText.fontSizeMin = 18f;
-            msgText.fontSizeMax =  SettingsData.UseHandwritingFont ? 28f : 22f;
+            msgText.fontSizeMax =  SettingsData.UseHandwritingFont ? 26f : 20f;
 
             GameObject btnObj = new GameObject("OkButton");
             btnObj.transform.SetParent(panel.transform, false);
@@ -327,7 +327,7 @@ namespace HalloweenVN.UI
             btnTextRt.anchorMax = Vector2.one;
             btnTextRt.offsetMin = Vector2.zero;
             btnTextRt.offsetMax = Vector2.zero;
-            TextMeshProUGUI btnText = Theme.UIHelper.AddText(btnTextObj, Loc.Get("ui.lobby.ok", "확인"), new Color32(255, 255, 255, 255), SettingsData.UseHandwritingFont ? 28 : 22, TextAlignmentOptions.Center);
+            TextMeshProUGUI btnText = Theme.UIHelper.AddText(btnTextObj, Loc.Get("ui.lobby.ok", "확인"), new Color32(255, 255, 255, 255), SettingsData.UseHandwritingFont ? 26 : 20, TextAlignmentOptions.Center);
             btnText.fontStyle = FontStyles.Bold;
 
             btn.onClick.AddListener(() =>
@@ -512,7 +512,7 @@ void ShowPhotosensitivityWarning()
             btnTextRt.anchorMax = Vector2.one;
             btnTextRt.offsetMin = Vector2.zero;
             btnTextRt.offsetMax = Vector2.zero;
-            TextMeshProUGUI btnText = Theme.UIHelper.AddText(btnTextObj, Loc.Get("ui.lobby.ok", "확인"), new Color32(255, 255, 255, 255), SettingsData.UseHandwritingFont ? 28 : 22, TextAlignmentOptions.Center);
+            TextMeshProUGUI btnText = Theme.UIHelper.AddText(btnTextObj, Loc.Get("ui.lobby.ok", "확인"), new Color32(255, 255, 255, 255), SettingsData.UseHandwritingFont ? 26 : 20, TextAlignmentOptions.Center);
             btnText.fontStyle = FontStyles.Bold;
 
             btn.onClick.AddListener(() =>
