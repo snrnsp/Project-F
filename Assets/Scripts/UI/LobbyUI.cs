@@ -364,7 +364,7 @@ void ShowPhotosensitivityWarning()
             RectTransform panelRt = panel.AddComponent<RectTransform>();
             panelRt.anchorMin = new Vector2(0.5f, 0.5f);
             panelRt.anchorMax = new Vector2(0.5f, 0.5f);
-            panelRt.sizeDelta = new Vector2(820, 500);
+            panelRt.sizeDelta = new Vector2(960, 500);
             Image panelImg = panel.AddComponent<Image>();
             panelImg.type = Image.Type.Sliced;
             panelImg.sprite = CreateRoundedRectSprite(16, 2, new Color32(25, 20, 35, 255), new Color32(255, 180, 50, 255));
