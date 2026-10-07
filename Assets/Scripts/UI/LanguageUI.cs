@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using TMPro;
@@ -156,7 +156,7 @@ if (panelRoot != null)
             {
                 if (languageButtons[i] == null) continue;
                 
-                Image img = languageButtons[i].GetComponent<Image>();
+                Image img = languageButtons[i].targetGraphic as Image;
                 TextMeshProUGUI txt = languageButtons[i].GetComponentInChildren<TextMeshProUGUI>();
                 Text legacyTxt = languageButtons[i].GetComponentInChildren<Text>();
                 
