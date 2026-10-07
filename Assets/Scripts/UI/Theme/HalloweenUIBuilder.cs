@@ -772,7 +772,6 @@ namespace HalloweenVN.UI.Theme
             var sfxVolumeLabel = CreateSettingsLabel(panel.transform, Loc.Get("ui.settings.sfx_volume", "효과음 (SFX) 음량"), yPos);
             Slider sfxVolumeSlider = CreateSettingsSlider(panel.transform, yPos - 45);
             Text sfxVolumeValueText = CreateSettingsValueText(panel.transform, yPos - 45);
-            yPos -= 90;
 
             // ─── 2. Auto-play Delay ───
             yPos -= 95;
