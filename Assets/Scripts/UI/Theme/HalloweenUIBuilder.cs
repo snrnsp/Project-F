@@ -125,7 +125,7 @@ namespace HalloweenVN.UI.Theme
                     bgSprite = Sprite.Create(tex, new Rect(0, 0, tex.width, tex.height), new Vector2(0.5f, 0.5f));
                 }
             }
-            Image bgImg = UIHelper.AddImage(bgObj, new Color(0.75f, 0.75f, 0.75f, 1f), bgSprite); // Darkened background
+            Image bgImg = UIHelper.AddImage(bgObj, new Color(0.72f, 0.72f, 0.72f, 1f), bgSprite); // Darkened background
             if (bgSprite == null)
             {
                 bgImg.color = new Color32(15, 8, 25, 255);
