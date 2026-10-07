@@ -59,6 +59,7 @@ namespace HalloweenVN.UI.Theme
             cb.highlightedColor = ButtonHighlight;
             cb.pressedColor = ButtonPressed;
             cb.disabledColor = ButtonDisabled;
+            cb.selectedColor = ButtonNormal;
             cb.colorMultiplier = 1f;
             cb.fadeDuration = 0.15f;
             return cb;

@@ -1058,6 +1058,8 @@ namespace HalloweenVN.UI.Theme
             cb.normalColor = btnBg;
             Color.RGBToHSV(btnBg, out float h, out float s, out float v);
             cb.highlightedColor = Color.HSVToRGB(h, Mathf.Clamp01(s - 0.2f), Mathf.Clamp01(v + 0.3f));
+            cb.pressedColor = Color.HSVToRGB(h, Mathf.Clamp01(s + 0.1f), Mathf.Clamp01(v - 0.2f));
+            cb.selectedColor = cb.normalColor;
             btn.colors = cb;
             btn.targetGraphic = bgImg; // Only tint the inner background!
 
