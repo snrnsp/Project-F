@@ -746,18 +746,6 @@ namespace HalloweenVN.UI.Theme
 
             float yPos = -135;
 
-            // ─── BGM Volume ───
-            var bgmVolumeLabel = CreateSettingsLabel(panel.transform, Loc.Get("ui.settings.bgm_volume", "배경음악 (BGM) 음량"), yPos);
-            Slider bgmVolumeSlider = CreateSettingsSlider(panel.transform, yPos - 45);
-            Text bgmVolumeValueText = CreateSettingsValueText(panel.transform, yPos - 45);
-            yPos -= 90;
-
-            // ─── SFX Volume ───
-            var sfxVolumeLabel = CreateSettingsLabel(panel.transform, Loc.Get("ui.settings.sfx_volume", "효과음 (SFX) 음량"), yPos);
-            Slider sfxVolumeSlider = CreateSettingsSlider(panel.transform, yPos - 45);
-            Text sfxVolumeValueText = CreateSettingsValueText(panel.transform, yPos - 45);
-            yPos -= 90;
-
             // ─── 1. Text Speed ───
             var textSpeedLabel = CreateSettingsLabel(panel.transform, Loc.Get("ui.settings.text_speed", "텍스트 속도"), yPos);
             Slider textSpeedSlider = CreateSettingsSlider(panel.transform, yPos - 45);
@@ -771,6 +759,20 @@ namespace HalloweenVN.UI.Theme
             ptextRt.anchoredPosition = new Vector2(0, yPos + 10); // Moved slightly up
             ptextRt.sizeDelta = new Vector2(620, 60);
             Text previewText = CreateLegacyText(previewTextObj, "", HalloweenTheme.TextPrimary, 24, TextAnchor.MiddleCenter);
+
+            yPos -= 90;
+
+            // ─── BGM Volume ───
+            var bgmVolumeLabel = CreateSettingsLabel(panel.transform, Loc.Get("ui.settings.bgm_volume", "배경음악 (BGM) 음량"), yPos);
+            Slider bgmVolumeSlider = CreateSettingsSlider(panel.transform, yPos - 45);
+            Text bgmVolumeValueText = CreateSettingsValueText(panel.transform, yPos - 45);
+            yPos -= 90;
+
+            // ─── SFX Volume ───
+            var sfxVolumeLabel = CreateSettingsLabel(panel.transform, Loc.Get("ui.settings.sfx_volume", "효과음 (SFX) 음량"), yPos);
+            Slider sfxVolumeSlider = CreateSettingsSlider(panel.transform, yPos - 45);
+            Text sfxVolumeValueText = CreateSettingsValueText(panel.transform, yPos - 45);
+            yPos -= 90;
 
             // ─── 2. Auto-play Delay ───
             yPos -= 95;
