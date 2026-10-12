@@ -1726,28 +1726,17 @@ namespace HalloweenVN.UI.Theme
             
             btn.onClick.AddListener(() => globalMgr.ToggleSettings());
 
-            // Gear Icon
-            GameObject iconObj = UIHelper.CreateUIObject("Icon", btnObj.transform);
-            UIHelper.StretchFull(iconObj.GetComponent<RectTransform>());
-            Text iconText = iconObj.AddComponent<Text>();
-            iconText.text = "⚙"; // Gear emoji
-            iconText.alignment = TextAnchor.MiddleCenter;
-            iconText.alignByGeometry = true;
-            iconText.fontSize = 40;
-            iconText.color = Color.white;
-            
-            // Add black outline to the gear text
-            UnityEngine.UI.Outline textOutline = iconObj.AddComponent<UnityEngine.UI.Outline>();
-            textOutline.effectColor = new Color(0, 0, 0, 1);
-            textOutline.effectDistance = new Vector2(2, -2);
-            
-            // Link text as target graphic so the gear itself reacts to hover/click!
-            btn.targetGraphic = iconText;
-            
-            // Assign font
-            Font rawFont = Resources.Load<Font>("Fonts/MalgunGothic");
-            if (rawFont != null) iconText.font = rawFont;
-            else iconText.font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
+            // Hamburger Icon (Font-independent to fix WebGL invisible gear issue)
+            for(int j=0; j<3; j++) {
+                GameObject lineObj = UIHelper.CreateUIObject("Line" + j, btnObj.transform);
+                RectTransform lineRt = lineObj.GetComponent<RectTransform>();
+                UIHelper.SetAnchors(lineRt, new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f));
+                lineRt.sizeDelta = new Vector2(36, 6);
+                lineRt.anchoredPosition = new Vector2(0, 12 - (j * 12));
+                UnityEngine.UI.Image lineImg = UIHelper.AddImage(lineObj, new Color32(220, 220, 220, 255));
+                lineImg.sprite = UIHelper.CreateRoundedRectSprite(4, 1, Color.white, Color.white);
+                lineImg.type = UnityEngine.UI.Image.Type.Sliced;
+            }
         }
 
                 private System.Collections.IEnumerator DelayedFadeIn(ScreenTransition st)
