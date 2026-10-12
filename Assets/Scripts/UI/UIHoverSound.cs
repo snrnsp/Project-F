@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
@@ -47,8 +47,10 @@ namespace HalloweenVN.UI
             if (!playClick || !IsInteractable()) return;
             if (eventData != null && eventData.button != PointerEventData.InputButton.Left) return;
 
-            if (Core.AudioManager.Instance != null)
+            if (Core.AudioManager.Instance != null) {
+                Debug.Log($"[UIHoverSound] Clicked! Playing sound: {clickSoundName}");
                 Core.AudioManager.Instance.PlaySFX(clickSoundName);
+            }
         }
     }
 }

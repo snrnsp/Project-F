@@ -35,6 +35,7 @@ namespace HalloweenVN.Dialogue
             {
                 Instance = this;
                 DontDestroyOnLoad(gameObject);
+                dialogueCache.Clear(); // Added to ensure hot-reloading JSON changes works properly
             }
             else
             {

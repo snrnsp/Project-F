@@ -1,4 +1,4 @@
-﻿﻿using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
@@ -15,7 +15,11 @@ namespace HalloweenVN.UI
 
         void Update()
         {
-            if (Keyboard.current != null && Keyboard.current.escapeKey.wasPressedThisFrame)
+            bool closeInput = false;
+            if (Keyboard.current != null && Keyboard.current.escapeKey.wasPressedThisFrame) closeInput = true;
+            if (Mouse.current != null && Mouse.current.rightButton.wasPressedThisFrame) closeInput = true;
+
+            if (closeInput)
             {
                                 // 0. If LanguageUI is open, close it.
                 var langUi = UnityEngine.Object.FindFirstObjectByType<LanguageUI>(UnityEngine.FindObjectsInactive.Exclude);

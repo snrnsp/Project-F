@@ -1,0 +1,67 @@
+Node 21: [하루카] 여기... 진짜 무섭긴 한데... 되게 따뜻해요.
+  Left: Characters/리나/웃음
+  Center: 
+  Right: Characters/하루카/홍조
+  noFade: True, slideIn: None
+
+Node 22: [] 하루카가 오고 나서 저택에는 항상 호박으로 만든 무언가
+  Left: Characters/리나/웃음
+  Center: 
+  Right: Characters/하루카/웃음
+  noFade: None, slideIn: None
+
+Node 23: [] — 그리고 2주 후. 마지막 합류자, 미나.
+  Left: Characters/리나/기본
+  Center: 
+  Right: Characters/하루카/홍조
+  noFade: None, slideIn: None
+
+Node 24: [] 가장 미스터리한 합류. 비가 추적추적 내리는 새벽, 저
+  Left: Characters/리나/놀람
+  Center: 
+  Right: Characters/하루카/놀람
+  noFade: None, slideIn: None
+
+Node 25: [미나] 크큭... 미나라고 하느니라. 그렇다, 천 년을 묵은 
+  Left: 
+  Center: Characters/미나/음침
+  Right: 
+  noFade: None, slideIn: None
+
+Node 26: [카스미] ...기억상실 환자의 과대망상이네요. 병원 응급실로 인
+  Left: Characters/카스미/경멸
+  Center: Characters/미나/당황
+  Right: Characters/세이카/기본
+  noFade: None, slideIn: None
+
+Node 27: [] 하지만 미나에게는 설명할 수 없는 능력이 있었다.
+한 
+  Left: Characters/카스미/찡그림
+  Center: Characters/미나/음침
+  Right: Characters/세이카/기본
+  noFade: None, slideIn: None
+
+Node 28: [] 카스미가 경찰에 신원 조회를 맡겼지만, 일치하는 실종 
+  Left: Characters/카스미/찡그림
+  Center: Characters/미나/기본
+  Right: Characters/세이카/측은
+  noFade: None, slideIn: None
+
+Node 29: [세이카] ...그럼 여기 있어. 네 이름을 기억해 줄 사람이 생
+  Left: Characters/카스미/기본
+  Center: Characters/미나/놀람
+  Right: Characters/세이카/웃음
+  noFade: None, slideIn: None
+
+Node 30: [미나] ...크, 크큭... 그, 그렇다면 이 몸이 특별히 머
+  Left: Characters/카스미/기본
+  Center: Characters/미나/홍조
+  Right: Characters/세이카/웃음
+  noFade: True, slideIn: None
+
+Node 31: [] 불과 3개월 남짓한 시간 동안, 다섯 명이 연달아 합류
+  Left: Characters/카스미/기본
+  Center: Characters/미나/홍조
+  Right: Characters/세이카/웃음
+  noFade: None, slideIn: None
+

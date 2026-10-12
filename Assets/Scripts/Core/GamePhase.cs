@@ -5,6 +5,7 @@
     /// </summary>
     public enum GamePhase
     {
+        Splash,
         Lobby,
         Dialogue,
         Investigation,

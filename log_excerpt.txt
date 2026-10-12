@@ -1,0 +1,20 @@
+UnityEngine.GameObject:AddComponent (System.Type)
+UnityEngine.GameObject:AddComponent<HalloweenVN.UI.Theme.HalloweenUIBuilder> ()
+HalloweenVN.Core.GameBootstrap:AutoSetup () (at Assets/Scripts/Core/GameBootstrap.cs:20)
+
+[Assets/Scripts/Core/GameBootstrap.cs line 20]
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HalloweenVN.UI.Theme.HalloweenUIBuilder.CreateLegacyText (UnityEngine.GameObject parentObj, System.String label, UnityEngine.Color32 color, System.Int32 fontSize, UnityEngine.TextAnchor alignment) [0x00007] in F:\Project-F\Assets\Scripts\UI\Theme\HalloweenUIBuilder.cs:1094 
+  at HalloweenVN.UI.Theme.HalloweenUIBuilder.CreateSettingsUI () [0x00677] in F:\Project-F\Assets\Scripts\UI\Theme\HalloweenUIBuilder.cs:828 
+  at HalloweenVN.UI.Theme.HalloweenUIBuilder.Awake () [0x0007a] in F:\Project-F\Assets\Scripts\UI\Theme\HalloweenUIBuilder.cs:62 
+UnityEngine.GameObject:Internal_AddComponentWithType_Injected(IntPtr, Type)
+UnityEngine.GameObject:Internal_AddComponentWithType(Type)
+UnityEngine.GameObject:AddComponent(Type)
+UnityEngine.GameObject:AddComponent()
+HalloweenVN.Core.GameBootstrap:AutoSetup() (at Assets\Scripts\Core\GameBootstrap.cs:20)
+
+(Filename: Assets/Scripts/Core/GameBootstrap.cs Line: 20)
+
+🎃 Halloween VN — Auto-initialized!
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)

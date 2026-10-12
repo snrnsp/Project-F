@@ -81,12 +81,13 @@ namespace HalloweenVN.Effects
         {
             if (!HalloweenVN.Core.SettingsData.EnableFlashingEffects) return null;
             if (_mainCam == null) _mainCam = Camera.main;
-            if (_mainCam == null) return null;
 
             if (_activeShakeCoroutine != null)
             {
                 StopCoroutine(_activeShakeCoroutine);
-                if (_hasOriginalCameraPos) _mainCam.transform.localPosition = _originalCameraPos;
+                GameObject uiCanvas = GameObject.Find("MainCanvas");
+                Transform target = uiCanvas != null ? uiCanvas.transform : (_mainCam != null ? _mainCam.transform : null);
+                if (_hasOriginalCameraPos && target != null) target.localPosition = _originalCameraPos;
             }
             _activeShakeCoroutine = StartCoroutine(ShakeCameraCoroutine(duration, magnitude));
             return _activeShakeCoroutine;
@@ -94,23 +95,25 @@ namespace HalloweenVN.Effects
 
         private IEnumerator ShakeCameraCoroutine(float duration, float magnitude)
         {
-            if (_mainCam == null) yield break;
+            GameObject uiCanvas = GameObject.Find("MainCanvas");
+            Transform target = uiCanvas != null ? uiCanvas.transform : (_mainCam != null ? _mainCam.transform : null);
+            if (target == null) yield break;
 
-            _originalCameraPos = _mainCam.transform.localPosition;
+            _originalCameraPos = target.localPosition;
             _hasOriginalCameraPos = true;
             float elapsed = 0f;
 
             while (elapsed < duration)
             {
-                if (_mainCam == null) break;
+                if (target == null) break;
                 float offsetX = Random.Range(-1f, 1f) * magnitude;
                 float offsetY = Random.Range(-1f, 1f) * magnitude;
-                _mainCam.transform.localPosition = _originalCameraPos + new Vector3(offsetX, offsetY, 0f);
+                target.localPosition = _originalCameraPos + new Vector3(offsetX, offsetY, 0f);
                 elapsed += Time.unscaledDeltaTime * (IsFastForwarding ? 10f : 1f);
                 yield return null;
             }
 
-            if (_mainCam != null) _mainCam.transform.localPosition = _originalCameraPos;
+            if (target != null) target.localPosition = _originalCameraPos;
             _hasOriginalCameraPos = false;
             _activeShakeCoroutine = null;
         }

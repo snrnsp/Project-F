@@ -1,4 +1,4 @@
-﻿﻿﻿﻿using System.Collections;
+﻿﻿﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -111,6 +111,7 @@ namespace HalloweenVN.UI
 
         private void Start()
         {
+            ShowPreAlphaWarning();
             if (newGameButton != null)
             {
                 newGameButton.onClick.AddListener(OnNewGameClicked);
@@ -181,12 +182,12 @@ namespace HalloweenVN.UI
                 lobbyPanel.SetActive(true);
                 UpdateContinueButton();
                 StopAllCoroutines();
-                StartCoroutine(SlideLobby(true));
+                if (gameObject.activeInHierarchy) StartCoroutine(SlideLobby(true));
             }
             else
             {
                 StopAllCoroutines();
-                StartCoroutine(SlideLobby(false));
+                if (gameObject.activeInHierarchy) StartCoroutine(SlideLobby(false));
             }
         }
 
@@ -223,24 +224,26 @@ namespace HalloweenVN.UI
         {
             if (continueButton != null)
             {
-                // 사용자가 로드 버튼이 유독 연하게 보이는 것을 원치 않으므로 시각적 통일성을 위해 항상 활성화 상태 유지
-                continueButton.interactable = true;
+                bool hasSave = UnityEngine.PlayerPrefs.HasKey("HalloweenVN_Save_0");
+                continueButton.interactable = hasSave;
                 
                 CanvasGroup cg = continueButton.GetComponent<CanvasGroup>();
-                if (cg != null) cg.alpha = 1f;
+                if (cg == null) cg = continueButton.gameObject.AddComponent<CanvasGroup>();
+                cg.alpha = hasSave ? 1f : 0.5f;
             }
         }
-
-        private void OnNewGameClicked()
+                private void OnNewGameClicked()
         {
             if (UnityEngine.EventSystems.EventSystem.current != null) UnityEngine.EventSystems.EventSystem.current.SetSelectedGameObject(null);
-            ShowPreAlphaWarning();
+            if (isStartingGame) return;
+            isStartingGame = true;
+            StartNewGame(null);
         }
 
         private void ShowPreAlphaWarning()
         {
             GameObject overlay = new GameObject("PreAlphaOverlay");
-            overlay.transform.SetParent(lobbyPanel.transform.parent, false);
+            overlay.transform.SetParent(lobbyPanel.transform, false);
             RectTransform overlayRt = overlay.AddComponent<RectTransform>();
             overlayRt.anchorMin = Vector2.zero;
             overlayRt.anchorMax = Vector2.one;
@@ -341,7 +344,7 @@ void ShowPhotosensitivityWarning()
         {
             // Create overlay
             GameObject overlay = new GameObject("WarningOverlay");
-            overlay.transform.SetParent(lobbyPanel.transform.parent, false);
+            overlay.transform.SetParent(lobbyPanel.transform, false);
             RectTransform overlayRt = overlay.AddComponent<RectTransform>();
             overlayRt.anchorMin = Vector2.zero;
             overlayRt.anchorMax = Vector2.one;
@@ -517,13 +520,8 @@ void ShowPhotosensitivityWarning()
 
             btn.onClick.AddListener(() =>
             {
-                if (isStartingGame) return;
-                isStartingGame = true;
                 if (UnityEngine.EventSystems.EventSystem.current != null) UnityEngine.EventSystems.EventSystem.current.SetSelectedGameObject(null);
-                
-                // We do NOT set interactable = false here because it causes the button to permanently stay gray (disabled color)
-                // during the long 2.2s fade out. The isStartingGame flag prevents double clicks instead.
-                StartNewGame(overlay);
+                Destroy(overlay);
             });
         }
 

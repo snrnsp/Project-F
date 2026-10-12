@@ -1,0 +1,30 @@
+            
+            // Create a hidden templates root
+            GameObject templatesObj = new GameObject("_Templates");
+            templatesObj.transform.SetParent(mainCanvas.transform, false);
+            templatesObj.SetActive(false);
+            templatesRoot = templatesObj.transform;
+
+            CreateBackground();
+            CreateDialogueUI();
+            CreateLobbyUI();
+            CreateGlobalUI();
+            CreateSettingsUI();
+            CreateLanguageUI();
+            CreateBacklogUI();
+            CreateExtraUI();
+            CreateScreenTransition();
+        }
+        
+        void Start()
+        {
+            // Start in Lobby — hide all game panels
+            if (dialoguePanelRoot) dialoguePanelRoot.SetActive(false);
+            if (investigationPanelRoot) investigationPanelRoot.SetActive(false);
+            if (deductionPanelRoot) deductionPanelRoot.SetActive(false);
+
+            // Show lobby
+            if (lobbyPanelRoot) lobbyPanelRoot.SetActive(true);
+
+            // Listen for phase changes to toggle panels
+            if (GameManager.Instance != null)

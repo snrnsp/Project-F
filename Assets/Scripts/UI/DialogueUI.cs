@@ -35,7 +35,6 @@ namespace HalloweenVN.UI
         private SettingsUI _cachedSettingsUI;
         private WaitForSeconds _cachedNewlineDelay = new WaitForSeconds(0.15f);
         private WaitForSeconds _cachedTextDelay;
-        private float _lastTextSpeed = -1f;
 
         private Coroutine typingCoroutine;
         private Coroutine autoPlayCoroutine;
@@ -301,6 +300,16 @@ namespace HalloweenVN.UI
                 requested[0] = null; requested[1] = node.characterSprite; requested[2] = null;
             }
 
+            bool noSpritesRequested = string.IsNullOrEmpty(requested[0]) && string.IsNullOrEmpty(requested[1]) && string.IsNullOrEmpty(requested[2]);
+            bool bgChanging = !string.IsNullOrEmpty(node.backgroundSprite) && node.backgroundSprite != _currentBgPath;
+
+            if (string.IsNullOrWhiteSpace(node.speaker) && noSpritesRequested && !bgChanging && !_freshDialogue)
+            {
+                UpdateSpeakerHighlight(node.speaker, instant || (wasNarrator && usePanelNow));
+                UpdateBackground(node.backgroundSprite);
+                return;
+            }
+
             // 2. New owner per slot (same character listed twice → keep the first slot only)
             string[] newOwner = new string[3];
             HashSet<string> newNames = new HashSet<string>();
@@ -322,7 +331,7 @@ namespace HalloweenVN.UI
             {
                 int s = (int)kvp.Value;
                 Image img = imgs[s];
-                if (img == null || !img.gameObject.activeSelf) continue;
+                if (img == null) continue; // activeSelf check removed to prevent tracking loss during fade start
                 prevOwner[s] = kvp.Key;
                 prevSlotOf[kvp.Key] = s;
             }
@@ -393,9 +402,15 @@ namespace HalloweenVN.UI
                         LoadSpriteToImage(img, requested[s]);
                         img.gameObject.SetActive(true);
                         
-                        // Interrupted mid-slide (e.g. fast-clicking during an entrance): snap so it
-                        // doesn't keep drifting. Settled characters glide normally via MoveCharacterTo.
-                        if (wasMidSlide) SetCharacterAnchorX(img.rectTransform, targetX[s]);
+                        // Force snap if target position hasn't changed to prevent any unintended drifting/jumping
+                        if (_lastTargetX[s] >= 0f && Mathf.Abs(_lastTargetX[s] - targetX[s]) < 0.01f)
+                        {
+                            SetCharacterAnchorX(img.rectTransform, targetX[s]);
+                        }
+                        else if (wasMidSlide) 
+                        {
+                            SetCharacterAnchorX(img.rectTransform, targetX[s]);
+                        }
                     }
 
                     if (immediate)
@@ -931,10 +946,10 @@ namespace HalloweenVN.UI
         {
             if (string.IsNullOrWhiteSpace(speaker))
             {
-                // Narrator — all active characters stay bright
+                // Narrator -> all active characters are dimmed
                 foreach (var kvp in _activeSpeakerPositions)
                 {
-                    DimCharacterImage(GetCharacterImage(kvp.Value), true, instant);
+                    DimCharacterImage(GetCharacterImage(kvp.Value), false, instant);
                 }
                 return;
             }
@@ -1159,29 +1174,29 @@ namespace HalloweenVN.UI
             int visibleCount = 0;
             Debug.Log($"[DialogueUI] Total visible chars: {totalVisibleChars}");
 
+            float nextCharTime = Time.unscaledTime;
             while (visibleCount <= totalVisibleChars && target != null)
             {
                 target.maxVisibleCharacters = visibleCount;
                 
-                // 줄바꿈(\n) 문자가 출력되었을 때 0.7초 대기 (유저 요청)
                 if (visibleCount > 0 && visibleCount <= target.textInfo.characterCount)
                 {
                     char c = target.textInfo.characterInfo[visibleCount - 1].character;
                     if (c == '\n')
                     {
                         yield return _cachedNewlineDelay;
+                        nextCharTime = Time.unscaledTime;
                     }
                 }
                 
                 visibleCount++;
-                if (_lastTextSpeed != SettingsData.TextSpeed)
+                
+                nextCharTime += SettingsData.TextSpeed;
+                while (Time.unscaledTime < nextCharTime)
                 {
-                    _lastTextSpeed = SettingsData.TextSpeed;
-                    _cachedTextDelay = new WaitForSeconds(_lastTextSpeed);
+                    yield return null;
                 }
-                yield return _cachedTextDelay;
             }
-
             isTyping = false;
             _typingEndTime = Time.unscaledTime;
             Debug.Log($"[DialogueUI] TypeText finished.");
@@ -1202,19 +1217,20 @@ namespace HalloweenVN.UI
             }
         }
 
+        private LanguageUI _cachedLanguageUI;
+        private ExtraUI _cachedExtraUI;
+
         private bool IsModalOpen()
         {
             if (_cachedBacklogUI == null) _cachedBacklogUI = Object.FindFirstObjectByType<BacklogUI>(UnityEngine.FindObjectsInactive.Include);
             if (_cachedSettingsUI == null) _cachedSettingsUI = Object.FindFirstObjectByType<SettingsUI>(UnityEngine.FindObjectsInactive.Include);
+            if (_cachedLanguageUI == null) _cachedLanguageUI = Object.FindFirstObjectByType<LanguageUI>(UnityEngine.FindObjectsInactive.Include);
+            if (_cachedExtraUI == null) _cachedExtraUI = Object.FindFirstObjectByType<ExtraUI>(UnityEngine.FindObjectsInactive.Include);
             
             if (_cachedBacklogUI != null && _cachedBacklogUI.IsOpen) return true;
             if (_cachedSettingsUI != null && _cachedSettingsUI.gameObject.activeInHierarchy) return true;
-
-            var langUi = Object.FindFirstObjectByType<LanguageUI>(UnityEngine.FindObjectsInactive.Include);
-            if (langUi != null && langUi.gameObject.activeInHierarchy) return true;
-
-            var extraUi = Object.FindFirstObjectByType<ExtraUI>(UnityEngine.FindObjectsInactive.Include);
-            if (extraUi != null && extraUi.gameObject.activeInHierarchy) return true;
+            if (_cachedLanguageUI != null && _cachedLanguageUI.gameObject.activeInHierarchy) return true;
+            if (_cachedExtraUI != null && _cachedExtraUI.gameObject.activeInHierarchy) return true;
 
             return false;
         }
@@ -1321,7 +1337,17 @@ namespace HalloweenVN.UI
         public void OnClick() { 
             if (IsModalOpen()) return;
             if (_isTransitioningScene) return; // Prevent double-trigger from UI Event System + Input System
-            if (Time.unscaledTime - _lastClickTime < 0.05f) return; // Prevent double-trigger from UI Event System + Input System
+            
+            // 1. Prevent physical double-trigger from Unity Input System (0.05s)
+            if (Time.unscaledTime - _lastClickTime < 0.05f) return; 
+
+            // 2. Prevent accidental advance right after text finishes typing (0.1s)
+            if (!isTyping && Time.unscaledTime - _typingEndTime < 0.1f) 
+            {
+                return; // Do NOT update _lastClickTime here, so the player isn't penalized for mashing!
+            }
+
+            // Only update last click time when the click is actually accepted!
             _lastClickTime = Time.unscaledTime;
             CancelAutoPlayTimer();
 
@@ -1332,13 +1358,6 @@ namespace HalloweenVN.UI
             }
             else
             {
-                // ADDED: 1-second delay check after typing is finished
-                if (Time.unscaledTime - _typingEndTime < 0.3f)
-                {
-                    Debug.Log($"[DialogueUI] Advance ignored due to 0.3-second cooldown.");
-                    return;
-                }
-
                 if (DialogueManager.Instance != null)
                 {
                     DialogueManager.Instance.AdvanceDialogue();

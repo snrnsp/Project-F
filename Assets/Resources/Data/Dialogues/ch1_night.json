@@ -20,8 +20,8 @@
             "speaker": "세이카",
             "text": "자, 다들 준비됐지? 오늘의 작전은 '유령 피아니스트'의 정체를 밝혀내는 거야.",
             "characterSpriteLeft": "",
-            "characterSpriteCenter": "Characters/세이카/웃음",
-            "characterSpriteRight": "",
+            "characterSpriteCenter": "",
+            "characterSpriteRight": "Characters/세이카/웃음",
             "backgroundSprite": "",
             "choices": [],
             "nextNodeId": 2,
@@ -192,77 +192,78 @@
             "characterSpriteRight": "",
             "backgroundSprite": "",
             "choices": [],
-            "nextNodeId": 10013,
+            "nextNodeId": 14,
             "command": "",
             "slideIn": false,
-            "noFade": false
+            "noFade": true
         },
         {
-            "id": 10013,
+            "id": 14,
             "speaker": " ",
             "text": "칠흑 같은 어둠 속, 평소 앞장서던 리나가 흠칫하며 무의식적으로 카스미의 옷소매를 꽉 쥐었다.",
             "characterSpriteLeft": "Characters/리나/공포",
             "characterSpriteCenter": "",
             "characterSpriteRight": "Characters/카스미/기본",
             "command": "",
-            "nextNodeId": 10014
+            "nextNodeId": 15
         },
         {
-            "id": 10014,
+            "id": 15,
             "speaker": "카스미",
             "text": "...리나? 지금 제 옷은 왜 잡고 계십니까?",
             "characterSpriteLeft": "Characters/리나/당황",
             "characterSpriteCenter": "",
             "characterSpriteRight": "Characters/카스미/기본",
             "command": "",
-            "nextNodeId": 10015,
+            "nextNodeId": 16,
             "noFade": true
         },
         {
-            "id": 10015,
+            "id": 16,
             "speaker": "리나",
             "text": "어, 엉? 아, 아니야! 그냥 네 옷에 먼지가 묻어서... 털어주려고 한 거거든?!",
             "characterSpriteLeft": "Characters/리나/당황",
             "characterSpriteCenter": "",
             "characterSpriteRight": "Characters/카스미/기본",
             "command": "",
-            "nextNodeId": 10016,
+            "nextNodeId": 17,
             "noFade": true
         },
         {
-            "id": 10016,
+            "id": 17,
             "speaker": "카스미",
             "text": "하아... 꽉 쥐어서 구김이 다 갔습니다만. 어둠이 무서우면 그냥 제 뒤로 오시죠.",
             "characterSpriteLeft": "Characters/리나/홍조",
             "characterSpriteCenter": "",
             "characterSpriteRight": "Characters/카스미/시선회피",
             "command": "",
-            "nextNodeId": 10017,
+            "nextNodeId": 18,
             "noFade": true
         },
         {
-            "id": 10017,
+            "id": 18,
             "speaker": "리나",
             "text": "안 무섭거든?! ...진, 진짜 안 무서워!",
             "characterSpriteLeft": "Characters/리나/홍조",
             "characterSpriteCenter": "",
             "characterSpriteRight": "Characters/카스미/시선회피",
             "command": "",
-            "nextNodeId": 10018,
+            "nextNodeId": 19,
             "noFade": true
         },
         {
-            "id": 10018,
+            "id": 19,
             "speaker": " ",
             "text": "리나가 부산스럽게 카스미에게서 손을 떼며 앞으로 나아갔다. 그때, 바닥의 무언가가 눈에 들어왔다.",
             "characterSpriteLeft": "Characters/리나/홍조",
             "characterSpriteCenter": "",
             "characterSpriteRight": "Characters/카스미/기본",
             "command": "",
-            "nextNodeId": 14
+            "nextNodeId": 20,
+            "noFade": true
         },
         {
-            "id": 14,
+            "id": 20,
             "speaker": "리나",
             "text": "어? 바닥에 발자국이 있어. 먼지 위에 선명하게... 어디로 이어지는 거지?",
             "characterSpriteLeft": "Characters/리나/놀람",
@@ -270,24 +271,24 @@
             "characterSpriteRight": "Characters/카스미/기본",
             "backgroundSprite": "",
             "choices": [],
-            "nextNodeId": 10019,
+            "nextNodeId": 21,
             "command": "",
-            "noFade": false,
+            "noFade": true,
             "slideIn": true
         },
         {
-            "id": 10019,
+            "id": 21,
             "speaker": "카스미",
             "text": "잠깐... 이 발자국, 주변 먼지층의 퇴적 상태로 봐서 최근에 생긴 겁니다. 경찰이 수색했을 때는 없었을 거예요. 현상은 지금도 반복되고 있다는 뜻입니다.",
             "characterSpriteLeft": "Characters/리나/놀람",
             "characterSpriteCenter": "",
             "characterSpriteRight": "Characters/카스미/찡그림",
             "command": "",
-            "nextNodeId": 15,
+            "nextNodeId": 22,
             "noFade": true
         },
         {
-            "id": 15,
+            "id": 22,
             "speaker": "미나",
             "text": "......",
             "characterSpriteLeft": "",
@@ -295,13 +296,13 @@
             "characterSpriteRight": "",
             "backgroundSprite": "",
             "choices": [],
-            "nextNodeId": 16,
+            "nextNodeId": 23,
             "command": "",
             "slideIn": false,
             "noFade": false
         },
         {
-            "id": 16,
+            "id": 23,
             "speaker": "미나",
             "text": "(소곤) ...얘들아, 여기 좀 이상해. 나 지금 연기하는 거 아니야, 진짜 무서운데...",
             "characterSpriteLeft": "",
@@ -309,13 +310,13 @@
             "characterSpriteRight": "",
             "backgroundSprite": "",
             "choices": [],
-            "nextNodeId": 17,
+            "nextNodeId": 24,
             "command": "AUDIO:PLAY_SFX_FADEOUT:sfx_heartbeat,5.0,1.0",
             "slideIn": false,
             "noFade": true
         },
         {
-            "id": 17,
+            "id": 24,
             "speaker": " ",
             "text": "일행은 마침내 메인 공연장에 다다랐다. 중앙에는 먼지 쌓인 천으로 덮인 그랜드 피아노가 덩그러니 놓여 있었다.",
             "characterSpriteLeft": "",
@@ -323,75 +324,76 @@
             "characterSpriteRight": "",
             "backgroundSprite": "",
             "choices": [],
-            "nextNodeId": 18,
+            "nextNodeId": 25,
             "command": "",
             "slideIn": false,
-            "noFade": false
+            "noFade": true
         },
         {
-            "id": 18,
+            "id": 25,
             "speaker": "카스미",
             "text": "제가 확인해보겠습니다.",
-            "characterSpriteLeft": "",
-            "characterSpriteCenter": "Characters/카스미/기본",
+            "characterSpriteLeft": "Characters/카스미/기본",
+            "characterSpriteCenter": "",
             "characterSpriteRight": "",
             "backgroundSprite": "",
             "choices": [],
-            "nextNodeId": 19,
+            "nextNodeId": 26,
             "command": "",
             "slideIn": false,
             "noFade": false
         },
         {
-            "id": 19,
+            "id": 26,
             "speaker": " ",
             "text": "카스미가 조심스럽게 천을 걷어내자, 그 아래에는 믿을 수 없을 정도로 깨끗한 피아노가 모습을 드러냈다.",
-            "characterSpriteLeft": "",
-            "characterSpriteCenter": "Characters/카스미/당황2",
+            "characterSpriteLeft": "Characters/카스미/당황2",
+            "characterSpriteCenter": "",
             "characterSpriteRight": "",
             "backgroundSprite": "",
             "choices": [],
-            "nextNodeId": 10020,
+            "nextNodeId": 27,
             "command": "",
             "slideIn": false,
-            "noFade": false
+            "noFade": true
         },
         {
-            "id": 10020,
+            "id": 27,
             "speaker": "카스미",
             "text": "이상합니다. 건물은 10년 넘게 방치된 상태인데, 이 피아노만 먼지 하나 없이... 마치 누군가가 계속 관리하고 있었던 것처럼.",
-            "characterSpriteLeft": "",
-            "characterSpriteCenter": "Characters/카스미/찡그림",
+            "characterSpriteLeft": "Characters/카스미/찡그림",
+            "characterSpriteCenter": "",
             "characterSpriteRight": "",
             "command": "",
-            "nextNodeId": 10021
+            "nextNodeId": 28,
+            "noFade": true
         },
         {
-            "id": 10021,
+            "id": 28,
             "speaker": "미나",
             "text": "...그 자의 미련이니라. 잊혀져도, 연주만은 멈출 수 없었던 것...",
             "characterSpriteLeft": "Characters/카스미/찡그림",
             "characterSpriteCenter": "",
             "characterSpriteRight": "Characters/미나/음침",
             "command": "",
-            "nextNodeId": 20
+            "nextNodeId": 29
         },
         {
-            "id": 20,
+            "id": 29,
             "speaker": " ",
-            "text": "건물 전체가 미세하게 떨리기 시작했다.",
+            "text": "지하실 전체가 미세하게 떨리기 시작했다.",
             "characterSpriteLeft": "Characters/카스미/당황2",
             "characterSpriteCenter": "",
             "characterSpriteRight": "Characters/미나/놀람",
             "backgroundSprite": "",
             "choices": [],
-            "nextNodeId": 21,
+            "nextNodeId": 30,
             "command": "EFFECT:SHAKE",
             "slideIn": false,
-            "noFade": false
+            "noFade": true
         },
         {
-            "id": 21,
+            "id": 30,
             "speaker": " ",
             "text": "그리고 피아노 건반이 스스로 움직이기 시작했다. 처연하고 아름다운 선율이 공연장을 가득 채웠다.",
             "characterSpriteLeft": "Characters/카스미/당황2",
@@ -399,10 +401,10 @@
             "characterSpriteRight": "Characters/미나/공포",
             "backgroundSprite": "",
             "choices": [],
-            "nextNodeId": 22,
+            "nextNodeId": 31,
             "command": "EFFECT:FLASH;AUDIO:PLAY_BGM:bgm_ending_piano",
             "slideIn": false,
-            "noFade": false
+            "noFade": true
         },
         {
             "speaker": " ",
@@ -413,8 +415,9 @@
             "characterSpriteRight": "Characters/미나/공포",
             "backgroundSprite": "",
             "choices": [],
-            "id": 22,
-            "nextNodeId": 23
+            "id": 31,
+            "nextNodeId": 32,
+            "noFade": true
         },
         {
             "speaker": "하루카",
@@ -425,11 +428,11 @@
             "characterSpriteRight": "",
             "backgroundSprite": "",
             "choices": [],
-            "id": 23,
-            "nextNodeId": 24
+            "id": 32,
+            "nextNodeId": 33
         },
         {
-            "id": 24,
+            "id": 33,
             "speaker": "하루카",
             "text": "으... 갑자기 엄청 추워졌어요...! 방금까지는 안 이랬는데...!",
             "characterSpriteLeft": "",
@@ -437,13 +440,13 @@
             "characterSpriteRight": "",
             "backgroundSprite": "",
             "choices": [],
-            "nextNodeId": 25,
+            "nextNodeId": 34,
             "command": "",
             "noFade": true,
             "slideIn": true
         },
         {
-            "id": 25,
+            "id": 34,
             "speaker": "리리스",
             "text": "...잭오 열화상 센서, 이상 반응. 피아노 주변 온도 급격히 하강 중.",
             "characterSpriteLeft": "",
@@ -451,13 +454,13 @@
             "characterSpriteRight": "",
             "backgroundSprite": "",
             "choices": [],
-            "nextNodeId": 33,
+            "nextNodeId": 35,
             "command": "",
             "noFade": false,
             "slideIn": true
         },
         {
-            "id": 33,
+            "id": 35,
             "speaker": "리리스",
             "text": "건반 위, 사람 체온 아님. 영하 15도의 무언가가... 압력 가하는 중.",
             "characterSpriteLeft": "",
@@ -465,12 +468,12 @@
             "characterSpriteRight": "",
             "backgroundSprite": "",
             "choices": [],
-            "nextNodeId": 26,
+            "nextNodeId": 36,
             "command": "",
             "noFade": true
         },
         {
-            "id": 26,
+            "id": 36,
             "speaker": "리나",
             "text": "히익...?! 카, 카스미 언니... 이거 뭐야?!",
             "characterSpriteLeft": "Characters/리나/공포",
@@ -478,13 +481,13 @@
             "characterSpriteRight": "Characters/카스미/당황2",
             "backgroundSprite": "",
             "choices": [],
-            "nextNodeId": 27,
+            "nextNodeId": 37,
             "command": "AUDIO:PLAY_SFX_FADEOUT:sfx_heartbeat,5.0,1.0",
             "slideIn": true,
             "noFade": false
         },
         {
-            "id": 27,
+            "id": 37,
             "speaker": "리리스",
             "text": "잭오 센서 이상 무... 이건... 실제로 건반이 눌리고 있음.",
             "characterSpriteLeft": "Characters/리리스/놀람",
@@ -492,13 +495,13 @@
             "characterSpriteRight": "Characters/카스미/당황2",
             "backgroundSprite": "",
             "choices": [],
-            "nextNodeId": 28,
+            "nextNodeId": 38,
             "command": "",
             "slideIn": true,
             "noFade": false
         },
         {
-            "id": 28,
+            "id": 38,
             "speaker": "카스미",
             "text": "...물리적으로 건반이 눌리고 있다면, 보이지 않는 누군가가 여기에 있다는 뜻입니다.",
             "characterSpriteLeft": "Characters/리리스/놀람",
@@ -506,13 +509,13 @@
             "characterSpriteRight": "Characters/카스미/당황2",
             "backgroundSprite": "",
             "choices": [],
-            "nextNodeId": 29,
+            "nextNodeId": 39,
             "command": "",
             "slideIn": false,
-            "noFade": false
+            "noFade": true
         },
         {
-            "id": 29,
+            "id": 39,
             "speaker": "세이카",
             "text": "...찾았어. 이 사람이야. 잊혀진 피아니스트.",
             "characterSpriteLeft": "",
@@ -520,13 +523,13 @@
             "characterSpriteRight": "",
             "backgroundSprite": "",
             "choices": [],
-            "nextNodeId": 30,
+            "nextNodeId": 40,
             "command": "",
             "slideIn": true,
             "noFade": false
         },
         {
-            "id": 30,
+            "id": 40,
             "speaker": " ",
             "text": "선율이 멈췄다. 다시 무거운 침묵이 내려앉고, 먼지만이 공기 중을 부유했다.",
             "characterSpriteLeft": "",
@@ -534,13 +537,13 @@
             "characterSpriteRight": "",
             "backgroundSprite": "",
             "choices": [],
-            "nextNodeId": 31,
+            "nextNodeId": 41,
             "command": "AUDIO:STOP_BGM",
             "slideIn": false,
-            "noFade": false
+            "noFade": true
         },
         {
-            "id": 31,
+            "id": 41,
             "speaker": "세이카",
             "text": "조사를 시작해. 이 안에 단서가 있을 거야.",
             "characterSpriteLeft": "",
@@ -548,13 +551,13 @@
             "characterSpriteRight": "",
             "backgroundSprite": "",
             "choices": [],
-            "nextNodeId": 32,
+            "nextNodeId": 42,
             "command": "AUDIO:PLAY_BGM:bgm_investigation",
             "slideIn": false,
-            "noFade": false
+            "noFade": true
         },
         {
-            "id": 32,
+            "id": 42,
             "speaker": "",
             "text": "",
             "characterSpriteLeft": "",
@@ -565,7 +568,7 @@
             "nextNodeId": -1,
             "command": "START_DIALOGUE:ch1_investigation_talk",
             "slideIn": false,
-            "noFade": false
+            "noFade": true
         }
     ]
 }

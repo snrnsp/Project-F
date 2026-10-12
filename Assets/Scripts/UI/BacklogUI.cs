@@ -64,9 +64,12 @@ namespace HalloweenVN.UI
                 TrySubscribe();
             }
 
-            // ESC key handling
-            if (UnityEngine.InputSystem.Keyboard.current != null &&
-                UnityEngine.InputSystem.Keyboard.current.escapeKey.wasPressedThisFrame)
+            // ESC / Right-Click handling
+            bool closeInput = false;
+            if (UnityEngine.InputSystem.Keyboard.current != null && UnityEngine.InputSystem.Keyboard.current.escapeKey.wasPressedThisFrame) closeInput = true;
+            if (UnityEngine.InputSystem.Mouse.current != null && UnityEngine.InputSystem.Mouse.current.rightButton.wasPressedThisFrame) closeInput = true;
+
+            if (closeInput)
             {
                 if (_activePopup != null)
                 {

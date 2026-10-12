@@ -1,0 +1,44 @@
+﻿import json
+import codecs
+
+filepath = 'F:/Project-F/Assets/Resources/Data/Dialogues/ch0_origin.json'
+with codecs.open(filepath, 'r', encoding='utf-8-sig') as f:
+    data = json.load(f)
+
+# Modify nodes 0-20 to match the new pacing.
+new_nodes = [
+    { "id": 0, "speaker": " ", "text": "— 2025년 여름. (1년 전)", "characterSpriteLeft": "", "characterSpriteCenter": "", "characterSpriteRight": "", "backgroundSprite": "Images/bg_law_firm_morning", "choices": [], "nextNodeId": 1, "command": "AUDIO:PLAY_BGM:bgm_office_night" },
+    { "id": 1, "speaker": " ", "text": "대형 로펌의 자료실.\\n신임 변호사 세이카는 산더미처럼 쌓인 재판 기록을 분류하고 있었다.", "characterSpriteLeft": "", "characterSpriteCenter": "", "characterSpriteRight": "", "backgroundSprite": "", "choices": [], "nextNodeId": 2, "command": "" },
+    { "id": 2, "speaker": "세이카", "text": "(미간을 찌푸리며) ...음주 뺑소니로 사람을 다치게 해놓고 집행유예? 합의를 했다고는 하지만...", "characterSpriteLeft": "", "characterSpriteCenter": "Characters/세이카/찡그림", "characterSpriteRight": "", "backgroundSprite": "", "choices": [], "nextNodeId": 3, "command": "" },
+    { "id": 3, "speaker": "세이카", "text": "이쪽은 임금 체불 공장장인데 증거 불충분으로 무죄... 진짜, 다들 너무하는 거 아니야?", "characterSpriteLeft": "", "characterSpriteCenter": "Characters/세이카/찡그림", "characterSpriteRight": "", "backgroundSprite": "", "choices": [], "nextNodeId": 4, "command": "" },
+    { "id": 4, "speaker": "선임 변호사", "text": "어이, 세이카. 또 구시렁대고 있어? 우리가 판사도 아니고, 그냥 서류만 제대로 분류하면 돼.", "characterSpriteLeft": "Characters/세이카/기본", "characterSpriteCenter": "", "characterSpriteRight": "", "backgroundSprite": "", "choices": [], "nextNodeId": 5, "command": "slideIn:true" },
+    { "id": 5, "speaker": "세이카", "text": "알아요. 알지만... 법이 진실을 지켜줘야 하는 거잖아요. 나쁜 짓을 한 사람들이 법망을 빠져나가는 걸 보면 속이 터진다고요.", "characterSpriteLeft": "Characters/세이카/찡그림", "characterSpriteCenter": "", "characterSpriteRight": "", "backgroundSprite": "", "choices": [], "nextNodeId": 6, "command": "" },
+    { "id": 6, "speaker": "선임 변호사", "text": "(웃음) 너처럼 정의감 넘치는 신참은 오랜만이네. 빨리 끝내고 퇴근이나 하자고.", "characterSpriteLeft": "Characters/세이카/기본", "characterSpriteCenter": "", "characterSpriteRight": "", "backgroundSprite": "", "choices": [], "nextNodeId": 7, "command": "" },
+    { "id": 7, "speaker": " ", "text": "계속해서 서류를 정리하던 세이카의 손이, 구석에 놓인 낡은 상자 앞에서 멈췄다.\\n빨간 테이프로 단단히 봉인된 상자였다.", "characterSpriteLeft": "", "characterSpriteCenter": "", "characterSpriteRight": "", "backgroundSprite": "", "choices": [], "nextNodeId": 8, "command": "noFade:true" },
+    { "id": 8, "speaker": "세이카", "text": "선배, 이 상자는 뭐예요? 라벨도 다 뜯어져 있는데... 이것도 분류 목록에 있는 건가요?", "characterSpriteLeft": "", "characterSpriteCenter": "Characters/세이카/의아", "characterSpriteRight": "", "backgroundSprite": "", "choices": [], "nextNodeId": 9, "command": "" },
+    { "id": 9, "speaker": "선임 변호사", "text": "...거기엔 손대지 마.", "characterSpriteLeft": "Characters/세이카/기본", "characterSpriteCenter": "", "characterSpriteRight": "", "backgroundSprite": "", "choices": [], "nextNodeId": 10, "command": "slideIn:true" },
+    { "id": 10, "speaker": " ", "text": "평소 느긋하던 선임의 목소리가, 처음 듣는 것처럼 날카롭고 단호했다.", "characterSpriteLeft": "Characters/세이카/기본", "characterSpriteCenter": "", "characterSpriteRight": "", "backgroundSprite": "", "choices": [], "nextNodeId": 11, "command": "" },
+    { "id": 11, "speaker": "선임 변호사", "text": "경찰 고위층과 연관된 민감한 기록이야. 우리 로펌의 주요 고객 중에 경찰 쪽 관계자가 있다는 건 알지? 그냥 없는 셈 치고 내버려 둬.", "characterSpriteLeft": "Characters/세이카/기본", "characterSpriteCenter": "", "characterSpriteRight": "", "backgroundSprite": "", "choices": [], "nextNodeId": 12, "command": "" },
+    { "id": 12, "speaker": "세이카", "text": "......", "characterSpriteLeft": "Characters/세이카/찡그림", "characterSpriteCenter": "", "characterSpriteRight": "", "backgroundSprite": "", "choices": [], "nextNodeId": 13, "command": "" },
+    { "id": 13, "speaker": " ", "text": "하지만 세이카는 그 경고를 무시할 수 없었다.\\n며칠 뒤, 모두가 퇴근한 텅 빈 자료실. 세이카는 몰래 그 낡은 상자를 열었다.", "characterSpriteLeft": "", "characterSpriteCenter": "", "characterSpriteRight": "", "backgroundSprite": "", "choices": [], "nextNodeId": 14, "command": "" },
+    { "id": 14, "speaker": "세이카", "text": "...이건...", "characterSpriteLeft": "", "characterSpriteCenter": "Characters/세이카/놀람", "characterSpriteRight": "", "backgroundSprite": "", "choices": [], "nextNodeId": 15, "command": "" },
+    { "id": 15, "speaker": " ", "text": "상자 안에 든 것은 수십 건의 '실종 사건' 기록이었다.\\n그런데 무언가 이상했다.", "characterSpriteLeft": "", "characterSpriteCenter": "", "characterSpriteRight": "", "backgroundSprite": "", "choices": [], "nextNodeId": 16, "command": "" },
+    { "id": 16, "speaker": "세이카", "text": "2001년 노을시 구시가지. 2006년 구시가지. 2011년... 또 구시가지?", "characterSpriteLeft": "", "characterSpriteCenter": "Characters/세이카/찡그림", "characterSpriteRight": "", "backgroundSprite": "", "choices": [], "nextNodeId": 17, "command": "" },
+    { "id": 17, "speaker": "세이카", "text": "정확히 5년 간격으로 사람이 사라졌어. 그런데 전부 '수사 중단' 처리되어 있고... 결정적으로, 관련된 첨부 자료가 싹 다 빠져나가 있잖아.", "characterSpriteLeft": "", "characterSpriteCenter": "Characters/세이카/찡그림", "characterSpriteRight": "", "backgroundSprite": "", "choices": [], "nextNodeId": 18, "command": "noFade:true" },
+    { "id": 18, "speaker": " ", "text": "사진도, 목격자 진술도, 실종자의 인적 사항조차 제대로 남아있지 않았다.\\n마치 처음부터 세상에 존재하지 않았던 사람들처럼.", "characterSpriteLeft": "", "characterSpriteCenter": "", "characterSpriteRight": "", "backgroundSprite": "", "choices": [], "nextNodeId": 19, "command": "" },
+    { "id": 19, "speaker": "세이카", "text": "법이 진실을 묻어버리는 도구로 쓰이고 있어. 기록에서 지워진 사람들... 이걸 모른 척 넘어간다면, 나도 공범이 되는 거야.", "characterSpriteLeft": "", "characterSpriteCenter": "Characters/세이카/음침", "characterSpriteRight": "", "backgroundSprite": "", "choices": [], "nextNodeId": 20, "command": "" },
+    { "id": 20, "speaker": " ", "text": "그해 여름, 세이카는 사직서를 냈다.\\n그리고 실종자들의 마지막 주소인 '노을시 구시가지'로 향했다.", "characterSpriteLeft": "", "characterSpriteCenter": "", "characterSpriteRight": "", "backgroundSprite": "", "choices": [], "nextNodeId": 21, "command": "" },
+    { "id": 21, "speaker": "동네 할머니", "text": "2006년에 여기 살던 사람? 아이고, 이 빈집은 벌써 30년 넘게 비어 있었어.", "characterSpriteLeft": "", "characterSpriteCenter": "", "characterSpriteRight": "", "backgroundSprite": "Images/bg_old_town_day", "choices": [], "nextNodeId": 22, "command": "" },
+    { "id": 22, "speaker": "세이카", "text": "...네? 기록에는 분명히 이 집에 살던 사람이 실종됐다고 적혀 있는데요.", "characterSpriteLeft": "", "characterSpriteCenter": "Characters/세이카/당황", "characterSpriteRight": "", "backgroundSprite": "", "choices": [], "nextNodeId": 23, "command": "" },
+    { "id": 23, "speaker": "동네 할머니", "text": "그럴 리가 없어. 이 골목에서 사람이 없어졌으면 동네 사람들이 모를 리가 있나. ...근데 이상하게, 자꾸 누가 여기 산다고 하긴 하더라고.", "characterSpriteLeft": "", "characterSpriteCenter": "", "characterSpriteRight": "", "backgroundSprite": "", "choices": [], "nextNodeId": 24, "command": "" },
+    { "id": 24, "speaker": " ", "text": "기록만 지워진 것이 아니었다.\\n사람들의 기억 속에서도 그들은 완벽하게 지워져 있었다.", "characterSpriteLeft": "", "characterSpriteCenter": "", "characterSpriteRight": "", "backgroundSprite": "", "choices": [], "nextNodeId": 25, "command": "" },
+    { "id": 25, "speaker": "세이카", "text": "이건 평범한 실종 사건이 아니야... 뭔가 다른 힘이 개입되어 있어.", "characterSpriteLeft": "", "characterSpriteCenter": "Characters/세이카/찡그림", "characterSpriteRight": "", "backgroundSprite": "", "choices": [], "nextNodeId": 26, "command": "" },
+    { "id": 26, "speaker": "세이카", "text": "경찰도, 법도 해결할 수 없는 기괴한 현상... 내가 직접 파헤치겠어.", "characterSpriteLeft": "", "characterSpriteCenter": "Characters/세이카/기본", "characterSpriteRight": "", "backgroundSprite": "", "choices": [], "nextNodeId": 27, "command": "noFade:true" },
+    { "id": 27, "speaker": " ", "text": "", "characterSpriteLeft": "", "characterSpriteCenter": "", "characterSpriteRight": "", "backgroundSprite": "", "choices": [], "nextNodeId": -1, "command": "CHANGE_PHASE:Lobby" }
+]
+
+data['nodes'] = new_nodes
+with codecs.open(filepath, 'w', encoding='utf-8-sig') as f:
+    json.dump(data, f, ensure_ascii=False, indent=4)
+
+print("Updated ch0_origin.json")

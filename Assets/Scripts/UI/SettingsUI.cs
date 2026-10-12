@@ -42,6 +42,7 @@ namespace HalloweenVN.UI
         [SerializeField] private Text titleTextLabel;
         [SerializeField] private Button closeButton;
         [SerializeField] private Button returnToTitleButton;
+        [SerializeField] private Button deleteDataButton;
         [SerializeField] private Text returnToTitleLabel;
 
         // Legacy compat (unused but kept for SetField safety)
@@ -51,7 +52,6 @@ namespace HalloweenVN.UI
         [SerializeField] private Text sfxVolumeLabel;
         [SerializeField] private Text bgmVolumeValueText;
         [SerializeField] private Text sfxVolumeValueText;
-        private float lastSfxPreviewTime = -1f;
         [SerializeField] private Toggle fullscreenToggle;
 
         // Flash / Shake effect toggle (photosensitivity)
@@ -177,6 +177,9 @@ namespace HalloweenVN.UI
             UpdateLanguage();
         }
 
+        
+
+
         private void OnDisable()
         {
             if (bgmVolumeSlider != null) bgmVolumeSlider.onValueChanged.RemoveListener(OnBGMVolumeChanged);
@@ -189,6 +192,7 @@ namespace HalloweenVN.UI
             if (fontStyleButton != null) fontStyleButton.onClick.RemoveListener(OnFontStyleToggled);
             if (closeButton != null) closeButton.onClick.RemoveListener(Hide);
             if (returnToTitleButton != null) returnToTitleButton.onClick.RemoveListener(OnReturnToTitleClicked);
+            if (deleteDataButton != null) deleteDataButton.onClick.RemoveListener(OnDeleteDataClicked);
         }
 
                 public void UpdateLanguage()
@@ -206,7 +210,7 @@ namespace HalloweenVN.UI
             SetText(bgmVolumeLabel, Loc.Get("ui.settings.bgm_volume", "배경음악 (BGM) 음량"));
             SetText(sfxVolumeLabel, Loc.Get("ui.settings.sfx_volume", "효과음 (SFX) 음량"));
             SetText(titleTextLabel, Loc.Get("ui.settings.title", "설정"));
-            SetText(textSpeedLabel, Loc.Get("ui.settings.text_speed", "텍스트 속도"));
+            SetText(textSpeedLabel, Loc.Get("ui.settings.text_speed", "텍스트 속도 조절"));
             SetText(autoPlayLabel, Loc.Get("ui.settings.auto_play_delay", "오토 대기 시간"));
             SetText(skipModeLabel, Loc.Get("ui.settings.skip_mode", "스킵 모드"));
             SetText(fontStyleLabel, Loc.Get("ui.settings.font", "글꼴"));
@@ -324,12 +328,6 @@ namespace HalloweenVN.UI
             if (AudioManager.Instance != null)
             {
                 AudioManager.Instance.UpdateVolume();
-                // Audible preview so the player can hear the new SFX level while dragging.
-                if (Time.unscaledTime - lastSfxPreviewTime > 0.15f)
-                {
-                    lastSfxPreviewTime = Time.unscaledTime;
-                    AudioManager.Instance.PlaySFX("sfx_ui_click");
-                }
             }
             UpdateVolumeTexts();
         }
@@ -490,6 +488,17 @@ namespace HalloweenVN.UI
         {
             float t = Mathf.InverseLerp(0f, 1f, sliderVal);
             return Mathf.Lerp(0.05f, 0.005f, t);
+        }
+
+        private void OnDeleteDataClicked()
+        {
+            UnityEngine.PlayerPrefs.DeleteKey("HalloweenVN_Save_0");
+            UnityEngine.PlayerPrefs.Save();
+            Hide();
+            if (HalloweenVN.Core.GameManager.Instance != null && HalloweenVN.Core.GameManager.Instance.CurrentPhase != HalloweenVN.Core.GamePhase.Lobby)
+            {
+                HalloweenVN.Core.GameManager.Instance.ChangePhase(HalloweenVN.Core.GamePhase.Lobby);
+            }
         }
     }
 }

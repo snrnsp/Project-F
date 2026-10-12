@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -19,6 +19,7 @@ namespace HalloweenVN.Core
         [Header("Audio Sources")]
         [SerializeField] private AudioSource bgmSource;
         [SerializeField] private AudioSource sfxSource;
+        private AudioSource uiSource;
 
         // ── Loudness normalization (measured 2026-10-05, target BGM -16 LUFS integrated) ──
         // bgm_climax -12.0 LUFS / +0.6 dBTP, bgm_ending_piano -11.0 / +0.2, bgm_investigation -13.1 / 0.0,
@@ -135,6 +136,14 @@ namespace HalloweenVN.Core
                 sfxSource.playOnAwake = false;
                 sfxSource.spatialBlend = 0f;
             }
+            if (uiSource == null)
+            {
+                uiSource = gameObject.AddComponent<AudioSource>();
+                uiSource.loop = false;
+                uiSource.playOnAwake = false;
+                uiSource.spatialBlend = 0f;
+            }
+            uiSource.pitch = 1.0f; // Default pitch
             // One-shots carry their own volume scale; keep the source at 1 so the
             // SFX slider is not applied twice (that used to make 50% sound like 25%).
             sfxSource.volume = 1f;
@@ -243,6 +252,7 @@ namespace HalloweenVN.Core
         /// </summary>
         public void PlaySFX(string sfxName, float maxDuration = 0f, float fadeOutTime = 1f)
         {
+            Debug.Log("[AudioManager] PlaySFX called with: " + sfxName);
             AudioClip clip = LoadSFX(sfxName);
             if (clip == null) return;
 
@@ -255,7 +265,14 @@ namespace HalloweenVN.Core
             }
             else
             {
-                sfxSource.PlayOneShot(clip, SettingsData.SFXVolume * gain);
+                if (sfxName.StartsWith("sfx_ui_"))
+                {
+                    uiSource.PlayOneShot(clip, SettingsData.SFXVolume * gain);
+                }
+                else
+                {
+                    sfxSource.PlayOneShot(clip, SettingsData.SFXVolume * gain);
+                }
             }
         }
 
@@ -324,7 +341,20 @@ namespace HalloweenVN.Core
             if (string.IsNullOrEmpty(sfxName)) return null;
             if (sfxCache.TryGetValue(sfxName, out AudioClip clip)) return clip;
             clip = Resources.Load<AudioClip>($"Audio/SFX/{sfxName}");
-            if (clip != null) sfxCache[sfxName] = clip;
+            
+            if (clip != null) 
+            {
+                if (sfxName.StartsWith("sfx_ui_"))
+                {
+                    // Create a 2x sped-up version in memory by doubling the sample rate!
+                    float[] data = new float[clip.samples * clip.channels];
+                    clip.GetData(data, 0);
+                    AudioClip fastClip = AudioClip.Create(clip.name + "_fast", clip.samples, clip.channels, (int)(clip.frequency * 2.0f), false);
+                    fastClip.SetData(data, 0);
+                    clip = fastClip;
+                }
+                sfxCache[sfxName] = clip;
+            }
             else Debug.LogWarning($"[AudioManager] SFX not found: Audio/SFX/{sfxName}");
             return clip;
         }

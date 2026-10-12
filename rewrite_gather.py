@@ -1,0 +1,44 @@
+﻿import json
+import codecs
+
+filepath = 'F:/Project-F/Assets/Resources/Data/Dialogues/ch0_gathering.json'
+with codecs.open(filepath, 'r', encoding='utf-8-sig') as f:
+    data = json.load(f)
+
+# Keep the same basic nodes but rewrite the text
+nodes = [
+    {"id": 0, "speaker": " ", "text": "세이카는 로펌을 그만둔 뒤, 노을시 구시가지 외곽에 '네버모어 오컬트 탐정 사무소'를 개업했다.", "characterSpriteLeft": "", "characterSpriteCenter": "", "characterSpriteRight": "", "backgroundSprite": "bg_city_night", "command": "", "noFade": False, "slideIn": False},
+    {"id": 1, "speaker": " ", "text": "평범한 탐정 사무소와는 달랐다. 내부는 온갖 기괴한 장식품과 어두운 조명으로 꾸며져 있었다.", "characterSpriteLeft": "", "characterSpriteCenter": "", "characterSpriteRight": "", "backgroundSprite": "", "command": "", "noFade": True, "slideIn": False},
+    {"id": 2, "speaker": "세이카", "text": "기괴한 일을 겪은 사람이 각 잡힌 경찰서에 가면 미친 사람 취급밖에 더 받겠어?", "characterSpriteLeft": "", "characterSpriteCenter": "Characters/세이카/기본", "characterSpriteRight": "", "backgroundSprite": "", "command": "", "noFade": False, "slideIn": True},
+    {"id": 3, "speaker": "세이카", "text": "오히려 이런 분위기가 털어놓기 편하지.", "characterSpriteLeft": "", "characterSpriteCenter": "Characters/세이카/웃음", "characterSpriteRight": "", "backgroundSprite": "", "command": "", "noFade": True, "slideIn": False},
+    {"id": 4, "speaker": " ", "text": "하지만 호기롭게 개업한 것과 달리, 현실의 벽은 높았다.", "characterSpriteLeft": "", "characterSpriteCenter": "", "characterSpriteRight": "", "backgroundSprite": "", "command": "", "noFade": False, "slideIn": False},
+    {"id": 5, "speaker": " ", "text": "혼자서 방대한 실종자 기록을 뒤지고, 은폐된 단서를 추적하는 일은 물리적으로 불가능했다.", "characterSpriteLeft": "", "characterSpriteCenter": "", "characterSpriteRight": "", "backgroundSprite": "", "command": "", "noFade": True, "slideIn": False},
+    {"id": 6, "speaker": "세이카", "text": "...안 되겠어. 인력이 필요해.", "characterSpriteLeft": "", "characterSpriteCenter": "Characters/세이카/기본", "characterSpriteRight": "", "backgroundSprite": "", "command": "", "noFade": False, "slideIn": False},
+    {"id": 7, "speaker": " ", "text": "세이카는 직접 발로 뛰며 자신과 뜻을 함께할 인재들을 찾아 나섰다.", "characterSpriteLeft": "", "characterSpriteCenter": "", "characterSpriteRight": "", "backgroundSprite": "", "command": "", "noFade": False, "slideIn": False},
+    {"id": 8, "speaker": " ", "text": "시체의 목소리를 듣는다는 법의학자 카스미.", "characterSpriteLeft": "Characters/카스미/기본", "characterSpriteCenter": "", "characterSpriteRight": "", "backgroundSprite": "", "command": "", "noFade": False, "slideIn": True},
+    {"id": 9, "speaker": " ", "text": "구시가지 뒷골목의 해결사 리나.", "characterSpriteLeft": "Characters/카스미/기본", "characterSpriteCenter": "Characters/리나/기본", "characterSpriteRight": "", "backgroundSprite": "", "command": "", "noFade": True, "slideIn": True},
+    {"id": 10, "speaker": " ", "text": "천재 해커 리리스와, 갈 곳 잃은 요리사 하루카.", "characterSpriteLeft": "Characters/리리스/기본", "characterSpriteCenter": "Characters/리나/기본", "characterSpriteRight": "Characters/하루카/미소", "backgroundSprite": "", "command": "", "noFade": False, "slideIn": True},
+    {"id": 11, "speaker": " ", "text": "그리고 마지막으로 합류한, 정체불명의 심야 알바생 미나까지.", "characterSpriteLeft": "", "characterSpriteCenter": "Characters/미나/기본", "characterSpriteRight": "", "backgroundSprite": "", "command": "", "noFade": False, "slideIn": True},
+    {"id": 12, "speaker": " ", "text": "불과 몇 달 만에, 평범한 사회의 궤도에서 벗어나 있던 다섯 명이 사무소에 모였다.", "characterSpriteLeft": "", "characterSpriteCenter": "", "characterSpriteRight": "", "backgroundSprite": "", "command": "", "noFade": False, "slideIn": False},
+    {"id": 13, "speaker": "리나", "text": "맞아! 밥 주고 재워주는 건 좋은데, 우리 아직 일거리 하나도 없잖아!", "characterSpriteLeft": "Characters/리나/찡그림", "characterSpriteCenter": "", "characterSpriteRight": "Characters/세이카/기본", "backgroundSprite": "", "command": "", "noFade": False, "slideIn": True},
+    {"id": 14, "speaker": "리리스", "text": "서버 구축 완료. 잭오 대기 중. 하지만... 타겟 데이터 제로.", "characterSpriteLeft": "Characters/리리스/기본", "characterSpriteCenter": "", "characterSpriteRight": "Characters/세이카/기본", "backgroundSprite": "", "command": "", "noFade": False, "slideIn": True},
+    {"id": 15, "speaker": "세이카", "text": "너무 조급해하지 마.", "characterSpriteLeft": "Characters/리리스/기본", "characterSpriteCenter": "", "characterSpriteRight": "Characters/세이카/웃음", "backgroundSprite": "", "command": "", "noFade": True, "slideIn": False},
+    {"id": 16, "speaker": "세이카", "text": "어쩌면 단순한 우연은 아닐지도 몰라. 모두 한 번쯤은 잊힌 적이 있으니, ‘잊혀진 이들’도 잘 찾을 수 있지 않겠어?", "characterSpriteLeft": "Characters/리리스/기본", "characterSpriteCenter": "", "characterSpriteRight": "Characters/세이카/웃음", "backgroundSprite": "", "command": "", "noFade": True, "slideIn": False},
+    {"id": 17, "speaker": "미나", "text": "크큭... 맞느니라. 운명의 수레바퀴는 이미 돌아가기 시작했으니...", "characterSpriteLeft": "Characters/미나/기본", "characterSpriteCenter": "", "characterSpriteRight": "Characters/세이카/웃음", "backgroundSprite": "", "command": "", "noFade": False, "slideIn": True},
+    {"id": 18, "speaker": "하루카", "text": "그럼 우리 이제 대단한 오컬트 사건을 해결하러 가는 건가요?!", "characterSpriteLeft": "Characters/미나/기본", "characterSpriteCenter": "Characters/하루카/미소", "characterSpriteRight": "Characters/세이카/웃음", "backgroundSprite": "", "command": "", "noFade": True, "slideIn": True},
+    {"id": 19, "speaker": "세이카", "text": "아니.", "characterSpriteLeft": "Characters/미나/기본", "characterSpriteCenter": "Characters/하루카/미소", "characterSpriteRight": "Characters/세이카/기본", "backgroundSprite": "", "command": "", "noFade": True, "slideIn": False},
+    {"id": 20, "speaker": "세이카", "text": "일단은 기다릴 거야. 우리의 첫 의뢰인이, 이 문을 두드릴 때까지.", "characterSpriteLeft": "Characters/미나/기본", "characterSpriteCenter": "Characters/하루카/미소", "characterSpriteRight": "Characters/세이카/미소", "backgroundSprite": "", "command": "", "noFade": True, "slideIn": False},
+    {"id": 21, "speaker": " ", "text": "그렇게 네버모어 오컬트 탐정 사무소의 길고 기묘한 대기 시간이 시작되었다.", "characterSpriteLeft": "", "characterSpriteCenter": "", "characterSpriteRight": "", "backgroundSprite": "", "command": "", "noFade": False, "slideIn": False},
+    {"id": 22, "speaker": " ", "text": "", "characterSpriteLeft": "", "characterSpriteCenter": "", "characterSpriteRight": "", "backgroundSprite": "", "command": "START_DIALOGUE:ch0_opening", "noFade": False, "slideIn": False, "nextNodeId": -1}
+]
+
+for i in range(len(nodes) - 1):
+    nodes[i]['nextNodeId'] = nodes[i+1]['id']
+    nodes[i]['choices'] = []
+nodes[-1]['choices'] = []
+
+data['nodes'] = nodes
+
+with codecs.open(filepath, 'w', encoding='utf-8-sig') as f:
+    json.dump(data, f, ensure_ascii=False, indent=4)
+print("Rewrote ch0_gathering.json successfully.")

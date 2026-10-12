@@ -1,0 +1,100 @@
+	LoadAllAssembliesAndSetupDomain (232ms)
+		LoadAssemblies (221ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (170ms)
+			TypeCache.Refresh (7ms)
+				TypeCache.ScanAssembly (0ms)
+			BuildScriptInfoCaches (149ms)
+			ResolveRequiredComponents (11ms)
+	FinalizeReload (1946ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (786ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (33ms)
+			SetLoadedEditorAssemblies (4ms)
+			BeforeProcessingInitializeOnLoad (173ms)
+			ProcessInitializeOnLoadAttributes (458ms)
+			ProcessInitializeOnLoadMethodAttributes (90ms)
+			AfterProcessingInitializeOnLoad (28ms)
+			EditorAssembliesLoaded (1ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (752ms)
+Asset Pipeline Refresh (id=fb17b2d39cc5c6646907b6861ffe391d): Total: 3.371 seconds - Initiated by StopAssetImportingV2(ForceSynchronousImport | ForceDomainReload)
+	Summary:
+		Imports: total=0 (actual=0, local cache=0, cache server=0)
+		Asset DB Process Time: managed=0 ms, native=2060 ms
+		Asset DB Callback time: managed=32 ms, native=0 ms
+		Scripting: domain reloads=1, domain reload time=1275 ms, compile time=1 ms, other=0 ms
+		Project Asset Count: scripts=1434, non-scripts=2940
+		Asset File Changes: new=0, changed=0, moved=0, deleted=0
+		Scan Filter Count: 0
+	InvokeCustomDependenciesCallbacks: 0.001ms
+	InvokePackagesCallback: 4.020ms
+	ApplyChangesToAssetFolders: 0.543ms
+	Scan: 0.002ms
+	OnSourceAssetsModified: 0.004ms
+	CategorizeAssetsWithTransientArtifact: 0.004ms
+	ProcessAssetsWithTransientArtifactChanges: 6.713ms
+	CategorizeAssets: 55.531ms
+	ImportOutOfDateAssets: 1955.886ms (1951.001ms without children)
+		CompileScripts: 1.286ms
+		CollectScriptTypesHashes: 0.738ms
+		ReloadNativeAssets: 1.366ms
+		UnloadImportedAssets: 0.002ms
+		EnsureUptoDateAssetsAreRegisteredWithGuidPM: 0.817ms
+		InitializingProgressBar: 0.001ms
+		PostProcessAllAssetNotificationsAddChangedAssets: 0.001ms
+		OnDemandSchedulerStart: 0.676ms
+	PostProcessAllAssets: 32.483ms
+	GatherAllCurrentPrimaryArtifactRevisions: 0.227ms
+	UnloadStreamsBegin: 0.075ms
+	PersistCurrentRevisions: 0.148ms
+	UnloadStreamsEnd: 0.001ms
+	GenerateScriptTypeHashes: 3.784ms
+	Untracked: 1315.230ms
+
+🎃 Halloween VN — Auto-initialized!
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+HalloweenVN.Core.GameBootstrap:AutoSetup () (at Assets/Scripts/Core/GameBootstrap.cs:24)
+
+(Filename: Assets/Scripts/Core/GameBootstrap.cs Line: 24)
+
+Loaded scene 'Temp/__Backupscenes/0.backup'
+	Deserialize:            1.204 ms
+	Integration:            514.912 ms
+	Integration of assets:  0.004 ms
+	Thread Wait Time:       0.016 ms
+	Total Operation Time:   516.136 ms
+[Licensing::Client] Successfully resolved entitlement details
+✅ [AutoFontSetup] 한글 폰트 에셋이 이미 존재합니다.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+HalloweenVN.Editor.AutoFontSetup:SetupFont () (at Assets/Editor/AutoFontSetup.cs:51)
+UnityEditor.EditorApplication:Internal_CallDelayFunctions ()
+
+(Filename: Assets/Editor/AutoFontSetup.cs Line: 51)
+
+[Licensing::Client] Successfully resolved entitlement details
+Unloading 4 Unused Serialized files (Serialized files now loaded: 0)
+Loaded scene 'Temp/__Backupscenes/0.backup'
+	Deserialize:            0.667 ms
+	Integration:            267.062 ms
+	Integration of assets:  0.003 ms
+	Thread Wait Time:       0.014 ms
+	Total Operation Time:   267.745 ms
+Unloading 12 unused Assets / (204.5 KB). Loaded Objects now: 8385.
+Memory consumption went from 377.5 MB to 377.3 MB.
+Total: 19.023600 ms (FindLiveObjects: 0.598500 ms CreateObjectMapping: 0.392200 ms MarkObjects: 17.910200 ms  DeleteObjects: 0.121200 ms)
+
+[Licensing::Client] Successfully resolved entitlement details
+[Licensing::Client] Successfully resolved entitlement details

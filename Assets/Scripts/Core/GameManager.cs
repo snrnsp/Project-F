@@ -10,7 +10,7 @@ namespace HalloweenVN.Core
     {
         public static GameManager Instance { get; private set; }
         
-        public GamePhase CurrentPhase { get; private set; } = GamePhase.Lobby;
+        public GamePhase CurrentPhase { get; private set; } = GamePhase.Splash;
         
         public event Action<GamePhase> OnPhaseChanged;
         
@@ -34,12 +34,17 @@ namespace HalloweenVN.Core
         /// Changes the current game phase and notifies listeners.
         /// </summary>
         /// <param name="newPhase">The new game phase.</param>
+                private void Start()
+        {
+            ChangePhase(GamePhase.Splash);
+        }
+
         public void ChangePhase(GamePhase newPhase)
         {
             CurrentPhase = newPhase;
             OnPhaseChanged?.Invoke(CurrentPhase);
             
-            if (CurrentPhase != GamePhase.Lobby)
+            if (CurrentPhase != GamePhase.Lobby && CurrentPhase != GamePhase.Splash)
             {
                 SaveManager.Save(SaveManager.CreateFromCurrentState(0), 0);
             }
@@ -47,7 +52,7 @@ namespace HalloweenVN.Core
         
         private void OnApplicationQuit()
         {
-            if (CurrentPhase != GamePhase.Lobby)
+            if (CurrentPhase != GamePhase.Lobby && CurrentPhase != GamePhase.Splash)
             {
                 SaveManager.Save(SaveManager.CreateFromCurrentState(0), 0);
             }
@@ -55,7 +60,7 @@ namespace HalloweenVN.Core
 
         private void OnApplicationPause(bool pauseStatus)
         {
-            if (pauseStatus && CurrentPhase != GamePhase.Lobby)
+            if (pauseStatus && CurrentPhase != GamePhase.Lobby && CurrentPhase != GamePhase.Splash)
             {
                 SaveManager.Save(SaveManager.CreateFromCurrentState(0), 0);
             }

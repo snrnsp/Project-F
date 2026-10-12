@@ -1,0 +1,114 @@
+**파일: ch0_origin.json**
+❌ 문제 발견: Node 33
+- 현재: Left(세이카), Center(), Right()
+- 문제: 1인 등장 시 Center에 위치해야 함
+- 수정안: "characterSpriteLeft": "", "characterSpriteCenter": "Characters/세이카/기본", "characterSpriteRight": ""
+
+**파일: ch0_origin.json**
+❌ 문제 발견: Node 35
+- 현재: Left(세이카), Center(), Right()
+- 문제: 1인 등장 시 Center에 위치해야 함
+- 수정안: "characterSpriteLeft": "", "characterSpriteCenter": "Characters/세이카/미소", "characterSpriteRight": ""
+
+**파일: ch0_gathering.json**
+❌ 문제 발견: Node 6
+- 현재: Left(세이카), Center(), Right()
+- 문제: 1인 등장 시 Center에 위치해야 함
+- 수정안: "characterSpriteLeft": "", "characterSpriteCenter": "Characters/세이카/기본", "characterSpriteRight": ""
+
+**파일: ch0_gathering.json**
+❌ 문제 발견: Node 22
+- 현재: Left(카스미), Center(미나), Right()
+- 문제: 2인 등장 시 Left, Right에 위치해야 함
+- 수정안: "characterSpriteLeft": "Characters/카스미/찡그림", "characterSpriteCenter": "", "characterSpriteRight": "Characters/미나/기본"
+
+**파일: ch0_gathering.json**
+❌ 문제 발견: Node 27
+- 현재: Left(), Center(리나), Right(하루카)
+- 문제: 2인 등장 시 Left, Right에 위치해야 함
+- 수정안: "characterSpriteLeft": "Characters/리나/기본", "characterSpriteCenter": "", "characterSpriteRight": "Characters/하루카/기본"
+
+**파일: ch0_gathering.json**
+❌ 문제 발견: Node 28
+- 현재: Left(), Center(리나), Right(하루카)
+- 문제: 2인 등장 시 Left, Right에 위치해야 함
+- 수정안: "characterSpriteLeft": "Characters/리나/기본", "characterSpriteCenter": "", "characterSpriteRight": "Characters/하루카/홍조"
+
+**파일: ch1_morning.json**
+❌ 문제 발견: Node 14
+- 현재: Left(카스미), Center(리나), Right()
+- 문제: 2인 등장 시 Left, Right에 위치해야 함
+- 수정안: "characterSpriteLeft": "Characters/카스미/찡그림", "characterSpriteCenter": "", "characterSpriteRight": "Characters/리나/웃음"
+
+**파일: ch1_morning.json**
+❌ 문제 발견: Node 15
+- 현재: Left(카스미), Center(리나), Right()
+- 문제: 2인 등장 시 Left, Right에 위치해야 함
+- 수정안: "characterSpriteLeft": "Characters/카스미/찡그림", "characterSpriteCenter": "", "characterSpriteRight": "Characters/리나/기본"
+
+**파일: ch1_morning.json**
+❌ 문제 발견: Node 21
+- 현재: Left(리리스), Center(리나), Right()
+- 문제: 2인 등장 시 Left, Right에 위치해야 함
+- 수정안: "characterSpriteLeft": "Characters/리리스/찡그림", "characterSpriteCenter": "", "characterSpriteRight": "Characters/리나/웃음"
+
+**파일: ch1_morning.json**
+❌ 문제 발견: Node 22
+- 현재: Left(리리스), Center(리나), Right()
+- 문제: 2인 등장 시 Left, Right에 위치해야 함
+- 수정안: "characterSpriteLeft": "Characters/리리스/기본", "characterSpriteCenter": "", "characterSpriteRight": "Characters/리나/웃음"
+
+**파일: ch1_morning.json**
+❌ 문제 발견: Node 23
+- 현재: Left(리리스), Center(리나), Right()
+- 문제: 2인 등장 시 Left, Right에 위치해야 함
+- 수정안: "characterSpriteLeft": "Characters/리리스/기본", "characterSpriteCenter": "", "characterSpriteRight": "Characters/리나/찡그림"
+
+**파일: ch1_morning.json**
+❌ 문제 발견: Node 24
+- 현재: Left(리리스), Center(리나), Right()
+- 문제: 2인 등장 시 Left, Right에 위치해야 함
+- 수정안: "characterSpriteLeft": "Characters/리리스/눈 감음", "characterSpriteCenter": "", "characterSpriteRight": "Characters/리나/찡그림"
+
+**파일: ch1_night.json**
+❌ 문제 발견: Node 27
+- 현재: Left(카스미), Center(), Right()
+- 문제: 1인 등장 시 Center에 위치해야 함
+- 수정안: "characterSpriteLeft": "", "characterSpriteCenter": "Characters/카스미/당황2", "characterSpriteRight": ""
+
+**파일: ch1_investigation_talk.json**
+❌ 문제 발견: Node 2
+- 현재: Left(), Center(), Right(카스미)
+- 문제: 1인 등장 시 Center에 위치해야 함
+- 수정안: "characterSpriteLeft": "", "characterSpriteCenter": "Characters/카스미/기본", "characterSpriteRight": ""
+
+**파일: ch1_investigation_talk.json**
+❌ 문제 발견: Node 3
+- 현재: Left(), Center(), Right(카스미)
+- 문제: 1인 등장 시 Center에 위치해야 함
+- 수정안: "characterSpriteLeft": "", "characterSpriteCenter": "Characters/카스미/찡그림", "characterSpriteRight": ""
+
+**파일: ch1_investigation_talk.json**
+❌ 문제 발견: Node 11
+- 현재: Left(카스미), Center(), Right()
+- 문제: 1인 등장 시 Center에 위치해야 함
+- 수정안: "characterSpriteLeft": "", "characterSpriteCenter": "Characters/카스미/기본", "characterSpriteRight": ""
+
+**파일: ch1_resolution.json**
+❌ 문제 발견: Node 23
+- 현재: Left(), Center(카스미), Right(리나)
+- 문제: 2인 등장 시 Left, Right에 위치해야 함
+- 수정안: "characterSpriteLeft": "Characters/카스미/기본", "characterSpriteCenter": "", "characterSpriteRight": "Characters/리나/기본"
+
+**파일: ch1_epilogue.json**
+❌ 문제 발견: Node 9
+- 현재: Left(카스미), Center(), Right()
+- 문제: 1인 등장 시 Center에 위치해야 함
+- 수정안: "characterSpriteLeft": "", "characterSpriteCenter": "Characters/카스미/미소", "characterSpriteRight": ""
+
+**파일: ch1_epilogue.json**
+❌ 문제 발견: Node 11
+- 현재: Left(카스미), Center(), Right()
+- 문제: 1인 등장 시 Center에 위치해야 함
+- 수정안: "characterSpriteLeft": "", "characterSpriteCenter": "Characters/카스미/기본", "characterSpriteRight": ""
+

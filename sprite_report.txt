@@ -1,0 +1,31 @@
+[ch0_gathering.json] Node 32: 세이카 jumped from Right to Center!
+[ch0_origin.json] Node 5: 선임 변호사 is speaking but not on screen! Sprites: {'Left': '', 'Center': '세이카', 'Right': ''}
+[ch0_origin.json] Node 7: 선임 변호사 is speaking but not on screen! Sprites: {'Left': '', 'Center': '세이카', 'Right': ''}
+[ch0_origin.json] Node 10: 선임 변호사 is speaking but not on screen! Sprites: {'Left': '', 'Center': '세이카', 'Right': ''}
+[ch0_origin.json] Node 12: 선임 변호사 is speaking but not on screen! Sprites: {'Left': '', 'Center': '세이카', 'Right': ''}
+[ch0_origin.json] Node 27: 동네 할머니 is speaking but not on screen! Sprites: {'Left': '', 'Center': '세이카', 'Right': ''}
+[ch0_origin.json] Node 29: 동네 할머니 is speaking but not on screen! Sprites: {'Left': '', 'Center': '세이카', 'Right': ''}
+[ch1_epilogue.json] Node 3: 서하유 is speaking but not on screen! Sprites: {'Left': '하루카', 'Center': '', 'Right': ''}
+[ch1_epilogue.json] Node 8: 서하유 is speaking but not on screen! Sprites: {'Left': '하루카', 'Center': '리나', 'Right': '리리스'}
+[ch1_epilogue.json] Node 10: 서하유 is speaking but not on screen! Sprites: {'Left': '카스미', 'Center': '리나', 'Right': '리리스'}
+[ch1_epilogue.json] Node 12: 서하유 is speaking but not on screen! Sprites: {'Left': '카스미', 'Center': '리나', 'Right': '리리스'}
+[ch1_epilogue.json] Node 47: 서하유 is speaking but not on screen! Sprites: {'Left': '세이카', 'Center': '리나', 'Right': '리리스'}
+[ch1_epilogue.json] Node 48: 서하유 is speaking but not on screen! Sprites: {'Left': '세이카', 'Center': '리나', 'Right': '리리스'}
+[ch1_epilogue.json] Node 54: 서하유 is speaking but not on screen! Sprites: {'Left': '세이카', 'Center': '리나', 'Right': '리리스'}
+[ch1_epilogue.json] Node 58: 서하유 is speaking but not on screen! Sprites: {'Left': '하루카', 'Center': '리나', 'Right': '리리스'}
+[ch1_epilogue.json] Node 60: 서하유 is speaking but not on screen! Sprites: {'Left': '세이카', 'Center': '리나', 'Right': '리리스'}
+[ch1_epilogue.json] Node 61: 서하유 is speaking but not on screen! Sprites: {'Left': '세이카', 'Center': '리나', 'Right': '리리스'}
+[ch1_morning.json] Node 21: 리나 jumped from Center to Right!
+[ch1_morning.json] Node 29: 미나 jumped from Center to Right!
+[ch1_morning.json] Node 39: 카스미 jumped from Center to Left!
+[ch1_morning.json] Node 42: 하루카 jumped from Center to Right!
+[ch1_morning.json] Node 54: 미나 jumped from Center to Left!
+[ch1_resolution.json] Node 104: 서하유 is speaking but not on screen! Sprites: {'Left': '리리스', 'Center': '세이카', 'Right': '카스미'}
+[ch1_resolution.json] Node 125: 서하유 is speaking but not on screen! Sprites: {'Left': '리리스', 'Center': '세이카', 'Right': '카스미'}
+[ch1_resolution.json] Node 126: 서하유 is speaking but not on screen! Sprites: {'Left': '리리스', 'Center': '세이카', 'Right': '카스미'}
+[ch1_resolution.json] Node 128: 서하유 is speaking but not on screen! Sprites: {'Left': '리리스', 'Center': '세이카', 'Right': '카스미'}
+[ch1_resolution.json] Node 129: 서하유 is speaking but not on screen! Sprites: {'Left': '리리스', 'Center': '세이카', 'Right': '카스미'}
+[ch1_resolution.json] Node 130: 서하유 is speaking but not on screen! Sprites: {'Left': '리리스', 'Center': '세이카', 'Right': '카스미'}
+[ch1_resolution.json] Node 131: 서하유 is speaking but not on screen! Sprites: {'Left': '리리스', 'Center': '세이카', 'Right': '카스미'}
+[ch1_resolution.json] Node 133: 서하유 is speaking but not on screen! Sprites: {'Left': '하루카', 'Center': '세이카', 'Right': '카스미'}
+[ch1_resolution.json] Node 140: 서하유 is speaking but not on screen! Sprites: {'Left': '리나', 'Center': '세이카', 'Right': '카스미'}
