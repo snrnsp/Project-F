@@ -1,55 +1,22 @@
-﻿import sys
+﻿import codecs
+import re
 
-filepath = 'F:/Project-F/Assets/Scripts/UI/LobbyUI.cs'
-with open(filepath, 'r', encoding='utf-8-sig') as f:
+filepath = 'F:/Project-F/Assets/Scripts/UI/Theme/HalloweenUIBuilder.cs'
+with codecs.open(filepath, 'r', encoding='utf-8-sig') as f:
     content = f.read()
 
-old_code = '''        private void HandlePhaseChanged(GamePhase phase)
-        {
-            if (lobbyPanel == null) return;
+pattern = r'Image bgImg = UIHelper\.AddImage\(bgObj, new Color\(0\.72f, 0\.72f, 0\.72f, 1f\), bgSprite\); // Darkened background'
 
-            if (phase == GamePhase.Lobby)
-            {
-                if (AudioManager.Instance != null) AudioManager.Instance.PlayBGM("bgm_lobby");
-                // Returning to the lobby (e.g. after the ending) must re-enable "New Game".
-                isStartingGame = false;
-                lobbyPanel.SetActive(true);
-                UpdateContinueButton();
-                StopAllCoroutines();
-                StartCoroutine(SlideLobby(true));
-            }
-            else
-            {
-                StopAllCoroutines();
-                StartCoroutine(SlideLobby(false));
-            }
-        }'''
+replacement = r'''Image bgImg = UIHelper.AddImage(bgObj, new Color(0.72f, 0.72f, 0.72f, 1f), bgSprite); // Darkened background
+            UnityEngine.UI.AspectRatioFitter bgArf = bgObj.AddComponent<UnityEngine.UI.AspectRatioFitter>();
+            bgArf.aspectMode = UnityEngine.UI.AspectRatioFitter.AspectMode.EnvelopeParent;
+            bgArf.aspectRatio = 1920f / 1080f;'''
 
-new_code = '''        private void HandlePhaseChanged(GamePhase phase)
-        {
-            if (lobbyPanel == null) return;
+new_content = re.sub(pattern, replacement, content)
 
-            if (phase == GamePhase.Lobby)
-            {
-                if (AudioManager.Instance != null) AudioManager.Instance.PlayBGM("bgm_lobby");
-                // Returning to the lobby (e.g. after the ending) must re-enable "New Game".
-                isStartingGame = false;
-                lobbyPanel.SetActive(true);
-                UpdateContinueButton();
-                StopAllCoroutines();
-                if (gameObject.activeInHierarchy) StartCoroutine(SlideLobby(true));
-            }
-            else
-            {
-                StopAllCoroutines();
-                if (gameObject.activeInHierarchy) StartCoroutine(SlideLobby(false));
-            }
-        }'''
-
-if old_code in content:
-    content = content.replace(old_code, new_code)
-    with open(filepath, 'w', encoding='utf-8-sig') as f:
-        f.write(content)
-    print("Fixed LobbyUI coroutine crash.")
+if content != new_content:
+    with codecs.open(filepath, 'w', encoding='utf-8-sig') as f:
+        f.write(new_content)
+    print("Fixed Lobby Background AspectRatioFitter!")
 else:
-    print("Could not find the target code string.")
+    print("Failed to match Lobby background!")

@@ -252,6 +252,9 @@ namespace HalloweenVN.UI.Theme
                 }
             }
             Image bgImg = UIHelper.AddImage(bgObj, new Color(0.72f, 0.72f, 0.72f, 1f), bgSprite); // Darkened background
+            UnityEngine.UI.AspectRatioFitter bgArf = bgObj.AddComponent<UnityEngine.UI.AspectRatioFitter>();
+            bgArf.aspectMode = UnityEngine.UI.AspectRatioFitter.AspectMode.EnvelopeParent;
+            bgArf.aspectRatio = 1920f / 1080f;
             if (bgSprite == null)
             {
                 bgImg.color = new Color32(15, 8, 25, 255);
@@ -473,6 +476,9 @@ namespace HalloweenVN.UI.Theme
             bgImgObj.GetComponent<RectTransform>().offsetMin = new Vector2(-2, -2);
             bgImgObj.GetComponent<RectTransform>().offsetMax = new Vector2(2, 2);
             Image backgroundImage = UIHelper.AddImage(bgImgObj, new Color(1,1,1,0));
+            UnityEngine.UI.AspectRatioFitter arf = bgImgObj.AddComponent<UnityEngine.UI.AspectRatioFitter>();
+            arf.aspectMode = UnityEngine.UI.AspectRatioFitter.AspectMode.EnvelopeParent;
+            arf.aspectRatio = 1920f / 1080f;
 
             // Character Images (Left, Center, Right) — Anchor-based like old project
             Image characterImageLeft = CreateCharacterSlot("CharacterImageLeft", dialoguePanelRoot.transform, 0.25f);
