@@ -446,7 +446,7 @@ namespace HalloweenVN.UI.Theme
             CanvasScaler scaler = canvasObj.AddComponent<CanvasScaler>();
             scaler.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
             scaler.referenceResolution = new Vector2(1920, 1080);
-            scaler.matchWidthOrHeight = 0.5f;
+            scaler.screenMatchMode = UnityEngine.UI.CanvasScaler.ScreenMatchMode.Expand; // Guarantee NO UI gets cut off regardless of aspect ratio
             
             canvasObj.AddComponent<GraphicRaycaster>();
             
@@ -1706,7 +1706,7 @@ namespace HalloweenVN.UI.Theme
             globalSettingsBtnObj = btnObj;
             RectTransform btnRt = btnObj.GetComponent<RectTransform>();
             UIHelper.SetAnchors(btnRt, new Vector2(1, 1), new Vector2(1, 1), new Vector2(1, 1));
-            btnRt.anchoredPosition = new Vector2(-20, -20);
+            btnRt.anchoredPosition = new Vector2(-80, -40); // Moved inward for Verse8 safe area
             btnRt.sizeDelta = new Vector2(60, 60);
 
             // Button styling (Invisible hit box)
@@ -1766,6 +1766,7 @@ namespace HalloweenVN.UI.Theme
             CanvasScaler scaler = transObj.AddComponent<CanvasScaler>();
             scaler.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
             scaler.referenceResolution = new Vector2(1920, 1080);
+            scaler.screenMatchMode = CanvasScaler.ScreenMatchMode.Expand;
 
             GameObject overlayObj = UIHelper.CreateUIObject("Overlay", transObj.transform);
             UIHelper.StretchFull(overlayObj.GetComponent<RectTransform>());
