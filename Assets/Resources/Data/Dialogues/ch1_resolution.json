@@ -1,4 +1,4 @@
-﻿{
+{
     "dialogueId": "ch1_resolution",
     "nodes": [
         {
@@ -1473,7 +1473,7 @@
             "text": "환영해. 네버모어 오컬트 탐정 사무소에 온 걸.",
             "characterSpriteLeft": "Characters/리리스/기본",
             "characterSpriteCenter": "",
-            "characterSpriteRight": "Characters/세이카/미소",
+            "characterSpriteRight": "Characters/세이카/웃음",
             "backgroundSprite": "",
             "command": "",
             "noFade": false,

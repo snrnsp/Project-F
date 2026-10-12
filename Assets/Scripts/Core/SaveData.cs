@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using System;
 
@@ -17,6 +17,8 @@ namespace HalloweenVN.Core
         public int saveSlot;
         public string currentPhase;
         public string currentDialogueId;
+        public bool hasAudioState;
+        public string currentBgm;
         public int currentNodeIndex;
         public List<string> collectedEvidenceIds;
         public string currentCaseId;
@@ -165,6 +167,11 @@ namespace HalloweenVN.Core
                 }
             }
             
+            if (AudioManager.Instance != null)
+            {
+                data.hasAudioState = true;
+                data.currentBgm = AudioManager.Instance.CurrentBGM;
+            }
             data.saveTimestamp = DateTime.UtcNow.ToString("o");
             
             return data;

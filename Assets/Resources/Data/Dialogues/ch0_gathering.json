@@ -1,5 +1,6 @@
-﻿{
+{
     "dialogueId": "ch0_gathering",
+    "initialBgm": "bgm_office_night",
     "nodes": [
         {
             "id": 0,
@@ -287,7 +288,7 @@
             "text": "일단은 기다릴 거야. 우리의 첫 의뢰인이, 이 문을 두드릴 때까지.",
             "characterSpriteLeft": "Characters/미나/기본",
             "characterSpriteCenter": "Characters/하루카/미소",
-            "characterSpriteRight": "Characters/세이카/미소",
+            "characterSpriteRight": "Characters/세이카/웃음",
             "backgroundSprite": "",
             "command": "",
             "noFade": true,

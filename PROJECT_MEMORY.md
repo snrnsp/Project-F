@@ -1,3 +1,22 @@
+﻿## 2026-10-12 시청각 QA 수정 적용
+
+- 현재 작업 경로: `C:\Users\kk254\OneDrive\문서\GitHub\Project-F` (아래의 과거 `F:\Project-F` 경로보다 현재 환경을 우선).
+- LegacyTextFontFallback 추가: 선택한 폰트가 번역되지 않은 한국어 레이블을 지원하지 않으면 Resources의 MalgunGothic으로 대체. 번역 자체를 추가한 것은 아님.
+- 로비 환경 설정 및 데이터 삭제 버튼 연결. 삭제 시 대화를 종료하고 저장 슬롯을 제거하며 이어하기 상태를 갱신. 종료된 대화의 지연 장면 전환도 취소.
+- 대화 기록 제목 위치와 RectMask2D/ScrollRect viewport 수정. 캐릭터 폴더 상단과 탭 텍스트 위치를 맞춰 가림 방지.
+- AudioManager는 WebGL 오디오 데이터 로딩 후 재생. UI 효과음 PCM 재생성 대신 pitch=2 사용. 타이틀/되감기 시 로딩 대기 중인 효과음까지 취소.
+- 타이틀 복귀 시 로비 BGM을 다시 정지하던 코드 제거. 복합 명령의 BGM을 되감기/이어하기에서도 처리.
+- SaveData에 hasAudioState/currentBgm 추가. 구형 모임 장면 저장은 DialogueContainer.initialBgm 및 ch0_gathering의 bgm_office_night로 복원.
+- 세이카의 존재하지 않는 미소/의아 스프라이트 참조 6개를 웃음/놀람 리소스로 교체.
+- 검증: C# 48개 문법 검사, 모사 Unity API 기반 회귀 검사 13개, 활성 대화 9개의 캐릭터 스프라이트 참조 558개 확인 통과.
+- **배포 상태:** 소스 반영 완료. `docs` WebGL 빌드는 갱신하지 못함. 설치된 Unity 6000.3.19f1에 PackageManager/Server/UnityPackageManager.exe와 WebGL PlaybackEngines가 없어 배치 실행 실패. 실제 Unity 컴파일 및 수정 후 화면/사운드 재검증은 환경 복구 후 필요.
+
+| 날짜 | 변경 |
+|------|------|
+| 2026-10-12 | 시청각 QA의 UI·효과음·BGM 복원·스프라이트 참조·버튼 연결 수정, 기존 저장 호환 처리. WebGL 빌드는 Unity 설치 누락으로 보류. |
+
+---
+
 # ?럠 Project F (OBLIVION) ???꾨줈?앺듃 湲곗뼲 ??μ냼
 
 > **???뚯씪? ?꾨줈?앺듃?????紐⑤뱺 ?듭떖 ?뺣낫瑜??닿퀬 ?덉뒿?덈떎.**

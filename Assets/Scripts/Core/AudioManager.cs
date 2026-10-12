@@ -59,6 +59,8 @@ namespace HalloweenVN.Core
 
         // ── SFX state ──
         private readonly Dictionary<string, AudioClip> sfxCache = new Dictionary<string, AudioClip>();
+        private readonly HashSet<string> pendingSfx = new HashSet<string>();
+        private int sfxGeneration;
 
         private class TimedSfx
         {
@@ -143,7 +145,7 @@ namespace HalloweenVN.Core
                 uiSource.playOnAwake = false;
                 uiSource.spatialBlend = 0f;
             }
-            uiSource.pitch = 1.0f; // Default pitch
+            uiSource.pitch = 2.0f; // Preserve the UI sound speed without reading compressed PCM data.
             // One-shots carry their own volume scale; keep the source at 1 so the
             // SFX slider is not applied twice (that used to make 50% sound like 25%).
             sfxSource.volume = 1f;
@@ -197,6 +199,13 @@ namespace HalloweenVN.Core
 
         private IEnumerator SwitchBGM(AudioClip newClip, float newGain, float duration)
         {
+            yield return WaitForAudioData(newClip);
+            if (newClip == null || newClip.loadState != AudioDataLoadState.Loaded)
+            {
+                currentBgmName = bgmSource.clip != null ? bgmSource.clip.name : null;
+                bgmCoroutine = null;
+                yield break;
+            }
             float half = Mathf.Max(0.01f, duration * 0.5f);
 
             if (bgmSource.isPlaying && bgmSource.clip != null && bgmFade > 0f)
@@ -252,9 +261,30 @@ namespace HalloweenVN.Core
         /// </summary>
         public void PlaySFX(string sfxName, float maxDuration = 0f, float fadeOutTime = 1f)
         {
-            Debug.Log("[AudioManager] PlaySFX called with: " + sfxName);
             AudioClip clip = LoadSFX(sfxName);
-            if (clip == null) return;
+            if (clip == null || !pendingSfx.Add(sfxName)) return;
+            StartCoroutine(PlaySfxWhenReady(sfxName, clip, maxDuration, fadeOutTime, sfxGeneration));
+        }
+
+        private IEnumerator WaitForAudioData(AudioClip clip)
+        {
+            if (clip == null) yield break;
+            if (clip.loadState == AudioDataLoadState.Unloaded) clip.LoadAudioData();
+            float deadline = Time.realtimeSinceStartup + 10f;
+            while (clip != null && clip.loadState != AudioDataLoadState.Loaded &&
+                   clip.loadState != AudioDataLoadState.Failed && Time.realtimeSinceStartup < deadline)
+                yield return null;
+            if (clip != null && clip.loadState != AudioDataLoadState.Loaded)
+                Debug.LogWarning($"[AudioManager] Audio data could not be loaded: {clip.name}");
+        }
+
+        private IEnumerator PlaySfxWhenReady(string sfxName, AudioClip clip, float maxDuration, float fadeOutTime, int generation)
+        {
+            yield return WaitForAudioData(clip);
+            // Rewind/title changes also cancel sounds still waiting for WebGL decoding.
+            if (generation != sfxGeneration) yield break;
+            pendingSfx.Remove(sfxName);
+            if (clip == null || clip.loadState != AudioDataLoadState.Loaded) yield break;
 
             float gain = GainOf(sfxName);
             float offset = ClipStartOffset.TryGetValue(sfxName, out float o) ? o : 0f;
@@ -284,6 +314,7 @@ namespace HalloweenVN.Core
                 if (timedSfx[i].name == sfxName) StopTimed(timedSfx[i]);
             }
 
+            offset = Mathf.Clamp(offset, 0f, Mathf.Max(0f, clip.length - 0.001f));
             var entry = new TimedSfx { name = sfxName, gain = gain };
             entry.source = gameObject.AddComponent<AudioSource>();
             entry.source.playOnAwake = false;
@@ -332,8 +363,11 @@ namespace HalloweenVN.Core
         /// <summary>Stops every sound effect that is still playing (used on rewind / return to lobby).</summary>
         public void StopAllSFX()
         {
+            sfxGeneration++;
+            pendingSfx.Clear();
             for (int i = timedSfx.Count - 1; i >= 0; i--) StopTimed(timedSfx[i]);
             if (sfxSource != null) sfxSource.Stop();
+            if (uiSource != null) uiSource.Stop();
         }
 
         private AudioClip LoadSFX(string sfxName)
@@ -344,15 +378,6 @@ namespace HalloweenVN.Core
             
             if (clip != null) 
             {
-                if (sfxName.StartsWith("sfx_ui_"))
-                {
-                    // Create a 2x sped-up version in memory by doubling the sample rate!
-                    float[] data = new float[clip.samples * clip.channels];
-                    clip.GetData(data, 0);
-                    AudioClip fastClip = AudioClip.Create(clip.name + "_fast", clip.samples, clip.channels, (int)(clip.frequency * 2.0f), false);
-                    fastClip.SetData(data, 0);
-                    clip = fastClip;
-                }
                 sfxCache[sfxName] = clip;
             }
             else Debug.LogWarning($"[AudioManager] SFX not found: Audio/SFX/{sfxName}");

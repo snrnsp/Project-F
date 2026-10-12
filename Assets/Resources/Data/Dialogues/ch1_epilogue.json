@@ -1,4 +1,4 @@
-﻿{
+{
     "dialogueId": "ch1_epilogue",
     "nodes": [
         {
@@ -160,7 +160,7 @@
             "speaker": "세이카",
             "text": "오늘은 가족의 품으로 돌아가. 10년 치 밀린 이야기를 나눠야지.",
             "characterSpriteLeft": "",
-            "characterSpriteCenter": "Characters/세이카/미소",
+            "characterSpriteCenter": "Characters/세이카/웃음",
             "characterSpriteRight": "",
             "backgroundSprite": "",
             "command": "",

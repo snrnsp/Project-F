@@ -172,6 +172,9 @@ namespace HalloweenVN.UI
                 returnToTitleButton.onClick.AddListener(OnReturnToTitleClicked);
             }
 
+            if (deleteDataButton != null)
+                deleteDataButton.onClick.AddListener(OnDeleteDataClicked);
+
             if (autoPlayInputField != null) autoPlayInputField.onEndEdit.AddListener(OnAutoPlayInputEdit);
         UpdateAllLabels();
             UpdateLanguage();
@@ -301,8 +304,7 @@ namespace HalloweenVN.UI
                 HalloweenVN.Dialogue.DialogueManager.Instance.EndDialogue();
             if (HalloweenVN.Core.GameManager.Instance != null)
                 HalloweenVN.Core.GameManager.Instance.ChangePhase(HalloweenVN.Core.GamePhase.Lobby);
-            if (HalloweenVN.Core.AudioManager.Instance != null)
-                HalloweenVN.Core.AudioManager.Instance.StopBGM(0.5f);
+            // The Lobby phase owns starting its music; do not stop it here.
         } // --- Callbacks ---
         
         private void OnFlashEffectClicked()
@@ -492,13 +494,13 @@ namespace HalloweenVN.UI
 
         private void OnDeleteDataClicked()
         {
-            UnityEngine.PlayerPrefs.DeleteKey("HalloweenVN_Save_0");
-            UnityEngine.PlayerPrefs.Save();
+            // End the dialogue before deleting so a later autosave cannot recreate it.
+            if (HalloweenVN.Dialogue.DialogueManager.Instance != null)
+                HalloweenVN.Dialogue.DialogueManager.Instance.EndDialogue();
+            SaveManager.Delete(0);
             Hide();
-            if (HalloweenVN.Core.GameManager.Instance != null && HalloweenVN.Core.GameManager.Instance.CurrentPhase != HalloweenVN.Core.GamePhase.Lobby)
-            {
-                HalloweenVN.Core.GameManager.Instance.ChangePhase(HalloweenVN.Core.GamePhase.Lobby);
-            }
+            if (GameManager.Instance != null)
+                GameManager.Instance.ChangePhase(GamePhase.Lobby);
         }
     }
 }

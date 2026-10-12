@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace HalloweenVN.Data
 {
@@ -40,6 +40,8 @@ namespace HalloweenVN.Data
     public class DialogueContainer
     {
         public string dialogueId;
+        // Music inherited at chapter entry, also used when reading older saves.
+        public string initialBgm;
         public List<DialogueNode> nodes;
     }
 }

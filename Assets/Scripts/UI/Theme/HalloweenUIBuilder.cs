@@ -1057,6 +1057,7 @@ namespace HalloweenVN.UI.Theme
             // Attach SettingsUI
             SettingsUI settingsUi = settingsRoot.AddComponent<SettingsUI>();
             settingsUiRef = settingsUi;
+            settingsButtonRef.onClick.AddListener(settingsUi.Show);
             bgBtn.onClick.AddListener(() => settingsUi.Hide());
             if (globalMgrRef != null) globalMgrRef.Initialize(settingsRoot);
             UIHelper.SetField(settingsUi, "settingsPanel", settingsRoot);
@@ -1237,6 +1238,7 @@ namespace HalloweenVN.UI.Theme
                 else legacyText.font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
             }
 
+            legacyText.gameObject.AddComponent<LegacyTextFontFallback>();
             return (btn, legacyText);
         }
 
@@ -1260,6 +1262,7 @@ namespace HalloweenVN.UI.Theme
                 else legacyText.font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
             }
 
+            legacyText.gameObject.AddComponent<LegacyTextFontFallback>();
             return legacyText;
         }
         
@@ -1339,12 +1342,14 @@ namespace HalloweenVN.UI.Theme
             RectTransform scrollRt = scrollObj.GetComponent<RectTransform>();
             UIHelper.StretchFull(scrollRt);
             scrollRt.offsetMin = new Vector2(100, 80);
-            scrollRt.offsetMax = new Vector2(-100, -60);
+            scrollRt.offsetMax = new Vector2(-100, -100);
 
             ScrollRect scrollRect = scrollObj.AddComponent<ScrollRect>();
             scrollRect.horizontal = false;
             scrollRect.vertical = true;
             scrollRect.scrollSensitivity = 45f;
+            scrollRect.viewport = scrollRt;
+            scrollObj.AddComponent<RectMask2D>();
 
             // Content container
             GameObject content = UIHelper.CreateUIObject("Content", scrollObj.transform);
@@ -1374,8 +1379,8 @@ namespace HalloweenVN.UI.Theme
             GameObject titleObj = UIHelper.CreateUIObject("BacklogTitle", backlogPanel.transform);
             RectTransform titleRt = titleObj.GetComponent<RectTransform>();
             UIHelper.SetAnchors(titleRt, new Vector2(0.5f, 1), new Vector2(0.5f, 1), new Vector2(0.5f, 1));
-        titleRt.anchoredPosition = new Vector2(0, 300);
-        titleRt.sizeDelta = new Vector2(750, 312);
+            titleRt.anchoredPosition = new Vector2(0, -20);
+            titleRt.sizeDelta = new Vector2(750, 60);
             UIHelper.AddText(titleObj, Loc.Get("ui.builder.backlog.title", "대화 기록"), HalloweenTheme.AccentOrange, 28, TextAlignmentOptions.Center);
 
             // Close button
@@ -1492,7 +1497,7 @@ namespace HalloweenVN.UI.Theme
                 float xShift = ci * 8f;
                 float yShift = ci * 8f;
                 folderRt.offsetMin = new Vector2(250 + xShift, 50 + yShift);
-                folderRt.offsetMax = new Vector2(-250 + xShift, -210 + yShift);
+                folderRt.offsetMax = new Vector2(-250 + xShift, -210);
 
                 // ===== Body (main content area) =====
                 // Create body FIRST so it renders behind the tab
@@ -1563,9 +1568,9 @@ namespace HalloweenVN.UI.Theme
                 if (ci == 0) xOffset = 0f;
                 else if (ci == folderCount - 1) xOffset = 0f;
                 
-                // Shift text down slightly to the dead center (removed previous +5 upward bias)
-                tabTextRt.offsetMin = new Vector2(xOffset, -10);
-                tabTextRt.offsetMax = new Vector2(xOffset, -10);
+                // Keep tab labels above every folder body, including the selected one.
+                tabTextRt.offsetMin = new Vector2(xOffset, 0);
+                tabTextRt.offsetMax = new Vector2(xOffset, 0);
                 TextMeshProUGUI tabText = UIHelper.AddText(tabTextObj, charDisplayNames[ci], Color.black, 45, TextAlignmentOptions.Center);
                 if (hwFontAsset != null) tabText.font = hwFontAsset;
                 tabText.fontStyle = FontStyles.Bold;

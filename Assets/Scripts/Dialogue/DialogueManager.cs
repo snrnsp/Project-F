@@ -28,6 +28,7 @@ namespace HalloweenVN.Dialogue
         private string pendingCommand;
         private bool isTyping;
         private Coroutine typingCoroutine;
+        private int transitionGeneration;
 
         private void Awake()
         {
@@ -155,9 +156,9 @@ namespace HalloweenVN.Dialogue
                 ui.ClearAll();
             }
             
-            bool bgmFoundInCurrent = false;
-            string bgm = null;
-            if (ui != null && currentDialogue.nodes != null)
+            bool bgmFoundInCurrent = !string.IsNullOrEmpty(currentDialogue.initialBgm);
+            string bgm = currentDialogue.initialBgm;
+            if (currentDialogue.nodes != null)
             {
                 // To restore state, we simulate the visual/audio progression up to the target node
                 // This ensures all non-text nodes (which aren't in rewindHistory) are properly applied.
@@ -165,20 +166,11 @@ namespace HalloweenVN.Dialogue
                 {
                     if (n.id > targetNode.id) break;
                     
-                    ui.UpdateVisualsOnly(n, true);
-                    
-                    if (!string.IsNullOrEmpty(n.command))
+                    if (ui != null) ui.UpdateVisualsOnly(n, true);
+                    if (TryGetBgmCommand(n.command, out string nodeBgm))
                     {
-                        if (n.command.StartsWith("AUDIO:PLAY_BGM:"))
-                        {
-                            bgm = n.command.Substring("AUDIO:PLAY_BGM:".Length);
-                            bgmFoundInCurrent = true;
-                        }
-                        else if (n.command == "AUDIO:STOP_BGM")
-                        {
-                            bgm = null;
-                            bgmFoundInCurrent = true;
-                        }
+                        bgm = nodeBgm;
+                        bgmFoundInCurrent = true;
                     }
                 }
             }
@@ -190,18 +182,10 @@ namespace HalloweenVN.Dialogue
                 for (int i = rewindHistory.Count - 1; i >= 0; i--)
                 {
                     var n = rewindHistory[i].node;
-                    if (n != null && !string.IsNullOrEmpty(n.command))
+                    if (n != null && TryGetBgmCommand(n.command, out string historyBgm))
                     {
-                        if (n.command.StartsWith("AUDIO:PLAY_BGM:"))
-                        {
-                            bgm = n.command.Substring("AUDIO:PLAY_BGM:".Length);
-                            break;
-                        }
-                        else if (n.command == "AUDIO:STOP_BGM")
-                        {
-                            bgm = null;
-                            break;
-                        }
+                        bgm = historyBgm;
+                        break;
                     }
                 }
             }
@@ -223,7 +207,7 @@ namespace HalloweenVN.Dialogue
             DisplayNode(currentNode.id);
         }
 
-        public void ResumeDialogue(string dialogueId, int nodeId)
+        public void ResumeDialogue(string dialogueId, int nodeId, bool hasAudioState = false, string savedBgm = null)
         {
             if (typingCoroutine != null) StopCoroutine(typingCoroutine);
             
@@ -244,21 +228,16 @@ namespace HalloweenVN.Dialogue
                 ui.ClearAll();
             }
 
-            string bgm = null;
-            if (ui != null && currentDialogue.nodes != null)
+            string bgm = hasAudioState ? savedBgm : currentDialogue.initialBgm;
+            if (currentDialogue.nodes != null)
             {
                 // To restore state, we simulate the visual/audio progression up to the target node
                 foreach (var n in currentDialogue.nodes)
                 {
                     if (n.id > nodeId) break;
                     
-                    ui.UpdateVisualsOnly(n, true);
-                    
-                    if (!string.IsNullOrEmpty(n.command))
-                    {
-                        if (n.command.StartsWith("AUDIO:PLAY_BGM:")) bgm = n.command.Substring("AUDIO:PLAY_BGM:".Length);
-                        else if (n.command == "AUDIO:STOP_BGM") bgm = null;
-                    }
+                    if (ui != null) ui.UpdateVisualsOnly(n, true);
+                    if (TryGetBgmCommand(n.command, out string nodeBgm)) bgm = nodeBgm;
                 }
             }
             
@@ -465,6 +444,7 @@ namespace HalloweenVN.Dialogue
 
         private IEnumerator TransitionToNextDialogue(string nextDialogueId)
         {
+            int generation = transitionGeneration;
             var fx = HalloweenVN.Effects.ScreenEffects.Instance;
             if (fx != null)
             {
@@ -472,11 +452,13 @@ namespace HalloweenVN.Dialogue
                 
                 // Fade to black
                 yield return fx.FadeToBlack(1f);
+                if (generation != transitionGeneration) yield break;
                 
                 // Wait 1 second in darkness, skipping if Ctrl is pressed
                 float waitElapsed = 0f;
                 while (waitElapsed < 1f)
                 {
+                    if (generation != transitionGeneration) yield break;
                     bool isFastForwarding = false;
                     if (UnityEngine.InputSystem.Keyboard.current != null)
                     {
@@ -493,6 +475,7 @@ namespace HalloweenVN.Dialogue
                     yield return null;
                 }
                 
+                if (generation != transitionGeneration) yield break;
                 // Change the scene behind the black screen
                 EndDialogue();
                 StartDialogue(nextDialogueId);
@@ -563,6 +546,8 @@ namespace HalloweenVN.Dialogue
         /// </summary>
         public void EndDialogue()
         {
+            transitionGeneration++;
+            pendingCommand = null;
             IsPlaying = false;
             currentDialogue = null;
             currentNode = null;

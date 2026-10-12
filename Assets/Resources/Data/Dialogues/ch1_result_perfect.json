@@ -1,4 +1,4 @@
-﻿{
+{
     "dialogueId": "ch1_result_perfect",
     "nodes": [
         {
@@ -371,7 +371,7 @@
             "text": "때려 부수는 건 안 돼. 이번 사건의 적은 물리적인 괴물이 아니니까.",
             "characterSpriteLeft": "Characters/리나/찡그림",
             "characterSpriteCenter": "",
-            "characterSpriteRight": "Characters/세이카/미소",
+            "characterSpriteRight": "Characters/세이카/웃음",
             "backgroundSprite": "",
             "command": "",
             "noFade": true,
@@ -399,7 +399,7 @@
             "text": "가자. 저 피아니스트의 이름을 되찾아주러.",
             "characterSpriteLeft": "Characters/리나/찡그림",
             "characterSpriteCenter": "",
-            "characterSpriteRight": "Characters/세이카/미소",
+            "characterSpriteRight": "Characters/세이카/웃음",
             "backgroundSprite": "",
             "command": "",
             "noFade": true,

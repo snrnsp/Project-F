@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
@@ -295,7 +295,7 @@ namespace HalloweenVN.UI
                 {
                     // Move to center/active position
                     rt.offsetMin = new Vector2(250, 80);
-                    rt.offsetMax = new Vector2(-250, -180);
+                    rt.offsetMax = new Vector2(-250, -210);
 
                     // Selected folder: bright manila color
                     if (i < folderBodyImages.Count && folderBodyImages[i] != null)

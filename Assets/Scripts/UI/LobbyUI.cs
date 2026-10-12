@@ -588,7 +588,7 @@ namespace HalloweenVN.UI
                 }
                 if (!string.IsNullOrEmpty(data.currentDialogueId) && DialogueManager.Instance != null)
                 {
-                    DialogueManager.Instance.ResumeDialogue(data.currentDialogueId, data.currentNodeIndex);
+                    DialogueManager.Instance.ResumeDialogue(data.currentDialogueId, data.currentNodeIndex, data.hasAudioState, data.currentBgm);
                 }
             }
         }

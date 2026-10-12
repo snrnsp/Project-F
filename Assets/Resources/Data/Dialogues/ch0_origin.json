@@ -1,4 +1,4 @@
-﻿{
+{
     "dialogueId": "ch0_origin",
     "nodes": [
         {
@@ -102,7 +102,7 @@
             "speaker": "세이카",
             "text": "선배, 이 상자는 뭐예요? 라벨도 다 뜯어져 있는데... 이것도 분류 목록에 있는 건가요?",
             "characterSpriteLeft": "",
-            "characterSpriteCenter": "Characters/세이카/의아",
+            "characterSpriteCenter": "Characters/세이카/놀람",
             "characterSpriteRight": "",
             "backgroundSprite": "",
             "choices": [],
