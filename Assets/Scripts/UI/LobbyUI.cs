@@ -237,7 +237,7 @@ namespace HalloweenVN.UI
             if (UnityEngine.EventSystems.EventSystem.current != null) UnityEngine.EventSystems.EventSystem.current.SetSelectedGameObject(null);
             if (isStartingGame) return;
             isStartingGame = true;
-            StartNewGame(null);
+            ShowPhotosensitivityWarning();
         }
 
         private void ShowPreAlphaWarning()
@@ -255,7 +255,6 @@ namespace HalloweenVN.UI
             Button overlayBtn = overlay.AddComponent<Button>();
             overlayBtn.transition = Selectable.Transition.None;
             overlayBtn.onClick.AddListener(() => {
-                if (isStartingGame) return;
                 Destroy(overlay);
             });
 
@@ -337,10 +336,9 @@ namespace HalloweenVN.UI
             {
                 if (UnityEngine.EventSystems.EventSystem.current != null) UnityEngine.EventSystems.EventSystem.current.SetSelectedGameObject(null);
                 Destroy(overlay);
-                ShowPhotosensitivityWarning();
             });
         }
-void ShowPhotosensitivityWarning()
+        private void ShowPhotosensitivityWarning()
         {
             // Create overlay
             GameObject overlay = new GameObject("WarningOverlay");
@@ -521,7 +519,7 @@ void ShowPhotosensitivityWarning()
             btn.onClick.AddListener(() =>
             {
                 if (UnityEngine.EventSystems.EventSystem.current != null) UnityEngine.EventSystems.EventSystem.current.SetSelectedGameObject(null);
-                Destroy(overlay);
+                StartNewGame(overlay);
             });
         }
 

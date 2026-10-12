@@ -1,25 +1,15 @@
-﻿import sys
+﻿import json
+import codecs
 
-filepath = 'F:/Project-F/Assets/Scripts/UI/Theme/HalloweenUIBuilder.cs'
-with open(filepath, 'r', encoding='utf-8-sig') as f:
-    content = f.read()
+filepath = 'F:/Project-F/Assets/Resources/Data/Dialogues/ch0_gathering.json'
+with codecs.open(filepath, 'r', encoding='utf-8-sig') as f:
+    data = json.load(f)
 
-old_bg = '''            // Background
-            GameObject bgObj = UIHelper.CreateUIObject("Background", lobbyPanelRoot.transform);
-            UIHelper.StretchFull(bgObj.GetComponent<RectTransform>());
-            Sprite bgSprite = null;'''
+for node in data.get('nodes', []):
+    if node['id'] == 0:
+        node['backgroundSprite'] = "Images/bg_agency_interior_night"
+        break
 
-new_bg = '''            // Background
-            GameObject bgObj = UIHelper.CreateUIObject("Background", lobbyPanelRoot.transform);
-            UIHelper.StretchFull(bgObj.GetComponent<RectTransform>());
-            bgObj.GetComponent<RectTransform>().offsetMin = new Vector2(-2, -2);
-            bgObj.GetComponent<RectTransform>().offsetMax = new Vector2(2, 2);
-            Sprite bgSprite = null;'''
-
-if old_bg in content:
-    content = content.replace(old_bg, new_bg)
-    with open(filepath, 'w', encoding='utf-8-sig') as f:
-        f.write(content)
-    print("Added bleed to lobby bg.")
-else:
-    print("Could not find Lobby BG.")
+with codecs.open(filepath, 'w', encoding='utf-8-sig') as f:
+    json.dump(data, f, ensure_ascii=False, indent=4)
+print("Updated ch0_gathering.json Node 0 background!")

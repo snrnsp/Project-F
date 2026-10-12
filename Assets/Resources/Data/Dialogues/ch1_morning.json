@@ -25,27 +25,30 @@
             "id": 3,
             "speaker": "카스미",
             "text": ".......",
-            "characterSpriteCenter": "",
+            "characterSpriteCenter": "Characters/카스미/기본",
             "nextNodeId": 4,
-            "characterSpriteLeft": "Characters/카스미/기본"
+            "characterSpriteLeft": "",
+            "characterSpriteRight": ""
         },
         {
             "id": 4,
             "speaker": "카스미",
             "text": "(서류를 넘기며) 전날의 의뢰 보고서를 정리합시다. '구시가지 3번 골목에서 들리는 신음 소리' 건은 결국 배관 노후화로 결론.",
-            "characterSpriteCenter": "",
+            "characterSpriteCenter": "Characters/카스미/기본",
             "nextNodeId": 5,
             "noFade": true,
-            "characterSpriteLeft": "Characters/카스미/기본"
+            "characterSpriteLeft": "",
+            "characterSpriteRight": ""
         },
         {
             "id": 5,
             "speaker": "카스미",
             "text": "역시 유령 따위는 없었어요. 애초에 존재할 리가 없지만요.",
-            "characterSpriteCenter": "",
+            "characterSpriteCenter": "Characters/카스미/경멸",
             "nextNodeId": 6,
             "noFade": true,
-            "characterSpriteLeft": "Characters/카스미/경멸"
+            "characterSpriteLeft": "",
+            "characterSpriteRight": ""
         },
         {
             "id": 6,
@@ -298,27 +301,30 @@
             "id": 32,
             "speaker": "세이카",
             "text": "좋은 아침, 여러분. 오늘도 사이좋게 떠들고 있네.",
-            "characterSpriteCenter": "",
+            "characterSpriteCenter": "Characters/세이카/웃음",
             "nextNodeId": 33,
-            "characterSpriteLeft": "Characters/세이카/웃음"
+            "characterSpriteLeft": "",
+            "characterSpriteRight": ""
         },
         {
             "id": 33,
             "speaker": " ",
             "text": "「네버모어 오컬트 탐정 사무소」의 소장, 세이카가 느긋하게 차 한 잔을 들고 등장한다.",
-            "characterSpriteCenter": "",
+            "characterSpriteCenter": "Characters/세이카/웃음",
             "nextNodeId": 34,
             "noFade": true,
-            "characterSpriteLeft": "Characters/세이카/웃음"
+            "characterSpriteLeft": "",
+            "characterSpriteRight": ""
         },
         {
             "id": 34,
             "speaker": "세이카",
             "text": "리나, 순찰 수고했어. 리리스, 잭오 상태는?",
-            "characterSpriteCenter": "",
+            "characterSpriteCenter": "Characters/세이카/기본",
             "nextNodeId": 35,
             "noFade": true,
-            "characterSpriteLeft": "Characters/세이카/기본"
+            "characterSpriteLeft": "",
+            "characterSpriteRight": ""
         },
         {
             "id": 35,
@@ -539,27 +545,30 @@
             "id": 57,
             "speaker": "세이카",
             "text": "...기록이 없다?",
-            "characterSpriteCenter": "",
+            "characterSpriteCenter": "Characters/세이카/음침",
             "nextNodeId": 58,
-            "characterSpriteRight": "Characters/세이카/음침"
+            "characterSpriteRight": "",
+            "characterSpriteLeft": ""
         },
         {
             "id": 58,
             "speaker": " ",
             "text": "세이카가 찻잔을 내려놓는다. 평소의 여유로운 미소가 사라졌다.",
-            "characterSpriteCenter": "",
+            "characterSpriteCenter": "Characters/세이카/음침",
             "nextNodeId": 59,
             "noFade": true,
-            "characterSpriteRight": "Characters/세이카/음침"
+            "characterSpriteRight": "",
+            "characterSpriteLeft": ""
         },
         {
             "id": 59,
             "speaker": "세이카",
             "text": "이 의뢰, 받는다.",
-            "characterSpriteCenter": "",
+            "characterSpriteCenter": "Characters/세이카/찡그림",
             "nextNodeId": 60,
             "noFade": true,
-            "characterSpriteRight": "Characters/세이카/찡그림"
+            "characterSpriteRight": "",
+            "characterSpriteLeft": ""
         },
         {
             "id": 60,

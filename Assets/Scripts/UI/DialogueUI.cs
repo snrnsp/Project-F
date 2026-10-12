@@ -99,7 +99,11 @@ namespace HalloweenVN.UI
 
             Button btn = narratorObj.AddComponent<Button>();
             btn.transition = Selectable.Transition.None;
-            btn.onClick.AddListener(OnClick);
+            // Use PointerDown to prevent drag threshold from ignoring clicks
+            UnityEngine.EventSystems.EventTrigger nTrigger = narratorObj.AddComponent<UnityEngine.EventSystems.EventTrigger>();
+            var nEntry = new UnityEngine.EventSystems.EventTrigger.Entry { eventID = UnityEngine.EventSystems.EventTriggerType.PointerDown };
+            nEntry.callback.AddListener((data) => OnClick());
+            nTrigger.triggers.Add(nEntry);
 
             // Child: text label (separate GameObject to avoid Graphic conflict)
             GameObject textObj = new GameObject("NarratorLabel");
@@ -310,12 +314,29 @@ namespace HalloweenVN.UI
                 return;
             }
 
-            // 2. New owner per slot (same character listed twice → keep the first slot only)
+            // 2. New owner per slot (same character listed twice — keep the first slot only)
             string[] newOwner = new string[3];
             HashSet<string> newNames = new HashSet<string>();
             for (int s = 0; s < 3; s++)
             {
                 if (string.IsNullOrEmpty(requested[s])) continue;
+                
+                // If the sprite doesn't actually exist in the game, treat it as empty
+                Sprite testSp = LoadSpriteCached(requested[s]);
+                if (testSp == null)
+                {
+                    string fallback = null;
+                    int slash = requested[s].LastIndexOf('/');
+                    if (slash > 0) fallback = requested[s].Substring(0, slash) + "/기본";
+                    if (fallback != null) testSp = LoadSpriteCached(fallback);
+                }
+                
+                if (testSp == null)
+                {
+                    requested[s] = null;
+                    continue;
+                }
+
                 string name = ExtractBaseName(requested[s]);
                 if (newNames.Contains(name)) { requested[s] = null; continue; }
                 newOwner[s] = name;
@@ -465,21 +486,28 @@ namespace HalloweenVN.UI
         /// </summary>
         private static float[] ComputeLayoutTargets(string[] owner)
         {
-            float[] result = { 0.25f, 0.5f, 0.75f };
+            // Shifted the base left/right anchors slightly to the right (0.28, 0.78) 
+            // to counteract the characters' visual mass making the scene feel left-heavy.
+            float[] result = { 0.28f, 0.5f, 0.78f };
             for (int s = 0; s < 3; s++)
             {
                 if (owner[s] == null) continue;
                 
                 float target = 0.5f;
-                if (s == 0) target = 0.25f;
+                if (s == 0) target = 0.28f;
                 else if (s == 1) target = 0.5f;
-                else if (s == 2) target = 0.75f;
+                else if (s == 2) target = 0.78f;
                 
                 // Character specific visual offsets to account for sprite widths
                 if (owner[s] == "리나") // 850px (narrow)
                 {
                     if (target < 0.5f) target += 0.05f;
                     else if (target > 0.5f) target -= 0.05f;
+                }
+                else if (owner[s] == "하루카")
+                {
+                    // Haruka's sprite has a lot of hair extending to the right, which pushes her body left visually.
+                    if (target > 0.5f) target += 0.03f; 
                 }
                 
                 result[s] = target;
@@ -1240,7 +1268,7 @@ namespace HalloweenVN.UI
             if (dialogueText != null) dialogueText.maxVisibleCharacters = 99999;
             if (narratorText != null) narratorText.maxVisibleCharacters = 99999;
             isTyping = false;
-            _typingEndTime = Time.unscaledTime;
+            _typingEndTime = 0f; // Allow immediate next click when manually skipped
 
             CancelAutoPlayTimer();
             if (isAutoPlay)
@@ -1257,8 +1285,19 @@ namespace HalloweenVN.UI
         private void Update()
         {
             if (GameManager.Instance != null && GameManager.Instance.CurrentPhase != GamePhase.Dialogue) return;
-            if (choicePanel != null && choicePanel.activeSelf) return;
             if (IsModalOpen()) return;
+
+            // 3. Mouse wheel up to open log (Allow this even during choices)
+            if (UnityEngine.InputSystem.Mouse.current != null && UnityEngine.InputSystem.Mouse.current.scroll.ReadValue().y > 0)
+            {
+                if (_cachedBacklogUI != null && !_cachedBacklogUI.IsOpen)
+                {
+                    _cachedBacklogUI.ShowBacklog();
+                    return; // Stop processing further input for this frame
+                }
+            }
+
+            if (choicePanel != null && choicePanel.activeSelf) return;
 
             // 1. Right click to toggle UI visibility (to see CG/Backgrounds)
             if (Mouse.current != null && Mouse.current.rightButton.wasPressedThisFrame)

@@ -373,7 +373,7 @@ namespace HalloweenVN.UI.Theme
             cb.highlightedColor = new Color32(255, 150, 40, 255); // Bright yellow-orange
             cb.pressedColor = new Color32(180, 60, 10, 255);      // Deep orange
             cb.colorMultiplier = 1f;
-            cb.fadeDuration = 0.15f;
+            cb.fadeDuration = 0.08f;
             btn.colors = cb;
             btn.targetGraphic = img;
 
@@ -577,8 +577,16 @@ namespace HalloweenVN.UI.Theme
                 var method = ui.GetType().GetMethod("OnClick", System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
                 if (method != null) method.Invoke(ui, null);
             };
-            bgClick.onClick.AddListener(onScreenClick);
-            panelClick.onClick.AddListener(onScreenClick);
+            // Use PointerDown instead of Button Click to prevent drag threshold from dropping clicks!
+            UnityEngine.EventSystems.EventTrigger bgTrigger = bgImgObj.AddComponent<UnityEngine.EventSystems.EventTrigger>();
+            var bgEntry = new UnityEngine.EventSystems.EventTrigger.Entry { eventID = UnityEngine.EventSystems.EventTriggerType.PointerDown };
+            bgEntry.callback.AddListener((data) => onScreenClick());
+            bgTrigger.triggers.Add(bgEntry);
+
+            UnityEngine.EventSystems.EventTrigger panelTrigger = dialoguePanel.AddComponent<UnityEngine.EventSystems.EventTrigger>();
+            var panelEntry = new UnityEngine.EventSystems.EventTrigger.Entry { eventID = UnityEngine.EventSystems.EventTriggerType.PointerDown };
+            panelEntry.callback.AddListener((data) => onScreenClick());
+            panelTrigger.triggers.Add(panelEntry);
 
             // Wire LOG button to backlog toggle
             logTuple.btn.onClick.AddListener(() => {
@@ -1336,6 +1344,7 @@ namespace HalloweenVN.UI.Theme
             ScrollRect scrollRect = scrollObj.AddComponent<ScrollRect>();
             scrollRect.horizontal = false;
             scrollRect.vertical = true;
+            scrollRect.scrollSensitivity = 45f;
 
             // Content container
             GameObject content = UIHelper.CreateUIObject("Content", scrollObj.transform);
@@ -1588,6 +1597,7 @@ namespace HalloweenVN.UI.Theme
                 scrollRect.horizontal = false;
                 scrollRect.vertical = true;
                 scrollRect.movementType = ScrollRect.MovementType.Clamped;
+                scrollRect.scrollSensitivity = 45f;
                 UIHelper.AddImage(infoPanelObj, new Color(0, 0, 0, 0));
 
                 // Viewport
@@ -1721,7 +1731,7 @@ namespace HalloweenVN.UI.Theme
             cb.pressedColor = new Color32(150, 150, 150, 255);     // Darker gray on click
             cb.selectedColor = Color.white;
             cb.colorMultiplier = 1f;
-            cb.fadeDuration = 0.15f;
+            cb.fadeDuration = 0.08f;
             btn.colors = cb;
             
             btn.onClick.AddListener(() => globalMgr.ToggleSettings());

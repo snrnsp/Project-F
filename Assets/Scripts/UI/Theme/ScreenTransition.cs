@@ -81,6 +81,10 @@ namespace HalloweenVN.UI.Theme
         {
             if (autoTransitionOnPhaseChange)
             {
+                // Splash screen has its own white fade logic in HalloweenUIBuilder.
+                // Do not trigger a black transition fade over it!
+                if (phase == GamePhase.Splash) return;
+                
                 TransitionFade();
             }
         }

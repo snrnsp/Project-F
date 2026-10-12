@@ -1,38 +1,43 @@
-﻿import sys
+﻿import codecs
+import re
 
 filepath = 'F:/Project-F/Assets/Scripts/UI/LobbyUI.cs'
-with open(filepath, 'r', encoding='utf-8') as f:
-    lines = f.readlines()
+with codecs.open(filepath, 'r', encoding='utf-8-sig') as f:
+    content = f.read()
 
-start_idx = -1
-end_idx = -1
+# 1. Remove ShowPreAlphaWarning from Start
+pattern1 = r'''        private void Start\(\)\r?\n\s*\{\r?\n\s*ShowPreAlphaWarning\(\);'''
+replacement1 = r'''        private void Start()
+        {'''
+content = re.sub(pattern1, replacement1, content)
 
-for i, line in enumerate(lines):
-    if 'private void UpdateContinueButton()' in line:
-        start_idx = i
-    if 'private void OnNewGameClicked()' in line and start_idx != -1:
-        end_idx = i - 1
-        break
-
-print(f"Start: {start_idx}, End: {end_idx}")
-
-new_code = '''        private void UpdateContinueButton()
+# 2. Change OnNewGameClicked to call the renamed ShowPhotosensitivityWarning
+pattern2 = r'''        private void OnNewGameClicked\(\)\r?\n\s*\{\r?\n\s*if \(UnityEngine\.EventSystems\.EventSystem\.current != null\) UnityEngine\.EventSystems\.EventSystem\.current\.SetSelectedGameObject\(null\);\r?\n\s*if \(isStartingGame\) return;\r?\n\s*isStartingGame = true;\r?\n\s*StartNewGame\(null\);\r?\n\s*\}'''
+replacement2 = r'''        private void OnNewGameClicked()
         {
-            if (continueButton != null)
-            {
-                bool hasSave = UnityEngine.PlayerPrefs.HasKey("HalloweenVN_Save_0");
-                continueButton.interactable = hasSave;
-                
-                CanvasGroup cg = continueButton.GetComponent<CanvasGroup>();
-                if (cg != null) cg.alpha = hasSave ? 1f : 0.5f;
-            }
-        }
-'''
+            if (UnityEngine.EventSystems.EventSystem.current != null) UnityEngine.EventSystems.EventSystem.current.SetSelectedGameObject(null);
+            if (isStartingGame) return;
+            isStartingGame = true;
+            ShowPhotosensitivityWarning();
+        }'''
+content = re.sub(pattern2, replacement2, content)
 
-if start_idx != -1 and end_idx != -1:
-    lines[start_idx:end_idx] = [new_code]
-    with open(filepath, 'w', encoding='utf-8') as f:
-        f.writelines(lines)
-    print("Replaced successfully.")
-else:
-    print("Could not find the block.")
+# 3. Rename ShowPreAlphaWarning and update the buttons
+pattern3 = r'''        private void ShowPreAlphaWarning\(\)\r?\n\s*\{\r?\n(.*?)overlayBtn\.onClick\.AddListener\(\(\) => \{\r?\n\s*if \(isStartingGame\) return;\r?\n\s*Destroy\(overlay\);\r?\n\s*\}\);(.*?)btn\.onClick\.AddListener\(\(\) =>\r?\n\s*\{\r?\n\s*if \(UnityEngine\.EventSystems\.EventSystem\.current != null\) UnityEngine\.EventSystems\.EventSystem\.current\.SetSelectedGameObject\(null\);\r?\n\s*Destroy\(overlay\);\r?\n\s*\}\);\r?\n\s*\}'''
+replacement3 = r'''        private void ShowPhotosensitivityWarning()
+        {
+\1overlayBtn.onClick.AddListener(() => {
+                if (isStartingGame && !overlay.activeSelf) return; // Prevent closing if already transitioning
+                isStartingGame = false;
+                Destroy(overlay);
+            });\2btn.onClick.AddListener(() =>
+            {
+                if (UnityEngine.EventSystems.EventSystem.current != null) UnityEngine.EventSystems.EventSystem.current.SetSelectedGameObject(null);
+                StartNewGame(overlay);
+            });
+        }'''
+content = re.sub(pattern3, replacement3, content, flags=re.DOTALL)
+
+with codecs.open(filepath, 'w', encoding='utf-8-sig') as f:
+    f.write(content)
+print("Fixed LobbyUI warning logic!")

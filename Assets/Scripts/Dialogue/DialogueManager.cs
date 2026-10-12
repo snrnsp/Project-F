@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -136,7 +136,6 @@ namespace HalloweenVN.Dialogue
         {
             if (typingCoroutine != null) StopCoroutine(typingCoroutine);
             
-            
             // 1. Load Dialogue Container
             if (!dialogueCache.TryGetValue(targetDialogueId, out currentDialogue))
             {
@@ -156,35 +155,65 @@ namespace HalloweenVN.Dialogue
                 ui.ClearAll();
             }
             
-            // 2.5 Scan full dialogue array for the last background up to target node
-            string lastBg = "";
-            if (currentDialogue != null && currentDialogue.nodes != null)
+            bool bgmFoundInCurrent = false;
+            string bgm = null;
+            if (ui != null && currentDialogue.nodes != null)
             {
+                // To restore state, we simulate the visual/audio progression up to the target node
+                // This ensures all non-text nodes (which aren't in rewindHistory) are properly applied.
                 foreach (var n in currentDialogue.nodes)
                 {
-                    if (n.id == targetNode.id) break;
-                    if (!string.IsNullOrEmpty(n.backgroundSprite)) lastBg = n.backgroundSprite;
+                    if (n.id > targetNode.id) break;
+                    
+                    ui.UpdateVisualsOnly(n, true);
+                    
+                    if (!string.IsNullOrEmpty(n.command))
+                    {
+                        if (n.command.StartsWith("AUDIO:PLAY_BGM:"))
+                        {
+                            bgm = n.command.Substring("AUDIO:PLAY_BGM:".Length);
+                            bgmFoundInCurrent = true;
+                        }
+                        else if (n.command == "AUDIO:STOP_BGM")
+                        {
+                            bgm = null;
+                            bgmFoundInCurrent = true;
+                        }
+                    }
                 }
             }
-            if (!string.IsNullOrEmpty(lastBg) && ui != null)
+            
+            // If BGM wasn't changed in the current chapter's nodes up to this point,
+            // we must check the cross-chapter backlog history to see what was playing before.
+            if (!bgmFoundInCurrent && rewindHistory != null)
             {
-                ui.UpdateBackground(lastBg);
-            }
-
-            // 3. Replay history to recreate visual state
-            if (ui != null)
-            {
-                foreach (var entry in rewindHistory)
+                for (int i = rewindHistory.Count - 1; i >= 0; i--)
                 {
-                    if (entry.node != null)
+                    var n = rewindHistory[i].node;
+                    if (n != null && !string.IsNullOrEmpty(n.command))
                     {
-                        ui.UpdateVisualsOnly(entry.node, true);
+                        if (n.command.StartsWith("AUDIO:PLAY_BGM:"))
+                        {
+                            bgm = n.command.Substring("AUDIO:PLAY_BGM:".Length);
+                            break;
+                        }
+                        else if (n.command == "AUDIO:STOP_BGM")
+                        {
+                            bgm = null;
+                            break;
+                        }
                     }
                 }
             }
             
             // 3.5 Restore the BGM that was playing at the target point and silence leftover SFX
-            RestoreAudioForRewind(rewindHistory);
+            var audio = HalloweenVN.Core.AudioManager.Instance;
+            if (audio != null)
+            {
+                audio.StopAllSFX();
+                if (string.IsNullOrEmpty(bgm)) audio.StopBGM(0.5f);
+                else audio.PlayBGM(bgm);
+            }
 
             // 4. Resume from target node
             currentNode = targetNode;

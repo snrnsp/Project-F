@@ -21,7 +21,7 @@ namespace HalloweenVN.UI
         private Image bgImage;
         private TextMeshProUGUI label;
         private Coroutine fadeCoroutine;
-        private const float FADE_DURATION = 0.15f;
+        private const float FADE_DURATION = 0.08f;
 
         private void Awake()
         {

@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System.Collections.Generic;
@@ -129,7 +129,7 @@ namespace HalloweenVN.UI
             if (string.IsNullOrEmpty(checkText)) return;
             string currentDialogId = DialogueManager.Instance.CurrentDialogueId;
             history.Add(new BacklogEntry(currentDialogId, node));
-            if (history.Count > 100)
+            if (history.Count > 300)
             {
                 history.RemoveAt(0);
             }
