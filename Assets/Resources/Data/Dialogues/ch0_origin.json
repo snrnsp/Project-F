@@ -1,4 +1,4 @@
-{
+﻿{
     "dialogueId": "ch0_origin",
     "nodes": [
         {
@@ -59,7 +59,9 @@
             "backgroundSprite": "",
             "choices": [],
             "nextNodeId": 5,
-            "command": "slideIn:true"
+            "command": "",
+            "noFade": true,
+            "slideIn": false
         },
         {
             "id": 5,
@@ -71,7 +73,9 @@
             "backgroundSprite": "",
             "choices": [],
             "nextNodeId": 6,
-            "command": ""
+            "command": "",
+            "noFade": true,
+            "slideIn": false
         },
         {
             "id": 6,
@@ -83,7 +87,9 @@
             "backgroundSprite": "",
             "choices": [],
             "nextNodeId": 7,
-            "command": ""
+            "command": "",
+            "noFade": true,
+            "slideIn": false
         },
         {
             "id": 7,
@@ -95,7 +101,9 @@
             "backgroundSprite": "",
             "choices": [],
             "nextNodeId": 8,
-            "command": "noFade:true"
+            "command": "",
+            "noFade": false,
+            "slideIn": false
         },
         {
             "id": 8,
@@ -107,7 +115,9 @@
             "backgroundSprite": "",
             "choices": [],
             "nextNodeId": 9,
-            "command": ""
+            "command": "",
+            "noFade": true,
+            "slideIn": false
         },
         {
             "id": 9,
@@ -119,7 +129,9 @@
             "backgroundSprite": "",
             "choices": [],
             "nextNodeId": 10,
-            "command": "slideIn:true"
+            "command": "",
+            "noFade": true,
+            "slideIn": false
         },
         {
             "id": 10,
@@ -131,7 +143,9 @@
             "backgroundSprite": "",
             "choices": [],
             "nextNodeId": 11,
-            "command": ""
+            "command": "",
+            "noFade": true,
+            "slideIn": false
         },
         {
             "id": 11,
@@ -143,7 +157,9 @@
             "backgroundSprite": "",
             "choices": [],
             "nextNodeId": 12,
-            "command": ""
+            "command": "",
+            "noFade": true,
+            "slideIn": false
         },
         {
             "id": 12,
@@ -155,7 +171,9 @@
             "backgroundSprite": "",
             "choices": [],
             "nextNodeId": 13,
-            "command": ""
+            "command": "",
+            "noFade": true,
+            "slideIn": false
         },
         {
             "id": 13,
@@ -191,7 +209,9 @@
             "backgroundSprite": "",
             "choices": [],
             "nextNodeId": 16,
-            "command": ""
+            "command": "",
+            "noFade": false,
+            "slideIn": false
         },
         {
             "id": 16,
@@ -203,7 +223,9 @@
             "backgroundSprite": "",
             "choices": [],
             "nextNodeId": 17,
-            "command": ""
+            "command": "",
+            "noFade": false,
+            "slideIn": false
         },
         {
             "id": 17,
@@ -215,7 +237,9 @@
             "backgroundSprite": "",
             "choices": [],
             "nextNodeId": 18,
-            "command": "noFade:true"
+            "command": "",
+            "noFade": true,
+            "slideIn": false
         },
         {
             "id": 18,
@@ -227,7 +251,9 @@
             "backgroundSprite": "",
             "choices": [],
             "nextNodeId": 19,
-            "command": ""
+            "command": "",
+            "noFade": false,
+            "slideIn": false
         },
         {
             "id": 19,
@@ -239,7 +265,9 @@
             "backgroundSprite": "",
             "choices": [],
             "nextNodeId": 20,
-            "command": ""
+            "command": "",
+            "noFade": true,
+            "slideIn": false
         },
         {
             "id": 20,
@@ -258,12 +286,14 @@
             "speaker": "동네 할머니",
             "text": "2006년에 여기 살던 사람? 아이고, 이 빈집은 벌써 30년 넘게 비어 있었어.",
             "characterSpriteLeft": "",
-            "characterSpriteCenter": "",
+            "characterSpriteCenter": "Characters/세이카/기본",
             "characterSpriteRight": "",
             "backgroundSprite": "Images/bg_city_night",
             "choices": [],
             "nextNodeId": 22,
-            "command": ""
+            "command": "",
+            "noFade": false,
+            "slideIn": false
         },
         {
             "id": 22,
@@ -275,19 +305,23 @@
             "backgroundSprite": "",
             "choices": [],
             "nextNodeId": 23,
-            "command": ""
+            "command": "",
+            "noFade": true,
+            "slideIn": false
         },
         {
             "id": 23,
             "speaker": "동네 할머니",
             "text": "그럴 리가 없어. 이 골목에서 사람이 없어졌으면 동네 사람들이 모를 리가 있나. ...근데 이상하게, 자꾸 누가 여기 산다고 하긴 하더라고.",
             "characterSpriteLeft": "",
-            "characterSpriteCenter": "",
+            "characterSpriteCenter": "Characters/세이카/당황",
             "characterSpriteRight": "",
             "backgroundSprite": "",
             "choices": [],
             "nextNodeId": 24,
-            "command": ""
+            "command": "",
+            "noFade": true,
+            "slideIn": false
         },
         {
             "id": 24,
@@ -299,7 +333,9 @@
             "backgroundSprite": "",
             "choices": [],
             "nextNodeId": 25,
-            "command": ""
+            "command": "",
+            "noFade": false,
+            "slideIn": false
         },
         {
             "id": 25,
@@ -311,7 +347,9 @@
             "backgroundSprite": "",
             "choices": [],
             "nextNodeId": 26,
-            "command": ""
+            "command": "",
+            "noFade": false,
+            "slideIn": false
         },
         {
             "id": 26,
@@ -323,7 +361,9 @@
             "backgroundSprite": "",
             "choices": [],
             "nextNodeId": 27,
-            "command": "noFade:true"
+            "command": "",
+            "noFade": true,
+            "slideIn": false
         },
         {
             "id": 27,

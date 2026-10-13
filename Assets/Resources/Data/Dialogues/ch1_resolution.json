@@ -1,4 +1,4 @@
-{
+﻿{
     "dialogueId": "ch1_resolution",
     "nodes": [
         {
@@ -1484,12 +1484,12 @@
             "id": 116,
             "speaker": "서하유",
             "text": "...감사합니다... 저를, 기억해 주셔서...",
-            "characterSpriteLeft": "",
+            "characterSpriteLeft": "Characters/리리스/기본",
             "characterSpriteCenter": "",
-            "characterSpriteRight": "",
+            "characterSpriteRight": "Characters/세이카/웃음",
             "backgroundSprite": "",
             "command": "",
-            "noFade": false,
+            "noFade": true,
             "slideIn": false,
             "nextNodeId": 117
         },

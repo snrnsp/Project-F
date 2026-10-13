@@ -1,4 +1,4 @@
-{
+﻿{
     "dialogueId": "ch1_epilogue",
     "nodes": [
         {
@@ -48,11 +48,11 @@
             "speaker": "서하유",
             "text": "에... 이게 뭔가요? 호박인데... 왜 이렇게 맛있어요...?",
             "characterSpriteLeft": "",
-            "characterSpriteCenter": "",
+            "characterSpriteCenter": "Characters/하루카/미소",
             "characterSpriteRight": "",
             "backgroundSprite": "",
             "command": "",
-            "noFade": false,
+            "noFade": true,
             "slideIn": false,
             "nextNodeId": 4,
             "choices": []
@@ -66,8 +66,8 @@
             "characterSpriteRight": "",
             "backgroundSprite": "",
             "command": "",
-            "noFade": false,
-            "slideIn": true,
+            "noFade": true,
+            "slideIn": false,
             "nextNodeId": 5,
             "choices": []
         },
@@ -104,11 +104,11 @@
             "speaker": "서하유",
             "text": "...엄마, 아빠가...? 아직...?",
             "characterSpriteLeft": "",
-            "characterSpriteCenter": "",
+            "characterSpriteCenter": "Characters/카스미/기본",
             "characterSpriteRight": "",
             "backgroundSprite": "",
             "command": "",
-            "noFade": false,
+            "noFade": true,
             "slideIn": false,
             "nextNodeId": 8,
             "choices": []
@@ -122,8 +122,8 @@
             "characterSpriteRight": "",
             "backgroundSprite": "",
             "command": "",
-            "noFade": false,
-            "slideIn": true,
+            "noFade": true,
+            "slideIn": false,
             "nextNodeId": 9,
             "choices": []
         },
@@ -132,11 +132,11 @@
             "speaker": "서하유",
             "text": "......",
             "characterSpriteLeft": "",
-            "characterSpriteCenter": "",
+            "characterSpriteCenter": "Characters/카스미/측은",
             "characterSpriteRight": "",
             "backgroundSprite": "",
             "command": "",
-            "noFade": false,
+            "noFade": true,
             "slideIn": false,
             "nextNodeId": 10,
             "choices": []

@@ -60,7 +60,7 @@ namespace HalloweenVN.UI
         private string fullText;
 
         // ═══════════ Character Position System (ported from old project) ═══════════
-        private static readonly Color DIM_COLOR = new Color(0.3f, 0.3f, 0.3f, 1f);
+        private static readonly Color DIM_COLOR = new Color(0.5f, 0.5f, 0.55f, 1f);
         private static readonly Color ACTIVE_COLOR = Color.white;
         private const float DEFAULT_FADE_SPEED = 0.25f;
         private const float MOVE_DURATION = 0.25f;
@@ -304,14 +304,18 @@ namespace HalloweenVN.UI
                 requested[0] = null; requested[1] = node.characterSprite; requested[2] = null;
             }
 
-            bool noSpritesRequested = string.IsNullOrEmpty(requested[0]) && string.IsNullOrEmpty(requested[1]) && string.IsNullOrEmpty(requested[2]);
-            bool bgChanging = !string.IsNullOrEmpty(node.backgroundSprite) && node.backgroundSprite != _currentBgPath;
+            // Universal rule: When a character is NOT speaking (narration / 지문),
+            // character sprites must NEVER appear or remain on screen, EXCEPT during the
+            // member introduction sequence on the black background (Images/bg_black).
+            bool isNarrator = string.IsNullOrWhiteSpace(node.speaker);
+            string effectiveBg = !string.IsNullOrEmpty(node.backgroundSprite) ? node.backgroundSprite : _currentBgPath;
+            bool isBlackBgIntro = !string.IsNullOrEmpty(effectiveBg) && effectiveBg.Contains("bg_black");
 
-            if (string.IsNullOrWhiteSpace(node.speaker) && noSpritesRequested && !bgChanging && !_freshDialogue)
+            if (isNarrator && !isBlackBgIntro)
             {
-                UpdateSpeakerHighlight(node.speaker, instant || (wasNarrator && usePanelNow));
-                UpdateBackground(node.backgroundSprite);
-                return;
+                requested[0] = null;
+                requested[1] = null;
+                requested[2] = null;
             }
 
             // 2. New owner per slot (same character listed twice — keep the first slot only)
@@ -476,43 +480,31 @@ namespace HalloweenVN.UI
 
             // Dim/Highlight based on speaker
             bool instantHighlight = instant || (wasNarrator && usePanelNow);
-            UpdateSpeakerHighlight(node.speaker, instantHighlight);
+            UpdateSpeakerHighlight(node.speaker, instantHighlight, node.command);
             UpdateBackground(node.backgroundSprite);
         }
 
         /// <summary>
-        /// Screen X (anchor center) per slot. Fixed positions: Left=25%, Center=50%, Right=75%.
-        /// Prevents characters from sliding around when other characters enter/exit.
+        /// Screen X (anchor center) per slot.
+        /// When 3 characters are on screen: Left=20%, Center=50%, Right=80%.
+        /// When 1 or 2 characters: Left=26%, Center=50%, Right=74%.
+        /// Perfectly symmetrical around Center (50%), eliminating any left/right bias.
         /// </summary>
         private static float[] ComputeLayoutTargets(string[] owner)
         {
-            // Shifted the base left/right anchors slightly to the right (0.28, 0.78) 
-            // to counteract the characters' visual mass making the scene feel left-heavy.
-            float[] result = { 0.28f, 0.5f, 0.78f };
+            int count = 0;
             for (int s = 0; s < 3; s++)
             {
-                if (owner[s] == null) continue;
-                
-                float target = 0.5f;
-                if (s == 0) target = 0.28f;
-                else if (s == 1) target = 0.5f;
-                else if (s == 2) target = 0.78f;
-                
-                // Character specific visual offsets to account for sprite widths
-                if (owner[s] == "리나") // 850px (narrow)
-                {
-                    if (target < 0.5f) target += 0.05f;
-                    else if (target > 0.5f) target -= 0.05f;
-                }
-                else if (owner[s] == "하루카")
-                {
-                    // Haruka's sprite has a lot of hair extending to the right, which pushes her body left visually.
-                    if (target > 0.5f) target += 0.03f; 
-                }
-                
-                result[s] = target;
+                if (owner[s] != null) count++;
             }
-            return result;
+
+            // 3 characters need a wider spread (20%/50%/80%) to avoid crowding.
+            // 1 or 2 characters use 26%/50%/74% for balanced breathing room from screen edges.
+            float leftX = count >= 3 ? 0.20f : 0.26f;
+            float centerX = 0.50f;
+            float rightX = count >= 3 ? 0.80f : 0.74f;
+
+            return new float[] { leftX, centerX, rightX };
         }
 
         private void StopMove(int slot)
@@ -967,14 +959,20 @@ namespace HalloweenVN.UI
         }
 
         // ═══════════ Speaker Highlight / Dim ═══════════
-        private void UpdateSpeakerHighlight(string speaker, bool instant = false)
+        private void UpdateSpeakerHighlight(string speaker, bool instant = false, string command = null)
         {
             if (string.IsNullOrWhiteSpace(speaker))
             {
-                // Narrator -> all active characters are dimmed
+                // If command explicitly specifies force dim or highlight, honor it
+                bool forceDim = !string.IsNullOrEmpty(command) && command.Contains("FORCE_DIM");
+                bool forceHighlight = !string.IsNullOrEmpty(command) && (command.Contains("FORCE_HIGHLIGHT") || command.Contains("FORCE_ACTIVE"));
+
+                // If only 1 character is on screen (solo focus / character intro sequence), keep them in full default color!
+                // Dimming only applies when multiple characters are present, indicating none of them is currently speaking.
+                bool keepActive = (forceHighlight || _activeSpeakerPositions.Count <= 1) && !forceDim;
                 foreach (var kvp in _activeSpeakerPositions)
                 {
-                    DimCharacterImage(GetCharacterImage(kvp.Value), false, instant);
+                    DimCharacterImage(GetCharacterImage(kvp.Value), keepActive, instant);
                 }
                 return;
             }

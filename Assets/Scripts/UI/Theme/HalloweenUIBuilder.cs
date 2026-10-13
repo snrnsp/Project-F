@@ -1,4 +1,4 @@
-﻿﻿using HalloweenVN.Core;
+﻿using HalloweenVN.Core;
 using HalloweenVN.Dialogue;
 using HalloweenVN.Investigation;
 using HalloweenVN.Deduction;
@@ -481,9 +481,9 @@ namespace HalloweenVN.UI.Theme
             arf.aspectRatio = 1920f / 1080f;
 
             // Character Images (Left, Center, Right) — Anchor-based like old project
-            Image characterImageLeft = CreateCharacterSlot("CharacterImageLeft", dialoguePanelRoot.transform, 0.25f);
+            Image characterImageLeft = CreateCharacterSlot("CharacterImageLeft", dialoguePanelRoot.transform, 0.26f);
             Image characterImageCenter = CreateCharacterSlot("CharacterImageCenter", dialoguePanelRoot.transform, 0.5f);
-            Image characterImageRight = CreateCharacterSlot("CharacterImageRight", dialoguePanelRoot.transform, 0.75f);
+            Image characterImageRight = CreateCharacterSlot("CharacterImageRight", dialoguePanelRoot.transform, 0.74f);
 
             // Dialogue Panel
             GameObject dialoguePanel = UIHelper.CreatePanel("DialoguePanel", dialoguePanelRoot.transform, HalloweenTheme.PanelBackground);

@@ -81,7 +81,7 @@
             "characterSpriteRight": "",
             "backgroundSprite": "",
             "command": "",
-            "noFade": true,
+            "noFade": false,
             "slideIn": false,
             "nextNodeId": 6,
             "choices": []
