@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -62,7 +62,7 @@ namespace HalloweenVN.UI
         // ═══════════ Character Position System (ported from old project) ═══════════
         private static readonly Color DIM_COLOR = new Color(0.3f, 0.3f, 0.3f, 1f);
         private static readonly Color ACTIVE_COLOR = Color.white;
-        private const float DEFAULT_FADE_SPEED = 0.08f;
+        private const float DEFAULT_FADE_SPEED = 0.25f;
         private const float MOVE_DURATION = 0.25f;
 
         private Coroutine[] _moveCoroutines = new Coroutine[3];
@@ -1386,6 +1386,11 @@ namespace HalloweenVN.UI
             // Only update last click time when the click is actually accepted!
             _lastClickTime = Time.unscaledTime;
             CancelAutoPlayTimer();
+
+            if (HalloweenVN.Core.AudioManager.Instance != null)
+            {
+                HalloweenVN.Core.AudioManager.Instance.PlaySFX("sfx_ui_click");
+            }
 
             Debug.Log($"[DialogueUI] OnClick triggered. isTyping={isTyping}");
             if (isTyping)

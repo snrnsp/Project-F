@@ -362,6 +362,7 @@ namespace HalloweenVN.UI
         {
             // Don't allow rewinding to the very last entry (current dialogue)
             if (historyIndex >= history.Count - 1) return;
+            if (AudioManager.Instance != null) AudioManager.Instance.PlaySFX("sfx_ui_click");
             ShowRewindConfirmPopup(historyIndex);
         }
 
@@ -388,6 +389,7 @@ namespace HalloweenVN.UI
             var btnOverlay = overlay.AddComponent<Button>();
             btnOverlay.transition = Selectable.Transition.None;
             btnOverlay.onClick.AddListener(() => {
+                if (AudioManager.Instance != null) AudioManager.Instance.PlaySFX("sfx_ui_click");
                 Destroy(overlay);
                 _activePopup = null;
             });

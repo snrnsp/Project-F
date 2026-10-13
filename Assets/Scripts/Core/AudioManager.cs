@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -145,10 +145,13 @@ namespace HalloweenVN.Core
                 uiSource.playOnAwake = false;
                 uiSource.spatialBlend = 0f;
             }
-            uiSource.pitch = 2.0f; // Preserve the UI sound speed without reading compressed PCM data.
-            // One-shots carry their own volume scale; keep the source at 1 so the
-            // SFX slider is not applied twice (that used to make 50% sound like 25%).
+            uiSource.pitch = 1.0f;
+            uiSource.volume = 1f;
             sfxSource.volume = 1f;
+
+            // Preload critical UI sounds so first click is instantaneous
+            LoadSFX("sfx_ui_click");
+            LoadSFX("sfx_ui_hover");
 
             UpdateVolume();
         }
@@ -261,9 +264,32 @@ namespace HalloweenVN.Core
         /// </summary>
         public void PlaySFX(string sfxName, float maxDuration = 0f, float fadeOutTime = 1f)
         {
+            if (string.IsNullOrEmpty(sfxName)) return;
             AudioClip clip = LoadSFX(sfxName);
-            if (clip == null || !pendingSfx.Add(sfxName)) return;
-            StartCoroutine(PlaySfxWhenReady(sfxName, clip, maxDuration, fadeOutTime, sfxGeneration));
+            if (clip == null) return;
+
+            float gain = GainOf(sfxName);
+            float offset = ClipStartOffset.TryGetValue(sfxName, out float o) ? o : 0f;
+            bool isTimed = (maxDuration > 0f || offset > 0f);
+
+            // For timed/ambient SFX (like heartbeat), prevent rapid re-triggering while loading
+            if (isTimed && !pendingSfx.Add(sfxName)) return;
+
+            // If audio data is already loaded and it's a standard one-shot, play immediately with 0 latency!
+            if (!isTimed && clip.loadState == AudioDataLoadState.Loaded)
+            {
+                if (sfxName.StartsWith("sfx_ui_"))
+                {
+                    if (uiSource != null) uiSource.PlayOneShot(clip, SettingsData.SFXVolume * gain);
+                }
+                else
+                {
+                    if (sfxSource != null) sfxSource.PlayOneShot(clip, SettingsData.SFXVolume * gain);
+                }
+                return;
+            }
+
+            StartCoroutine(PlaySfxWhenReady(sfxName, clip, gain, offset, maxDuration, fadeOutTime, isTimed, sfxGeneration));
         }
 
         private IEnumerator WaitForAudioData(AudioClip clip)
@@ -278,30 +304,35 @@ namespace HalloweenVN.Core
                 Debug.LogWarning($"[AudioManager] Audio data could not be loaded: {clip.name}");
         }
 
-        private IEnumerator PlaySfxWhenReady(string sfxName, AudioClip clip, float maxDuration, float fadeOutTime, int generation)
+        private IEnumerator PlaySfxWhenReady(string sfxName, AudioClip clip, float gain, float offset, float maxDuration, float fadeOutTime, bool isTimed, int generation)
         {
-            yield return WaitForAudioData(clip);
-            // Rewind/title changes also cancel sounds still waiting for WebGL decoding.
-            if (generation != sfxGeneration) yield break;
-            pendingSfx.Remove(sfxName);
-            if (clip == null || clip.loadState != AudioDataLoadState.Loaded) yield break;
-
-            float gain = GainOf(sfxName);
-            float offset = ClipStartOffset.TryGetValue(sfxName, out float o) ? o : 0f;
-
-            if (maxDuration > 0f || offset > 0f)
+            try
             {
-                PlayTimedSFX(sfxName, clip, gain, offset, maxDuration, fadeOutTime);
-            }
-            else
-            {
-                if (sfxName.StartsWith("sfx_ui_"))
+                yield return WaitForAudioData(clip);
+                if (generation != sfxGeneration) yield break;
+                if (clip == null || clip.loadState != AudioDataLoadState.Loaded) yield break;
+
+                if (isTimed)
                 {
-                    uiSource.PlayOneShot(clip, SettingsData.SFXVolume * gain);
+                    PlayTimedSFX(sfxName, clip, gain, offset, maxDuration, fadeOutTime);
                 }
                 else
                 {
-                    sfxSource.PlayOneShot(clip, SettingsData.SFXVolume * gain);
+                    if (sfxName.StartsWith("sfx_ui_"))
+                    {
+                        if (uiSource != null) uiSource.PlayOneShot(clip, SettingsData.SFXVolume * gain);
+                    }
+                    else
+                    {
+                        if (sfxSource != null) sfxSource.PlayOneShot(clip, SettingsData.SFXVolume * gain);
+                    }
+                }
+            }
+            finally
+            {
+                if (isTimed)
+                {
+                    pendingSfx.Remove(sfxName);
                 }
             }
         }

@@ -255,6 +255,7 @@ namespace HalloweenVN.UI
             Button overlayBtn = overlay.AddComponent<Button>();
             overlayBtn.transition = Selectable.Transition.None;
             overlayBtn.onClick.AddListener(() => {
+                if (AudioManager.Instance != null) AudioManager.Instance.PlaySFX("sfx_ui_click");
                 Destroy(overlay);
             });
 
@@ -314,6 +315,7 @@ namespace HalloweenVN.UI
             btnImg.sprite = CreateRoundedRectSprite(8, 0, new Color32(50, 100, 160, 255), new Color32(0, 0, 0, 0));
             
             Button btn = btnObj.AddComponent<Button>();
+            btnObj.AddComponent<UIHoverSound>();
             btn.transition = Selectable.Transition.ColorTint;
             var cb = btn.colors;
             cb.normalColor = Color.white;
@@ -356,6 +358,7 @@ namespace HalloweenVN.UI
             overlayBtn.transition = Selectable.Transition.None;
             overlayBtn.onClick.AddListener(() => {
                 if (isStartingGame) return;
+                if (AudioManager.Instance != null) AudioManager.Instance.PlaySFX("sfx_ui_click");
                 Destroy(overlay);
             });
 
@@ -499,6 +502,7 @@ namespace HalloweenVN.UI
             bgImg.raycastTarget = false;
 
             Button btn = btnObj.AddComponent<Button>();
+            btnObj.AddComponent<UIHoverSound>();
             ColorBlock cb = ColorBlock.defaultColorBlock;
             cb.normalColor = Color.white;
             cb.highlightedColor = new Color32(200, 200, 200, 255);

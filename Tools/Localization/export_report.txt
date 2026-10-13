@@ -1,44 +1,22 @@
 Output: F:\Project-F\Assets\Resources\Localization\game_text.csv
-Total rows: 596  (Korean characters: 21439)
-  Speaker: 10
-  UI: 97
-  Dialogue: 489
+Total rows: 487  (Korean characters: 16629)
+  Speaker: 9
+  UI: 100
+  Dialogue: 378
 Dialogue rows per file:
-  ch0_origin: 72
-  ch0_gathering: 37
+  ch0_origin: 27
+  ch0_gathering: 23
   ch0_opening: 15
   ch1_morning: 74
   ch1_night: 42
   ch1_investigation_talk: 23
-  ch1_result_perfect: 15
-  ch1_resolution: 143
-  ch1_epilogue: 68
-Translations kept from existing CSV: 0 cells, imported from seeds: 0 cells
+  ch1_result_perfect: 29
+  ch1_resolution: 116
+  ch1_epilogue: 29
+Translations kept from existing CSV: 0 cells, imported from seeds: 323 cells
 Rows flagged KO-changed: 0
-Keys in old CSV that no longer exist (dropped): 25
-  evidence.dustless_keys.name
-  evidence.dustless_keys.desc
-  evidence.faded_program.name
-  evidence.faded_program.desc
-  evidence.sound_analysis.name
-  evidence.sound_analysis.desc
-  evidence.dusty_footprints.name
-  evidence.dusty_footprints.desc
-  evidence.temperature_anomaly.name
-  evidence.temperature_anomaly.desc
-  evidence.broken_metronome.name
-  evidence.broken_metronome.desc
-  evidence.old_music_magazine.name
-  evidence.old_music_magazine.desc
-  case.ch1_case.name
-  case.ch1_case.q0
-  case.ch1_case.q1
-  case.ch1_case.q2
-  case.ch1_case.q3
-  case.ch1_case.q4
-  dlg.ch1_result_fail.0
-  dlg.ch1_result_fail.1
-  dlg.ch1_result_fail.2
-  dlg.ch1_result_fail.3
-  dlg.ch1_result_fail.4
-Warnings: 0
+Keys in old CSV that no longer exist (dropped): 0
+Warnings: 3
+  UI key used with different Korean defaults: ui.lobby.new_game: '새 게임' (LobbyUI) vs '새게임' (HalloweenUIBuilder)
+  UI key used with different Korean defaults: ui.settings.text_speed: '텍스트 속도 조절' (SettingsUI) vs '텍스트 속도' (HalloweenUIBuilder)
+  UI key used with different Korean defaults: ui.settings.flash_effect: '화면 번쩍임·흔들림' (SettingsUI) vs '화면 번쩍임.흔들림' (HalloweenUIBuilder)

@@ -563,12 +563,11 @@ namespace HalloweenVN.UI.Theme
             UIHelper.SetField(ui, "backlogButtonText", logTuple.text);
 
             // Wire up fullscreen click (Background + DialoguePanel itself)
+            // DialogueUI.OnClick handles sfx_ui_click directly so clicks via keyboard or mouse always play sound
             Button bgClick = bgImgObj.AddComponent<Button>();
-            bgImgObj.AddComponent<UIHoverSound>().playHover = false; // full-screen click area: click only
             bgClick.targetGraphic = backgroundImage;
             bgClick.transition = Selectable.Transition.None;
             Button panelClick = dialoguePanel.AddComponent<Button>();
-            dialoguePanel.AddComponent<UIHoverSound>().playHover = false; // full-screen click area: click only
             Image panelImg = dialoguePanel.GetComponent<Image>();
             if (panelImg != null) panelClick.targetGraphic = panelImg;
             panelClick.transition = Selectable.Transition.None;
@@ -982,24 +981,31 @@ namespace HalloweenVN.UI.Theme
             var skipTuple = CreateLegacyButton(skipRow.transform, "Ctrl ▼", 420, 40, new Color32(60, 40, 80, 255));
             skipTuple.btn.GetComponent<RectTransform>().anchoredPosition = new Vector2(135, 0);
 
-            // Skip Dropdown Panel (Will be positioned absolutely later to avoid layout groups)
+            // Skip Dropdown Panel (Positioned below the button, distinct dark style)
             GameObject dropPanelObj = UIHelper.CreateUIObject("SkipDropdown", settingsRoot.transform);
             RectTransform dropRt = dropPanelObj.GetComponent<RectTransform>();
-            UIHelper.SetAnchors(dropRt, new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f));
-            dropRt.anchoredPosition = new Vector2(135, 10);
-            dropRt.sizeDelta = new Vector2(420, 120);
-            UIHelper.AddImage(dropPanelObj, new Color32(30, 20, 40, 255));
+            UIHelper.SetAnchors(dropRt, new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), new Vector2(0.5f, 1f));
+            dropRt.pivot = new Vector2(0.5f, 1f);
+            dropRt.anchoredPosition = new Vector2(135, -70);
+            dropRt.sizeDelta = new Vector2(420, 134);
+            UIHelper.AddImage(dropPanelObj, new Color32(22, 16, 32, 252));
             UnityEngine.UI.Outline dropOut = dropPanelObj.AddComponent<UnityEngine.UI.Outline>();
-            dropOut.effectColor = HalloweenTheme.AccentOrange;
-            VerticalLayoutGroup dropVlg = dropPanelObj.AddComponent<VerticalLayoutGroup>();
-            dropVlg.childControlHeight = true; dropVlg.childControlWidth = true;
+            dropOut.effectColor = new Color32(255, 140, 20, 220); // Subtle orange border
+            dropOut.effectDistance = new Vector2(2f, 2f);
             
-            var optCtrl = CreateLegacyButton(dropPanelObj.transform, "Ctrl", 420, 40, new Color32(50, 35, 70, 255));
-            optCtrl.text.fontSize = 20;
-            var optShift = CreateLegacyButton(dropPanelObj.transform, "Shift", 420, 40, new Color32(50, 35, 70, 255));
-            optShift.text.fontSize = 20;
-            var optSpace = CreateLegacyButton(dropPanelObj.transform, "Space", 420, 40, new Color32(50, 35, 70, 255));
-            optSpace.text.fontSize = 20;
+            VerticalLayoutGroup dropVlg = dropPanelObj.AddComponent<VerticalLayoutGroup>();
+            dropVlg.padding = new RectOffset(6, 6, 6, 6);
+            dropVlg.spacing = 4;
+            dropVlg.childControlHeight = true;
+            dropVlg.childControlWidth = true;
+            dropVlg.childForceExpandHeight = false;
+            dropVlg.childForceExpandWidth = true;
+            
+            Color32 optBg = new Color32(36, 26, 48, 255);
+            Color32 optBorder = new Color32(75, 52, 95, 200);
+            var optCtrl = CreateDropdownOptionButton(dropPanelObj.transform, "◆  Ctrl", 408, 36, optBg, optBorder);
+            var optShift = CreateDropdownOptionButton(dropPanelObj.transform, "    Shift", 408, 36, optBg, optBorder);
+            var optSpace = CreateDropdownOptionButton(dropPanelObj.transform, "    Space", 408, 36, optBg, optBorder);
             dropPanelObj.SetActive(false);
 
             // Skip Help Panel (Absolute positioning)
@@ -1239,6 +1245,71 @@ namespace HalloweenVN.UI.Theme
             }
 
             legacyText.gameObject.AddComponent<LegacyTextFontFallback>();
+            return (btn, legacyText);
+        }
+
+        private (Button btn, Text text) CreateDropdownOptionButton(Transform parent, string label, float width, float height, Color32 btnBg, Color32 borderCol)
+        {
+            GameObject btnObj = UIHelper.CreateUIObject("Opt_" + label.Trim(), parent);
+            RectTransform rt = btnObj.GetComponent<RectTransform>();
+            rt.sizeDelta = new Vector2(width, height);
+
+            // Invisible hit box
+            Image hitImg = UIHelper.AddImage(btnObj, new Color(0, 0, 0, 0));
+
+            // Border (drawn behind)
+            GameObject borderObj = UIHelper.CreateUIObject("Border", btnObj.transform);
+            UIHelper.StretchFull(borderObj.GetComponent<RectTransform>());
+            Image borderImg = UIHelper.AddImage(borderObj, borderCol);
+            borderImg.raycastTarget = false;
+
+            // Background (inner)
+            GameObject bgObj = UIHelper.CreateUIObject("Background", btnObj.transform);
+            RectTransform bgRt = bgObj.GetComponent<RectTransform>();
+            UIHelper.StretchFull(bgRt);
+            bgRt.offsetMin = new Vector2(1, 1);
+            bgRt.offsetMax = new Vector2(-1, -1);
+            Image bgImg = UIHelper.AddImage(bgObj, Color.white);
+            bgImg.raycastTarget = false;
+
+            Button btn = btnObj.AddComponent<Button>();
+            btnObj.AddComponent<UIHoverSound>();
+            btn.transition = Selectable.Transition.ColorTint;
+
+            ColorBlock cb = ColorBlock.defaultColorBlock;
+            cb.normalColor = btnBg;
+            cb.highlightedColor = new Color32(85, 58, 115, 255);
+            cb.pressedColor = new Color32(140, 70, 30, 255);
+            cb.selectedColor = cb.normalColor;
+            cb.fadeDuration = 0.08f;
+            btn.colors = cb;
+            btn.targetGraphic = bgImg;
+
+            GameObject textObj = UIHelper.CreateUIObject("Text", btnObj.transform);
+            RectTransform textRt = textObj.GetComponent<RectTransform>();
+            UIHelper.StretchFull(textRt);
+            textRt.offsetMin = new Vector2(24, 0); // Indent text from left for option aesthetic
+            textRt.offsetMax = new Vector2(-10, 0);
+
+            Text legacyText = textObj.AddComponent<Text>();
+            legacyText.text = label;
+            legacyText.alignment = TextAnchor.MiddleLeft;
+            legacyText.alignByGeometry = true;
+            legacyText.verticalOverflow = VerticalWrapMode.Overflow;
+            legacyText.fontSize = 18;
+            legacyText.color = new Color32(230, 225, 245, 255);
+
+            string fontName = FontHelper.GetFontNameForLanguage(SettingsData.Language);
+            Font f = FontHelper.GetFont(fontName);
+            if (f != null) {
+                legacyText.font = f;
+            } else {
+                Font rawFont = Resources.Load<Font>("Fonts/MalgunGothic");
+                if (rawFont != null) legacyText.font = rawFont;
+                else legacyText.font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
+            }
+            legacyText.gameObject.AddComponent<LegacyTextFontFallback>();
+
             return (btn, legacyText);
         }
 

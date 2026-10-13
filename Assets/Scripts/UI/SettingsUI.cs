@@ -144,13 +144,14 @@ namespace HalloweenVN.UI
                 ctrlSkipButton.onClick.AddListener(() => {
                     if (skipDropdownPanel != null) {
                         bool isActive = skipDropdownPanel.activeSelf;
-                        skipDropdownPanel.SetActive(!isActive);
-                        if (dropdownBlocker != null) dropdownBlocker.SetActive(!isActive);
-                        
                         if (!isActive) {
+                            PositionDropdownBelowButton();
+                            UpdateSkipDropdownOptions();
                             if (dropdownBlocker != null) dropdownBlocker.transform.SetAsLastSibling();
                             skipDropdownPanel.transform.SetAsLastSibling();
                         }
+                        skipDropdownPanel.SetActive(!isActive);
+                        if (dropdownBlocker != null) dropdownBlocker.SetActive(!isActive);
                     }
                 });
             }
@@ -448,6 +449,69 @@ namespace HalloweenVN.UI
                 fontStyleValueText.text = SettingsData.UseHandwritingFont
                     ? Loc.Get("ui.settings.font_handwriting", "손글씨")
                     : Loc.Get("ui.settings.font_gothic", "고딕");
+            }
+
+            UpdateSkipDropdownOptions();
+        }
+
+        private void PositionDropdownBelowButton()
+        {
+            if (ctrlSkipButton == null || skipDropdownPanel == null) return;
+            RectTransform btnRt = ctrlSkipButton.GetComponent<RectTransform>();
+            RectTransform dropRt = skipDropdownPanel.GetComponent<RectTransform>();
+            RectTransform parentRt = skipDropdownPanel.transform.parent as RectTransform;
+            if (btnRt == null || dropRt == null || parentRt == null) return;
+
+            Vector3[] corners = new Vector3[4];
+            btnRt.GetWorldCorners(corners); // 0: bottom-left, 3: bottom-right
+            Vector3 bottomCenter = (corners[0] + corners[3]) * 0.5f;
+
+            Vector2 localPoint;
+            RectTransformUtility.ScreenPointToLocalPointInRectangle(
+                parentRt,
+                RectTransformUtility.WorldToScreenPoint(null, bottomCenter),
+                null,
+                out localPoint
+            );
+
+            dropRt.pivot = new Vector2(0.5f, 1f); // Top-center pivot: expands downwards
+            dropRt.anchoredPosition = new Vector2(localPoint.x, localPoint.y - 4f); // 4px gap below button
+        }
+
+        private void UpdateSkipDropdownOptions()
+        {
+            if (skipOptCtrl != null)
+            {
+                Text t = skipOptCtrl.GetComponentInChildren<Text>();
+                if (t != null)
+                {
+                    bool isSel = SettingsData.SkipKey == SettingsData.SkipKeyOption.Ctrl;
+                    t.text = isSel ? "◆  Ctrl" : "    Ctrl";
+                    t.color = isSel ? HalloweenVN.UI.Theme.HalloweenTheme.AccentOrange : new Color32(230, 225, 245, 255);
+                    t.fontStyle = isSel ? FontStyle.Bold : FontStyle.Normal;
+                }
+            }
+            if (skipOptShift != null)
+            {
+                Text t = skipOptShift.GetComponentInChildren<Text>();
+                if (t != null)
+                {
+                    bool isSel = SettingsData.SkipKey == SettingsData.SkipKeyOption.Shift;
+                    t.text = isSel ? "◆  Shift" : "    Shift";
+                    t.color = isSel ? HalloweenVN.UI.Theme.HalloweenTheme.AccentOrange : new Color32(230, 225, 245, 255);
+                    t.fontStyle = isSel ? FontStyle.Bold : FontStyle.Normal;
+                }
+            }
+            if (skipOptSpace != null)
+            {
+                Text t = skipOptSpace.GetComponentInChildren<Text>();
+                if (t != null)
+                {
+                    bool isSel = SettingsData.SkipKey == SettingsData.SkipKeyOption.Space;
+                    t.text = isSel ? "◆  Space" : "    Space";
+                    t.color = isSel ? HalloweenVN.UI.Theme.HalloweenTheme.AccentOrange : new Color32(230, 225, 245, 255);
+                    t.fontStyle = isSel ? FontStyle.Bold : FontStyle.Normal;
+                }
             }
         }
 
