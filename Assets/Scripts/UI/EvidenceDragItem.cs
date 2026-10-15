@@ -1,4 +1,4 @@
-using HalloweenVN.Data;
+﻿using HalloweenVN.Data;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;

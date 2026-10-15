@@ -1,4 +1,4 @@
-﻿Category,Korean (KO),English (EN),Japanese (JA),Chinese Simplified (ZH-CN),Chinese Traditional (ZH-TW),Notes
+Category,Korean (KO),English (EN),Japanese (JA),Chinese Simplified (ZH-CN),Chinese Traditional (ZH-TW),Notes
 Character Name,세이카,Seika,セイカ,星华,星華,Agency director. Age 25. Female. Casual speech (banmal).
 Character Name,카스미,Kasumi,カスミ,霞,霞,Lead detective. Age 23. Female. Formal/polite speech (jondaenmal).
 Character Name,리나,Rina,リナ,莉娜,莉娜,Field operative. Age 21. Female. Casual speech with slang.
@@ -15,7 +15,7 @@ Honorific/Title,이 몸,This great one / I,我（われ）,本大人,本大人,M
 Organization,네버모어 오컬트 탐정 사무소,Nevermore Occult Detective Agency,ネバーモア・オカルト探偵事務所,永不复焉超自然侦探事务所,永不復焉超自然偵探事務所,Official full name.
 Organization,네버모어 탐정 사무소,Nevermore Detective Agency,ネバーモア探偵事務所,永不复焉侦探事务所,永不復焉偵探事務所,Common shortened name used in dialogue.
 Organization,네버모어,Nevermore,ネバーモア,永不复焉,永不復焉,"Shortest abbreviation. Derived from Edgar Allan Poe's ""The Raven""."
-Organization,노을시 경찰청,Noeul City Police Department,ノウル市警察庁,落霞市警察厅,落霞市警察廳,Bureaucratic institution that covers up supernatural cases.
+Organization,노을시 경찰청,Noeul City Police Department,ノウル市警察庁,落霞市警察局,落霞市警察局,Bureaucratic institution that covers up supernatural cases.
 Organization,과학수사대,Forensic Investigation Unit,科学捜査隊,刑事技术科,刑事鑑識科,Kasumi's former workplace (intern).
 Organization,대형 로펌,Major Law Firm,大手法律事務所,大型律师事务所,大型律師事務所,Seika's former workplace.
 Location,노을시,Noeul City,ノウル市,落霞市,落霞市,"Main setting. Fictional Korean port city. Pop. ~800,000."
@@ -23,7 +23,7 @@ Location,구시가지,Old Town,旧市街,旧城区,舊城區,District with colon
 Location,신시가지,New Town,新市街,新城区,新城區,Modern urban district.
 Location,언덕 위의 저택,The Hilltop Mansion,丘の上の屋敷,山丘上的宅邸,山丘上的宅邸,"Nevermore HQ. Old mansion overlooking Old Town, long unsold and nicknamed 'the haunted house' (유령의 집)."
 Location,지하 서고,Basement Archive,地下書庫,地下书库,地下書庫,"Hidden basement library beneath a nondescript building in Old Town, filled with disappearance mystery novels. Where Seika found the message."
-Location,폐쇄 음악실,Abandoned Music Hall,閉鎖された音楽室,废弃音乐教室,廢棄音樂教室,Ch.1 crime scene. Former music academy.
+Location,폐쇄 음악실,Abandoned Music Hall,閉鎖された音楽ホール,废弃音乐厅,廢棄音樂廳,Ch.1 crime scene. Former music hall.
 Location,메인 공연장,Main Concert Hall,メインホール,主演奏厅,主演奏廳,Interior of the Abandoned Music Hall. Contains the grand piano.
 Location,구시가지 3번 골목,Old Town Alley No. 3,旧市街三番路地,旧城区3号巷,舊城區3號巷,Previous day's noise complaint location.
 Location,미로 골목,Labyrinth Alley,迷路路地,迷宫小巷,迷宮小巷,Alley where people always get lost. Site of Nevermore's first case.

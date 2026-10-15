@@ -236,7 +236,7 @@
         {
             "id": 17,
             "speaker": "미나",
-            "text": "잊혀지는 현상'... 인간의 존재 자체가 이 세상에서 지워지는 것이니라. 기록에서도... 그리고 어리석은 자들의 기억 속에서도...",
+            "text": "'잊혀지는 현상'... 인간의 존재 자체가 이 세상에서 지워지는 것이니라. 기록에서도... 그리고 어리석은 자들의 기억 속에서도...",
             "characterSpriteLeft": "Characters/미나/음침",
             "characterSpriteCenter": "",
             "characterSpriteRight": "Characters/카스미/찡그림",
@@ -319,11 +319,11 @@
         },
         {
             "id": 23,
-            "speaker": "",
+            "speaker": " ",
             "text": "",
-            "characterSpriteLeft": "Characters/세이카/웃음",
+            "characterSpriteLeft": "",
             "characterSpriteCenter": "",
-            "characterSpriteRight": "Characters/카스미/기본",
+            "characterSpriteRight": "",
             "backgroundSprite": "",
             "choices": [],
             "nextNodeId": -1,

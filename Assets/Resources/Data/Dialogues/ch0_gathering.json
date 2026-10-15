@@ -200,7 +200,7 @@
             "characterSpriteCenter": "",
             "characterSpriteRight": "Characters/세이카/기본",
             "backgroundSprite": "",
-            "command": "",
+            "command": "EFFECT:SHAKE_SHORT",
             "noFade": false,
             "slideIn": true,
             "nextNodeId": 15,

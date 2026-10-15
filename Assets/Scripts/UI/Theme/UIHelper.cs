@@ -21,8 +21,13 @@ namespace HalloweenVN.UI.Theme
         /// <summary>
         /// Creates an Image component with given color, optional sprite
         /// </summary>
-                public static Sprite CreateCustomRoundedRectSprite(int radius, int borderSize, Color32 bgColor, Color32 borderColor, bool tl, bool tr, bool bl, bool br)
+        private static readonly System.Collections.Generic.Dictionary<string, Sprite> _roundedRectCache = new System.Collections.Generic.Dictionary<string, Sprite>();
+
+        public static Sprite CreateCustomRoundedRectSprite(int radius, int borderSize, Color32 bgColor, Color32 borderColor, bool tl, bool tr, bool bl, bool br)
         {
+            string key = $"C_{radius}_{borderSize}_{bgColor.r}_{bgColor.g}_{bgColor.b}_{bgColor.a}_{borderColor.r}_{borderColor.g}_{borderColor.b}_{borderColor.a}_{(tl?1:0)}{(tr?1:0)}{(bl?1:0)}{(br?1:0)}";
+            if (_roundedRectCache.TryGetValue(key, out Sprite cached) && cached != null) return cached;
+
             int size = radius * 2 + borderSize * 2 + 4;
             int centerStart = radius + borderSize;
             int centerEnd = size - centerStart - 1;
@@ -30,9 +35,11 @@ namespace HalloweenVN.UI.Theme
             Texture2D tex = new Texture2D(size, size, TextureFormat.RGBA32, false);
             tex.wrapMode = TextureWrapMode.Clamp;
             Color32 clear = new Color32(0, 0, 0, 0);
+            Color32[] pixels = new Color32[size * size];
             
             for (int y = 0; y < size; y++)
             {
+                int rowOffset = y * size;
                 for (int x = 0; x < size; x++)
                 {
                     float dx = Mathf.Max(0, Mathf.Max(centerStart - x, x - centerEnd));
@@ -48,25 +55,25 @@ namespace HalloweenVN.UI.Theme
                         else if (x > centerEnd && y > centerEnd) shouldRound = tr;
                     }
 
-                    float dist = 0;
-                    if (isCorner && shouldRound) {
-                        dist = Mathf.Sqrt(dx * dx + dy * dy);
-                    } else {
-                        // For straight edges OR square corners, use Chebyshev distance
-                        dist = Mathf.Max(dx, dy);
-                    }
+                    float dist = (isCorner && shouldRound) ? Mathf.Sqrt(dx * dx + dy * dy) : Mathf.Max(dx, dy);
                     
-                    if (dist > radius + borderSize) tex.SetPixel(x, y, clear);
-                    else if (dist > radius) tex.SetPixel(x, y, borderColor);
-                    else tex.SetPixel(x, y, bgColor);
+                    if (dist > radius + borderSize) pixels[rowOffset + x] = clear;
+                    else if (dist > radius) pixels[rowOffset + x] = borderColor;
+                    else pixels[rowOffset + x] = bgColor;
                 }
             }
-            tex.Apply();
-            return Sprite.Create(tex, new Rect(0, 0, size, size), new Vector2(0.5f, 0.5f), 100, 0, SpriteMeshType.FullRect, new Vector4(centerStart, centerStart, centerStart, centerStart));
+            tex.SetPixels32(pixels);
+            tex.Apply(false, false);
+            Sprite sprite = Sprite.Create(tex, new Rect(0, 0, size, size), new Vector2(0.5f, 0.5f), 100, 0, SpriteMeshType.FullRect, new Vector4(centerStart, centerStart, centerStart, centerStart));
+            _roundedRectCache[key] = sprite;
+            return sprite;
         }
 
         public static Sprite CreateRoundedRectSprite(int radius, int borderSize, Color32 bgColor, Color32 borderColor)
         {
+            string key = $"R_{radius}_{borderSize}_{bgColor.r}_{bgColor.g}_{bgColor.b}_{bgColor.a}_{borderColor.r}_{borderColor.g}_{borderColor.b}_{borderColor.a}";
+            if (_roundedRectCache.TryGetValue(key, out Sprite cached) && cached != null) return cached;
+
             int size = radius * 2 + borderSize * 2 + 4; // Add a bit of padding for safe slicing
             int centerStart = radius + borderSize;
             int centerEnd = centerStart + 3;
@@ -74,22 +81,27 @@ namespace HalloweenVN.UI.Theme
             Texture2D tex = new Texture2D(size, size, TextureFormat.RGBA32, false);
             tex.wrapMode = TextureWrapMode.Clamp;
             Color32 clear = new Color32(0, 0, 0, 0);
+            Color32[] pixels = new Color32[size * size];
             
             for (int y = 0; y < size; y++)
             {
+                int rowOffset = y * size;
                 for (int x = 0; x < size; x++)
                 {
                     float dx = Mathf.Max(0, Mathf.Max(centerStart - x, x - centerEnd));
                     float dy = Mathf.Max(0, Mathf.Max(centerStart - y, y - centerEnd));
                     float dist = Mathf.Sqrt(dx * dx + dy * dy);
                     
-                    if (dist > radius + borderSize) tex.SetPixel(x, y, clear);
-                    else if (dist > radius) tex.SetPixel(x, y, borderColor);
-                    else tex.SetPixel(x, y, bgColor);
+                    if (dist > radius + borderSize) pixels[rowOffset + x] = clear;
+                    else if (dist > radius) pixels[rowOffset + x] = borderColor;
+                    else pixels[rowOffset + x] = bgColor;
                 }
             }
-            tex.Apply();
-            return Sprite.Create(tex, new Rect(0, 0, size, size), new Vector2(0.5f, 0.5f), 100, 0, SpriteMeshType.FullRect, new Vector4(centerStart, centerStart, centerStart, centerStart));
+            tex.SetPixels32(pixels);
+            tex.Apply(false, false);
+            Sprite sprite = Sprite.Create(tex, new Rect(0, 0, size, size), new Vector2(0.5f, 0.5f), 100, 0, SpriteMeshType.FullRect, new Vector4(centerStart, centerStart, centerStart, centerStart));
+            _roundedRectCache[key] = sprite;
+            return sprite;
         }
 
         public static Image AddImage(GameObject obj, Color color, Sprite sprite = null)
@@ -104,7 +116,6 @@ namespace HalloweenVN.UI.Theme
         }
 
         private static TMP_FontAsset cachedKoreanFont;
-        private static TMP_FontAsset dynamicFallbackFont;
 
         /// <summary>
         /// Creates a TextMeshProUGUI with given text, color, fontSize, alignment
@@ -128,16 +139,7 @@ namespace HalloweenVN.UI.Theme
             {
                 if (cachedKoreanFont == null)
                 {
-                    cachedKoreanFont = Resources.Load<TMP_FontAsset>("Fonts/MalgunGothic SDF");
-                    if (cachedKoreanFont == null)
-                    {
-                        Font rawFont = Resources.Load<Font>("Fonts/MalgunGothic");
-                        if (rawFont != null)
-                        {
-                            cachedKoreanFont = TMP_FontAsset.CreateFontAsset(rawFont);
-                            cachedKoreanFont.name = "MalgunGothic Runtime SDF";
-                        }
-                    }
+                    cachedKoreanFont = HalloweenVN.UI.FontHelper.GetTMPFont("MalgunGothic");
                 }
                 if (cachedKoreanFont != null) tmp.font = cachedKoreanFont;
             }

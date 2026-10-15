@@ -1,4 +1,4 @@
-﻿﻿﻿using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -28,20 +28,7 @@ namespace HalloweenVN.UI
         [SerializeField] private Text lobbySubtitleText;
         [SerializeField] private Text languageBtnText;
         private bool isStartingGame = false;
-        private bool IsFastForwarding
-        {
-            get
-            {
-                if (UnityEngine.InputSystem.Keyboard.current == null) return false;
-                if (HalloweenVN.Core.SettingsData.SkipKey == HalloweenVN.Core.SettingsData.SkipKeyOption.Ctrl)
-                    return UnityEngine.InputSystem.Keyboard.current.leftCtrlKey.isPressed || UnityEngine.InputSystem.Keyboard.current.rightCtrlKey.isPressed;
-                if (HalloweenVN.Core.SettingsData.SkipKey == HalloweenVN.Core.SettingsData.SkipKeyOption.Shift)
-                    return UnityEngine.InputSystem.Keyboard.current.leftShiftKey.isPressed || UnityEngine.InputSystem.Keyboard.current.rightShiftKey.isPressed;
-                if (HalloweenVN.Core.SettingsData.SkipKey == HalloweenVN.Core.SettingsData.SkipKeyOption.Space)
-                    return UnityEngine.InputSystem.Keyboard.current.spaceKey.isPressed;
-                return false;
-            }
-        }
+        private bool IsFastForwarding => HalloweenVN.Core.SettingsData.IsSkipKeyPressed();
 
 
         private void OnEnable()
@@ -50,6 +37,7 @@ namespace HalloweenVN.UI
             {
                 GameManager.Instance.OnPhaseChanged += HandlePhaseChanged;
             }
+            if (_activePopupOverlay != null) _activePopupOverlay.SetActive(true);
             UpdateContinueButton();
             UpdateLanguage();
         }
@@ -65,7 +53,7 @@ namespace HalloweenVN.UI
             {
                 logoPath = "Images/Logos/logo_ko";
             }
-            Sprite logoSprite = Resources.Load<Sprite>(logoPath);
+            Sprite logoSprite = DialogueUI.LoadSpriteCached(logoPath);
             if (logoSprite != null) 
             {
                 logoImage.sprite = logoSprite;
@@ -102,6 +90,7 @@ namespace HalloweenVN.UI
             // Per-language texts come from the Loc table (Korean default inline; other languages in game_text.csv).
             // The subtitle stays hidden in English (original behaviour) — layout logic, not text.
             if (lobbySubtitleText != null) lobbySubtitleText.text = lang == GameLanguage.English ? "" : Loc.Get("ui.lobby.subtitle", "OBLIVION");
+            if (continueText != null) continueText.text = Loc.Get("ui.lobby.continue", "이어하기");
             if (newGameText != null) newGameText.text = Loc.Get("ui.lobby.new_game", "새 게임");
             if (extraText != null) extraText.text = Loc.Get("ui.lobby.characters", "캐릭터");
             if (settingsText != null) settingsText.text = Loc.Get("ui.lobby.settings", "환경 설정");
@@ -129,6 +118,7 @@ namespace HalloweenVN.UI
             {
                 GameManager.Instance.OnPhaseChanged -= HandlePhaseChanged;
             }
+            if (_activePopupOverlay != null) _activePopupOverlay.SetActive(false);
         }
 
         private void OnDestroy()
@@ -232,18 +222,63 @@ namespace HalloweenVN.UI
                 cg.alpha = hasSave ? 1f : 0.5f;
             }
         }
-                private void OnNewGameClicked()
+        private GameObject _activePopupOverlay;
+        private System.Action _activePopupConfirmAction;
+        private float _popupOpenedTime;
+
+        private void Update()
+        {
+            if (isStartingGame || _activePopupOverlay == null || !_activePopupOverlay.activeInHierarchy) return;
+            if (Time.unscaledTime - _popupOpenedTime < 0.15f) return;
+
+            var kb = UnityEngine.InputSystem.Keyboard.current;
+            if (kb != null && (kb.enterKey.wasPressedThisFrame || kb.numpadEnterKey.wasPressedThisFrame || kb.spaceKey.wasPressedThisFrame))
+            {
+                var action = _activePopupConfirmAction;
+                _activePopupConfirmAction = null;
+                action?.Invoke();
+            }
+        }
+
+        public bool TryCloseActivePopup()
+        {
+            if (isStartingGame || _activePopupOverlay == null) return false;
+            if (AudioManager.Instance != null) AudioManager.Instance.PlaySFX("sfx_ui_click");
+            Destroy(_activePopupOverlay);
+            _activePopupOverlay = null;
+            _activePopupConfirmAction = null;
+            return true;
+        }
+
+        private void OnNewGameClicked()
         {
             if (UnityEngine.EventSystems.EventSystem.current != null) UnityEngine.EventSystems.EventSystem.current.SetSelectedGameObject(null);
-            if (isStartingGame) return;
-            isStartingGame = true;
+            if (isStartingGame || _activePopupOverlay != null) return;
             ShowPhotosensitivityWarning();
+        }
+
+        private void AttachOverlayAboveGlobalUI(GameObject overlay)
+        {
+            Transform canvasTr = lobbyPanel != null && lobbyPanel.transform.parent != null ? lobbyPanel.transform.parent : lobbyPanel.transform;
+            overlay.transform.SetParent(canvasTr, false);
+            Transform globalUiTr = canvasTr.Find("GlobalUI");
+            if (globalUiTr != null)
+            {
+                overlay.transform.SetSiblingIndex(globalUiTr.GetSiblingIndex() + 1);
+            }
+            if (lobbyPanel != null)
+            {
+                overlay.SetActive(lobbyPanel.activeInHierarchy);
+            }
         }
 
         private void ShowPreAlphaWarning()
         {
+            if (_activePopupOverlay != null) Destroy(_activePopupOverlay);
             GameObject overlay = new GameObject("PreAlphaOverlay");
-            overlay.transform.SetParent(lobbyPanel.transform, false);
+            _activePopupOverlay = overlay;
+            _popupOpenedTime = Time.unscaledTime;
+            AttachOverlayAboveGlobalUI(overlay);
             RectTransform overlayRt = overlay.AddComponent<RectTransform>();
             overlayRt.anchorMin = Vector2.zero;
             overlayRt.anchorMax = Vector2.one;
@@ -256,6 +291,11 @@ namespace HalloweenVN.UI
             overlayBtn.transition = Selectable.Transition.None;
             overlayBtn.onClick.AddListener(() => {
                 if (AudioManager.Instance != null) AudioManager.Instance.PlaySFX("sfx_ui_click");
+                if (_activePopupOverlay == overlay)
+                {
+                    _activePopupOverlay = null;
+                    _activePopupConfirmAction = null;
+                }
                 Destroy(overlay);
             });
 
@@ -280,12 +320,12 @@ namespace HalloweenVN.UI
             iconRt.anchorMin = new Vector2(0.5f, 1f);
             iconRt.anchorMax = new Vector2(0.5f, 1f);
             iconRt.anchoredPosition = new Vector2(0, titleY);
-            iconRt.sizeDelta = new Vector2( 600, 50);
-            TextMeshProUGUI iconText = Theme.UIHelper.AddText(iconObj, Loc.Get("ui.lobby.prealpha.title", "Pre-Alpha 안내"), new Color32(150, 200, 255, 255),  SettingsData.UseHandwritingFont ? 36 : 30, TextAlignmentOptions.Center);
+            iconRt.sizeDelta = new Vector2(600, 50);
+            TextMeshProUGUI iconText = Theme.UIHelper.AddText(iconObj, Loc.Get("ui.lobby.prealpha.title", "Pre-Alpha 안내"), new Color32(100, 180, 255, 255), SettingsData.UseHandwritingFont ? 36 : 30, TextAlignmentOptions.Center);
             iconText.fontStyle = FontStyles.Bold;
             iconText.enableAutoSizing = true;
             iconText.fontSizeMin = 24f;
-            iconText.fontSizeMax =  SettingsData.UseHandwritingFont ? 36f : 30f;
+            iconText.fontSizeMax = SettingsData.UseHandwritingFont ? 36f : 30f;
 
             GameObject msgObj = new GameObject("WarningMessage");
             msgObj.transform.SetParent(panel.transform, false);
@@ -293,15 +333,15 @@ namespace HalloweenVN.UI
             msgRt.anchorMin = new Vector2(0.5f, 1f);
             msgRt.anchorMax = new Vector2(0.5f, 1f);
             msgRt.anchoredPosition = new Vector2(0, -210);
-            msgRt.sizeDelta = new Vector2( 760, 250);
+            msgRt.sizeDelta = new Vector2(760, 250);
             
             string preAlphaMsg = Loc.Get("ui.lobby.prealpha.message", "현재 오블리비언은 '<color=#80C0FF>프리 알파</color>'에 있습니다!\n(소프트웨어나 게임 개발 과정에서 정식 알파 테스트 이전의 초기 제작 및 설계 단계)\n\n게임의 품질이 낮을 수 있는 점 양해 바랍니다!\n\n일부 백그라운드 배경은 임시로 AI를 사용했음을 알려드립니다.");
             
-            TextMeshProUGUI msgText = Theme.UIHelper.AddText(msgObj, preAlphaMsg, new Color32(230, 230, 230, 255),  SettingsData.UseHandwritingFont ? 26 : 20, TextAlignmentOptions.Center);
-            msgText.lineSpacing =  5f;
+            TextMeshProUGUI msgText = Theme.UIHelper.AddText(msgObj, preAlphaMsg, new Color32(230, 230, 240, 255), SettingsData.UseHandwritingFont ? 26 : 20, TextAlignmentOptions.Center);
+            msgText.lineSpacing = 5f;
             msgText.enableAutoSizing = true;
             msgText.fontSizeMin = 18f;
-            msgText.fontSizeMax =  SettingsData.UseHandwritingFont ? 26f : 20f;
+            msgText.fontSizeMax = SettingsData.UseHandwritingFont ? 26f : 20f;
 
             GameObject btnObj = new GameObject("OkButton");
             btnObj.transform.SetParent(panel.transform, false);
@@ -312,7 +352,7 @@ namespace HalloweenVN.UI
             btnRt.sizeDelta = new Vector2(240, 60);
             Image btnImg = btnObj.AddComponent<Image>();
             btnImg.type = Image.Type.Sliced;
-            btnImg.sprite = CreateRoundedRectSprite(8, 0, new Color32(50, 100, 160, 255), new Color32(0, 0, 0, 0));
+            btnImg.sprite = CreateRoundedRectSprite(8, 2, new Color32(50, 100, 160, 255), new Color32(100, 180, 255, 255));
             
             Button btn = btnObj.AddComponent<Button>();
             btnObj.AddComponent<UIHoverSound>();
@@ -320,7 +360,7 @@ namespace HalloweenVN.UI
             var cb = btn.colors;
             cb.normalColor = Color.white;
             cb.highlightedColor = new Color(0.8f, 0.9f, 1f);
-            cb.pressedColor = new Color(0.6f, 0.8f, 1f);
+            cb.pressedColor = new Color(0.6f, 0.7f, 0.8f);
             cb.selectedColor = Color.white;
             btn.colors = cb;
 
@@ -334,17 +374,28 @@ namespace HalloweenVN.UI
             TextMeshProUGUI btnText = Theme.UIHelper.AddText(btnTextObj, Loc.Get("ui.lobby.ok", "확인"), new Color32(255, 255, 255, 255), SettingsData.UseHandwritingFont ? 26 : 20, TextAlignmentOptions.Center);
             btnText.fontStyle = FontStyles.Bold;
 
-            btn.onClick.AddListener(() =>
+            System.Action closePreAlpha = () =>
             {
                 if (UnityEngine.EventSystems.EventSystem.current != null) UnityEngine.EventSystems.EventSystem.current.SetSelectedGameObject(null);
+                if (AudioManager.Instance != null) AudioManager.Instance.PlaySFX("sfx_ui_click");
+                if (_activePopupOverlay == overlay)
+                {
+                    _activePopupOverlay = null;
+                    _activePopupConfirmAction = null;
+                }
                 Destroy(overlay);
-            });
+            };
+            _activePopupConfirmAction = closePreAlpha;
+            btn.onClick.AddListener(() => closePreAlpha());
         }
         private void ShowPhotosensitivityWarning()
         {
+            if (_activePopupOverlay != null) Destroy(_activePopupOverlay);
             // Create overlay
             GameObject overlay = new GameObject("WarningOverlay");
-            overlay.transform.SetParent(lobbyPanel.transform, false);
+            _activePopupOverlay = overlay;
+            _popupOpenedTime = Time.unscaledTime;
+            AttachOverlayAboveGlobalUI(overlay);
             RectTransform overlayRt = overlay.AddComponent<RectTransform>();
             overlayRt.anchorMin = Vector2.zero;
             overlayRt.anchorMax = Vector2.one;
@@ -359,6 +410,11 @@ namespace HalloweenVN.UI
             overlayBtn.onClick.AddListener(() => {
                 if (isStartingGame) return;
                 if (AudioManager.Instance != null) AudioManager.Instance.PlaySFX("sfx_ui_click");
+                if (_activePopupOverlay == overlay)
+                {
+                    _activePopupOverlay = null;
+                    _activePopupConfirmAction = null;
+                }
                 Destroy(overlay);
             });
 
@@ -520,15 +576,24 @@ namespace HalloweenVN.UI
             TextMeshProUGUI btnText = Theme.UIHelper.AddText(btnTextObj, Loc.Get("ui.lobby.ok", "확인"), new Color32(255, 255, 255, 255), SettingsData.UseHandwritingFont ? 26 : 20, TextAlignmentOptions.Center);
             btnText.fontStyle = FontStyles.Bold;
 
-            btn.onClick.AddListener(() =>
+            System.Action confirmStart = () =>
             {
                 if (UnityEngine.EventSystems.EventSystem.current != null) UnityEngine.EventSystems.EventSystem.current.SetSelectedGameObject(null);
+                if (AudioManager.Instance != null) AudioManager.Instance.PlaySFX("sfx_ui_click");
                 StartNewGame(overlay);
-            });
+            };
+            _activePopupConfirmAction = confirmStart;
+            btn.onClick.AddListener(() => confirmStart());
         }
 
         private void StartNewGame(GameObject popupOverlay)
         {
+            if (isStartingGame) return;
+            isStartingGame = true;
+            _activePopupOverlay = null;
+            _activePopupConfirmAction = null;
+            BacklogUI.ClearHistory();
+
             Theme.ScreenTransition transition = FindFirstObjectByType<Theme.ScreenTransition>();
             if (transition != null)
             {
@@ -583,17 +648,46 @@ namespace HalloweenVN.UI
         private void OnContinueClicked()
         {
             if (UnityEngine.EventSystems.EventSystem.current != null) UnityEngine.EventSystems.EventSystem.current.SetSelectedGameObject(null);
+            if (isStartingGame || _activePopupOverlay != null) return;
             SaveData data = SaveManager.Load(0);
             if (data != null && GameManager.Instance != null)
             {
-                if (System.Enum.TryParse(data.currentPhase, out GamePhase phase))
+                isStartingGame = true;
+                Theme.ScreenTransition transition = FindFirstObjectByType<Theme.ScreenTransition>();
+                if (transition != null)
                 {
-                    GameManager.Instance.ChangePhase(phase);
+                    transition.StartCoroutine(DelayedContinueRoutine(transition, data));
                 }
-                if (!string.IsNullOrEmpty(data.currentDialogueId) && DialogueManager.Instance != null)
+                else
                 {
-                    DialogueManager.Instance.ResumeDialogue(data.currentDialogueId, data.currentNodeIndex, data.hasAudioState, data.currentBgm);
+                    ResumeFromSaveData(data);
                 }
+            }
+        }
+
+        private IEnumerator DelayedContinueRoutine(Theme.ScreenTransition transition, SaveData data)
+        {
+            transition.autoTransitionOnPhaseChange = false;
+            bool fadeOutDone = false;
+            transition.FadeOut(0.4f, () => fadeOutDone = true);
+            yield return new WaitUntil(() => fadeOutDone);
+
+            ResumeFromSaveData(data);
+
+            transition.FadeIn(0.4f, () => {
+                transition.autoTransitionOnPhaseChange = true;
+            });
+        }
+
+        private void ResumeFromSaveData(SaveData data)
+        {
+            if (System.Enum.TryParse(data.currentPhase, out GamePhase phase))
+            {
+                GameManager.Instance.ChangePhase(phase);
+            }
+            if (!string.IsNullOrEmpty(data.currentDialogueId) && DialogueManager.Instance != null)
+            {
+                DialogueManager.Instance.ResumeDialogue(data.currentDialogueId, data.currentNodeIndex, data.hasAudioState, data.currentBgm);
             }
         }
     }

@@ -1,4 +1,4 @@
-using HalloweenVN.Investigation;
+﻿using HalloweenVN.Investigation;
 using HalloweenVN.Data;
 using TMPro;
 using UnityEngine;

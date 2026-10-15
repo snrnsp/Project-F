@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -111,6 +111,27 @@ namespace HalloweenVN.Core
         {
             if (Instance == this && GameManager.Instance != null)
                 GameManager.Instance.OnPhaseChanged -= HandlePhaseChanged;
+        }
+
+        private void Update()
+        {
+            // WebGL autoplay recovery: if a BGM track is supposed to be playing (and not mid-transition),
+            // but the browser blocked AudioSource.Play() prior to the first user gesture, start it on interaction.
+            if (!string.IsNullOrEmpty(currentBgmName) && bgmCoroutine == null && bgmSource != null && bgmSource.clip != null && !bgmSource.isPlaying)
+            {
+                bool userInteracted =
+                    (UnityEngine.InputSystem.Mouse.current != null &&
+                     (UnityEngine.InputSystem.Mouse.current.leftButton.wasPressedThisFrame ||
+                      UnityEngine.InputSystem.Mouse.current.rightButton.wasPressedThisFrame)) ||
+                    (UnityEngine.InputSystem.Keyboard.current != null && UnityEngine.InputSystem.Keyboard.current.anyKey.wasPressedThisFrame) ||
+                    (UnityEngine.InputSystem.Touchscreen.current != null && UnityEngine.InputSystem.Touchscreen.current.primaryTouch.press.wasPressedThisFrame);
+
+                if (userInteracted && bgmSource.clip.loadState == AudioDataLoadState.Loaded)
+                {
+                    ApplyBgmVolume();
+                    bgmSource.Play();
+                }
+            }
         }
 
         private void HandlePhaseChanged(GamePhase phase)

@@ -15,26 +15,34 @@ namespace HalloweenVN.Effects
         private Image flashOverlay;
         private Image fadeOverlay;
         private Coroutine _activeShakeCoroutine;
+        private bool _isContinuousShake;
         private Coroutine _activeFlashCoroutine;
         private Coroutine _activeFadeCoroutine;
         private Vector3 _originalCameraPos;
         private bool _hasOriginalCameraPos;
         private Camera _mainCam;
-        
-        private bool IsFastForwarding
+        private Transform _uiCanvasTransform;
+
+        private Transform GetShakeTarget()
         {
-            get
+            if (_uiCanvasTransform == null)
             {
-                if (UnityEngine.InputSystem.Keyboard.current == null) return false;
-                if (HalloweenVN.Core.SettingsData.SkipKey == HalloweenVN.Core.SettingsData.SkipKeyOption.Ctrl)
-                    return UnityEngine.InputSystem.Keyboard.current.leftCtrlKey.isPressed || UnityEngine.InputSystem.Keyboard.current.rightCtrlKey.isPressed;
-                if (HalloweenVN.Core.SettingsData.SkipKey == HalloweenVN.Core.SettingsData.SkipKeyOption.Shift)
-                    return UnityEngine.InputSystem.Keyboard.current.leftShiftKey.isPressed || UnityEngine.InputSystem.Keyboard.current.rightShiftKey.isPressed;
-                if (HalloweenVN.Core.SettingsData.SkipKey == HalloweenVN.Core.SettingsData.SkipKeyOption.Space)
-                    return UnityEngine.InputSystem.Keyboard.current.spaceKey.isPressed;
-                return false;
+                // Target DialogueRoot (child RectTransform) instead of MainCanvas (root ScreenSpaceOverlay Canvas,
+                // whose localPosition is locked by Unity's Canvas layout system).
+                GameObject dlgRoot = GameObject.Find("DialogueRoot");
+                if (dlgRoot != null) _uiCanvasTransform = dlgRoot.transform;
+                else
+                {
+                    GameObject uiCanvas = GameObject.Find("MainCanvas");
+                    if (uiCanvas != null) _uiCanvasTransform = uiCanvas.transform;
+                }
             }
+            if (_uiCanvasTransform != null) return _uiCanvasTransform;
+            if (_mainCam == null) _mainCam = Camera.main;
+            return _mainCam != null ? _mainCam.transform : null;
         }
+        
+        private bool IsFastForwarding => HalloweenVN.Core.SettingsData.IsSkipKeyPressed();
 
         private void Awake()
         {
@@ -80,13 +88,12 @@ namespace HalloweenVN.Effects
         public Coroutine ShakeCamera(float duration = 0.5f, float magnitude = 10f)
         {
             if (!HalloweenVN.Core.SettingsData.EnableFlashingEffects) return null;
-            if (_mainCam == null) _mainCam = Camera.main;
+            if (_isContinuousShake) return _activeShakeCoroutine;
 
+            Transform target = GetShakeTarget();
             if (_activeShakeCoroutine != null)
             {
                 StopCoroutine(_activeShakeCoroutine);
-                GameObject uiCanvas = GameObject.Find("MainCanvas");
-                Transform target = uiCanvas != null ? uiCanvas.transform : (_mainCam != null ? _mainCam.transform : null);
                 if (_hasOriginalCameraPos && target != null) target.localPosition = _originalCameraPos;
             }
             _activeShakeCoroutine = StartCoroutine(ShakeCameraCoroutine(duration, magnitude));
@@ -95,17 +102,24 @@ namespace HalloweenVN.Effects
 
         private IEnumerator ShakeCameraCoroutine(float duration, float magnitude)
         {
-            GameObject uiCanvas = GameObject.Find("MainCanvas");
-            Transform target = uiCanvas != null ? uiCanvas.transform : (_mainCam != null ? _mainCam.transform : null);
+            Transform target = GetShakeTarget();
             if (target == null) yield break;
 
-            _originalCameraPos = target.localPosition;
-            _hasOriginalCameraPos = true;
+            if (!_hasOriginalCameraPos)
+            {
+                _originalCameraPos = target.localPosition;
+                _hasOriginalCameraPos = true;
+            }
             float elapsed = 0f;
 
             while (elapsed < duration)
             {
                 if (target == null) break;
+                if (!HalloweenVN.Core.SettingsData.EnableFlashingEffects)
+                {
+                    target.localPosition = _originalCameraPos;
+                    break;
+                }
                 float offsetX = Random.Range(-1f, 1f) * magnitude;
                 float offsetY = Random.Range(-1f, 1f) * magnitude;
                 target.localPosition = _originalCameraPos + new Vector3(offsetX, offsetY, 0f);
@@ -113,9 +127,82 @@ namespace HalloweenVN.Effects
                 yield return null;
             }
 
-            if (target != null) target.localPosition = _originalCameraPos;
+            if (target != null && !_isContinuousShake) target.localPosition = _originalCameraPos;
+            if (!_isContinuousShake)
+            {
+                _hasOriginalCameraPos = false;
+                _activeShakeCoroutine = null;
+            }
+        }
+
+        public Coroutine StartContinuousShake(float magnitude = 10f)
+        {
+            if (_activeShakeCoroutine != null)
+            {
+                StopCoroutine(_activeShakeCoroutine);
+                Transform prevTarget = GetShakeTarget();
+                if (_hasOriginalCameraPos && prevTarget != null) prevTarget.localPosition = _originalCameraPos;
+            }
+            _isContinuousShake = true;
+            _activeShakeCoroutine = StartCoroutine(ContinuousShakeCoroutine(magnitude));
+            return _activeShakeCoroutine;
+        }
+
+        private IEnumerator ContinuousShakeCoroutine(float magnitude)
+        {
+            Transform target = GetShakeTarget();
+            if (target != null && !_hasOriginalCameraPos)
+            {
+                _originalCameraPos = target.localPosition;
+                _hasOriginalCameraPos = true;
+            }
+
+            while (_isContinuousShake)
+            {
+                if (target == null)
+                {
+                    target = GetShakeTarget();
+                    if (target != null && !_hasOriginalCameraPos)
+                    {
+                        _originalCameraPos = target.localPosition;
+                        _hasOriginalCameraPos = true;
+                    }
+                }
+                if (target != null)
+                {
+                    if (HalloweenVN.Core.SettingsData.EnableFlashingEffects)
+                    {
+                        float offsetX = Random.Range(-1f, 1f) * magnitude;
+                        float offsetY = Random.Range(-1f, 1f) * magnitude;
+                        target.localPosition = _originalCameraPos + new Vector3(offsetX, offsetY, 0f);
+                    }
+                    else
+                    {
+                        target.localPosition = _originalCameraPos;
+                    }
+                }
+                yield return null;
+            }
+
+            if (target != null && _hasOriginalCameraPos) target.localPosition = _originalCameraPos;
             _hasOriginalCameraPos = false;
             _activeShakeCoroutine = null;
+        }
+
+        public void StopShake()
+        {
+            _isContinuousShake = false;
+            if (_activeShakeCoroutine != null)
+            {
+                StopCoroutine(_activeShakeCoroutine);
+                _activeShakeCoroutine = null;
+            }
+            Transform target = GetShakeTarget();
+            if (_hasOriginalCameraPos && target != null)
+            {
+                target.localPosition = _originalCameraPos;
+            }
+            _hasOriginalCameraPos = false;
         }
 
         // ═══════════ Screen Flash ═══════════
@@ -137,6 +224,7 @@ namespace HalloweenVN.Effects
 
             while (elapsed < duration)
             {
+                if (!HalloweenVN.Core.SettingsData.EnableFlashingEffects) break;
                 elapsed += Time.unscaledDeltaTime * (IsFastForwarding ? 10f : 1f);
                 float alpha = Mathf.Lerp(color.a, 0f, elapsed / duration);
                 flashOverlay.color = new Color(color.r, color.g, color.b, alpha);

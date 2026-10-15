@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace HalloweenVN.UI
@@ -37,8 +37,12 @@ namespace HalloweenVN.UI
             // Calculate target position (inverted so background moves opposite to mouse for depth)
             Vector2 targetPos = _startPosition + new Vector2(normX * -movementOffset, normY * -movementOffset);
 
-            // Lerp towards the target position
-            _rectTransform.anchoredPosition = Vector2.Lerp(_rectTransform.anchoredPosition, targetPos, Time.unscaledDeltaTime * smoothSpeed);
+            // Lerp towards the target position only when noticeably different to avoid dirtying Canvas every idle frame
+            Vector2 currentPos = _rectTransform.anchoredPosition;
+            if ((targetPos - currentPos).sqrMagnitude > 0.0004f)
+            {
+                _rectTransform.anchoredPosition = Vector2.Lerp(currentPos, targetPos, Time.unscaledDeltaTime * smoothSpeed);
+            }
         }
     }
 }

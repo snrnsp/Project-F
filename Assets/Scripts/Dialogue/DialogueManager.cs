@@ -17,11 +17,13 @@ namespace HalloweenVN.Dialogue
         public event Action<List<DialogueChoice>> OnChoicesDisplayed;
 
         public bool IsPlaying { get; private set; }
+        public bool IsTransitioningChapter { get; private set; }
 
         private static Dictionary<string, DialogueContainer> dialogueCache = new Dictionary<string, DialogueContainer>();
         private Dictionary<int, DialogueNode> nodeLookup = new Dictionary<int, DialogueNode>();
 
         private DialogueContainer currentDialogue;
+        public DialogueContainer CurrentDialogue => currentDialogue;
         public string CurrentDialogueId => currentDialogue?.dialogueId;
         private DialogueNode currentNode;
         public DialogueNode CurrentNode => currentNode;
@@ -111,6 +113,7 @@ namespace HalloweenVN.Dialogue
 
         public void StartDialogue(DialogueContainer container)
         {
+            HalloweenVN.Effects.ScreenEffects.Instance?.StopShake();
             currentDialogue = container;
             BuildNodeLookup();
             IsPlaying = true;
@@ -158,6 +161,7 @@ namespace HalloweenVN.Dialogue
             
             bool bgmFoundInCurrent = !string.IsNullOrEmpty(currentDialogue.initialBgm);
             string bgm = currentDialogue.initialBgm;
+            bool shouldShakeContinuously = false;
             if (currentDialogue.nodes != null)
             {
                 // To restore state, we simulate the visual/audio progression up to the target node
@@ -171,6 +175,10 @@ namespace HalloweenVN.Dialogue
                     {
                         bgm = nodeBgm;
                         bgmFoundInCurrent = true;
+                    }
+                    if (n.id < targetNode.id && TryGetShakeLoopCommand(n.command, out bool shakeLoop))
+                    {
+                        shouldShakeContinuously = shakeLoop;
                     }
                 }
             }
@@ -197,6 +205,13 @@ namespace HalloweenVN.Dialogue
                 audio.StopAllSFX();
                 if (string.IsNullOrEmpty(bgm)) audio.StopBGM(0.5f);
                 else audio.PlayBGM(bgm);
+            }
+
+            var fx = HalloweenVN.Effects.ScreenEffects.Instance;
+            if (fx != null)
+            {
+                if (shouldShakeContinuously) fx.StartContinuousShake(10f);
+                else fx.StopShake();
             }
 
             // 4. Resume from target node
@@ -229,6 +244,8 @@ namespace HalloweenVN.Dialogue
             }
 
             string bgm = hasAudioState ? savedBgm : currentDialogue.initialBgm;
+            bool shouldShakeContinuously = false;
+            HalloweenVN.UI.BacklogUI.ClearHistory();
             if (currentDialogue.nodes != null)
             {
                 // To restore state, we simulate the visual/audio progression up to the target node
@@ -238,6 +255,14 @@ namespace HalloweenVN.Dialogue
                     
                     if (ui != null) ui.UpdateVisualsOnly(n, true);
                     if (TryGetBgmCommand(n.command, out string nodeBgm)) bgm = nodeBgm;
+                    if (n.id < nodeId)
+                    {
+                        if (TryGetShakeLoopCommand(n.command, out bool shakeLoop))
+                        {
+                            shouldShakeContinuously = shakeLoop;
+                        }
+                        HalloweenVN.UI.BacklogUI.RecordNodeSilently(dialogueId, n);
+                    }
                 }
             }
             
@@ -247,6 +272,13 @@ namespace HalloweenVN.Dialogue
                 audio.StopAllSFX();
                 if (bgm != null) audio.PlayBGM(bgm);
                 else audio.StopBGM();
+            }
+
+            var fx = HalloweenVN.Effects.ScreenEffects.Instance;
+            if (fx != null)
+            {
+                if (shouldShakeContinuously) fx.StartContinuousShake(10f);
+                else fx.StopShake();
             }
 
             currentNode = FindNode(nodeId);
@@ -302,6 +334,20 @@ namespace HalloweenVN.Dialogue
             return found;
         }
 
+        private static bool TryGetShakeLoopCommand(string command, out bool shakeLoop)
+        {
+            shakeLoop = false;
+            if (string.IsNullOrEmpty(command)) return false;
+            bool found = false;
+            foreach (string raw in command.Split(';'))
+            {
+                string cmd = raw.Trim();
+                if (cmd == "EFFECT:SHAKE_START" || cmd == "EFFECT:SHAKE_LOOP") { shakeLoop = true; found = true; }
+                else if (cmd == "EFFECT:SHAKE_STOP") { shakeLoop = false; found = true; }
+            }
+            return found;
+        }
+
         public void DisplayNode(int nodeId)
         {
             currentNode = FindNode(nodeId);
@@ -346,6 +392,14 @@ namespace HalloweenVN.Dialogue
                         ExecuteCommand(flowCommand);
                         return;
                     }
+                }
+                else if (string.IsNullOrWhiteSpace(currentNode.text) &&
+                         (currentNode.choices == null || currentNode.choices.Count == 0) &&
+                         currentNode.nextNodeId != -1)
+                {
+                    // Effect/audio-only node with no text: advance immediately so an empty narrator screen is not shown
+                    DisplayNode(currentNode.nextNodeId);
+                    return;
                 }
             }
             
@@ -407,7 +461,13 @@ namespace HalloweenVN.Dialogue
                 {
                     switch (effectType)
                     {
-                        case "SHAKE": fx.ShakeCamera(); break;
+                        case "SHAKE": fx.ShakeCamera(0.5f, 10f); break;
+                        case "SHAKE_SHORT":
+                        case "SHAKE_LIGHT": fx.ShakeCamera(0.25f, 6f); break;
+                        case "SHAKE_HEAVY": fx.ShakeCamera(0.65f, 14f); break;
+                        case "SHAKE_START":
+                        case "SHAKE_LOOP": fx.StartContinuousShake(10f); break;
+                        case "SHAKE_STOP": fx.StopShake(); break;
                         case "FLASH": fx.FlashScreen(Color.white); break;
                         case "FLASH_RED": fx.FlashScreen(Color.red); break;
                         case "FADE_TO_BLACK": fx.FadeToBlack(); break;
@@ -459,17 +519,7 @@ namespace HalloweenVN.Dialogue
                 while (waitElapsed < 1f)
                 {
                     if (generation != transitionGeneration) yield break;
-                    bool isFastForwarding = false;
-                    if (UnityEngine.InputSystem.Keyboard.current != null)
-                    {
-                        var keyOption = HalloweenVN.Core.SettingsData.SkipKey;
-                        if (keyOption == HalloweenVN.Core.SettingsData.SkipKeyOption.Ctrl)
-                            isFastForwarding = UnityEngine.InputSystem.Keyboard.current.leftCtrlKey.isPressed || UnityEngine.InputSystem.Keyboard.current.rightCtrlKey.isPressed;
-                        else if (keyOption == HalloweenVN.Core.SettingsData.SkipKeyOption.Shift)
-                            isFastForwarding = UnityEngine.InputSystem.Keyboard.current.leftShiftKey.isPressed || UnityEngine.InputSystem.Keyboard.current.rightShiftKey.isPressed;
-                        else if (keyOption == HalloweenVN.Core.SettingsData.SkipKeyOption.Space)
-                            isFastForwarding = UnityEngine.InputSystem.Keyboard.current.spaceKey.isPressed;
-                    }
+                    bool isFastForwarding = HalloweenVN.Core.SettingsData.IsSkipKeyPressed();
                     
                     waitElapsed += Time.unscaledDeltaTime * (isFastForwarding ? 10f : 1f);
                     yield return null;
@@ -477,16 +527,20 @@ namespace HalloweenVN.Dialogue
                 
                 if (generation != transitionGeneration) yield break;
                 // Change the scene behind the black screen
+                IsTransitioningChapter = true;
                 EndDialogue();
                 StartDialogue(nextDialogueId);
+                IsTransitioningChapter = false;
                 
                 // Fade from black
                 yield return fx.FadeFromBlack(1f);
             }
             else
             {
+                IsTransitioningChapter = true;
                 EndDialogue();
                 StartDialogue(nextDialogueId);
+                IsTransitioningChapter = false;
             }
         }
 
@@ -546,6 +600,7 @@ namespace HalloweenVN.Dialogue
         /// </summary>
         public void EndDialogue()
         {
+            HalloweenVN.Effects.ScreenEffects.Instance?.StopShake();
             transitionGeneration++;
             pendingCommand = null;
             IsPlaying = false;

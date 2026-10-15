@@ -15,20 +15,7 @@ namespace HalloweenVN.UI.Theme
         private bool isTransitioning;
         private Coroutine transitionCoroutine;
         private GameManager gameManager;
-        private bool IsFastForwarding
-        {
-            get
-            {
-                if (UnityEngine.InputSystem.Keyboard.current == null) return false;
-                if (HalloweenVN.Core.SettingsData.SkipKey == HalloweenVN.Core.SettingsData.SkipKeyOption.Ctrl)
-                    return UnityEngine.InputSystem.Keyboard.current.leftCtrlKey.isPressed || UnityEngine.InputSystem.Keyboard.current.rightCtrlKey.isPressed;
-                if (HalloweenVN.Core.SettingsData.SkipKey == HalloweenVN.Core.SettingsData.SkipKeyOption.Shift)
-                    return UnityEngine.InputSystem.Keyboard.current.leftShiftKey.isPressed || UnityEngine.InputSystem.Keyboard.current.rightShiftKey.isPressed;
-                if (HalloweenVN.Core.SettingsData.SkipKey == HalloweenVN.Core.SettingsData.SkipKeyOption.Space)
-                    return UnityEngine.InputSystem.Keyboard.current.spaceKey.isPressed;
-                return false;
-            }
-        }
+        private bool IsFastForwarding => HalloweenVN.Core.SettingsData.IsSkipKeyPressed();
 
         
         private void Awake()

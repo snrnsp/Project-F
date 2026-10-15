@@ -86,24 +86,23 @@ if (panelRoot != null)
             var tmpFont = HalloweenVN.UI.FontHelper.GetTMPFont(fontName);
             if (tmpFont != null)
             {
-                var allTmp = Resources.FindObjectsOfTypeAll<TMPro.TextMeshProUGUI>();
+                var allTmp = Object.FindObjectsByType<TMPro.TextMeshProUGUI>(FindObjectsInactive.Include, FindObjectsSortMode.None);
                 foreach (var tmp in allTmp)
                 {
-                    if (tmp.gameObject.scene.name != null)
+                    if (tmp != null)
                     {
                         tmp.font = tmpFont;
                     }
                 }
             }
 
-            
-            var legacyFont = GetLegacyFont(fontName);
+            var legacyFont = FontHelper.GetFont(fontName);
             if (legacyFont != null)
             {
-                var allLegacy = Resources.FindObjectsOfTypeAll<UnityEngine.UI.Text>();
+                var allLegacy = Object.FindObjectsByType<UnityEngine.UI.Text>(FindObjectsInactive.Include, FindObjectsSortMode.None);
                 foreach (var txt in allLegacy)
                 {
-                    if (txt.gameObject.scene.name != null)
+                    if (txt != null)
                     {
                         txt.font = legacyFont;
                     }
@@ -116,15 +115,7 @@ if (panelRoot != null)
             Debug.Log($"Language set to {lang}");
         }
 
-        
-        private static System.Collections.Generic.Dictionary<string, Font> _legacyFontCache = new System.Collections.Generic.Dictionary<string, Font>();
-        private Font GetLegacyFont(string name) {
-            if (string.IsNullOrEmpty(name)) return null;
-            if (_legacyFontCache.ContainsKey(name)) return _legacyFontCache[name];
-            Font rawFont = Resources.Load<Font>("Fonts/" + name);
-            if (rawFont != null) _legacyFontCache[name] = rawFont;
-            return rawFont;
-        }
+        private Font GetLegacyFont(string name) => FontHelper.GetFont(name);
 
         private void UpdateLanguageButtonsUI()
         {
@@ -180,18 +171,43 @@ if (panelRoot != null)
                     else txt.fontSize = isGothic ? 22 : 28;
                 }
                 
-                if ((int)SettingsData.Language == i)
+                bool isSelected = ((int)SettingsData.Language == i);
+                if (img != null) img.color = Color.white;
+
+                languageButtons[i].transition = Selectable.Transition.ColorTint;
+                ColorBlock cb = languageButtons[i].colors;
+                if (isSelected)
                 {
-                    if (img != null) img.color = new Color32(230, 100, 20, 255); // Orange
-                    if (txt != null) txt.color = Color.white;
-                    if (legacyTxt != null) legacyTxt.color = Color.white;
+                    cb.normalColor = new Color32(225, 95, 20, 255);
+                    cb.highlightedColor = new Color32(250, 125, 45, 255);
+                    cb.pressedColor = new Color32(180, 70, 15, 255);
+                    cb.selectedColor = cb.normalColor;
                 }
                 else
                 {
-                    if (img != null) img.color = new Color32(40, 25, 60, 255); // Dark Purple
-                    if (txt != null) txt.color = new Color32(180, 180, 180, 255); // Grey
-                    if (legacyTxt != null) legacyTxt.color = new Color32(180, 180, 180, 255); // Grey
+                    cb.normalColor = new Color32(42, 26, 64, 255);
+                    cb.highlightedColor = new Color32(82, 50, 120, 255);
+                    cb.pressedColor = new Color32(120, 60, 25, 255);
+                    cb.selectedColor = cb.normalColor;
                 }
+                cb.fadeDuration = 0.08f;
+                languageButtons[i].colors = cb;
+
+                Transform borderTr = languageButtons[i].transform.Find("Border");
+                if (borderTr != null)
+                {
+                    Image borderImg = borderTr.GetComponent<Image>();
+                    if (borderImg != null)
+                    {
+                        borderImg.color = isSelected
+                            ? HalloweenVN.UI.Theme.HalloweenTheme.AccentOrange
+                            : (Color)new Color32(115, 75, 150, 255);
+                    }
+                }
+
+                Color txtCol = isSelected ? Color.white : (Color)new Color32(215, 205, 225, 255);
+                if (txt != null) txt.color = txtCol;
+                if (legacyTxt != null) legacyTxt.color = txtCol;
             }
         }
     }

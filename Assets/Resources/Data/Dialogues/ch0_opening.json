@@ -1,4 +1,4 @@
-﻿{
+{
     "dialogueId": "ch0_opening",
     "nodes": [
         {
@@ -80,7 +80,7 @@
         {
             "id": 12,
             "speaker": "",
-            "text": "미제 사건 특화. 초자연 현상 환영.'",
+            "text": "미제 사건 특화. 초자연 현상 환영.",
             "nextNodeId": 13
         },
         {

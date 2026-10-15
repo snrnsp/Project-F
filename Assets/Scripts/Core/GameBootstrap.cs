@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using HalloweenVN.UI.Theme;
 
 namespace HalloweenVN.Core

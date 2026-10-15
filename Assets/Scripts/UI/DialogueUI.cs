@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -30,6 +30,9 @@ namespace HalloweenVN.UI
 
         [SerializeField] private Text autoButtonText;
         [SerializeField] private Text backlogButtonText;
+        [SerializeField] private GameObject nextIndicator;
+        [SerializeField] private GameObject skipIndicator;
+        private GameObject narratorNextIndicator;
 // ═══════════ Typing & Auto ═══════════
         private BacklogUI _cachedBacklogUI;
         private SettingsUI _cachedSettingsUI;
@@ -40,18 +43,19 @@ namespace HalloweenVN.UI
         private Coroutine autoPlayCoroutine;
         private bool isTyping;
 
+        private float _spaceHoldTimer = 0f;
+
         private bool IsFastForwarding
         {
             get
             {
-                if (UnityEngine.InputSystem.Keyboard.current == null) return false;
-                if (HalloweenVN.Core.SettingsData.SkipKey == HalloweenVN.Core.SettingsData.SkipKeyOption.Ctrl)
-                    return UnityEngine.InputSystem.Keyboard.current.leftCtrlKey.isPressed || UnityEngine.InputSystem.Keyboard.current.rightCtrlKey.isPressed;
-                if (HalloweenVN.Core.SettingsData.SkipKey == HalloweenVN.Core.SettingsData.SkipKeyOption.Shift)
-                    return UnityEngine.InputSystem.Keyboard.current.leftShiftKey.isPressed || UnityEngine.InputSystem.Keyboard.current.rightShiftKey.isPressed;
-                if (HalloweenVN.Core.SettingsData.SkipKey == HalloweenVN.Core.SettingsData.SkipKeyOption.Space)
-                    return UnityEngine.InputSystem.Keyboard.current.spaceKey.isPressed;
-                return false;
+                if (!HalloweenVN.Core.SettingsData.IsSkipKeyPressed()) return false;
+                if (HalloweenVN.Core.SettingsData.SkipKeyBinding == HalloweenVN.Core.SettingsData.AdvanceKey ||
+                    HalloweenVN.Core.SettingsData.SkipKeyBinding == UnityEngine.InputSystem.Key.Enter)
+                {
+                    return _spaceHoldTimer >= 0.25f;
+                }
+                return true;
             }
         }
 
@@ -62,8 +66,9 @@ namespace HalloweenVN.UI
         // ═══════════ Character Position System (ported from old project) ═══════════
         private static readonly Color DIM_COLOR = new Color(0.5f, 0.5f, 0.55f, 1f);
         private static readonly Color ACTIVE_COLOR = Color.white;
-        private const float DEFAULT_FADE_SPEED = 0.25f;
-        private const float MOVE_DURATION = 0.25f;
+        private const float DEFAULT_FADE_SPEED = 0.35f;
+        private const float MOVE_DURATION = 0.35f;
+        private const float MAX_ANIM_DELTA = 0.033f;
 
         private Coroutine[] _moveCoroutines = new Coroutine[3];
         private Dictionary<Image, Coroutine> _highlightCoroutines = new Dictionary<Image, Coroutine>();
@@ -87,12 +92,17 @@ namespace HalloweenVN.UI
             GameObject narratorObj = new GameObject("NarratorText_Fullscreen");
             narratorObj.layer = LayerMask.NameToLayer("UI");
             narratorObj.transform.SetParent(transform, false);
+            if (dialoguePanel != null)
+            {
+                // Place right after dialoguePanel so ChoicePanel and DialogueHudRoot (AUTO/LOG/SKIP) render on top
+                narratorObj.transform.SetSiblingIndex(dialoguePanel.transform.GetSiblingIndex() + 1);
+            }
             
             RectTransform rt = narratorObj.AddComponent<RectTransform>();
             rt.anchorMin = Vector2.zero;
             rt.anchorMax = Vector2.one;
-            rt.offsetMin = Vector2.zero;
-            rt.offsetMax = Vector2.zero;
+            rt.offsetMin = new Vector2(-30f, -30f);
+            rt.offsetMax = new Vector2(30f, 30f);
 
             Image img = narratorObj.AddComponent<Image>();
             img.color = new Color(0, 0, 0, 1f); // Solid black background for monologue
@@ -102,7 +112,10 @@ namespace HalloweenVN.UI
             // Use PointerDown to prevent drag threshold from ignoring clicks
             UnityEngine.EventSystems.EventTrigger nTrigger = narratorObj.AddComponent<UnityEngine.EventSystems.EventTrigger>();
             var nEntry = new UnityEngine.EventSystems.EventTrigger.Entry { eventID = UnityEngine.EventSystems.EventTriggerType.PointerDown };
-            nEntry.callback.AddListener((data) => OnClick());
+            nEntry.callback.AddListener((data) => {
+                if (data is UnityEngine.EventSystems.PointerEventData ped && ped.button != UnityEngine.EventSystems.PointerEventData.InputButton.Left) return;
+                OnClick();
+            });
             nTrigger.triggers.Add(nEntry);
 
             // Child: text label (separate GameObject to avoid Graphic conflict)
@@ -113,8 +126,8 @@ namespace HalloweenVN.UI
             RectTransform textRt = textObj.AddComponent<RectTransform>();
             textRt.anchorMin = Vector2.zero;
             textRt.anchorMax = Vector2.one;
-            textRt.offsetMin = Vector2.zero;
-            textRt.offsetMax = Vector2.zero;
+            textRt.offsetMin = new Vector2(30f, 30f);
+            textRt.offsetMax = new Vector2(-30f, -30f);
             textRt.sizeDelta = Vector2.zero;
 
             narratorText = textObj.AddComponent<TextMeshProUGUI>();
@@ -147,6 +160,25 @@ namespace HalloweenVN.UI
             narratorText.textWrappingMode = TextWrappingModes.Normal;
             narratorText.overflowMode = TextOverflowModes.Overflow;
             narratorText.raycastTarget = false; // let clicks pass through to parent Button
+
+            // Typing complete indicator (▼) for fullscreen narration
+            narratorNextIndicator = new GameObject("NarratorNextIndicator");
+            narratorNextIndicator.layer = LayerMask.NameToLayer("UI");
+            narratorNextIndicator.transform.SetParent(narratorObj.transform, false);
+            RectTransform nIndRt = narratorNextIndicator.AddComponent<RectTransform>();
+            nIndRt.anchorMin = new Vector2(0.5f, 0f);
+            nIndRt.anchorMax = new Vector2(0.5f, 0f);
+            nIndRt.pivot = new Vector2(0.5f, 0f);
+            nIndRt.anchoredPosition = new Vector2(0, 100);
+            nIndRt.sizeDelta = new Vector2(40, 40);
+            TextMeshProUGUI nIndTxt = narratorNextIndicator.AddComponent<TextMeshProUGUI>();
+            nIndTxt.text = "▼";
+            nIndTxt.fontSize = 26f;
+            nIndTxt.color = HalloweenVN.UI.Theme.HalloweenTheme.AccentOrange;
+            nIndTxt.alignment = TextAlignmentOptions.Center;
+            nIndTxt.raycastTarget = false;
+            if (font != null) nIndTxt.font = font;
+            narratorNextIndicator.SetActive(false);
             
             narratorObj.SetActive(false);
         }
@@ -165,11 +197,15 @@ namespace HalloweenVN.UI
             
             if (dialoguePanel != null) dialoguePanel.SetActive(false);
             if (narratorText != null && narratorText.transform.parent != null) narratorText.transform.parent.gameObject.SetActive(false);
+            if (autoButton != null) autoButton.gameObject.SetActive(false);
+            if (backlogButton != null) backlogButton.gameObject.SetActive(false);
+            if (skipIndicator != null) skipIndicator.SetActive(false);
+            if (nextIndicator != null) nextIndicator.SetActive(false);
+            if (narratorNextIndicator != null) narratorNextIndicator.SetActive(false);
         }
 
         public void UpdateLanguage()
         {
-
             if (backlogButtonText != null) backlogButtonText.resizeTextForBestFit = false;
             if (autoButtonText != null) autoButtonText.resizeTextForBestFit = false;
             
@@ -180,7 +216,7 @@ namespace HalloweenVN.UI
             float speakerSize = isGothic ? 28f : 40f;
 
             if (backlogButtonText != null) backlogButtonText.fontSize = btnSize;
-            if (autoButtonText != null) autoButtonText.fontSize = btnSize;            // Adjust dialogue and speaker TMP text sizes
+            if (autoButtonText != null) autoButtonText.fontSize = btnSize;
             if (dialogueText != null) dialogueText.fontSize = dialogueSize;
             if (speakerNameText != null) speakerNameText.fontSize = speakerSize;
             if (narratorText != null) narratorText.fontSize = dialogueSize;
@@ -201,6 +237,35 @@ namespace HalloweenVN.UI
             if (autoButtonText != null)
             {
                 autoButtonText.text = isAutoPlay ? autoOn : autoOff;
+                autoButtonText.color = isAutoPlay ? Color.white : HalloweenVN.UI.Theme.HalloweenTheme.ButtonText;
+            }
+            UpdateAutoButtonVisuals();
+        }
+
+        private void UpdateAutoButtonVisuals()
+        {
+            if (autoButton == null) return;
+            Color32 activeBg = new Color32(185, 75, 20, 255);
+            Color32 inactiveBg = new Color32(40, 25, 60, 255);
+            Color32 baseBg = isAutoPlay ? activeBg : inactiveBg;
+
+            ColorBlock cb = autoButton.colors;
+            cb.normalColor = baseBg;
+            cb.highlightedColor = isAutoPlay ? new Color32(220, 100, 35, 255) : new Color32(80, 50, 115, 255);
+            cb.pressedColor = isAutoPlay ? new Color32(145, 55, 12, 255) : new Color32(30, 18, 45, 255);
+            cb.selectedColor = baseBg;
+            autoButton.colors = cb;
+
+            Transform borderTr = autoButton.transform.Find("Border");
+            if (borderTr != null)
+            {
+                Image borderImg = borderTr.GetComponent<Image>();
+                if (borderImg != null)
+                {
+                    borderImg.color = isAutoPlay
+                        ? HalloweenVN.UI.Theme.HalloweenTheme.AccentOrange
+                        : (Color)new Color32(90, 70, 120, 255);
+                }
             }
         }
         
@@ -238,21 +303,54 @@ namespace HalloweenVN.UI
         // ═══════════ Panel Show/Hide ═══════════
         public void ShowDialoguePanel()
         {
+            isUiHidden = false;
             if (dialoguePanel != null)
                 dialoguePanel.SetActive(true);
+            if (autoButton != null)
+                autoButton.gameObject.SetActive(true);
+            if (backlogButton != null)
+                backlogButton.gameObject.SetActive(true);
             ClearChoices();
-            // NOTE: character tracking is NOT cleared here. Clearing it while sprites were still
-            // visible left "orphan" characters on screen that no node could remove.
-            // HideDialoguePanel (on dialogue end) hides and clears everything instead.
             _freshDialogue = true;
+            _ownersBeforeNarrator.Clear();
+            _xBeforeNarrator.Clear();
+            _wasNarratorLinePrev = false;
+
+            if (DialogueManager.Instance != null && DialogueManager.Instance.CurrentDialogue != null && gameObject.activeInHierarchy)
+            {
+                if (_preloadCoroutine != null) StopCoroutine(_preloadCoroutine);
+                _preloadCoroutine = StartCoroutine(PreloadChapterSpritesRoutine(DialogueManager.Instance.CurrentDialogue));
+            }
         }
 
         public void HideDialoguePanel()
         {
+            if (_preloadCoroutine != null)
+            {
+                StopCoroutine(_preloadCoroutine);
+                _preloadCoroutine = null;
+            }
             if (dialoguePanel != null)
                 dialoguePanel.SetActive(false);
+            if (autoButton != null)
+                autoButton.gameObject.SetActive(false);
+            if (backlogButton != null)
+                backlogButton.gameObject.SetActive(false);
+            if (skipIndicator != null)
+                skipIndicator.SetActive(false);
+            if (nextIndicator != null)
+                nextIndicator.SetActive(false);
+            if (narratorNextIndicator != null)
+                narratorNextIndicator.SetActive(false);
             ClearChoices();
-            StopAutoPlay();
+            if (DialogueManager.Instance == null || !DialogueManager.Instance.IsTransitioningChapter)
+            {
+                StopAutoPlay();
+            }
+            else
+            {
+                CancelAutoPlayTimer();
+            }
             CancelSceneTransition();
             HideAllCharacters();
         }
@@ -277,8 +375,15 @@ namespace HalloweenVN.UI
         }
 
         
-        // Ghost copies used to fade out characters that leave while their slot image is reused
-        private readonly List<GameObject> _ghostImages = new List<GameObject>();
+        // Pooled ghost images used to fade out characters that leave while their slot image is reused
+        private readonly Image[] _ghostPool = new Image[3];
+        private readonly Coroutine[] _ghostCoroutines = new Coroutine[3];
+        private Coroutine _preloadCoroutine;
+
+        // Track characters on screen right before a narration (지문) line so returning characters don't re-slide as new arrivals
+        private readonly HashSet<string> _ownersBeforeNarrator = new HashSet<string>();
+        private readonly Dictionary<string, float> _xBeforeNarrator = new Dictionary<string, float>();
+        private bool _wasNarratorLinePrev = false;
 
         // Last layout target assigned to each slot (-1 = empty). Used to detect interrupted slides.
         private readonly float[] _lastTargetX = { -1f, -1f, -1f };
@@ -286,36 +391,27 @@ namespace HalloweenVN.UI
         public void UpdateVisualsOnly(DialogueNode node, bool instant)
         {
             bool wasNarrator = !_currentlyInDialoguePanel;
+            bool isNarrator = string.IsNullOrWhiteSpace(node.speaker);
             bool isNarratorNow = string.IsNullOrEmpty(node.speaker);
             bool usePanelNow = !isNarratorNow;
-
-            if (wasNarrator && usePanelNow)
-            {
-                instant = true;
-            }
+            string effectiveBg = !string.IsNullOrEmpty(node.backgroundSprite) ? node.backgroundSprite : _currentBgPath;
+            bool isBlackBgIntro = isNarratorNow || effectiveBg == "Images/bg_black" || effectiveBg == "bg_black";
 
             Image[] imgs = { characterImageLeft, characterImageCenter, characterImageRight };
-            bool immediate = instant || node.noFade;
+            bool immediate = instant;
+
+            if (!string.IsNullOrEmpty(node.backgroundSprite) && !string.IsNullOrEmpty(_currentBgPath) && node.backgroundSprite != _currentBgPath)
+            {
+                _ownersBeforeNarrator.Clear();
+                _xBeforeNarrator.Clear();
+                _wasNarratorLinePrev = false;
+            }
 
             // 1. Requested sprites per slot (legacy single-sprite → center)
             string[] requested = { node.characterSpriteLeft, node.characterSpriteCenter, node.characterSpriteRight };
             if (!string.IsNullOrEmpty(node.characterSprite))
             {
                 requested[0] = null; requested[1] = node.characterSprite; requested[2] = null;
-            }
-
-            // Universal rule: When a character is NOT speaking (narration / 지문),
-            // character sprites must NEVER appear or remain on screen, EXCEPT during the
-            // member introduction sequence on the black background (Images/bg_black).
-            bool isNarrator = string.IsNullOrWhiteSpace(node.speaker);
-            string effectiveBg = !string.IsNullOrEmpty(node.backgroundSprite) ? node.backgroundSprite : _currentBgPath;
-            bool isBlackBgIntro = !string.IsNullOrEmpty(effectiveBg) && effectiveBg.Contains("bg_black");
-
-            if (isNarrator && !isBlackBgIntro)
-            {
-                requested[0] = null;
-                requested[1] = null;
-                requested[2] = null;
             }
 
             // 2. New owner per slot (same character listed twice — keep the first slot only)
@@ -348,15 +444,13 @@ namespace HalloweenVN.UI
             }
 
             // 3. Snapshot the previous on-screen state BEFORE touching any image.
-            //    A character only counts as "on screen" if its slot image is actually active
-            //    (fixes characters never re-appearing after HideAllCharacters left stale tracking).
             string[] prevOwner = new string[3];
             Dictionary<string, int> prevSlotOf = new Dictionary<string, int>();
             foreach (var kvp in _activeSpeakerPositions)
             {
                 int s = (int)kvp.Value;
                 Image img = imgs[s];
-                if (img == null) continue; // activeSelf check removed to prevent tracking loss during fade start
+                if (img == null) continue;
                 prevOwner[s] = kvp.Key;
                 prevSlotOf[kvp.Key] = s;
             }
@@ -373,6 +467,19 @@ namespace HalloweenVN.UI
             bool anyoneStaying = false;
             foreach (var kvp in prevSlotOf) if (newNames.Contains(kvp.Key)) { anyoneStaying = true; break; }
 
+            bool anyTrulyNewEntering = false;
+            for (int s = 0; s < 3; s++)
+            {
+                if (newOwner[s] != null && !prevSlotOf.ContainsKey(newOwner[s]))
+                {
+                    if (!(_wasNarratorLinePrev && _ownersBeforeNarrator.Contains(newOwner[s])))
+                    {
+                        anyTrulyNewEntering = true;
+                        break;
+                    }
+                }
+            }
+
             float[] targetX = ComputeLayoutTargets(newOwner);
 
             // 4. Apply per slot — each slot image gets exactly one action, so characters
@@ -386,10 +493,10 @@ namespace HalloweenVN.UI
                 string name = newOwner[s];
                 string old = prevOwner[s];
 
-                // Previous occupant leaves the screen entirely → fade out a ghost copy
+                // Previous occupant leaves the screen entirely → fade out (and gently glide out if leaving mid-dialogue)
                 if (old != null && old != name && !newNames.Contains(old))
                 {
-                    if (!immediate) SpawnGhostFadeOut(img);
+                    if (!immediate) SpawnGhostFadeOut(s, img, !isNarrator);
                 }
 
                 if (name == null)
@@ -426,6 +533,9 @@ namespace HalloweenVN.UI
                         StopSlotCoroutines(s);
                         LoadSpriteToImage(img, requested[s]);
                         img.gameObject.SetActive(true);
+                        img.color = snapColor[s];
+                        if (snapColor[s].a < 0.999f && !immediate) StartFadeIn(img, snapColor[s].a);
+                        else ForceOpaque(img);
                         
                         // Force snap if target position hasn't changed to prevent any unintended drifting/jumping
                         if (_lastTargetX[s] >= 0f && Mathf.Abs(_lastTargetX[s] - targetX[s]) < 0.01f)
@@ -456,24 +566,66 @@ namespace HalloweenVN.UI
                     LoadSpriteToImage(img, requested[s]);
 
                     float startX = targetX[s];
-                    if (!immediate && (node.slideIn || node.slideFromRight || anyoneStaying))
+                    if (!immediate)
                     {
-                        if (node.slideFromRight) startX = 1.5f;
-                        else startX = targetX[s] > 0.5f ? 1.5f : -0.5f;
+                        bool wasInRoomBeforeNarrator = _wasNarratorLinePrev && _ownersBeforeNarrator.Contains(name);
+                        if (wasInRoomBeforeNarrator)
+                        {
+                            if (_xBeforeNarrator.TryGetValue(name, out float prevX) && Mathf.Abs(prevX - targetX[s]) > 0.01f)
+                            {
+                                startX = prevX;
+                            }
+                            else if (!anyTrulyNewEntering)
+                            {
+                                bool isRightSide = (s == 2) || (s == 1 && newOwner[0] != null && newOwner[2] == null);
+                                float dir = isRightSide ? 1f : -1f;
+                                startX = targetX[s] + dir * 0.04f;
+                            }
+                        }
+                        else
+                        {
+                            bool activeSlide = node.slideIn || node.slideFromRight || anyoneStaying || (_wasNarratorLinePrev && _ownersBeforeNarrator.Count > 0);
+                            float offset = activeSlide ? 0.12f : 0.06f;
+                            bool isRightSide = (s == 2) || (s == 1 && newOwner[0] != null && newOwner[2] == null);
+                            float dir = node.slideFromRight ? 1f : (isRightSide ? 1f : -1f);
+                            startX = targetX[s] + dir * offset;
+                        }
                     }
                     SetCharacterAnchorX(img.rectTransform, startX);
 
                     if (immediate)
                     {
                         img.gameObject.SetActive(true);
-                        ForceOpaque(img);
+                        img.color = ACTIVE_COLOR;
                     }
                     else
                     {
+                        img.color = new Color(1f, 1f, 1f, 0f);
                         StartFadeIn(img);
-                        if (Mathf.Abs(startX - targetX[s]) > 0.01f) MoveCharacterTo((CharacterPosition)s, targetX[s]);
+                        if (Mathf.Abs(startX - targetX[s]) > 0.005f) MoveCharacterTo((CharacterPosition)s, targetX[s]);
                     }
                 }
+            }
+
+            if (isNarrator && !isBlackBgIntro)
+            {
+                if (!_wasNarratorLinePrev)
+                {
+                    _ownersBeforeNarrator.Clear();
+                    _xBeforeNarrator.Clear();
+                    foreach (var kvp in prevSlotOf)
+                    {
+                        _ownersBeforeNarrator.Add(kvp.Key);
+                        _xBeforeNarrator[kvp.Key] = snapX[kvp.Value];
+                    }
+                }
+                _wasNarratorLinePrev = true;
+            }
+            else
+            {
+                _wasNarratorLinePrev = false;
+                _ownersBeforeNarrator.Clear();
+                _xBeforeNarrator.Clear();
             }
 
             for (int s = 0; s < 3; s++) _lastTargetX[s] = newOwner[s] != null ? targetX[s] : -1f;
@@ -486,9 +638,10 @@ namespace HalloweenVN.UI
 
         /// <summary>
         /// Screen X (anchor center) per slot.
-        /// When 3 characters are on screen: Left=20%, Center=50%, Right=80%.
-        /// When 1 or 2 characters: Left=26%, Center=50%, Right=74%.
-        /// Perfectly symmetrical around Center (50%), eliminating any left/right bias.
+        /// When 3 characters are on screen: Left=19%, Center=50%, Right=81%.
+        /// When 2 characters: Left-most occupied=26%, Right-most occupied=74%.
+        /// When 1 character: Occupied slot=50% (or its explicit side if needed, defaulting to 26%/50%/74%).
+        /// Applies per-character visual-center compensation so asymmetric hair/veils don't skew body alignment.
         /// </summary>
         private static float[] ComputeLayoutTargets(string[] owner)
         {
@@ -498,13 +651,53 @@ namespace HalloweenVN.UI
                 if (owner[s] != null) count++;
             }
 
-            // 3 characters need a wider spread (20%/50%/80%) to avoid crowding.
-            // 1 or 2 characters use 26%/50%/74% for balanced breathing room from screen edges.
-            float leftX = count >= 3 ? 0.20f : 0.26f;
-            float centerX = 0.50f;
-            float rightX = count >= 3 ? 0.80f : 0.74f;
+            float[] targets;
+            if (count == 2)
+            {
+                targets = new float[] { 0.26f, 0.50f, 0.74f };
+                bool assignedFirst = false;
+                for (int s = 0; s < 3; s++)
+                {
+                    if (owner[s] == null) continue;
+                    targets[s] = assignedFirst ? 0.74f : 0.26f;
+                    assignedFirst = true;
+                }
+            }
+            else
+            {
+                float leftX = count >= 3 ? 0.19f : 0.26f;
+                float centerX = 0.50f;
+                float rightX = count >= 3 ? 0.81f : 0.74f;
+                targets = new float[] { leftX, centerX, rightX };
+            }
 
-            return new float[] { leftX, centerX, rightX };
+            for (int s = 0; s < 3; s++)
+            {
+                if (owner[s] != null)
+                {
+                    targets[s] += GetCharacterVisualOffsetX(owner[s]);
+                }
+            }
+
+            return targets;
+        }
+
+        /// <summary>
+        /// Compensates for asymmetric sprite bounding boxes (e.g., long flowing hair or veil on one side)
+        /// so that each character's actual face/torso centerline aligns with the slot's target X.
+        /// </summary>
+        private static float GetCharacterVisualOffsetX(string charName)
+        {
+            switch (charName)
+            {
+                case "하루카": return 0.068f;  // Long hair & skirt billow far to the right
+                case "카스미": return 0.056f;  // Long dark hair flows far to the right
+                case "미나":   return 0.028f;  // Wide white veil extends to the right
+                case "리나":   return 0.016f;  // Hair/coat slightly wider on the right
+                case "세이카": return -0.012f; // Hair/pose slightly wider on the left
+                case "리리스": return -0.036f; // Jacket sleeve protrudes to the right
+                default:       return 0f;
+            }
         }
 
         private void StopMove(int slot)
@@ -538,39 +731,90 @@ namespace HalloweenVN.UI
             img.color = ACTIVE_COLOR;
         }
 
-        private void SpawnGhostFadeOut(Image source)
+        private void SpawnGhostFadeOut(int slot, Image source, bool slideOut)
         {
             if (source == null || !source.gameObject.activeSelf || source.sprite == null) return;
-            GameObject ghost = Instantiate(source.gameObject, source.transform.parent);
-            ghost.name = source.gameObject.name + "_Ghost";
-            ghost.transform.SetSiblingIndex(source.transform.GetSiblingIndex());
-            Image gImg = ghost.GetComponent<Image>();
-            if (gImg == null) { Destroy(ghost); return; }
-            gImg.raycastTarget = false;
-            _ghostImages.Add(ghost);
-            StartCoroutine(GhostFadeOutRoutine(ghost, gImg));
+            if (slot < 0 || slot >= 3) return;
+
+            if (_ghostCoroutines[slot] != null)
+            {
+                StopCoroutine(_ghostCoroutines[slot]);
+                _ghostCoroutines[slot] = null;
+            }
+
+            Image gImg = _ghostPool[slot];
+            if (gImg == null)
+            {
+                GameObject ghost = Instantiate(source.gameObject, source.transform.parent);
+                ghost.name = source.gameObject.name + "_Ghost";
+                gImg = ghost.GetComponent<Image>();
+                if (gImg == null) { Destroy(ghost); return; }
+                gImg.raycastTarget = false;
+                _ghostPool[slot] = gImg;
+            }
+
+            gImg.transform.SetSiblingIndex(source.transform.GetSiblingIndex());
+            gImg.sprite = source.sprite;
+            gImg.preserveAspect = source.preserveAspect;
+            gImg.color = source.color;
+
+            RectTransform srcRt = source.rectTransform;
+            RectTransform dstRt = gImg.rectTransform;
+            dstRt.anchorMin = srcRt.anchorMin;
+            dstRt.anchorMax = srcRt.anchorMax;
+            dstRt.offsetMin = srcRt.offsetMin;
+            dstRt.offsetMax = srcRt.offsetMax;
+            dstRt.localScale = srcRt.localScale;
+
+            gImg.gameObject.SetActive(true);
+            _ghostCoroutines[slot] = StartCoroutine(GhostFadeOutRoutine(slot, gImg, slideOut));
         }
 
-        private IEnumerator GhostFadeOutRoutine(GameObject ghost, Image img)
+        private IEnumerator GhostFadeOutRoutine(int slot, Image img, bool slideOut)
         {
+            if (img == null) yield break;
+            RectTransform rt = img.rectTransform;
+            float startX = (rt.anchorMin.x + rt.anchorMax.x) / 2f;
+            float dir = startX > 0.5f ? 1f : -1f;
+            float endX = slideOut ? (startX + dir * 0.06f) : startX;
+
             Color c = img.color;
             float startAlpha = c.a;
+
+            yield return null; // wait 1 frame so synchronous node-load work does not consume fade time
+
             float elapsed = 0f;
-            while (elapsed < DEFAULT_FADE_SPEED && ghost != null)
+            while (elapsed < DEFAULT_FADE_SPEED && img != null)
             {
-                elapsed += Time.deltaTime * (IsFastForwarding ? 10f : 1f);
-                c.a = Mathf.Lerp(startAlpha, 0f, Mathf.SmoothStep(0f, 1f, elapsed / DEFAULT_FADE_SPEED));
+                float dt = Mathf.Min(Time.unscaledDeltaTime, MAX_ANIM_DELTA) * (IsFastForwarding ? 10f : 1f);
+                elapsed += dt;
+                float t = Mathf.SmoothStep(0f, 1f, Mathf.Clamp01(elapsed / DEFAULT_FADE_SPEED));
+                c.a = Mathf.Lerp(startAlpha, 0f, t);
                 img.color = c;
+                if (slideOut && rt != null)
+                {
+                    SetCharacterAnchorX(rt, Mathf.Lerp(startX, endX, t));
+                }
                 yield return null;
             }
-            _ghostImages.Remove(ghost);
-            if (ghost != null) Destroy(ghost);
+            if (img != null) img.gameObject.SetActive(false);
+            _ghostCoroutines[slot] = null;
         }
 
         private void DestroyGhosts()
         {
-            foreach (var g in _ghostImages) if (g != null) Destroy(g);
-            _ghostImages.Clear();
+            for (int s = 0; s < 3; s++)
+            {
+                if (_ghostCoroutines[s] != null)
+                {
+                    StopCoroutine(_ghostCoroutines[s]);
+                    _ghostCoroutines[s] = null;
+                }
+                if (_ghostPool[s] != null)
+                {
+                    _ghostPool[s].gameObject.SetActive(false);
+                }
+            }
         }
 
         // ═══════════ Scene (background) transition: whole screen → black → new scene ═══════════
@@ -743,6 +987,12 @@ namespace HalloweenVN.UI
             }
 
             _currentlyInDialoguePanel = usePanel;
+            if (isUiHidden)
+            {
+                isUiHidden = false;
+                if (autoButton != null) autoButton.gameObject.SetActive(true);
+                if (backlogButton != null) backlogButton.gameObject.SetActive(true);
+            }
             if (dialoguePanel != null) dialoguePanel.SetActive(usePanel);
             if (narratorText != null && narratorText.transform.parent != null)
             {
@@ -792,8 +1042,10 @@ namespace HalloweenVN.UI
         private string ExtractBaseName(string spritePath)
         {
             // "Characters/카스미/기본" → "카스미"
+            // "Characters/미나/검은색 버전/기본" → "미나"
             if (string.IsNullOrEmpty(spritePath)) return "";
             string[] parts = spritePath.Split('/');
+            if (parts.Length >= 3 && parts[0] == "Characters") return parts[1];
             if (parts.Length >= 2) return parts[parts.Length - 2];
             return spritePath;
         }
@@ -826,7 +1078,7 @@ namespace HalloweenVN.UI
             }
             
             float startX = (img.rectTransform.anchorMin.x + img.rectTransform.anchorMax.x) / 2f;
-            if (Mathf.Abs(startX - targetX) < 0.01f)
+            if (Mathf.Abs(startX - targetX) < 0.005f)
             {
                 SetCharacterAnchorX(img.rectTransform, targetX);
                 return;
@@ -841,17 +1093,20 @@ namespace HalloweenVN.UI
             if (rt == null) yield break;
 
             float startX = (rt.anchorMin.x + rt.anchorMax.x) / 2f;
-            if (Mathf.Abs(startX - targetAnchorX) < 0.01f)
+            if (Mathf.Abs(startX - targetAnchorX) < 0.005f)
             {
                 SetCharacterAnchorX(rt, targetAnchorX);
                 yield break;
             }
 
+            yield return null; // 1 frame wait in sync with FadeInCharacter so load frame doesn't eat move duration
+
             float elapsed = 0f;
             while (elapsed < MOVE_DURATION)
             {
-                elapsed += Time.deltaTime * (IsFastForwarding ? 10f : 1f);
-                float t = Mathf.SmoothStep(0f, 1f, elapsed / MOVE_DURATION);
+                float dt = Mathf.Min(Time.unscaledDeltaTime, MAX_ANIM_DELTA) * (IsFastForwarding ? 10f : 1f);
+                elapsed += dt;
+                float t = Mathf.SmoothStep(0f, 1f, Mathf.Clamp01(elapsed / MOVE_DURATION));
                 float newX = Mathf.Lerp(startX, targetAnchorX, t);
                 SetCharacterAnchorX(rt, newX);
                 yield return null;
@@ -886,14 +1141,15 @@ namespace HalloweenVN.UI
             c.a = startAlpha;
             img.color = c;
 
-            yield return null; // 1 frame wait for layout
+            yield return null; // 1 frame wait for layout / GPU upload
 
             float elapsed = startAlpha * DEFAULT_FADE_SPEED;
             while (elapsed < DEFAULT_FADE_SPEED)
             {
-                elapsed += Time.deltaTime * (IsFastForwarding ? 10f : 1f);
+                float dt = Mathf.Min(Time.unscaledDeltaTime, MAX_ANIM_DELTA) * (IsFastForwarding ? 10f : 1f);
+                elapsed += dt;
                 c = img.color; // keep dim/highlight RGB from highlight coroutine
-                c.a = Mathf.SmoothStep(0f, 1f, elapsed / DEFAULT_FADE_SPEED);
+                c.a = Mathf.SmoothStep(0f, 1f, Mathf.Clamp01(elapsed / DEFAULT_FADE_SPEED));
                 img.color = c;
                 yield return null;
             }
@@ -923,8 +1179,9 @@ namespace HalloweenVN.UI
 
             while (elapsed < DEFAULT_FADE_SPEED)
             {
-                elapsed += Time.deltaTime * (IsFastForwarding ? 10f : 1f);
-                float t = elapsed / DEFAULT_FADE_SPEED;
+                float dt = Mathf.Min(Time.unscaledDeltaTime, MAX_ANIM_DELTA) * (IsFastForwarding ? 10f : 1f);
+                elapsed += dt;
+                float t = Mathf.Clamp01(elapsed / DEFAULT_FADE_SPEED);
                 c.a = Mathf.SmoothStep(startAlpha, 0f, t);
                 img.color = c;
                 yield return null;
@@ -956,6 +1213,9 @@ namespace HalloweenVN.UI
             }
             _activeSpeakerPositions.Clear();
             _speakerOrder.Clear();
+            _ownersBeforeNarrator.Clear();
+            _xBeforeNarrator.Clear();
+            _wasNarratorLinePrev = false;
         }
 
         // ═══════════ Speaker Highlight / Dim ═══════════
@@ -997,8 +1257,15 @@ namespace HalloweenVN.UI
             {
                 StopCoroutine(_highlightCoroutines[image]);
             }
-            
-            if (duration <= 0f)
+
+            // Snap RGB immediately when instant, fast-forwarding, newly fading in from alpha ~0,
+            // or already at target RGB (avoids 1-frame white flash on newly entering non-speakers).
+            bool alreadyAtTarget =
+                Mathf.Abs(image.color.r - targetColor.r) < 0.005f &&
+                Mathf.Abs(image.color.g - targetColor.g) < 0.005f &&
+                Mathf.Abs(image.color.b - targetColor.b) < 0.005f;
+
+            if (duration <= 0f || image.color.a <= 0.01f || IsFastForwarding || alreadyAtTarget)
             {
                 Color finalC = targetColor;
                 finalC.a = image.color.a;
@@ -1012,14 +1279,14 @@ namespace HalloweenVN.UI
 
         private IEnumerator FadeColorCoroutine(Image image, Color targetColor, float duration)
         {
-            yield return null; // 1 frame buffer
             Color startColor = image.color;
             float elapsed = 0f;
 
             while (elapsed < duration)
             {
-                elapsed += Time.deltaTime * (IsFastForwarding ? 10f : 1f);
-                float smoothT = Mathf.SmoothStep(0f, 1f, elapsed / duration);
+                float dt = Mathf.Min(Time.unscaledDeltaTime, MAX_ANIM_DELTA) * (IsFastForwarding ? 10f : 1f);
+                elapsed += dt;
+                float smoothT = Mathf.SmoothStep(0f, 1f, Mathf.Clamp01(elapsed / duration));
 
                 Color lerpedColor = Color.Lerp(startColor, targetColor, smoothT);
                 lerpedColor.a = image.color.a; // Preserve alpha (FadeIn/FadeOut controls alpha)
@@ -1034,6 +1301,42 @@ namespace HalloweenVN.UI
 
         // ═══════════ Sprite Loading ═══════════
         private static Dictionary<string, Sprite> _spriteCache = new Dictionary<string, Sprite>();
+
+        private IEnumerator PreloadChapterSpritesRoutine(DialogueContainer container)
+        {
+            if (container == null || container.nodes == null) yield break;
+
+            List<string> toLoad = new List<string>();
+            HashSet<string> seen = new HashSet<string>();
+
+            foreach (var n in container.nodes)
+            {
+                if (n == null) continue;
+                AddPreloadPath(n.backgroundSprite, seen, toLoad);
+                AddPreloadPath(n.characterSpriteLeft, seen, toLoad);
+                AddPreloadPath(n.characterSpriteCenter, seen, toLoad);
+                AddPreloadPath(n.characterSpriteRight, seen, toLoad);
+                AddPreloadPath(n.characterSprite, seen, toLoad);
+            }
+
+            // Wait 1 frame for the initial node display to settle, then warm up 1 uncached sprite per frame
+            yield return null;
+            for (int i = 0; i < toLoad.Count; i++)
+            {
+                string path = toLoad[i];
+                if (_spriteCache.TryGetValue(path, out Sprite cached) && cached != null) continue;
+                LoadSpriteCached(path);
+                yield return null;
+            }
+            _preloadCoroutine = null;
+        }
+
+        private static void AddPreloadPath(string path, HashSet<string> seen, List<string> toLoad)
+        {
+            if (string.IsNullOrEmpty(path)) return;
+            if (_spriteCache.TryGetValue(path, out Sprite cached) && cached != null) return;
+            if (seen.Add(path)) toLoad.Add(path);
+        }
 
         private void LoadSpriteToImage(Image img, string spritePath)
         {
@@ -1054,13 +1357,16 @@ namespace HalloweenVN.UI
             if (sprite != null)
             {
                 img.sprite = sprite;
-                img.SetNativeSize();
+                img.preserveAspect = true;
+                img.rectTransform.offsetMin = Vector2.zero;
+                img.rectTransform.offsetMax = Vector2.zero;
                 img.enabled = true;
             }
         }
 
-        private static Sprite LoadSpriteCached(string spritePath)
+        public static Sprite LoadSpriteCached(string spritePath)
         {
+            if (string.IsNullOrEmpty(spritePath)) return null;
             if (_spriteCache.TryGetValue(spritePath, out Sprite cachedSprite) && cachedSprite != null)
                 return cachedSprite;
 
@@ -1200,6 +1506,13 @@ namespace HalloweenVN.UI
             float nextCharTime = Time.unscaledTime;
             while (visibleCount <= totalVisibleChars && target != null)
             {
+                while (IsModalOpen() || isUiHidden)
+                {
+                    yield return null;
+                    nextCharTime = Time.unscaledTime;
+                }
+                if (target == null) break;
+
                 target.maxVisibleCharacters = visibleCount;
                 
                 if (visibleCount > 0 && visibleCount <= target.textInfo.characterCount)
@@ -1217,6 +1530,15 @@ namespace HalloweenVN.UI
                 nextCharTime += SettingsData.TextSpeed;
                 while (Time.unscaledTime < nextCharTime)
                 {
+                    if (IsModalOpen() || isUiHidden)
+                    {
+                        float remaining = Mathf.Max(0f, nextCharTime - Time.unscaledTime);
+                        while (IsModalOpen() || isUiHidden)
+                        {
+                            yield return null;
+                        }
+                        nextCharTime = Time.unscaledTime + remaining;
+                    }
                     yield return null;
                 }
             }
@@ -1232,8 +1554,21 @@ namespace HalloweenVN.UI
 
         private IEnumerator AutoAdvanceAfterDelay()
         {
-            yield return new WaitForSeconds(SettingsData.AutoPlayDelay);
-            while (_isTransitioningScene || IsModalOpen()) yield return null;
+            float elapsed = 0f;
+            while (elapsed < SettingsData.AutoPlayDelay)
+            {
+                if (!isAutoPlay) yield break;
+                if (!_isTransitioningScene && !IsModalOpen() && !isUiHidden)
+                {
+                    elapsed += Time.unscaledDeltaTime;
+                }
+                yield return null;
+            }
+            while (_isTransitioningScene || IsModalOpen() || isUiHidden)
+            {
+                if (!isAutoPlay) yield break;
+                yield return null;
+            }
             if (isAutoPlay && DialogueManager.Instance != null)
             {
                 DialogueManager.Instance.AdvanceDialogue();
@@ -1277,56 +1612,150 @@ namespace HalloweenVN.UI
 
         
         private bool isUiHidden = false;
+        private int _lastUiUnhideFrame = -1;
         private bool _currentlyInDialoguePanel = true;
-        
+
+        public bool IsUiHidden => isUiHidden;
+
+        public void SetUiHidden(bool hidden)
+        {
+            if (isUiHidden && !hidden)
+            {
+                _lastUiUnhideFrame = Time.frameCount;
+            }
+            isUiHidden = hidden;
+            if (isUiHidden) StopAutoPlay();
+
+            GameObject narratorParent = narratorText != null ? narratorText.transform.parent.gameObject : null;
+            if (_currentlyInDialoguePanel)
+            {
+                if (dialoguePanel != null) dialoguePanel.SetActive(!isUiHidden);
+            }
+            else
+            {
+                if (narratorParent != null) narratorParent.SetActive(!isUiHidden);
+            }
+
+            if (autoButton != null) autoButton.gameObject.SetActive(!isUiHidden);
+            if (backlogButton != null) backlogButton.gameObject.SetActive(!isUiHidden);
+            if (isUiHidden)
+            {
+                if (skipIndicator != null) skipIndicator.SetActive(false);
+                if (nextIndicator != null) nextIndicator.SetActive(false);
+                if (narratorNextIndicator != null) narratorNextIndicator.SetActive(false);
+            }
+        }
+
+        public void RestoreHiddenUI() => SetUiHidden(false);
 
         private void Update()
         {
-            if (GameManager.Instance != null && GameManager.Instance.CurrentPhase != GamePhase.Dialogue) return;
-            if (IsModalOpen()) return;
-
-            // 3. Mouse wheel up to open log (Allow this even during choices)
-            if (UnityEngine.InputSystem.Mouse.current != null && UnityEngine.InputSystem.Mouse.current.scroll.ReadValue().y > 0)
+            if (GameManager.Instance != null && GameManager.Instance.CurrentPhase != GamePhase.Dialogue)
             {
+                _spaceHoldTimer = 0f;
+                if (skipIndicator != null && skipIndicator.activeSelf) skipIndicator.SetActive(false);
+                return;
+            }
+            if (IsModalOpen())
+            {
+                _spaceHoldTimer = 0f;
+                if (skipIndicator != null && skipIndicator.activeSelf) skipIndicator.SetActive(false);
+                return;
+            }
+
+            if (HalloweenVN.Core.SettingsData.IsSkipKeyPressed())
+                _spaceHoldTimer += Time.unscaledDeltaTime;
+            else
+                _spaceHoldTimer = 0f;
+
+            bool isChoiceActive = choicePanel != null && choicePanel.activeSelf;
+            bool isPlaying = DialogueManager.Instance != null && DialogueManager.Instance.IsPlaying;
+            bool showNext = isPlaying && !isTyping && !isUiHidden && !_isTransitioningScene && !isChoiceActive && !string.IsNullOrEmpty(fullText);
+
+            if (nextIndicator != null)
+            {
+                bool active = showNext && _currentlyInDialoguePanel;
+                if (nextIndicator.activeSelf != active) nextIndicator.SetActive(active);
+                if (active)
+                {
+                    RectTransform rt = nextIndicator.transform as RectTransform;
+                    if (rt != null) rt.anchoredPosition = new Vector2(-36f, 20f + Mathf.Sin(Time.unscaledTime * 5f) * 3f);
+                }
+            }
+            if (narratorNextIndicator != null)
+            {
+                bool active = showNext && !_currentlyInDialoguePanel;
+                if (narratorNextIndicator.activeSelf != active) narratorNextIndicator.SetActive(active);
+                if (active)
+                {
+                    RectTransform rt = narratorNextIndicator.transform as RectTransform;
+                    if (rt != null) rt.anchoredPosition = new Vector2(0f, 100f + Mathf.Sin(Time.unscaledTime * 5f) * 3f);
+                }
+            }
+
+            // Mouse wheel up or Backlog key / PageUp key to open log (Allow this even during choices)
+            bool openLogKey = HalloweenVN.Core.SettingsData.WasBacklogKeyPressedThisFrame();
+            if ((UnityEngine.InputSystem.Mouse.current != null && UnityEngine.InputSystem.Mouse.current.scroll.ReadValue().y > 0) || openLogKey)
+            {
+                if (_cachedBacklogUI == null)
+                {
+                    _cachedBacklogUI = Object.FindFirstObjectByType<BacklogUI>(UnityEngine.FindObjectsInactive.Include);
+                }
                 if (_cachedBacklogUI != null && !_cachedBacklogUI.IsOpen)
                 {
+                    if (isUiHidden) SetUiHidden(false);
+                    if (openLogKey && HalloweenVN.Core.AudioManager.Instance != null)
+                        HalloweenVN.Core.AudioManager.Instance.PlaySFX("sfx_ui_click");
                     _cachedBacklogUI.ShowBacklog();
                     return; // Stop processing further input for this frame
                 }
             }
 
-            if (choicePanel != null && choicePanel.activeSelf) return;
-
-            // 1. Right click to toggle UI visibility (to see CG/Backgrounds)
-            if (Mouse.current != null && Mouse.current.rightButton.wasPressedThisFrame)
+            if (isChoiceActive)
             {
-                isUiHidden = !isUiHidden;
-                if (isUiHidden) StopAutoPlay();
-                if (dialoguePanel != null) dialoguePanel.SetActive(!isUiHidden);
-                if (autoButton != null) autoButton.gameObject.SetActive(!isUiHidden);
-                if (backlogButton != null) backlogButton.gameObject.SetActive(!isUiHidden);
+                if (skipIndicator != null && skipIndicator.activeSelf) skipIndicator.SetActive(false);
+                return;
             }
 
-            // If UI is hidden, left clicking restores it instead of advancing text
+            // 1. Right click or Hide UI key to toggle UI visibility (to see CG/Backgrounds)
+            if ((Mouse.current != null && Mouse.current.rightButton.wasPressedThisFrame) ||
+                HalloweenVN.Core.SettingsData.WasHideUiKeyPressedThisFrame())
+            {
+                SetUiHidden(!isUiHidden);
+                return;
+            }
+
+            // If UI is hidden, left clicking or Advance/Enter key restores it instead of advancing text
             if (isUiHidden)
             {
-                if ((Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame) || (Keyboard.current != null && Keyboard.current.spaceKey.wasPressedThisFrame) || (Keyboard.current != null && Keyboard.current.enterKey.wasPressedThisFrame))
+                if ((Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame) ||
+                    HalloweenVN.Core.SettingsData.WasAdvanceKeyPressedThisFrame())
                 {
-                    isUiHidden = false;
-                    if (dialoguePanel != null) dialoguePanel.SetActive(true);
-                    if (autoButton != null) autoButton.gameObject.SetActive(true);
-                    if (backlogButton != null) backlogButton.gameObject.SetActive(true);
+                    SetUiHidden(false);
                 }
                 return;
             }
 
-            
-            // 3. Ctrl Skip Logic
+            // Auto-Play key to toggle Auto-Play
+            if (HalloweenVN.Core.SettingsData.WasAutoKeyPressedThisFrame() && isPlaying && !_isTransitioningScene)
+            {
+                if (HalloweenVN.Core.AudioManager.Instance != null)
+                    HalloweenVN.Core.AudioManager.Instance.PlaySFX("sfx_ui_click");
+                ToggleAutoPlay();
+                return;
+            }
+
+            // 2. Skip Logic
             bool isSkipPressed = IsFastForwarding;
+            bool showSkip = isSkipPressed && isPlaying && !isChoiceActive;
+            if (skipIndicator != null && skipIndicator.activeSelf != showSkip)
+            {
+                skipIndicator.SetActive(showSkip);
+            }
 
             if (isSkipPressed)
             {
-                if (DialogueManager.Instance != null && DialogueManager.Instance.IsPlaying && (choicePanel == null || !choicePanel.activeSelf))
+                if (isPlaying && !isChoiceActive)
                 {
                     if (isTyping) SkipTyping();
                     
@@ -1343,22 +1772,8 @@ namespace HalloweenVN.UI
                 ctrlSkipTimer = 0f;
             }
 
-            // 2. Mouse Scroll Up to open Backlog
-            if (Mouse.current != null && Mouse.current.scroll.ReadValue().y > 0)
-            {
-                if (_cachedBacklogUI == null)
-                {
-                    _cachedBacklogUI = Object.FindFirstObjectByType<BacklogUI>(UnityEngine.FindObjectsInactive.Include);
-                }
-
-                if (_cachedBacklogUI != null && !_cachedBacklogUI.IsOpen)
-                {
-                    _cachedBacklogUI.ShowBacklog();
-                }
-            }
-
-            // 3. Space / Enter to advance dialogue
-            if ((Keyboard.current != null && Keyboard.current.spaceKey.wasPressedThisFrame) || (Keyboard.current != null && Keyboard.current.enterKey.wasPressedThisFrame))
+            // 3. Advance key / Enter to advance dialogue
+            if (HalloweenVN.Core.SettingsData.WasAdvanceKeyPressedThisFrame())
             {
                 OnClick();
             }
@@ -1371,6 +1786,12 @@ namespace HalloweenVN.UI
         public void OnClick() { 
             if (IsModalOpen()) return;
             if (_isTransitioningScene) return; // Prevent double-trigger from UI Event System + Input System
+            if (isUiHidden)
+            {
+                SetUiHidden(false);
+                return;
+            }
+            if (Time.frameCount == _lastUiUnhideFrame) return;
             
             // 1. Prevent physical double-trigger from Unity Input System (0.05s)
             if (Time.unscaledTime - _lastClickTime < 0.05f) return; 

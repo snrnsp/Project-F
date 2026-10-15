@@ -8,59 +8,86 @@ namespace HalloweenVN.UI
     {
         [SerializeField] private GameObject settingsUI;
 
+        private LanguageUI _cachedLangUi;
+        private SettingsUI _cachedSettingsUi;
+        private BacklogUI _cachedBacklogUi;
+        private ExtraUI _cachedExtraUi;
+        private LobbyUI _cachedLobbyUi;
+        private DialogueUI _cachedDialogueUi;
+
         public void Initialize(GameObject settingsUiObj)
         {
             this.settingsUI = settingsUiObj;
+            if (settingsUiObj != null) _cachedSettingsUi = settingsUiObj.GetComponent<SettingsUI>();
         }
 
         void Update()
         {
-            bool closeInput = false;
-            if (Keyboard.current != null && Keyboard.current.escapeKey.wasPressedThisFrame) closeInput = true;
-            if (Mouse.current != null && Mouse.current.rightButton.wasPressedThisFrame) closeInput = true;
+            bool escPressed = Keyboard.current != null && Keyboard.current.escapeKey.wasPressedThisFrame;
+            bool rightClickPressed = Mouse.current != null && Mouse.current.rightButton.wasPressedThisFrame;
 
-            if (closeInput)
+            if (!escPressed && !rightClickPressed) return;
+
+            // 0. If LanguageUI is open, close it.
+            if (_cachedLangUi == null) _cachedLangUi = UnityEngine.Object.FindFirstObjectByType<LanguageUI>(UnityEngine.FindObjectsInactive.Include);
+            if (_cachedLangUi != null && _cachedLangUi.gameObject.activeInHierarchy)
             {
-                                // 0. If LanguageUI is open, close it.
-                var langUi = UnityEngine.Object.FindFirstObjectByType<LanguageUI>(UnityEngine.FindObjectsInactive.Exclude);
-                if (langUi != null && langUi.gameObject.activeInHierarchy)
+                _cachedLangUi.Hide();
+                return;
+            }
+
+            // 1. If Settings is open, close any open sub-panel first, then close Settings.
+            if (_cachedSettingsUi == null) _cachedSettingsUi = UnityEngine.Object.FindFirstObjectByType<SettingsUI>(UnityEngine.FindObjectsInactive.Include);
+            if (_cachedSettingsUi != null && _cachedSettingsUi.gameObject.activeInHierarchy)
+            {
+                if (_cachedSettingsUi.TryCloseSubPanels()) return;
+                _cachedSettingsUi.Hide();
+                return;
+            }
+
+            // 2. If Backlog is open, dismiss rewind confirmation popup first, then close Backlog.
+            if (_cachedBacklogUi == null) _cachedBacklogUi = UnityEngine.Object.FindFirstObjectByType<BacklogUI>(UnityEngine.FindObjectsInactive.Include);
+            if (_cachedBacklogUi != null && _cachedBacklogUi.IsOpen)
+            {
+                if (_cachedBacklogUi.HasActivePopup)
                 {
-                    langUi.Hide();
+                    _cachedBacklogUi.DismissActivePopup();
+                    return;
+                }
+                _cachedBacklogUi.HideBacklog();
+                return;
+            }
+
+            // 3. If Extra is open, close it.
+            if (_cachedExtraUi == null) _cachedExtraUi = UnityEngine.Object.FindFirstObjectByType<ExtraUI>(UnityEngine.FindObjectsInactive.Include);
+            if (_cachedExtraUi != null && _cachedExtraUi.gameObject.activeInHierarchy)
+            {
+                _cachedExtraUi.Hide();
+                return;
+            }
+
+            // 4. If Lobby has an active warning popup, close it.
+            if (_cachedLobbyUi == null) _cachedLobbyUi = UnityEngine.Object.FindFirstObjectByType<LobbyUI>(UnityEngine.FindObjectsInactive.Include);
+            if (_cachedLobbyUi != null && _cachedLobbyUi.gameObject.activeInHierarchy && _cachedLobbyUi.TryCloseActivePopup())
+            {
+                return;
+            }
+
+            // 5. Only ESC opens Settings (Right-Click during dialogue is reserved for hiding/restoring the dialogue UI).
+            if (escPressed)
+            {
+                if (_cachedDialogueUi == null) _cachedDialogueUi = UnityEngine.Object.FindFirstObjectByType<DialogueUI>(UnityEngine.FindObjectsInactive.Include);
+                if (_cachedDialogueUi != null && _cachedDialogueUi.gameObject.activeInHierarchy && _cachedDialogueUi.IsUiHidden)
+                {
+                    _cachedDialogueUi.RestoreHiddenUI();
                     return;
                 }
 
-                // 1. If Settings is open, close it.
-                var settings = UnityEngine.Object.FindFirstObjectByType<SettingsUI>(UnityEngine.FindObjectsInactive.Exclude);
-                if (settings != null && settings.gameObject.activeInHierarchy)
-                {
-                    settings.Hide();
-                    return;
-                }
-
-                // 2. If Backlog is open, close it.
-                var backlog = UnityEngine.Object.FindFirstObjectByType<BacklogUI>(UnityEngine.FindObjectsInactive.Include);
-                if (backlog != null && backlog.IsOpen)
-                {
-                    backlog.HideBacklog();
-                    return;
-                }
-
-                // 3. If Extra is open, close it.
-                var extra = UnityEngine.Object.FindFirstObjectByType<ExtraUI>(UnityEngine.FindObjectsInactive.Exclude);
-                if (extra != null && extra.gameObject.activeInHierarchy)
-                {
-                    extra.Hide();
-                    return;
-                }
-
-                // 4. Otherwise, open settings
                 if (settingsUI != null && !settingsUI.activeSelf)
                 {
                     settingsUI.SetActive(true);
-                    
-                    // Also attempt to call Show() if it has one
-                    var settingsComp = settingsUI.GetComponent<SettingsUI>();
-                    if (settingsComp != null) settingsComp.Show();
+                    if (_cachedSettingsUi == null) _cachedSettingsUi = settingsUI.GetComponent<SettingsUI>();
+                    if (_cachedSettingsUi != null) _cachedSettingsUi.Show();
                 }
             }
         }
@@ -71,16 +98,15 @@ namespace HalloweenVN.UI
             {
                 bool willBeActive = !settingsUI.activeSelf;
                 settingsUI.SetActive(willBeActive);
-                
+                if (_cachedSettingsUi == null) _cachedSettingsUi = settingsUI.GetComponent<SettingsUI>();
+
                 if (willBeActive)
                 {
-                    var comp = settingsUI.GetComponent<SettingsUI>();
-                    if (comp != null) comp.Show();
+                    if (_cachedSettingsUi != null) _cachedSettingsUi.Show();
                 }
                 else
                 {
-                    var comp = settingsUI.GetComponent<SettingsUI>();
-                    if (comp != null) comp.Hide();
+                    if (_cachedSettingsUi != null) _cachedSettingsUi.Hide();
                 }
             }
         }

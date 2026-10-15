@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
@@ -44,8 +44,22 @@ namespace HalloweenVN.UI
         // Folder colors (real manila folder look)
         private static readonly Color32 selectedFolderColor = new Color32(210, 185, 140, 255);
         private static readonly Color32 unselectedTabColor = new Color32(160, 135, 100, 255);
+        private static readonly Color32 hoverTabColor = new Color32(188, 162, 122, 255);
         private static readonly Color32 selectedTabTextColor = new Color32(60, 40, 20, 255);
         private static readonly Color32 unselectedTabTextColor = new Color32(220, 210, 190, 255);
+        private static readonly Color32 hoverTabTextColor = new Color32(255, 248, 230, 255);
+
+        public void SetTabHover(int index, bool hovered)
+        {
+            if (index < 0 || index >= folderObjects.Count || index == currentIndex) return;
+            Color32 tabCol = hovered ? hoverTabColor : unselectedTabColor;
+            if (index < folderTabImages.Count && folderTabImages[index] != null)
+                folderTabImages[index].color = tabCol;
+            Image seamImg = folderObjects[index].transform.Find("TabContainer/Seam")?.GetComponent<Image>();
+            if (seamImg != null) seamImg.color = tabCol;
+            if (index < folderTabTexts.Count && folderTabTexts[index] != null)
+                folderTabTexts[index].color = hovered ? hoverTabTextColor : unselectedTabTextColor;
+        }
 
         private void Awake()
         {
@@ -136,12 +150,12 @@ namespace HalloweenVN.UI
             name = Loc.Get("speaker.미나", "미나"),
             spritePath = "Characters/미나/기본",
             age = Loc.Get("ui.extra.mina_age", "1,000세(?)"),
-            role = Loc.Get("ui.extra.mina_role", "오컬트 고문 / 자칭 흡혈귀"),
+            role = Loc.Get("ui.extra.mina_role", "오컬트 고문 / 자칭 '천 년 묵은 유령'"),
             mbti = "INFJ",
-            appearance = Loc.Get("ui.extra.mina_appearance", "창백한 피부에 은발. 고딕 로리타 풍의 드레스. 신비로운 붉은 눈동자."),
-            personality = Loc.Get("ui.extra.mina_personality", "스스로를 1000살 먹은 흡혈귀라 칭하는 중2병 소녀. 평소엔 엉뚱하지만 오컬트 지식은 진짜다."),
-            speechStyle = Loc.Get("ui.extra.mina_speech", "시대극 말투.\n\"크큭... 어리석은 인간이여. 나의 피가 두려운가?\""),
-            secret = Loc.Get("ui.extra.mina_secret", "햇빛 알레르기가 있어서 낮에 밖에 나가지 못할 뿐이다. 사실 마늘은 좋아한다(알리오 올리오 매니아).")
+            appearance = Loc.Get("ui.extra.mina_appearance", "창백한 피부에 은발. 고풍스러운 옛 의상. 신비로운 붉은 눈동자."),
+            personality = Loc.Get("ui.extra.mina_personality", "스스로를 천 년 묵은 유령이라 칭하는 중2병 소녀. 평소엔 엉뚱하지만 오컬트 지식은 진짜다."),
+            speechStyle = Loc.Get("ui.extra.mina_speech", "시대극 말투.\n\"크큭... 어리석은 인간이여. 천 년 묵은 이 몸이 두려운가?\""),
+            secret = Loc.Get("ui.extra.mina_secret", "햇빛 알레르기가 있어서 낮에 밖에 나가지 못할 뿐이다. 사실 소금은 좋아한다(감자칩 매니아).")
         });
 
         profiles.Add(new CharacterProfile
@@ -150,10 +164,10 @@ namespace HalloweenVN.UI
             name = Loc.Get("speaker.하루카", "하루카"),
             spritePath = "Characters/하루카/기본",
             age = Loc.Get("ui.extra.haruka_age", "19세(최연소)"),
-            role = Loc.Get("ui.extra.haruka_role", "사무소 막내 / 메이드"),
+            role = Loc.Get("ui.extra.haruka_role", "사무소 막내 / 접수원"),
             mbti = "ISFJ",
-            appearance = Loc.Get("ui.extra.haruka_appearance", "단정한 흑발 숏컷. 완벽하게 다림질된 메이드복. 상냥한 미소."),
-            personality = Loc.Get("ui.extra.haruka_personality", "항상 친절하고 성실하다. 청소와 홍차 내리기에 진심이다."),
+            appearance = Loc.Get("ui.extra.haruka_appearance", "단정한 흑발 숏컷. 완벽하게 다림질된 단정한 블라우스. 상냥한 미소."),
+            personality = Loc.Get("ui.extra.haruka_personality", "사무소의 햇살 같은 분위기 메이커. 항상 친절하고 성실하다. 취미이자 특기는 호박 요리."),
             speechStyle = Loc.Get("ui.extra.haruka_speech", "존댓말.\n\"홍차 한 잔 다 드시면, 다음 사건 파일 가져다 드릴게요.\""),
             secret = Loc.Get("ui.extra.haruka_secret", "화가 나면 아무도 말릴 수 없다. 카스미조차 하루카가 화내면 눈치를 본다.")
         });
@@ -196,7 +210,26 @@ namespace HalloweenVN.UI
             if (lobbySettingsButton != null) lobbySettingsButton.SetActive(true);
         }
 
-                public void UpdateLanguage()
+        private void Update()
+        {
+            if (extraPanel == null || !extraPanel.activeInHierarchy || profiles.Count == 0) return;
+
+            var kb = UnityEngine.InputSystem.Keyboard.current;
+            if (kb == null) return;
+
+            if (kb.leftArrowKey.wasPressedThisFrame)
+            {
+                if (AudioManager.Instance != null) AudioManager.Instance.PlaySFX("sfx_ui_click");
+                SelectCharacter((currentIndex - 1 + profiles.Count) % profiles.Count);
+            }
+            else if (kb.rightArrowKey.wasPressedThisFrame)
+            {
+                if (AudioManager.Instance != null) AudioManager.Instance.PlaySFX("sfx_ui_click");
+                SelectCharacter((currentIndex + 1) % profiles.Count);
+            }
+        }
+
+        public void UpdateLanguage()
         {
             bool isGothic = !HalloweenVN.Core.SettingsData.UseHandwritingFont;
             string fontName = HalloweenVN.UI.FontHelper.GetFontNameForLanguage(HalloweenVN.Core.SettingsData.Language);
@@ -221,7 +254,11 @@ namespace HalloweenVN.UI
                 }
             }
 
-            if (titleText != null) titleText.fontSize = isGothic ? 28 : 36;
+            if (titleText != null)
+            {
+                titleText.text = Loc.Get("ui.builder.extra.title", "캐릭터 설정집");
+                titleText.fontSize = isGothic ? 28 : 36;
+            }
             if (closeBtnText != null) closeBtnText.fontSize = isGothic ? 24 : 30;
 
             // Re-fetch localized profile texts / tab names for the current language
@@ -348,11 +385,7 @@ namespace HalloweenVN.UI
 
             if (portrait != null)
             {
-                Sprite sprite = Resources.Load<Sprite>(profile.spritePath);
-                if (sprite == null) {
-                    Sprite[] allSprites = Resources.LoadAll<Sprite>(profile.spritePath);
-                    if (allSprites != null && allSprites.Length > 0) sprite = allSprites[0];
-                }
+                Sprite sprite = DialogueUI.LoadSpriteCached(profile.spritePath);
                 
                 if (sprite != null) { portrait.sprite = sprite; portrait.color = Color.white; }
                 else { portrait.color = new Color(0, 0, 0, 0); }
