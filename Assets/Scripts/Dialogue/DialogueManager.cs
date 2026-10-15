@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -467,7 +467,7 @@ namespace HalloweenVN.Dialogue
                         case "SHAKE_HEAVY": fx.ShakeCamera(0.65f, 14f); break;
                         case "SHAKE_START":
                         case "SHAKE_LOOP": fx.StartContinuousShake(10f); break;
-                        case "SHAKE_STOP": fx.StopShake(); break;
+                        case "SHAKE_STOP": fx.StopShake(0.8f); break;
                         case "FLASH": fx.FlashScreen(Color.white); break;
                         case "FLASH_RED": fx.FlashScreen(Color.red); break;
                         case "FADE_TO_BLACK": fx.FadeToBlack(); break;

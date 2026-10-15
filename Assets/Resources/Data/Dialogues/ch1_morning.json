@@ -1,4 +1,4 @@
-﻿{
+{
     "dialogueId": "ch1_morning",
     "nodes": [
         {
@@ -281,7 +281,8 @@
             "speaker": "카스미",
             "text": "뒷문으로 들어온 겁니다. CCTV에 찍혀 있었어요.",
             "characterSpriteLeft": "Characters/카스미/경멸",
-            "characterSpriteRight": "Characters/미나/당황",
+            "characterSpriteCenter": "Characters/미나/당황",
+            "characterSpriteRight": "Characters/리나/찡그림",
             "nextNodeId": 30
         },
         {
@@ -289,7 +290,8 @@
             "speaker": "미나",
             "text": "(소곤) 카, 카스미... 그, 그냥 분위기 좀 맞춰 주면 안 돼...?",
             "characterSpriteLeft": "Characters/카스미/시선회피",
-            "characterSpriteRight": "Characters/미나/삐짐",
+            "characterSpriteCenter": "Characters/미나/삐짐",
+            "characterSpriteRight": "Characters/리나/찡그림",
             "nextNodeId": 31,
             "noFade": true
         },

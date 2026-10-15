@@ -59,7 +59,6 @@ namespace HalloweenVN.UI
         private GameObject _activePopup; // Track active popup overlay for ESC dismissal
         private int _activePopupHistoryIndex = -1;
         private float _popupOpenedTime = 0f;
-        private bool _wasAtBottomLastFrame = false;
 
         public bool HasActivePopup => _activePopup != null;
 
@@ -96,45 +95,21 @@ namespace HalloweenVN.UI
                 }
             }
 
-            // Mouse wheel down or keyboard scroll while backlog is open
-            if (IsOpen && _activePopup == null && scrollRect != null)
+            // Keyboard scroll while backlog is open
+            if (IsOpen && _activePopup == null && scrollRect != null && kb != null && scrollRect.content != null)
             {
-                bool atBottom = scrollRect.verticalNormalizedPosition <= 0.005f;
-                bool scrollDownClose = UnityEngine.InputSystem.Mouse.current != null && UnityEngine.InputSystem.Mouse.current.scroll.ReadValue().y < 0f;
-                if (kb != null && (kb.downArrowKey.wasPressedThisFrame || kb.pageDownKey.wasPressedThisFrame) && atBottom)
+                float contentH = scrollRect.content.rect.height;
+                float viewH = scrollRect.viewport != null ? scrollRect.viewport.rect.height : 800f;
+                float scrollable = Mathf.Max(1f, contentH - viewH);
+                float delta = 0f;
+                if (kb.upArrowKey.isPressed) delta += (600f * Time.unscaledDeltaTime) / scrollable;
+                if (kb.downArrowKey.isPressed) delta -= (600f * Time.unscaledDeltaTime) / scrollable;
+                if (kb.pageUpKey.wasPressedThisFrame) delta += (viewH * 0.8f) / scrollable;
+                if (kb.pageDownKey.wasPressedThisFrame) delta -= (viewH * 0.8f) / scrollable;
+                if (Mathf.Abs(delta) > 0.0001f)
                 {
-                    scrollDownClose = true;
+                    scrollRect.verticalNormalizedPosition = Mathf.Clamp01(scrollRect.verticalNormalizedPosition + delta);
                 }
-
-                if (_wasAtBottomLastFrame && scrollDownClose)
-                {
-                    HideBacklog();
-                    _wasAtBottomLastFrame = false;
-                    return;
-                }
-
-                if (kb != null && scrollRect.content != null)
-                {
-                    float contentH = scrollRect.content.rect.height;
-                    float viewH = scrollRect.viewport != null ? scrollRect.viewport.rect.height : 800f;
-                    float scrollable = Mathf.Max(1f, contentH - viewH);
-                    float delta = 0f;
-                    if (kb.upArrowKey.isPressed) delta += (600f * Time.unscaledDeltaTime) / scrollable;
-                    if (kb.downArrowKey.isPressed) delta -= (600f * Time.unscaledDeltaTime) / scrollable;
-                    if (kb.pageUpKey.wasPressedThisFrame) delta += (viewH * 0.8f) / scrollable;
-                    if (kb.pageDownKey.wasPressedThisFrame) delta -= (viewH * 0.8f) / scrollable;
-                    if (Mathf.Abs(delta) > 0.0001f)
-                    {
-                        scrollRect.verticalNormalizedPosition = Mathf.Clamp01(scrollRect.verticalNormalizedPosition + delta);
-                        atBottom = scrollRect.verticalNormalizedPosition <= 0.005f;
-                    }
-                }
-
-                _wasAtBottomLastFrame = atBottom;
-            }
-            else
-            {
-                _wasAtBottomLastFrame = false;
             }
         }
 
@@ -236,13 +211,11 @@ namespace HalloweenVN.UI
             {
                 scrollRect.verticalNormalizedPosition = 0f; // Scroll to bottom
             }
-            _wasAtBottomLastFrame = true;
         }
 
         public void HideBacklog()
         {
             DismissActivePopup();
-            _wasAtBottomLastFrame = false;
             if (backlogPanel != null)
             {
                 backlogPanel.SetActive(false);

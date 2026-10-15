@@ -1,4 +1,4 @@
-﻿{
+{
     "dialogueId": "ch1_result_perfect",
     "nodes": [
         {
@@ -8,7 +8,7 @@
             "characterSpriteLeft": "",
             "characterSpriteCenter": "",
             "characterSpriteRight": "",
-            "backgroundSprite": "",
+            "backgroundSprite": "Images/bg_abandoned_practice_room",
             "command": "",
             "noFade": false,
             "slideIn": false,

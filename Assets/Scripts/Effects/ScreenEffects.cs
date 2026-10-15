@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 
@@ -19,9 +19,13 @@ namespace HalloweenVN.Effects
         private Coroutine _activeFlashCoroutine;
         private Coroutine _activeFadeCoroutine;
         private Vector3 _originalCameraPos;
+        private Vector3 _originalDialoguePanelPos;
+        private Vector3 _originalHudRootPos;
         private bool _hasOriginalCameraPos;
         private Camera _mainCam;
         private Transform _uiCanvasTransform;
+        private Transform _dialoguePanelTransform;
+        private Transform _hudRootTransform;
 
         private Transform GetShakeTarget()
         {
@@ -37,9 +41,32 @@ namespace HalloweenVN.Effects
                     if (uiCanvas != null) _uiCanvasTransform = uiCanvas.transform;
                 }
             }
-            if (_uiCanvasTransform != null) return _uiCanvasTransform;
+            if (_uiCanvasTransform != null)
+            {
+                if (_dialoguePanelTransform == null) _dialoguePanelTransform = _uiCanvasTransform.Find("DialoguePanel");
+                if (_hudRootTransform == null) _hudRootTransform = _uiCanvasTransform.Find("DialogueHudRoot");
+                return _uiCanvasTransform;
+            }
             if (_mainCam == null) _mainCam = Camera.main;
             return _mainCam != null ? _mainCam.transform : null;
+        }
+
+        private void CaptureOriginalPositions(Transform target)
+        {
+            if (target == null || _hasOriginalCameraPos) return;
+            _originalCameraPos = target.localPosition;
+            if (_dialoguePanelTransform != null) _originalDialoguePanelPos = _dialoguePanelTransform.localPosition;
+            if (_hudRootTransform != null) _originalHudRootPos = _hudRootTransform.localPosition;
+            _hasOriginalCameraPos = true;
+        }
+
+        private void ResetOriginalPositions(Transform target)
+        {
+            if (!_hasOriginalCameraPos) return;
+            if (target != null) target.localPosition = _originalCameraPos;
+            if (_dialoguePanelTransform != null) _dialoguePanelTransform.localPosition = _originalDialoguePanelPos;
+            if (_hudRootTransform != null) _hudRootTransform.localPosition = _originalHudRootPos;
+            _hasOriginalCameraPos = false;
         }
         
         private bool IsFastForwarding => HalloweenVN.Core.SettingsData.IsSkipKeyPressed();
@@ -94,7 +121,7 @@ namespace HalloweenVN.Effects
             if (_activeShakeCoroutine != null)
             {
                 StopCoroutine(_activeShakeCoroutine);
-                if (_hasOriginalCameraPos && target != null) target.localPosition = _originalCameraPos;
+                ResetOriginalPositions(target);
             }
             _activeShakeCoroutine = StartCoroutine(ShakeCameraCoroutine(duration, magnitude));
             return _activeShakeCoroutine;
@@ -105,11 +132,7 @@ namespace HalloweenVN.Effects
             Transform target = GetShakeTarget();
             if (target == null) yield break;
 
-            if (!_hasOriginalCameraPos)
-            {
-                _originalCameraPos = target.localPosition;
-                _hasOriginalCameraPos = true;
-            }
+            CaptureOriginalPositions(target);
             float elapsed = 0f;
 
             while (elapsed < duration)
@@ -127,13 +150,14 @@ namespace HalloweenVN.Effects
                 yield return null;
             }
 
-            if (target != null && !_isContinuousShake) target.localPosition = _originalCameraPos;
             if (!_isContinuousShake)
             {
-                _hasOriginalCameraPos = false;
+                ResetOriginalPositions(target);
                 _activeShakeCoroutine = null;
             }
         }
+
+        private float _continuousMagnitude = 10f;
 
         public Coroutine StartContinuousShake(float magnitude = 10f)
         {
@@ -141,9 +165,10 @@ namespace HalloweenVN.Effects
             {
                 StopCoroutine(_activeShakeCoroutine);
                 Transform prevTarget = GetShakeTarget();
-                if (_hasOriginalCameraPos && prevTarget != null) prevTarget.localPosition = _originalCameraPos;
+                ResetOriginalPositions(prevTarget);
             }
             _isContinuousShake = true;
+            _continuousMagnitude = magnitude;
             _activeShakeCoroutine = StartCoroutine(ContinuousShakeCoroutine(magnitude));
             return _activeShakeCoroutine;
         }
@@ -151,22 +176,14 @@ namespace HalloweenVN.Effects
         private IEnumerator ContinuousShakeCoroutine(float magnitude)
         {
             Transform target = GetShakeTarget();
-            if (target != null && !_hasOriginalCameraPos)
-            {
-                _originalCameraPos = target.localPosition;
-                _hasOriginalCameraPos = true;
-            }
+            CaptureOriginalPositions(target);
 
             while (_isContinuousShake)
             {
                 if (target == null)
                 {
                     target = GetShakeTarget();
-                    if (target != null && !_hasOriginalCameraPos)
-                    {
-                        _originalCameraPos = target.localPosition;
-                        _hasOriginalCameraPos = true;
-                    }
+                    CaptureOriginalPositions(target);
                 }
                 if (target != null)
                 {
@@ -174,35 +191,79 @@ namespace HalloweenVN.Effects
                     {
                         float offsetX = Random.Range(-1f, 1f) * magnitude;
                         float offsetY = Random.Range(-1f, 1f) * magnitude;
-                        target.localPosition = _originalCameraPos + new Vector3(offsetX, offsetY, 0f);
+                        Vector3 offset = new Vector3(offsetX, offsetY, 0f);
+                        target.localPosition = _originalCameraPos + offset;
+                        if (_dialoguePanelTransform != null) _dialoguePanelTransform.localPosition = _originalDialoguePanelPos - offset;
+                        if (_hudRootTransform != null) _hudRootTransform.localPosition = _originalHudRootPos - offset;
                     }
                     else
                     {
                         target.localPosition = _originalCameraPos;
+                        if (_dialoguePanelTransform != null) _dialoguePanelTransform.localPosition = _originalDialoguePanelPos;
+                        if (_hudRootTransform != null) _hudRootTransform.localPosition = _originalHudRootPos;
                     }
                 }
                 yield return null;
             }
 
-            if (target != null && _hasOriginalCameraPos) target.localPosition = _originalCameraPos;
-            _hasOriginalCameraPos = false;
+            ResetOriginalPositions(target);
             _activeShakeCoroutine = null;
         }
 
-        public void StopShake()
+        public void StopShake(float fadeDuration = 0f)
         {
+            bool wasContinuous = _isContinuousShake;
             _isContinuousShake = false;
             if (_activeShakeCoroutine != null)
             {
                 StopCoroutine(_activeShakeCoroutine);
                 _activeShakeCoroutine = null;
             }
-            Transform target = GetShakeTarget();
-            if (_hasOriginalCameraPos && target != null)
+
+            if (fadeDuration > 0f && wasContinuous && HalloweenVN.Core.SettingsData.EnableFlashingEffects && gameObject.activeInHierarchy)
             {
-                target.localPosition = _originalCameraPos;
+                _activeShakeCoroutine = StartCoroutine(FadeOutShakeCoroutine(_continuousMagnitude, fadeDuration));
+                return;
             }
-            _hasOriginalCameraPos = false;
+
+            Transform target = GetShakeTarget();
+            ResetOriginalPositions(target);
+        }
+
+        private IEnumerator FadeOutShakeCoroutine(float startMagnitude, float duration)
+        {
+            Transform target = GetShakeTarget();
+            if (target == null)
+            {
+                _hasOriginalCameraPos = false;
+                _activeShakeCoroutine = null;
+                yield break;
+            }
+
+            CaptureOriginalPositions(target);
+
+            float elapsed = 0f;
+            while (elapsed < duration)
+            {
+                if (target == null) break;
+                if (!HalloweenVN.Core.SettingsData.EnableFlashingEffects)
+                {
+                    break;
+                }
+                elapsed += Time.unscaledDeltaTime * (IsFastForwarding ? 10f : 1f);
+                float t = Mathf.Clamp01(elapsed / duration);
+                float currentMag = Mathf.Lerp(startMagnitude, 0f, Mathf.SmoothStep(0f, 1f, t));
+                float offsetX = Random.Range(-1f, 1f) * currentMag;
+                float offsetY = Random.Range(-1f, 1f) * currentMag;
+                Vector3 offset = new Vector3(offsetX, offsetY, 0f);
+                target.localPosition = _originalCameraPos + offset;
+                if (_dialoguePanelTransform != null) _dialoguePanelTransform.localPosition = _originalDialoguePanelPos - offset;
+                if (_hudRootTransform != null) _hudRootTransform.localPosition = _originalHudRootPos - offset;
+                yield return null;
+            }
+
+            ResetOriginalPositions(target);
+            _activeShakeCoroutine = null;
         }
 
         // ═══════════ Screen Flash ═══════════

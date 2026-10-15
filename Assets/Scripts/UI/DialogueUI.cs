@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -166,10 +166,10 @@ namespace HalloweenVN.UI
             narratorNextIndicator.layer = LayerMask.NameToLayer("UI");
             narratorNextIndicator.transform.SetParent(narratorObj.transform, false);
             RectTransform nIndRt = narratorNextIndicator.AddComponent<RectTransform>();
-            nIndRt.anchorMin = new Vector2(0.5f, 0f);
-            nIndRt.anchorMax = new Vector2(0.5f, 0f);
-            nIndRt.pivot = new Vector2(0.5f, 0f);
-            nIndRt.anchoredPosition = new Vector2(0, 100);
+            nIndRt.anchorMin = new Vector2(1f, 0f);
+            nIndRt.anchorMax = new Vector2(1f, 0f);
+            nIndRt.pivot = new Vector2(1f, 0f);
+            nIndRt.anchoredPosition = new Vector2(-90f, 80f);
             nIndRt.sizeDelta = new Vector2(40, 40);
             TextMeshProUGUI nIndTxt = narratorNextIndicator.AddComponent<TextMeshProUGUI>();
             nIndTxt.text = "▼";
@@ -631,16 +631,16 @@ namespace HalloweenVN.UI
             for (int s = 0; s < 3; s++) _lastTargetX[s] = newOwner[s] != null ? targetX[s] : -1f;
 
             // Dim/Highlight based on speaker
+            UpdateBackground(node.backgroundSprite);
             bool instantHighlight = instant || (wasNarrator && usePanelNow);
             UpdateSpeakerHighlight(node.speaker, instantHighlight, node.command);
-            UpdateBackground(node.backgroundSprite);
         }
 
         /// <summary>
         /// Screen X (anchor center) per slot.
         /// When 3 characters are on screen: Left=19%, Center=50%, Right=81%.
-        /// When 2 characters: Left-most occupied=26%, Right-most occupied=74%.
-        /// When 1 character: Occupied slot=50% (or its explicit side if needed, defaulting to 26%/50%/74%).
+        /// When 2 characters: Left-most occupied=31%, Right-most occupied=69%.
+        /// When 1 character: Occupied slot=50% (or its explicit side if needed, defaulting to 31%/50%/69%).
         /// Applies per-character visual-center compensation so asymmetric hair/veils don't skew body alignment.
         /// </summary>
         private static float[] ComputeLayoutTargets(string[] owner)
@@ -654,20 +654,20 @@ namespace HalloweenVN.UI
             float[] targets;
             if (count == 2)
             {
-                targets = new float[] { 0.26f, 0.50f, 0.74f };
+                targets = new float[] { 0.31f, 0.50f, 0.69f };
                 bool assignedFirst = false;
                 for (int s = 0; s < 3; s++)
                 {
                     if (owner[s] == null) continue;
-                    targets[s] = assignedFirst ? 0.74f : 0.26f;
+                    targets[s] = assignedFirst ? 0.69f : 0.31f;
                     assignedFirst = true;
                 }
             }
             else
             {
-                float leftX = count >= 3 ? 0.19f : 0.26f;
+                float leftX = count >= 3 ? 0.19f : 0.31f;
                 float centerX = 0.50f;
-                float rightX = count >= 3 ? 0.81f : 0.74f;
+                float rightX = count >= 3 ? 0.81f : 0.69f;
                 targets = new float[] { leftX, centerX, rightX };
             }
 
@@ -691,7 +691,7 @@ namespace HalloweenVN.UI
             switch (charName)
             {
                 case "하루카": return 0.068f;  // Long hair & skirt billow far to the right
-                case "카스미": return 0.056f;  // Long dark hair flows far to the right
+                case "카스미": return 0.042f;  // Long dark hair flows far to the right
                 case "미나":   return 0.028f;  // Wide white veil extends to the right
                 case "리나":   return 0.016f;  // Hair/coat slightly wider on the right
                 case "세이카": return -0.012f; // Hair/pose slightly wider on the left
@@ -990,10 +990,10 @@ namespace HalloweenVN.UI
             if (isUiHidden)
             {
                 isUiHidden = false;
-                if (autoButton != null) autoButton.gameObject.SetActive(true);
-                if (backlogButton != null) backlogButton.gameObject.SetActive(true);
             }
             if (dialoguePanel != null) dialoguePanel.SetActive(usePanel);
+            if (autoButton != null) autoButton.gameObject.SetActive(usePanel);
+            if (backlogButton != null) backlogButton.gameObject.SetActive(usePanel);
             if (narratorText != null && narratorText.transform.parent != null)
             {
                 narratorText.transform.parent.gameObject.SetActive(!usePanel);
@@ -1227,9 +1227,10 @@ namespace HalloweenVN.UI
                 bool forceDim = !string.IsNullOrEmpty(command) && command.Contains("FORCE_DIM");
                 bool forceHighlight = !string.IsNullOrEmpty(command) && (command.Contains("FORCE_HIGHLIGHT") || command.Contains("FORCE_ACTIVE"));
 
-                // If only 1 character is on screen (solo focus / character intro sequence), keep them in full default color!
-                // Dimming only applies when multiple characters are present, indicating none of them is currently speaking.
-                bool keepActive = (forceHighlight || _activeSpeakerPositions.Count <= 1) && !forceDim;
+                // Keep solo character bright only during black-background character intro showcases (e.g., ch0_gathering)
+                bool isBlackBgShowcase = _activeSpeakerPositions.Count == 1
+                                         && (_currentBgPath == "Images/bg_black" || _currentBgPath == "bg_black");
+                bool keepActive = (forceHighlight || isBlackBgShowcase) && !forceDim;
                 foreach (var kvp in _activeSpeakerPositions)
                 {
                     DimCharacterImage(GetCharacterImage(kvp.Value), keepActive, instant);
@@ -1636,8 +1637,8 @@ namespace HalloweenVN.UI
                 if (narratorParent != null) narratorParent.SetActive(!isUiHidden);
             }
 
-            if (autoButton != null) autoButton.gameObject.SetActive(!isUiHidden);
-            if (backlogButton != null) backlogButton.gameObject.SetActive(!isUiHidden);
+            if (autoButton != null) autoButton.gameObject.SetActive(!isUiHidden && _currentlyInDialoguePanel);
+            if (backlogButton != null) backlogButton.gameObject.SetActive(!isUiHidden && _currentlyInDialoguePanel);
             if (isUiHidden)
             {
                 if (skipIndicator != null) skipIndicator.SetActive(false);
@@ -1689,7 +1690,7 @@ namespace HalloweenVN.UI
                 if (active)
                 {
                     RectTransform rt = narratorNextIndicator.transform as RectTransform;
-                    if (rt != null) rt.anchoredPosition = new Vector2(0f, 100f + Mathf.Sin(Time.unscaledTime * 5f) * 3f);
+                    if (rt != null) rt.anchoredPosition = new Vector2(-90f, 80f + Mathf.Sin(Time.unscaledTime * 5f) * 3f);
                 }
             }
 
