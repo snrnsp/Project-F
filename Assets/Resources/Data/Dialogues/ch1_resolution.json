@@ -1,4 +1,4 @@
-{
+﻿{
     "dialogueId": "ch1_resolution",
     "nodes": [
         {
@@ -72,8 +72,9 @@
             "nextNodeId": 6,
             "characterSpriteLeft": "Characters/리리스/기본",
             "characterSpriteCenter": "",
-            "characterSpriteRight": "Characters/미나/기본",
-            "choices": []
+            "characterSpriteRight": "Characters/카스미/찡그림",
+            "choices": [],
+            "noFade": false
         },
         {
             "speaker": "리리스",
@@ -84,7 +85,7 @@
             "nextNodeId": 7,
             "characterSpriteLeft": "Characters/리리스/기본",
             "characterSpriteCenter": "",
-            "characterSpriteRight": "Characters/미나/기본",
+            "characterSpriteRight": "Characters/카스미/찡그림",
             "choices": [],
             "noFade": true
         },
@@ -95,11 +96,11 @@
             "command": "",
             "id": 7,
             "nextNodeId": 8,
-            "characterSpriteLeft": "Characters/리리스/기본",
+            "characterSpriteLeft": "Characters/하루카/놀람",
             "characterSpriteCenter": "",
             "characterSpriteRight": "Characters/미나/음침",
             "choices": [],
-            "noFade": true
+            "noFade": false
         },
         {
             "speaker": " ",
@@ -108,7 +109,7 @@
             "command": "EFFECT:SHAKE_SHORT",
             "id": 8,
             "nextNodeId": 9,
-            "characterSpriteLeft": "Characters/리리스/기본",
+            "characterSpriteLeft": "Characters/하루카/공포",
             "characterSpriteCenter": "",
             "characterSpriteRight": "Characters/미나/음침",
             "choices": [],
@@ -124,7 +125,8 @@
             "characterSpriteLeft": "Characters/하루카/공포",
             "characterSpriteCenter": "",
             "characterSpriteRight": "Characters/미나/음침",
-            "choices": []
+            "choices": [],
+            "noFade": true
         },
         {
             "speaker": "미나",
@@ -237,9 +239,10 @@
             "id": 18,
             "nextNodeId": 19,
             "characterSpriteLeft": "Characters/리리스/기본",
-            "characterSpriteCenter": "Characters/카스미/기본",
-            "characterSpriteRight": "Characters/리나/기본",
-            "choices": []
+            "characterSpriteCenter": "",
+            "characterSpriteRight": "Characters/카스미/기본",
+            "choices": [],
+            "noFade": false
         },
         {
             "speaker": " ",
@@ -249,8 +252,8 @@
             "id": 19,
             "nextNodeId": 20,
             "characterSpriteLeft": "Characters/리리스/기본",
-            "characterSpriteCenter": "Characters/카스미/기본",
-            "characterSpriteRight": "Characters/리나/기본",
+            "characterSpriteCenter": "",
+            "characterSpriteRight": "Characters/카스미/기본",
             "choices": [],
             "noFade": true
         },
@@ -259,8 +262,8 @@
             "text": "단순 즉흥 연주 아님. 음 길이, 일정 패턴 반복. 인위적 신호.",
             "command": "",
             "characterSpriteLeft": "Characters/리리스/기본",
-            "characterSpriteCenter": "Characters/카스미/기본",
-            "characterSpriteRight": "Characters/리나/기본",
+            "characterSpriteCenter": "",
+            "characterSpriteRight": "Characters/카스미/기본",
             "backgroundSprite": "",
             "choices": [],
             "id": 20,
@@ -272,8 +275,8 @@
             "text": "음의 길이가 패턴? 어떤 의미가 있는 건가요?",
             "command": "",
             "characterSpriteLeft": "Characters/리리스/기본",
-            "characterSpriteCenter": "Characters/카스미/찡그림",
-            "characterSpriteRight": "Characters/리나/기본",
+            "characterSpriteCenter": "",
+            "characterSpriteRight": "Characters/카스미/찡그림",
             "backgroundSprite": "",
             "choices": [],
             "id": 21,
@@ -285,8 +288,8 @@
             "text": "짧은 음과 긴 음이 번갈아 나옴. 이건... 모스 부호.",
             "command": "",
             "characterSpriteLeft": "Characters/리리스/기본",
-            "characterSpriteCenter": "Characters/카스미/찡그림",
-            "characterSpriteRight": "Characters/리나/기본",
+            "characterSpriteCenter": "",
+            "characterSpriteRight": "Characters/카스미/찡그림",
             "backgroundSprite": "",
             "choices": [],
             "id": 22,
@@ -298,20 +301,20 @@
             "text": "...거짓말. 음악으로... 말을 걸고 있는 거였어?",
             "command": "",
             "characterSpriteLeft": "Characters/리리스/기본",
-            "characterSpriteCenter": "Characters/카스미/찡그림",
+            "characterSpriteCenter": "",
             "characterSpriteRight": "Characters/리나/놀람",
             "backgroundSprite": "",
             "choices": [],
             "id": 23,
             "nextNodeId": 24,
-            "noFade": true
+            "noFade": false
         },
         {
             "speaker": "리리스",
             "text": "피아니스트니까. 음의 장단으로 메시지를 전하는 건 오히려 자연스러움.",
             "command": "",
             "characterSpriteLeft": "Characters/리리스/기본",
-            "characterSpriteCenter": "Characters/카스미/찡그림",
+            "characterSpriteCenter": "",
             "characterSpriteRight": "Characters/리나/놀람",
             "backgroundSprite": "",
             "choices": [],
@@ -324,7 +327,7 @@
             "text": "화면의 점과 선들이 이내 몇 개의 글자로 변환되었다.",
             "command": "",
             "characterSpriteLeft": "Characters/리리스/기본",
-            "characterSpriteCenter": "Characters/카스미/찡그림",
+            "characterSpriteCenter": "",
             "characterSpriteRight": "Characters/리나/놀람",
             "backgroundSprite": "",
             "choices": [],
@@ -338,11 +341,12 @@
             "command": "",
             "characterSpriteLeft": "Characters/리리스/기본",
             "characterSpriteCenter": "",
-            "characterSpriteRight": "Characters/하루카/기본",
+            "characterSpriteRight": "Characters/리나/놀람",
             "backgroundSprite": "",
             "choices": [],
             "id": 26,
-            "nextNodeId": 27
+            "nextNodeId": 27,
+            "noFade": true
         },
         {
             "speaker": "하루카",
@@ -355,7 +359,7 @@
             "choices": [],
             "id": 27,
             "nextNodeId": 28,
-            "noFade": true
+            "noFade": false
         },
         {
             "speaker": "리리스",
@@ -492,11 +496,12 @@
             "text": "안타깝게도 2021년의 피해자는 아직 단서조차 찾지 못했어. 하지만 올해, 2026년의 희생자만큼은 반드시 막아야 해.",
             "characterSpriteLeft": "Characters/세이카/찡그림",
             "characterSpriteCenter": "",
-            "characterSpriteRight": "Characters/리나/기본",
+            "characterSpriteRight": "Characters/카스미/찡그림",
             "backgroundSprite": "",
             "choices": [],
             "nextNodeId": 39,
-            "command": ""
+            "command": "",
+            "noFade": true
         },
         {
             "speaker": "리나",
@@ -509,7 +514,7 @@
             "characterSpriteCenter": "",
             "characterSpriteRight": "Characters/리나/공포",
             "choices": [],
-            "noFade": true
+            "noFade": false
         },
         {
             "speaker": "리나",
@@ -1205,11 +1210,11 @@
             "nextNodeId": 95,
             "command": "",
             "backgroundSprite": "",
-            "characterSpriteLeft": "Characters/리리스/기본",
-            "characterSpriteCenter": "",
-            "characterSpriteRight": "Characters/세이카/기본",
+            "characterSpriteLeft": "",
+            "characterSpriteCenter": "Characters/세이카/기본",
+            "characterSpriteRight": "",
             "choices": [],
-            "noFade": true
+            "noFade": false
         },
         {
             "id": 95,
@@ -1218,9 +1223,9 @@
             "nextNodeId": 96,
             "command": "EFFECT:SHAKE",
             "backgroundSprite": "",
-            "characterSpriteLeft": "Characters/리리스/기본",
-            "characterSpriteCenter": "",
-            "characterSpriteRight": "Characters/세이카/기본",
+            "characterSpriteLeft": "",
+            "characterSpriteCenter": "Characters/세이카/기본",
+            "characterSpriteRight": "",
             "choices": [],
             "noFade": true
         },
@@ -1342,9 +1347,9 @@
             "id": 105,
             "speaker": "미나",
             "text": "영혼의 사슬이여... 그녀의 혼을 현세에 단단히 묶어두어라!",
-            "characterSpriteLeft": "Characters/리나/찡그림",
-            "characterSpriteCenter": "",
-            "characterSpriteRight": "Characters/미나/기본",
+            "characterSpriteLeft": "",
+            "characterSpriteCenter": "Characters/미나/기본",
+            "characterSpriteRight": "",
             "backgroundSprite": "",
             "command": "",
             "noFade": false,
@@ -1355,9 +1360,9 @@
             "id": 106,
             "speaker": "하루카",
             "text": "(투명한 서하유의 손을 꼭 잡으며) 하유 씨! 가지 마세요! 우리랑 같이 가요!",
-            "characterSpriteLeft": "Characters/하루카/미소",
-            "characterSpriteCenter": "",
-            "characterSpriteRight": "Characters/미나/기본",
+            "characterSpriteLeft": "",
+            "characterSpriteCenter": "Characters/하루카/미소",
+            "characterSpriteRight": "",
             "backgroundSprite": "",
             "command": "",
             "noFade": false,
@@ -1446,9 +1451,9 @@
             "id": 113,
             "speaker": "카스미",
             "text": "...물리 법칙을 역행하는 현상을 제 눈으로 볼 줄은 몰랐군요.",
-            "characterSpriteLeft": "Characters/리나/웃음",
-            "characterSpriteCenter": "",
-            "characterSpriteRight": "Characters/카스미/미소",
+            "characterSpriteLeft": "",
+            "characterSpriteCenter": "Characters/카스미/미소",
+            "characterSpriteRight": "",
             "backgroundSprite": "",
             "command": "",
             "noFade": false,
@@ -1459,9 +1464,9 @@
             "id": 114,
             "speaker": "리리스",
             "text": "잭오, 임무 완료. 셧다운.",
-            "characterSpriteLeft": "Characters/리리스/기본",
-            "characterSpriteCenter": "",
-            "characterSpriteRight": "Characters/카스미/미소",
+            "characterSpriteLeft": "",
+            "characterSpriteCenter": "Characters/리리스/기본",
+            "characterSpriteRight": "",
             "backgroundSprite": "",
             "command": "",
             "noFade": false,
@@ -1472,9 +1477,9 @@
             "id": 115,
             "speaker": "세이카",
             "text": "환영해. 네버모어 오컬트 탐정 사무소에 온 걸.",
-            "characterSpriteLeft": "Characters/리리스/기본",
-            "characterSpriteCenter": "",
-            "characterSpriteRight": "Characters/세이카/웃음",
+            "characterSpriteLeft": "",
+            "characterSpriteCenter": "Characters/세이카/웃음",
+            "characterSpriteRight": "",
             "backgroundSprite": "",
             "command": "",
             "noFade": false,
@@ -1485,9 +1490,9 @@
             "id": 116,
             "speaker": "서하유",
             "text": "...감사합니다... 저를, 기억해 주셔서...",
-            "characterSpriteLeft": "Characters/리리스/기본",
-            "characterSpriteCenter": "",
-            "characterSpriteRight": "Characters/세이카/웃음",
+            "characterSpriteLeft": "",
+            "characterSpriteCenter": "Characters/세이카/웃음",
+            "characterSpriteRight": "",
             "backgroundSprite": "",
             "command": "",
             "noFade": true,

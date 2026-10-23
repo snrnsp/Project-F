@@ -1546,12 +1546,42 @@ namespace HalloweenVN.UI.Theme
             ScrollRect scrollRect = scrollObj.AddComponent<ScrollRect>();
             scrollRect.horizontal = false;
             scrollRect.vertical = true;
+            scrollRect.movementType = ScrollRect.MovementType.Clamped;
             scrollRect.scrollSensitivity = 45f;
-            scrollRect.viewport = scrollRt;
-            scrollObj.AddComponent<RectMask2D>();
+            UIHelper.AddImage(scrollObj, new Color(0, 0, 0, 0));
+
+            // Viewport
+            GameObject viewportObj = UIHelper.CreateUIObject("Viewport", scrollObj.transform);
+            RectTransform viewportRt = viewportObj.GetComponent<RectTransform>();
+            UIHelper.StretchFull(viewportRt);
+            viewportRt.offsetMax = new Vector2(-18, 0);
+            viewportObj.AddComponent<RectMask2D>();
+            scrollRect.viewport = viewportRt;
+
+            // Vertical Scrollbar for Backlog
+            GameObject vScrollbarObj = UIHelper.CreateUIObject("Scrollbar", scrollObj.transform);
+            RectTransform vSbRt = vScrollbarObj.GetComponent<RectTransform>();
+            UIHelper.SetAnchors(vSbRt, new Vector2(1, 0), new Vector2(1, 1), new Vector2(1, 0.5f));
+            vSbRt.offsetMin = new Vector2(-12, 12);
+            vSbRt.offsetMax = new Vector2(-2, -12);
+            UIHelper.AddImage(vScrollbarObj, new Color32(45, 30, 70, 180));
+
+            GameObject sbSlideArea = UIHelper.CreateUIObject("Sliding Area", vScrollbarObj.transform);
+            UIHelper.StretchFull(sbSlideArea.GetComponent<RectTransform>());
+            GameObject sbHandle = UIHelper.CreateUIObject("Handle", sbSlideArea.transform);
+            UIHelper.StretchFull(sbHandle.GetComponent<RectTransform>());
+            Image sbHandleImg = UIHelper.AddImage(sbHandle, HalloweenTheme.AccentOrange);
+
+            Scrollbar vScrollbar = vScrollbarObj.AddComponent<Scrollbar>();
+            vScrollbar.direction = Scrollbar.Direction.BottomToTop;
+            vScrollbar.handleRect = sbHandle.GetComponent<RectTransform>();
+            vScrollbar.targetGraphic = sbHandleImg;
+            scrollRect.verticalScrollbar = vScrollbar;
+            scrollRect.verticalScrollbarVisibility = ScrollRect.ScrollbarVisibility.AutoHideAndExpandViewport;
+            scrollRect.verticalScrollbarSpacing = 6f;
 
             // Content container
-            GameObject content = UIHelper.CreateUIObject("Content", scrollObj.transform);
+            GameObject content = UIHelper.CreateUIObject("Content", viewportObj.transform);
             RectTransform contentRt = content.GetComponent<RectTransform>();
             UIHelper.SetAnchors(contentRt, new Vector2(0, 1), new Vector2(1, 1), new Vector2(0.5f, 1));
             contentRt.sizeDelta = new Vector2(0, 0);

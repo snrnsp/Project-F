@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.Collections;
 using System.Collections.Generic;
 using HalloweenVN.Core;
 using HalloweenVN.Dialogue;
@@ -22,6 +23,8 @@ namespace HalloweenVN.UI
         private static List<BacklogEntry> history = new List<BacklogEntry>();
         private bool subscribedToDialogue = false;
         private bool subscribedToPhase = false;
+        private int _openedFrame = -1;
+        private Coroutine _scrollBottomCoroutine;
 
         public class BacklogEntry
         {
@@ -35,7 +38,6 @@ namespace HalloweenVN.UI
                 this.dialogueId = dialogueId;
                 this.node = node;
                 this.speaker = node.speaker;
-                
                 this.text = HalloweenVN.Core.Loc.NodeText(dialogueId, node);
             }
         }
@@ -70,6 +72,19 @@ namespace HalloweenVN.UI
                 _activePopup = null;
                 _activePopupHistoryIndex = -1;
             }
+            ResetAllEntryHovers();
+        }
+
+        private void ResetAllEntryHovers()
+        {
+            for (int i = 0; i < _entryPool.Count; i++)
+            {
+                var v = _entryPool[i];
+                if (v != null && v.root != null && v.root.activeSelf && v.hover != null)
+                {
+                    v.hover.ResetHover();
+                }
+            }
         }
 
         private void Update()
@@ -80,10 +95,20 @@ namespace HalloweenVN.UI
                 TrySubscribe();
             }
 
+            if (!IsOpen) return;
+
             var kb = UnityEngine.InputSystem.Keyboard.current;
 
+            // Allow Backlog key (e.g. L) to toggle/close the backlog when no popup is open
+            if (_activePopup == null && Time.frameCount > _openedFrame && SettingsData.WasBacklogKeyPressedThisFrame())
+            {
+                if (AudioManager.Instance != null) AudioManager.Instance.PlaySFX("sfx_ui_click");
+                HideBacklog();
+                return;
+            }
+
             // Allow Enter/Space to confirm the rewind popup
-            if (IsOpen && _activePopup != null && Time.unscaledTime - _popupOpenedTime >= 0.15f)
+            if (_activePopup != null && Time.unscaledTime - _popupOpenedTime >= 0.15f)
             {
                 if (kb != null && (kb.enterKey.wasPressedThisFrame || kb.numpadEnterKey.wasPressedThisFrame || kb.spaceKey.wasPressedThisFrame))
                 {
@@ -96,7 +121,7 @@ namespace HalloweenVN.UI
             }
 
             // Keyboard scroll while backlog is open
-            if (IsOpen && _activePopup == null && scrollRect != null && kb != null && scrollRect.content != null)
+            if (_activePopup == null && scrollRect != null && kb != null && scrollRect.content != null)
             {
                 float contentH = scrollRect.content.rect.height;
                 float viewH = scrollRect.viewport != null ? scrollRect.viewport.rect.height : 800f;
@@ -108,6 +133,7 @@ namespace HalloweenVN.UI
                 if (kb.pageDownKey.wasPressedThisFrame) delta -= (viewH * 0.8f) / scrollable;
                 if (Mathf.Abs(delta) > 0.0001f)
                 {
+                    scrollRect.velocity = Vector2.zero;
                     scrollRect.verticalNormalizedPosition = Mathf.Clamp01(scrollRect.verticalNormalizedPosition + delta);
                 }
             }
@@ -129,8 +155,7 @@ namespace HalloweenVN.UI
 
         private void OnDisable()
         {
-            // Only unsubscribe the phase handler, NOT the dialogue recording
-            // This way even if the GO is briefly disabled, we don't lose the subscription flag
+            // Only unsubscribe on destroy so dialogue recording stays active across panel toggles
         }
 
         private void OnDestroy()
@@ -201,20 +226,71 @@ namespace HalloweenVN.UI
         public void ShowBacklog()
         {
             if (backlogPanel == null) return;
+            if (DialogueManager.Instance != null && (!DialogueManager.Instance.IsPlaying || DialogueManager.Instance.IsTransitioningChapter))
+                return;
+            var dui = Object.FindAnyObjectByType<DialogueUI>();
+            if (dui != null && dui.IsTransitioningScene)
+                return;
+
+            _openedFrame = Time.frameCount;
             backlogPanel.SetActive(true);
 
             PopulateBacklog();
-            
-            // Force layout rebuild so ScrollRect can calculate its bounds
+            RebuildAndScrollToBottom();
+
+            if (gameObject.activeInHierarchy)
+            {
+                if (_scrollBottomCoroutine != null) StopCoroutine(_scrollBottomCoroutine);
+                _scrollBottomCoroutine = StartCoroutine(EnsureScrollBottomNextFrame());
+            }
+        }
+
+        private void RebuildAndScrollToBottom()
+        {
+            Canvas.ForceUpdateCanvases();
+            if (contentContainer != null)
+            {
+                for (int i = 0; i < history.Count && i < _entryPool.Count; i++)
+                {
+                    if (_entryPool[i].root != null && _entryPool[i].root.activeSelf)
+                    {
+                        RectTransform entryRt = _entryPool[i].root.transform as RectTransform;
+                        if (entryRt != null) LayoutRebuilder.ForceRebuildLayoutImmediate(entryRt);
+                    }
+                }
+                RectTransform contentRt = contentContainer as RectTransform;
+                if (contentRt != null) LayoutRebuilder.ForceRebuildLayoutImmediate(contentRt);
+            }
             Canvas.ForceUpdateCanvases();
             if (scrollRect != null)
             {
+                scrollRect.velocity = Vector2.zero;
                 scrollRect.verticalNormalizedPosition = 0f; // Scroll to bottom
             }
         }
 
+        private IEnumerator EnsureScrollBottomNextFrame()
+        {
+            yield return null;
+            if (IsOpen && scrollRect != null)
+            {
+                if (contentContainer is RectTransform contentRt)
+                {
+                    LayoutRebuilder.ForceRebuildLayoutImmediate(contentRt);
+                }
+                scrollRect.velocity = Vector2.zero;
+                scrollRect.verticalNormalizedPosition = 0f;
+            }
+            _scrollBottomCoroutine = null;
+        }
+
         public void HideBacklog()
         {
+            if (_scrollBottomCoroutine != null)
+            {
+                StopCoroutine(_scrollBottomCoroutine);
+                _scrollBottomCoroutine = null;
+            }
             DismissActivePopup();
             if (backlogPanel != null)
             {
@@ -222,7 +298,6 @@ namespace HalloweenVN.UI
             }
         }
 
-        
         private class PooledEntryView
         {
             public GameObject root;
@@ -281,6 +356,7 @@ namespace HalloweenVN.UI
             textObj.transform.SetParent(entryObj.transform, false);
             var dialogueTxt = textObj.AddComponent<TextMeshProUGUI>();
             dialogueTxt.fontSize = 28;
+            dialogueTxt.textWrappingMode = TextWrappingModes.Normal;
             dialogueTxt.raycastTarget = false;
             view.dialogueText = dialogueTxt;
 
@@ -295,7 +371,7 @@ namespace HalloweenVN.UI
             tagRt.anchorMax = new Vector2(1, 1);
             tagRt.pivot = new Vector2(1, 1);
             tagRt.anchoredPosition = new Vector2(-20, -14);
-            tagRt.sizeDelta = new Vector2(320, 36);
+            tagRt.sizeDelta = new Vector2(360, 36);
             var tagTxt = tagObj.AddComponent<TextMeshProUGUI>();
             tagTxt.alignment = TextAlignmentOptions.TopRight;
             tagTxt.fontSize = 22;
@@ -328,21 +404,29 @@ namespace HalloweenVN.UI
                 if (vlg == null)
                 {
                     vlg = contentContainer.gameObject.AddComponent<VerticalLayoutGroup>();
-                    vlg.padding = new RectOffset(20, 20, 20, 20);
-                    vlg.spacing = 15;
-                    vlg.childControlHeight = true;
-                    vlg.childControlWidth = true;
-                    vlg.childForceExpandHeight = false;
-                    vlg.childForceExpandWidth = true;
                 }
+                vlg.padding = new RectOffset(20, 20, 16, 16);
+                vlg.spacing = 14;
+                vlg.childControlHeight = true;
+                vlg.childControlWidth = true;
+                vlg.childForceExpandHeight = false;
+                vlg.childForceExpandWidth = true;
+
                 var csf = contentContainer.GetComponent<ContentSizeFitter>();
                 if (csf == null)
                 {
                     csf = contentContainer.gameObject.AddComponent<ContentSizeFitter>();
-                    csf.verticalFit = ContentSizeFitter.FitMode.PreferredSize;
                 }
+                csf.verticalFit = ContentSizeFitter.FitMode.PreferredSize;
                 _containerLayoutInitialized = true;
             }
+
+            bool isGothic = !SettingsData.UseHandwritingFont;
+            float speakerFontSize = isGothic ? 25f : 32f;
+            float bodyFontSize = isGothic ? 23f : 30f;
+            float tagFontSize = isGothic ? 18f : 23f;
+            float titleFontSize = isGothic ? 28f : 36f;
+            int closeBtnFontSize = isGothic ? 20 : 26;
 
             string globalFontName = HalloweenVN.UI.FontHelper.GetFontNameForLanguage(SettingsData.Language);
             var cachedFont = HalloweenVN.UI.FontHelper.GetTMPFont(globalFontName);
@@ -351,11 +435,13 @@ namespace HalloweenVN.UI
             if (titleText != null)
             {
                 titleText.text = HalloweenVN.Core.Loc.Get("ui.builder.backlog.title", "대화 기록");
+                titleText.fontSize = titleFontSize;
                 if (cachedFont != null) titleText.font = cachedFont;
             }
             if (closeButtonText != null)
             {
                 closeButtonText.text = HalloweenVN.Core.Loc.Get("ui.builder.close", "닫기");
+                closeButtonText.fontSize = closeBtnFontSize;
                 if (legacyFont != null) closeButtonText.font = legacyFont;
             }
 
@@ -376,6 +462,7 @@ namespace HalloweenVN.UI
                 }
                 _emptyMsgObj.SetActive(true);
                 _emptyMsgText.text = HalloweenVN.Core.Loc.Get("ui.backlog.empty", "기록된 대화가 없습니다.");
+                _emptyMsgText.fontSize = bodyFontSize;
                 if (cachedFont != null) _emptyMsgText.font = cachedFont;
                 return;
             }
@@ -414,14 +501,14 @@ namespace HalloweenVN.UI
                 string bodyText = ResolveText(entry);
 
                 Color normalBg = isNarration ? narrationBg : boxBg;
-                view.bgImage.color = normalBg;
-                view.outline.effectColor = isLastEntry ? HalloweenTheme.AccentOrange : dimBorder;
+                Color normalBorder = isLastEntry ? HalloweenTheme.AccentOrange : dimBorder;
 
                 if (!isNarration)
                 {
                     view.speakerObj.SetActive(true);
                     view.speakerText.text = HalloweenVN.Core.Loc.Speaker(entry.speaker);
                     view.speakerText.color = DialogueUI.GetSpeakerColor(entry.speaker);
+                    view.speakerText.fontSize = speakerFontSize;
                     if (cachedFont != null) view.speakerText.font = cachedFont;
                 }
                 else
@@ -432,29 +519,22 @@ namespace HalloweenVN.UI
                 view.dialogueText.text = bodyText;
                 view.dialogueText.fontStyle = isNarration ? FontStyles.Italic : FontStyles.Normal;
                 view.dialogueText.color = isNarration ? narrationTextColor : HalloweenTheme.TextPrimary;
+                view.dialogueText.fontSize = bodyFontSize;
                 if (cachedFont != null) view.dialogueText.font = cachedFont;
 
                 if (cachedFont != null) view.tagText.font = cachedFont;
                 view.tagText.color = HalloweenTheme.AccentOrange;
+                view.tagText.fontSize = tagFontSize;
+                view.tagText.text = isLastEntry ? currentLabel : hintLabel;
 
-                if (isLastEntry)
-                {
-                    view.tagText.text = currentLabel;
-                    view.tagObj.SetActive(true);
-                    view.button.enabled = false;
-                    view.hover.enabled = false;
-                }
-                else
-                {
-                    view.tagText.text = hintLabel;
-                    view.tagObj.SetActive(false);
-                    view.button.enabled = true;
-                    view.hover.enabled = true;
-                    view.hover.normalBg = normalBg;
-                    view.hover.hoverBg = boxBgHover;
-                    view.hover.normalBorder = dimBorder;
-                    view.hover.hoverBorder = HalloweenTheme.AccentOrange;
-                }
+                view.hover.normalBg = normalBg;
+                view.hover.hoverBg = boxBgHover;
+                view.hover.normalBorder = normalBorder;
+                view.hover.hoverBorder = HalloweenTheme.AccentOrange;
+                view.hover.isCurrentEntry = isLastEntry;
+                view.hover.enabled = !isLastEntry;
+                view.button.enabled = !isLastEntry;
+                view.hover.ResetHover();
             }
 
             for (int i = history.Count; i < _entryPool.Count; i++)
@@ -482,6 +562,9 @@ namespace HalloweenVN.UI
         {
             // Destroy any existing popup first
             if (_activePopup != null) Destroy(_activePopup);
+            ResetAllEntryHovers();
+
+            bool isGothic = !SettingsData.UseHandwritingFont;
 
             // Create full screen overlay
             GameObject overlay = new GameObject("RewindPopupOverlay");
@@ -504,9 +587,7 @@ namespace HalloweenVN.UI
             btnOverlay.transition = Selectable.Transition.None;
             btnOverlay.onClick.AddListener(() => {
                 if (AudioManager.Instance != null) AudioManager.Instance.PlaySFX("sfx_ui_click");
-                Destroy(overlay);
-                _activePopup = null;
-                _activePopupHistoryIndex = -1;
+                DismissActivePopup();
             });
             
             // Panel (Rounded Halloween modal card + click blocker so clicking inside doesn't cancel)
@@ -531,13 +612,14 @@ namespace HalloweenVN.UI
             textRt.offsetMin = new Vector2(28, 0);
             textRt.offsetMax = new Vector2(-28, -24);
             
+            int subSize = isGothic ? 20 : 24;
             TextMeshProUGUI tmp = textObj.AddComponent<TextMeshProUGUI>();
             tmp.text = HalloweenVN.Core.Loc.Get("ui.backlog.rewind_confirm", "이 시점으로 되감기 하시겠습니까?")
-                + "\n<size=24><color=#c8bfd4>"
+                + $"\n<size={subSize}><color=#c8bfd4>"
                 + HalloweenVN.Core.Loc.Get("ui.backlog.rewind_warning", "(이후의 진행 내역은 사라집니다)")
                 + "</color></size>";
             tmp.alignment = TextAlignmentOptions.Center;
-            tmp.fontSize = 34;
+            tmp.fontSize = isGothic ? 28f : 34f;
             tmp.lineSpacing = 8f;
             string fontName = HalloweenVN.UI.FontHelper.GetFontNameForLanguage(SettingsData.Language);
             var tmpFont = HalloweenVN.UI.FontHelper.GetTMPFont(fontName);
@@ -578,8 +660,9 @@ namespace HalloweenVN.UI
             }
             noBtnTup.btnText.color = HalloweenTheme.TextPrimary;
             
-            yesBtnTup.btnText.fontSize = 30;
-            noBtnTup.btnText.fontSize = 30;
+            float btnFontSize = isGothic ? 24f : 30f;
+            yesBtnTup.btnText.fontSize = btnFontSize;
+            noBtnTup.btnText.fontSize = btnFontSize;
             if (tmpFont != null) yesBtnTup.btnText.font = tmpFont;
             if (tmpFont != null) noBtnTup.btnText.font = tmpFont;
             
@@ -595,13 +678,13 @@ namespace HalloweenVN.UI
             
             // Click handlers
             noBtnTup.btn.onClick.AddListener(() => {
-                Destroy(overlay);
-                _activePopup = null;
+                if (AudioManager.Instance != null) AudioManager.Instance.PlaySFX("sfx_ui_click");
+                DismissActivePopup();
             });
             
             yesBtnTup.btn.onClick.AddListener(() => {
-                Destroy(overlay);
-                _activePopup = null;
+                if (AudioManager.Instance != null) AudioManager.Instance.PlaySFX("sfx_ui_click");
+                DismissActivePopup();
                 ExecuteRewind(historyIndex);
             });
         }

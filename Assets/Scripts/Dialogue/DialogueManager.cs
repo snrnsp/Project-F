@@ -136,19 +136,62 @@ namespace HalloweenVN.Dialogue
         /// </summary>
         /// <param name="nodeId">The node ID to display.</param>
         
+        private static readonly string[] StoryChapterOrder = {
+            "ch0_origin",
+            "ch0_gathering",
+            "ch0_opening",
+            "ch1_morning",
+            "ch1_night",
+            "ch1_investigation_talk",
+            "ch1_result_perfect",
+            "ch1_resolution",
+            "ch1_epilogue"
+        };
+
+        private static string GetDefaultChapterBgm(string dialogueId)
+        {
+            switch (dialogueId)
+            {
+                case "ch0_origin":
+                case "ch0_gathering":
+                case "ch0_opening":
+                    return "bgm_office_night";
+                case "ch1_morning":
+                    return "bgm_office_day";
+                case "ch1_night":
+                case "ch1_investigation_talk":
+                case "ch1_result_perfect":
+                case "ch1_result_fail":
+                case "ch1_resolution":
+                    return "bgm_investigation";
+                default:
+                    return null;
+            }
+        }
+
+        private DialogueContainer GetOrLoadContainer(string dialogueId)
+        {
+            if (string.IsNullOrEmpty(dialogueId)) return null;
+            if (!dialogueCache.TryGetValue(dialogueId, out DialogueContainer container))
+            {
+                container = HalloweenVN.Data.DataLoader.LoadDialogue(dialogueId);
+                if (container != null)
+                {
+                    dialogueCache[dialogueId] = container;
+                }
+            }
+            return container;
+        }
+
         public void RewindTo(string targetDialogueId, DialogueNode targetNode, System.Collections.Generic.List<HalloweenVN.UI.BacklogUI.BacklogEntry> rewindHistory)
         {
             if (typingCoroutine != null) StopCoroutine(typingCoroutine);
+            transitionGeneration++;
+            IsTransitioningChapter = false;
+            pendingCommand = null;
             
             // 1. Load Dialogue Container
-            if (!dialogueCache.TryGetValue(targetDialogueId, out currentDialogue))
-            {
-                currentDialogue = HalloweenVN.Data.DataLoader.LoadDialogue(targetDialogueId);
-                if (currentDialogue != null)
-                {
-                    dialogueCache[targetDialogueId] = currentDialogue;
-                }
-            }
+            currentDialogue = GetOrLoadContainer(targetDialogueId);
             if (currentDialogue == null) return;
             BuildNodeLookup();
             
@@ -159,18 +202,25 @@ namespace HalloweenVN.Dialogue
                 ui.ClearAll();
             }
             
+            string initialChapterBgm = !string.IsNullOrEmpty(currentDialogue.initialBgm)
+                ? currentDialogue.initialBgm
+                : GetDefaultChapterBgm(targetDialogueId);
             bool bgmFoundInCurrent = !string.IsNullOrEmpty(currentDialogue.initialBgm);
-            string bgm = currentDialogue.initialBgm;
+            string bgm = initialChapterBgm;
             bool shouldShakeContinuously = false;
             if (currentDialogue.nodes != null)
             {
-                // To restore state, we simulate the visual/audio progression up to the target node
-                // This ensures all non-text nodes (which aren't in rewindHistory) are properly applied.
+                // Simulate the visual/audio progression up to the target node.
+                // Visuals for strictly prior nodes (n.id < targetNode.id) reconstruct background and narrator-return state;
+                // targetNode visuals are applied cleanly once by DisplayNode(currentNode.id).
                 foreach (var n in currentDialogue.nodes)
                 {
                     if (n.id > targetNode.id) break;
                     
-                    if (ui != null) ui.UpdateVisualsOnly(n, true);
+                    if (n.id < targetNode.id && ui != null)
+                    {
+                        ui.UpdateVisualsOnly(n, true);
+                    }
                     if (TryGetBgmCommand(n.command, out string nodeBgm))
                     {
                         bgm = nodeBgm;
@@ -183,8 +233,8 @@ namespace HalloweenVN.Dialogue
                 }
             }
             
-            // If BGM wasn't changed in the current chapter's nodes up to this point,
-            // we must check the cross-chapter backlog history to see what was playing before.
+            // If BGM wasn't explicitly changed in the current chapter's nodes up to this point,
+            // check the cross-chapter backlog history to see what was playing before.
             if (!bgmFoundInCurrent && rewindHistory != null)
             {
                 for (int i = rewindHistory.Count - 1; i >= 0; i--)
@@ -193,6 +243,7 @@ namespace HalloweenVN.Dialogue
                     if (n != null && TryGetBgmCommand(n.command, out string historyBgm))
                     {
                         bgm = historyBgm;
+                        bgmFoundInCurrent = true;
                         break;
                     }
                 }
@@ -210,12 +261,13 @@ namespace HalloweenVN.Dialogue
             var fx = HalloweenVN.Effects.ScreenEffects.Instance;
             if (fx != null)
             {
+                fx.ClearOverlays();
                 if (shouldShakeContinuously) fx.StartContinuousShake(10f);
                 else fx.StopShake();
             }
 
             // 4. Resume from target node
-            currentNode = targetNode;
+            currentNode = FindNode(targetNode.id) ?? targetNode;
             IsPlaying = true;
             
             // Display it
@@ -225,15 +277,11 @@ namespace HalloweenVN.Dialogue
         public void ResumeDialogue(string dialogueId, int nodeId, bool hasAudioState = false, string savedBgm = null)
         {
             if (typingCoroutine != null) StopCoroutine(typingCoroutine);
+            transitionGeneration++;
+            IsTransitioningChapter = false;
+            pendingCommand = null;
             
-            if (!dialogueCache.TryGetValue(dialogueId, out currentDialogue))
-            {
-                currentDialogue = HalloweenVN.Data.DataLoader.LoadDialogue(dialogueId);
-                if (currentDialogue != null)
-                {
-                    dialogueCache[dialogueId] = currentDialogue;
-                }
-            }
+            currentDialogue = GetOrLoadContainer(dialogueId);
             if (currentDialogue == null) return;
             BuildNodeLookup();
             
@@ -243,9 +291,26 @@ namespace HalloweenVN.Dialogue
                 ui.ClearAll();
             }
 
-            string bgm = hasAudioState ? savedBgm : currentDialogue.initialBgm;
+            string defaultBgm = !string.IsNullOrEmpty(currentDialogue.initialBgm)
+                ? currentDialogue.initialBgm
+                : GetDefaultChapterBgm(dialogueId);
+            string bgm = hasAudioState ? savedBgm : defaultBgm;
             bool shouldShakeContinuously = false;
             HalloweenVN.UI.BacklogUI.ClearHistory();
+
+            // Reconstruct preceding linear chapters into Backlog so players continuing from a save
+            // still have their recent cross-chapter log history available.
+            int chapIdx = System.Array.IndexOf(StoryChapterOrder, dialogueId);
+            for (int c = 0; c < chapIdx; c++)
+            {
+                DialogueContainer prevContainer = GetOrLoadContainer(StoryChapterOrder[c]);
+                if (prevContainer?.nodes == null) continue;
+                foreach (var prevNode in prevContainer.nodes)
+                {
+                    HalloweenVN.UI.BacklogUI.RecordNodeSilently(StoryChapterOrder[c], prevNode);
+                }
+            }
+
             if (currentDialogue.nodes != null)
             {
                 // To restore state, we simulate the visual/audio progression up to the target node
@@ -253,7 +318,10 @@ namespace HalloweenVN.Dialogue
                 {
                     if (n.id > nodeId) break;
                     
-                    if (ui != null) ui.UpdateVisualsOnly(n, true);
+                    if (n.id < nodeId && ui != null)
+                    {
+                        ui.UpdateVisualsOnly(n, true);
+                    }
                     if (TryGetBgmCommand(n.command, out string nodeBgm)) bgm = nodeBgm;
                     if (n.id < nodeId)
                     {
@@ -270,13 +338,14 @@ namespace HalloweenVN.Dialogue
             if (audio != null)
             {
                 audio.StopAllSFX();
-                if (bgm != null) audio.PlayBGM(bgm);
+                if (!string.IsNullOrEmpty(bgm)) audio.PlayBGM(bgm);
                 else audio.StopBGM();
             }
 
             var fx = HalloweenVN.Effects.ScreenEffects.Instance;
             if (fx != null)
             {
+                fx.ClearOverlays();
                 if (shouldShakeContinuously) fx.StartContinuousShake(10f);
                 else fx.StopShake();
             }

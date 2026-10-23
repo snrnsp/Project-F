@@ -297,6 +297,30 @@ namespace HalloweenVN.Effects
             _activeFlashCoroutine = null;
         }
 
+        public void ClearOverlays()
+        {
+            if (_activeFlashCoroutine != null)
+            {
+                StopCoroutine(_activeFlashCoroutine);
+                _activeFlashCoroutine = null;
+            }
+            if (flashOverlay != null)
+            {
+                flashOverlay.color = Color.clear;
+                flashOverlay.gameObject.SetActive(false);
+            }
+            if (_activeFadeCoroutine != null)
+            {
+                StopCoroutine(_activeFadeCoroutine);
+                _activeFadeCoroutine = null;
+            }
+            if (fadeOverlay != null)
+            {
+                fadeOverlay.color = Color.clear;
+                fadeOverlay.gameObject.SetActive(false);
+            }
+        }
+
         // ═══════════ Fade To/From Black ═══════════
         public Coroutine FadeToBlack(float duration = 1f)
         {

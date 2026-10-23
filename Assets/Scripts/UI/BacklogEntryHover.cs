@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using HalloweenVN.UI.Theme;
@@ -19,11 +19,34 @@ namespace HalloweenVN.UI
         public Color hoverBg;
         public Color normalBorder;
         public Color hoverBorder = HalloweenTheme.AccentOrange;
+        public bool isCurrentEntry;
 
-        private void OnEnable() => SetHover(false);
+        public void ResetHover()
+        {
+            if (background != null) background.color = normalBg;
+            if (outline != null) outline.effectColor = normalBorder;
+            if (hint != null) hint.SetActive(isCurrentEntry);
+        }
 
-        public void OnPointerEnter(PointerEventData eventData) => SetHover(true);
-        public void OnPointerExit(PointerEventData eventData) => SetHover(false);
+        private void OnEnable()
+        {
+            if (normalBg.a > 0f || normalBorder.a > 0f)
+            {
+                ResetHover();
+            }
+        }
+
+        public void OnPointerEnter(PointerEventData eventData)
+        {
+            if (!enabled || isCurrentEntry) return;
+            SetHover(true);
+        }
+
+        public void OnPointerExit(PointerEventData eventData)
+        {
+            if (!enabled || isCurrentEntry) return;
+            SetHover(false);
+        }
 
         private void SetHover(bool on)
         {

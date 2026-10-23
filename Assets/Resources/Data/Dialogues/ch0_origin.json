@@ -16,7 +16,7 @@
         {
             "id": 1,
             "speaker": " ",
-            "text": "대형 로펌의 자료실.\\n신임 변호사 세이카는 산더미처럼 쌓인 재판 기록을 분류하고 있었다.",
+            "text": "대형 로펌의 자료실.\n신임 변호사 세이카는 산더미처럼 쌓인 재판 기록을 분류하고 있었다.",
             "characterSpriteLeft": "",
             "characterSpriteCenter": "",
             "characterSpriteRight": "",
@@ -94,7 +94,7 @@
         {
             "id": 7,
             "speaker": " ",
-            "text": "계속해서 서류를 정리하던 세이카의 손이, 구석에 놓인 낡은 상자 앞에서 멈췄다.\\n빨간 테이프로 단단히 봉인된 상자였다.",
+            "text": "계속해서 서류를 정리하던 세이카의 손이, 구석에 놓인 낡은 상자 앞에서 멈췄다.\n빨간 테이프로 단단히 봉인된 상자였다.",
             "characterSpriteLeft": "",
             "characterSpriteCenter": "Characters/세이카/기본",
             "characterSpriteRight": "",
@@ -178,7 +178,7 @@
         {
             "id": 13,
             "speaker": " ",
-            "text": "하지만 세이카는 그 경고를 무시할 수 없었다.\\n며칠 뒤, 모두가 퇴근한 텅 빈 자료실. 세이카는 몰래 그 낡은 상자를 열었다.",
+            "text": "하지만 세이카는 그 경고를 무시할 수 없었다.\n며칠 뒤, 모두가 퇴근한 텅 빈 자료실. 세이카는 몰래 그 낡은 상자를 열었다.",
             "characterSpriteLeft": "",
             "characterSpriteCenter": "",
             "characterSpriteRight": "",
@@ -202,7 +202,7 @@
         {
             "id": 15,
             "speaker": " ",
-            "text": "상자 안에 든 것은 수십 건의 '실종 사건' 기록이었다.\\n그런데 무언가 이상했다.",
+            "text": "상자 안에 든 것은 수십 건의 '실종 사건' 기록이었다.\n그런데 무언가 이상했다.",
             "characterSpriteLeft": "",
             "characterSpriteCenter": "Characters/세이카/놀람",
             "characterSpriteRight": "",
@@ -244,7 +244,7 @@
         {
             "id": 18,
             "speaker": " ",
-            "text": "사진도, 목격자 진술도, 실종자의 인적 사항조차 제대로 남아있지 않았다.\\n마치 처음부터 세상에 존재하지 않았던 사람들처럼.",
+            "text": "사진도, 목격자 진술도, 실종자의 인적 사항조차 제대로 남아있지 않았다.\n마치 처음부터 세상에 존재하지 않았던 사람들처럼.",
             "characterSpriteLeft": "",
             "characterSpriteCenter": "Characters/세이카/찡그림",
             "characterSpriteRight": "",
@@ -272,7 +272,7 @@
         {
             "id": 20,
             "speaker": " ",
-            "text": "그해 여름 밤, 세이카는 사직서를 냈다.\\n그리고 실종자들의 마지막 주소인 '노을시 구시가지'로 향했다.",
+            "text": "그해 여름 밤, 세이카는 사직서를 냈다.\n그리고 실종자들의 마지막 주소인 '노을시 구시가지'로 향했다.",
             "characterSpriteLeft": "",
             "characterSpriteCenter": "",
             "characterSpriteRight": "",
@@ -326,7 +326,7 @@
         {
             "id": 24,
             "speaker": " ",
-            "text": "기록만 지워진 것이 아니었다.\\n사람들의 기억 속에서도 그들은 완벽하게 지워져 있었다.",
+            "text": "기록만 지워진 것이 아니었다.\n사람들의 기억 속에서도 그들은 완벽하게 지워져 있었다.",
             "characterSpriteLeft": "",
             "characterSpriteCenter": "Characters/세이카/당황",
             "characterSpriteRight": "",

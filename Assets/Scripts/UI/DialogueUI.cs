@@ -77,8 +77,12 @@ namespace HalloweenVN.UI
         private List<string> _speakerOrder = new List<string>();
         private List<CharacterPosition> _tempPositionList = new List<CharacterPosition>();
 
-        // ═══════════ Narrator ═══════════
+        // ═══════════ Narrator & Developer Comment Website Button ═══════════
         private TextMeshProUGUI narratorText;
+        private GameObject _websiteButtonObj;
+        private TextMeshProUGUI _websiteButtonText;
+        private bool _showWebsiteButton = false;
+        private const string OFFICIAL_WEBSITE_URL = "https://loststudio.org/";
 
         /// <summary>
         /// Lazily creates the fullscreen narrator text object.
@@ -183,6 +187,95 @@ namespace HalloweenVN.UI
             narratorObj.SetActive(false);
         }
 
+        private void EnsureWebsiteButton()
+        {
+            if (_websiteButtonObj != null) return;
+
+            _websiteButtonObj = new GameObject("OfficialWebsiteButton");
+            _websiteButtonObj.layer = LayerMask.NameToLayer("UI");
+            _websiteButtonObj.transform.SetParent(transform, false);
+            _websiteButtonObj.transform.SetAsLastSibling();
+            if (_sceneFadeOverlay != null)
+            {
+                _sceneFadeOverlay.transform.SetAsLastSibling();
+            }
+
+            RectTransform rt = _websiteButtonObj.AddComponent<RectTransform>();
+            rt.anchorMin = new Vector2(0.5f, 0.5f);
+            rt.anchorMax = new Vector2(0.5f, 0.5f);
+            rt.pivot = new Vector2(0.5f, 0.5f);
+            rt.anchoredPosition = new Vector2(0f, -125f);
+            rt.sizeDelta = new Vector2(360f, 64f);
+
+            Image bgImg = _websiteButtonObj.AddComponent<Image>();
+            bgImg.sprite = HalloweenVN.UI.Theme.UIHelper.CreateRoundedRectSprite(
+                10, 2,
+                new Color32(42, 26, 68, 245),
+                HalloweenVN.UI.Theme.HalloweenTheme.AccentOrange
+            );
+            bgImg.type = Image.Type.Sliced;
+            bgImg.color = Color.white;
+
+            Button btn = _websiteButtonObj.AddComponent<Button>();
+            btn.targetGraphic = bgImg;
+            ColorBlock cb = ColorBlock.defaultColorBlock;
+            cb.normalColor = Color.white;
+            cb.highlightedColor = new Color32(255, 225, 190, 255);
+            cb.pressedColor = new Color32(200, 145, 100, 255);
+            cb.selectedColor = Color.white;
+            cb.fadeDuration = 0.08f;
+            btn.colors = cb;
+            _websiteButtonObj.AddComponent<UIHoverSound>();
+
+            btn.onClick.AddListener(() =>
+            {
+                if (HalloweenVN.Core.AudioManager.Instance != null)
+                    HalloweenVN.Core.AudioManager.Instance.PlaySFX("sfx_ui_click");
+                Application.OpenURL(OFFICIAL_WEBSITE_URL);
+            });
+
+            GameObject labelObj = new GameObject("Label");
+            labelObj.layer = LayerMask.NameToLayer("UI");
+            labelObj.transform.SetParent(_websiteButtonObj.transform, false);
+            RectTransform labelRt = labelObj.AddComponent<RectTransform>();
+            labelRt.anchorMin = Vector2.zero;
+            labelRt.anchorMax = Vector2.one;
+            labelRt.offsetMin = new Vector2(16f, 4f);
+            labelRt.offsetMax = new Vector2(-16f, -4f);
+
+            _websiteButtonText = labelObj.AddComponent<TextMeshProUGUI>();
+            bool isGothic = !HalloweenVN.Core.SettingsData.UseHandwritingFont;
+            _websiteButtonText.fontSize = isGothic ? 24f : 32f;
+            _websiteButtonText.fontStyle = FontStyles.Bold;
+            _websiteButtonText.color = HalloweenVN.UI.Theme.HalloweenTheme.AccentOrange;
+            _websiteButtonText.alignment = TextAlignmentOptions.Center;
+            _websiteButtonText.raycastTarget = false;
+            _websiteButtonText.text = HalloweenVN.Core.Loc.Get("ui.dialogue.official_website", "공식 웹사이트 바로가기");
+
+            string fontName = HalloweenVN.UI.FontHelper.GetFontNameForLanguage(HalloweenVN.Core.SettingsData.Language);
+            TMP_FontAsset font = HalloweenVN.UI.FontHelper.GetTMPFont(fontName);
+            if (font == null && dialogueText != null) font = dialogueText.font;
+            if (font != null) _websiteButtonText.font = font;
+
+            _websiteButtonObj.SetActive(false);
+        }
+
+        private void SetWebsiteButtonVisible(bool visible)
+        {
+            _showWebsiteButton = visible;
+            if (visible)
+            {
+                EnsureWebsiteButton();
+                UpdateLanguage();
+                _websiteButtonObj.transform.SetAsLastSibling();
+                if (_sceneFadeOverlay != null) _sceneFadeOverlay.transform.SetAsLastSibling();
+            }
+            if (_websiteButtonObj != null)
+            {
+                _websiteButtonObj.SetActive(visible && !isUiHidden);
+            }
+        }
+
         // ═══════════ Events ═══════════
         
         
@@ -190,6 +283,8 @@ namespace HalloweenVN.UI
         {
             StopAutoPlay();
             CancelSceneTransition();
+            _freshDialogue = true;
+            _instantNextNode = true;
             if (backgroundImage != null) backgroundImage.enabled = false;
             _currentBgPath = null;
             HideAllCharacters();
@@ -202,6 +297,8 @@ namespace HalloweenVN.UI
             if (skipIndicator != null) skipIndicator.SetActive(false);
             if (nextIndicator != null) nextIndicator.SetActive(false);
             if (narratorNextIndicator != null) narratorNextIndicator.SetActive(false);
+            _showWebsiteButton = false;
+            if (_websiteButtonObj != null) _websiteButtonObj.SetActive(false);
         }
 
         public void UpdateLanguage()
@@ -220,6 +317,7 @@ namespace HalloweenVN.UI
             if (dialogueText != null) dialogueText.fontSize = dialogueSize;
             if (speakerNameText != null) speakerNameText.fontSize = speakerSize;
             if (narratorText != null) narratorText.fontSize = dialogueSize;
+            if (_websiteButtonText != null) _websiteButtonText.fontSize = isGothic ? 24f : 32f;
 
             var lang = HalloweenVN.Core.SettingsData.Language;
             string fontName = HalloweenVN.UI.FontHelper.GetFontNameForLanguage(lang);
@@ -229,10 +327,12 @@ namespace HalloweenVN.UI
                 if (dialogueText != null) dialogueText.font = font;
                 if (speakerNameText != null) speakerNameText.font = font;
                 if (narratorText != null) narratorText.font = font;
+                if (_websiteButtonText != null) _websiteButtonText.font = font;
             }
             string autoOff = HalloweenVN.Core.Loc.Get("ui.dialogue.auto", "오토");
             string autoOn = HalloweenVN.Core.Loc.Get("ui.dialogue.auto_on", "오토 중");
             if (backlogButtonText != null) backlogButtonText.text = HalloweenVN.Core.Loc.Get("ui.dialogue.log", "로그");
+            if (_websiteButtonText != null) _websiteButtonText.text = HalloweenVN.Core.Loc.Get("ui.dialogue.official_website", "공식 웹사이트 바로가기");
             
             if (autoButtonText != null)
             {
@@ -312,6 +412,7 @@ namespace HalloweenVN.UI
                 backlogButton.gameObject.SetActive(true);
             ClearChoices();
             _freshDialogue = true;
+            _instantNextNode = false;
             _ownersBeforeNarrator.Clear();
             _xBeforeNarrator.Clear();
             _wasNarratorLinePrev = false;
@@ -342,6 +443,9 @@ namespace HalloweenVN.UI
                 nextIndicator.SetActive(false);
             if (narratorNextIndicator != null)
                 narratorNextIndicator.SetActive(false);
+            _showWebsiteButton = false;
+            if (_websiteButtonObj != null)
+                _websiteButtonObj.SetActive(false);
             ClearChoices();
             if (DialogueManager.Instance == null || !DialogueManager.Instance.IsTransitioningChapter)
             {
@@ -821,6 +925,8 @@ namespace HalloweenVN.UI
         private bool _isTransitioningScene = false;
         private bool _sceneTransitionPastMidpoint = false;
         private bool _freshDialogue = false;
+        private bool _instantNextNode = false;
+        public bool IsTransitioningScene => _isTransitioningScene;
         private DialogueNode _pendingTransitionNode;
         private Coroutine _sceneTransitionCoroutine;
         private Image _sceneFadeOverlay;
@@ -829,11 +935,13 @@ namespace HalloweenVN.UI
 
         public void DisplayNode(DialogueNode node)
         {
-            // First node of a dialogue file: chapter transitions/lobby already fade through black.
+            // First node of a dialogue file or rewind/resume: skip scene transition fade.
             if (_freshDialogue)
             {
                 _freshDialogue = false;
-                ApplyNodeVisuals(node, false);
+                bool instant = _instantNextNode;
+                _instantNextNode = false;
+                ApplyNodeVisuals(node, instant);
                 return;
             }
 
@@ -997,6 +1105,13 @@ namespace HalloweenVN.UI
             if (narratorText != null && narratorText.transform.parent != null)
             {
                 narratorText.transform.parent.gameObject.SetActive(!usePanel);
+            }
+
+            bool showWebsite = !string.IsNullOrEmpty(node.command) && node.command.Contains("SHOW_WEBSITE_BUTTON");
+            SetWebsiteButtonVisible(showWebsite);
+            if (showWebsite && isAutoPlay)
+            {
+                StopAutoPlay();
             }
 
             TextMeshProUGUI activeText = usePanel ? dialogueText : narratorText;
@@ -1639,6 +1754,7 @@ namespace HalloweenVN.UI
 
             if (autoButton != null) autoButton.gameObject.SetActive(!isUiHidden && _currentlyInDialoguePanel);
             if (backlogButton != null) backlogButton.gameObject.SetActive(!isUiHidden && _currentlyInDialoguePanel);
+            if (_websiteButtonObj != null) _websiteButtonObj.SetActive(!isUiHidden && _showWebsiteButton);
             if (isUiHidden)
             {
                 if (skipIndicator != null) skipIndicator.SetActive(false);
@@ -1696,7 +1812,8 @@ namespace HalloweenVN.UI
 
             // Mouse wheel up or Backlog key / PageUp key to open log (Allow this even during choices)
             bool openLogKey = HalloweenVN.Core.SettingsData.WasBacklogKeyPressedThisFrame();
-            if ((UnityEngine.InputSystem.Mouse.current != null && UnityEngine.InputSystem.Mouse.current.scroll.ReadValue().y > 0) || openLogKey)
+            if (isPlaying && !DialogueManager.Instance.IsTransitioningChapter && !_isTransitioningScene &&
+                ((UnityEngine.InputSystem.Mouse.current != null && UnityEngine.InputSystem.Mouse.current.scroll.ReadValue().y > 0) || openLogKey))
             {
                 if (_cachedBacklogUI == null)
                 {
