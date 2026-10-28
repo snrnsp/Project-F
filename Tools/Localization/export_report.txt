@@ -1,22 +1,20 @@
 Output: F:\Project-F\Assets\Resources\Localization\game_text.csv
-Total rows: 487  (Korean characters: 16629)
+Total rows: 526  (Korean characters: 18103)
   Speaker: 9
-  UI: 100
-  Dialogue: 378
+  UI: 123
+  Dialogue: 383
+  Choice: 11
 Dialogue rows per file:
-  ch0_origin: 27
+  ch0_origin: 28
   ch0_gathering: 23
   ch0_opening: 15
   ch1_morning: 74
-  ch1_night: 42
-  ch1_investigation_talk: 23
-  ch1_result_perfect: 29
-  ch1_resolution: 116
-  ch1_epilogue: 29
-Translations kept from existing CSV: 0 cells, imported from seeds: 323 cells
+  ch1_night: 43
+  ch1_investigation_talk: 27
+  ch1_result_perfect: 30
+  ch1_resolution: 119
+  ch1_epilogue: 35
+Translations kept from existing CSV: 2104 cells, imported from seeds: 2104 cells
 Rows flagged KO-changed: 0
 Keys in old CSV that no longer exist (dropped): 0
-Warnings: 3
-  UI key used with different Korean defaults: ui.lobby.new_game: '새 게임' (LobbyUI) vs '새게임' (HalloweenUIBuilder)
-  UI key used with different Korean defaults: ui.settings.text_speed: '텍스트 속도 조절' (SettingsUI) vs '텍스트 속도' (HalloweenUIBuilder)
-  UI key used with different Korean defaults: ui.settings.flash_effect: '화면 번쩍임·흔들림' (SettingsUI) vs '화면 번쩍임.흔들림' (HalloweenUIBuilder)
+Warnings: 0

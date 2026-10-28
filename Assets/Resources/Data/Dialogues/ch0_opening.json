@@ -25,7 +25,8 @@
             "id": 3,
             "speaker": "",
             "text": "아무도 살지 않는 폐교에서 밤마다 울리는 피아노 소리.",
-            "nextNodeId": 4
+            "nextNodeId": 4,
+            "command": "AUDIO:PLAY_SFX:sfx_piano_single_note"
         },
         {
             "id": 4,
@@ -56,7 +57,8 @@
             "speaker": "",
             "text": "구시가지의 가파른 언덕 꼭대기. 안개 너머로 오래된 저택의 실루엣이 떠오른다.",
             "backgroundSprite": "Images/bg_agency_interior_night",
-            "nextNodeId": 9
+            "nextNodeId": 9,
+            "command": "AUDIO:PLAY_SFX:sfx_wind_eerie"
         },
         {
             "id": 9,
@@ -93,7 +95,8 @@
             "id": 14,
             "speaker": "",
             "text": "...오늘도 여느 때처럼, 저택의 문이 삐걱거리며 열린다.",
-            "nextNodeId": 15
+            "nextNodeId": 15,
+            "command": "AUDIO:PLAY_SFX:sfx_door_creak"
         },
         {
             "id": 15,

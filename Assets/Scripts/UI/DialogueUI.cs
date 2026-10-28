@@ -281,8 +281,10 @@ namespace HalloweenVN.UI
         
         public void ClearAll()
         {
+            isUiHidden = false;
             StopAutoPlay();
             CancelSceneTransition();
+            ClearChoices();
             _freshDialogue = true;
             _instantNextNode = true;
             if (backgroundImage != null) backgroundImage.enabled = false;
@@ -308,16 +310,50 @@ namespace HalloweenVN.UI
             
             // Gothic font renders visually larger than handwriting — reduce sizes
             bool isGothic = !HalloweenVN.Core.SettingsData.UseHandwritingFont;
+            float sizeMult = HalloweenVN.Core.SettingsData.FontSizeMultiplier;
+            int sizeLevel = HalloweenVN.Core.SettingsData.FontSizeLevel;
             int btnSize = isGothic ? 24 : 32;
-            float dialogueSize = isGothic ? 26f : 36f;
-            float speakerSize = isGothic ? 28f : 40f;
+            float dialogueSize = Mathf.Round((isGothic ? 26f : 36f) * sizeMult);
+            float speakerSize = Mathf.Round((isGothic ? 28f : 40f) * Mathf.Lerp(1f, sizeMult, 0.65f));
+            float choiceSize = Mathf.Round((isGothic ? 24f : 32f) * sizeMult);
 
             if (backlogButtonText != null) backlogButtonText.fontSize = btnSize;
             if (autoButtonText != null) autoButtonText.fontSize = btnSize;
             if (dialogueText != null) dialogueText.fontSize = dialogueSize;
             if (speakerNameText != null) speakerNameText.fontSize = speakerSize;
             if (narratorText != null) narratorText.fontSize = dialogueSize;
-            if (_websiteButtonText != null) _websiteButtonText.fontSize = isGothic ? 24f : 32f;
+            if (_websiteButtonText != null) _websiteButtonText.fontSize = Mathf.Round((isGothic ? 24f : 32f) * Mathf.Lerp(1f, sizeMult, 0.5f));
+
+            // Expand DialoguePanel and adjust text insets proportionally when font size is increased
+            float panelHeight = HalloweenVN.UI.Theme.HalloweenTheme.DialoguePanelHeight + (sizeLevel == 2 ? 60f : (sizeLevel == 1 ? 30f : 0f));
+            if (dialoguePanel != null)
+            {
+                RectTransform panelRt = dialoguePanel.GetComponent<RectTransform>();
+                if (panelRt != null)
+                {
+                    panelRt.offsetMin = new Vector2(180f, 50f);
+                    panelRt.offsetMax = new Vector2(-180f, panelHeight + 50f);
+                }
+            }
+            Transform hudTr = transform.Find("DialogueHudRoot");
+            if (hudTr is RectTransform hudRt)
+            {
+                hudRt.offsetMin = new Vector2(180f, 50f);
+                hudRt.offsetMax = new Vector2(-180f, panelHeight + 50f);
+            }
+            if (speakerNameText != null)
+            {
+                RectTransform sRt = speakerNameText.rectTransform;
+                sRt.sizeDelta = new Vector2(600f, sizeLevel == 2 ? 54f : (sizeLevel == 1 ? 48f : 40f));
+            }
+            if (dialogueText != null)
+            {
+                RectTransform dRt = dialogueText.rectTransform;
+                float topInset = sizeLevel == 2 ? -78f : (sizeLevel == 1 ? -74f : -70f);
+                float rightInset = sizeLevel > 0 ? -70f : -100f;
+                dRt.offsetMin = new Vector2(30f, 18f);
+                dRt.offsetMax = new Vector2(rightInset, topInset);
+            }
 
             var lang = HalloweenVN.Core.SettingsData.Language;
             string fontName = HalloweenVN.UI.FontHelper.GetFontNameForLanguage(lang);
@@ -328,6 +364,53 @@ namespace HalloweenVN.UI
                 if (speakerNameText != null) speakerNameText.font = font;
                 if (narratorText != null) narratorText.font = font;
                 if (_websiteButtonText != null) _websiteButtonText.font = font;
+            }
+            if (narratorText != null && narratorText.gameObject.activeInHierarchy && !string.IsNullOrEmpty(narratorText.text))
+            {
+                narratorText.ForceMeshUpdate(true);
+                narratorText.rectTransform.sizeDelta = new Vector2(0f, narratorText.preferredHeight);
+            }
+            if (choiceButtonPrefab != null)
+            {
+                var prefabTxt = choiceButtonPrefab.GetComponentInChildren<TextMeshProUGUI>(true);
+                if (prefabTxt != null)
+                {
+                    prefabTxt.fontSize = choiceSize;
+                    if (font != null) prefabTxt.font = font;
+                }
+            }
+            if (choicePanel != null)
+            {
+                RectTransform cpRt = choicePanel.GetComponent<RectTransform>();
+                if (cpRt != null)
+                {
+                    cpRt.anchoredPosition = new Vector2(0f, sizeLevel == 2 ? -95f : (sizeLevel == 1 ? -110f : -125f));
+                }
+            }
+            if (choiceButtonContainer != null)
+            {
+                var dm = DialogueManager.Instance;
+                int childIdx = 0;
+                foreach (Transform child in choiceButtonContainer)
+                {
+                    if (child == null) continue;
+                    RectTransform btnRt = child.GetComponent<RectTransform>();
+                    if (btnRt != null)
+                    {
+                        btnRt.sizeDelta = new Vector2(sizeLevel == 2 ? 680f : 640f, sizeLevel == 2 ? 70f : 64f);
+                    }
+                    var btnTxt = child.GetComponentInChildren<TextMeshProUGUI>(true);
+                    if (btnTxt != null)
+                    {
+                        btnTxt.fontSize = choiceSize;
+                        if (font != null) btnTxt.font = font;
+                        if (dm?.CurrentNode?.choices != null && childIdx < dm.CurrentNode.choices.Count)
+                        {
+                            btnTxt.text = HalloweenVN.Core.Loc.ChoiceText(dm.CurrentDialogueId, dm.CurrentNode.id, childIdx, dm.CurrentNode.choices[childIdx]);
+                        }
+                    }
+                    childIdx++;
+                }
             }
             string autoOff = HalloweenVN.Core.Loc.Get("ui.dialogue.auto", "오토");
             string autoOn = HalloweenVN.Core.Loc.Get("ui.dialogue.auto_on", "오토 중");
@@ -417,6 +500,11 @@ namespace HalloweenVN.UI
             _xBeforeNarrator.Clear();
             _wasNarratorLinePrev = false;
 
+            StartPreloadCurrentChapter();
+        }
+
+        public void StartPreloadCurrentChapter()
+        {
             if (DialogueManager.Instance != null && DialogueManager.Instance.CurrentDialogue != null && gameObject.activeInHierarchy)
             {
                 if (_preloadCoroutine != null) StopCoroutine(_preloadCoroutine);
@@ -504,7 +592,7 @@ namespace HalloweenVN.UI
             Image[] imgs = { characterImageLeft, characterImageCenter, characterImageRight };
             bool immediate = instant;
 
-            if (!string.IsNullOrEmpty(node.backgroundSprite) && !string.IsNullOrEmpty(_currentBgPath) && node.backgroundSprite != _currentBgPath)
+            if (!string.IsNullOrEmpty(node.backgroundSprite) && !string.IsNullOrEmpty(_currentBgPath) && node.backgroundSprite != _currentBgPath && !node.noFade)
             {
                 _ownersBeforeNarrator.Clear();
                 _xBeforeNarrator.Clear();
@@ -956,6 +1044,7 @@ namespace HalloweenVN.UI
                               && backgroundImage != null && backgroundImage.enabled
                               && !string.IsNullOrEmpty(_currentBgPath)
                               && node.backgroundSprite != _currentBgPath
+                              && !node.noFade
                               && gameObject.activeInHierarchy;
 
             if (bgChanging)
@@ -1119,6 +1208,12 @@ namespace HalloweenVN.UI
             if (typingCoroutine != null) StopCoroutine(typingCoroutine);
             CancelAutoPlayTimer();
 
+            ClearChoices();
+            if (node.choices != null && node.choices.Count > 0)
+            {
+                _pendingChoices = node.choices;
+            }
+
             if (gameObject.activeInHierarchy)
             {
                 typingCoroutine = StartCoroutine(TypeText(activeText, fullText));
@@ -1128,9 +1223,11 @@ namespace HalloweenVN.UI
                 activeText.text = fullText;
                 activeText.maxVisibleCharacters = 99999;
                 isTyping = false;
+                if (_pendingChoices != null && _pendingChoices.Count > 0)
+                {
+                    BuildChoiceButtons(_pendingChoices);
+                }
             }
-
-            ClearChoices();
         }
 
         // ═══════════ Character Image Helpers ═══════════
@@ -1662,7 +1759,11 @@ namespace HalloweenVN.UI
             _typingEndTime = Time.unscaledTime;
             Debug.Log($"[DialogueUI] TypeText finished.");
 
-            if (isAutoPlay)
+            if (_pendingChoices != null && _pendingChoices.Count > 0)
+            {
+                BuildChoiceButtons(_pendingChoices);
+            }
+            else if (isAutoPlay)
             {
                 autoPlayCoroutine = StartCoroutine(AutoAdvanceAfterDelay());
             }
@@ -1720,7 +1821,11 @@ namespace HalloweenVN.UI
             _typingEndTime = 0f; // Allow immediate next click when manually skipped
 
             CancelAutoPlayTimer();
-            if (isAutoPlay)
+            if (_pendingChoices != null && _pendingChoices.Count > 0)
+            {
+                BuildChoiceButtons(_pendingChoices);
+            }
+            else if (isAutoPlay)
             {
                 autoPlayCoroutine = StartCoroutine(AutoAdvanceAfterDelay());
             }
@@ -1755,6 +1860,7 @@ namespace HalloweenVN.UI
             if (autoButton != null) autoButton.gameObject.SetActive(!isUiHidden && _currentlyInDialoguePanel);
             if (backlogButton != null) backlogButton.gameObject.SetActive(!isUiHidden && _currentlyInDialoguePanel);
             if (_websiteButtonObj != null) _websiteButtonObj.SetActive(!isUiHidden && _showWebsiteButton);
+            if (choicePanel != null) choicePanel.SetActive(!isUiHidden && choiceButtonContainer != null && choiceButtonContainer.childCount > 0);
             if (isUiHidden)
             {
                 if (skipIndicator != null) skipIndicator.SetActive(false);
@@ -1785,7 +1891,7 @@ namespace HalloweenVN.UI
             else
                 _spaceHoldTimer = 0f;
 
-            bool isChoiceActive = choicePanel != null && choicePanel.activeSelf;
+            bool isChoiceActive = (choicePanel != null && choicePanel.activeSelf) || (!isTyping && _pendingChoices != null && _pendingChoices.Count > 0);
             bool isPlaying = DialogueManager.Instance != null && DialogueManager.Instance.IsPlaying;
             bool showNext = isPlaying && !isTyping && !isUiHidden && !_isTransitioningScene && !isChoiceActive && !string.IsNullOrEmpty(fullText);
 
@@ -1829,12 +1935,6 @@ namespace HalloweenVN.UI
                 }
             }
 
-            if (isChoiceActive)
-            {
-                if (skipIndicator != null && skipIndicator.activeSelf) skipIndicator.SetActive(false);
-                return;
-            }
-
             // 1. Right click or Hide UI key to toggle UI visibility (to see CG/Backgrounds)
             if ((Mouse.current != null && Mouse.current.rightButton.wasPressedThisFrame) ||
                 HalloweenVN.Core.SettingsData.WasHideUiKeyPressedThisFrame())
@@ -1850,6 +1950,16 @@ namespace HalloweenVN.UI
                     HalloweenVN.Core.SettingsData.WasAdvanceKeyPressedThisFrame())
                 {
                     SetUiHidden(false);
+                }
+                return;
+            }
+
+            if (isChoiceActive)
+            {
+                if (skipIndicator != null && skipIndicator.activeSelf) skipIndicator.SetActive(false);
+                if (HalloweenVN.Core.SettingsData.WasAdvanceKeyPressedThisFrame())
+                {
+                    TriggerChoiceAttentionPulse();
                 }
                 return;
             }
@@ -1910,6 +2020,11 @@ namespace HalloweenVN.UI
                 return;
             }
             if (Time.frameCount == _lastUiUnhideFrame) return;
+            if (!isTyping && _pendingChoices != null && _pendingChoices.Count > 0)
+            {
+                TriggerChoiceAttentionPulse();
+                return;
+            }
             
             // 1. Prevent physical double-trigger from Unity Input System (0.05s)
             if (Time.unscaledTime - _lastClickTime < 0.05f) return; 
@@ -1944,20 +2059,67 @@ namespace HalloweenVN.UI
         }
 
         // ═══════════ Choices ═══════════
+        private List<DialogueChoice> _pendingChoices;
+        private Coroutine _choiceAnimCoroutine;
+
         public void ShowChoices(List<DialogueChoice> choices)
         {
-            ClearChoices();
-            if (choicePanel != null) choicePanel.SetActive(true);
+            _pendingChoices = choices;
+            if (!isTyping && !_isTransitioningScene && choices != null && choices.Count > 0)
+            {
+                BuildChoiceButtons(choices);
+            }
+        }
+
+        private void BuildChoiceButtons(List<DialogueChoice> choices)
+        {
+            if (choices == null || choices.Count == 0) return;
+            if (choiceButtonContainer != null)
+            {
+                foreach (Transform child in choiceButtonContainer)
+                {
+                    Destroy(child.gameObject);
+                }
+            }
+
+            int sizeLevel = HalloweenVN.Core.SettingsData.FontSizeLevel;
+            if (choicePanel != null)
+            {
+                RectTransform cpRt = choicePanel.GetComponent<RectTransform>();
+                if (cpRt != null)
+                {
+                    cpRt.anchoredPosition = new Vector2(0f, sizeLevel == 2 ? -95f : (sizeLevel == 1 ? -110f : -125f));
+                }
+                choicePanel.SetActive(!isUiHidden);
+                choicePanel.transform.SetAsLastSibling();
+                if (_sceneFadeOverlay != null) _sceneFadeOverlay.transform.SetAsLastSibling();
+            }
+
+            bool isGothic = !HalloweenVN.Core.SettingsData.UseHandwritingFont;
+            float sizeMult = HalloweenVN.Core.SettingsData.FontSizeMultiplier;
+            float choiceFontSize = Mathf.Round((isGothic ? 24f : 32f) * sizeMult);
+            var lang = HalloweenVN.Core.SettingsData.Language;
+            var font = HalloweenVN.UI.FontHelper.GetTMPFont(HalloweenVN.UI.FontHelper.GetFontNameForLanguage(lang));
 
             for (int i = 0; i < choices.Count; i++)
             {
                 int index = i;
                 GameObject btnObj = Instantiate(choiceButtonPrefab, choiceButtonContainer);
-                btnObj.AddComponent<UIHoverSound>();
+                if (btnObj.GetComponent<UIHoverSound>() == null)
+                    btnObj.AddComponent<UIHoverSound>();
                 btnObj.SetActive(true);
 
+                RectTransform btnRt = btnObj.GetComponent<RectTransform>();
+                if (btnRt != null)
+                {
+                    btnRt.sizeDelta = new Vector2(sizeLevel == 2 ? 680f : 640f, sizeLevel == 2 ? 70f : 64f);
+                }
+
                 TextMeshProUGUI btnText = btnObj.GetComponentInChildren<TextMeshProUGUI>();
-                if (btnText != null) {
+                if (btnText != null)
+                {
+                    btnText.fontSize = choiceFontSize;
+                    if (font != null) btnText.font = font;
                     var dm = DialogueManager.Instance;
                     btnText.text = HalloweenVN.Core.Loc.ChoiceText(dm?.CurrentDialogueId, dm?.CurrentNode != null ? dm.CurrentNode.id : -1, i, choices[i]);
                 }
@@ -1965,7 +2127,11 @@ namespace HalloweenVN.UI
                 Button btn = btnObj.GetComponent<Button>();
                 if (btn != null)
                 {
-                    btn.onClick.AddListener(() => { ClearChoices();
+                    btn.onClick.AddListener(() =>
+                    {
+                        if (HalloweenVN.Core.AudioManager.Instance != null)
+                            HalloweenVN.Core.AudioManager.Instance.PlaySFX("sfx_ui_click");
+                        ClearChoices();
                         if (DialogueManager.Instance != null)
                         {
                             DialogueManager.Instance.SelectChoice(index);
@@ -1973,11 +2139,86 @@ namespace HalloweenVN.UI
                     });
                 }
             }
+
+            if (gameObject.activeInHierarchy && choicePanel != null && choicePanel.activeInHierarchy)
+            {
+                if (_choiceAnimCoroutine != null) StopCoroutine(_choiceAnimCoroutine);
+                _choiceAnimCoroutine = StartCoroutine(AnimateChoicePanelPopIn());
+            }
+        }
+
+        private IEnumerator AnimateChoicePanelPopIn()
+        {
+            if (choicePanel == null) yield break;
+            CanvasGroup cg = choicePanel.GetComponent<CanvasGroup>();
+            if (cg == null) cg = choicePanel.AddComponent<CanvasGroup>();
+            RectTransform rt = choicePanel.GetComponent<RectTransform>();
+
+            float duration = 0.18f;
+            float elapsed = 0f;
+            cg.alpha = 0f;
+            if (rt != null) rt.localScale = new Vector3(0.94f, 0.94f, 1f);
+
+            while (elapsed < duration)
+            {
+                elapsed += Time.unscaledDeltaTime;
+                float t = Mathf.Clamp01(elapsed / duration);
+                float ease = 1f - Mathf.Pow(1f - t, 3f);
+                if (cg != null) cg.alpha = ease;
+                if (rt != null)
+                {
+                    float s = Mathf.Lerp(0.94f, 1f, ease);
+                    rt.localScale = new Vector3(s, s, 1f);
+                }
+                yield return null;
+            }
+            if (cg != null) cg.alpha = 1f;
+            if (rt != null) rt.localScale = Vector3.one;
+            _choiceAnimCoroutine = null;
+        }
+
+        private void TriggerChoiceAttentionPulse()
+        {
+            if (choicePanel == null || !choicePanel.activeInHierarchy || !gameObject.activeInHierarchy) return;
+            if (_choiceAnimCoroutine != null) StopCoroutine(_choiceAnimCoroutine);
+            _choiceAnimCoroutine = StartCoroutine(PulseChoicePanelRoutine());
+        }
+
+        private IEnumerator PulseChoicePanelRoutine()
+        {
+            if (choicePanel == null) yield break;
+            CanvasGroup cg = choicePanel.GetComponent<CanvasGroup>();
+            if (cg != null) cg.alpha = 1f;
+            RectTransform rt = choicePanel.GetComponent<RectTransform>();
+            if (rt == null) yield break;
+
+            float duration = 0.22f;
+            float elapsed = 0f;
+            while (elapsed < duration)
+            {
+                elapsed += Time.unscaledDeltaTime;
+                float t = Mathf.Clamp01(elapsed / duration);
+                float s = 1f + Mathf.Sin(t * Mathf.PI) * 0.045f;
+                rt.localScale = new Vector3(s, s, 1f);
+                yield return null;
+            }
+            rt.localScale = Vector3.one;
+            _choiceAnimCoroutine = null;
         }
 
         private void ClearChoices()
         {
-            if (choicePanel != null) choicePanel.SetActive(false);
+            if (_choiceAnimCoroutine != null)
+            {
+                StopCoroutine(_choiceAnimCoroutine);
+                _choiceAnimCoroutine = null;
+            }
+            _pendingChoices = null;
+            if (choicePanel != null)
+            {
+                choicePanel.transform.localScale = Vector3.one;
+                choicePanel.SetActive(false);
+            }
             if (choiceButtonContainer != null)
             {
                 foreach (Transform child in choiceButtonContainer)

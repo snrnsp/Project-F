@@ -39,6 +39,11 @@ namespace HalloweenVN.UI
         [SerializeField] private Text fontStyleLabel;
         [SerializeField] private Text fontStyleValueText;
 
+        // Font Size Toggle
+        [SerializeField] private Button fontSizeButton;
+        [SerializeField] private Text fontSizeLabel;
+        [SerializeField] private Text fontSizeValueText;
+
         // Title / Close
         [SerializeField] private Text titleTextLabel;
         [SerializeField] private Button closeButton;
@@ -136,7 +141,7 @@ namespace HalloweenVN.UI
                 if (trigger == null) trigger = skipHelpButton.gameObject.AddComponent<EventTrigger>();
                 trigger.triggers.Clear();
                 EventTrigger.Entry enter = new EventTrigger.Entry { eventID = EventTriggerType.PointerEnter };
-                enter.callback.AddListener((data) => { skipHelpPanel.SetActive(true); skipHelpPanel.transform.SetAsLastSibling(); });
+                enter.callback.AddListener((data) => { PositionSkipHelpAboveButton(); skipHelpPanel.SetActive(true); skipHelpPanel.transform.SetAsLastSibling(); });
                 trigger.triggers.Add(enter);
                 EventTrigger.Entry exit = new EventTrigger.Entry { eventID = EventTriggerType.PointerExit };
                 exit.callback.AddListener((data) => { skipHelpPanel.SetActive(false); });
@@ -191,6 +196,11 @@ namespace HalloweenVN.UI
             {
                 fontStyleButton.onClick.AddListener(OnFontStyleToggled);
             }
+            if (fontSizeButton != null)
+            {
+                fontSizeButton.onClick.RemoveListener(OnFontSizeToggled);
+                fontSizeButton.onClick.AddListener(OnFontSizeToggled);
+            }
             if (closeButton != null)
             {
                 closeButton.onClick.AddListener(Hide);
@@ -219,6 +229,7 @@ namespace HalloweenVN.UI
             if (autoPlayInputField != null) autoPlayInputField.onEndEdit.RemoveListener(OnAutoPlayInputEdit);
 
             if (fontStyleButton != null) fontStyleButton.onClick.RemoveListener(OnFontStyleToggled);
+            if (fontSizeButton != null) fontSizeButton.onClick.RemoveListener(OnFontSizeToggled);
             if (closeButton != null) closeButton.onClick.RemoveListener(Hide);
             if (returnToTitleButton != null) returnToTitleButton.onClick.RemoveListener(OnReturnToTitleClicked);
             if (deleteDataButton != null) deleteDataButton.onClick.RemoveListener(OnDeleteDataClicked);
@@ -274,6 +285,7 @@ namespace HalloweenVN.UI
             SetText(autoPlayLabel, Loc.Get("ui.settings.auto_play_delay", "오토 대기 시간"));
             SetText(skipModeLabel, Loc.Get("ui.settings.skip_mode", "스킵 모드"));
             SetText(fontStyleLabel, Loc.Get("ui.settings.font", "글꼴"));
+            SetText(fontSizeLabel, Loc.Get("ui.settings.font_size", "글자 크기"));
             SetText(returnToTitleLabel, Loc.Get("ui.settings.return_to_title", "타이틀로 돌아가기"));
             SetText(deleteDataLabel, Loc.Get("ui.settings.delete_data", "데이터 삭제"));
             previewMessage = Loc.Get("ui.settings.preview_message", "텍스트 속도가 이 정도로 출력됩니다. 눈으로 확인해 보세요!");
@@ -312,14 +324,17 @@ namespace HalloweenVN.UI
             
             SetFont(skipModeLabel, 28, 22);
             SetFont(fontStyleLabel, 28, 22);
+            SetFont(fontSizeLabel, 28, 22);
             SetFont(flashEffectLabel, 28, 22);
             SetFont(keyBindLabel, 28, 22);
             
             SetFont(ctrlSkipValueText, 20, 16);
             SetFont(fontStyleValueText, 20, 16);
+            SetFont(fontSizeValueText, 20, 16);
             SetFont(flashEffectValueText, 20, 16);
             SetFont(keyBindValueText, 20, 16);
-            SetFont(previewTextLabel, 24, 20);
+            float sizeMult = SettingsData.FontSizeMultiplier;
+            SetFont(previewTextLabel, Mathf.RoundToInt(24 * sizeMult), Mathf.RoundToInt(20 * sizeMult));
             SetFont(skipHelpText, 20, 16);
             SetFont(returnToTitleLabel, 22, 18);
             SetFont(deleteDataLabel, 22, 18);
@@ -493,6 +508,19 @@ namespace HalloweenVN.UI
             if (_keyBindPopup != null) RefreshKeyBindPopupUI();
         }
 
+        private void OnFontSizeToggled()
+        {
+            SettingsData.FontSizeLevel = (SettingsData.FontSizeLevel + 1) % 3;
+            SettingsData.Save();
+            UpdateLanguage();
+            var dialogue = Object.FindAnyObjectByType<DialogueUI>(FindObjectsInactive.Include);
+            if (dialogue != null) dialogue.UpdateLanguage();
+            var extra = Object.FindAnyObjectByType<ExtraUI>(FindObjectsInactive.Include);
+            if (extra != null) extra.UpdateLanguage();
+            var backlog = Object.FindAnyObjectByType<BacklogUI>(FindObjectsInactive.Include);
+            if (backlog != null && backlog.IsOpen) backlog.ShowBacklog();
+        }
+
         private void OnFontStyleToggled()
         {
             SettingsData.UseHandwritingFont = !SettingsData.UseHandwritingFont;
@@ -564,7 +592,46 @@ namespace HalloweenVN.UI
                     : Loc.Get("ui.settings.font_gothic", "고딕");
             }
 
+            if (fontSizeValueText != null)
+            {
+                switch (SettingsData.FontSizeLevel)
+                {
+                    case 1:
+                        fontSizeValueText.text = Loc.Get("ui.settings.font_size_large", "크게 (120%)");
+                        break;
+                    case 2:
+                        fontSizeValueText.text = Loc.Get("ui.settings.font_size_xlarge", "매우 크게 (140%)");
+                        break;
+                    default:
+                        fontSizeValueText.text = Loc.Get("ui.settings.font_size_normal", "보통 (100%)");
+                        break;
+                }
+            }
+
             UpdateSkipDropdownOptions();
+        }
+
+        private void PositionSkipHelpAboveButton()
+        {
+            if (skipHelpButton == null || skipHelpPanel == null) return;
+            RectTransform btnRt = skipHelpButton.GetComponent<RectTransform>();
+            RectTransform helpRt = skipHelpPanel.GetComponent<RectTransform>();
+            RectTransform parentRt = skipHelpPanel.transform.parent as RectTransform;
+            if (btnRt == null || helpRt == null || parentRt == null) return;
+
+            Vector3[] corners = new Vector3[4];
+            btnRt.GetWorldCorners(corners); // 1: top-left, 2: top-right
+            Vector3 topCenter = (corners[1] + corners[2]) * 0.5f;
+
+            Vector2 localPoint;
+            RectTransformUtility.ScreenPointToLocalPointInRectangle(
+                parentRt,
+                RectTransformUtility.WorldToScreenPoint(null, topCenter),
+                null,
+                out localPoint
+            );
+
+            helpRt.anchoredPosition = new Vector2(0f, localPoint.y + 42f);
         }
 
         private void PositionDropdownBelowButton()

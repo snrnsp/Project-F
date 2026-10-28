@@ -1,4 +1,4 @@
-﻿{
+{
     "dialogueId": "ch1_epilogue",
     "nodes": [
         {
@@ -9,7 +9,7 @@
             "characterSpriteCenter": "",
             "characterSpriteRight": "",
             "backgroundSprite": "Images/bg_agency_interior_morning",
-            "command": "",
+            "command": "AUDIO:PLAY_BGM:bgm_office_day",
             "noFade": false,
             "slideIn": false,
             "nextNodeId": 1,
@@ -62,7 +62,7 @@
             "speaker": "하루카",
             "text": "그, 그렇죠?! 제 특제 레시피예요!",
             "characterSpriteLeft": "",
-            "characterSpriteCenter": "Characters/하루카/미소",
+            "characterSpriteCenter": "Characters/하루카/웃음",
             "characterSpriteRight": "",
             "backgroundSprite": "",
             "command": "EFFECT:SHAKE_SHORT",
@@ -93,7 +93,7 @@
             "characterSpriteCenter": "Characters/카스미/기본",
             "characterSpriteRight": "",
             "backgroundSprite": "",
-            "command": "",
+            "command": "AUDIO:PLAY_SFX:sfx_paper",
             "noFade": false,
             "slideIn": true,
             "nextNodeId": 7,
@@ -145,11 +145,11 @@
             "id": 10,
             "speaker": " ",
             "text": "서하유가 식탁 위에 얼굴을 묻고 울기 시작했다. 하루카가 조용히 등을 쓰다듬어 주었다.",
-            "characterSpriteLeft": "Characters/하루카/미소",
+            "characterSpriteLeft": "Characters/하루카/측은",
             "characterSpriteCenter": "",
             "characterSpriteRight": "Characters/카스미/측은",
             "backgroundSprite": "",
-            "command": "",
+            "command": "AUDIO:PLAY_SFX:sfx_warm_chime",
             "noFade": false,
             "slideIn": false,
             "nextNodeId": 11,
@@ -233,7 +233,7 @@
             "characterSpriteCenter": "",
             "characterSpriteRight": "Characters/세이카/기본",
             "backgroundSprite": "",
-            "command": "",
+            "command": "AUDIO:PLAY_SFX:sfx_scan_beep",
             "noFade": false,
             "slideIn": true,
             "nextNodeId": 17,
@@ -275,7 +275,7 @@
             "characterSpriteCenter": "",
             "characterSpriteRight": "",
             "backgroundSprite": "Images/bg_agency_interior_night",
-            "command": "",
+            "command": "AUDIO:STOP_BGM;AUDIO:PLAY_SFX:sfx_door_creak",
             "noFade": false,
             "slideIn": false,
             "nextNodeId": 20,
@@ -289,11 +289,16 @@
             "characterSpriteCenter": "",
             "characterSpriteRight": "",
             "backgroundSprite": "",
-            "command": "",
+            "command": "AUDIO:PLAY_SFX:sfx_footsteps_slow",
             "noFade": true,
             "slideIn": false,
             "nextNodeId": 21,
-            "choices": []
+            "choices": [
+                {
+                    "text": "[ 서하유의 연주에 귀를 기울인다 ]",
+                    "nextNodeId": 21
+                }
+            ]
         },
         {
             "id": 21,
@@ -303,7 +308,7 @@
             "characterSpriteCenter": "",
             "characterSpriteRight": "",
             "backgroundSprite": "",
-            "command": "",
+            "command": "AUDIO:PLAY_BGM:bgm_ending_piano",
             "noFade": true,
             "slideIn": false,
             "nextNodeId": 22,
@@ -331,7 +336,7 @@
             "characterSpriteCenter": "",
             "characterSpriteRight": "",
             "backgroundSprite": "",
-            "command": "",
+            "command": "AUDIO:PLAY_SFX:sfx_applause",
             "noFade": true,
             "slideIn": false,
             "nextNodeId": 24,
@@ -396,7 +401,7 @@
         {
             "id": 28,
             "speaker": "",
-            "text": "안녕하세요, 로스트 스튜디오 대표 사차지입니다.\n오블리비언을 끝까지 즐겨주셔서 감사드립니다.",
+            "text": "안녕하세요, 로스트 스튜디오 대표 사차지입니다.\n『오블리비언』의 첫 번째 이야기를 끝까지 함께해 주셔서 진심으로 감사드립니다.",
             "characterSpriteLeft": "",
             "characterSpriteCenter": "",
             "characterSpriteRight": "",
@@ -410,7 +415,7 @@
         {
             "id": 29,
             "speaker": "",
-            "text": "이 게임은 사실 서브 게임이고, 본 게임은 따로 있습니다.",
+            "text": "『오블리비언』은 네버모어 탐정 사무소 동료들과 '기억과 망각'에 관한 짧은 이야기를 전해드리고 싶어 시작하게 된 단편 프로젝트입니다.",
             "characterSpriteLeft": "",
             "characterSpriteCenter": "",
             "characterSpriteRight": "",
@@ -424,7 +429,7 @@
         {
             "id": 30,
             "speaker": "",
-            "text": "현재 서브컬처 비주얼 노벨 '데드라인 디베이트'를 개발 중인데요,\n오블리비언은 개발 기간이 다소 짧고 간단하게 시작한 프로젝트라\n품질 측면에서는 본 게임보다는 다소 아쉬울 수 있습니다.",
+            "text": "짧은 개발 기간 동안 준비한 작품이다 보니 연출이나 분량 면에서 다소 아쉬운 부분도 있었으리라 생각합니다.\n그럼에도 마지막 순간까지 이야기를 따라와 주신 여러분 덕분에 이 작은 세계가 비로소 완성될 수 있었습니다.",
             "characterSpriteLeft": "",
             "characterSpriteCenter": "",
             "characterSpriteRight": "",
@@ -438,7 +443,7 @@
         {
             "id": 31,
             "speaker": "",
-            "text": "다만 '데드라인 디베이트' 만큼은 품질을 타협하지 않고 보여드리고 싶습니다.",
+            "text": "현재 저희 로스트 스튜디오는 이번 작품에서 얻은 소중한 경험을 바탕으로,\n차기작인 서브컬처 비주얼 노벨 『데드라인 디베이트』를 비롯해 더 깊이 있는 이야기들을 정성껏 준비하고 있습니다.",
             "characterSpriteLeft": "",
             "characterSpriteCenter": "",
             "characterSpriteRight": "",
@@ -452,7 +457,7 @@
         {
             "id": 32,
             "speaker": "",
-            "text": "만약 관심이 있으시다면 공식 웹사이트를 둘러보시는 것도 추천드립니다.",
+            "text": "저희 스튜디오의 개발 소식이나 앞으로의 이야기가 궁금하시다면, 아래 공식 웹사이트에 가볍게 들러주셔도 좋겠습니다.",
             "characterSpriteLeft": "",
             "characterSpriteCenter": "",
             "characterSpriteRight": "",
@@ -466,7 +471,7 @@
         {
             "id": 33,
             "speaker": "",
-            "text": "다시 한 번 부족한 게임을 즐겨주셔서 감사합니다.",
+            "text": "잊혀진 이들의 이름을 함께 불러주셔서 고맙습니다.\n지금까지 『오블리비언』을 플레이해 주셔서 다시 한 번 감사드립니다.",
             "characterSpriteLeft": "",
             "characterSpriteCenter": "",
             "characterSpriteRight": "",

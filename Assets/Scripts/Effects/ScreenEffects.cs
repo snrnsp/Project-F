@@ -33,12 +33,20 @@ namespace HalloweenVN.Effects
             {
                 // Target DialogueRoot (child RectTransform) instead of MainCanvas (root ScreenSpaceOverlay Canvas,
                 // whose localPosition is locked by Unity's Canvas layout system).
-                GameObject dlgRoot = GameObject.Find("DialogueRoot");
-                if (dlgRoot != null) _uiCanvasTransform = dlgRoot.transform;
+                // Use FindObjectsInactive.Include / Transform.Find so it succeeds even when called while DialogueRoot is inactive (e.g. in Lobby).
+                var dlgUi = Object.FindFirstObjectByType<HalloweenVN.UI.DialogueUI>(FindObjectsInactive.Include);
+                if (dlgUi != null)
+                {
+                    _uiCanvasTransform = dlgUi.transform;
+                }
                 else
                 {
                     GameObject uiCanvas = GameObject.Find("MainCanvas");
-                    if (uiCanvas != null) _uiCanvasTransform = uiCanvas.transform;
+                    if (uiCanvas != null)
+                    {
+                        Transform dlgRoot = uiCanvas.transform.Find("DialogueRoot");
+                        if (dlgRoot != null) _uiCanvasTransform = dlgRoot;
+                    }
                 }
             }
             if (_uiCanvasTransform != null)

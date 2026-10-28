@@ -1,4 +1,4 @@
-using HalloweenVN.Core;
+﻿using HalloweenVN.Core;
 using HalloweenVN.Dialogue;
 using HalloweenVN.Investigation;
 using HalloweenVN.Deduction;
@@ -501,23 +501,47 @@ namespace HalloweenVN.UI.Theme
             nextIndicatorText.raycastTarget = false;
             nextIndObj.SetActive(false);
 
-            // Choice Panel
+            // Choice Panel (positioned above the dialogue box so center background objects like the grand piano stay visible)
             GameObject choicePanel = UIHelper.CreateUIObject("ChoicePanel", dialoguePanelRoot.transform);
             RectTransform choiceRt = choicePanel.GetComponent<RectTransform>();
             UIHelper.SetAnchors(choiceRt, new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f));
-            choiceRt.sizeDelta = new Vector2(600, 400);
+            choiceRt.anchoredPosition = new Vector2(0, -125);
+            choiceRt.sizeDelta = new Vector2(720, 180);
 
             GameObject choiceContainer = UIHelper.CreateUIObject("ChoiceContainer", choicePanel.transform);
             UIHelper.StretchFull(choiceContainer.GetComponent<RectTransform>());
             VerticalLayoutGroup choiceVlg = choiceContainer.AddComponent<VerticalLayoutGroup>();
-            choiceVlg.spacing = 10;
+            choiceVlg.spacing = 12;
             choiceVlg.childAlignment = TextAnchor.MiddleCenter;
-            choiceVlg.childControlHeight = true;
-            choiceVlg.childControlWidth = true;
+            choiceVlg.childControlHeight = false;
+            choiceVlg.childControlWidth = false;
+            choiceVlg.childForceExpandHeight = false;
+            choiceVlg.childForceExpandWidth = false;
+            choicePanel.SetActive(false);
 
-            // Choice Button Prefab Template
-            var choiceBtnTuple = UIHelper.CreateButton(templatesRoot, "Choice", 500, HalloweenTheme.ChoiceButtonHeight);
+            // Choice Button Prefab Template (styled with rounded orange border matching interactive action theme)
+            var choiceBtnTuple = UIHelper.CreateButton(templatesRoot, "Choice", 640, 64);
+            Image choiceBtnImg = choiceBtnTuple.btn.GetComponent<Image>();
+            if (choiceBtnImg != null)
+            {
+                choiceBtnImg.sprite = UIHelper.CreateRoundedRectSprite(
+                    10, 2,
+                    new Color32(42, 26, 68, 245),
+                    HalloweenTheme.AccentOrange
+                );
+                choiceBtnImg.type = Image.Type.Sliced;
+                choiceBtnImg.color = Color.white;
+            }
+            ColorBlock choiceCb = ColorBlock.defaultColorBlock;
+            choiceCb.normalColor = Color.white;
+            choiceCb.highlightedColor = new Color32(255, 225, 190, 255);
+            choiceCb.pressedColor = new Color32(200, 145, 100, 255);
+            choiceCb.selectedColor = Color.white;
+            choiceCb.fadeDuration = 0.08f;
+            choiceBtnTuple.btn.colors = choiceCb;
             choiceBtnTuple.btnText.fontSize = HalloweenTheme.ChoiceFontSize;
+            choiceBtnTuple.btnText.fontStyle = FontStyles.Bold;
+            choiceBtnTuple.btnText.color = HalloweenTheme.AccentOrange;
             GameObject choiceButtonPrefab = choiceBtnTuple.btn.gameObject;
 
             // Separate HUD Container for AUTO / LOG / SKIP badge so they remain accessible even during fullscreen narration
@@ -950,8 +974,8 @@ namespace HalloweenVN.UI.Theme
             
             // Layout Group for the Panel
             VerticalLayoutGroup vlg = panel.AddComponent<VerticalLayoutGroup>();
-            vlg.padding = new RectOffset(40, 40, 32, 32);
-            vlg.spacing = 12;
+            vlg.padding = new RectOffset(40, 40, 26, 26);
+            vlg.spacing = 10;
             vlg.childControlWidth = true;
             vlg.childControlHeight = false;
             vlg.childForceExpandWidth = true;
@@ -995,9 +1019,9 @@ namespace HalloweenVN.UI.Theme
             textSpeedValueText.GetComponent<RectTransform>().anchoredPosition = new Vector2(valueX, 0);
 
             // Preview Text
-            GameObject ptRow = CreateRow("PreviewTextRow", 30);
+            GameObject ptRow = CreateRow("PreviewTextRow", 34);
             Text previewText = CreateLegacyText(ptRow, "", HalloweenTheme.TextPrimary, 20, TextAnchor.MiddleCenter);
-            previewText.GetComponent<RectTransform>().sizeDelta = new Vector2(800, 30);
+            previewText.GetComponent<RectTransform>().sizeDelta = new Vector2(820, 34);
 
             // 2. BGM
             GameObject bgmRow = CreateRow("BGMRow");
@@ -1114,9 +1138,17 @@ namespace HalloweenVN.UI.Theme
             GameObject fontRow = CreateRow("FontRow");
             var fontStyleLabel = CreateSettingsLabel(fontRow.transform, Loc.Get("ui.settings.font", "글꼴"), 0);
             fontStyleLabel.GetComponent<RectTransform>().anchoredPosition = new Vector2(labelX, 0);
-            var fontTuple = CreateLegacyButton(fontRow.transform, Loc.Get("ui.settings.font_handwriting", "손글씨"), buttonW, 40, new Color32(60, 40, 80, 255));
+            var fontTuple = CreateLegacyButton(fontRow.transform, SettingsData.UseHandwritingFont ? Loc.Get("ui.settings.font_handwriting", "손글씨") : Loc.Get("ui.settings.font_gothic", "고딕"), buttonW, 40, new Color32(60, 40, 80, 255));
             fontTuple.btn.GetComponent<RectTransform>().anchoredPosition = new Vector2(buttonX, 0);
             fontTuple.text.fontSize = 20;
+
+            // 6b. Font Size
+            GameObject fontSizeRow = CreateRow("FontSizeRow");
+            var fontSizeLabel = CreateSettingsLabel(fontSizeRow.transform, Loc.Get("ui.settings.font_size", "글자 크기"), 0);
+            fontSizeLabel.GetComponent<RectTransform>().anchoredPosition = new Vector2(labelX, 0);
+            var fontSizeTuple = CreateLegacyButton(fontSizeRow.transform, Loc.Get("ui.settings.font_size_normal", "보통 (100%)"), buttonW, 40, new Color32(60, 40, 80, 255));
+            fontSizeTuple.btn.GetComponent<RectTransform>().anchoredPosition = new Vector2(buttonX, 0);
+            fontSizeTuple.text.fontSize = 20;
 
             // 7. Flash
             GameObject flashRow = CreateRow("FlashRow");
@@ -1135,7 +1167,7 @@ namespace HalloweenVN.UI.Theme
             keyBindTuple.text.fontSize = 20;
 
             // Spacer
-            CreateRow("Spacer", 10);
+            CreateRow("Spacer", 6);
 
             // 9. Bottom Action Row (Return to Title & Delete Data side-by-side)
             GameObject bottomActionRow = CreateRow("BottomActionRow", 52);
@@ -1177,6 +1209,9 @@ namespace HalloweenVN.UI.Theme
             UIHelper.SetField(settingsUi, "fontStyleButton", fontTuple.btn);
             UIHelper.SetField(settingsUi, "fontStyleLabel", fontStyleLabel);
             UIHelper.SetField(settingsUi, "fontStyleValueText", fontTuple.text);
+            UIHelper.SetField(settingsUi, "fontSizeButton", fontSizeTuple.btn);
+            UIHelper.SetField(settingsUi, "fontSizeLabel", fontSizeLabel);
+            UIHelper.SetField(settingsUi, "fontSizeValueText", fontSizeTuple.text);
             UIHelper.SetField(settingsUi, "closeButton", closeTuple.btn);
             UIHelper.SetField(settingsUi, "returnToTitleButton", titleTuple.btn);
             UIHelper.SetField(settingsUi, "returnToTitleLabel", titleTuple.text);
@@ -1639,7 +1674,7 @@ namespace HalloweenVN.UI.Theme
         private void CreateExtraUI()
         {
             TMP_FontAsset hwFontAsset = FontHelper.GetTMPFont(FontHelper.GetFontNameForLanguage(SettingsData.Language));
-            if (hwFontAsset == null) hwFontAsset = FontHelper.GetTMPFont("NanumPenScript");
+            if (hwFontAsset == null) hwFontAsset = FontHelper.GetTMPFont("MalgunGothic");
 
             // Root panel (fullscreen overlay, starts hidden)
             extraModalRoot = UIHelper.CreateUIObject("ExtraPanel", mainCanvas.transform);

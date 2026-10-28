@@ -422,8 +422,9 @@ namespace HalloweenVN.UI
             }
 
             bool isGothic = !SettingsData.UseHandwritingFont;
-            float speakerFontSize = isGothic ? 25f : 32f;
-            float bodyFontSize = isGothic ? 23f : 30f;
+            float sizeMult = SettingsData.FontSizeMultiplier;
+            float speakerFontSize = Mathf.Round((isGothic ? 25f : 32f) * sizeMult);
+            float bodyFontSize = Mathf.Round((isGothic ? 23f : 30f) * sizeMult);
             float tagFontSize = isGothic ? 18f : 23f;
             float titleFontSize = isGothic ? 28f : 36f;
             int closeBtnFontSize = isGothic ? 20 : 26;
@@ -498,7 +499,7 @@ namespace HalloweenVN.UI
                 var entry = history[i];
                 bool isLastEntry = (i == history.Count - 1);
                 bool isNarration = string.IsNullOrWhiteSpace(entry.speaker);
-                string bodyText = ResolveText(entry);
+                string bodyText = ResolveText(entry, !isLastEntry);
 
                 Color normalBg = isNarration ? narrationBg : boxBg;
                 Color normalBorder = isLastEntry ? HalloweenTheme.AccentOrange : dimBorder;
@@ -544,10 +545,19 @@ namespace HalloweenVN.UI
         }
         
         /// <summary>Text for an entry in the CURRENT language (so a mid-game language switch updates past lines too).</summary>
-        private static string ResolveText(BacklogEntry entry)
+        private static string ResolveText(BacklogEntry entry, bool includeCompletedChoice = false)
         {
             if (entry.node == null) return entry.text;
-            return HalloweenVN.Core.Loc.NodeText(entry.dialogueId, entry.node);
+            string text = HalloweenVN.Core.Loc.NodeText(entry.dialogueId, entry.node);
+            if (includeCompletedChoice && entry.node.choices != null && entry.node.choices.Count > 0)
+            {
+                string choiceTxt = HalloweenVN.Core.Loc.ChoiceText(entry.dialogueId, entry.node.id, 0, entry.node.choices[0]);
+                if (!string.IsNullOrEmpty(choiceTxt))
+                {
+                    text += $"\n<color=#FF9628>▶ {choiceTxt}</color>";
+                }
+            }
+            return text;
         }
         
         private void OnEntryClicked(int historyIndex)

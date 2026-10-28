@@ -119,7 +119,10 @@ namespace HalloweenVN.Dialogue
             IsPlaying = true;
             OnDialogueStarted?.Invoke();
             
-
+            if (currentDialogue != null && !string.IsNullOrEmpty(currentDialogue.initialBgm))
+            {
+                HalloweenVN.Core.AudioManager.Instance?.PlayBGM(currentDialogue.initialBgm);
+            }
             
             if (currentDialogue != null && currentDialogue.nodes != null && currentDialogue.nodes.Count > 0)
             {
@@ -200,6 +203,7 @@ namespace HalloweenVN.Dialogue
             if (ui != null)
             {
                 ui.ClearAll();
+                ui.StartPreloadCurrentChapter();
             }
             
             string initialChapterBgm = !string.IsNullOrEmpty(currentDialogue.initialBgm)
@@ -289,6 +293,7 @@ namespace HalloweenVN.Dialogue
             if (ui != null)
             {
                 ui.ClearAll();
+                ui.StartPreloadCurrentChapter();
             }
 
             string defaultBgm = !string.IsNullOrEmpty(currentDialogue.initialBgm)

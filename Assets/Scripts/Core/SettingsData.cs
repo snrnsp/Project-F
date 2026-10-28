@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace HalloweenVN.Core
@@ -21,7 +21,9 @@ namespace HalloweenVN.Core
         public static float AutoPlayDelay { get; set; } = 2.0f;
         public enum SkipKeyOption { Ctrl, Shift, Space, Off, Custom }
         public static SkipKeyOption SkipKey = SkipKeyOption.Ctrl;
-        public static bool UseHandwritingFont { get; set; } = true;
+        public static bool UseHandwritingFont { get; set; } = false;
+        public static int FontSizeLevel { get; set; } = 0; // 0: Normal (100%), 1: Large (120%), 2: Extra Large (140%)
+        public static float FontSizeMultiplier => FontSizeLevel == 2 ? 1.4f : (FontSizeLevel == 1 ? 1.2f : 1.0f);
         public static int PerformanceMode { get; set; } = 1; // 0: Power Saving, 1: High Quality
         public static GameLanguage Language { get; set; } = GameLanguage.Korean;
         public static bool EnableFlashingEffects { get; set; } = true;
@@ -49,7 +51,8 @@ namespace HalloweenVN.Core
             IsFullScreen = PlayerPrefs.GetInt(Prefix + "IsFullScreen", 1) == 1;
             AutoPlayDelay = PlayerPrefs.GetFloat(Prefix + "AutoPlayDelay", 2.0f);
             SkipKey = (SkipKeyOption)PlayerPrefs.GetInt(Prefix + "SkipKey", 0);
-            UseHandwritingFont = PlayerPrefs.GetInt(Prefix + "UseHandwritingFont", 1) == 1;
+            UseHandwritingFont = PlayerPrefs.GetInt(Prefix + "UseHandwritingFont", 0) == 1;
+            FontSizeLevel = Mathf.Clamp(PlayerPrefs.GetInt(Prefix + "FontSizeLevel", 0), 0, 2);
             PerformanceMode = PlayerPrefs.GetInt(Prefix + "PerformanceMode", 1);
             Language = (GameLanguage)PlayerPrefs.GetInt(Prefix + "Language", 0);
             EnableFlashingEffects = PlayerPrefs.GetInt(Prefix + "EnableFlashingEffects", 1) == 1;
@@ -97,6 +100,7 @@ namespace HalloweenVN.Core
             PlayerPrefs.SetFloat(Prefix + "AutoPlayDelay", Mathf.Clamp(AutoPlayDelay, 0.1f, 5.0f));
             PlayerPrefs.SetInt(Prefix + "SkipKey", (int)SkipKey);
             PlayerPrefs.SetInt(Prefix + "UseHandwritingFont", UseHandwritingFont ? 1 : 0);
+            PlayerPrefs.SetInt(Prefix + "FontSizeLevel", Mathf.Clamp(FontSizeLevel, 0, 2));
             PlayerPrefs.SetInt(Prefix + "PerformanceMode", PerformanceMode);
             PlayerPrefs.SetInt(Prefix + "Language", (int)Language);
             PlayerPrefs.SetInt(Prefix + "EnableFlashingEffects", EnableFlashingEffects ? 1 : 0);
@@ -261,7 +265,8 @@ namespace HalloweenVN.Core
             IsFullScreen = true;
             AutoPlayDelay = 2.0f;
             SkipKey = SkipKeyOption.Ctrl;
-            UseHandwritingFont = true;
+            UseHandwritingFont = false;
+            FontSizeLevel = 0;
             PerformanceMode = 1;
             EnableFlashingEffects = true;
             ResetKeyBindings();

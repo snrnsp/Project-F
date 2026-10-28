@@ -1,4 +1,4 @@
-﻿{
+{
     "dialogueId": "ch0_origin",
     "nodes": [
         {
@@ -23,7 +23,7 @@
             "backgroundSprite": "",
             "choices": [],
             "nextNodeId": 2,
-            "command": ""
+            "command": "AUDIO:PLAY_SFX:sfx_paper"
         },
         {
             "id": 2,
@@ -101,7 +101,7 @@
             "backgroundSprite": "",
             "choices": [],
             "nextNodeId": 8,
-            "command": "",
+            "command": "AUDIO:PLAY_SFX:sfx_paper",
             "noFade": true,
             "slideIn": false
         },
@@ -183,7 +183,12 @@
             "characterSpriteCenter": "",
             "characterSpriteRight": "",
             "backgroundSprite": "Images/bg_law_firm_archive_night",
-            "choices": [],
+            "choices": [
+                {
+                    "text": "[ 봉인된 낡은 상자를 연다 ]",
+                    "nextNodeId": 14
+                }
+            ],
             "nextNodeId": 14,
             "command": ""
         },
@@ -197,7 +202,7 @@
             "backgroundSprite": "",
             "choices": [],
             "nextNodeId": 15,
-            "command": ""
+            "command": "AUDIO:PLAY_SFX:sfx_box_open"
         },
         {
             "id": 15,
@@ -209,7 +214,7 @@
             "backgroundSprite": "",
             "choices": [],
             "nextNodeId": 16,
-            "command": "",
+            "command": "AUDIO:PLAY_SFX:sfx_paper",
             "noFade": true,
             "slideIn": false
         },

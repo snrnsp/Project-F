@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
@@ -110,10 +110,10 @@ namespace HalloweenVN.UI
             age = Loc.Get("ui.extra.kasumi_age", "23세"),
             role = Loc.Get("ui.extra.kasumi_role", "수석 탐정 / 현장 지휘"),
             mbti = "INTJ",
-            appearance = Loc.Get("ui.extra.kasumi_appearance", "은회색 단발머리. 날카로운 호박색 눈동자. 활동하기 편한 슬림핏 트렌치 코트. 단정하고 이성적인 분위기."),
+            appearance = Loc.Get("ui.extra.kasumi_appearance", "허리 아래까지 흘러내리는 짙은 남보라빛 긴 생머리. 날카로운 청록색 눈동자. 흰 셔츠에 검은 넥타이와 하이웨스트 정장 슬랙스를 갖춰 입은 단정하고 이성적인 분위기."),
             personality = Loc.Get("ui.extra.kasumi_personality", "철저한 이성주의자. 모든 현상에는 과학적 원인이 있다고 확신한다. 사건을 객관적이고 논리적으로 해결하려 한다."),
             speechStyle = Loc.Get("ui.extra.kasumi_speech", "존댓말 위주. 딱딱하고 사무적.\n\"...전 유령 따위는 믿지 않습니다. 분명 트릭이 있을 겁니다.\""),
-            secret = Loc.Get("ui.extra.kasumi_secret", "어릴 적 트라우마로 인해 사실 '귀신'을 극도로 무서워한다. 탐정이 된 이유도 그것.")
+            secret = Loc.Get("ui.extra.kasumi_secret", "어린 시절 흔적도 없이 사라진 언니의 미제 실종 사건을 마음에 품고 있다. 그토록 과학과 팩트에 집착하며 탐정이 된 진짜 이유도 언니를 찾기 위해서다.")
         });
 
         profiles.Add(new CharacterProfile
@@ -124,10 +124,10 @@ namespace HalloweenVN.UI
             age = Loc.Get("ui.extra.rina_age", "21세"),
             role = Loc.Get("ui.extra.rina_role", "행동 대장 / 무력 담당"),
             mbti = "ESTP",
-            appearance = Loc.Get("ui.extra.rina_appearance", "밝은 분홍색 트윈테일. 스포티한 야구 점퍼와 숏팬츠. 활동적이고 톡톡 튀는 스타일."),
+            appearance = Loc.Get("ui.extra.rina_appearance", "어두운 회갈색 웨이브 긴 머리에 은색 X자 헤어핀과 둥근 안경. 맑은 파란 눈동자. 검은 민소매 탑과 체크무늬 숏팬츠 위에 오버사이즈 재킷을 걸친 활동적이고 자유분방한 스타일."),
             personality = Loc.Get("ui.extra.rina_personality", "생각보다 몸이 먼저 나가는 행동파. 활기차고 용감하지만 지루한 것을 견디지 못한다. 사무소에 가만히 있는 것을 제일 싫어한다."),
             speechStyle = Loc.Get("ui.extra.rina_speech", "반말 위주. 목소리가 크다.\n\"그냥 문 부수고 들어가면 안 돼?!\""),
-            secret = Loc.Get("ui.extra.rina_secret", "의외로 요리 실력이 뛰어나다. 단, 시각적으로는 매우 끔찍한 결과물을 만들어낸다.")
+            secret = Loc.Get("ui.extra.rina_secret", "말로는 큰소리를 치지만 실은 어둠과 귀신을 제일 무서워한다. 어두운 곳에 들어가면 무의식적으로 옆 사람의 옷소매를 꽉 붙잡는 습관이 있다.")
         });
 
         profiles.Add(new CharacterProfile
@@ -138,10 +138,10 @@ namespace HalloweenVN.UI
             age = Loc.Get("ui.extra.lilith_age", "20세"),
             role = Loc.Get("ui.extra.lilith_role", "정보원 / 해커 & 발명가"),
             mbti = "ISTP",
-            appearance = Loc.Get("ui.extra.lilith_appearance", "헝클어진 보라색 머리. 두꺼운 안경. 오버핏 후드티와 헤드폰. 항상 다크서클이 있다."),
-            personality = Loc.Get("ui.extra.lilith_personality", "귀차니스트 천재. 사람보다 기계와 대화하는 것을 더 편하게 생각한다. 기계에 '이름'을 붙여주는 취미가 있다."),
-            speechStyle = Loc.Get("ui.extra.lilith_speech", "작은 목소리. 단답형.\n\"...해킹 완료. 3초 걸렸어.\""),
-            secret = Loc.Get("ui.extra.lilith_secret", "어떤 사람의 목소리든 완벽히 복제하는 AI를 발명했다. 자신이 대답하기 귀찮을 때 쓴다.")
+            appearance = Loc.Get("ui.extra.lilith_appearance", "은백색에서 하늘색으로 이어지는 그라데이션 숏컷과 차가운 파란 눈동자. 검은 크롭탑과 숏팬츠 위에 흰색 테크웨어 점퍼를 걸친 미래적이고 중성적인 분위기."),
+            personality = Loc.Get("ui.extra.lilith_personality", "감정 표현이 적고 침착한 천재 해커이자 엔지니어. 사람보다 기계를 편하게 생각하며, 직접 만든 할로윈 호박 모양 정찰 드론 '잭오'를 분신처럼 아낀다."),
+            speechStyle = Loc.Get("ui.extra.lilith_speech", "차분하고 건조한 단답형.\n\"...잭오 스캔 완료. 생체 반응 0%.\""),
+            secret = Loc.Get("ui.extra.lilith_secret", "정찰 드론 '잭오'에 자아가 있는 AI를 탑재하려는 비밀 프로젝트를 진행 중이다. 사실은 외로움을 타서 마음 놓고 대화할 친구가 필요했기 때문.")
         });
 
         profiles.Add(new CharacterProfile
@@ -152,10 +152,10 @@ namespace HalloweenVN.UI
             age = Loc.Get("ui.extra.mina_age", "1,000세(?)"),
             role = Loc.Get("ui.extra.mina_role", "오컬트 고문 / 자칭 '천 년 묵은 유령'"),
             mbti = "INFJ",
-            appearance = Loc.Get("ui.extra.mina_appearance", "창백한 피부에 은발. 고풍스러운 옛 의상. 신비로운 붉은 눈동자."),
+            appearance = Loc.Get("ui.extra.mina_appearance", "창백한 피부에 연보라빛이 감도는 긴 은발과 신비로운 푸른 눈동자. 뿔 달린 후드가 이어진 흰색 유령 드레스 차림의 몽환적인 분위기."),
             personality = Loc.Get("ui.extra.mina_personality", "스스로를 천 년 묵은 유령이라 칭하는 중2병 소녀. 평소엔 엉뚱하지만 오컬트 지식은 진짜다."),
             speechStyle = Loc.Get("ui.extra.mina_speech", "시대극 말투.\n\"크큭... 어리석은 인간이여. 천 년 묵은 이 몸이 두려운가?\""),
-            secret = Loc.Get("ui.extra.mina_secret", "햇빛 알레르기가 있어서 낮에 밖에 나가지 못할 뿐이다. 사실 소금은 좋아한다(감자칩 매니아).")
+            secret = Loc.Get("ui.extra.mina_secret", "평소의 엉뚱한 유령 연기와 달리, 실제로 잊혀진 존재들의 슬픔과 잔류 사념에 깊이 공명하는 영적 감응력을 지니고 있다.")
         });
 
         profiles.Add(new CharacterProfile
@@ -166,10 +166,10 @@ namespace HalloweenVN.UI
             age = Loc.Get("ui.extra.haruka_age", "19세(최연소)"),
             role = Loc.Get("ui.extra.haruka_role", "사무소 막내 / 접수원"),
             mbti = "ISFJ",
-            appearance = Loc.Get("ui.extra.haruka_appearance", "단정한 흑발 숏컷. 완벽하게 다림질된 단정한 블라우스. 상냥한 미소."),
+            appearance = Loc.Get("ui.extra.haruka_appearance", "하얀 꽃 장식을 꽂은 부드러운 회갈색 긴 머리. 연분홍 재킷 아래 하얀 프릴 롱 원피스 차림. 봄날처럼 상냥하고 따뜻한 미소."),
             personality = Loc.Get("ui.extra.haruka_personality", "사무소의 햇살 같은 분위기 메이커. 항상 친절하고 성실하다. 취미이자 특기는 호박 요리."),
-            speechStyle = Loc.Get("ui.extra.haruka_speech", "존댓말.\n\"홍차 한 잔 다 드시면, 다음 사건 파일 가져다 드릴게요.\""),
-            secret = Loc.Get("ui.extra.haruka_secret", "화가 나면 아무도 말릴 수 없다. 카스미조차 하루카가 화내면 눈치를 본다.")
+            speechStyle = Loc.Get("ui.extra.haruka_speech", "밝고 상냥한 존댓말.\n\"방금 갓 만든 호박 라떼 대령이요~! 한 잔 드시고 힘내세요!\""),
+            secret = Loc.Get("ui.extra.haruka_secret", "항상 밝은 겉모습과 달리, 학창 시절 심한 따돌림으로 투명인간 취급을 받았던 아픔이 있다. 자신을 있는 그대로 받아준 네버모어 사무소를 누구보다 소중히 여긴다.")
         });
     }
     public void RegisterFolder(GameObject folder, Image bodyImg, Image tabImg, TextMeshProUGUI tabText)
@@ -405,14 +405,15 @@ namespace HalloweenVN.UI
                     portRt.offsetMax = new Vector2(-20, -90);
                 }
             }
+            float sizeMult = HalloweenVN.Core.SettingsData.FontSizeMultiplier;
             if (nameTxt != null) {
                 bool isGothic = !HalloweenVN.Core.SettingsData.UseHandwritingFont;
                 nameTxt.text = profile.name;
-                nameTxt.fontSize = isGothic ? 34 : 48;
+                nameTxt.fontSize = Mathf.Round((isGothic ? 34f : 48f) * sizeMult);
             }
             if (profileTxt != null) {
                 bool isGothic = !HalloweenVN.Core.SettingsData.UseHandwritingFont;
-                profileTxt.fontSize = isGothic ? 24 : 32;
+                profileTxt.fontSize = Mathf.Round((isGothic ? 24f : 32f) * sizeMult);
             }
             UpdateProfileText(profileTxt, profile);
 

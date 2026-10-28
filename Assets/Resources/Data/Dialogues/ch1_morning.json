@@ -1,4 +1,4 @@
-﻿{
+{
     "dialogueId": "ch1_morning",
     "nodes": [
         {
@@ -38,7 +38,8 @@
             "nextNodeId": 5,
             "noFade": true,
             "characterSpriteLeft": "",
-            "characterSpriteRight": ""
+            "characterSpriteRight": "",
+            "command": "AUDIO:PLAY_SFX:sfx_paper"
         },
         {
             "id": 5,
@@ -101,14 +102,15 @@
             "characterSpriteLeft": "Characters/카스미/홍조",
             "characterSpriteRight": "Characters/하루카/웃음",
             "nextNodeId": 12,
-            "noFade": true
+            "noFade": true,
+            "command": "AUDIO:PLAY_SFX:sfx_teacup"
         },
         {
             "id": 12,
             "speaker": " ",
             "text": "쾅! — 현관문이 거칠게 열리는 소리.",
             "nextNodeId": 13,
-            "command": "EFFECT:SHAKE",
+            "command": "EFFECT:SHAKE;AUDIO:PLAY_SFX:sfx_door_slam",
             "characterSpriteLeft": "",
             "characterSpriteCenter": "",
             "characterSpriteRight": "",
@@ -195,7 +197,8 @@
             "nextNodeId": 21,
             "characterSpriteLeft": "Characters/리리스/찡그림",
             "characterSpriteRight": "Characters/리나/당황",
-            "noFade": true
+            "noFade": true,
+            "command": "AUDIO:PLAY_SFX:sfx_electric_spark"
         },
         {
             "id": 21,
@@ -303,7 +306,8 @@
             "id": 31,
             "speaker": " ",
             "text": "또각또각 — 우아한 발소리가 복도에서 들려온다.",
-            "nextNodeId": 32
+            "nextNodeId": 32,
+            "command": "AUDIO:PLAY_SFX:sfx_footsteps_heels"
         },
         {
             "id": 32,
@@ -358,7 +362,8 @@
             "characterSpriteLeft": "Characters/세이카/기본",
             "characterSpriteRight": "Characters/리리스/기본",
             "nextNodeId": 38,
-            "noFade": true
+            "noFade": true,
+            "command": "AUDIO:PLAY_SFX:sfx_scan_beep"
         },
         {
             "id": 38,
@@ -413,7 +418,8 @@
             "nextNodeId": 44,
             "characterSpriteLeft": "Characters/세이카/기본",
             "characterSpriteRight": "Characters/하루카/기본",
-            "noFade": true
+            "noFade": true,
+            "command": "AUDIO:PLAY_SFX:sfx_paper"
         },
         {
             "id": 44,
@@ -428,7 +434,7 @@
         {
             "speaker": " ",
             "text": "하루카가 종이를 접으며 잠시 멈칫했다.",
-            "command": "",
+            "command": "AUDIO:PLAY_SFX:sfx_paper",
             "characterSpriteLeft": "Characters/세이카/찡그림",
             "characterSpriteCenter": "",
             "characterSpriteRight": "Characters/하루카/측은",
@@ -528,7 +534,8 @@
             "nextNodeId": 54,
             "characterSpriteLeft": "Characters/미나/음침",
             "characterSpriteRight": "Characters/카스미/찡그림",
-            "noFade": false
+            "noFade": false,
+            "command": "AUDIO:PLAY_SFX:sfx_wind_eerie"
         },
         {
             "id": 54,
@@ -557,7 +564,8 @@
             "characterSpriteLeft": "",
             "characterSpriteCenter": "Characters/세이카/음침",
             "characterSpriteRight": "",
-            "noFade": false
+            "noFade": false,
+            "command": "AUDIO:PLAY_SFX_FADEOUT:sfx_heartbeat,3.5,1.0"
         },
         {
             "id": 57,
@@ -576,7 +584,8 @@
             "nextNodeId": 59,
             "noFade": true,
             "characterSpriteRight": "",
-            "characterSpriteLeft": ""
+            "characterSpriteLeft": "",
+            "command": "AUDIO:PLAY_SFX:sfx_teacup"
         },
         {
             "id": 59,
@@ -643,7 +652,8 @@
             "nextNodeId": 66,
             "characterSpriteLeft": "Characters/카스미/기본",
             "characterSpriteRight": "Characters/리리스/기본",
-            "noFade": false
+            "noFade": false,
+            "command": "AUDIO:PLAY_SFX:sfx_scan_beep"
         },
         {
             "id": 66,
@@ -715,7 +725,8 @@
             "id": 73,
             "speaker": " ",
             "text": "— 사건 파일1: 잊혀진 피아니스트 —",
-            "nextNodeId": 74
+            "nextNodeId": 74,
+            "command": "AUDIO:PLAY_SFX:sfx_piano_single_note"
         },
         {
             "id": 74,

@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
 using HalloweenVN.Data;
@@ -71,7 +71,10 @@ namespace HalloweenVN.Core
             string legacy = LegacyField(choice.text_en, choice.text_ja, choice.text_cn, choice.text_tw);
             string fb = string.IsNullOrEmpty(legacy) ? ko : legacy;
             if (string.IsNullOrEmpty(dialogueId)) return fb;
-            return Get($"{DialogueKey(dialogueId, nodeId)}.choice{choiceIndex}", fb);
+            string k1 = $"{DialogueKey(dialogueId, nodeId)}.choice{choiceIndex}";
+            string res = Get(k1, null);
+            if (!string.IsNullOrEmpty(res)) return res;
+            return Get($"{DialogueKey(dialogueId, nodeId)}.choice.{choiceIndex}", fb);
         }
 
         /// <summary>Display name for a speaker (the Korean name stays the internal identifier, e.g. for name colors).</summary>

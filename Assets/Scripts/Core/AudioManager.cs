@@ -32,9 +32,27 @@ namespace HalloweenVN.Core
             { "bgm_lobby",         0.65f }, // -3.7 dB
             { "bgm_office_day",    0.64f }, // -3.9 dB
             { "bgm_office_night",  0.60f }, // -4.4 dB
-            { "sfx_heartbeat",     0.85f }, // momentary -13 LUFS: slightly tamed so it doesn't overpower BGM
-            { "sfx_ui_click",      1.00f },
-            { "sfx_ui_hover",      1.00f },
+            { "sfx_heartbeat",         0.85f }, // momentary -13 LUFS: slightly tamed so it doesn't overpower BGM
+            { "sfx_ui_click",          1.00f },
+            { "sfx_ui_hover",          1.00f },
+            { "sfx_paper",             0.78f },
+            { "sfx_box_open",          0.82f },
+            { "sfx_door_creak",        0.75f },
+            { "sfx_door_slam",         0.88f },
+            { "sfx_footsteps_heels",   0.80f },
+            { "sfx_teacup",            0.75f },
+            { "sfx_wind_eerie",        0.72f },
+            { "sfx_footsteps_slow",    0.78f },
+            { "sfx_cloth_pull",        0.88f },
+            { "sfx_rumble_low",        0.82f },
+            { "sfx_scan_beep",         0.68f },
+            { "sfx_keyboard_typing",   0.74f },
+            { "sfx_piano_morse",       0.85f },
+            { "sfx_piano_single_note", 0.88f },
+            { "sfx_piano_discord",     0.88f },
+            { "sfx_warm_chime",        0.80f },
+            { "sfx_electric_spark",    0.80f },
+            { "sfx_applause",          0.82f },
         };
 
         // Leading silence to skip (seconds). sfx_heartbeat has ~1.05 s of silence at the head.
